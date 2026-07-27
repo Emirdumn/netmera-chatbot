@@ -1,0 +1,3 @@
+[server]
+# transformers modullerini yoklarken yuzlerce sahte traceback uretiyordu
+fileWatcherType = "none"
