@@ -1,0 +1,168 @@
+URL: https://user.netmera.com/netmera-user-guide/targeting/blacklist.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/targeting/blacklist.md).
+
+# Blacklist
+
+{% hint style="danger" %}
+
+### **Blacklisting Blocks All Messages for That Channel**
+
+If a user is blacklisted for a channel, no messages can be sent to that user’s related contact address on that channel, including legal and mandatory communications.
+{% endhint %}
+
+`Targeting > Blacklist Upload`
+
+Upload, view, and manage your blacklisted users. In addition to general contact uploads, you can manage **channel-based blacklists and whitelists** from this flow.
+
+* Add users to a blacklist for one or more channels.
+* Remove users from a blacklist (whitelist) for one or more channels.
+* Track each upload with list name, date, status, and channels.
+
+<figure><img src="/files/L2YT8H4bKZAj0xh0XXdx" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Channel-based management
+
+You can select one or more channels during the upload. Changes apply only to selected channels. Available channels depend on your enabled products. Options include:
+
+* **Mobile** (Mobile Push), **Web** (Web Push), **SMS, Email, WhatsApp**
+
+### Blacklist Dashboard
+
+The dashboard lists your previous uploads. Each row represents one uploaded list.
+
+<figure><img src="/files/JN022lQaLu9H7BIl1d73" alt=""><figcaption></figcaption></figure>
+
+You can review:
+
+* **List Name**
+* **Upload Date**
+* **User Count**
+* **Status** (for example, *Waiting for Approval* or *Ready*)
+* **Channels** affected by the upload
+* **Actions** (view or edit depending on status)
+
+### Blacklist Upload
+
+Use this step to add users to the blacklist.
+
+Blacklisted users won’t receive messages on the selected channels.
+
+1. Set a **List Name**.
+2. (Optional) Set a **Tag Name**.
+3. Upload your `.csv` or `.txt` file.
+4. Select the channels you want to blacklist.
+
+<figure><img src="/files/Yo51muP7LZPNKRvb1RDm" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+
+#### File format and identifiers
+
+* Format: **CSV** or **TXT**
+* Each row should represent **one user**
+* Use a valid header name:
+
+  `Email`, `Mail`, `Phone Number`, `Phone`, `ExId`, `Device Token`, or `Token`
+  {% endhint %}
+
+5. Review the preview.
+6. Click **Approve** to submit the upload.
+
+<figure><img src="/files/3rbVh8KDG0tqqxN3n7P3" alt=""><figcaption></figcaption></figure>
+
+{% file src="/files/j2U0igqotKRg8qkc4MQa" %}
+
+#### Invalid Header Name&#x20;
+
+If the first row (header) does not use one of the allowed identifier names, the system cannot map the file correctly. In the **Preview** tab, the column with an invalid header (for example `Phone Namber` instead of `Phone Number` ) is highlighted.
+
+The summary at the bottom shows:
+
+*“7 columns will be imported, 1 column will not be imported. 0 contacts will be uploaded.”*
+
+Because there is no valid identifier column, the upload cannot be approved and the system shows the  error:
+
+**How to fix**
+
+1\. Use a valid header name
+
+Replace the first row with one allowed identifier column:
+
+**`Email`, `Mail`, `Phone Number`, `Phone`, `ExId`, `Device Token`, or `Token`**
+
+2\. Remove extra separators
+
+3\. Ensure each row has exactly one value
+
+4\. Clean hidden characters
+
+### Whitelist Upload
+
+`Targeting > Whitelist Upload`
+
+Use this step to remove users from the blacklist.
+
+This makes them eligible again on the selected channels.
+
+1. Set a **List Name**.
+2. (Optional) Set a **Tag Name**.
+3. Upload your `.csv` or `.txt` file.
+4. Select the channels you want to whitelist.
+5. Review the preview.
+6. Click **Approve** to submit the upload.
+
+Whitelisting does not bypass consent rules.
+
+Users still need valid permission per channel.
+
+<figure><img src="/files/oHFjYed3wh2xANUuCmfI" alt=""><figcaption></figcaption></figure>
+
+### Blacklist vs whitelist priority
+
+For each end user, Netmera keeps a history of **blacklist** and **whitelist** records by channel. If a user has both types of records:
+
+* The **most recent record wins**.
+* If a newer **whitelist** record exists after a blacklist record, the user is treated as **whitelisted** (eligible) on that channel.
+
+This ensures that changes made through your latest uploads are always respected and traceable.
+
+### View user status in People
+
+`Targeting > People > User Details`
+
+In **User Details**, you can see the user’s blacklist/whitelist status **per channel**. The information is shown in a clear, readable list.
+
+If the user is **not** blacklisted on a channel, no record is shown for that channel.
+
+If the user is blacklisted on a channel, a record is shown in this format:
+
+* Added to Mobile blacklist via “listName” on "date".
+* Added to Web blacklist via “listName” on "date".
+* Added to SMS blacklist via “listName” on "date".
+* Added to Email blacklist via “listName” on "date".
+* Added to WhatsApp blacklist via “listName” on "date".
+
+<figure><img src="/files/gzq7hZ7G0ix7Ksf0JmiN" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/targeting/blacklist.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,79 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/behavioural/event-reports/hourly-usage.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/behavioural/event-reports/hourly-usage.md).
+
+# Hourly Usage
+
+**Path:** `Reports > Behavioural > Event Reports > Hourly Usage`
+
+Hourly Usage helps you understand how a selected event is distributed throughout the day. It is useful when timing matters and you want to see when activity actually happens.
+
+Use this report when you want to answer questions such as:
+
+* When do users trigger an event most often?
+* When does a campaign start creating reaction?
+* Is there unusual traffic during a specific hour?
+
+### Report overview
+
+This report focuses on hourly distribution. It helps you spot peak usage periods, campaign reaction windows, and short-term anomalies more quickly than a daily report.
+
+Use it when you care about timing, not just volume. For broader event trends across days, use [Daily Event Count](/netmera-user-guide/reports-and-analytics/reports/behavioural/event-reports/daily-event-count.md).
+
+### Choose the time period
+
+The time range controls how the hourly distribution is built:
+
+* **Today** is useful for same-day monitoring.
+* **Last Week** helps compare recent daily behavior.
+* **Last Month** is useful for broader recent patterns.
+* **Last Year** helps when you need a long-range view.
+* **Dates Between** is best for a specific launch, campaign, or operational period.
+
+<figure><img src="/files/uP0tbTR0aWujNByYIRz6" alt=""><figcaption></figcaption></figure>
+
+### Use event properties for more precise analysis
+
+Event properties add context to the selected event and help you narrow the result to a more specific use case. This matters when the same event can happen in different business contexts.
+
+Available properties depend on the event. Standard Netmera events include predefined fields, while custom events use the attributes defined during setup.
+
+<figure><img src="/files/zLCGjtSaEnR3ds4K1AFp" alt=""><figcaption></figcaption></figure>
+
+To add event properties:
+
+1. Select the event you want to analyze.
+2. Click **Add Event Property**.
+3. Choose the relevant property and value.
+4. Click **Add**.
+5. Click **Find** to generate the report.
+
+<figure><img src="/files/1OYfgC9PQE2o1QHMVE9C" alt=""><figcaption></figcaption></figure>
+
+### Example
+
+Suppose you want to analyze **View Push** for a specific **Message ID**. Select **View Push**, add **Message ID** as the event property, choose the relevant values, define the time range, and then run the report.
+
+This view is best for fast hourly pattern reading. When you need more advanced breakdowns, continue with [Event Insight](broken://spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/behavioural/event-reports/hourly-usage.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

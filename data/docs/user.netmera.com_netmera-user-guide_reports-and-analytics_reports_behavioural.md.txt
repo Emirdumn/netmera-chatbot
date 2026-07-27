@@ -1,0 +1,35 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/behavioural.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/behavioural.md).
+
+# Behavioural
+
+<figure><img src="/files/sU6DmXmsENI0YbhXTCig" alt=""><figcaption></figcaption></figure>
+
+Use **Behavioural** to review how users interact with your product over time. Open the report that matches the event trend or app overlap question you want to answer.
+
+### What you can review
+
+<table data-view="cards"><thead><tr><th>What you can review</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Review daily and hourly event activity. Use this report to monitor volume changes and peak usage times.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/ymjfs09THWMsQ4SodOon">/spaces/X6uilbEAw42gqsudlclY/pages/ymjfs09THWMsQ4SodOon</a></td></tr><tr><td>Review which other Android apps appear on your users’ devices. Use this report to understand app overlap and audience context.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/uMJEg6cqkfmbw1k582xr">/spaces/X6uilbEAw42gqsudlclY/pages/uMJEg6cqkfmbw1k582xr</a></td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/behavioural.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

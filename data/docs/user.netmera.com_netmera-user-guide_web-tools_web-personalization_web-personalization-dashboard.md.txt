@@ -1,0 +1,77 @@
+URL: https://user.netmera.com/netmera-user-guide/web-tools/web-personalization/web-personalization-dashboard.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/web-tools/web-personalization/web-personalization-dashboard.md).
+
+# Web Personalization Dashboard
+
+**Web Tools > Experiences > Web Personalization**
+
+In Netmera, a cutting-edge personalization platform, you have the ability to set up **distinct segments and tags, enabling you to curate and deliver highly personalized web pages tailored to the preferences and characteristics of each unique group.** With this powerful capability, you can create an unparalleled digital experience that captivates your audience, fosters stronger connections, and drives exceptional levels of engagement and conversion.
+
+{% hint style="info" %}
+**Example:**
+
+With Web Personalization, you may create personalized homepage experiences based on different segments of your audience. For example, if you have segments like "New Visitors," "Returning Customers," or "High-Value Customers," tailor the homepage content to match their specific needs. Show relevant product recommendations, exclusive offers, or personalized greetings to make each segment feel valued and engaged from the moment they land on your site.
+{% endhint %}
+
+To access the web personalization creation menu, navigate to the Web Tools category and find "Experiences" In this section, you'll discover five essential functions that allow you to tailor your web pages to specific user segments and deliver personalized content.
+
+<figure><img src="/files/I3BNq1WK3QupsSqczvqM" alt=""><figcaption><p>Web Tools > Experiences > Web Personalization</p></figcaption></figure>
+
+## Web Personalization Page Functions
+
+Web Personalization Page has 5 functions which are **experience** **summary, stop an experience, clone, edit and create a new personalization experience**.&#x20;
+
+<figure><img src="/files/Eoucl5M5ZEMZAPtusAAF" alt=""><figcaption></figcaption></figure>
+
+### Experience Summary
+
+By clicking on an existing experience, you can view its summary and make adjustments as needed.
+
+<figure><img src="/files/nIgaxYPZjVud7ObUZj3c" alt=""><figcaption></figcaption></figure>
+
+### Stop an Experience
+
+To stop a running experience, click the **stop** icon in the Actions section.
+
+<figure><img src="/files/1gslWVaOoYwR3p3WPj2q" alt=""><figcaption></figcaption></figure>
+
+### Clone an Experience
+
+You can **clone** a running experience by clicking the clone icon in the Actions section.
+
+<figure><img src="/files/yxk1siG92gT0IyIc3Dth" alt=""><figcaption></figcaption></figure>
+
+### Edit an Experience
+
+For experiences you have already stopped, you can click the **edit** icon to make changes. Editing is only applicable to stopped experiences. To edit a live experience, you must first stop it.
+
+<figure><img src="/files/5q4YUbpKyjL9jwmoBAB0" alt=""><figcaption></figcaption></figure>
+
+### Create a New Experience
+
+Creating a new experience is simple - click the **"Publish New Personalization Experience"** button in the upper right.&#x20;
+
+<figure><img src="/files/svMaZFwvi4qPFuNksblv" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/web-tools/web-personalization/web-personalization-dashboard.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

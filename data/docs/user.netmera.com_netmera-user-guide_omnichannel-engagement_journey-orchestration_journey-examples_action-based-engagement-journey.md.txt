@@ -1,0 +1,215 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-examples/action-based-engagement-journey.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-examples/action-based-engagement-journey.md).
+
+# Action-Based Engagement Journey
+
+The **Action-Based Engagement Journey** is designed to engage users based on their specific actions, ensuring that each interaction is personalized and relevant. This approach follows the principle of tracking a user’s behavior and guiding them through a series of targeted steps to encourage desired outcomes. Below is an example of how this journey works and can be adapted to various use cases.
+
+<details>
+
+<summary>Possible Use Cases <span data-gb-custom-inline data-tag="emoji" data-code="2728">✨</span></summary>
+
+1. **Abandoned Cart Recovery**:\
+   A user adds products to their cart but doesn’t complete the purchase. After viewing the cart, they are sent follow-up reminders or discounts to encourage them to finalize their order. If the user completes the purchase, they are thanked and offered rewards; if not, the journey ends after follow-up attempts.
+2. **Product Recommendations**:\
+   After a user views a product but does not purchase it, they are shown personalized recommendations based on their interests. If they buy a recommended product, they are rewarded with a discount on their next purchase. If not, follow-up reminders or alternative offers nudge them to make a purchase.
+3. **Credit Application**:\
+   A user starts an application for a credit card or loan but doesn’t complete the process. After starting the application, they receive follow-up messages offering assistance or reminders of benefits. If the application is completed, the user is congratulated and given an incentive (e.g., a special offer or lower interest rate). If not, the journey concludes after several reminders or offers to encourage completion.
+4. **Membership Sign-Up & Onboarding**:\
+   A user visits a membership sign-up page but doesn’t complete registration. They are sent follow-up reminders offering incentives for joining, such as a discount or bonus points. If they complete the sign-up, they are guided through an onboarding process, with rewards for completing milestones. If they don’t sign up after multiple follow-ups, the journey ends.
+5. **Subscription Renewal**:\
+   A user’s subscription is about to expire, and they are shown renewal options. If they renew, they are thanked and offered a special discount for the next period. If they don’t, follow-up reminders with time-limited offers are sent to encourage renewal, and the journey concludes after the final reminder.
+
+</details>
+
+## Example Journey Flow
+
+Below you might find the example journey flow, where the user are included in the journey after **viewing the specific page discounts** and then as a second event, **adding a product to their favorites**. If they make a **purchase**, they receive rewards or acknowledgment. If they don’t, follow-up **reminders** or **offers** encourage them to complete the purchase. The journey ends when the user completes the action or after all follow-up attempts are made.  Next, we'll explore how to set up this journey in the following steps. :relaxed:
+
+<figure><img src="/files/EEo7CVnigDu5cRlOEksz" alt=""><figcaption></figcaption></figure>
+
+## Step 1: Setting up Journey Details and Conversion Event
+
+1. Type a descriptive **name** for your journey. This will help you identify the journey later.
+2. Provide a brief **description** of the journey's purpose or goals.
+
+Next, let’s assign our conversion event. Because our focus is on our “**Purchase with price greater than x**” , we will do the following for our **Conversion Event**:
+
+3. For the **Conversion Event**, select **Purchase**.
+4. Click on **Add Trigger Filters**. This allows us to select a specific price.
+5. Select Property as **Price**.
+6. Select the operator as **Greater Than** to define how the property should be evaluated.
+7. Enter a **Value** (for instance: 100£) in the field that the property should match.
+
+<figure><img src="/files/Ixh8HSrBik8yZRph56zF" alt="" width="563"><figcaption></figcaption></figure>
+
+## Step 2: Deciding on Entry Point: Action Based
+
+When you choose an Action Based Journey, the flow starts when a user performs the initial event you specify in this step (e.g., visits a page, interacts with a widget, or views content). Let's say we want our **Journey** to start when our customers see one of our screens called **Discounts**.
+
+1. Choose **Action Based** for the entry type to trigger the journey when users perform specific actions.
+2. Select **Screen View** as the event that will trigger the journey entry.
+3. Click on **Add Trigger Filters** to specify conditions for the entry event.
+4. Set Select **Property** to Screen Name.
+5. Choose the operator **Contains**.
+6. Enter **Discounts** in the **Value** field to specify the condition for journey entry.
+
+<figure><img src="/files/pLMmK4dKJ4U7ENbBGWB5" alt="" width="563"><figcaption></figcaption></figure>
+
+## Step 3:  Set an User Entry Schedule
+
+Now let's imagine I want my users to be able to join my Journey multiple times. But not too often, as it could be too repetetive. To allow users to engage with my Journey without excessive repetition, I've set the following rules:
+
+* Users can enter the Journey up to **2 times (entry capping)** within a **2-month period (entry capping time period)**.
+* Once they enter, they are locked out for **1 month (lock duration)**, preventing immediate re-entry.
+* This ensures a balance between repeated engagement and preventing the experience from feeling too repetitive.
+
+1. Set User Eligibility Type to Multiple Times to allow users to join the Journey more than once.
+2. Set Lock Duration to a specific time period.
+3. Enable Entry Capping and set it to your desired limits for users entries.
+4. Toggle Specify a capping time period and set the Entry Capping Time Period to a specific time period.
+
+<figure><img src="/files/XDegfeXTJ1t9JVv0IDl7" alt="" width="563"><figcaption></figcaption></figure>
+
+## Step 4: Determine Who Enters the Journey <a href="#step-4-determine-who-enters-the-canvas" id="step-4-determine-who-enters-the-canvas"></a>
+
+In this step, after defining the journey's functionality and eligibility rules, you will determine **which users will be included in this journey.** You can choose to run this journey for specific segment(s) or all users.
+
+1. Click **Add more segments** to add as many segments as you wish.
+2. To target all users, skip this step and do not select a segment.&#x20;
+
+<figure><img src="/files/SZe9IJmAeHleSGrikD0x" alt="" width="563"><figcaption></figcaption></figure>
+
+## Step 5: Customize your Journey <a href="#step-6-customize-your-canvas" id="step-6-customize-your-canvas"></a>
+
+### Journey Starting Point
+
+As you have chosen Action-Based Journey on the Entry Rules step, the Journey begins with that **trigger event (Screen View)** and is designed to capture users based on their engagement with specific pages or actions.
+
+1. **Trigger Type**: Action-Based
+
+The Journey is initiated when users perform a specific action, such as **Screen View** of **Discounts**. This ensures the Journey flow is tailored to user behavior and their level of engagement.
+
+2. **Schedule**: Begins on **17/12/2024 at 11:15**
+
+The Journey starts at a predefined time, allowing alignment with campaigns or promotions for maximum impact.
+
+<figure><img src="/files/BcRw1vH7LRmnpGiVki8C" alt="" width="375"><figcaption></figcaption></figure>
+
+### Next Step: Event Check – Adds a Product to Favorites
+
+After users enter the Journey based on the **Screen View / Discounts** trigger, the system checks if they have taken an additional action:
+
+**Adds a Product to Favorites**
+
+This creates two communication paths:
+
+1. **Users Who Added a Product to Favorites (On Performed)**
+   * These users show higher intent and interest, so your communication can focus on encouraging a purchase or providing incentives.
+2. **Users Who Did Not Add a Product to Favorites (On Timed Out)**
+   * These users will receive tailored follow-ups to nudge them toward adding products to favorites or exploring further.
+
+<figure><img src="/files/B1cWvRmzbROMtBt9D9j9" alt="" width="563"><figcaption></figcaption></figure>
+
+### Decision Points: Performed or Timed Out?
+
+At this stage, verify if the user has made a **purchase** or completed the desired action. Users who have completed the event will proceed to the `On_Performed` section, while those who haven't will continue with `On_Timed_Out.`
+
+* **On Performed Users** (those who completed the purchase) will receive positive outcomes, like a thank-you message, rewards (such as discounts), encouragement to explore more items, or feedback widgets.
+
+**Example**:\
+\&#xNAN;*“How was your recent shopping experience?"*&#x20;
+
+* **On Timed Out Users** (those who didn’t complete a purchase) will receive follow-up prompts, such as reminders or special offers to encourage them to complete their purchase.
+
+**Example**:\
+\&#xNAN;*“You’ve added items to your cart! Come back and use your discount!* :wink:"
+
+<figure><img src="/files/aKhgvnwq7BQAnsddXo5u" alt="" width="563"><figcaption></figcaption></figure>
+
+### Follow-Up Engagements
+
+#### **Performed Users (Completed Purchase)**
+
+These are users who went through the journey, added a product to their favorites, and then made a **purchase**. They are considered "performed" because they've completed the desired action (purchase). Now, we want to keep them engaged with your brand.
+
+**What happens next?**
+
+* After completing the purchase, you can encourage them to explore **further actions** or campaigns. This can be done by sending them:
+  * **Discounts or Rewards**: Offer them special deals on their next purchase.
+  * **Related Product Recommendations**: Suggest products similar to what they’ve already bought.
+  * **Survey or Feedback**: Asking them for feedback or encouraging them to engage with a survey to understand their experience.
+
+**Examples:**
+
+* After a purchase event, the user receives a **post-purchase survey** through SMS. The message could read:\
+  \&#xNAN;*“Thank you for your purchase! 🎉 Share your experience with us and enjoy a 10% discount on your next order!”*
+* Another example is offering a **feedback widget** through an in-app message, encouraging users to rate their purchase or provide suggestions. This keeps users connected and invested in the brand.
+
+<figure><img src="/files/J91R8PllrPsdBQ5wh8O0" alt="" width="563"><figcaption></figcaption></figure>
+
+#### **Timed-Out Users (Did Not Complete the Purchase)**
+
+These users interacted with your Journey (i.e., they added a product to their favorites), but **did not make a purchase**. They are considered "timed out" because they did not complete the desired action (purchase).
+
+**What happens next?**
+
+* You will send **follow-up prompts** or **alternative offers** to encourage them to complete the purchase. This could include:
+  * **Urgency or Time-Sensitive Offers**: Send reminders with limited-time discounts or promotions.
+  * **Alternative Products or Offers**: Present users with different discounts, offers, or product suggestions that might entice them to finalize the purchase.
+  * **Reminder Push Notifications**: Encourage them to return to the app and complete their purchase.
+
+**Examples:**
+
+* If the user doesn’t purchase after adding a product to their favorites, they may receive a **push notification** after a set period (e.g., a timed-out message). It could say:\
+  \&#xNAN;*“Hey, we noticed you liked this item! Complete your purchase now and get 15% off!”*
+* Alternatively, an **SMS** could be sent to users who abandoned their cart:\
+  \&#xNAN;*“Psst… don’t miss out! You still have items in your cart—buy now and save big!”*
+
+### Exit Points
+
+The **Exit Point** marks the conclusion of a user’s journey. This can occur in two main ways:
+
+1. **Completion of Desired Action**:
+
+The journey ends when the user successfully completes the intended action, such as making a purchase.
+
+**Example**:\
+If the user adds a product to their favorites and then completes a purchase, they reach the exit point of the journey after the purchase is finalized and will be counted as conversion. This is the desired action, and there are no further steps needed. The user has successfully engaged and can be rewarded or acknowledged.
+
+2. **Exhaustion of Follow-Up Attempts**:
+
+If the user does not take the desired action (such as making a purchase) despite follow-up prompts (like reminders, discounts, or notifications), the journey will eventually reach an exit point after all possible follow-up attempts have been made.
+
+**Example**:\
+If a user adds a product to their favorites but does not purchase it after receiving reminders or discounts, and no further action is taken by the user, the journey will automatically conclude after the final follow-up attempt (like the last push notification or SMS).
+
+{% hint style="success" %}
+**Exit Point Consideration**:\
+Any path where **there are no additional actions or steps to follow is considered an exit point.** This helps ensure that the journey doesn’t continue indefinitely and provides a clear conclusion. You can analyze exit points to refine your strategy for improving engagement in future campaigns.
+{% endhint %}
+
+<figure><img src="/files/Z5mUmFMVHbPNo13cNnsp" alt="" width="563"><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-examples/action-based-engagement-journey.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

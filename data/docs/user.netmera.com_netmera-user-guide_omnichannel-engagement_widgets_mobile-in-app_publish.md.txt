@@ -1,0 +1,334 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/publish.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/publish.md).
+
+# Publish
+
+{% hint style="info" %}
+**Quick Steps Guidelines**
+
+1. **Mobile Widget > Publish Mobile Widget**
+2. Create your '[**Automation**](#step-1-automation)' for your Mobile Widget.
+3. On '[**Setup**](#step-2-setup)' choose In-app Message/Widget and decide on your widget type. These are "**Widget, Pop-up Style, Banner Style and Fullscreen"**. Except from Widget (which is created in [Create](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create.md)), all of the others can be created on the following screen.
+4. Decide on your content on page "[**What**](#step-3-what)".
+5. Create your audience for your widget on page "[**Who**](#step-4-who)".
+6. Test and Publish on "[**GO**](#step-5-go)!".
+   {% endhint %}
+
+## Step 1: Automation
+
+Mobile Widgets are considered as Automated Messages as they are triggered based on your app users' actions or according to a specific time period you set. On the first page of the Publish Mobile Widget process, you can set up the triggers or time periods for using your widget.
+
+{% hint style="danger" %}
+**Note:**
+
+For more detailed information, you can refer to the [Automated Push Scenarios ](/netmera-user-guide/messaging-features/automated-messaging.md)page, where we discuss all the options and settings for automated messages.
+{% endhint %}
+
+### User Action <a href="#user-action" id="user-action"></a>
+
+For User Action, there are four options to choose from. They are Increase Retention, Increase App Conversion, Handle Special User Action and Merge Events.
+
+#### Increase Retention <a href="#increase-retention" id="increase-retention"></a>
+
+To increase retention, you can create automated widgets that are sent based on a user's actions or inaction **after a certain period of time.** For instance, a widget can be created to be sent 2 hours after the user installs the application.
+
+#### Increase App Conversion <a href="#increase-app-conversion" id="increase-app-conversion"></a>
+
+Widgets can be triggered based on the user's actions or inaction **over a specific period of time.** For example, if a user clicks on a push notification but doesn't make a purchase within a certain time frame, a widget can be scheduled to be sent. These widgets are sent based on the presence or absence of specific events and can be sent to either all devices or only the most recent devices of users.
+
+#### Handle Special User Action <a href="#handle-special-user-action" id="handle-special-user-action"></a>
+
+To handle special user actions, you can set up widgets based on the **frequency of certain actions**, such as showing a widget when a user makes a second in-app purchase. Again, these messages can be sent to all or most recent devices of users.
+
+#### Merge Events
+
+With Merge Events, you can create automation scenarios that trigger a single set of actions when multiple events occur in a specific order.
+
+In the event type section, you select the events and event attributes that you want to track, and then assign a desired event key to each event. This enables you to build automation scenarios that are tailored to your needs.
+
+<figure><img src="/files/Yj9c7dkaER4O4CPXvc3J" alt=""><figcaption><p>Merge Events</p></figcaption></figure>
+
+### Periodic Widgets
+
+Periodic widgets are sent **regularly on a scheduled basis**, such as daily, weekly, or monthly. These widgets can be set up to be sent at a specific time, ensuring that they reach the user at a time when they are most likely to engage with them.
+
+One common use case for periodic widgets is showing birthday messages to users. By setting up a daily periodic widgets, you can automatically send personalized birthday widgets to users on their birthdays, ensuring that they feel appreciated and valued by the app.
+
+<figure><img src="/files/m2ZtkIMKtTTGp05QtwJP" alt=""><figcaption><p>Periodic</p></figcaption></figure>
+
+### Campaign Period
+
+#### Start Time and End Time:
+
+These fields define the active period for the campaign. Messages or widgets will only be sent/displayed during this time window.
+
+#### **When Selected Scenario Occurs, Send Message:**
+
+You can specify whether the widget is shown **every time** the condition is met or based on predefined criteria or only **once** the scenario occurs and stop showing the widget.
+
+<figure><img src="/files/YDTECZvwMgQxWL79pb6s" alt=""><figcaption></figcaption></figure>
+
+#### User Limit:
+
+Controls how many times a single user can receive the same message within a specified period.
+
+* Per Day: Limits the number of messages a user can receive in one day.
+* Per Week: Restricts the number of times the user can receive the message in a week.
+* Per Month: Prevents excessive messaging to a user within a month.
+* Custom Month: Allows specifying the number of messages per a custom-defined time period (e.g., 3 messages per 6 months).
+
+You set a **User Limit** of 1 **Per Day**. If a user performs an action that triggers the message multiple times a day, they’ll only receive the message once, avoiding over-communication.
+
+#### **Total Limit:**
+
+Sets the overall cap on the number of messages sent across all users during the campaign.
+
+* Total Message Count: A numerical limit that specifies the maximum number of messages to send during the campaign.
+
+If you run a limited promotion, you can cap the message delivery to 10,000 messages to ensure the campaign doesn’t overspend on resources or over-target users.
+
+#### **Message Limit:**
+
+Adds a layer of control to limit how frequently a particular message is sent overall, across all users.
+
+* Per Hour: Restricts the message from being sent more than a set number of times in an hour.
+* Per Day: Limits daily message volume.
+* Per Week: Sets a weekly maximum for the message.
+* Per Month: Prevents excessive messaging over a longer time period.
+
+A campaign promoting limited-time offers might set a **Message Limit** of 100 messages per hour to balance between urgency and avoiding overwhelming the system or users.
+
+#### **Message Expire In:**
+
+Defines how long the message remains valid for delivery after being triggered.
+
+* A numerical value and time unit (e.g., hours or days) indicating the expiration period.
+
+You set the message to expire in **6 hours**. If the triggering condition occurs at 3 PM, the message won’t be sent to users after 9 PM. This is particularly important for time-sensitive messages, such as flash sales or event reminders.
+
+#### **Push Time Restriction:**
+
+Controls the timing and days for when messages can be sent, ensuring they’re delivered at appropriate times.
+
+* Send Only Between: Sets a start and end time for the delivery window.\
+  Example: Between 09:00 and 18:30 ensures no messages are sent during off-hours.
+* Send Only On: Select specific days for message delivery (e.g., Monday-Friday for work-related notifications or Saturday-Sunday for leisure campaigns).
+* Delay the Push If Not Permitted: If a message is triggered outside the allowed time or day, it will be delayed and sent once the permitted window opens.
+* Send Based on User’s Time Zone: Dynamically adjusts the delivery window based on each user’s local time, ensuring relevance for global audiences.
+
+You run a campaign targeting working professionals. Messages are sent between 09:00 and 18:30 from Monday to Friday. Any actions triggered outside these times are queued for delivery at the next available window.
+
+#### **Instant Show:**
+
+***(Only Applicable for Widgets and In-app Messages)***
+
+Ensures the widget or This feature ensures that a widget or message is displayed immediately upon the occurrence of the triggering condition. If, due to technical constraints, the widget cannot be displayed at the moment of the trigger, **it will not reappear in subsequent sessions or on other screens.**
+
+* The widget appears immediately upon the user's action. However, if the widget cannot be displayed due to technical issues, it will not reattempt to show in subsequent sessions or on different screens.
+
+In a cart abandonment scenario, the widget can be configured to instantly remind users of their abandoned cart as soon as they trigger the event. However, if the widget fails to display due to being triggered in an unsupported screen or session, it will not be reattempted in future sessions or screens.
+
+<figure><img src="/files/EFijkbPYfiDAbj7v4nGB" alt=""><figcaption></figcaption></figure>
+
+## Step 2: Setup
+
+Choose **In-app Message/Widget** and decide on your widget type in the 'Setup' section. Then you will choose the type of mobile widget you want to create. The available options are **Widget, Pop-up Style, Banner Style, and Fullscreen**. Each type offers a different style and layout for your widget. The Widget type should be created in a separate section at [Create](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create.md), while the other types can be created on the following screen.
+
+In 'Setup' section, you will start by selecting the In-app Message/Widget option. This will allow you to create a mobile widget for your app. Next, you will need to decide on the type of widget you want to create. Here are the available options:
+
+<figure><img src="/files/m6fxhYBDvf7ZniGrM6rF" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+**Example:**
+
+Consider your specific goals and the nature of the content you want to present to your app users when choosing the appropriate widget type. Each type has its own advantages and use cases, so select the one that best aligns with your app's overall design and user experience.
+{% endhint %}
+
+## Step 3: What
+
+On 'What' page, you will have the opportunity to create and customize the content of your mobile widget. This is where you can make your widget visually appealing and engaging for your users. Here are the key elements and options available for creating your widget's content,
+
+{% hint style="info" %}
+**Example:**
+
+Imagine you have an e-commerce app, and you want to promote a limited-time sale on specific product categories. On the 'What' page, you can create a widget with a title like "Huge Sale Event!" and a message highlighting the discounts and time-sensitive nature of the sale. You can include appealing product images and a call-to-action button saying "Shop Now" that directs users to the sale page in your app. This well-designed and compelling content will grab the attention of your users and drive them to take action, resulting in increased sales during the sale event.
+{% endhint %}
+
+### **Widget**
+
+This type of widget is a versatile and customizable option that can be placed anywhere within your app's user interface. It can be used to display various content, such as promotions, announcements, or personalized recommendations. You can choose the size, position, and design of the widget to seamlessly integrate it into your app's layout. However, on this page you can choose a pre-designed widget or you may choose to **Edit** your widget before you continue.
+
+<figure><img src="/files/V23uKVrsDXNIBJxEPr3X" alt=""><figcaption><p>Widget</p></figcaption></figure>
+
+### **Pop-up Style**
+
+A pop-up style widget is designed to grab the user's attention by appearing as a window on the app's content. It can be used for important notifications, prompts, or user interactions. You can customize the size, appearance, and behavior of the pop-up to ensure it aligns with your app's branding and user experience.
+
+<figure><img src="/files/g3PKYcDv9esC5TVMqke5" alt=""><figcaption><p>Pop-up style</p></figcaption></figure>
+
+### Banner Style
+
+The banner style widget is a narrow strip that typically appears at the top or bottom of the app's screen. It is an effective way to deliver persistent messages, reminders, or quick actions without obstructing the main content. You can customize the banner's color, text, and click behavior to suit your app's design and functionality.
+
+<figure><img src="/files/692lyEzYbKFLL0NF4bNg" alt=""><figcaption><p>Banner 1</p></figcaption></figure>
+
+<figure><img src="/files/vtAwA2WVHTgkJYoZ3iOd" alt=""><figcaption><p>Banner 2</p></figcaption></figure>
+
+### Fullscreen
+
+The fullscreen widget covers the entire screen, providing a highly immersive and visually impactful experience. It is suitable for displaying rich media content, such as image galleries, videos, or interactive tutorials. You can design the fullscreen widget with engaging visuals, navigation controls, and interactive elements to captivate your users.
+
+<figure><img src="/files/LOsMIcX5dF9S4LIMDITW" alt=""><figcaption><p>Feedback</p></figcaption></figure>
+
+<figure><img src="/files/vtAwA2WVHTgkJYoZ3iOd" alt=""><figcaption><p>Banner 2</p></figcaption></figure>
+
+{% hint style="info" %}
+**Note:**
+
+For further information on Message Action, Fallback and Conversion Analytics you may visit titles below,
+
+[What](/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/what.md#push-click-action)
+
+[What](/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/what.md#conversion-analytics)
+
+[What](/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/what.md#fallback)
+{% endhint %}
+
+By carefully selecting the widget type, you can enhance user engagement, deliver targeted messages, and provide valuable interactions within your mobile app.
+
+## Step 4: Who
+
+In the **Who** step, the target audience for your widget is determined. The widget can be sent to **all users** or your target audience can be narrowed by selecting the users by **"Select Users", or "Advanced".**
+
+### Defining Target Audience
+
+<figure><img src="/files/UuYEAr3OpreRJZKSWR7b" alt=""><figcaption><p>Who</p></figcaption></figure>
+
+### Select Users and Advanced Options
+
+{% tabs %}
+{% tab title="Select Users" %}
+You may select your target users by filtering them with criteria of tags, segments, profiles you have created before or according to their responses to your previous notifications, locations, devices and more.
+
+<mark style="color:green;">**Criteria mentioned below can be created or edited in "Targeting".**</mark>
+
+**Tag**
+
+You can segment your users based on tags that you have created in the 'Targeting > Tags' section. Once you have added at least two tags, you can modify your tag preference using 'And/Or' logical operators. This allows you to refine your targeting and reach specific groups of users who share certain characteristics or behaviors.
+
+**Segment**
+
+Segments are groups of users that are dynamically structured. Based on the actions they take on the app, users can either enter or exit these segments. To learn more, please refer to the [**Define Segment**](broken://pages/xNC4H15bplYGvAIMWDre) section.
+
+**Profile**
+
+The users who’s specified profile attribute is equal to specified value. This refers to a targeting option where you can select users whose specific profile attribute matches a particular value. For example, you can select users whose "gender" attribute is equal to "female" or users whose "age" attribute is equal to "25".
+
+**Response**
+
+With this targeting option, you can refine your push notification targeting by selecting users who have or have not interacted with a previously sent push notification. This allows you to tailor your messaging and improve engagement rates by sending notifications to users who are more likely to respond.
+
+**Location**
+
+This targeting option allows you to target users based on their location. You can specify a geographical region, such as a city, state, or country, and send push notifications to users who are located in that area. This is especially useful for businesses that want to promote events or offers in specific locations.
+
+**Last Used Device**
+
+This targeting option allows you to target users based on their last used device or other than their last used device. You can choose to send push notifications to users who have recently used a specific device or exclude users who have used a particular device.
+
+**Location Preferences**
+
+This targeting option allows you to target users based on their location permissions. You can send push notifications to users who have granted location access to your app or exclude users who have denied location access.
+
+**Device**
+
+This targeting option allows you to target users based on their device type. You can send push notifications to users who are using a specific device, such as an iPhone or an Android phone.
+
+**Operator**
+
+This targeting option allows you to target users based on their telecom operator. You can send push notifications to users who are using a specific telecom operator.
+
+**App Version**
+
+This targeting option allows you to target users based on the version of your app that they have installed. You can send push notifications to users who are using a specific version of your app or exclude users who have an outdated version.
+
+**Operating System**
+
+This targeting option allows you to target users based on the operating system of their device. You can send push notifications to users who are using a specific operating system, such as iOS or Android.
+
+**Installation Source**
+
+This targeting option is available thanks to Netmera integration with Adjust. It allows you to track users who have installed your app from advertising campaigns and send push notifications to them based on the campaign that brought them to your app.
+
+**By App Tracking (Android Only)**
+
+This allows you to track and target users based on their in-app behaviors, such as their usage frequency or the actions they take within the app. This can help you to refine your targeting and send push notifications to users who are more likely to engage with your app. Note that this feature is only available on Android devices.
+
+**Advertising Id Permission**
+
+This targeting option allows you to target users based on whether they have given permission for their advertising id to be collected. After iOS 14, apps require user permission to collect advertising ids for devices. With this targeting option, you can send push notifications to users who have granted or denied permission for their advertising id.
+
+**Android Provider**
+
+This targeting option allows you to target users based on their Android provider. You can send push notifications to users who are using a specific Android provider, such as Google or Huawei.
+
+**Promotion**
+
+This targeting option allows you to target users based on whether they have a promotion code or not. You can send push notifications to users who have a promotion code to encourage them to use it and drive more sales.
+{% endtab %}
+
+{% tab title="Advanced" %}
+New filters can be defined using conditions and groups by selecting **Advanced** option.
+
+The advanced filter options allow you to create specific target audiences for your campaigns. By adding conditions and groups, you can tailor your promotions to customers who have shown an interest in your brand by either purchasing a specific product, subscribing to your newsletter, or browsing your website. Using the "AND" option ensures that only customers who meet all the conditions are included in your target audience, while the "OR" option includes a broader audience of customers who meet any of the conditions. This makes your promotions more relevant and effective in driving sales for your business.
+
+By clicking **"Add Condition"** or **"Add Group"** you may choose the criteria which suits your notification the best.
+
+More than one Condition or Group can be added to serve best according to your needs.
+
+<figure><img src="/files/Mg28xuzISohrLY6nCGe2" alt=""><figcaption><p>Advanced Option</p></figcaption></figure>
+
+When "**AND**" is chosen, if **all criteria** is met by the conditions/groups they will be listed as your target audience and they will be shown on the right section of the page.
+
+When "**OR**" is chosen, if **any criteria** is met by the conditions/groups, they will be listed as your target audience and they will be shown on the right section of the page.
+{% endtab %}
+{% endtabs %}
+
+### **Ignore User Message Limits**
+
+It is an option that allows showing widgets to users who have exceeded their message limits. Normally, push notification providers set limits on the number of push notifications that can be sent to a user within a certain period of time to prevent spamming or overwhelming the user.
+
+However, in some cases, it may be necessary to send a message to a user even if they have exceeded their limit, such as for urgent notifications or time-sensitive information. In these cases, the "Ignore User Message Limits" option can be used to bypass the limit and ensure that the message is delivered.
+
+{% hint style="info" %}
+**Example:**
+
+If you want to show a widget to your customers who have abandoned their carts without making a purchase, you can use "Select Users" to create a target audience by selecting users who have added items to their cart but have not completed the checkout process. By filtering your users with criteria, you show a personalized widget that encourage them to complete their purchase. This can help reduce cart abandonment rates and drive sales for your business.
+{% endhint %}
+
+## Step 5: Go!
+
+Before publishing your mobile widget, it's crucial to test its functionality and appearance to ensure a seamless user experience. Use the available preview and testing options to view how the widget will be displayed on different devices and screen sizes. Once you are satisfied with the configuration and testing, you can click on the "Publish" or "Go" button to make the widget live in your mobile app.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/publish.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

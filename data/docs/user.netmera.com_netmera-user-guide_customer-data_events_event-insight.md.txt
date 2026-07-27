@@ -1,0 +1,259 @@
+URL: https://user.netmera.com/netmera-user-guide/customer-data/events/event-insight.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/customer-data/events/event-insight.md).
+
+# Event Insight
+
+<figure><img src="/files/467A4R8bEbUDb1TKVWKB" alt="" width="489"><figcaption></figcaption></figure>
+
+Event Insight helps you analyze custom and system events across time, audience, platform, and event properties.
+
+{% hint style="info" %}
+
+#### Quick path
+
+**Path :** `Analytics> Event Insight`
+
+1. Select a **Time Period**.
+2. Choose a **Target** such as **All Users**, **Segment**, **Tag**, or **Profile**.
+3. Search for one or more **Events**.
+4. Add **Event Properties** if you need tighter filtering.
+5. Click **Find**.
+6. Refine the result with **Dimensions**, **aggregation**, and the analysis-type controls.
+   {% endhint %}
+
+Use it when you need to move from a product or campaign question to exact event-level answers.
+
+Use it to answer four practical questions:
+
+* Which events happened, and how often?
+* Which users or segments triggered them?
+* How do results change by platform, time, or attribute?
+* Which event properties explain the behavior behind the totals?
+
+<figure><img src="/files/T9vhjROZvlXxlYfyteYA" alt=""><figcaption></figcaption></figure>
+
+### Build your query
+
+Start with the smallest query that answers your question, then add more detail only when needed. This makes the result easier to read and easier to trust. In most cases, you begin with a time range, choose the audience, select the event, and then decide whether event properties or dimensions are necessary.
+
+#### 1. Select the time period
+
+Choose the date range for the analysis first. The selected period defines the full result set, so it has the biggest impact on what you see next. Shorter ranges work best when you are debugging a recent issue or checking campaign activity from the last few days. Longer ranges work better when you want to understand trends, seasonality, or changes after a release.
+
+For example, if you want to verify whether a new onboarding event is firing correctly, a short range such as today or the last seven days is usually enough. If you want to compare purchase behavior month over month, a broader range gives a more meaningful picture.
+
+<figure><img src="/files/zkqQbSv8zJH8L9F2ogoR" alt="" width="375"><figcaption></figcaption></figure>
+
+#### 2. Define the target audience
+
+Next, define who should be included in the query. This keeps the analysis focused on the users that matter for the question you are trying to answer. Instead of reading all event activity together, you can narrow the result to one audience and understand that group in context.
+
+You can target one of these audience types:
+
+* **All Users** — query the full audience.
+* **Segment** — limit results to a saved segment.
+* **Tag** — limit results to tagged users.
+* **Profile** — limit results to users that match profile criteria.
+
+For example, if you want to understand how loyal users behave after a promotion, you can run the same event query only for a saved segment of repeat buyers. If you want to inspect the behavior of users with a specific subscription level, a profile-based target is a better fit.
+
+<figure><img src="/files/jpCbDsaHlWdERupIdCbt" alt="" width="374"><figcaption></figcaption></figure>
+
+#### 3. Add events
+
+Select the event or events you want to analyze. The event is the core of the query, so choose the one that best matches the behavior you want to measure. Search helps you find event names quickly, especially in projects with many custom events.
+
+In practice, a single event is often enough for a focused analysis. For example, you might analyze `Purchase`, `Login`, `Product Viewed`, or `AddToCart` on its own. If the question is broader, you can compare several related events in the same result and see how volume changes across them.
+
+<figure><img src="/files/jQ6UBThdt1aKkSCMCjnS" alt="" width="364"><figcaption></figcaption></figure>
+
+#### 4. Add event properties when needed
+
+Use **Add Event Property** when the event name alone is too broad. Event properties let you narrow the query to one part of the event data, which is especially useful when the same event is used for several use cases.
+
+For example, a `Purchase` event may include attributes such as category, brand, currency, price, or channel. If you want to analyze only electronics purchases in one market, event properties let you isolate that slice directly. The same approach works for device type, location, campaign source, subscription tier, or any custom attribute attached to the event.
+
+<figure><img src="/files/AYgylk993KxUFF3zXNXZ" alt="" width="295"><figcaption></figcaption></figure>
+
+### Choose how to view the results
+
+This is where you decide whether you care about total activity, distinct users, or session-based behavior. The same event can tell a very different story depending on which view you use.
+
+Available analysis types:
+
+* **Total Event Count** — counts every event occurrence.
+* **Unique User Count** — counts distinct users who triggered the event.
+* **By Session** — groups results by session.
+
+For example, if one user opens the app ten times in one day, **Total Event Count** captures all ten events, while **Unique User Count** treats that activity as one user. Both are correct, but they answer different questions.
+
+<figure><img src="/files/UhiqDgOSF2CaM6wPTJ7T" alt=""><figcaption></figcaption></figure>
+
+Use **Choose columns** to show or hide platform columns in the table. This control affects only what is visible in the result table. It does not change the calculation itself. That distinction matters because it keeps the page easier to read. The analysis type changes the meaning of the result, while column selection changes only how much platform detail you see at once.
+
+<figure><img src="/files/b18eBUpETuTJpSW2egRV" alt=""><figcaption></figcaption></figure>
+
+### Read the Event Analytics table
+
+The Event Analytics table shows the selected events and their breakdown across platforms and channels. This is the main place where the query becomes actionable, because it turns the selected filters into numbers you can compare, sort, and export.
+
+<figure><img src="/files/i5kJq2ZiPGbmmALuaMgw" alt=""><figcaption></figcaption></figure>
+
+Key columns:
+
+* **Events** — the event name.
+* **All Total** — the total result across all available sources.
+* **Mobile** — the combined result for mobile platforms, plus **iOS** and **Android** detail.
+* **Web** — the combined result for web, plus browser-level detail.
+* **REST**, **SMS**, and **Email** — channel-specific totals when available.
+
+Click any column header to sort ascending or descending. Sorting is useful when you want to surface the highest-volume events, identify low-volume outliers, or find platform gaps without changing the query.
+
+### Add dimensions and breakdowns
+
+Use dimensions when totals alone are not enough. A total can tell you that something happened, but a dimension shows how it happened across time, users, or attributes. This is often the difference between spotting a pattern and understanding it.
+
+Dimensions help answer questions like:
+
+* When did the activity happen?
+* Which users triggered it?
+* Which attribute explains the difference?
+
+Common dimensions include:
+
+* **Month**
+* **Week**
+* **Days of a Week**
+* **Days of a Month**
+* **Hours of a Day**
+* **External ID**
+* **Custom Event Attributes**
+
+{% hint style="success" %}
+Available custom dimensions depend on the attributes defined for the event in **Panel → Developers → Events**.
+{% endhint %}
+
+<figure><img src="/files/1HEnG2chBoPEagdO7dAX" alt=""><figcaption></figcaption></figure>
+
+#### Select an aggregation
+
+Aggregation defines how the selected event value is calculated inside the breakdown. This matters most when the event includes a numeric value, such as time spent, revenue, or quantity.
+
+For example, if you select **Sum** and choose **Time Spent In App**, the result shows the total time spent for each selected dimension. If the dimension is **Day of Week**, the table helps you see which days generate the most total in-app time. If the dimension is a custom attribute, you can compare value by category, tier, or any other supported event attribute.
+
+#### Add the selection to the table
+
+After you choose the aggregation and event data, click **Add**. The selected metric is added as a new column in the analysis table. This makes it easy to build the result step by step instead of trying to answer every question at once.
+
+#### Create or remove breakdowns
+
+Use **New Breakdown** to add another level of analysis when one dimension is not enough. For example, you can first break down `Purchase` by month and then add a second breakdown by platform or category. This helps you move from a broad trend to a more specific explanation.
+
+Use **Delete** to remove a breakdown or metric that is no longer helping. This is useful when the table becomes too dense or when you want to reset the view to a simpler comparison.
+
+<figure><img src="/files/Y2gRkTzSnAOhR0LXXRMH" alt="" width="145"><figcaption></figcaption></figure>
+
+### Export the result
+
+Use **Export** to download the current table to Excel. Export is the best option when you want to share the analysis, compare it with another source, or keep a snapshot of the result outside the panel.
+
+Export is useful when you need to:
+
+* share the analysis outside the panel,
+* compare results over time,
+* or continue the work in spreadsheets.
+
+### Common analysis patterns
+
+These patterns are a good starting point for everyday use. They are not the only way to use Event Insight, but they cover the most common day-to-day questions.
+
+#### Analyze event volume over time
+
+To analyze event volume over time, use:
+
+* an event such as `Purchase` or `Login`,
+* **Month**, **Week**, or **Hours of a Day** as the dimension,
+* and **Total Event Count** as the analysis type.
+
+This view shows how activity changes over time and helps you connect spikes or drops with campaigns, releases, outages, or seasonality. For example, if `AddToCart` volume drops after a site update, a time-based breakdown helps you see exactly when the change started.
+
+#### Find which users triggered an event
+
+To find which users triggered an event, use:
+
+* the target event,
+* **External ID** as the dimension,
+* and **Unique User Count** or **Total Event Count** depending on the question.
+
+This approach is useful for audits, support cases, and follow-up analysis. For example, if a customer says they completed an action but the outcome is missing, you can use the relevant event and inspect whether that user appears in the result.
+
+#### Break down a metric by event attribute
+
+To break down a metric by event attribute, use:
+
+* a custom event with attributes,
+* the relevant custom attribute as the dimension,
+* and an aggregation such as **Sum** when the event carries a numeric value.
+
+This pattern is useful for revenue, time spent, item quantity, or any other event-level metric. For example, if a purchase event includes category and revenue, you can break down revenue by category and see which product group drives the most value.
+
+### FAQs
+
+<details>
+
+<summary>When should I use Total Event Count instead of Unique User Count?</summary>
+
+Use **Total Event Count** when repeated activity matters. Use **Unique User Count** when you need to know how many distinct users were involved.
+
+</details>
+
+<details>
+
+<summary>What does By Session show?</summary>
+
+It groups the selected event data by session instead of by raw event count or distinct users.
+
+</details>
+
+<details>
+
+<summary>Why do some custom dimensions not appear?</summary>
+
+Only attributes defined for that event are available as custom dimensions.
+
+</details>
+
+<details>
+
+<summary>Why Values Can Change Later?</summary>
+
+You may see values for the same event and date range increase over time. This can happen because of offline event sync.
+
+For example, a user may perform an event while offline. The event is stored locally with the correct timestamp and sent to Netmera when the device reconnects. After it syncs, the event can appear in the correct historical date range.
+
+As a result, the same report can show higher values later, even when the selected date range has not changed.
+
+</details>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/customer-data/events/event-insight.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

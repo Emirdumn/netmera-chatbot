@@ -1,0 +1,103 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content/message-labels.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content/message-labels.md).
+
+# Message Labels
+
+**Path**: `Settings> Messaging & Content>Message Labels`
+
+Message Labels are tags you define once and reuse across campaigns. They help you filter campaigns in analytics. They also keep naming consistent across teams.
+
+Use labels for cross-cutting dimensions like:
+
+* `onboarding`
+* `winback`
+* `flash-sale`
+* `delivery-status`
+
+{% hint style="info" %}
+Labels are best for *analysis* and *filtering*. Use [Message Categories](/netmera-user-guide/panel-settings/settings/messaging-and-content/message-categories.md) for broad grouping.
+{% endhint %}
+
+<figure><img src="/files/rfCCYBBVQD0YbDGEAE3P" alt=""><figcaption></figcaption></figure>
+
+### Field definitions
+
+**Label ID**
+
+A unique, stable identifier for the label. Treat it like a key used in reporting and exports.
+
+**Label Name**
+
+A human-readable name shown in the panel. Make it obvious and consistent across your org.
+
+{% hint style="info" %}
+Keep `Label ID` stable once used in production. Renaming is fine, but avoid changing the ID.
+
+Example:
+
+* `winback` → Winback
+  {% endhint %}
+
+### Create a message label
+
+{% hint style="info" %}
+Path: **Settings > Message Labels > Create New Message Label**
+{% endhint %}
+
+{% stepper %}
+{% step %}
+
+### Create the label
+
+1. Click **Create New Message Label**.
+2. Enter **Label ID**.
+3. Enter **Label Name**.
+4. Click **Save**.
+   {% endstep %}
+   {% endstepper %}
+
+### Use labels in campaigns
+
+When creating or editing a campaign, assign a **Message Label** if the channel supports it. Use labels to compare performance across different campaign types.
+
+Examples:
+
+* Same label across Push + Email for one initiative.
+* Different labels for different lifecycle stages.
+
+### Edit or retire a label
+
+You can edit labels later to keep naming consistent. Avoid breaking reporting references.
+
+{% hint style="warning" %}
+If you’ve already used a label in campaigns, keep the `Label ID` stable. If you need a new ID, create a new label instead.
+{% endhint %}
+
+### Filter and analyze by label
+
+In **Reports**, filter campaigns by **Message Label** when available. Use this to compare metrics like clicks, conversions, and revenue. This is useful when category or campaign naming is inconsistent.
+
+<figure><img src="/files/eQi4k49rEjMOWIzsojxC" alt=""><figcaption><p>Update Message Label</p></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content/message-labels.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

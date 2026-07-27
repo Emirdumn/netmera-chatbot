@@ -1,0 +1,176 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/setup.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/setup.md).
+
+# Setup
+
+Use **Setup** to define the core identity and success criteria of a journey before you build or launch it. After completing this page, you will have a named journey, a selected conversion event, optional conversion property filters, and a post-exit conversion window that controls how attribution works.
+
+### Step 1: Open the journey creation flow
+
+Go to **Journey** from the main menu. The journey list appears and shows your existing drafts and live journeys. From that page, select **Create New Journey** to start a new setup. This opens the guided creation flow.
+
+<figure><img src="/files/XwaEcELDE3LrlbEAMWau" alt=""><figcaption></figcaption></figure>
+
+{% @arcade/embed url="<https://app.arcade.software/share/Dm7hXaPN7KTXaVrhXO4s>" flowId="Dm7hXaPN7KTXaVrhXO4s" %}
+
+For example, if you want to build a retention journey for users who have become inactive, start here instead of cloning an unrelated campaign. This keeps the setup aligned with the correct business goal from the beginning.
+
+### Step 2: Enter the journey details
+
+The first part of setup defines what the journey is called and how other team members will recognize it later. These fields do not control delivery logic, but they strongly affect day-to-day manageability.
+
+#### Step 2.1: Enter Journey Name
+
+Enter a clear and descriptive internal name. This field is required.
+
+If you leave the field empty, you cannot continue and a validation message appears below the input.
+
+Use a naming pattern that makes the journey identifiable in the list view. Include the purpose, channel, audience, or status if that helps your team scan faster.
+
+For example, `Customer Retention - Push - 7 Day Inactive Users` is more useful than `Retention Flow`, because it tells you the goal, delivery channel, and target group at a glance.
+
+#### Step 2.2: Enter Journey Description
+
+Add a description to explain the journey intent, especially when the logic or audience is not obvious from the name alone. This field is optional, but it helps with review, handoff, and future edits.
+
+For example, use a description such as: `A campaign designed to re-engage users who have not opened the app for 7 days by sending a personalized push notification with a limited-time offer.`
+
+Descriptions are most useful when multiple teams work on the same set of journeys and need quick context before making changes.
+
+### Step 3: Define what counts as a conversion
+
+A **conversion** is the action that marks the journey as successful for a user. The **conversion event** is the specific tracked event the system uses to recognize that success.
+
+This step is important because the conversion event affects reporting, optimization, and how success is attributed after users move through or exit the journey.
+
+{% hint style="info" %}
+Conversion tracking is **user-based**, not event-based. A user can be counted as converted only once per journey, even if the same conversion event happens multiple times.
+{% endhint %}
+
+Common examples of conversion events include:
+
+* making a purchase
+* applying for a credit card
+* updating profile information
+
+For example, if the journey goal is to drive first purchases, select the purchase event as the conversion event. If a user purchases three times after entering the journey, the system still counts that user as one converted user for that journey.
+
+### Step 4: Select the conversion event
+
+Open the conversion event dropdown and choose the event that represents success for the journey. This selection determines how journey performance is measured later in analytics.
+
+<div data-with-frame="true"><figure><img src="/files/FNfjuRnpckK1LWmgEamf" alt=""><figcaption></figcaption></figure></div>
+
+#### Step 4.1: Choose an event that matches the journey goal
+
+Pick the event that best reflects the actual outcome you want the journey to drive. Avoid selecting a broad event if the journey is meant to influence a narrower business result.
+
+For example:
+
+* Select **Purchase** for a revenue-focused conversion goal.
+* Select **UpdateProfile** for a profile completion campaign.
+* Select an application submission event for a credit card or loan journey.
+
+#### Step 4.2: Confirm event availability before you continue
+
+Only events that already exist under **Developers > Events** can be selected here. If the event has not been created yet, it will not appear in the list.
+
+{% hint style="info" %}
+Set the conversion event before the journey goes live. Once the journey is active, the conversion event cannot be added or changed.
+{% endhint %}
+
+If the event you expect is missing, stop here and confirm that the tracking event exists and is available in **Developers > Events**.
+
+### Step 5: Narrow the conversion with event properties when needed
+
+Enable **Select Conversion Event Property** when the conversion event alone is too broad. This lets you count only the event occurrences that match specific property conditions.
+
+Use this when one event can represent several different user actions, but only some of them should count as success for this journey.
+
+<div data-with-frame="true"><figure><img src="/files/IFJVTuSBrReuuQCWmfwl" alt=""><figcaption></figcaption></figure></div>
+
+#### Step 5.1: Add property rules
+
+Add one or more property conditions to limit which occurrences qualify as a conversion. The conditions use **AND** logic, so every condition must match in the same event occurrence.
+
+For example, if the selected event is **UpdateProfile**, you can require:
+
+* **itemName** → **Exists**
+* **itemNextData** → **Exists**
+* **itemCurrentData** → **Exists**
+
+In this case, the system counts a conversion only when the **UpdateProfile** event includes all three properties. If one property is missing, that event occurrence does not qualify.
+
+#### Step 5.2: Decide when property filters are necessary
+
+Use property filters when the event name alone is not precise enough. Skip them when the event already maps directly to the business outcome.
+
+| Use case                                              | Recommended setup                       | Result                                                |
+| ----------------------------------------------------- | --------------------------------------- | ----------------------------------------------------- |
+| The event already represents one clear success action | Select only the event                   | All occurrences of that event can count as conversion |
+| The event is shared across several different actions  | Select the event and add property rules | Only matching occurrences count as conversion         |
+
+### Step 6: Set how long conversion attribution stays open after exit
+
+After selecting the conversion event, define **Stop Counting Conversion After User Exits**. This setting creates a post-exit attribution window.
+
+During this window, a user can still be counted as converted even after leaving the journey. After the window ends, later conversion events no longer count for this journey.
+
+<figure><img src="/files/1dX3wFvKBIYEbX0eUkhA" alt=""><figcaption></figcaption></figure>
+
+#### Step 6.1: Choose the duration
+
+Set the duration in **minutes**, **hours**, or **days**. No value is selected by default, and selecting a duration is required.
+
+Choose a duration that reflects how long the journey can reasonably influence the target behavior after exit.
+
+For example, if users usually convert shortly after receiving a message, a shorter post-exit window may be appropriate. If your conversion is a slower action such as completing an application, a longer window may fit better.
+
+#### Step 6.2: Understand how the post-exit window changes attribution
+
+The configured duration affects whether a later event is still attributed to the journey.
+
+For example, if you set the window to **3 days** and a user exits the journey on Monday at 10:00, a matching conversion event on Wednesday at 09:00 still counts. A matching event on Thursday at 10:01 does not count.
+
+<table><thead><tr><th width="284.84796142578125">Scenario</th><th width="139.46044921875">Is the conversion counted?</th><th>Explanation</th></tr></thead><tbody><tr><td>Conversion happens within the post-exit time window</td><td>✅ Yes</td><td>The matching event occurs before the attribution window ends.</td></tr><tr><td>Conversion happens after the post-exit time window</td><td>❌ No</td><td>The attribution window has already expired.</td></tr><tr><td>The same user triggers the conversion event multiple times</td><td>✅ Yes, once</td><td>Conversion counting is user-based, so repeated events do not increase the conversion total.</td></tr><tr><td>A user re-enters and converts later, without having converted before</td><td>✅ Yes</td><td>The user can still be counted if no earlier conversion was recorded for that journey.</td></tr><tr><td>A user re-enters after already being counted as converted</td><td>❌ No additional conversion</td><td>A user can only be counted once per journey.</td></tr></tbody></table>
+
+### Step 7: Review the conversion rules before you continue
+
+Before you move to the next part of journey configuration, confirm that the setup reflects the actual business goal and not only a technically available event.
+
+Use this checklist:
+
+1. The journey name clearly identifies the campaign.
+2. The description explains the business purpose.
+3. The selected conversion event represents real success.
+4. Any event property filters are necessary and accurate.
+5. The post-exit conversion window matches the expected user behavior.
+
+If these settings are wrong, the journey can still run, but reporting and attribution may no longer reflect the outcome you intended to measure.
+
+### What happens next
+
+When you complete **Setup**, continue to the next journey configuration step and finish the rest of the journey before launch. These settings remain the foundation for how the journey is identified in the list and how its conversion performance is measured after activation.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/setup.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

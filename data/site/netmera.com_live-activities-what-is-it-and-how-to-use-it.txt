@@ -1,0 +1,409 @@
+URL: https://netmera.com/live-activities-what-is-it-and-how-to-use-it/
+
+Live Activities: What is it and how to use it? - Netmera
+
+AI did the predicting, and Journeys did the convincing. UPTION's churn fell 16.6%. →
+
+ 
+
+ 
+
+			Skip to content		
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Login
+
+Get a Demo
+
+    Copy .SVG
+  
+
+    Media Kit
+  
+
+    Newsroom
+  
+
+ 
+
+ 
+
+Live Activities in iOS 16.1: What They Are and How to Use Them
+ 
+
+Live Activities is now available with iOS 16.1
+
+Apple’s iOS 16 and recent iOS 16.1 update welcomes many changes along with the new Live Activities feature that simply works as real-time push notifications on the Lock Screen designed to update the users about real events happening simultaneously.
+
+Today, we will explore this new feature from head to toe and help you understand it. Let’s start!
+
+ 
+
+Live Activities: What is it?
+
+The Live Activities feature acts as interactive push notifications designed for users to keep track of their real-time activities.
+
+They can be used for sports games happening in real-time, food deliveries on their way, workout times and health stats, or ride-shares. And the best part is, it can be used without having to unlock your phone. Now, let’s dig in to learn more about this highly new feature and what to expect from it!
+
+For example, let’s say you are waiting for your ride on the street. You wonder whether the driver is close to you or not. With this new feature, you won’t have to unlock your phone to see the driver’s status, and you will be able to see how much time has left until your driver approaches you. This will help you save both your effort and time.
+
+Another case is that it can be helpful in your food orders. With the help of this new feature, you can keep track of your delivery status without having to unlock your phone. You can also keep track of your health and workout stats without having to disturb your exercise. So, your daily exercises will not be bothered any longer.
+
+Many other applications can use this new feature effectively.
+
+Travel apps, news apps, crypto apps, and even retail apps can come in handy when combined with Apple’s new feature.
+
+Suppose that you have a flight to catch on. With Apple’s new update, you will able to track your upcoming flight to see how much time do you have left. Or let’s think that you have a crypto currency that you want to be updated about every hour, or there is an important election that is happening and you want to get real time updates from it. Done, done, and done! You are now able to do all of that in a simplier, more organized, and fast way thanks to Apple’s Live Activities.
+
+With Live Activities, you will keep updated if the status changes rather than receiving multiple notifications from one application. 
+
+As of right now, when you complete a food order, you will get one notification that says “your order has been received” upon your completion. One more when the restaurant starts to make your order, another when your delivery is on the way, and another when the driver is approaching your location. And let’s not forget the notification that asks your opinion about the delivery. So, the feature not only works as a time saver but also works simpler, cleaner, and delivers a better UX experience for the users.
+
+You can have multiple Live Activities operating simultaneously.
+
+Imagine you have an order in progress from a restaurant while trying to keep informed about your favorite sports game. Or, you may have more than one game that you want to keep updated. 
+
+Also, note that when you remove an activity from your Lock Screen, the original activity keeps running in the background. So, let’s suppose your order is completed and you remove the activity from your Lock Screen but not the original application, your application will be running until you decide to close the app.
+
+ 
+
+Widget and Live Activities: What are the differences?
+
+Live activities are different from widgets. For instance, Widgets are built to be permanent until the user decides to remove them, and they are not related to any live events. Live Activities, on the contrary, act as push notifications related to live events and display real-time data. They can only run for eight hours, and an extra four hours in the end state. This means that if you do not remove your activity from your Lock Screen, it will stay on your Lock Screen for extra four hours in the “ended” state. Another difference between Widgets and Live Activities is that they work exclusively on the lock screen while Widgets are not.
+
+ 
+
+When will it be available?
+
+iOS 16.1 was released yesterday, a month after the major release of iOS 16 in September.
+
+With iOS 16.1, Live Activities from third-party apps are available right on the Lock Screen. But if you happen to have iPhone 14 Pro and Pro Max, you can also have Live Activities available on Dynamic Island, the new area on the iPhone that serves as a hub for key iPhone alerts and accommodates the camera hardware at the same time.
+
+ 
+
+Many apps have added Live Activities support for iOS 16.1
+
+Many apps implement support for this new feature, and many are on the way.
+
+For example,
+ Slopes
+, skiing, and snowboarding app have started to use Live Activities. In Slopes, you can track your daily performance and get information about others riding at the resort. Users are now able to track their speed, distance, time spent, and many more on their Lock Screens.
+
+Flight tracking app
+ Flighty
+ is another app that supports Live Activities. With Flight, you get a notification three hours before your flight on your Lock Screen with information about your gate, departure time, status, seat number, and more.
+
+Time management and focus app 
+Forest
+ show you how long you have left for studying or working on your Lock Screen with its newest update. Another app that supports the new feature is 
+CARROT Weather
+. With its new update, you will get a Live Activity when rain is expected in an hour.
+
+Lumy
+, a photographer application, has also started to support Live Activities. With Lumy’s new approaches to iOS 16.1, photographers are now able to track the sunrise, sunset, golden hour, moonrise, moonset, and more.
+
+The recipe app 
+Crouton
+ is another example that has support for Live Activities. With Crouton, users now can follow each step without having to unlock their phones.
+
+Subjects
+, a student app, is another app that supports Live Activities. With its newest updates, students can track their classes and time remaining on their classes, GPA, homework, grades, and more.
+
+TV Remote, Sticky Timers, SmartGym, Calzy, MoneyCoach
+, and many more apps already support Live Activities while there are hundreds of other apps that are on their way.
+
+ 
+
+How to use it?
+
+One important thing about Live Activities is that the feature cannot be launched from the background. So the user needs to have an app open in the background to start.
+
+Live Activities are assembled in the Widget Extension, which was released with iOS 14. Users that have Widgets on their devices can create Live Activities with the same extension using a WidgetBundle. Users that do not have Widget on their devices can create Widget Extension and start building their Live Activities with SwiftUI and ActivityKit. After launching, note that tapping on the Live Activity will start the application because the interface is not interactable. To learn more about how to display Live Activities, visit Apple’s 
+documentation
+.
+
+Let’s see an example of one of the simpliest push notification that updates the game score and text of a Live Activity:
+
+Note that you can end the live activity when you enter end as the event.
+
+ 
+
+Benefits of Using Live Activities through Netmera:
+
+Fast and Easy Integration:
+ Customers can quickly use Live Activities via our mobile SDK and REST API without the need of direct integration with Apple’s APNS system.
+
+Leverage the Enhanced Netmera Targeting Module:
+ Customers can use Netmera’s advanced targeting module for Live Activities without performing targeting operations on their side. This allows powerful targeting without extra resource.
+
+Increased User Engagement:
+ By using the Live Activities feature with Netmera, customers can directly integrate Live Activity data into their current or future marketing strategies. Viewing this data in the Netmera Dashboard allows for cross-strategy creation and efficient use of user behavior data in digital onboarding processes.
+
+ 
+
+ 
+
+Leave a Reply 
+Cancel reply
+ 
+
+Get the latest growth insights
+
+ 
+
+Prev
+Next
+ 
+
+ 
+
+Subscribe to our newsletter
+ 
+
+ 
+
+Products
+ 
+
+Customer Data Management
+
+Customer Journeys
+
+AI Site Search & Browse
+
+Web Personalization
+
+Testing and Experimentation
+
+Data & Analytics
+
+Tagless Data Capture
+
+Surveys & Feedback​
+
+Funnels
+
+Channels
+ 
+
+Mobile & Web Push
+
+E-Mail
+
+SMS
+
+Whatsapp
+
+Mobile In-App
+
+Web Pop-Ups
+
+Live Activities
+
+Feedback Button
+
+Netmera AI
+
+Industries
+ 
+
+Media and Entertainment
+
+Banking and Finance
+
+Retail and E-commerce
+
+Travel and Hospitality
+
+Telecommunication
+
+Company
+ 
+
+About Us
+
+Careers
+
+Contact Us
+
+Partners
+
+Why Netmera
+
+Newsroom
+
+Information for AI
+
+Resources
+ 
+
+Blog
+
+Glossary
+
+Top Use Cases
+
+Resources
+
+Success Stories
+
+Developer and User Guide
+
+ 
+
+© 2026 — 
+Netmera
+. All Rights Reserved.   |   
+Privacy Policy
+   |   
+Cookie Policy (EU)
+   |   
+GDPR
+   |   
+KVKK
+ 
+
+Linkedin
+
+ 
+
+Youtube
+
+ 
+
+ 
+
+ 
+
+Manage Cookie Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+						Always active					
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+
+Deny
+
+View preferences
+
+Save preferences
+
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent
+
+ 
+
+Manage Cookie Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+						Always active					
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+
+Deny
+
+View preferences
+
+Save preferences
+
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent

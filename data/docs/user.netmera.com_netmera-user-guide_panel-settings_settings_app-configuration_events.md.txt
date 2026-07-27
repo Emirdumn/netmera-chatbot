@@ -1,0 +1,124 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration/events.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration/events.md).
+
+# Events
+
+**Path**: `Settings > App Configuration > Events`
+
+<figure><img src="/files/WijqhaF1hX1p8cbVQdPZ" alt="" width="563"><figcaption></figcaption></figure>
+
+Follow `Settings > App Configuration > Events` to open the Conversion Events dashboard.
+
+Search by event name or select an event code to open the related event.
+
+{% hint style="info" %}
+When you select an event code, you are directed to **Developers > Events**.
+
+Edit the existing event there or select **Create New Event** to define a new one.
+{% endhint %}
+
+## Create Custom Events
+
+{% hint style="info" %}
+**Quick Steps Guidelines**
+
+**Developer > Events > Create New Event**
+
+1. Navigate to the **Developers > Events** section in the Netmera Dashboard.
+2. Click the "**Create New Event**" button.
+3. Define the event attributes, data types, and specify mandatory parameters as needed.
+4. After creating a custom event, Netmera Dashboard will automatically **generate the necessary code** and source files for your event.
+5. Developers will fire the event you have created on Netmera Panel. Please go to **Developer Guide > Choose Your Platform > Events** to understand how to fire an event you generate in your Netmera Panel.
+   {% endhint %}
+
+### Step 1: Event Details
+
+Provide the following details for your event:
+
+* **Event Name:** This is the name of the event as it will be used in your application's code. Choose a descriptive and unique name that represents the action or behavior you want to track.
+* **Event Label:** The event label is used in the control panel screens and reports within Netmera. It should be a user-friendly name that helps you easily identify the event in the interface.
+* **Event Description:** Write a brief description that explains the purpose and significance of the event. This will help other team members understand its usage.
+* **Base Event (optional):** If your custom event is an **extension** or **modification** of a standard event provided by Netmera, you can select the base event here. This helps maintain consistency and categorization within your event tracking.
+
+<figure><img src="/files/u0Nvs451A4iCTAG25rCX" alt=""><figcaption></figcaption></figure>
+
+### Step 2: Attributes
+
+You need to define the attributes for your custom event. Attributes provide additional context and information about the event. Each attribute has its own properties:
+
+#### Attribute Create
+
+* **Data Type:** Choose the appropriate data type for your attribute. Netmera supports various data types such as string, integer, double, boolean, date, long, and timestamp.
+
+#### Data Types
+
+<table><thead><tr><th width="162.33333333333331">Data Type</th><th width="331">Definition</th><th>Example</th></tr></thead><tbody><tr><td>String</td><td>Sequence of characters, digits or symbols - always treated as text.</td><td>hello, +1-999-666-3333</td></tr><tr><td>Integer</td><td>Numeric data type for numbers without fractions</td><td>-707, 0, 707</td></tr><tr><td>Double</td><td>Double data can be represents in real number (1, 10), decimals (0.1, 11.002) and minus (-1, -0.00002). It can hold approximately 15 to 16 digits before and after the decimal point.</td><td>4.5672, 2.45354, -5.22234, 3.12345678901, 0.15197e-7</td></tr><tr><td>Boolean</td><td>True or false values</td><td>0 (false), 1 (true)</td></tr><tr><td>Date</td><td>Date in the YYYY-MM-DD format (ISO 8601 syntax)</td><td>2021-09-28</td></tr><tr><td>Long</td><td>Long data types are often 32- or 64-bit integers in code</td><td>numbers ranging in value from -2,147,483,648 to 2,147,483,647</td></tr><tr><td>Timestamp</td><td>Number of seconds that have elapsed since midnight (00:00:00 UTC), 1st January 1970 (Unix time)</td><td>1632855600</td></tr></tbody></table>
+
+* **Name:** Provide a descriptive name for the attribute.
+* **Label:** The label is used in the control panel screens and reports within Netmera to identify the attribute.
+* **Mandatory:** Specify whether the attribute is mandatory or optional for the event. This helps ensure that the necessary data is captured.
+* **Array:** If the attribute can have multiple values, enable the array option. This is useful when tracking events with multiple selections or choices.
+* **Private Info:** If the attribute contains sensitive or personally identifiable information, mark it as private info to handle it according to privacy regulations.
+* **Code:** Assigned unique code to each attribute. This code will be used in your application's code to reference the attribute.
+
+<figure><img src="/files/iq4Nd2X6AzrRFpczDYrU" alt=""><figcaption></figcaption></figure>
+
+### Step 3: Adding More Attributes on Attribute Creation
+
+1. Repeat the attribute creation process as needed for your custom event, adding all the relevant attributes that provide valuable context and information.
+2. Review your event details and attribute configurations to ensure accuracy and completeness.
+
+<figure><img src="/files/ZlyjwQVD4RQKinU9SpNU" alt=""><figcaption></figcaption></figure>
+
+### Step 4: Save and Generate Code
+
+**After Creating a Custom Event**
+
+Once you've successfully created a custom event using the Netmera Dashboard, integrating it into your project becomes a straightforward process. The Netmera Dashboard automates the generation of the necessary code for your custom event, making it effortless. Here's how it works:
+
+1. **Event Configuration:** After defining the attributes, data types, and mandatory parameters for your custom event within the Netmera Dashboard, save your event configuration.
+2. **Code Generation:** To obtain the code for your custom event, simply navigate to the bottom of the event configuration page and click the **"Save and Generate Code"** button.
+
+By taking this step, the Netmera Dashboard instantly generates the required code snippets and source files specifically tailored to your custom event. These generated files are ready for integration into your project, ensuring that your custom event tracking seamlessly becomes part of your application.
+
+### Step 5: Fire Event
+
+Ask your developers to read through our **Netmera** **Developer Guide** on **"**[**How to Fire Events**](https://user.netmera.com/developer-guide/netmera-developer-guide/events/fire-events)**"** that you have generated the code for in your Netmera Panel. It is a comprehensive guide guiding your developers fire your desired event with the generated code in your applications.
+
+### Importing Events to Apps
+
+If you have multiple apps in the Netmera Panel, you can import events from one app to another. This lets you reuse events across apps efficiently.
+
+1. Go to the **Developers** section and select **Events.**
+2. Click **Import Event Definition.**
+3. Choose the **Application Name** from which you want to import events.
+
+<figure><img src="/files/QdzMUtMEUWhP264HKBNB" alt="" width="563"><figcaption></figcaption></figure>
+
+1. Select the specific **custom event(s)** you want to import.
+2. Click the **Import** button in the **Action** section.
+
+<figure><img src="/files/QniKsjEs64GcviJ94ehY" alt="" width="268"><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration/events.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

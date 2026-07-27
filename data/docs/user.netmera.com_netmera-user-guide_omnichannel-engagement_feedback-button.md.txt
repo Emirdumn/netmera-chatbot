@@ -1,0 +1,99 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/feedback-button.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/feedback-button.md).
+
+# Feedback Button
+
+Feedback Button is a web widget that collects user feedback without interrupting the page experience. Use it to capture bugs, uncover UX friction, and gather quick sentiment on key pages. Configure triggers, target audiences, and customize the appearance, then preview and publish, all without touching the codebase.
+
+<figure><img src="/files/9bdXoAKj0GWjxRrtRg8M" alt="" width="563"><figcaption></figcaption></figure>
+
+### Start here (most-used topics)
+
+<table data-view="cards"><thead><tr><th>What you want to do</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Create and publish a Feedback Button</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/oUlOjLNRUwlyS3MMPq7s">/spaces/X6uilbEAw42gqsudlclY/pages/oUlOjLNRUwlyS3MMPq7s</a></td></tr><tr><td>Design and customize the widget UI</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/lcCDSpIpXxfOqJqFW06Y">/spaces/X6uilbEAw42gqsudlclY/pages/lcCDSpIpXxfOqJqFW06Y</a></td></tr><tr><td>Add conditional flows and button actions</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/jMdPOb96v7R8zR21Z2J6">/spaces/X6uilbEAw42gqsudlclY/pages/jMdPOb96v7R8zR21Z2J6</a></td></tr><tr><td>Measure views and clicks</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/QhhYeNhifv8nJ1Vhnb2o">/spaces/X6uilbEAw42gqsudlclY/pages/QhhYeNhifv8nJ1Vhnb2o</a></td></tr><tr><td>Drill down by dimensions and export user lists</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY">/spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY</a></td></tr></tbody></table>
+
+### Quickstart: launch a Feedback Button
+
+{% stepper %}
+{% step %}
+
+#### 1) Design the feedback widget
+
+Start from a template or a blank widget.
+
+Keep the first version simple (1–3 fields).
+{% endstep %}
+
+{% step %}
+
+#### 2) Customize the button appearance
+
+Match your site styling.
+
+Test on both desktop and mobile previews.
+{% endstep %}
+
+{% step %}
+
+#### 3) Target the right users
+
+Common targeting:
+
+* product pages only
+* users who spent 30+ seconds
+* users who scrolled 50%+
+  {% endstep %}
+
+{% step %}
+
+#### 4) Choose trigger rules
+
+Use triggers like scroll, exit intent, page view, or Netmera event.
+{% endstep %}
+
+{% step %}
+
+#### 5) Preview and publish
+
+Preview placement, then publish.
+
+Archive old versions instead of editing live ones.
+{% endstep %}
+{% endstepper %}
+
+### Measuring results
+
+Use widget events to understand adoption:
+
+* **Widget Shown Web** → impressions
+* **Widget Action Web** → click/interaction
+
+Start with [Analyze (Web Widgets)](/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/analyze.md).
+
+Use [Event Insight](broken://spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY) when you need breakdowns by:
+
+* time
+* browser/device
+* segment/tag
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/feedback-button.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

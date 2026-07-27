@@ -1,0 +1,271 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/spin-to-win.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/spin-to-win.md).
+
+# Spin to Win
+
+Spin to Win is an interactive reward component designed to increase user engagement and conversion rates. It allows end-users to spin a wheel and receive randomized rewards such as coupon codes, deeplinks, or custom messages.\
+The feature is ideal for:
+
+* Engagement campaigns
+* Lead collection flows
+* Gamified promotions
+* Flash sales or seasonal offers
+* Loyalty and retention programs
+
+Each wheel consists of configurable slices, visual elements, reward logic, and probability settings. Netmera also provides seamless coupon distribution through SMS, push notifications, and detailed analytics for performance monitoring.
+
+<figure><img src="/files/2YNSMRZQFzsZbMZ0N28O" alt="" width="563"><figcaption></figcaption></figure>
+
+### Spin to Win Availability Across Channels
+
+Spin to Win is supported on both **Mobile Widgets** and **Web Widgets**. All configuration steps in this guide—such as slice setup, coupon assignment, visual customization, redirection logic, and expiry behavior—apply equally to both platforms.
+
+For steps related to **creating, assigning click actipns, publishing, and activating** widgets (including automated campaign setup), follow the standard Widget Click Actions and Publishing documentation linked below:
+
+**Mobile In-App Guides:** [Mobile In-App](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app.md)
+
+**Web Pop-up Guides:** [Web Pop-up](/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up.md)&#x20;
+
+## Understanding Spin to Win
+
+Spin to Win works as a combination of:
+
+{% stepper %}
+{% step %}
+**Visual Engagement Layer**
+
+A wheel with slices, colors, buttons, and reward icons.
+{% endstep %}
+
+{% step %}
+**Reward Logic Layer**
+
+Defines what users receive and the probability of each outcome.
+{% endstep %}
+
+{% step %}
+**Delivery Layer**
+
+Assigns coupon codes and optionally delivers them through push or SMS.
+{% endstep %}
+
+{% step %}
+**Analytics Layer**
+
+Tracks user interactions and reward distribution.
+{% endstep %}
+{% endstepper %}
+
+## Wheel Setup
+
+### Visual Configuration
+
+The wheel’s appearance directly affects user engagement. High-contrast colors, clear button text, and visually distinct slices generally improve click-through and spin rates.
+
+You can configure:
+
+* **Spin Button Text** – What users click to initiate the spin.
+* **Button Background Color** – Defines brand consistency.
+* **Center Area** – Logo, image, or color to highlight the campaign.
+* **Pin Color** – Aesthetic marker showing the final reward.
+
+<figure><img src="/files/EgvQ6HexyTkXY6Wd4DSl" alt=""><figcaption></figcaption></figure>
+
+### Slice Management
+
+Slices define the possible rewards. Every wheel must have at least one slice, but most campaigns use 4–12 slices for meaningful variation.
+
+#### What You Configure in a Slice
+
+**Slice Name**\
+Shown on the wheel. Used to help users identify the reward segment.
+
+**Win Result**\
+Displayed on the success screen after the spin stops.\
+This tells the user what they won (e.g., “You unlocked a 20% discount!”).
+
+**Coupon Code List (Optional)**\
+Assign a coupon list if the slice should give a unique, single-use code. If you do not attach a coupon list, users will only see the Win Result message.
+
+**Link (Optional)**\
+A redirect destination for this slice. Use this when each reward should take users to a different offer or page.
+
+**Weight (Probability)**\
+Controls how often this slice is selected. You can shape campaign outcomes using weights:
+
+* High-value rewards → lower weight
+* Instant-win or soft rewards → higher weight
+* Equal weights → random fairness
+
+#### Why Weight Matters to Users
+
+Weights allow you to balance promotional value. For example:
+
+* A “50% Discount” slice might be set to **5%** probability.
+* A “Free Shipping” slice might be set to **30%**.
+* A “Thank You” slice might be **65%**.
+
+Weights give you control over cost management and user experience.
+
+{% hint style="info" %}
+
+#### **How Equal Probability Works**
+
+If you don’t define weights, Netmera distributes outcomes evenly across slices.
+{% endhint %}
+
+<figure><img src="/files/mFgoOrs3jppONBaCGOrq" alt=""><figcaption></figcaption></figure>
+
+## Success Screen Configuration
+
+After the spin animation completes, the user sees a success modal. This modal must clearly communicate:
+
+* What they won
+* How to redeem it
+* Any next actions (copy code, go to a link)
+
+### Success Screen Elements
+
+**Modal Header**\
+Introduces the moment, such as “Congratulations!” or “You Won”.
+
+**Win Result Text**\
+Explains the outcome. Example: “Your 10% discount code is ready.”
+
+**Font Sizes**\
+Adjust for hierarchy: large header, medium body text.
+
+**Modal Background**\
+Brand colors or gradients can reinforce visual identity.
+
+**Copy-to-Clipboard Text**\
+Makes it easy for users to save their code.
+
+<figure><img src="/files/AOb2vAMiwMD0jDu4qII3" alt=""><figcaption></figcaption></figure>
+
+## Deeplink and Redirect Configuration
+
+Spin to Win allows redirection after the reward is shown. Choosing *how* users are redirected shapes their journey.
+
+### Per-Slice Redirection
+
+Use this when each slice represents a different outcome or campaign.
+
+Example Use Cases:
+
+* Slice A → Product page
+* Slice B → App section
+* Slice C → Checkout flow
+* Slice D → Survey form
+
+This helps guide users to tailored experiences depending on their reward.
+
+<figure><img src="/files/0dYcod1mlXshZUAC1I2m" alt=""><figcaption></figcaption></figure>
+
+### Single Redirection
+
+Redirect all outcomes to the same page.
+
+Best for:
+
+* Unified landing pages
+* Single product category promotions
+* General coupon redemption flows
+
+Example:\
+Send all users to the “Discount Offers” page regardless of what they won.
+
+<figure><img src="/files/yjpgmuxHuh1yagM0jkf1" alt=""><figcaption></figcaption></figure>
+
+#### Wheel Previews
+
+<div align="left"><figure><img src="/files/jMeJVlgx050TptYuEfx0" alt="" width="348"><figcaption><p>Button</p></figcaption></figure> <figure><img src="/files/RPAbp79vKHvZzvbiWNc8" alt="" width="345"><figcaption><p>Hyperlink</p></figcaption></figure></div>
+
+## Coupon Code Logic
+
+Coupon management is one of the core features of Spin to Win.
+
+### How Expiry Works at Slice Level
+
+Each slice uses its own coupon code list. When the codes expire:
+
+* The slice becomes inactive
+* Its weight becomes **0%**
+* Remaining slices are automatically re-balanced
+
+This ensures the spinning experience continues even when individual slices run out.
+
+### Campaign Auto-Deactivation
+
+A Spin-to-Win **widget** **automatically** **stops** when:
+
+* All slices have expired coupon lists
+* No valid codes remain
+
+The campaign is marked as **Finished** to avoid broken user journeys.
+
+## Spin to Win Standard Events
+
+These events allow you to measure campaign performance.
+
+Available in **Analytics → Event Insight**:
+
+* **Spin To Win Shown**\
+  Measures view impressions.
+* **Spin Button Clicked**\
+  Measures engagement rate.
+* **Coupon Code Copied**\
+  Indicates click to redeem the code.
+* **Coupon Code Assigned**\
+  Shows successful reward distribution.
+* **Coupon Code Assigned Failed**\
+  Useful for debugging low code availability.
+
+<figure><img src="/files/iGllFKOgVcS8YHWeWa6B" alt=""><figcaption></figcaption></figure>
+
+## FAQs
+
+#### What message do users see when a slice has no codes left?
+
+When a slice runs out of valid coupon codes, that slice becomes inactive and its probability weight automatically drops to **0%**. The system continues distributing rewards from the remaining active slices.
+
+If all slices in the Spin to Win campaign run out of codes, the automated campaign is automatically marked as **Finished**. This ensures end-users do not encounter an empty or misleading spin experience.
+
+#### How often can users get another code?
+
+Users can spin the wheel and receive a new code **once every 24 hours**. If the goal is to limit the experience to a single spin per user, configure the automated campaign with the **Show Only Once** option. This ensures the Spin to Win widget is displayed only the first time the conditions are met.
+
+#### Do users need to log in to receive a coupon code?
+
+No. However, for SMS or push delivery to work, users must have the necessary profile attributes and permissions (e.g., push token enabled, phone number available).
+
+#### Can I show different wheels to different audience segments?
+
+Yes. Use automated campaign targeting rules to control which users qualify to see the Spin to Win widget.
+
+#### Can I schedule Spin to Win to show only during specific dates?
+
+Yes. Automated campaigns support time window scheduling.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/spin-to-win.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,700 @@
+URL: https://netmera.com/customer-journey-stages/
+
+Customer journey stages: 5 phases from awareness to advocacy
+
+AI did the predicting, and Journeys did the convincing. UPTION's churn fell 16.6%. →
+
+ 
+
+ 
+
+			Skip to content		
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Login
+
+Get a Demo
+
+    Copy .SVG
+  
+
+    Media Kit
+  
+
+    Newsroom
+  
+
+ 
+
+Customer journey stages: The five phases from awareness to advocacy
+
+Last update: 
+March 2026
+
+The customer journey stages framework includes awareness, consideration, purchase, retention, and advocacy. The flow isn’t linear, but the framework helps you understand where each customer is so you can deliver what they need in that moment. 
+
+In this blog post, you’ll learn what defines each stage, the specific actions that move customers forward, and how to automate personalized journeys based on unified data and omnichannel engagement.
+
+How journey stages reduce wasted spend and increase conversions
+
+By understanding these stages, you create and distribute relevant content that addresses the specific concerns customers have. The business impact shows up in conversion rates, retention, and customer lifetime value. Companies that track and act on customer journeys 
+achieve 24.9% better returns on their marketing investments year-over-year, reduce service costs by 21.2%, and shorten sales cycles by 16.8%
+. 
+
+Every customer is asking a question. “Do I have this problem?” “Which solution fits my needs?” “Can I trust this company?” When you answer the wrong question, you lose them. When you answer the right one, they move forward.
+
+Journey stages show you which specific question matters to each customer based on their behavior and position in the buying process. This prevents mismatched conversations that waste budget and erode trust. 
+Nearly half of organizations (45%) now invest in customer journey analytics
+ because they’ve realized generic messaging can’t compete with relevance.
+
+The 5 customer journey stages explained
+
+While you can find stage descriptions in countless articles, we’ve included what customers are thinking, which channels convert, and common mistakes based on what we see working across banking, retail, telecom, media, and e-commerce clients. These aren’t prescriptive rules, but patterns that hold true more often than not.
+
+Stage 1: Awareness
+
+Customers 
+discover a problem or opportunity they didn’t know existed
+. They’re gathering information, exploring general topics, and beginning to understand why this is relevant to them.
+Customer mindset:
+ “I didn’t know this was a problem. What is this about?”
+
+Channels that work:
+ SEO-focused blog content, social media, display ads, PR, and organic search. 
+
+Example:
+ A retail customer scrolling Instagram sees a sponsored post about sustainable fashion. They click through, read one blog post about fast fashion’s effects, then leave. That’s awareness: discovering a problem exists and learning why it’s worth attention.
+
+Common mistake:
+ Jumping straight to product features before explaining why this problem deserves attention. Show these customers the problem’s impact before introducing your solution.
+
+Stage 2: Consideration
+
+Customers now are actively researching, comparing options, reading reviews, and evaluating which approach fits their needs best. 
+
+Customer mindset:
+ “What makes each option different?”
+
+Channels that work:
+ Comparison pages, 
+personalized website experiences
+, customer stories, email nurture sequences, retargeting ads, and product demos.
+
+Example:
+ A retail customer reads reviews across three different sustainable clothing brands, compares prices, checks return policies, and joins two email lists to learn more about each company’s materials and manufacturing practices.
+
+Common mistake:
+ Generic messaging that doesn’t address specific doubts or comparisons. Consideration-stage customers need clarity on why you’re the right choice for their situation. 
+
+Stage 3: Purchase (decision)
+
+Customers have decided you’re the right solution and now need the buying process to be frictionless. 
+
+Customer mindset:
+ “I’m ready to buy. Make this easy.”
+
+Channels that work:
+ Optimized checkout flows, live chat, limited-time offers, testimonials at point of purchase, trust signals, and 
+abandoned cart recovery sequences
+.
+
+Example:
+ A SaaS customer clicks “Start Free Trial,” enters basic information, and immediately accesses the product. The onboarding email arrives within seconds with next steps clearly outlined.
+
+Common mistake:
+ Complicated forms, surprise fees at checkout, or forcing account creation before customers can evaluate the product. 
+
+Stage 4: Retention
+
+Customers have made their first purchase and now decide whether to stay, churn, or become repeat buyers worth multiples of that initial sale.
+
+Customer mindset:
+ “Am I getting enough value to keep using this?”
+
+Channels that work:
+ Onboarding sequences, in-app messages, push notifications, SMS, email check-ins, customer success outreach, and loyalty programs.
+
+Example: 
+One fintech company automates a win-back journey targeting users inactive for seven days with personalized push notifications. The campaign drives a 39.6% increase in monthly active users in three months. (This is how one of our customers achieved these results. 
+Read the full story
+.) 
+
+Common mistake: 
+Retention needs automated flows that respond to usage behavior. Without behavior-based triggers, customers who stop engaging slip away unnoticed.
+
+Stage 5: Advocacy
+
+Customers promote your brand to others, either through active referrals, reviews, social sharing, or word-of-mouth recommendations. If unhappy, they do the opposite, warning others away. 
+
+Customer mindset:
+ “This worked (or didn’t work) for me. Others should know.”
+
+Channels that work:
+ Referral programs, review requests, social sharing features, brand ambassador programs, customer spotlight campaigns, and community building.
+
+Example:
+ An e-commerce customer receives an email after their third purchase: “Loved your order? Share a photo and get 15% off your next purchase.” They post on Instagram, tag the brand, and three friends ask where they bought it. The brand reposts the content, and the customer feels valued.
+
+Common mistake:
+ Assuming advocates will promote you without any encouragement. Even satisfied customers need incentives and easy mechanisms to share their experiences.
+
+Customer journey automation examples: 3 real-world flows
+
+Based on our experiences with Netmera’s customers, we’ve identified three journey patterns that consistently drive results. Examples focus on mobile marketing, but the core principles (behavioral triggers, cross-channel communication, and personalized paths) apply to any digital channel.
+
+Example 1: New user onboarding journey
+
+Stages touched:
+ Awareness → Consideration → Purchase → Retention
+
+A finance app triggers an onboarding journey the moment a user installs. A push that highlights account benefits welcomes them. Users who stop midway through KYC steps see a reminder: “Just one more step to go.” Non-starters get a different message: “Discover all the benefits in just a few minutes.” 
+Watch the full journey breakdown in this video
+. 
+
+Why it works:
+ Different users need different nudges. The journey recognizes behavior and responds accordingly, turning first-time installers into active users.
+
+Example 2: Premium upgrade journey
+
+Stages touched:
+ Consideration → Purchase
+
+The journey checks: has the user seen the Premium page before? If yes, an in-app widget highlights exclusive offers. If they upgrade, SMS or push confirm the value. If they’ve never visited the premium page, the path shifts. A “Go Premium” push showcases benefits upfront. Non-converters receive email, then SMS. 
+See how it’s structured
+.
+
+Why it works:
+ The journey responds to intent signals in real time. Each touchpoint builds on the last and closes the gap between consideration and purchase.
+
+Example 3: Win-back journey for inactive users
+
+Stages touched:
+ Retention
+
+After 14 days of inactivity, an e-commerce customer enters a re-engagement sequence. Opted-in users receive: “Spin to win for an exclusive comeback discount.” They land on a gamified wheel with 25% off. If they don’t convert, a reminder push appears: “Still thinking it over? Your discount expires soon.” Users without push permission receive email or SMS based on their preferences. Others see an in-app message on their next visit. 
+Watch the complete flow
+. 
+
+Why it works:
+ The journey meets users on their preferred channel. Gamification adds an element of fun. Multiple fallback options ensure no user is unreachable.
+
+Customer journey stages in mobile apps: Engagement and retention
+
+Mobile apps create unique journey dynamics that shape how customers move through each stage. 
+
+Discovery:
+ Customers find your app through store search, ads, QR codes, or recommendations, and they download it.
+
+Awareness (first launch):
+ Splash screens, value propositions, and permission requests happen within seconds of opening the app. Users decide whether you’re worth their time almost instantly.
+
+Consideration (exploration):
+ Tutorial interactions, feature discovery, and in-app browsing. Customers evaluate whether the app solves their problem before committing to deeper engagement.
+
+Purchase (conversion):
+ Account creation, first in-app purchase, or completing the core action your app enables. 
+
+Tip: Deferred deep linking eliminates user friction from installation to purchase. This sends new users directly to the specific content they clicked and provides a seamless path into your app, 
+a capability Netmera supports for owned channels
+.
+
+Retention:
+ Push notifications (if permission granted), in-app messages, usage pattern tracking. Mobile retention depends on delivering value quickly.
+
+Advocacy:
+ App store ratings, social sharing from within the app, screenshot sharing. 
+App store ratings are particularly critical for mobile growth
+. One media company with strong viewership used in-app rating widgets to improve their app store ratings. Users who gave 4-5 stars went straight to the app store. Lower scores went to a feedback form where issues could be addressed directly. Within months, iOS ratings jumped from 1.8 to 4.3, and Android from 3.1 to 4.7.
+
+Putting the 5 stages into practice: An ecommerce journey map example
+
+Customer journey mapping translates behavior into automated touchpoints across channels. Instead of static diagrams gathering dust in slide decks, ecommerce brands use journey maps to identify friction points, automate responses, and connect every stage from discovery to recovery. When executed well, these maps become the blueprint for omnichannel customer engagement that adapts to what users actually do.
+
+Start with unified data and behavioral personas
+
+Before mapping stages, 
+consolidate customer data from web, mobile, and CRM into unified profiles
+. You need to see the complete picture: a user who browses on mobile, abandons cart on desktop, then opens your email needs to be recognized as one single person.
+
+Define 2-3 personas 
+based on behavior patterns
+. Bargain hunters who only buy during sales. Premium shoppers who value convenience over price. First-time browsers who need social proof before committing. These personas make your omnichannel customer journey map actionable and focused.
+
+The ecommerce journey steps mapped
+
+Step 1: Discovery and onboarding
+
+Touchpoints:
+ App install, first web visit, newsletter signup.
+
+Action:
+ In-app message guides profile setup with progressive disclosure (ask for name first, preferences later). Welcome email confirms account creation and highlights categories matching their initial interest. 
+
+Goal:
+ Reduce time-to-first-browse to under 2 minutes.
+
+Step 2: Consideration and wishlist intent
+
+Scenario:
+ User adds 3 items to wishlist but doesn’t move them to cart.
+
+Action:
+ Trigger mobile push for app users or email for web-only users when wishlist item inventory drops below 5 units (“Only 3 left in your size”) or when price decreases by 10% or more. For users who have granted push permission, send within 24 hours. Email users get the same alert but with an extended 48-hour window.
+
+Goal:
+ Convert browse intent into cart adds.
+
+Step 3: Cart abandonment and recovery
+
+Friction point:
+ 60% of users drop off at shipping selection page.
+
+Action:
+ Check the unified customer profile. If a user typically shops via mobile, send push notification within 30 minutes: ‘Stuck on shipping? We’ve got free delivery for over $50. Complete your order now.’ Include direct cart link. Desktop users receive email within 1 hour with shipping options clearly outlined alongside saved cart items and a ‘Complete Checkout in One Click’ button. 
+
+Goal:
+ Recover high-intent abandoners before they comparison shop elsewhere. 
+
+Step 4: Post-purchase and fulfillment
+
+Touchpoints:
+ Order confirmation, shipping updates, delivery completion.
+
+Action:
+ Transactional SMS or 
+WhatsApp
+ for ‘Order Shipped’ (with tracking link) and ‘Out for Delivery’ (with 2-hour delivery window). Users who didn’t opt in to SMS receive push notifications if the app is installed, otherwise email serves as fallback.
+
+Goal:
+ Build trust through transparency and reduce “Where’s my order?” support tickets.
+
+Step 5: Retention and loyalty loop
+
+Scenario:
+ 3 days post-delivery, 40% of customers show zero re-engagement.
+
+Action:
+ 
+In-app survey
+ triggers on next visit: “How was your experience?” High scores (4-5 stars) immediately unlock “Refer a friend, get 20% off” offer via push or email. Low scores (1-3 stars) trigger customer support outreach with “We want to make this right” message and direct contact option.
+
+Goal:
+ Turn satisfied buyers into repeat customers and advocates while catching dissatisfaction early. 
+
+Step 6: Dormant user and uninstall recovery
+
+Scenario:
+ User hasn’t opened app in 30 days, or uninstalled entirely.
+
+Touchpoints:
+ Email (primary for uninstalled users), SMS (if opted in during active period)
+
+Action:
+ Send curated product email based on past browsing categories with exclusive discount (15-25% off). Link uses 
+deferred deep linking
+. If the user clicks but doesn’t have the app, they go to the app store, then land directly on the promoted product page after reinstall instead of the homepage.
+
+Goal:
+ Recover lost customers before they forget your brand exists.
+
+Moving from journey map to live campaigns
+
+You’ve mapped six stages. Now you need to operationalize them without building custom integrations or 
+filing IT tickets every time behavior changes
+.
+
+Netmera collects and unifies customer data from your app, website, and CRM automatically. This creates a single customer profile showing their complete cross-channel journey. From there, 
+you build automated flows using Journey Builder’s no-code visual interface
+. 
+
+You define the triggers: what happens when a user goes dormant for 30 days, or when they click an email after uninstalling. The platform monitors behavior continuously and fires the messages you’ve configured on the channels you’ve chosen. 
+Journey analytics
+ show which stages convert and where customers drop off, so you refine based on performance.
+
+How to automate personalized journeys without developer dependency
+
+75% of consumers globally say
+ they’ll recommend and buy more from brands that deliver personalized messages consistently. Automation makes stage-based personalization possible by handling the repetitive work while keeping messages still relevant.
+
+The first step in automation is 
+unified customer data
+. Once you consolidate data from web, mobile, CRM, and every channel into a single profile, you can detect which stage each customer is in and act on it immediately.
+
+Using separate tools for data collection, campaign management, and analytics creates unnecessary friction
+. A single platform that unifies all three and removes developer dependency makes automation (and thus personalization) manageable. That’s what Netmera does.
+
+Netmera’s core capabilities that make marketing automation possible
+
+Unified customer data
+ gives you a complete view of each customer across all touchpoints. When a customer abandons a cart on mobile, then opens an email on desktop, you see both actions in one profile. You can trigger the right message on the right channel based on their actual cross-channel journey.
+
+With 
+segmentation, 
+you
+ 
+build precise audiences using profile attributes, real-time behavioral events, and AI predictions that identify churn risk or purchase likelihood. Segments feed directly into targeted campaigns and personalized messaging, and update dynamically as behavior changes.
+
+Omnichannel engagement
+ orchestrates push notifications, email, SMS, WhatsApp, in-app messages, and widgets throughout the customer journey. You design different paths for each segment with branching logic that adjusts based on user actions.
+
+By using 
+analytics & 
+Funnel Analysis
+, you track which stages convert best and where customers drop off. Real-time dashboards show hot conversions (revenue generated immediately after message engagement), average revenue per user, and engagement by platform or language.
+
+Beyond the five stages: How AI search is changing the journey
+
+The five traditional stages are still the backbone of customer experience, but they now sit beneath a new layer:
+ 
+AI search and agent-driven commerce
+. These autonomous agents handle research, comparison, and initial option discovery while the customer still usually completes the final purchase or payment. Brands must ensure their core product data is 
+structured, secure, and easily crawlable
+ by these agents and build in necessary safety measures. Focus on maintaining the 
+direct customer relationship
+, even when an agent mediates the conversation.
+
+Turn insights into revenue with journey automation
+
+Start by mapping your current customer journey. Identify where most customers drop off. Build an automated path for that stage, measure it, and improve it. Companies using Netmera’s Journey automation see 39.6% increases in monthly active users, 150% revenue lifts from cart recovery, and retention rates reaching 70% after 28 days. 
+
+Explore how 
+Netmera’s Journey Builder
+ 
+works, or
+ 
+see in these stories how our customers increased engagement, revenue, and retention
+.
+
+FAQs on customer journey stages & ecommerce journey mapping
+
+What are the 5 customer journey stages?
+
+down-arrow1
+
+up-arrow
+
+The five customer journey stages are awareness (discovering a problem), consideration (evaluating solutions), purchase (deciding to buy), retention (continuing to use the product), and advocacy (recommending it to others). Each stage requires different messaging and channels to move customers forward effectively.
+
+What channels work best for each journey stage?
+
+down-arrow1
+
+up-arrow
+
+Awareness works best with SEO content, social media, and display ads. Consideration converts through comparison pages, email sequences, and product demos. Purchase needs optimized checkout flows and abandoned cart recovery. Retention requires push notifications, in-app messages, and behavior-based triggers. Advocacy thrives with referral programs and review requests.
+
+ Can you automate customer journeys across multiple stages?
+
+down-arrow1
+
+up-arrow
+
+Yes. Journey automation uses unified customer data to detect which stage each customer is in, then triggers personalized messages across channels based on their behavior. Automation scales personalization without manual work.
+
+What results can journey automation deliver?
+
+down-arrow1
+
+up-arrow
+
+39.6% increases in monthly active users, 150% revenue lifts from cart recovery campaigns, and retention rates reaching 70% after 28 days. Results depend on unified data, behavioral triggers, and omnichannel messaging that responds to customer actions in real-time.
+
+Why are businesses investing in customer journey analytics?
+
+down-arrow1
+
+up-arrow
+
+Companies tracking customer journeys achieve 24.9% better marketing ROI year-over-year, reduce service costs by 21.2%, and shorten sales cycles by 16.8%. Analytics reveal where customers drop off and which messages convert, turning guesswork into data-driven decisions.
+
+What are the key stages in an ecommerce customer journey map?
+
+down-arrow1
+
+up-arrow
+
+Six stages cover the complete lifecycle: discovery and onboarding (first visit/install), consideration and wishlist intent (browsing without buying), cart abandonment and recovery (friction at checkout), post-purchase fulfillment (shipping updates), retention and loyalty (repeat purchase encouragement), and dormant user recovery (re-engaging inactive or uninstalled users).
+
+How do you automate an ecommerce journey map without technical skills?
+
+down-arrow1
+
+up-arrow
+
+Use a platform that unifies customer data and provides no-code journey builders. Define triggers based on behavior (cart abandonment, 30-day inactivity, wishlist additions), set branching logic (if user does X, send Y; if not, wait and try Z), and let the system monitor behavior and fire messages automatically across your chosen channels.
+
+Burcu Ulucay
+ – Content Marketing, Netmera
+
+ 
+
+Burcu Ulucay
+
+Content Marketing, Netmera
+
+ 
+
+Leave a Reply 
+Cancel reply
+ 
+
+Get the latest growth insights
+
+ 
+
+Prev
+Next
+ 
+
+ 
+
+Subscribe to our newsletter
+ 
+
+ 
+
+Products
+ 
+
+Customer Data Management
+
+Customer Journeys
+
+AI Site Search & Browse
+
+Web Personalization
+
+Testing and Experimentation
+
+Data & Analytics
+
+Tagless Data Capture
+
+Surveys & Feedback​
+
+Funnels
+
+Channels
+ 
+
+Mobile & Web Push
+
+E-Mail
+
+SMS
+
+Whatsapp
+
+Mobile In-App
+
+Web Pop-Ups
+
+Live Activities
+
+Feedback Button
+
+Netmera AI
+
+Industries
+ 
+
+Media and Entertainment
+
+Banking and Finance
+
+Retail and E-commerce
+
+Travel and Hospitality
+
+Telecommunication
+
+Company
+ 
+
+About Us
+
+Careers
+
+Contact Us
+
+Partners
+
+Why Netmera
+
+Newsroom
+
+Information for AI
+
+Resources
+ 
+
+Blog
+
+Glossary
+
+Top Use Cases
+
+Resources
+
+Success Stories
+
+Developer and User Guide
+
+ 
+
+© 2026 — 
+Netmera
+. All Rights Reserved.   |   
+Privacy Policy
+   |   
+Cookie Policy (EU)
+   |   
+GDPR
+   |   
+KVKK
+ 
+
+Linkedin
+
+ 
+
+Youtube
+
+ 
+
+ 
+
+ 
+
+Manage Cookie Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+						Always active					
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+
+Deny
+
+View preferences
+
+Save preferences
+
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent
+
+ 
+
+Manage Cookie Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+						Always active					
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+
+Deny
+
+View preferences
+
+Save preferences
+
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent

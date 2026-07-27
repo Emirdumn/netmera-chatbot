@@ -1,0 +1,366 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/sms/create-sms-campaign.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/sms/create-sms-campaign.md).
+
+# Create SMS campaign
+
+{% hint style="info" %}
+
+#### Quick path
+
+**Messages** → **Campaigns** → **Create New Campaign**
+
+1. Set the campaign name and channel in [**Step 1: Setup**](#step-1-setup).
+2. Add the message content and tracking options in [**Step 2: What**](#step-2-what).
+3. Choose the target audience in [**Step 3: Who**](#step-3-who).
+4. Set timing and delivery speed in [**Step 4: When**](#step-4-when).
+5. Review and send the campaign in [**Step 5: GO**](#step-5-go).
+   {% endhint %}
+
+Create SMS campaign is the guided flow for building and sending an SMS campaign from start to send. Use it to create one-time campaigns, target the right audience, schedule delivery, and measure what happens after the message is sent.
+
+{% @arcade/embed url="<https://app.arcade.software/share/krQPkQjhX3KHf9uCuM5h>" flowId="krQPkQjhX3KHf9uCuM5h" %}
+
+### Before you start
+
+Before creating an SMS campaign, make sure:
+
+* your SMS channel setup is complete,
+* your SMS users are already uploaded,
+* and your sender header is available in the panel.
+
+### Step 1: Setup
+
+In **Setup**, define the basic campaign details. Add a clear **Campaign Name** and select **SMS** as the campaign type.
+
+SMS supports **Text** format only. You do not need to choose between different content formats here.
+
+The right panel shows the estimated reachable audience. Use this to confirm the campaign size before you continue and to spot targeting issues early.
+
+{% hint style="warning" %}
+**Campaign Name** is internal only. It does not replace the SMS header that recipients see.
+{% endhint %}
+
+<figure><img src="/files/A1g0C1tHWcMLQTohSCup" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 2: What
+
+In **What**, you build the SMS itself. This step defines what recipients see, how the campaign is classified, and how you analyze performance later.
+
+<figure><img src="/files/Yl5fssePeQNqo9RJrofW" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Main fields
+
+Most SMS campaigns use the same core fields. Each one affects delivery, reporting, or campaign management.
+
+* **Category** — groups campaigns by purpose for reporting, filtering, and consent logic.
+* **SMS Header** — defines the sender name shown to recipients.
+* **Notification Message** — defines the SMS body that users receive.
+* **Label** — adds an internal tag so you can organize and compare campaigns later.
+
+#### Category
+
+Use **Category** to classify each SMS campaign by its purpose, such as promotions, updates, account notifications, reminders, or transactional communication.
+
+Category becomes more important as your SMS volume grows. It helps you group similar sends together, compare performance by intent, and keep campaign reporting consistent across teams and use cases.
+
+If you use purpose-based consent, category selection is also part of permission enforcement. In that model, the category is not just descriptive. It directly affects whether the message can be sent.
+
+To learn more, see [Message Categories](/netmera-user-guide/omnichannel-engagement/mobile-push/message-categories.md).
+
+#### SMS Header
+
+SMS Header is the sender name recipients see.
+
+It shows who sent the message before the recipient reads it. A clear header builds trust and reduces confusion. To use it, open the SMS Header field and choose a sender header from the list.
+
+Headers are added during channel setup. You can then select them while building the campaign. If the header you need is missing, complete [SMS Onboarding](/netmera-user-guide/omnichannel-engagement/sms/sms-onboarding.md) first.
+
+#### Notification Message
+
+**Notification Message** is the main SMS text. This is the part recipients read and respond to, so it should be clear. Keep the message direct. Say the purpose early. If you want the user to do something, explain the next step clearly.
+
+You can use plain text and emojis if they fit your tone and brand. SMS space is limited, so every character matters. If you want to add user-specific values, use personalization in the same message. For details, see [Profile Attributes](/netmera-user-guide/customer-data/profile-attributes.md).
+
+#### Include URLs
+
+You can include URLs directly in the message body. This is useful when the SMS should drive traffic to a landing page, promotion, payment step, or account action.
+
+Recipients see the link inside the message and can open it when supported by their device and messaging app.
+
+#### Shorten URLs
+
+Use **Shorten URLs** when you want to reduce character usage in the SMS body.
+
+This is especially useful because SMS space is limited. Long links consume valuable characters and can make the message harder to read.
+
+{% hint style="success" %}
+Shortened URLs can reduce long links to a much smaller format, which helps preserve message space for the main content.
+{% endhint %}
+
+#### Personalized Message
+
+You can personalize SMS content with profile attributes such as `{@name}` or `{@age}`. This makes the message more relevant to each recipient.
+
+Personalization works best when the inserted value adds clear context, such as a name, birthday, coupon detail, or loyalty status. It is especially useful for reminders, birthday campaigns, loyalty messages, and lifecycle communication.
+
+To use personalization, the related user data must already exist in Netmera. See [Profile Attributes](/netmera-user-guide/customer-data/profile-attributes.md).
+
+Example:
+
+* **Default message:** `Happy birthday!`
+* **Personalized message:** `Wishing you a sweet {@age}th birthday {@name}!`
+
+#### Label
+
+Use **Label** to tag the campaign for filtering and reporting later.
+
+Labels are optional, but they are useful when you want to compare campaigns by theme, audience, owner, season, or objective. They give you another reporting dimension beyond category.
+
+To create labels, see [Message Labels](/netmera-user-guide/panel-settings/settings/messaging-and-content/message-labels.md).
+
+#### Conversion Analytics
+
+Use **Conversion Analytics** to track whether recipients complete a target event after the SMS is delivered.
+
+This feature helps you move beyond delivery reporting. Instead of only seeing whether the message was sent, you can measure whether it influenced user behavior.
+
+When enabled, the following fields become available:
+
+* **Conversion Event**
+* **Event Attribute Filters**
+* **Control Group**
+* **Conversion Deadline**
+
+#### Conversion Event
+
+Select the event you want to track after SMS delivery.
+
+Example conversion events include:
+
+* `Purchase`
+* `AddToCart`
+* `SubscriptionStarted`
+* `RentalCompleted`
+
+If the selected event includes revenue data by using `event.setRevenue()`, the revenue value is reflected in campaign reports. This helps connect the SMS send to direct business outcome.
+
+{% hint style="info" %}
+When Conversion Analytics is enabled, **Conversion Event** and **Conversion Deadline** are required.
+{% endhint %}
+
+#### Event Attribute Filters
+
+Use event attribute filters when only specific event variations should count as conversions.
+
+This matters when the conversion event alone is too broad. For example, you may want to count only purchases in a specific currency, category, or product set.
+
+Filters work with **AND** logic. The event must match all defined conditions to count as a conversion.
+
+<details>
+
+<summary>Example Event Attributes</summary>
+
+```
+Event = Purchase
+currency = TRY
+AND
+category = Electronics
+```
+
+If the event does not match all conditions, it is not counted as a conversion for the campaign.
+
+</details>
+
+#### Conversion Deadline
+
+**Conversion Deadline** defines the maximum time between SMS delivery and the conversion event. Events that happen after that window are not counted for the campaign.
+
+This setting controls attribution. It tells Netmera how long the SMS should continue receiving credit for later user actions.
+
+<figure><img src="/files/xufXmz95IkuwtnKrj2QU" alt="" width="341"><figcaption></figcaption></figure>
+
+* **Hours**: Counts conversions within the selected number of hours after SMS delivery.
+* **Days**: Counts conversions within the selected number of days after SMS delivery.
+* **Custom Date**: Counts conversions until the selected date and time.
+
+{% hint style="info" %}
+If the conversion deadline is set to **2 Hours**, only events completed within 2 hours after SMS delivery are counted as conversions.
+{% endhint %}
+
+#### Control Group
+
+Enable **Use control group to calculate conversion %** when you want to compare recipients against similar users who do not receive the SMS.
+
+This makes it easier to evaluate real campaign lift. Without a control group, it is harder to know whether conversions happened because of the SMS or would have happened anyway.
+
+When enabled, the selected percentage of users is randomly excluded from the send.
+
+The control group percentage can be set between **1% and 10%**.
+
+Users in the control group:
+
+* do not receive the SMS campaign,
+* are included in campaign reporting as a separate group,
+* can be exported from the campaign report.
+
+<figure><img src="/files/hykRBamNMcZTdvhNm7wM" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 3: Who
+
+In **Who**, you define which users should receive the SMS campaign.
+
+You can send to all eligible users or narrow the audience with filters. The goal here is to match the message with the most relevant recipients.
+
+<figure><img src="/files/ddZQzWyCYcO253iiWpJM" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Audience options
+
+* **Send All** — sends the campaign to all eligible SMS subscribers.
+* **Select Users** — lets you filter the audience with simpler criteria.
+* **Advanced** — lets you build more detailed logic with conditions and groups.
+
+#### Select Users
+
+Use **Select Users** when a simple filter is enough.
+
+This option works well when you already know the basic audience rules. You can target users with criteria such as tags, segments, device type, profile attributes, previous campaign response, and location.
+
+<details>
+
+<summary>Select Users Options</summary>
+
+**Tag**
+
+Use tags created in **Targeting → Tags** to target groups with shared characteristics or behaviors.
+
+<img src="/files/7PerTs8ObPZKn4AKVeG0" alt="" data-size="original">
+
+**Segment**
+
+Segments are dynamic groups of users that change as behavior changes. They are useful when the audience definition should stay current over time.
+
+To learn more, see [**Segments**](/netmera-user-guide/targeting/segments.md).
+
+![](/files/Y3c0sTACc6gBwubikJza)
+
+**Device Type**
+
+Target users by **Desktop**, **Mobile**, or **Tablet** when device context matters for the campaign.
+
+<img src="/files/41PpPDCiJmK3tOTbfIvd" alt="" data-size="original">
+
+**Profile**
+
+Target users whose **profile attributes** match specific values, such as age, gender, city, or any custom attribute you already collect.
+
+![](/files/hS24WlHUHK4MGvfYrI6y)
+
+**Response**
+
+Target users based on whether they interacted with a previous campaign. This is useful for follow-up sends and re-engagement flows.
+
+![](/files/xnsymExNuy29r0uQ2BBx)
+
+**Location**
+
+Target users by geographic location, radius, or map selection when place matters for the message.
+
+![](/files/c9L9kGgtz1MCSHMRjHQc)
+
+</details>
+
+#### Advanced
+
+Use **Advanced** when you need more detailed audience logic.
+
+This is the right option when one filter is not enough and you need to combine multiple behaviors or attributes. It gives you more control over how conditions are grouped and evaluated.
+
+<details>
+
+<summary>Advanced User Options</summary>
+
+Build the audience with conditions and groups.
+
+* **AND** includes only users who meet all selected conditions.
+* **OR** includes users who meet any selected condition.
+
+Use **Add Condition** and **Add Group** to shape the audience logic around your campaign goal.
+
+<figure><img src="/files/5HEkGEOieDGyF5Balci9" alt=""><figcaption></figcaption></figure>
+
+After you define the audience, **Selection Criteria** shows the matching users and devices. Use this panel to validate whether the result looks reasonable before you continue.
+
+<div align="left"><figure><img src="/files/aQxCSzf2kVYs1dc1eOTp" alt="" width="199"><figcaption></figcaption></figure></div>
+
+</details>
+
+#### Additional controls
+
+* **Ignore User Message Limits** — bypasses message frequency limits for this campaign.
+* **Limit Target Users** — caps how many users can receive the campaign.
+
+Use recipient limits when you want a phased rollout, a smaller controlled send, or an intentionally limited campaign size.
+
+<figure><img src="/files/0etDnulT94BdbLbWZpOE" alt="" width="265"><figcaption></figcaption></figure>
+
+### Step 4: When
+
+In **When**, you decide when the SMS campaign starts and how quickly it is delivered.
+
+#### Start sending messages
+
+Choose whether the campaign should send **Now** or **On Specific Time**.
+
+Send immediately for urgent communication.
+
+Schedule for later when timing matters, such as business hours, campaign windows, or regional timing.
+
+<figure><img src="/files/PyR1umEwXaCqxBLN4gzw" alt="" width="563"><figcaption></figcaption></figure>
+
+<figure><img src="/files/a18JQmGD1IPe88B0G0Uf" alt="" width="360"><figcaption><p>Start Sending Messages</p></figcaption></figure>
+
+#### Delivery Speed
+
+Choose how quickly the SMS campaign should be delivered:
+
+* **Send Fast** — delivers to all eligible users at once.
+* **Send in Packages** — sends messages in batches of a specified size.
+
+Use packaged delivery for larger audiences when you want a more gradual rollout or tighter control over delivery pace.
+
+<figure><img src="/files/vHCLFZ3gZigDFNgsuSbR" alt="" width="544"><figcaption><p>Delivery Speed</p></figcaption></figure>
+
+### Step 5: GO
+
+In **GO**, review the campaign details before launch.
+
+This is the final checkpoint for validating the content, audience, and timing. Review the summary carefully before you send, especially if the campaign targets a large audience or uses conversion tracking.
+
+<figure><img src="/files/sbuq0jeceXtLuVCyN2Zp" alt="" width="563"><figcaption></figcaption></figure>
+
+After you review the details, click **Send** to launch the campaign.
+
+<figure><img src="/files/wy7YLzLTshGoT9mLwQuO" alt="" width="563"><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/sms/create-sms-campaign.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

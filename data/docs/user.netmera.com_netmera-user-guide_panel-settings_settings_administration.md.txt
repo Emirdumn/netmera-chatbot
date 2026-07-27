@@ -1,0 +1,39 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration.md).
+
+# Administration
+
+**Path:** `Settings > Administration`
+
+Use this section to manage application settings, access control, organizational structure, and testing setup.
+
+<figure><img src="/files/SrXVYSuCmbWXxT8SkmoV" alt=""><figcaption></figcaption></figure>
+
+### What you can manage
+
+Use **Administration** to configure your application, control user access, organize teams, and prepare test environments before launch.
+
+<table data-view="cards"><thead><tr><th>What you can manage</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Configure application-level settings such as messaging, authentication, language, and uninstall tracking.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/FqMiUc9rkk7VxA5Xv9k1">/spaces/X6uilbEAw42gqsudlclY/pages/FqMiUc9rkk7VxA5Xv9k1</a></td></tr><tr><td>Invite users, update their details, and assign the roles they need.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/KvzMqRH2c5I8OUttTwBM">/spaces/X6uilbEAw42gqsudlclY/pages/KvzMqRH2c5I8OUttTwBM</a></td></tr><tr><td>Create roles and define what each user can view, edit, or manage.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/plYHt8VGmKMwGgHQowi7">/spaces/X6uilbEAw42gqsudlclY/pages/plYHt8VGmKMwGgHQowi7</a></td></tr><tr><td>Organize users and campaigns into separate business units with their own targeting criteria.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/CZwsyMyvjVYfQKtTxpU5">/spaces/X6uilbEAw42gqsudlclY/pages/CZwsyMyvjVYfQKtTxpU5</a></td></tr><tr><td>Add and manage tester entries before you send campaigns live.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/Szk4YuPygbeBmx2Un1Hh">/spaces/X6uilbEAw42gqsudlclY/pages/Szk4YuPygbeBmx2Un1Hh</a></td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,93 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports.md).
+
+# Reports
+
+Reports are prebuilt dashboards for monitoring messaging performance, user growth, platform health, and operational activity. Use this section when you want a ready-made answer quickly, without building a custom analysis from scratch.
+
+In general, **Reports** gives you structured dashboards with stable metrics. **Analytics** is better when you want ad-hoc exploration, custom breakdowns, or more investigative work.
+
+{% hint style="info" %}
+Most reports follow the same workflow. Start with the date range, add filters if needed, review the main trend or table, and export when you need deeper analysis.
+{% endhint %}
+
+<figure><img src="/files/8KBb2UfArPzYt281s1oY" alt="" width="563"><figcaption></figcaption></figure>
+
+### How to work with reports
+
+{% stepper %}
+{% step %}
+
+#### Pick the report that matches the question
+
+Start from the sections below. Each report is designed to answer a different type of operational or performance question.
+{% endstep %}
+
+{% step %}
+
+#### Set the time range first
+
+Use a shorter range when you are debugging a recent issue. Use a longer range when you want to understand trends or compare periods.
+{% endstep %}
+
+{% step %}
+
+#### Filter out noise
+
+Use labels, channels, audience filters, or report-specific options where available. This helps the report answer one focused question instead of several broad ones at once.
+{% endstep %}
+
+{% step %}
+
+#### Export when you need to go further
+
+Exports are useful when you want to share the result, compare it outside the panel, or join it with another source.
+{% endstep %}
+{% endstepper %}
+
+### Messaging performance
+
+Use these reports when the question is about campaign delivery, engagement, conversion, or revenue across one or more channels.
+
+<table data-view="cards"><thead><tr><th>What you can review</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Cross-channel campaign overview, including volume, open rate, conversion, and revenue</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/1TanfGj4q0JJH0epoZSh">/spaces/X6uilbEAw42gqsudlclY/pages/1TanfGj4q0JJH0epoZSh</a></td></tr><tr><td>Push-specific delivery, clicks, conversions, and revenue</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/AaeCWOyPZS91hopgJMxy">/spaces/X6uilbEAw42gqsudlclY/pages/AaeCWOyPZS91hopgJMxy</a></td></tr><tr><td>Email delivery, opens, clicks, bounces, unsubscribes, and bounce reasons</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/L0c7iYDKg3xdwjgFfAlP">/spaces/X6uilbEAw42gqsudlclY/pages/L0c7iYDKg3xdwjgFfAlP</a></td></tr><tr><td>SMS dispatch, provider-confirmed delivery, and failure detail</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/nQGurUZi1MIlfxIVrolZ">/spaces/X6uilbEAw42gqsudlclY/pages/nQGurUZi1MIlfxIVrolZ</a></td></tr><tr><td>WhatsApp send, delivery, and read performance</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/qWPNNOZbvLmn4Dixdn2h">/spaces/X6uilbEAw42gqsudlclY/pages/qWPNNOZbvLmn4Dixdn2h</a></td></tr><tr><td>Automated, transactional, and geofence campaign performance</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/43Yqj3P2UAfWiNVX8PvZ">/spaces/X6uilbEAw42gqsudlclY/pages/43Yqj3P2UAfWiNVX8PvZ</a></td></tr></tbody></table>
+
+### Users, growth, and app health
+
+Use these reports when you need a broader platform view, such as user growth, installs, version adoption, or reachability.
+
+<table data-view="cards"><thead><tr><th>What you can review</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Total users, devices, sessions, opt-ins, and revenue over time</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/AojEX4nB2W0gtVqyENWg">/spaces/X6uilbEAw42gqsudlclY/pages/AojEX4nB2W0gtVqyENWg</a></td></tr><tr><td>Installs, reinstalls, and uninstalls</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/VbNyCxpQj1IYxoPfjpbm">/spaces/X6uilbEAw42gqsudlclY/pages/VbNyCxpQj1IYxoPfjpbm</a></td></tr><tr><td>Which app versions are active across users and devices</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/VxG0XXtKetJmEyLea5kc">/spaces/X6uilbEAw42gqsudlclY/pages/VxG0XXtKetJmEyLea5kc</a></td></tr><tr><td>Who can be contacted on each messaging channel</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/6dpBPuQzZNHjYFWxhuQg">/spaces/X6uilbEAw42gqsudlclY/pages/6dpBPuQzZNHjYFWxhuQg</a></td></tr><tr><td>Which Android apps coexist with yours on user devices</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/uMJEg6cqkfmbw1k582xr">/spaces/X6uilbEAw42gqsudlclY/pages/uMJEg6cqkfmbw1k582xr</a></td></tr></tbody></table>
+
+### Event volume and operational checks
+
+Use these reports when you need fast event counts rather than a full behavioral analysis.
+
+<table data-view="cards"><thead><tr><th>What you can review</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Daily and hourly event volume</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/ymjfs09THWMsQ4SodOon">/spaces/X6uilbEAw42gqsudlclY/pages/ymjfs09THWMsQ4SodOon</a></td></tr><tr><td>Deeper event investigation with dimensions and breakdowns</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY">/spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY</a></td></tr></tbody></table>
+
+### KPIs and governance
+
+Use these reports when the goal is broader management, monthly tracking, exports, or auditability.
+
+<table data-view="cards"><thead><tr><th>What you can manage</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Monthly KPI monitoring</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/Qbaze8s87zxON2IJBDib">/spaces/X6uilbEAw42gqsudlclY/pages/Qbaze8s87zxON2IJBDib</a></td></tr><tr><td>User actions and configuration changes in the panel</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/c08FjOVlJaMUE9UMZkCt">/spaces/X6uilbEAw42gqsudlclY/pages/c08FjOVlJaMUE9UMZkCt</a></td></tr><tr><td>Scheduled and manual data exports</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/jbQXmZrbt4dzhHJhA8E9">/spaces/X6uilbEAw42gqsudlclY/pages/jbQXmZrbt4dzhHJhA8E9</a></td></tr><tr><td>Metric definitions used across the report set</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/9QyuubAXFYZCoDQvj4ox">/spaces/X6uilbEAw42gqsudlclY/pages/9QyuubAXFYZCoDQvj4ox</a></td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

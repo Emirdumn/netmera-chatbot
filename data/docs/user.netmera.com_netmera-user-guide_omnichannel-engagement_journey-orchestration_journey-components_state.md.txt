@@ -1,0 +1,101 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components/state.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components/state.md).
+
+# State
+
+The State section in the Journey module comprises various components that dictate the flow and timing of user interactions within a journey. Below are the components available under the State section, detailed for user comprehension and guidance.&#x20;
+
+<figure><img src="/files/Hh4QXbdSQJ1TyxEn4bCc" alt="" width="563"><figcaption></figcaption></figure>
+
+### On Event
+
+In this step of the Journey, you define the event that must occur before the Journey progresses. For example, consider a scenario where users apply for a credit. You would select the **Credit Application** event as the trigger. This means the Journey will proceed once the user submits a credit application.
+
+<figure><img src="/files/JRJbGMVq1jXYLPnRjxKH" alt="" width="563"><figcaption></figcaption></figure>
+
+#### **Step Name**
+
+This is where you name the specific step in the Journey. In this case, the step is labeled **Event**, which helps identify and organize the stages within the Journey.
+
+#### **Select Event**
+
+Here, you select the event that will trigger the Journey to proceed to the next step. The example shows **Credit Application** as the event. Once the Journey starts, this event cannot be changed. This ensures consistency throughout the Journey.
+
+#### **Add Trigger Filters**
+
+Trigger filters allow you to refine the event by adding conditions. In this example, the **Amount** property is chosen, and the filter is set to trigger only when the **Amount** is **Greater Than 10,000**. This allows you to focus only on events that meet specific criteria, such as credit applications above a certain amount.
+
+#### **Add Journey Value**
+
+You can save specific data from this step as a **Journey Value**. For instance, you may want to store the amount requested by the user during their credit application to personalize future communications. Simply select the property (e.g., **Amount**) and save it as a Journey Value for later use.
+
+#### **Add Correlation**
+
+If there is a need to correlate events with other attributes, such as matching multiple data points (e.g., amount requested and approved), you can use the **Add Correlation** option. In this case, you would correlate the **Amount** property to further refine how this Journey step interacts with other data.
+
+<figure><img src="/files/k7WBTZwuUNS5YFDSBDVq" alt="" width="375"><figcaption></figcaption></figure>
+
+**Time-out**
+
+You also have the option to set a **Time-out** for the events. The **Time-out** specifies the maximum time allowed for the event to occur before the Journey takes an alternate path or ends. For example, if the credit application doesn’t happen within a set time (e.g., 48 hours), the Journey can proceed with a different action, such as sending a reminder to the user.
+
+<figure><img src="/files/d4R5xdA49oRdkCFE2e1k" alt="" width="199"><figcaption></figcaption></figure>
+
+### Delay
+
+The **Delay** component pauses the journey for a set amount of time before proceeding to the next step. You might want to wait for a few days before sending a follow-up email after a user has made a purchase to ask for feedback or suggest related products. You can set the duration of the delay in minutes, hours, days, or even weeks, depending on your specific requirements.
+
+<figure><img src="/files/NRHsu5YOw2F51mCM5uIi" alt="" width="375"><figcaption></figcaption></figure>
+
+#### **Step Name**
+
+This is where you define the name of the delay step. In the example, it's named **Delay**. Naming steps clearly is essential for organizing and tracking the flow of the Journey.
+
+#### **Select Type of Delay**
+
+Here, you choose how the delay will be implemented.&#x20;
+
+1. **Fixed Duration**
+
+The example shows **Fixed Duration**, which means that the delay will last for a set amount of time. You can delay users by seconds, minutes, hours, days, weeks, or years. Fixed Duration is useful for defining specific time gaps between two Journey actions.
+
+<figure><img src="/files/z08SL2Zl4wSBu3GWFyfC" alt="" width="375"><figcaption></figcaption></figure>
+
+2. **Until Date**
+
+This option delays users until a specific calendar date. When selected, you can define an exact date, and users will wait in the journey until that date arrives before moving forward. It is useful for time-sensitive campaigns or actions that should be aligned with specific events, such as holidays, end-of-month promotions, or any other date-centric activity.
+
+* **Example**: If a user enters a journey on September 15th, and you set the delay **Until Date** to September 23rd, that user will remain in the delay step until the 23rd before proceeding, no matter when they started the journey.
+
+<figure><img src="/files/zMkRgyA1YINsgkxFf1UV" alt="" width="375"><figcaption></figcaption></figure>
+
+3. **Until Day of Week**
+
+This option delays users until a specific day of the week and hour. It is useful for workflows where actions need to happen on a consistent weekday. You select the day of the week (e.g., Monday, Wednesday), and the system holds users at this step until that day and hour arrives.
+
+* **Example**: If you set a delay for **Until Day of Week: Tuesday 00:00**, any user entering this step on, say, a Sunday will remain delayed until the following Tuesday. This is useful for weekly campaigns or timed messages.
+
+<figure><img src="/files/6WDGwV9qfmsN41uBnH1q" alt="" width="375"><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components/state.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

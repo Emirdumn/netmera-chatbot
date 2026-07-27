@@ -1,0 +1,96 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel/funnel-dashboard.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel/funnel-dashboard.md).
+
+# Funnel Dashboard
+
+**Path:** `Analytics > Funnel`&#x20;
+
+Use this page to open the Funnel Dashboard, review saved funnels, and start the next action. After following these steps, you will know how to read the funnel list, check visibility, use row actions, and start a new funnel or import one.
+
+### Step 1: Open the Funnel Dashboard
+
+Go to **Analytics > Funnel**.
+
+The Funnel Dashboard opens and shows the list of saved funnels in the account.
+
+<figure><img src="/files/Xpe0fmC7WQh5HIowa8br" alt="" width="375"><figcaption><p>Open the Funnel Dashboard from the Analytics menu.</p></figcaption></figure>
+
+### Step 2: Review the funnel list
+
+Use the dashboard to review each saved funnel before you open, duplicate, or edit it.
+
+The list shows core metadata for each funnel.
+
+<figure><img src="/files/pXtFL2DuP7rPIl6AkrAa" alt="" width="563"><figcaption><p>Funnel list showing visibility, ownership, dates, and actions.</p></figcaption></figure>
+
+#### Columns in the funnel list
+
+| Column           | Description                                                                |
+| ---------------- | -------------------------------------------------------------------------- |
+| **Funnel name**  | Displays the name of the funnel. Click it to open the funnel report.       |
+| **Visibility**   | Shows who can view the funnel.                                             |
+| **Created by**   | Shows the user who created the funnel.                                     |
+| **Created date** | Shows when the funnel was created.                                         |
+| **Last updated** | Shows when the funnel was last updated.                                    |
+| **Actions**      | Opens row-level actions such as View, Edit, Duplicate, Export, and Delete. |
+
+#### Visibility badges
+
+| Badge          | Description                                       |
+| -------------- | ------------------------------------------------- |
+| 🌐 **Public**  | All users in the account can view the funnel.     |
+| 🔒 **Only me** | Only the user who created the funnel can view it. |
+
+<figure><img src="/files/gZsKmvHtLpwqmrCl4vFV" alt=""><figcaption></figcaption></figure>
+
+{% hint style="warning" %}
+If a funnel is not visible to other users, check whether the visibility is set to **Only me**.
+{% endhint %}
+
+### Step 3: Use row actions
+
+Click the `...` button to open the action menu for a saved funnel.
+
+<div align="center"><figure><img src="/files/XHk5DGDc8wD4o7FAniqO" alt="" width="104"><figcaption><p>Actions menu for a saved funnel.</p></figcaption></figure></div>
+
+<table><thead><tr><th width="132.41400146484375">Action</th><th>Description</th></tr></thead><tbody><tr><td><strong>View</strong></td><td>Opens the funnel in read-only mode.</td></tr><tr><td><strong>Edit</strong></td><td>Opens the funnel configuration so you can update steps, filters, or settings.</td></tr><tr><td><strong>Duplicate</strong></td><td>Creates a copy of the funnel with the same configuration.</td></tr><tr><td><strong>Export</strong></td><td>Downloads the funnel in JSON format.</td></tr><tr><td><strong>Delete</strong></td><td>Permanently deletes the funnel.</td></tr></tbody></table>
+
+{% hint style="danger" %}
+Deleting a funnel cannot be undone.
+{% endhint %}
+
+### Step 4: Start a new funnel or import one
+
+Choose the next action from the top of the dashboard.
+
+* Select **Create Funnel** to build a funnel from scratch.
+* Select **Import Funnel** to upload a funnel JSON file from another account.
+
+For example, use **Import Funnel** when you want to reuse the same funnel structure in a different account.
+
+<figure><img src="/files/k6R4MGs2epQIDYy7xwRw" alt="" width="287"><figcaption><p>Choose whether to import a funnel or create one from scratch.</p></figcaption></figure>
+
+After you choose **Create Funnel**, continue with [Create a Funnel](/netmera-user-guide/reports-and-analytics/analytics/funnel/create-a-funnel.md).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel/funnel-dashboard.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

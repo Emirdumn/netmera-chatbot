@@ -1,0 +1,93 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/feedback-button/create-feedback-button/assign-click-actions.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/feedback-button/create-feedback-button/assign-click-actions.md).
+
+# Assign Click Actions
+
+{% hint style="warning" %}
+**Important Note:**
+
+**Click actions** can be assigned to "**Buttons**" and "**Images**" and they can be assigned by clicking on the button/image and navigating to the **⚡ (lightning) icon.**
+{% endhint %}
+
+{% hint style="warning" %}
+**Important Note**
+
+Your **"Identifier**" code is crucial when you are analyzing your data or assigning click actions to your buttons. Therefore, while you are creating a new widget, pay attention to attributing distinguishable "Identifier" codes to your elements and buttons. You may just simple click on the code and rewrite your own name on it.
+{% endhint %}
+
+## How to Add Click Actions
+
+You may create a pop-up which consists of **buttons, ratings, images** and assign click actions to them to encourage your audience to **read your articles, subscribe to your newsletters, rate your service** and more.  When you add click actions to your widget, you create an interactive experience for your users. By adding click actions, you may direct your users to take actions in your widget and further integrate them in your pop-up.&#x20;
+
+### Case Scenario
+
+In this page, we are going to provide a scenario and illustrate how to complete the steps to create this scenario by adding click actions.
+
+***Case:***
+
+***"I want to create a pop-up which aims to test user's satisfaction on a 5 star rating score, and show a 'Thank you.' page to people who have given 4-5 stars; while directing other users who have given 1-3 stars to a feedback page."***
+
+### Step 1&#x20;
+
+First, design or edit your own desired widget and add your image, text, rating score element and buttons. Click actions can only be added to ***IMAGES*** and ***BUTTONS***. Therefore, if you want to encourage your audience to take actions in your pop-up, use these two elements.
+
+Click on your Rating element and navigate to "**Settings**".&#x20;
+
+<figure><img src="/files/mFELx7b4p0RGbjch73Jx" alt=""><figcaption><p>Identifiers</p></figcaption></figure>
+
+Your **"Identifier**" code is crucial when you are analyzing your data or assigning click actions to your buttons. Therefore, while you are creating a new widget, pay attention to attributing distinguishable "Identifier" codes to your elements when needed. You may just simple click on the code and rewrite your own name on it. Here, as our element is Rating, enter identifier as "rating".
+
+<figure><img src="/files/6o3XETzuq56Agm6vrBBw" alt=""><figcaption><p>Identifiers</p></figcaption></figure>
+
+### Step 2
+
+By clicking on +Add View, add as many pages as you need to your widget. After customizing the other pages of your pop-up, we can move on to adding click actions to our buttons to navigate our audience to see the other pages and take actions in them.
+
+<figure><img src="/files/nAYtGMfMQVbOykisxk3i" alt=""><figcaption><p>View 2</p></figcaption></figure>
+
+<figure><img src="/files/tT2SE1pJs5GmZEKh9iVT" alt=""><figcaption><p>View 3</p></figcaption></figure>
+
+### Step 3
+
+On Step 3, we are going to assign click actions to our buttons in order to navigate users to the correct pages. As we have decided that users who have given 4-5 will be taken to "Thank you" page (View 3), and the other users will be first directed to the "Feedback" page (View 2) and then View 3, **we are going to use the identifier of our rating element and assign click actions accordingly.**
+
+First, click on the button on our widget and then choose "**Click Actions**". Then a window will pop up on the right side of the page.
+
+For Action 1, choose **"Go to view"** and select View 2 (Feedback) and add a **condition** as "rating -> less than or equal to -> 3" and click add and Save. Now your audience who have rated less than or equal to 3 will be directed to Feedback page when they click "Submit" button.
+
+<figure><img src="/files/4RDRvYZrvSUEjVYweHGh" alt=""><figcaption><p>Action 1</p></figcaption></figure>
+
+Next, click +ADD ACTION and add your second action for the button. Again, choose your action as "Go to view" and choose View 3 (Thank You) and add condition as "rating -> greater than or equal to -> 4".&#x20;
+
+<figure><img src="/files/o7Xcay7SdAMjejgS7lQV" alt=""><figcaption><p>Action 2</p></figcaption></figure>
+
+Continue with View 2 and View 3 to finalize all click actions as we have mentioned here. "Go to View" is only one of the options that you might choose as an action, if you aim to collect data you may add action "Send Data" and or if you aim to redirect your users to a URL, you may choose the relevant action and complete the steps.
+
+<figure><img src="/files/QZpgnGgVEuAFZNCxhBMK" alt=""><figcaption><p>Select Action</p></figcaption></figure>
+
+### Step 4
+
+After you have finalized all the elements and  click actions, you may simply click Save Widget and Return. Your widget will be saved on "Your Widgets".&#x20;
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/feedback-button/create-feedback-button/assign-click-actions.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

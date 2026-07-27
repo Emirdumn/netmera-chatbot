@@ -1,0 +1,110 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/uninstall.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/uninstall.md).
+
+# Uninstall
+
+**Path:** `Analytics>User & Audience>Uninstall`
+
+Uninstall helps you understand churn and investigate what happened before users removed the app. It is useful when you need both trend-level insight and user-level action in the same place. This makes it easier to connect a rise in uninstall numbers with the user activity and campaign pressure that came before it.
+
+Use this page when you want to answer questions such as:
+
+* Are uninstall numbers rising?
+* Were users still active before uninstall?
+* Did message pressure contribute to churn?
+
+{% hint style="warning" %}
+On Android, uninstall counts can rise because of **inactive FCM tokens**.
+
+If a token does not connect to FCM for **270+ days**, it becomes invalid. Common reasons include device replacement or long inactivity. When the device becomes active again, it receives a new token and Netmera assigns a new installation ID. This can make uninstall numbers appear higher than expected.
+{% endhint %}
+
+This detail matters when you interpret long-term Android churn. A rise in uninstall-related numbers does not always mean users actively removed the app at the same moment.
+
+### Set the filters
+
+Choose a time period first:
+
+* Last Week
+* Last Month
+* Last Year
+* Dates Between
+
+You can also limit the analysis to a specific segment when needed. This is useful when you want to compare churn between regions, lifecycle groups, or campaign-exposed users.
+
+<figure><img src="/files/PNqzVstzn3f772GfWaXz" alt=""><figcaption></figcaption></figure>
+
+### Review the uninstalled users list
+
+This list shows users who uninstalled in the selected date range. It helps you move from churn analysis into follow-up action.
+
+Typical next steps include exporting the list, tagging users, or building a reusable audience. In other words, the page is not only for monitoring churn. It also helps you prepare recovery or suppression actions.
+
+<figure><img src="/files/CAtNwvHHMo8dSlRDfHxZ" alt=""><figcaption></figcaption></figure>
+
+### Export
+
+Exports support deeper analysis and operational follow-up. Exported data includes:
+
+* user **External ID**,
+* the related **campaign**,
+* and the relevant **journey/flow** breakdown.
+
+This export is useful when you need to compare uninstall behavior with CRM data, support signals, or campaign history outside the platform.
+
+### Analyze pre-churn context
+
+These sections help connect uninstall behavior with recent engagement, so you can understand what happened shortly before churn. That context is often what turns a churn trend into an actionable explanation.
+
+This section connects uninstall behavior with recent engagement, so you can understand what happened shortly before churn.
+
+**Push messages received before uninstall** shows how many push messages users received in the **last 7 days before** uninstall. Use it to spot over-messaging or sudden messaging spikes before churn.
+
+For example, if uninstall activity rises among users who received several messages in a short period, the issue may be campaign pressure rather than product friction alone.
+
+<figure><img src="/files/cgWGDrCFO8DAJef3vUuW" alt=""><figcaption></figcaption></figure>
+
+**Last campaigns** highlights the last campaigns users interacted with before uninstall. It helps you identify campaigns that may correlate with churn.
+
+<figure><img src="/files/DQlIhB1JvCnF1bK487m6" alt=""><figcaption></figcaption></figure>
+
+**Last events** summarizes recent event activity before uninstall. It helps you understand whether users were still active before leaving or had already become disengaged.
+
+The key controls in this view are:
+
+* **Events in last (x) days** sets the lookback window.
+* **Total Event / Unique User** changes the measurement logic.
+
+<figure><img src="/files/CmKGFCURy30MUktWU135" alt=""><figcaption></figcaption></figure>
+
+In this chart:
+
+* **Retain** means users were active in the selected window.
+* **Churn** means users were inactive in the selected window.
+
+Read this section together with the messaging charts. If users were still active shortly before uninstall, the cause may be related to experience quality, message pressure, or a recent issue rather than simple inactivity.
+
+<figure><img src="/files/ejrEXiuAA1cxGvC7Tygi" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/uninstall.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,162 @@
+URL: https://user.netmera.com/netmera-user-guide/ai-features/best-time-delivery.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/ai-features/best-time-delivery.md).
+
+# Best Time Delivery
+
+Best Time Delivery **automatically** **determines** the optimal hour to send push notifications to each user, for each day of the week. Instead of selecting a single global delivery time, it personalizes delivery based on each user’s historical in-app activity. This ensures messages are delivered at the moments when users are statistically most active and most likely to engage.
+
+{% columns %}
+{% column width="50%" %}
+
+### Why It Matters
+
+Marketers often focus on crafting the perfect message, but timing is equally critical. Even the best campaign can underperform if it reaches users when they are inactive or less receptive. Best Time Delivery answers the question:
+
+> *“When is the best hour to deliver a push notification to this user on this day?”*
+
+By aligning delivery with real user behavior patterns, campaigns achieve higher open and click rates, while minimizing wasted impressions.
+{% endcolumn %}
+
+{% column width="50%" %}
+
+<figure><img src="/files/uCjCidgLKDXOj6sc4TbZ" alt="" width="244"><figcaption></figcaption></figure>
+
+{% endcolumn %}
+{% endcolumns %}
+
+### How It Works
+
+Best Time analyzes each user’s past app activity to detect their most active hours for each weekday. Using this insight, the system chooses the best hour to deliver your message within your campaign’s defined delivery window. If the user lacks data, a **global best time** for that weekday is applied as a fallback, ensuring coverage across your entire audience.
+
+### Configuration
+
+1. **Create or Edit a Push Campaign**\
+   Navigate to the Campaign Scheduling step.
+2. **Select Best Time Delivery**\
+   In the Delivery Time section, choose Best Time as the delivery option.
+3. **Adjust Fallback Behavior (Optional)**
+   * Enable **Send Instantly if Best Time Has Passed** to allow instant delivery if the calculated best time period is before the scheduled campaign.
+   * Leave it disabled if you prefer users to be skipped when all eligible send times have passed.
+4. **Finalize and Publish**\
+   Review your settings, then save and publish the campaign. Best Time Delivery will automatically handle delivery timing at send time.
+
+<figure><img src="/files/kdMPxukoLzVllsgwz5sB" alt=""><figcaption></figcaption></figure>
+
+#### Terminology Table
+
+<table><thead><tr><th width="207.95220947265625">Term</th><th>Definition</th></tr></thead><tbody><tr><td><strong>Time in App</strong></td><td>The event type used to measure user time within the last 60 days to calculate best times.</td></tr><tr><td><strong>AM Best Time</strong></td><td>The hour between 00:00 and 11:59 when the user is most active.</td></tr><tr><td><strong>PM Best Time</strong></td><td>The hour between 12:00 and 23:59 when the user is most active.</td></tr><tr><td><strong>Daily Best Time</strong></td><td>The single hour (between AM and PM peaks) when the user is most active for that weekday.</td></tr><tr><td><strong>App Global Best Time</strong></td><td>The hour of the day when most users are active for that weekday, used when user data is <strong>unavailable</strong> or if all <strong>AM/PM or daily best time</strong> periods have passed for the user.</td></tr><tr><td><strong>Send Instantly if Best Time Has Passed</strong></td><td>A campaign setting that delivers messages immediately if a user’s calculated <strong>best</strong> <strong>times</strong> <strong>and</strong> <strong>app</strong> <strong>global</strong> best time <strong>have already passed</strong>.</td></tr><tr><td><strong>Quiet Hours</strong></td><td>Time periods during which push notifications should not be sent. All best times are ignored during these hours.</td></tr></tbody></table>
+
+### Behavior at Send Time
+
+Best Time Delivery bases its delivery decisions on the **Time in App** event. For each user, the system evaluates their activity over the last **60 days**, determining the hours during which they are most active on each weekday. These active periods are then used to decide the exact delivery time for each user when a push campaign is scheduled.
+
+{% hint style="info" %}
+Best Time is calculated **individually for each weekday**. A user’s optimal send time may differ between days (e.g., Monday vs. Friday), and delivery decisions are based on the best time calculated for the specific weekday of the campaign.
+{% endhint %}
+
+#### How Best Times Are Determined
+
+* **AM Best Time** — The hour between 00:00 and 11:59 when the user is most active.
+* **PM Best Time** — The hour between 12:00 and 23:59 when the user is most active.
+* **Daily Best Time** — The single hour (between AM and PM peaks) when the user is most active overall for that weekday.
+* **App Global Best Time** — The single hour when the most user time in app event occurs in each day.
+
+{% hint style="info" %}
+If a user has **no Time in App activity for the past 60 days** on any weekday, their best times are not calculated. In this case, the system uses the **App Global Best Time** for that weekday as fallback.
+{% endhint %}
+
+<figure><img src="/files/4SLnZ39dTEEyDYwbl5bM" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Delivery Logic Hierarchy
+
+*Daily → AM/PM → Global Time → No match → Fallback*
+
+1. **Daily Best Time Check**
+   * If the campaign is scheduled at or before a user’s Daily Best Time, the notification is sent at that hour.
+2. **AM/PM Best Time Check**
+   * If the Daily Best Time doesn’t match the campaign schedule, the system checks whether the user’s AM or PM Best Time falls after or at the campaign time.
+   * If yes, the message is scheduled at the valid AM or PM Best Time.
+3. **App Global Best Time Check**
+   * If the campaign is scheduled after the user’s Daily, AM, and PM Best Times, the system checks if the App Global Best Time falls after or at the campaign time.&#x20;
+   * If yes, the message is scheduled at the App Global Best Time.
+4. **No Activity Data**
+   * If the user has no activity data for that weekday, the system uses the App Global Best Time.
+5. **No Matching Best Times**
+   * If the campaign is scheduled after the user’s Daily, AM, and PM Best Times, the user will not receive the notification, unless fallback behavior is enabled.
+6. **Fallback Behavior**
+
+   * Enabling **Send Instantly if Best Time Has Passed** ensures users whose best time or global best time periods have already passed still receive the message immediately (within delivery window).
+
+   <figure><img src="/files/lrHXNOFv3ImDpBD94QNs" alt="" width="563"><figcaption></figcaption></figure>
+
+### Example Scenarios
+
+<table><thead><tr><th width="85.56658935546875">User</th><th width="82.11883544921875">AM Best</th><th width="78.73162841796875">PM Best</th><th width="81.46307373046875">Daily Best</th><th width="93.71636962890625">App Global Best Time</th><th width="95.67828369140625">Campaign Time</th><th width="83.31298828125">Delivery Time</th><th>Explanation</th></tr></thead><tbody><tr><td>User A</td><td>08:00</td><td>21:00</td><td>08:00</td><td>18:00</td><td>14:00</td><td>21:00</td><td>Daily Best (08:00) has passed. PM Best (21:00) is still valid, so the message is scheduled for 21:00.</td></tr><tr><td>User B</td><td>07:00</td><td>17:00</td><td>17:00</td><td>18:00</td><td>14:00</td><td>17:00</td><td>Daily Best (17:00) is after campaign time, so delivery is scheduled at 17:00.</td></tr><tr><td>User C</td><td>10:00</td><td>13:00</td><td>13:00</td><td>18:00</td><td>20:00</td><td>—</td><td>Daily, AM, PM and App Global Best Times have all passed. The user will not receive the message unless Send Instantlyl button is enabled.</td></tr><tr><td>User D</td><td>06:00</td><td>13:00</td><td>06:00</td><td>18:00</td><td>14:00</td><td>18:00</td><td>Only the App Global Best Time matches campaign time, so the message is delivered immediately at 18:00.</td></tr><tr><td>User E</td><td>—</td><td>—</td><td>—</td><td>18:00</td><td>14:00</td><td>18:00</td><td>No user data is available. The App Global Best Time (18:00) is used.</td></tr></tbody></table>
+
+### Quiet Hours
+
+**Quiet Hours** are predefined time periods during which push notifications should not be delivered to users. This setting ensures that messages are not sent during inappropriate or low-engagement hours, such as late at night, helping protect user experience and comply with communication policies.&#x20;
+
+When **Best Time Delivery** is active, quiet hours are **always respected**. If a user’s **Daily**, **AM**, **PM**, or **Global Best Time** falls inside the quiet hours window, the message **will not be sent** at that time.
+
+{% hint style="info" %}
+Quiet Hours can be configured from:\
+**Settings > General > Default Notification Time Restriction**
+{% endhint %}
+
+<figure><img src="/files/k7jdvsDAm2OSsrSDzvZt" alt=""><figcaption></figcaption></figure>
+
+Best Time Delivery is entirely data-driven. It replaces guesswork and generic scheduling with user-specific delivery timing, functioning like an automated behavioral heatmap built directly into your campaign engine. This ensures each message reaches users at the optimal time to maximize engagement.
+
+#### FAQs
+
+**How often is Best Time recalculated?**
+
+Best Time is recalculated continuously based on the last 60 days of Time in App data. As user behavior changes over time, their best times are automatically updated without any manual action required.
+
+**Does Best Time work the same for all weekdays?**
+
+No. Best Time is calculated separately for each weekday. A user’s optimal send time may vary between days (e.g., Monday vs. Friday), and delivery decisions always use the best time for the specific weekday of the campaign.
+
+**What happens if a user has no activity data?**
+
+If a user has no Time in App data for the past 60 days, their best times cannot be calculated. In this case, the App Global Best Time for that weekday is used as a fallback. If no global time is applicable, the user is skipped unless the Send Instantly if Best Time Has Passed option is enabled.
+
+**What if the calculated best time falls within Quiet Hours?**
+
+If a user’s best time (Daily, AM, PM, or Global) is inside the Quiet Hours window, the notification is not delivered at that time. If no alternative valid time remains, the user is skipped unless Send Instantly if Best Time Has Passed is enabled and the current time is outside quiet hours.
+
+**Can I use Best Time with other scheduling options?**
+
+No. Best Time is a delivery-time setting, not a campaign trigger. You must choose either a fixed delivery time or Best Time. When Best Time is selected, Netmera handles delivery timing for each user individually.
+
+**Does Best Time affect reporting?**
+
+No separate metrics are generated for Best Time. All deliveries using Best Time are included in standard push campaign reports. You can evaluate its impact by comparing open and click rates against campaigns scheduled at a fixed time.
+
+**Is Best Time available for all campaign types?**
+
+Currently, Best Time Delivery is supported for push campaigns only. It is not available for SMS, email, or other channel types.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/ai-features/best-time-delivery.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

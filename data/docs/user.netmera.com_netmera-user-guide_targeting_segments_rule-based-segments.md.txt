@@ -1,0 +1,132 @@
+URL: https://user.netmera.com/netmera-user-guide/targeting/segments/rule-based-segments.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/targeting/segments/rule-based-segments.md).
+
+# Rule Based Segments
+
+Rule Based Segments are dynamic audiences built from rules.
+
+Use them to group users by behavior, profile attributes, tags, responses, location, or time conditions. This is the main workspace for creating, reviewing, and managing segment definitions.
+
+**Path:** `Targeting > Segments > Rule Based Segments`
+
+{% hint style="info" %}
+**Quick steps**
+
+1. Create a new rule-based segment.
+2. Save the segment and let it calculate.
+3. Review user count and status.
+4. Refresh, pause, export, or edit it as needed.
+5. Use it in campaigns, journeys, or analysis.
+   {% endhint %}
+
+### What appears on this page
+
+The **Rule Based Segments** page lists all standard rule-driven segments that are not marked as predefined.
+
+You can use this page to:
+
+* review existing segments,
+* monitor calculation status,
+* inspect audience size,
+* and take actions on each segment.
+
+### Summary cards
+
+{% hint style="info" %}
+The exact summary cards can vary by workspace configuration and data volume.
+{% endhint %}
+
+Common summary areas include:
+
+* **Active Segment Count** — total active segments in this workspace
+* **Most Used Segment** — the segment used most often in recent campaigns
+* **Most Successful Segment** — the segment with the strongest average click performance
+
+These cards help you quickly identify which segments are most important or most effective.
+
+### Segment list columns
+
+Each row represents one segment.
+
+Typical columns include:
+
+* **Segment Name** — the segment identifier
+* **Users** — the number of users currently in the segment
+* **Message Sent** — messages sent to users in that segment
+* **Status** — for example, **Ready** or **Calculating**
+* **Type** — whether the segment is daily calculated or static after generation
+* **Remarketing** — external audience sync usage, if configured
+* **Actions** — management options for that segment
+
+<figure><img src="/files/OZFxpoJkdI9YNqbtLiP2" alt=""><figcaption></figcaption></figure>
+
+### Available actions
+
+From the segment row, you can typically:
+
+* **Pause** the segment,
+* **Refresh** it,
+* **Edit** the rules,
+* **Export** users,
+* **Delete** it,
+* or send a message directly to that audience.
+
+Available actions can vary depending on the segment state and workspace setup.
+
+<figure><img src="/files/coOs8JmThluL9rco4JuW" alt=""><figcaption></figcaption></figure>
+
+### Daily calculated segments
+
+Daily calculated segments recalculate automatically each day.
+
+Use them when the audience should stay current as user attributes and behavior change. This is useful for audiences like:
+
+* users active in the last 7 days,
+* users who abandoned cart in the last 24 hours,
+* or users in a changing loyalty tier.
+
+{% hint style="info" %}
+Daily calculation helps keep recurring targeting accurate without recreating the segment.
+{% endhint %}
+
+<figure><img src="/files/mgWY7C0h1jqiDoFDvGyK" alt="" width="365"><figcaption></figcaption></figure>
+
+### When to use Rule Based Segments
+
+Use Rule Based Segments when:
+
+* you need reusable campaign audiences,
+* your audience depends on conditions and logic,
+* or the segment should update over time.
+
+If you want a smaller curated list for repeat team use, move selected segments into [Ready to Use Segments](/netmera-user-guide/targeting/segments/ready-to-use-segments.md).
+
+### Best practices
+
+* Name segments like queries, such as `inactive_30d` or `buyers_last_7d`.
+* Keep rules focused and avoid unnecessary conditions.
+* Use daily calculation only when the audience truly changes over time.
+* Review status before using a segment in a live campaign.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/targeting/segments/rule-based-segments.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

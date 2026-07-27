@@ -1,0 +1,90 @@
+URL: https://user.netmera.com/netmera-user-guide/say-hello-to-insight-boards.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/say-hello-to-insight-boards.md).
+
+# Say Hello to Insight Boards
+
+### Your Data, Your Questions
+
+Every team asks different questions of the same data. A growth team watches installs, a campaign team watches push views, an executive wants one number that says whether the week went well. Predefined reports answer some of these questions some of the time.
+
+That is why we built [Insights](/netmera-user-guide/reports-and-analytics/analytics/insights.md); your own analytics workspace inside Netmera.
+
+<figure><img src="/files/PkjrknQzFHDiUfQERh6v" alt="" width="563"><figcaption></figcaption></figure>
+
+It gives every team a way to turn their own events into their own dashboards: define what to measure, see it the way you want, and keep it live on a board your team opens every day.
+
+### Built from Your Events
+
+Insight Boards is a custom dashboard builder powered by your event data.
+
+It works with the events your app already sends to Netmera, standard and custom alike. You pick an event, choose how to count it, and the result becomes a chart, a number, or a table on a board you design. No predefined template decides what you see; your questions do.
+
+With Insight Boards, you can:
+
+* build dashboards or views from your own events
+* measure totals or unique users, whichever your question needs
+* compare various event metrics on a single chart
+* switch between line, bar, pie, number, and table views instantly
+* mix different date ranges on one board, side by side
+* watch a card refresh live during a campaign or release
+* reuse one insight across many boards, defined once
+* watch all your events in action
+
+<figure><img src="/files/VFZWzhQ3algQi79oUwFk" alt="" width="563"><figcaption></figcaption></figure>
+
+### From Question to Answer in Seconds
+
+The distance between a question and its answer decides whether the question gets asked at all.
+
+When seeing your data requires a request to another team or a wait for the next report, most questions simply go unanswered. Insight Boards closes that distance: the person with the question builds the view, runs it, and has the answer in seconds, at the granularity and in the shape the question deserves.
+
+And because every card carries its own date range, chart type, and refresh schedule, one board serves the whole room at once; the trend watcher, the number checker, and the person monitoring the send live.
+
+### The Idea Behind It
+
+Netmera collects rich event data for every app, but the way teams look at that data should not be limited to the views we imagined in advance.
+
+We built Insight Boards on a simple principle: **define once, present anywhere**. An insight is a saved query that belongs to your app, not to a page. Boards reference it, render it their own way, and stay in sync when it improves. The result is analytics that grows with your questions instead of standing still.
+
+### Where to Begin
+
+Insight Boards lives in the main menu of the Netmera Panel. Create your first board, add an insight, and run it; the whole loop takes about ten minutes.
+
+The guide below follows exactly that path:
+
+* Key Concepts to understand boards, insights, and metrics
+* Creating a Board and Adding Insights for the first steps
+* Building an Insight for the full builder walkthrough
+* Chart Types and Display Settings to master the views
+* Managing Insights on a Board for everyday board work
+
+### Dashboards You Build, Not Receive
+
+Reports used to arrive on someone else's schedule, shaped by someone else's questions. Insight Boards hands the shaping to you.
+
+Open it, ask your first question, and keep the answer on screen.
+
+Read more in detail: [Insights](/netmera-user-guide/reports-and-analytics/analytics/insights.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/say-hello-to-insight-boards.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,222 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration/screen-tracking.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration/screen-tracking.md).
+
+# Screen Tracking
+
+**Path:** `Settings > App Configuration> Screen Tracking`
+
+Netmera Tagless Data Capture automatically detects and collects **screen views** and **user interaction events**—without requiring any manual tagging or custom development effort. It provides a faster, low-code way to collect behavioral data, helping product teams and marketers optimize experiences with real-time insights.
+
+{% hint style="success" %}
+Currently available in iOS, Android and React Native SDKs. Cross-platform SDK such as Flutter is not yet supported.
+{% endhint %}
+
+{% embed url="<https://youtu.be/piUgfFaMHo8?si=XXKZ3aZTYHemozUn>" %}
+
+### Screen Tracking Dashboard
+
+**Path:** `Settings > App Configuration> Screen Tracking > Views / Actions`
+
+This dashboard is your control center for screen and action mapping.
+
+**Sections:**
+
+* **Track Views / Track Actions:**\
+  Displays current screen and interaction events that have already been mapped and published.
+* **Unmapped Views / Actions:**\
+  Shows user actions detected on your test devices that are not yet linked to defined events. These will need to be manually named and published.
+
+<figure><img src="/files/aVL1r4Lgw3lr1qwKfeJE" alt=""><figcaption></figcaption></figure>
+
+### Step 1: Enable Tracking
+
+**Path:** `Settings > App Configuration> Screen Tracking > Track Views / Track Actions / Collect Values`
+
+<figure><img src="/files/lPbrXeRg3U48Y5B5KQ0M" alt=""><figcaption></figcaption></figure>
+
+Turn on Track Views, Track Actions and Collect Values on their respective pages to start collecting data.
+
+**What Each Toggle Does**
+
+* **Track Views:**\
+  Enables the collection of full-screen transitions such as `Home Page`, `Product Page`, `Cart`, etc. This helps you understand which pages users are navigating to.
+* **Track Actions:**\
+  Captures user interactions with the interface, such as taps, clicks, or selections on specific elements. Useful for analyzing feature usage and engagement.
+* **Collect Values:**\
+  Extends action tracking by capturing the **specific** **value** of the item clicked or interacted with.
+
+  > For example, if a user taps a product titled "Blue Sneakers" at the end of a path like `/category/shoes`, this toggle ensures that `"Blue Sneakers"` is included in the data payload.
+
+  This allows you to not only track *which* action was triggered but also *what* the user selected or interacted with.
+
+{% @arcade/embed flowId="wq4PK8GW53pUDwj6X3lp" url="<https://app.arcade.software/share/wq4PK8GW53pUDwj6X3lp>" %}
+
+### Step 2: Add Test Devices
+
+**Path:** `Settings > App Configuration> Test Devices > Invite Tester / Add Tester`
+
+To begin collecting screen views and user interaction events, you must first register test devices. These devices are used to **simulate** app usage in a controlled environment so that Netmera can detect and log potential screen and action events for mapping. Refer to [Test Devices](/netmera-user-guide/panel-settings/settings/administration/test-devices.md) for further information.
+
+<details>
+
+<summary>Option 1: Inviting Testers via Email</summary>
+
+1. Navigate to the left menu of the panel and select "**Settings**."
+2. Click on "**Test Devices**" to access the test device management screen.
+3. Locate the "**Invite Tester**" button and click on it.
+4. Enter your email address in the provided field to receive the invitation link.
+5. Check your email for the received invitation link.
+6. On the device you want to add as a test device, click on the invitation link from the email.
+7. The link will redirect you to the mobile application and automatically add the device as a test device.
+
+</details>
+
+<details>
+
+<summary>Option 2: Adding Test Devices with their External ID</summary>
+
+1. In the "**Settings -> Test Devices**" screen, find and click on the "**Add Tester**" button.
+2. Enter your **external ID** in the provided field.
+3. The system will list available devices for you to add as test devices.
+4. Click on the desired device from the list to add it as a test device with a single click.
+
+</details>
+
+<details>
+
+<summary>Option 3: Adding a Tester with User Details</summary>
+
+1. Navigate to the left menu of the panel and select "**Targeting**."
+2. Click on "**People**" to access the people search screen. Then, click on "**Find Person**".
+3. Write their **External ID** or **email** and click "**Find**".
+4. When you see your user's results, click on "**User ID**" which is shown in color green.
+5. You will see a warning about action loggings saying "You are accessing user private data, your action will be logged." click **Yes.**
+6. On top of the page, you will see three options. Click on "**Assign as a Tester**" > **"Get Devices."**
+7. You are going to see a list of all the platforms you may use this user as a tester. Select your Platform (sms, email, etc.) and choose **"Add Tester."**
+
+</details>
+
+<details>
+
+<summary>If you haven't set an External ID for your user please follow these steps:</summary>
+
+**updateUser() methods to set xid:**
+
+To set xid, you can use the updateUser() method with the userId. For detailed information, refer to our developer documentation with the following links.
+
+* [**iOS User Documentation**](https://user.netmera.com/netmera-developer-guide/user/ios-user)
+* [**Android User Documentation**](https://user.netmera.com/netmera-developer-guide/user/android-user)
+
+</details>
+
+{% hint style="danger" %}
+**Precondition:**\
+Set your **iOS URL Schema** and **Android Package Name** under `Developers > App Info`.
+{% endhint %}
+
+### Step 3: Simulate Flows with Test Devices
+
+Once your test device is registered, interact with your application to simulate user flows. Netmera Tagless Data Capture will automatically generate candidate event paths based on your actions—no manual coding required.
+
+* **Views Example:**\
+  `"Home"` → `"Product List"` → `"Product Detail"` → `"Cart"`\
+  This captures the sequential screen transitions as a user navigates through your app.
+* **Actions Example:**\
+  `"Tap Search"` → `"Select Filter"` → `"Tap Add to Favorites"`\
+  These represent individual user interactions with buttons or interactive elements.
+* **Values Example:**\
+  `"Tap Product: Running Shoes"` → `"Tap Color Option: Red"` → `"Tap Size: 42"`\
+  The **Collect Values** feature appends contextual details—such as the name, label, or value of the item clicked—at the end of the action path.
+
+These automatically generated candidate paths can later be reviewed, named, and published for consistent tracking across your application.
+
+### Step 4: Create and Save Mappings
+
+1. **Navigate to:**`Unmapped Views` or `Unmapped Actions` under the Tagless Data Collection section.
+2. **Click “Create New”** to open the mapping editor for the selected view or action.
+3. **Assign a Screen Name:**\
+   Enter a meaningful and consistent name that reflects the purpose of the screen (e.g., `ProductDetail`, `OnboardingStep1`).
+4. **Choose Tracking Option:**\
+   Use the **Track** toggle/button to decide whether this mapping should be actively tracked. This allows you to save mappings without enabling them immediately if needed.
+5. **Match Android and iOS Paths (Optional but Recommended):**\
+   Netmera allows you to group equivalent screen views or actions across platforms into a single mapping. Use the **Add** button in the Mappings table to attach a corresponding path from the other platform (e.g., match the Android `product/detail` screen with the iOS `productDetailsView`). This ensures consistency in reporting and simplifies cross-platform analytics.
+6. **Finalize and Save:**\
+   Once both platforms (if applicable) are matched, click the green **Add** button to save your mapping.
+7. **Publish the Changes:**\
+   After saving, return to the **Views / Actions** dashboard and click the **“Publish”** button.
+
+{% hint style="info" %}
+**Publishing is required** to activate the mappings—otherwise, they remain in draft and will not be applied.
+{% endhint %}
+
+{% @arcade/embed flowId="Ofpk1URoe57t6ZK9pFJJ" url="<https://app.arcade.software/share/Ofpk1URoe57t6ZK9pFJJ>" %}
+
+<details>
+
+<summary>How to Match Corresponding Mappings Between Android and iOS</summary>
+
+To unify event tracking across platforms, Netmera allows you to **combine Android and iOS paths** into a single mapping entry. This helps reduce duplication and makes reports easier to interpret.
+
+**Steps to match paths:**
+
+1. In the **Mappings table** of the mapping creation screen, locate the existing path for one platform (e.g., Android).
+2. Find the corresponding path from the other platform listed under Unmapped Views/Actions.
+3. Click the **“Add”** button next to the correct platform entry.
+4. The selected path will be added under the same mapping, allowing you to track Android and iOS screens/actions as one.
+
+> Example:\
+> You might have the Android path `/product/detail` and the iOS path `productDetailScreen`. Matching both under a single mapping called `ProductDetail` will allow you to see unified analytics for that screen.
+
+</details>
+
+### Step 5: Screen your Data with User Path
+
+**Path:** `Analytics > User & Audience > User Path`
+
+User Path Analytics allows you to preview flow efficiency, drop-offs, and repetitive actions using data from your test sessions.
+
+**Filter Options:**
+
+* **Segment:** Analyze specific user groups (e.g., VIPs, new users)
+* **Device:** Filter by operating system or device version
+* **Filter:** Choose a specific screen or action
+* **Direction:** See what precedes or follows a selected event
+* **Date Range:** Observe behavior trends over time
+
+<figure><img src="/files/z8I0EfG8gYa6DfcBbsiY" alt=""><figcaption></figcaption></figure>
+
+### Tagless Data Capture Event Types
+
+| Event                      | Description                                        | Notes                                 |
+| -------------------------- | -------------------------------------------------- | ------------------------------------- |
+| **Show View Test Event**   | Fired when a screen is shown on test devices only  | Not visible in production             |
+| **Show View Event**        | Triggered when a mapped screen is viewed           | Live tracking for analytics           |
+| **View Action Test Event** | Triggered when an action is taken on a test device | Used during test flow creation        |
+| **View Action Event**      | Triggered when a mapped interaction occurs         | Visible in analytics and segmentation |
+
+### Troubleshooting Tips
+
+<table><thead><tr><th width="337.5838623046875">Issue</th><th>Solution</th></tr></thead><tbody><tr><td><strong>Can’t See Track Views/Actions Pages</strong></td><td>Ask your Success Manager to enable permissions</td></tr><tr><td><strong>No Data Collected from Test Device</strong></td><td>Confirm that the device is registered and actively used</td></tr><tr><td><strong>Mapping Doesn’t Appear in Dashboard</strong></td><td>Ensure you clicked “Add” after matching and then “Publish”</td></tr><tr><td><strong>User Path Shows No Events</strong></td><td>Check if test events were generated and mapped properly</td></tr><tr><td><strong>Session Expiry Issues</strong></td><td>Update <code>Session Expiration Interval</code> in <code>Developers > App Info</code></td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration/screen-tracking.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

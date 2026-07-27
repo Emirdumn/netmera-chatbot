@@ -1,0 +1,133 @@
+URL: https://user.netmera.com/netmera-user-guide/customer-data/events.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/customer-data/events.md).
+
+# Events
+
+Events are timestamped user actions you track in Netmera.
+
+Use them for triggers, segmentation, journeys, and analytics.
+
+{% hint style="info" %}
+Looking for setup steps? Use the shortcuts below.
+{% endhint %}
+
+<table data-view="cards"><thead><tr><th>Next step</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Event types (standard, automated, predefined)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/kfIIM2KEMB0p7yqZmkq7">/spaces/X6uilbEAw42gqsudlclY/pages/kfIIM2KEMB0p7yqZmkq7</a></td></tr><tr><td>Create your own event schema (name, attributes, types)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/IUuxxgNFME45UjCE9CET">/spaces/X6uilbEAw42gqsudlclY/pages/IUuxxgNFME45UjCE9CET</a></td></tr><tr><td>Explore event counts and breakdowns in the UI</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/DBKbcgDMXDBTB4faVEo6">/spaces/X6uilbEAw42gqsudlclY/pages/DBKbcgDMXDBTB4faVEo6</a></td></tr></tbody></table>
+
+### Events vs profile attributes
+
+Use **Profile Attributes** for user state.
+
+Examples: membership tier, language, consent, last known store.
+
+Use **Events** for user behavior.
+
+Examples: viewed product, searched, added to cart, purchased.
+
+If it can happen many times, it’s usually an event.
+
+### What you can do with events
+
+#### Trigger messaging and journeys
+
+Start a journey, branch a path, or send a message on an event.
+
+#### Build behavior-based audiences
+
+Segment users by event recency and frequency.
+
+You can also filter by event attributes.
+
+#### Track goals and funnels
+
+Use events as funnel steps and conversion signals.
+
+<figure><img src="/files/VWDYZiFTgjUtsLkgx2rm" alt="" width="375"><figcaption></figcaption></figure>
+
+### Quickstart: track → verify → use
+
+{% stepper %}
+{% step %}
+
+### 1) Define the event and the attributes you need
+
+Keep event names stable.
+
+Add attributes only if you will target or analyze with them.
+
+Example:
+
+* Event: `purchase`
+* Attributes: `order_id` (string), `amount` (double), `currency` (string), `category` (string)
+  {% endstep %}
+
+{% step %}
+
+### 2) Use an existing event, or create a custom one
+
+Standard and automated events are ready to use.
+
+Custom events are defined in the dashboard, then implemented by your developers.
+
+Create a custom event here: [Create Custom Events](/netmera-user-guide/panel-settings/settings/app-configuration/events.md).
+{% endstep %}
+
+{% step %}
+
+### 3) Implement and fire the event
+
+For custom events, the panel generates the code your developers will use.
+
+Make sure you send the expected attribute types.
+{% endstep %}
+
+{% step %}
+
+### 4) Verify the data is flowing
+
+Use [Event Insight](/netmera-user-guide/customer-data/events/event-insight.md):
+
+* the event appears in search
+* counts increase when you perform the action
+* attributes show up as dimensions (for custom events)
+  {% endstep %}
+
+{% step %}
+
+### 5) Put the event to work
+
+Typical usage points:
+
+* Journey triggers and branches
+* Campaign targeting (“performed / not performed”)
+* Segments (recency, frequency, attribute filters)
+* Analytics breakdowns in Event Insight
+  {% endstep %}
+  {% endstepper %}
+
+### Related data topics
+
+* [Profile Attributes](/netmera-user-guide/customer-data/profile-attributes.md)
+* [Tagless Data Capture](/netmera-user-guide/panel-settings/settings/app-configuration/screen-tracking.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/customer-data/events.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

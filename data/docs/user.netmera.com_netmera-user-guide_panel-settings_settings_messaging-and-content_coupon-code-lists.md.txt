@@ -1,0 +1,274 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content/coupon-code-lists.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content/coupon-code-lists.md).
+
+# Coupon Code Lists
+
+**Path:** `Settings> Messaging & Content> Coupon Code Lists`
+
+Use **Coupon Code Lists** to upload, manage, track, and distribute coupon codes for your campaigns. In this guide, you will open the coupon list page, create a new list, configure delivery options, understand list behavior, and review assigned codes.
+
+> **Important:** Netmera does **not** generate coupon codes. This feature only manages and distributes the coupon codes that you provide.
+
+### Navigation for Coupon Code Lists
+
+{% stepper %}
+{% step %}
+
+#### Open Coupon Code Lists
+
+Go to **Settings** > **Messaging & Content >Coupon Code Lists** to review your existing lists.
+{% endstep %}
+
+{% step %}
+
+#### Create a New Coupon List
+
+Add the list name, choose the coupon type, and set warning limit and expiry rules.
+{% endstep %}
+
+{% step %}
+
+#### Configure SMS or Push Delivery
+
+Enable transactional delivery options for the coupon list when needed.
+{% endstep %}
+
+{% step %}
+
+#### Manage and Review Coupon Codes
+
+Edit lists, export usage data, and inspect assigned codes for each user.
+{% endstep %}
+{% endstepper %}
+
+{% @arcade/embed url="<https://app.arcade.software/share/hyRgFxR4qZlVPgiGEFTe>" flowId="hyRgFxR4qZlVPgiGEFTe" %}
+
+### Step 1: Open Coupon Code Lists
+
+Go to **Settings** in the left menu > **Coupon Code Lists**.
+
+The dashboard displays an overview of all existing lists. Each list shows:
+
+* **List Name**
+* **Available Coupons** (remaining quantity)
+* **Expiry Date**
+* **Actions**
+
+Use this page to track inventory and plan replenishment before campaigns run out of codes.
+
+<figure><img src="/files/2zk4EOGXIt4oRQxJA6Fr" alt=""><figcaption></figcaption></figure>
+
+### Step 2: Create a New Coupon List
+
+Click **Upload Coupon Code List** to start a new list.
+
+#### Step 2.1: Enter the list name
+
+Enter a name that describes the purpose of the list. This name appears on the dashboard.
+
+<figure><img src="/files/JcWWwBphQm349XzyGvQO" alt=""><figcaption></figcaption></figure>
+
+#### Step 2.2: Choose the coupon type
+
+Choose one of these coupon types:
+
+#### Option 1: Fixed Coupon Code
+
+Use a **single code** for all users. This works well for sitewide promotions or general discount campaigns.
+
+1. Select **Fixed Coupon Code**.
+2. Enter the coupon value. For example, `SALE10`.
+3. Enter how many times this code can be assigned.
+
+Use this option for:
+
+* Sitewide discounts
+* Welcome offers
+* Seasonal promotions
+
+<figure><img src="/files/1n53WszzXmSZIQ83o6QR" alt=""><figcaption></figcaption></figure>
+
+#### Option 2: Coupon List (Unique Codes)
+
+Use a list of **individual, unique codes**. Each code is assigned once per user.
+
+Prepare your file like this:
+
+* Use a **.txt** file.
+* Add **one code per line**.
+* Do not add commas or extra formatting.
+
+Netmera assigns these codes sequentially and marks each code as used after assignment.
+
+Use this option for:
+
+* One-time gift codes
+* Limited allocations
+* High-value promotions
+
+<figure><img src="/files/Dxs9EbhRcTBrWKRmGhHf" alt=""><figcaption></figcaption></figure>
+
+#### Step 2.3: Set the warning limit
+
+Set a threshold to receive email alerts when a list is running low.
+
+* When remaining codes drop **below your threshold**, Netmera emails the assigned recipients.
+* This helps prevent campaigns from running out unexpectedly.
+
+For example, if **Warning Limit** is `50`, Netmera sends a warning email when the remaining codes reach 50.
+
+<figure><img src="/files/xmM1d4HsNoYoml0ALxVm" alt=""><figcaption></figcaption></figure>
+
+#### Step 2.4: Set the expiry date
+
+Set the final date when the coupon codes can be used.
+
+After the expiry date:
+
+* Codes are automatically considered invalid.
+* Slices or widgets that depend on this list may become inactive.
+* Related automated campaigns may complete automatically.
+
+<figure><img src="/files/hguKYeqXx0uxS2r3GXgB" alt=""><figcaption></figcaption></figure>
+
+After you complete the list settings, finish the upload flow to create the list. The new list appears on the **Coupon Code Lists** page with its remaining quantity, expiry date, and available actions.
+
+### Step 3: Configure SMS or Push Delivery
+
+After uploading your coupon list, you can automatically send coupon codes using:
+
+* **SMS**
+* **Push Notification**
+
+Enable or disable each option depending on your campaign needs.
+
+#### Step 3.1: Send SMS
+
+* SMS delivery uses predefined active transactional messages.
+* Insert `{couponcode}` and `{expirydate}`.
+* Create the profile attributes used in the transactional message first.
+* Complete the SMS integration before using this option.
+
+> **Note**\
+> Complete [SMS Onboarding](/netmera-user-guide/omnichannel-engagement/sms/sms-onboarding.md) before enabling SMS delivery.
+
+<figure><img src="/files/eWEEXmrJ0Qc0ViGQyFr2" alt=""><figcaption></figcaption></figure>
+
+#### Step 3.2: Send Push Notification
+
+* Push notifications also use predefined active transactional messages.
+* Insert `{couponcode}` and `{expirydate}`.
+* Create the profile attributes used in the transactional message first.
+
+<figure><img src="/files/cexdsJYrmMQmKvAqLwyC" alt=""><figcaption></figcaption></figure>
+
+Learn more about delivery setup in [Send Coupon Codes with SMS and Push Messages](/netmera-user-guide/omnichannel-engagement/widgets/spin-to-win/send-coupon-codes-with-sms-and-push-messages.md).
+
+### Coupon distribution behavior
+
+Netmera applies coupon distribution rules at the campaign level. **A user can receive only one coupon** code from the **same campaign ID** within **24 hours**. If the same campaign triggers again during that period, Netmera sends the **same code** instead of assigning a new one.
+
+This rule prevents over-delivery and keeps coupon usage consistent across repeated triggers.
+
+Netmera also marks connected campaigns as **Finished** automatically when the coupon list can no longer distribute valid codes.
+
+Campaigns finish automatically in these cases:
+
+* The list is empty and all codes are used.
+* The coupon list reaches its expiry date.
+
+This behavior applies to all features that use coupon lists, including:
+
+* Spin to Win
+* Copy Button
+* Any widget that distributes coupon codes
+
+### Step 4: Manage and Review Coupon Codes
+
+#### Step 4.1: Edit a coupon list
+
+To edit an existing list:
+
+1. Go to **Coupon Code Lists**.
+2. Click **Edit**.
+
+You can update:
+
+* Expiry date
+* Coupon file (`.txt`)
+* Fixed coupon details
+
+This supports long-running campaigns without creating new lists.
+
+<div align="center"><figure><img src="/files/byE5uXSpLDnWbYJHj72v" alt="" width="285"><figcaption></figcaption></figure></div>
+
+#### Step 4.2: Export coupon code usage
+
+To export assigned coupon data:
+
+1. Open **Coupon Code Lists**.
+2. Click **Export**.
+
+Your export includes:
+
+* Coupon Code
+* External ID
+* User ID
+* Coupon Given Date
+* Coupon Expiry Date
+
+<figure><img src="/files/qVG8zM54P1yf3mYCm1gb" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Step 4.3: Review assigned coupon codes for a user
+
+Go to **Targeting** > **User Details** > **Coupon Codes**.
+
+This page displays:
+
+* All coupon codes assigned to a user
+* When each code was delivered
+* Full coupon history
+
+Use this view for customer support, segmentation, and troubleshooting.
+
+<figure><img src="/files/zEMCtwvSURD1xQ5klqEc" alt=""><figcaption></figcaption></figure>
+
+### Common questions
+
+**Can Netmera generate coupon codes?**\
+No. Netmera only manages and distributes the codes you upload.
+
+**Is there a limit to how many codes I can upload?**\
+There is no strict limit. Large uploads are supported as long as system capacity is not exceeded.
+
+**Is there a limit to the number of coupon lists?**\
+No. You can create as many lists as your campaigns require.
+
+**What file format should I use for uploading codes?**\
+Use a **.txt** file with **one code per line**.
+
+**Can I edit an existing list?**\
+Yes. You can edit expiry dates or upload a new set of codes using the **Edit** button.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content/coupon-code-lists.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

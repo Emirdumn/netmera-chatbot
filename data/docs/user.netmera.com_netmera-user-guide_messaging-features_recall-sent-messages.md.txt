@@ -1,0 +1,77 @@
+URL: https://user.netmera.com/netmera-user-guide/messaging-features/recall-sent-messages.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/messaging-features/recall-sent-messages.md).
+
+# Recall Sent Messages
+
+Recall lets you retract a sent push notification when the content is incorrect or no longer relevant.
+
+Use it to fix mistakes, stop outdated information from spreading, or protect the user experience after a campaign is already sent.
+
+{% hint style="info" %}
+Use Recall when a sent push notification needs to be removed from view after delivery.
+{% endhint %}
+
+### When to use Recall
+
+Recall is useful when:
+
+* a notification contains a typo or wrong information,
+* the offer or message is no longer valid,
+* or the campaign was sent with the wrong content.
+
+### Before you start
+
+Make sure you know which campaign you want to retract.
+
+You can access Recall from the recent campaign list.
+
+### Recall a campaign
+
+{% @arcade/embed url="<https://app.arcade.software/share/aNDKL0i1kFsGN1v9GeS9>" flowId="aNDKL0i1kFsGN1v9GeS9" %}
+
+1. Go to **Messages > Campaigns > Recent Campaigns**.
+
+<figure><img src="/files/4DNzcmPjFGWu6DIvlPxI" alt=""><figcaption></figcaption></figure>
+
+2. Find the campaign, then click **Recall**.
+
+<figure><img src="/files/EL9x7JKFM19O0dOrNsb6" alt="" width="175"><figcaption></figcaption></figure>
+
+3. Confirm the action by clicking **Yes**.
+
+<figure><img src="/files/VVbXj2R7XF603T0K6pI2" alt="" width="563"><figcaption></figcaption></figure>
+
+### What happens after recall
+
+Recall helps you act quickly when a sent message should no longer remain visible.
+
+Use it as a corrective action. If needed, create and send a revised campaign after the original one is recalled.
+
+### Best practices
+
+* Review the campaign details before confirming recall.
+* Prepare the corrected message before retracting a time-sensitive campaign.
+* Use clear internal naming so you can find the right campaign quickly.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/messaging-features/recall-sent-messages.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

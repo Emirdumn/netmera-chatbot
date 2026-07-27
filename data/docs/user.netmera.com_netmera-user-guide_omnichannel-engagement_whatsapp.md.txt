@@ -1,0 +1,144 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/whatsapp.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/whatsapp.md).
+
+# WhatsApp
+
+{% columns %}
+{% column %}
+WhatsApp is the most widely used messaging platform in the world, with **3 billion monthly active users** in the world. With WhatsApp, you can:
+
+* Reach out to customers on your most frequently used app.
+* Achieve high click-through and conversion rates.
+* Assure more personal, immediate, and trusted communication experience.
+  {% endcolumn %}
+
+{% column %}
+
+<figure><img src="/files/zpi2UyTWRAGPXdkppqMR" alt="" width="375"><figcaption></figcaption></figure>
+
+{% endcolumn %}
+{% endcolumns %}
+
+### Start here (most-used topics)
+
+<table data-view="cards"><thead><tr><th>What you want to do</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Connect Meta WhatsApp to Netmera (required)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/Fy6J9TBfNO3wyAGWhV9W">/spaces/X6uilbEAw42gqsudlclY/pages/Fy6J9TBfNO3wyAGWhV9W</a></td></tr><tr><td>Create and send a WhatsApp campaign</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/d3671HVhRKb76iyL6JzZ">/spaces/X6uilbEAw42gqsudlclY/pages/d3671HVhRKb76iyL6JzZ</a></td></tr><tr><td>Add an unsubscribe button and keep consent clean</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/c9yKurxpc7csOo3J2YKL">/spaces/X6uilbEAw42gqsudlclY/pages/c9yKurxpc7csOo3J2YKL</a></td></tr><tr><td>Track delivery and reads</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/qWPNNOZbvLmn4Dixdn2h">/spaces/X6uilbEAw42gqsudlclY/pages/qWPNNOZbvLmn4Dixdn2h</a></td></tr></tbody></table>
+
+### Quickstart: send your first WhatsApp campaign
+
+{% stepper %}
+{% step %}
+
+#### 1) Connect WhatsApp (Meta) to Netmera
+
+You need a Meta Business Manager + WhatsApp Business account + sending number.
+{% endstep %}
+
+{% step %}
+
+#### 2) Create and approve templates in Meta
+
+Businesses can start conversations only using **approved templates**.
+
+Netmera syncs templates after approval.
+{% endstep %}
+
+{% step %}
+
+#### 3) Import WhatsApp consent / numbers
+
+Upload users with `Whatsapp Number` and consent, then target only eligible users.
+{% endstep %}
+
+{% step %}
+
+#### 4) Compose + personalize and test
+
+Map template variables (`{{1}}`, `{{2}}`) to profile attributes.
+{% endstep %}
+
+{% step %}
+
+#### 5) Configure webhooks for analytics (recommended)
+
+Without webhooks, sending works.
+
+With webhooks, you get delivery + read metrics in reports.
+{% endstep %}
+{% endstepper %}
+
+{% columns %}
+{% column %}
+Netmera gives you the workflow to:
+
+* pick an approved template
+* map variables to user data
+* target audiences (segments/tags)
+* schedule and send at scale
+* analyze sent/delivery/read
+  {% endcolumn %}
+
+{% column %}
+
+<figure><img src="/files/wSDEeVDvXXYKZqTrTgBG" alt=""><figcaption></figcaption></figure>
+
+{% endcolumn %}
+{% endcolumns %}
+
+{% columns %}
+{% column %}
+
+<figure><img src="/files/2pwgZkkXYc1JYbX9j3q3" alt=""><figcaption></figcaption></figure>
+{% endcolumn %}
+
+{% column %}
+WhatsApp campaigns use **pre-approved templates**.
+
+Netmera supports **Marketing** and **Utility** templates.
+
+Template parts:
+
+* Header (optional): text or media
+* Body (required): up to 600 characters
+* Buttons (optional): up to 2 (URL, call, copy code, quick reply)
+  {% endcolumn %}
+  {% endcolumns %}
+
+{% hint style="info" %}
+If you care about reporting, configure Meta webhooks.
+
+See: [WhatsApp Integration](/netmera-user-guide/omnichannel-engagement/whatsapp/whatsapp-integration.md).
+{% endhint %}
+
+### Common use cases
+
+* Announcing a new product or service. (Marketing)
+* Sending discounts, promotions, or vouchers. (Marketing)
+* Running awareness campaigns to reach large audiences. (Marketing)
+* Retargeting users who recently visited your app or website. (Marketing)
+* Order/payment/shipping updates (Utility)
+* Appointment and reminder flows (Utility)
+
+<figure><img src="/files/0bBMZYb1KGUD7Ljy3hqu" alt="" width="329"><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/whatsapp.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

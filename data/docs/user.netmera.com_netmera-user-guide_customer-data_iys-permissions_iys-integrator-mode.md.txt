@@ -1,0 +1,63 @@
+URL: https://user.netmera.com/netmera-user-guide/customer-data/iys-permissions/iys-integrator-mode.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/customer-data/iys-permissions/iys-integrator-mode.md).
+
+# IYS Integrator Mode
+
+The IYS Integrator Mode enables businesses to treat **Netmera as the master system** of record for user communication consents. It allows Netmera to create, update, and sync user permission data with Turkey’s official İleti Yönetim Sistemi (İYS), given that mutual authorization is granted through the IYS portal.
+
+This module is particularly useful when customer consent is collected through Netmera-managed channels such as websites, apps, or call centers. With this setup, Netmera not only manages consent data internally but also pushes it to IYS, enabling centralized and compliant communication control.
+
+### Two Modes of IYS Integration
+
+<table><thead><tr><th width="211.1990966796875">Mode</th><th>Description</th><th>Key Behavior</th></tr></thead><tbody><tr><td><strong>IYS Sync Mode</strong></td><td>IYS is the master source and Netmera regularly imports consent data</td><td>Netmera can <strong>read</strong> and <strong>update</strong> existing user records in IYS but cannot create new users.</td></tr><tr><td> <strong>IYS Integrator Mode</strong></td><td>Netmera manages permissions and updates IYS directly</td><td>Netmera can <strong>create</strong> your brand entry under a user’s IYS profile and <strong>push</strong> <strong>consent</strong> <strong>records</strong> directly to IYS.</td></tr></tbody></table>
+
+> 💡 Before using the **IYS Integrator Mode**, your organization must grant **Integrator Permission** to Netmera from the IYS portal and activate the checkbox in the IYS Integration settings within the platform.
+
+### Getting Started
+
+### Step 1: Grant Integrator Permission
+
+You must authorize Netmera as your IYS Integrator in the IYS portal. This allows Netmera to:
+
+* Create users in IYS
+* Update their permission statuses
+* Sync user records using Netmera as the source
+
+{% hint style="warning" %}
+Make sure the setting **Mutabakat Yönetimi** is enabled in your IYS Panel. Without this setting, Netmera cannot  create, update, or sync user permission data in IYS.
+{% endhint %}
+
+<figure><img src="/files/lsx1lKbFcGQdToQoK1Tc" alt=""><figcaption></figcaption></figure>
+
+### Step 2: Enable the IYS Integrator Mode
+
+In Netmera Panel:
+
+* Go to `Settings > Integration > IYS`
+* Check the box: `IYS (Netmera will create and manage users)`
+* Save your changes
+
+<figure><img src="/files/EZHKRd1ih8MAxINeWxLm" alt="" width="563"><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/customer-data/iys-permissions/iys-integrator-mode.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,58 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/behavioural/event-reports.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/behavioural/event-reports.md).
+
+# Event Reports
+
+**Path:** `Reports > Behavioural > Event Reports`
+
+Event Reports gives you a fast operational view of tracked activity. It helps you monitor event volume across daily and hourly timeframes before moving into deeper analysis.
+
+Use this section when you want to answer questions such as:
+
+* Is event activity rising or falling?
+* When does usage peak?
+* Did a launch or campaign change user behavior?
+
+### Report overview
+
+These reports focus on speed and visibility. They help you spot traffic changes, reaction windows, and unusual movement without building a more advanced event analysis first.
+
+You can read event volume in two ways:
+
+* [Daily Event Count](/netmera-user-guide/reports-and-analytics/reports/behavioural/event-reports/daily-event-count.md) shows how one or two events change across days.
+* [Hourly Usage](/netmera-user-guide/reports-and-analytics/reports/behavioural/event-reports/hourly-usage.md) shows how a selected event is distributed throughout the day.
+
+<div align="center"><figure><img src="/files/7mrfKipkAxsAb2u3MF1s" alt="" width="188"><figcaption></figcaption></figure></div>
+
+### When to use each report
+
+Use **Daily Event Count** when you want to compare campaign periods, release windows, or behavior across several days. This is the better choice for longer movement and trend reading.
+
+Use **Hourly Usage** when timing matters. It helps you find peak interaction hours, understand when users react after a send, and spot short-term anomalies more quickly.
+
+### Go deeper when needed
+
+These reports are best for monitoring and fast comparison. When you need richer breakdowns, dimensions, or audience-level filtering, continue with [Event Insight](broken://spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/behavioural/event-reports.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

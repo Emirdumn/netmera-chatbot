@@ -1,0 +1,103 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights.md).
+
+# Insights
+
+Insights helps you create dashboards people return to. Start with a recurring business question, then group the metrics and charts people need to answer it fast. This gives teams one place to review results, compare changes over time, and return to the same logic in every meeting.&#x20;
+
+For example, a growth team can build one board for weekly performance reviews with installs, app opens, and conversion rate cards in the same view. Use this page to understand the workflow, then open the task guides to build your first board.
+
+<figure><img src="/files/PbuwiDRL6LAxp7xZk2q3" alt="Insight Boards overview" width="563"><figcaption></figcaption></figure>
+
+### Why teams return to Insights
+
+{% columns %}
+{% column %}
+
+* **Start from a real review habit.** Build a board for a daily check, a weekly meeting, or live campaign monitoring.
+* **Keep the answer easy to scan.** Compare related metrics in one place and spot movement faster.
+* **Show the same answer in the right format.** Use a trend, summary number, or table for each audience.
+  {% endcolumn %}
+
+{% column %}
+
+* **Create dashboards people actually return to.** Arrange cards for the review rhythm your team already has, such as a daily KPI check, a live campaign watch, or a weekly leadership review. For example, place today's installs next to a 7-day app opens trend and a conversion card so readers can scan performance in one pass.
+* **Keep teams aligned.** Reuse the same saved insight across boards so everyone works from the same logic.
+* **Reduce one-off reporting.** Turn repeated questions into a board people can open without asking again.
+  {% endcolumn %}
+  {% endcolumns %}
+
+<details>
+
+<summary>See how different teams use the same workspace</summary>
+
+A product manager can track app opens against new installs to see whether adoption is growing. A marketer can watch push views during a live send to decide whether a campaign is performing as expected. An executive can open the same board and scan headline numbers before a weekly review.
+
+For example, a team can build one Finance board with cards for installs, app opens, and conversion rate. During the week, the growth team checks the trend charts. In the Monday review, leadership opens the same board and reads the summary cards first.
+
+</details>
+
+### Step 1: Choose the review moment
+
+Start with the moment that already exists in your team. Choose one review people already do on a schedule or during an event.
+
+* Daily health checks
+* Weekly team reviews
+* Live campaign monitoring
+
+{% hint style="info" %}
+**TIP:** Start with one question your team reviews every week. Build that first. Expand the board after people rely on it.
+{% endhint %}
+
+<figure><img src="/files/mWFZXqcP0itytwnGgE0W" alt="Insights reuse across boards" width="563"><figcaption></figcaption></figure>
+
+### Step 2: Build around one recurring question
+
+Turn one repeated question into the center of the board. Add the cards that help the reader answer it quickly.
+
+For example, if the question is "Are installs turning into active usage?", place installs, app opens, and a trend view together. The reader can compare acquisition and activation in one scan.
+
+### Step 3: Make the board easy to revisit
+
+Arrange cards in the order people read them. Put headline numbers first. Put supporting trends and tables after them.
+
+{% hint style="warning" %}
+**IMPORTANT:** A crowded board is harder to reuse. If a card does not help with the main question, leave it out or move it to another board.
+{% endhint %}
+
+### Step 4: Reuse the same logic across teams
+
+Save the insight once, then place it on multiple boards when different teams need the same answer. This keeps the metric logic consistent even when the presentation changes.
+
+### Step 5: Build your first board
+
+The fastest path to value takes about ten minutes. Create a board, add one insight tied to a real business question, review the result, and place it where your team can return to it. Use the pages below in order or jump to the task you need now.
+
+<table data-view="cards"><thead><tr><th>Title</th><th>Description</th><th data-card-target data-type="content-ref">Target</th></tr></thead><tbody><tr><td>Key Concepts</td><td>Learn the core terms so you can move through Insights with confidence.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/m88KRrKKyCZrjPhUqqD3">/spaces/X6uilbEAw42gqsudlclY/pages/m88KRrKKyCZrjPhUqqD3</a></td></tr><tr><td>Creating a Board and Adding Insights</td><td>Create your first board and bring the right insights together for the right audience.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/RIEOlTazOu0RHuNdhGTi">/spaces/X6uilbEAw42gqsudlclY/pages/RIEOlTazOu0RHuNdhGTi</a></td></tr><tr><td>Building an Insight</td><td>Turn a business question into a reusable insight you can share across boards.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/lrAFZuH0h1hnpX6L0YfX">/spaces/X6uilbEAw42gqsudlclY/pages/lrAFZuH0h1hnpX6L0YfX</a></td></tr><tr><td>Chart Types and Display Settings</td><td>Choose the display that makes the answer easiest for others to read.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/KPlYxxcgQU6LMEHnD2qN">/spaces/X6uilbEAw42gqsudlclY/pages/KPlYxxcgQU6LMEHnD2qN</a></td></tr><tr><td>Managing Insights on a Board</td><td>Keep boards useful over time as questions, audiences, and priorities change.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/qupR2Ai9cYOafNaFaZ20">/spaces/X6uilbEAw42gqsudlclY/pages/qupR2Ai9cYOafNaFaZ20</a></td></tr></tbody></table>
+
+After you publish the board, teams can return to the same workspace for recurring reviews instead of rebuilding the answer each time.
+
+Every example in this guide uses the same small scenario: a Finance board tracking app opens and installs. That keeps the pages consistent while still letting each one stand alone as a reference.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

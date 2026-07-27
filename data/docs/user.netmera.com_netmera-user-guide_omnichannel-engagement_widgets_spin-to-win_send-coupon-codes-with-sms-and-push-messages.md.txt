@@ -1,0 +1,214 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/spin-to-win/send-coupon-codes-with-sms-and-push-messages.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/spin-to-win/send-coupon-codes-with-sms-and-push-messages.md).
+
+# Send Coupon Codes with SMS and Push Messages
+
+Spin to Win can optionally distribute coupon codes through SMS and push notifications. This ensures that users receive their codes even if they exit the app or want to redeem the coupon later.\
+To enable this workflow, you must complete three steps:
+
+1. **Define the required profile attributes**
+2. **Create transactional push/SMS campaigns using those attributes**
+3. **Upload coupon code lists and enable code delivery options**
+
+<figure><img src="/files/zlm1xGlQhP69faDgqQu5" alt="" width="563"><figcaption></figcaption></figure>
+
+## Step 1: Define Profile Attributes
+
+Navigate to:\
+**Developers > Profile Attributes > Create New Profile Attribute**
+
+Two attributes are required:
+
+* A **Coupon Code** attribute
+* An **Expiry Date** attribute
+
+These attributes allow transactional messages to automatically populate the correct coupon code and expiry date after a spin.
+
+### Create the Coupon Code Attribute
+
+This attribute stores the unique coupon code assigned to the user.
+
+**How to create it:**
+
+1. Open **Developers > Profile Attributes**
+2. Click Add Attribute
+3. Enter a name such as couponcode
+   * You may choose a custom name, but consistency is recommended.
+4. **Set the Data Type to String**
+
+**Why String?**
+
+* Supports alphanumeric coupon codes
+* Handles special characters
+* Allows flexible coupon list formats
+
+Examples of valid values:
+
+* `SALE20`
+* `XZF-993-HP`
+* `VIP-2025-1200`
+
+<figure><img src="/files/oBA0HXuVi4A5R6wI13Pb" alt=""><figcaption></figcaption></figure>
+
+### Create the Expiry Date Attribute
+
+This attribute stores the coupon’s expiration date.
+
+**How to create it:**
+
+1. Go to **Developers > Profile Attributes**
+2. Click Add Attribute
+3. Name it expirydate (or any preferred name)
+4. **Set the Data Type to Date**
+
+**Why Date type?**
+
+* Ensures the platform can interpret it as a real date.
+* Enables date-based filtering, automations, and personalization.
+
+<figure><img src="/files/dc9I1zpYQ5avYJBLyWDe" alt=""><figcaption></figcaption></figure>
+
+## Step 2: Create Transactional Campaigns
+
+Navigate to:\
+**Messages >Transactional > Create New Transactional Message**
+
+Transactional messages allow Netmera to automatically send a push or SMS message to a user right after a coupon code is assigned to them.
+
+This is required if you want:
+
+* Users to receive their code as a notification
+* Delivery of coupon expiry information
+* A persistent reminder outside the widget
+
+### Create a Personalized Transactional Message
+
+During campaign creation:
+
+1. Go to **Step 2: What** of the transactional message flow
+2. Locate the **Personalized Message** field
+3. Insert the attributes you created earlier:
+   * `{couponcode}`
+   * `{expirydate}`
+
+Netmera will automatically replace these placeholders with the actual values assigned during the Spin to Win interaction.
+
+**Example Push Template:**
+
+> “Your reward is ready!\
+> Code: {couponcode}\
+> Valid until: {expirydate}”
+
+<figure><img src="/files/P7QW4oTNaje2eLJ1oqZ8" alt=""><figcaption></figcaption></figure>
+
+**Example SMS Template:**
+
+> “Your discount code: {couponcode}.\
+> Expires on {expirydate}. Redeem now!”
+
+<figure><img src="/files/7tuvOJLFY5JT7n0WBFQA" alt=""><figcaption></figcaption></figure>
+
+### Configure Remaining Transactional Message Settings
+
+Continue through the remaining steps of the transactional campaign page. You may configure:
+
+* Message title and body
+* Targeting conditions
+* Delivery triggers
+* Rate limits
+* Scheduling
+* Additional personalization fields
+
+Follow the prompts on the Transactional Messages page until the campaign is complete.
+
+{% hint style="warning" %}
+
+#### **Important**
+
+Transactional messages must be **activated** prior to uploading coupon lists if you want the system to deliver codes automatically.
+{% endhint %}
+
+## Step 3: Upload Coupon Codes
+
+Navigate to:\
+**Settings > Coupon Code Lists > Upload Coupon Code List**
+
+Here you define the coupon codes that will be distributed through the Spin to Win widget.
+
+### Uploading Coupon Code Lists
+
+#### Fields to Configure
+
+**List Name**\
+A descriptive name for internal use. Example: *SpinToWin\_Summer\_Codes* or simply *CouponCode*.
+
+**Coupon Codes**\
+Enter each coupon code and specify the available quantity per code.
+
+Examples:
+
+* Single-use codes
+* Multiple-use codes
+* Fixed-format codes
+* Generated bulk codes
+
+**Warning Limit**\
+Set a threshold to receive automated email alerts when the supply drops below a certain number.\
+Example:
+
+* If Warning Limit = 9000 → you'll be notified via email when fewer than 9000 codes remain.
+
+**Expiry Date**\
+Define when the entire coupon list becomes invalid. This date controls slice inactivity and overall campaign deactivation.
+
+<figure><img src="/files/c4A8GKKwozvisuoMQtYa" alt=""><figcaption></figcaption></figure>
+
+### Enable SMS and Push Delivery for Coupon Codes
+
+After uploading a list, Netmera presents toggles for distributing codes through:
+
+* **SMS**
+* **Push Notification**
+
+These options can be turned on or off depending on campaign strategy.
+
+**When enabled:**
+
+* Netmera assigns a coupon code during the spin
+* The transactional campaign automatically sends the code via SMS/push
+* The personalized attributes `{couponcode}` and `{expirydate}` populate the message
+
+<figure><img src="/files/GAs2lHQX9ZhzGsQCuKxr" alt=""><figcaption></figcaption></figure>
+
+### Push Notification Delivery
+
+If Push delivery is enabled:
+
+* Netmera sends a predefined push notification.
+* Placeholders for coupon code and expiry date are automatically populated.
+* Notification content is predefined and cannot be customized at the delivery layer\
+  (customization happens in the transactional campaign instead).
+* Automated campaigns end when the coupons are expired in your widgets.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/spin-to-win/send-coupon-codes-with-sms-and-push-messages.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,182 @@
+URL: https://user.netmera.com/netmera-user-guide/messaging-features/geofence-messaging.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/messaging-features/geofence-messaging.md).
+
+# Geofence Messaging
+
+Geofence Messages let you send messages when users enter or exit a defined location.
+
+Use them for store campaigns, nearby offers, arrival-based reminders, or other location-specific communication.
+
+Common examples:
+
+* welcome users when they arrive at a branch
+* send a nearby offer when they enter a shopping area
+* trigger an exit reminder after they leave a location
+* deliver location-based service information
+
+This message type is useful when location itself is the trigger.
+
+**Path:** `Messages > Geofence > Create New Geofence Message`
+
+{% hint style="info" %}
+**Quick steps**
+
+1. Select a **single location** or a **location group**.
+2. Choose the trigger: **Enter** or **Exit**.
+3. Choose frequency: **every time** or **once per entry/exit**.
+4. Set **Campaign Period** and optional time/day restrictions.
+5. Complete **Setup, What, Who, Go** and publish.
+   {% endhint %}
+
+{% @arcade/embed url="<https://app.arcade.software/share/5iLOgm6EVvEzH4nZlg3v>" flowId="5iLOgm6EVvEzH4nZlg3v" %}
+
+{% hint style="danger" %}
+**Delivery prerequisites**
+
+1. The user must enter or exit the defined location.
+2. Notification permission must be enabled.
+3. The app must be up to date.
+4. The device must have an internet connection.
+5. Location permission and device location setting must be enabled at that moment.
+   {% endhint %}
+
+### How Geofence Messaging works <a href="#how-geofence-messaging-works" id="how-geofence-messaging-works"></a>
+
+Geofence Messages follow the standard message flow, with one geofence-specific step: **Location**.
+
+Use this step to define where the trigger happens and whether the message fires on **enter** or **exit**.
+
+After that, continue with the standard message steps to complete the message content and targeting.
+
+### Standard message steps <a href="#standard-message-steps" id="standard-message-steps"></a>
+
+Geofence Messages still use the standard campaign steps:
+
+* **Setup** — define the message name and base settings.
+* **What** — create the message content.
+* **Who** — define the recipient scope or targeting logic.
+* **Go** — review the configuration before publishing.
+
+The extra step for this message type is **Location**.
+
+{% hint style="info" %}
+There is no separate custom flow instead of **Setup** and **What**.
+
+Geofence Messages use the standard message steps plus **Location**.
+{% endhint %}
+
+### Step 1: Location <a href="#location" id="location"></a>
+
+Pick where the trigger will happen.
+
+You can select a single location or a location group.
+
+<figure><img src="/files/hcRqGFGAN7c2RyKUCNPX" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Single location <a href="#single-location" id="single-location"></a>
+
+Use this when you want one geofence.
+
+The message triggers when the user enters or exits that location.
+
+This is the best option for one store, one venue, or one point of interest.
+
+#### Location group <a href="#location-group" id="location-group"></a>
+
+Use this when you want one message setup to cover multiple locations.
+
+This is useful for:
+
+* multiple branches
+* chains
+* regional store groups
+* multiple points of interest
+
+The location group lets you create a cluster of connected locations and trigger actions based on users entering or leaving any location in that group.
+
+This is the better option when the same campaign logic should work across many branches.
+
+#### Trigger settings <a href="#trigger-settings" id="trigger-settings"></a>
+
+After selecting the location:
+
+* choose the trigger: **Enter** or **Exit**
+* choose frequency: **every time** or **once per entry/exit**
+
+Use **Enter** when the message should react to arrival.
+
+Use **Exit** when the message should react to departure.
+
+Use **every time** for repeated visits.
+
+Use **once per entry/exit** when the same transition should not trigger repeatedly.
+
+#### Send to only the device <a href="#send-to-only-the-device" id="send-to-only-the-device"></a>
+
+Enable **Send message to only the device** to target only the device that triggered the geofence. Disable it to target all devices linked to the user (depending on your channel setup).
+
+<figure><img src="/files/70gef1D3SMVa5gAsBBa6" alt="" width="563"><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+**Example**
+
+Your business has several stores located in different parts of the city. With the geofence notification feature, you can create a group of interconnected locations (all your branches) and set up actions to trigger notifications (such as campaigns or discounts) based on customers' entry or exit from these locations. This enables you to send personalized messages to customers and increase foot traffic to their stores.
+{% endhint %}
+
+### Campaign Period <a href="#campaign-period" id="campaign-period"></a>
+
+Campaign Period defines when the geofence message is active. Use it to match store hours or time-limited offers.
+
+You can also restrict delivery:
+
+* by time of day,
+* by day of week,
+* and by repeat frequency (daily/weekly/monthly).
+
+This is especially useful when the location is always active, but the message should only be delivered during approved business or campaign windows.
+
+<figure><img src="/files/24CaEot8fKtoTmAILlEd" alt=""><figcaption><p>Campaign Period</p></figcaption></figure>
+
+{% hint style="success" %}
+Use **Campaign Period** when geofence messaging should work only during business hours, campaign dates, or approved delivery windows.
+{% endhint %}
+
+### Other steps <a href="#other-steps" id="other-steps"></a>
+
+After **Location** and **Campaign Period**, continue with the standard message steps:
+
+* **Setup**
+* **What**
+* **Who**
+* **Go**
+
+Use these steps to configure the content, audience, and final review of the geofence message.
+
+{% hint style="info" %}
+Think of **Location** as the trigger layer.
+
+The remaining steps define the message itself.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/messaging-features/geofence-messaging.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

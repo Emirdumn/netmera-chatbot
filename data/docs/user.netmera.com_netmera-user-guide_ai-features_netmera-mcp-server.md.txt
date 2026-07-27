@@ -1,0 +1,89 @@
+URL: https://user.netmera.com/netmera-user-guide/ai-features/netmera-mcp-server.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/ai-features/netmera-mcp-server.md).
+
+# Netmera MCP Server
+
+Netmera MCP Server allows MCP-compatible AI clients to securely interact with your Netmera app using natural language.
+
+You can use it to inspect data, review performance, prepare drafts, and run controlled actions with the permissions already defined in your panel.
+
+Use this section to learn how Netmera MCP Server works, how to connect supported clients, and which MCP functions are available.
+
+{% hint style="info" %}
+Use the child pages for the combined setup and usage guide, plus the full function reference.
+{% endhint %}
+
+### What you can do&#x20;
+
+With Netmera MCP Server, you can:
+
+* analyze app health, campaign performance, revenue, funnels, and churn,
+* inspect segments, profiles, events, and message history,
+* compare performance across apps, channels, campaigns, and audiences,
+* prepare drafts, reports, or controlled operational changes.
+
+Example requests:
+
+You can ask questions such as:&#x20;
+
+* “Analyze app health.”
+* “How many users are in the VIP Customers segment?”
+* “Show revenue trends for the last 30 days.”
+* “Inspect segments, profiles, events, and message history.”
+
+This lets you work with Netmera in natural language instead of navigating the panel manually.
+
+### How this section is organized
+
+This section is split into five parts:
+
+1. **Understanding Netmera MCP Server** — Learn what MCP is, how Netmera MCP Server works, and how permissions and access controls apply.
+2. **Set up the Netmera MCP Server** — Review prerequisites, authentication, scopes, supported environments, and general connection requirements before connecting an AI client.
+3. **Claude Installation Guide** — Connect Netmera MCP Server to Claude Desktop or Claude.ai.
+4. **ChatGPT Apps Installation Guide** — Connect Netmera MCP Server to supported ChatGPT environments.
+5. **Available API Functions** — See the full reference for MCP functions exposed through Netmera MCP Server.
+
+<table data-view="cards"><thead><tr><th>Guide</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Understanding Netmera MCP Server</td><td><a href="/pages/8kUYTGFBDUyv7R6L6t6q">/pages/8kUYTGFBDUyv7R6L6t6q</a></td></tr><tr><td>Set up the Netmera MCP Server</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/OnSgsdl1EAbBuZHTeVMj">/spaces/X6uilbEAw42gqsudlclY/pages/OnSgsdl1EAbBuZHTeVMj</a></td></tr><tr><td>Claude Installation Guide</td><td><a href="/pages/GSIwAYwUgvLKn9NM78Uc">/pages/GSIwAYwUgvLKn9NM78Uc</a></td></tr><tr><td>ChatGPT Apps Installation Guide</td><td><a href="/pages/TYjgjBP9juMbAGzjmxDC">/pages/TYjgjBP9juMbAGzjmxDC</a></td></tr><tr><td>Available API functions</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/8UQb2eYBgNALDW5rEkA7">/spaces/X6uilbEAw42gqsudlclY/pages/8UQb2eYBgNALDW5rEkA7</a></td></tr></tbody></table>
+
+### Before you start
+
+Make sure you have:
+
+* access to the correct Netmera app,
+* an MCP-compatible environment that supports connectors or MCP access,
+* and the right token scope for your task.
+
+Use `mcp:read` for reporting and analysis.
+
+Use `mcp:write` only when your client must create or change something.
+
+### Key safety rules
+
+* All actions stay within your panel permissions.
+* Write actions require `mcp:write`.
+* Campaign sends require preview and approval.
+* Large sends above **100,000 users** are blocked from direct MCP execution.
+* All actions are recorded in audit logs.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/ai-features/netmera-mcp-server.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

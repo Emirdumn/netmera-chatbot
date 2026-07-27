@@ -1,0 +1,220 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push/create-web-push/personalized-web-push.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push/create-web-push/personalized-web-push.md).
+
+# Personalized Web Push
+
+{% columns %}
+{% column width="58.333333333333336%" %}
+Personalized web push lets you tailor the **title**, **message**, and **subtext** with user-specific data.
+
+Use it when the notification should feel more relevant to the recipient, such as:
+
+* greeting the user by name,
+* reminding them about an offer, cart, or deadline,
+* or inserting loyalty, promotion, or profile-based values.
+  {% endcolumn %}
+
+{% column width="41.666666666666664%" %}
+
+<figure><img src="/files/Y48jxL5VXU4RBhKTbHMp" alt="" width="331"><figcaption></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+### Quick workflow
+
+{% stepper %}
+{% step %}
+
+#### 1) Prepare the user data
+
+Make sure the profile attributes you want to use already exist in Netmera.
+{% endstep %}
+
+{% step %}
+
+#### 2) Insert attributes in Step 2: What
+
+Use the `{@attribute}` format, or select an attribute and click **Add**.
+{% endstep %}
+
+{% step %}
+
+#### 3) Choose the fallback behavior
+
+Decide what should happen when a user does not have that attribute.
+{% endstep %}
+
+{% step %}
+
+#### 4) Preview before sending
+
+Check the final wording so the message still reads naturally after substitution.
+{% endstep %}
+{% endstepper %}
+
+### Before you start
+
+Before you personalize a web push, make sure the required user data already exists in Netmera.
+
+Typical attributes include:
+
+* `name`
+* `surname`
+* `age`
+* `goal`
+* `loyaltyTier`
+
+{% hint style="danger" %}
+
+#### Personalization needs data first
+
+If an attribute is missing for a user, the personalized text cannot be resolved for that user.
+
+Set up the data first in:
+
+* [Profile Attributes](/netmera-user-guide/customer-data/profile-attributes.md)
+* [Coupon Code Lists](/netmera-user-guide/panel-settings/settings/messaging-and-content/coupon-code-lists.md) — if you want to include promotion or coupon-related values
+  {% endhint %}
+
+### How personalization works
+
+In **Step 2: What**, you can insert profile attributes directly into supported fields.
+
+Use the `{@attribute}` format, or select an attribute from the dropdown and click **Add**.
+
+Examples:
+
+* `Wishing you a sweet {@age}th birthday, {@name}!`
+* `Hey {@name}, your {@goal} reminder is ready.`
+* `Your coupon code is {@couponcode}.`
+
+{% hint style="info" %}
+Keep the message readable after substitution. Short, natural text performs better than heavily templated copy.
+{% endhint %}
+
+### Where you can personalize
+
+You can personalize three common fields in web push:
+
+* **Title** — best for the first hook
+* **Message** — best for the main context
+* **Subtext** — best for short secondary detail
+
+### Personalized title
+
+Use a personalized title when the first line should feel immediately relevant.
+
+Common use cases:
+
+* `{@name}, your order is ready`
+* `Hey {@name}, your offer expires today`
+* `{@loyaltyTier} member reward unlocked`
+
+This is useful when identity, status, or urgency adds clear context.
+
+### Personalized message
+
+Use **Personalized Message** for the main body of the notification.
+
+This is the best place to add dynamic details such as:
+
+* product names,
+* profile values,
+* coupon or loyalty details,
+* or next-step reminders.
+
+Example:
+
+* **Default message:** `Happy birthday!`
+* **Personalized message:** `Wishing you a sweet {@age}th birthday, {@name}!`
+* **Rendered result:** `Wishing you a sweet 26th birthday, Simon!`
+
+<figure><img src="/files/Y48jxL5VXU4RBhKTbHMp" alt="" width="563"><figcaption></figcaption></figure>
+
+### Personalized subtext
+
+Use **Personalized Subtext** for short secondary context.
+
+Good examples:
+
+* `Tier: {@loyaltyTier}`
+* `Nearest store: {@nearestStore}`
+* `Code: {@couponcode}`
+
+Subtext should stay compact. Use it to support the title and message, not repeat them.
+
+<figure><img src="/files/lVoqsBfiBAZ8PSrJiOHE" alt="" width="563"><figcaption></figcaption></figure>
+
+### If data is missing
+
+When a selected attribute is null or missing, Netmera gives you two options:
+
+* **Do not send message** — users with missing data do not receive that web push.
+* **Send default notification message** — users with missing data receive the default **Notification Message** instead.
+
+Use **Do not send message** when accuracy matters most.
+
+Use **Send default notification message** when reach matters most.
+
+{% hint style="info" %}
+The same fallback logic applies to personalized title, message, and subtext.
+{% endhint %}
+
+### Example patterns
+
+{% tabs %}
+{% tab title="E-commerce" %}
+
+* **Title:** `{@name}, you left something behind`
+* **Message:** `The items in your cart are still available.`
+* **Subtext:** `Complete your order today`
+  {% endtab %}
+
+{% tab title="Loyalty" %}
+
+* **Title:** `{@loyaltyTier} reward unlocked`
+* **Message:** `Hi {@name}, your new member benefit is ready.`
+* **Subtext:** `Check your rewards now`
+  {% endtab %}
+
+{% tab title="Coupon" %}
+
+* **Title:** `Your offer is ready`
+* **Message:** `Use code {@couponcode} before it expires.`
+* **Subtext:** `Limited-time benefit`
+  {% endtab %}
+  {% endtabs %}
+
+### Best practices
+
+* Personalize only when the attribute is reliable.
+* Keep fallback copy ready for missing data.
+* Use one or two dynamic fields per notification.
+* Test the final output before launch.
+
+{% hint style="success" %}
+Use personalization to make the message clearer, not just more dynamic.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push/create-web-push/personalized-web-push.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

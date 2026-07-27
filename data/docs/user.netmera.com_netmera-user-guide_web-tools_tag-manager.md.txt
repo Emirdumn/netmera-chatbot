@@ -1,0 +1,118 @@
+URL: https://user.netmera.com/netmera-user-guide/web-tools/tag-manager.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/web-tools/tag-manager.md).
+
+# Tag Manager
+
+Tag Manager is for deploying tracking tags and website scripts **without code releases**.&#x20;
+
+Configure tags, triggers, and variables in the panel, then preview and publish changes to your site. Use it to track web behavior, trigger journeys, power widgets and personalization, and inject third-party scripts, turning website interactions into actionable, reusable data.
+
+{% hint style="info" %}
+Use Tag Manager when you want to track web behavior or inject scripts without touching the codebase.
+{% endhint %}
+
+<figure><img src="/files/8G5wIv2fOAouiMWuULdr" alt="" width="563"><figcaption></figcaption></figure>
+
+### Capabilities
+
+By combining Tag Manager with Netmera engagement and analytics modules, you can:
+
+* Track behavior with fine-grained triggers and variables.
+* Use that data in **segments**, **journeys**, and **campaign targeting**.
+* Power **web experiences** like widgets and personalization.
+
+Any trackable behavior can become an action trigger across channels.
+
+### Data Protection & Compliance
+
+User data flows through Tag Manager.
+
+For Turkey-based compliance needs (KVKK), Netmera supports local processing:
+
+* All servers are located in **Turkey**.
+* Personal data is processed under **KVKK & GDPR** standards.
+
+<figure><img src="/files/7LgNYoalnn71PCEbNS3U" alt="" width="563"><figcaption></figcaption></figure>
+
+### Use Cases
+
+Common patterns:
+
+* Fire a `purchase` event and trigger abandoned cart journeys.
+* Track form submits and start onboarding flows.
+* Track scroll depth and show widgets for engaged readers.
+* Trigger an exit-intent survey widget and follow up via messaging.
+* Deploy third-party scripts while still logging Netmera events.
+
+Tag Manager turns website interactions into reusable data for targeting, automation, and analysis.
+
+### Start here (most-used topics)
+
+<table data-view="cards"><thead><tr><th>What you want to do</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Understand the core model + how Preview/Publish works</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/ITo6jTqocQA8z1uFL21F">/spaces/X6uilbEAw42gqsudlclY/pages/ITo6jTqocQA8z1uFL21F</a></td></tr><tr><td>Create tags (events, user updates, widgets, custom HTML)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/wzu76tPpzAgb40XmRfLe">/spaces/X6uilbEAw42gqsudlclY/pages/wzu76tPpzAgb40XmRfLe</a></td></tr><tr><td>Create triggers (page view, click, scroll, exit intent, API call)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/nP35SwyLBPEBeupBzB9r">/spaces/X6uilbEAw42gqsudlclY/pages/nP35SwyLBPEBeupBzB9r</a></td></tr><tr><td>Create variables (URL, click text, custom values)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/LdmoLX9oGZiuFynM8fS8">/spaces/X6uilbEAw42gqsudlclY/pages/LdmoLX9oGZiuFynM8fS8</a></td></tr><tr><td>Review and roll back published versions</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/heYatHHAoE65S1cvaWT8">/spaces/X6uilbEAw42gqsudlclY/pages/heYatHHAoE65S1cvaWT8</a></td></tr></tbody></table>
+
+### Quickstart: ship your first web tracking tag
+
+{% stepper %}
+{% step %}
+
+#### 1) Decide what you want to track
+
+Pick an action that matters (purchase, form submit, scroll depth, click).
+{% endstep %}
+
+{% step %}
+
+#### 2) Create variables (optional)
+
+Use variables when you need dynamic values like URL, product id, or button text.
+{% endstep %}
+
+{% step %}
+
+#### 3) Create a trigger (when to fire)
+
+Examples: all pages, page view on `/checkout`, click on a selector, DOM ready.
+{% endstep %}
+
+{% step %}
+
+#### 4) Create the tag (what to do)
+
+Common tag types:
+
+* Fire a Netmera event (so it’s usable in analytics/segments/journeys)
+* Inject custom HTML/JS
+  {% endstep %}
+
+{% step %}
+
+#### 5) Preview → Publish
+
+Preview first.
+
+Publish only after you validate the trigger fires and variables resolve correctly.
+{% endstep %}
+{% endstepper %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/web-tools/tag-manager.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

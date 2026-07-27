@@ -1,0 +1,206 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/user-path.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/user-path.md).
+
+# User Path
+
+**Path:** `Analytics > User & Audience > User Path`
+
+Use User Path to analyze how users move between views, actions, and events across your web and mobile platforms. After you follow this workflow, you can build a path analysis, choose the right direction, and interpret the resulting flow without defining a fixed funnel first.
+
+<figure><img src="/files/GOU9r9lpPgj1MwrSDm1S" alt=""><figcaption><p>User Path analysis workspace.</p></figcaption></figure>
+
+### Why use User Path
+
+Use User Path when you want to discover behavior first.
+
+It helps you:
+
+* identify common navigation flows,
+* find friction and drop-off points,
+* compare behavior across audiences or devices.
+
+### Before you start
+
+User Path depends on tracked view, action, and event data.
+
+Before you run an analysis, make sure that:
+
+* Netmera SDK is integrated.
+* Screen and action tracking is configured when tagless tracking is used.
+* Relevant views and actions are mapped and published.
+* The selected date range contains enough data.
+
+{% hint style="info" %}
+For automatic collection of screen views and user interactions, complete [Screen Tracking](/netmera-user-guide/panel-settings/settings/app-configuration/screen-tracking.md) before analyzing paths in User Path.
+{% endhint %}
+
+### User Path vs Funnel
+
+User Path and Funnel both help you analyze user behavior, but they are used for different purposes.
+
+Use **User Path** when you want to discover the actual paths users take before or after a selected event, view, or action. User Path is useful when you do not know the full flow in advance and want to explore real user behavior.
+
+Use **Funnel** when you already know the expected sequence of steps and want to measure how many users complete each step or where they drop off.
+
+<table><thead><tr><th width="167.216064453125">Feature</th><th>Best for</th></tr></thead><tbody><tr><td><strong>User Path</strong></td><td>Exploring natural user flows and discovering what users do before or after a selected interaction.</td></tr><tr><td><strong>Funnel</strong></td><td>Measuring completion and drop-off across a predefined sequence of steps.</td></tr></tbody></table>
+
+### Build a User Path analysis
+
+{% stepper %}
+{% step %}
+
+### Step 1: Open User Path
+
+Go to **Analytics > User & Audience > User Path**.
+
+Use the filters at the top of the page to define the scope before selecting the anchor item.
+
+<figure><img src="/files/gDyozK9Z6Hi5PuDQrhnk" alt=""><figcaption><p>Open User Path Dashboard from the Analytics section.</p></figcaption></figure>
+{% endstep %}
+
+{% step %}
+
+### Step 2: Set the analysis filters
+
+Choose the filters that define the scope of the analysis.
+
+#### Step 2.1: Select **Segment**
+
+Use **Segment** to limit the analysis to a specific audience.
+
+For example, select a churn-risk segment to see which actions users take before leaving a key flow.
+
+#### Step 2.2: Select **Device**
+
+Use **Device** to compare behavior by platform or SDK version.
+
+For example, if checkout completion looks lower on Android, filter the analysis to Android first and inspect the path in isolation.
+
+#### Step 2.3: Select **Filter**
+
+Use **Filter** to choose which tracking items appear in the path.
+
+Available options may include:
+
+* **All**
+* **Actions**
+* **Views**
+* **Events**
+* **Actions & Views**
+* **Actions & Events**
+* **Views & Events**
+
+For example, select **Actions & Events** to analyze how interaction steps connect to tracked system or business events.
+
+#### Step 2.4: Select **Date**
+
+Choose the date range you want to analyze.
+
+Use a shorter range for recent issues. Use a longer range for broader behavior patterns.
+{% endstep %}
+
+{% step %}
+
+### Step 3: Choose the direction
+
+Select how the chosen item should be interpreted in the path.
+
+| Direction         | Result                                                          |
+| ----------------- | --------------------------------------------------------------- |
+| **Starting With** | Shows what users do after the selected event, view, or action.  |
+| **Ending With**   | Shows what users do before the selected event, view, or action. |
+
+Use **Starting With** for forward flow analysis.
+
+Use **Ending With** for backtracking into a destination event.
+
+For example, if you choose **Ending With** and select **Purchase**, the result shows which steps most often lead users into that purchase event.
+{% endstep %}
+
+{% step %}
+
+### Step 4: Select the starting or ending item
+
+After you set the filters and direction, choose the event, view, or action to analyze.
+
+If you selected **Starting With**, the chosen item becomes the first node.
+
+If you selected **Ending With**, the chosen item becomes the last node.
+
+For example, if you select **Starting With** and choose **Open App**, User Path shows what users do after opening the app.
+
+<figure><img src="/files/KJLYfYv1LcrFnIbK56Mq" alt=""><figcaption><p>Select the event, view, or action to use as the anchor item.</p></figcaption></figure>
+
+<figure><img src="/files/F97v1zxRbHLEA015ybhx" alt="" width="297"><figcaption><p>Item list for the path analysis.</p></figcaption></figure>
+{% endstep %}
+
+{% step %}
+
+### Step 5: Click Apply and read the result
+
+Click **Apply** to generate the path diagram.
+
+Review the strongest paths first. Then inspect low-volume or unexpected branches for friction or drop-off.
+
+If the result is too broad, narrow it with a more specific segment, device, filter type, or date range. If the result is empty, confirm that tracking is active and that data exists for the selected scope.
+{% endstep %}
+{% endstepper %}
+
+### Read the User Path Diagram
+
+The User Path diagram shows how users move step by step after the selected starting point.
+
+In this example, the path starts with **Open App**. This means the analysis shows what users do after opening the app.
+
+Each column represents a step in the path:
+
+* **Starting Point** shows the selected starting event.
+* **Step 1, Step 2, Step 3, and Step 4** show the next events users triggered after that point.
+* Each node shows the event name and the number of users or occurrences that followed that path.
+* Each branch represents a different path users took.
+* **Exit** indicates that users did not continue to another tracked event within the selected path context.
+
+{% hint style="info" %}
+In the example below, **Open App** is the starting point and includes 5 users.
+
+After opening the app:
+
+* 4 continued with **Receive Continuous Push**.
+* 1 continued with **Click Push**.
+
+From there, the flow branches into different paths. For example, some users exit after receiving a continuous push, while another path continues through **Click Push → Widget Shown Mobile → Exit**.
+{% endhint %}
+
+<figure><img src="/files/dijNXdYQGvWa2BjozaUj" alt=""><figcaption><p>Example User Path diagram that starts with Open App.</p></figcaption></figure>
+
+{% hint style="success" %}
+**User Path** helps you understand:
+
+* which paths users commonly follow,
+* where users continue,
+* where users exit,
+* and whether users follow the expected behavior flow.
+  {% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/user-path.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

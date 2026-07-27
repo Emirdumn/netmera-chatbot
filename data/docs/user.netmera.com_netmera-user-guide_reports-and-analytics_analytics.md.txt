@@ -1,0 +1,95 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics.md).
+
+# Analytics
+
+Analytics is where you answer open-ended product and campaign questions.
+
+Use it when a standard report is not enough.
+
+{% hint style="info" %}
+Use **Reports** for ready-made dashboards. Use **Analytics** for drill-downs, comparisons, and user-level investigation.
+{% endhint %}
+
+<figure><img src="/files/BBQcDjjdAas0qvFFezoh" alt=""><figcaption></figcaption></figure>
+
+### How to work in Analytics
+
+{% stepper %}
+{% step %}
+
+#### Pick the right module
+
+Start with the question you want to answer.
+{% endstep %}
+
+{% step %}
+
+#### Set time range and audience first
+
+These two filters shape every result.
+{% endstep %}
+
+{% step %}
+
+#### Add breakdowns when needed
+
+Start simple. Add dimensions when you need to explain a change.
+{% endstep %}
+
+{% step %}
+
+#### Export or tag users when action matters
+
+Export for offline analysis. Tag for retargeting or follow-up.
+{% endstep %}
+{% endstepper %}
+
+### Choose a module by question
+
+* Where do users drop in a journey? Use [Analyze a Funnel Report](/netmera-user-guide/reports-and-analytics/analytics/funnel/analyze-a-funnel-report.md)
+* Which events happened, how often, and for whom? Use [Event Insight](broken://spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY).
+* Which users match specific behavior and attributes? Use [People Insight](/netmera-user-guide/reports-and-analytics/analytics/people-insight.md).
+* What happened for one specific user or profile? Use [Profile](/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/profile.md).
+* Why are users churning? Use [Uninstall](/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/uninstall.md) or [Opt Out](/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/opt-out.md).
+* How do retention and repeat behavior change over time? Use [Retention & Cohort](/netmera-user-guide/reports-and-analytics/analytics/retention-and-cohort.md).
+* Which campaigns drive conversion and revenue? Use [Revenue & Conversion](/netmera-user-guide/reports-and-analytics/analytics/revenue-and-engagement/revenue-and-conversion.md).
+* How many touches are users receiving? Use [Customer Touch](/netmera-user-guide/reports-and-analytics/analytics/revenue-and-engagement/customer-touch.md).
+* How are users behaving on your website? Use [Web Analytics](/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/web-analytics.md).
+
+### Before you analyze
+
+Make sure the basics are in place before you start. Analytics is most useful when tracking, audience setup, and profile data are already reliable.
+
+* event tracking is implemented correctly,
+* important audiences already exist as segments,
+* key profile attributes are populated.
+
+### Related pages
+
+* [Events](/netmera-user-guide/customer-data/events.md)
+* [Segments](/netmera-user-guide/targeting/segments.md)
+* [Profile Attributes](/netmera-user-guide/customer-data/profile-attributes.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

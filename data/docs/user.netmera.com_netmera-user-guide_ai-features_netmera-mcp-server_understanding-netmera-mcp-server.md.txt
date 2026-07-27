@@ -1,0 +1,99 @@
+URL: https://user.netmera.com/netmera-user-guide/ai-features/netmera-mcp-server/understanding-netmera-mcp-server.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/ai-features/netmera-mcp-server/understanding-netmera-mcp-server.md).
+
+# Understanding Netmera MCP Server
+
+<figure><img src="/files/VhDELHNQcRtNFKzlgrj7" alt=""><figcaption><p>Request flow between the user, the AI client, Netmera MCP Server, and Netmera data.</p></figcaption></figure>
+
+### What is MCP?
+
+MCP (Model Context Protocol) is a standard that allows MCP-compatible AI clients, such as Claude, Cursor, or ChatGPT-compatible clients, to interact with external systems through predefined tools and functions.
+
+In Netmera, MCP allows users to work with their Netmera panel through natural language prompts. Instead of manually navigating multiple dashboards or reports, users can ask an AI client to retrieve permitted data, analyze performance, inspect segments, or prepare controlled outputs.
+
+Netmera MCP Server allows teams to work with Netmera data conversationally instead of manually navigating dashboards, reports, and configuration screens.
+
+### Why use MCP?
+
+This can help teams:
+
+* retrieve insights faster,
+* compare trends more easily,
+* reduce repetitive reporting tasks,
+* summarize large datasets,
+* and explore analytics using natural language.
+
+### How does Netmera MCP Server work?
+
+Netmera MCP Server acts as a controlled access layer between MCP-compatible AI clients and your Netmera app.&#x20;
+
+When an AI client connects through MCP, it can use a predefined set of Netmera functions to retrieve permitted data, analyze performance, inspect segments or events, and prepare controlled outputs based on your existing access rights.
+
+A typical flow looks like this:
+
+1. A user submits a question in natural language.\
+   For example: “Analyze push campaign performance for the last 30 days.”
+2. The AI client interprets the user’s request and matches it with one of the available Netmera MCP functions.&#x20;
+3. Netmera MCP Server then processes the selected function through the Netmera backend services.
+4. Netmera retrieves the permitted data and returns a structured result.
+5. The AI client presents the result as a readable answer, summary, or draft.
+
+### Access and safeguards
+
+Netmera MCP Server does not bypass existing Netmera permissions.
+
+All MCP requests operate within:
+
+* the selected App Key,
+* the user’s existing panel permissions,
+* granted token scopes,
+* configured approval rules.
+
+By exposing a carefully scoped set of MCP functions, Netmera helps ensure that AI-generated responses are grounded in your Netmera data and aligned with your configured access rules.
+
+Read-only tasks require `mcp:read`, while actions that create or change something require `mcp:write` and may be subject to additional approval safeguards.
+
+### Data privacy
+
+Netmera data is not automatically uploaded to third-party AI models. The AI client only receives the results of the tools called during the active conversation.
+
+Personally identifiable information may be masked in relevant responses.
+
+For example, in user-related queries such as `people_*`, fields such as phone number, email address, and name may be returned in masked form to support KVKK-related privacy requirements.
+
+### Prompt quality matters
+
+Clear and specific prompts help the AI client select the most relevant MCP function and generate more accurate results.
+
+For example, instead of:
+
+* “Show campaign data”
+
+use:
+
+* “Analyze push campaign performance for the last 30 days.”
+* “Compare email and SMS engagement for last week.”
+* “Show recent events for this user.”
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/ai-features/netmera-mcp-server/understanding-netmera-mcp-server.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

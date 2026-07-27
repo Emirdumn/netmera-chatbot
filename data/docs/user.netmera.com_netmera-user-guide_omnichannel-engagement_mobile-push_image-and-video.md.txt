@@ -1,0 +1,45 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/image-and-video.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/image-and-video.md).
+
+# Image & Video
+
+Images for media push notifications can be added in the What step by entering the URL of the image to **Android Media URL** and **IOS Media URL** text fields seperately or uploading the media files from the device. **gif** and **video** formatted media pushes are only supported by IOS devices.
+
+You may find detailed information about different notification type images [here](/netmera-user-guide/omnichannel-engagement/mobile-push/banner-carousel-slider-and-product-discovery.md).
+
+<figure><img src="/files/vyL8IcJtZri2FkhMGCZr" alt=""><figcaption><p>Add Media</p></figcaption></figure>
+
+### Supported Image File Types
+
+<table><thead><tr><th width="132">Image</th><th width="324.3333333333333">iOS</th><th>Android</th></tr></thead><tbody><tr><td>Filetypes</td><td><strong>Recommended:</strong>  jpg, jpeg, png, gif  </td><td><strong>Recommended:</strong> jpg, jpeg, png    </td></tr><tr><td>Resolution</td><td><p><strong>Recommended:</strong> 2:1 aspect ratio landscape</p><p></p><p><strong>Common Sizes:</strong> 512x256px</p><p>                          1440x720px </p><p></p><p><strong>Min Width:</strong> 300 pixels</p><p><strong>Max</strong> <strong>Width:</strong> 4096 pixels</p></td><td><p><strong>Recommended:</strong> 2:1 aspect ratio landscape </p><p></p><p><strong>Common Sizes:</strong> 512x256px</p><p>                          1440x720px </p><p></p><p><strong>Min Width:</strong> 300 pixels</p><p><strong>Max</strong> <strong>Width:</strong> 2000 pixels </p></td></tr></tbody></table>
+
+### Supported Video File Types for iOS Media URL
+
+{% hint style="info" %}
+Video formatted media pushes are **only supported** **for IOS devices.**
+{% endhint %}
+
+<table><thead><tr><th width="164.33333333333331">Video</th><th width="388">Supported file types</th><th>Maximum size</th></tr></thead><tbody><tr><td>Video</td><td><p><code>MPEG</code></p><p><code>MPEG-2</code></p><p><code>MP4</code></p><p><code>AVI</code></p></td><td>5 MB</td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/image-and-video.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

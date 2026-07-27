@@ -1,0 +1,331 @@
+URL: https://netmera.com/beinconnect-case-study/
+
+Bein Connect Case Study
+
+AI did the predicting, and Journeys did the convincing. UPTION's churn fell 16.6%. →
+
+ 
+
+ 
+
+			Skip to content		
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Login
+
+Get a Demo
+
+    Copy .SVG
+  
+
+    Media Kit
+  
+
+    Newsroom
+  
+
+ 
+
+ 
+
+When sports Fans Want to Cancel: How beIN CONNECT Keeps Them Subscribed
+ 
+
+ 
+
+ 
+
+Bein Connect
+ 
+
+beIN CONNECT is a 
+subscription-based
+ content platform allowing its members to watch the most popular tv shows and movies, live channels, documentaries, sports leagues, and more sports content anytime and anywhere. 
+The users can watch beIN CONNECT’s content on their smart TVs, mobile devices, computers, or tablets.
+ 
+
+ 
+
+Challenge
+ 
+
+As a subscription-based service mostly focused on sports games, beIN CONNECT needed an omnichannel solution to maximize revenue while reducing churn. Users who subscribed to watch their favorite football team were more likely to cancel the subscription when their favorite team was performing poorly.
+beIN CONNECT wanted to prevent users from unsubscribing (churn), and they also wanted to win back lost customers by offering deals through an omnichannel approach.
+ 
+
+ 
+
+ 
+
+Solution
+ 
+
+beIN CONNECT collaborated with Netmera to address their challenges and started to execute their marketing campaigns with 
+advanced segmentation
+. The company was able to create, edit, and publish both behavior-based and profile attribute-based scenarios across channels. With the help of Netmera’s 
+easy-to-use panel,
+ beIN CONNECT executed multichannel marketing campaigns using e-mail marketing, mobile, and web push notifications.
+To win back their lost customers,
+ beIN CONNECT was able to send segmented push notifications to 
+a target audience that once signed up for a subscription package. 
+They segmented their lost subscribers by their 
+sports game history 
+and sent out special deals whenever their favorite team had a game coming up. This allowed beIN CONNECT to increase user acquisition
+ through behavior-based segmentation.
+To prevent churn,
+ beIN CONNECT sent out push notifications to Super Package subscribers to engage them with the entertainment content that comes along as a bundle with the sports content. This was needed because beIN CONNECT realized that subscribers who usually watch only one specific team’s games are more likely to unsubscribe once their favorite team starts losing. With 
+customer profile based segmentation,
+ beIN CONNECT targeted those subscribers and offered them entertainment content that they may like.
+ 
+
+To increase its entertainment content viewers and engagement,
+ beIN CONNECT sent out 
+push notification
+ campaigns regularly to its subscribers with 
+look-a-like content, content recommendations, and reminders.
+It sent out push notifications to its subscribers, letting them know that a new show they may be interested in has aired using their watched history. For example, the company sent out push notifications to subscribers who once were interested in the series Game of Thrones when House of Dragons (A series linked to Game of Thrones) was aired. With Netmera, the company was easily able to target Game of Thrones fans through behavior-based segmentation.
+beIN CONNECT also focused on engaging their subscribers with automated scenarios 
+starting from onboarding.
+ By welcoming them into the exciting world of beIN CONNECT, the company was able to grow a relationship with its subscribers. The company was also able to greet its new coming subscribers with mobile push notifications that directed them to the application and helped them discover it. This push notification campaign reached a
+ %7.5 CTR
+ with the help of Netmera’s advanced segmentation features.
+Furthermore, beIN CONNECT strengthened its relationship with its customers by sending push notifications that wish them a happy birthday through profile attributes.
+ 
+
+Results
+ 
+
+In summary, beIN CONNECT:
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Testimonial
+ 
+
+“We use Netmera to send out sports game reminders, birthday notifications, weekly entertainment content recommendations, and many more. Thanks to Netmera, we are able to provide accurate recommendations to our customers by notifying them based on their current and past subscriptions. In a short time, our subscription rates increased significantly. We trust Netmera in sending out our push notifications to millions without any reliability issues and we feel more encouraged with Netmera’s easy-to-use panel and strong data analytic capabilities.”
+ 
+
+ 
+
+Duygu Başaran Çelik
+OTT Platforms Director
+ 
+
+ 
+
+Check other stories
+ 
+
+Blog
+Avis Case Study
+Avis Türkiye raised login conversion 350% and 28-day retention 5X with automated pushes and personalized app experiences.
+Read More
+Turkcell Pasaj Case Study
+Turkcell Pasaj cut cart abandonment and doubled conversions, increasing monthly revenue up to 150% with automated push campaigns.
+Read More
+Mackolik Case Study
+Delivering 20K+ daily notifications to 40M+ sessions, Mackolik improved open rates and retention 20%.
+Read More
+ 
+
+ 
+
+Subscribe to our newsletter
+ 
+
+ 
+
+Products
+ 
+
+Customer Data Management
+
+Customer Journeys
+
+AI Site Search & Browse
+
+Web Personalization
+
+Testing and Experimentation
+
+Data & Analytics
+
+Tagless Data Capture
+
+Surveys & Feedback​
+
+Funnels
+
+Channels
+ 
+
+Mobile & Web Push
+
+E-Mail
+
+SMS
+
+Whatsapp
+
+Mobile In-App
+
+Web Pop-Ups
+
+Live Activities
+
+Feedback Button
+
+Netmera AI
+
+Industries
+ 
+
+Media and Entertainment
+
+Banking and Finance
+
+Retail and E-commerce
+
+Travel and Hospitality
+
+Telecommunication
+
+Company
+ 
+
+About Us
+
+Careers
+
+Contact Us
+
+Partners
+
+Why Netmera
+
+Newsroom
+
+Information for AI
+
+Resources
+ 
+
+Blog
+
+Glossary
+
+Top Use Cases
+
+Resources
+
+Success Stories
+
+Developer and User Guide
+
+ 
+
+© 2026 — 
+Netmera
+. All Rights Reserved.   |   
+Privacy Policy
+   |   
+Cookie Policy (EU)
+   |   
+GDPR
+   |   
+KVKK
+ 
+
+Linkedin
+
+ 
+
+Youtube
+
+ 
+
+ 
+
+ 
+
+Manage Cookie Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+						Always active					
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+
+Deny
+
+View preferences
+
+Save preferences
+
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent

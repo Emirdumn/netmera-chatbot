@@ -1,0 +1,268 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-analytics.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-analytics.md).
+
+# Journey Analytics
+
+Journey Analytics shows how users move through a journey, where they drop off, and which steps drive conversion.
+
+Use it to validate journey logic, compare step performance, and optimize targeting, timing, and content.
+
+<div data-with-frame="true"><figure><img src="/files/iNT6K1W9riuoTpVpPTLi" alt=""><figcaption><p>Journey Analytics</p></figcaption></figure></div>
+
+### Overview metrics
+
+The top section summarizes overall journey performance.
+
+### Messages Sent
+
+Shows the total number of messages sent from journey steps.
+
+Use it to understand total communication volume.
+
+### Total Entries
+
+Shows how many times the journey was entered.
+
+If re-entry is allowed, the same user can contribute multiple entries.
+
+### Conversion Rate
+
+Shows the percentage of users who entered the journey and completed the selected conversion event within the attribution window.
+
+The conversion event is defined in [Setup](/netmera-user-guide/omnichannel-engagement/journey-orchestration/setup.md).
+
+### Total Converted Users
+
+Shows the number of unique users who triggered the conversion event at least once within the journey.
+
+This value is calculated from the same converted users data set used for the **Conversion Rate** metric. When conversion data is available, you can use the export action on this card to download the related converted user data.
+
+### Total Conversion Events
+
+Shows the total number of times the conversion event was triggered within the journey.
+
+This value may be higher than **Total Converted Users** if the same user triggers the conversion event more than once.
+
+You can use the export action on the **Total Conversion Events** card to download event-level conversion data. The exported file includes each conversion event as a separate row, including the user’s External ID and the event timestamp.
+
+{% hint style="info" %}
+
+### Exporting Conversion Data
+
+The **Total Converted Users** and **Total Conversion Events** cards include an export action when conversion data is available.&#x20;
+
+If the metric value is **0**, the export action is inactive because there is no related data to export.
+{% endhint %}
+
+#### Formula
+
+**Conversion Rate = Converted Users / Entry User Count × 100**
+
+* **Converted Users**: Unique users who completed the selected conversion event
+* **Entry User Count**: Unique users who entered the journey
+
+#### Conversion rules
+
+* Conversion counting is **user-based**
+* A user can be counted only **once per journey**
+* A conversion is counted only if it happens within the configured attribution window
+* If the same user triggers the conversion event multiple times, only one valid conversion is counted
+
+{% hint style="info" %}
+The attribution window is controlled by **Stop Counting Conversion After User Exits** in [Setup](/netmera-user-guide/omnichannel-engagement/journey-orchestration/setup.md).
+{% endhint %}
+
+<details>
+
+<summary>Conversion examples</summary>
+
+#### Conversion counted
+
+* User exits the journey at **12:00**
+* Attribution window is **24 hours**
+* User completes the conversion event at **18:00**
+
+This conversion is counted.
+
+#### Conversion not counted
+
+* User exits the journey at **12:00**
+* Attribution window is **24 hours**
+* User completes the conversion event **2 days later**
+
+This conversion is not counted.
+
+#### Multiple conversion events
+
+If the same user triggers the conversion event multiple times, only the first valid conversion is counted.
+
+#### Conversion after re-entry
+
+If re-entry is allowed and the user has not converted before, a later valid conversion can still be counted.
+
+</details>
+
+### Total Exits
+
+Shows how many journey entries exited without conversion.
+
+Use this metric with step analytics to identify drop-off points.
+
+<div data-with-frame="true"><figure><img src="/files/80cGZTZZyvi27sDOl4KC" alt=""><figcaption></figcaption></figure></div>
+
+### Step analytics
+
+Step analytics show how users move through each node in the journey.
+
+Compare step counts to see where users continue, stall, or exit.
+
+<figure><img src="/files/LigJewtwF1FHTPxfBxfK" alt="" width="563"><figcaption></figcaption></figure>
+
+### Core step metrics
+
+The available metrics depend on the selected step type.
+
+#### Entry Count
+
+Total number of times a step was entered.
+
+If the same user reaches the step more than once, each entry is counted.
+
+#### Entry User Count
+
+Unique users who entered the step.
+
+Each user is counted once for that step.
+
+#### Action metrics
+
+Additional metrics depend on the step action.
+
+Examples:
+
+* **Push**: Sent, Failed, Clicked
+* **Email**: Sent, Failed, Shown, Clicked
+* **SMS**: Sent, Failed
+* **In-App**: Entry-based metrics
+* **Custom steps**: Step-specific outcome metrics
+
+### Channel-specific metrics
+
+#### Mobile Push
+
+Mobile Push steps include delivery, engagement, and platform-level breakdowns.
+
+<table><thead><tr><th width="294.20001220703125">Metric</th><th>Description</th></tr></thead><tbody><tr><td><strong>Entry Count</strong></td><td>Total number of times the Mobile Push step was entered. If the user enters the same step more than once, each entry is <strong>counted separately.</strong></td></tr><tr><td><strong>Entry User Count</strong></td><td>Number of unique users who entered the Mobile Push step. Each user is <strong>counted only once</strong>, even if they enter the step multiple times.</td></tr><tr><td><strong>Sent Count</strong></td><td>Total number of mobile push messages sent from this step.</td></tr><tr><td><strong>Failed Count</strong></td><td>Total number of mobile push messages that could not be sent successfully from this step.</td></tr><tr><td><strong>Clicked Count</strong></td><td>Total number of clicks recorded for the mobile push messages sent from this step.</td></tr><tr><td><strong>Android Sent/Failed/Clicked Count</strong></td><td>Platform-specific breakdown of sent, failed, and clicked metrics for Android devices.</td></tr><tr><td><strong>iOS Sent/Failed/Clicked Count</strong></td><td>Platform-specific breakdown of sent, failed, and clicked metrics for iOS devices.</td></tr></tbody></table>
+
+<figure><img src="/files/T6EY9Htxzxs0saDMZeG5" alt="" width="243"><figcaption></figcaption></figure>
+
+#### Email
+
+Email steps focus on delivery and engagement performance.
+
+<table><thead><tr><th width="194.87115478515625">Metric</th><th>Description</th></tr></thead><tbody><tr><td><strong>Entry User Count</strong></td><td>Number of unique users who entered the Email step. Each user is <strong>counted only once</strong>, even if they reach the step multiple times.</td></tr><tr><td><strong>Sent Count</strong></td><td>Total number of email messages sent from this step.</td></tr><tr><td><strong>Failed Count</strong></td><td>Total number of email messages that could not be sent successfully from this step.</td></tr><tr><td><strong>Shown Count</strong></td><td>Total number of times the email was displayed to users after being sent from this step.</td></tr><tr><td><strong>Clicked Count</strong></td><td>Total number of clicks recorded for the email messages sent from this step.</td></tr></tbody></table>
+
+<figure><img src="/files/6zH909zWhy9MiwauzNUv" alt="" width="175"><figcaption></figcaption></figure>
+
+#### SMS
+
+SMS steps focus on basic delivery performance.
+
+<table><thead><tr><th width="177.27874755859375">Metric</th><th>Description</th></tr></thead><tbody><tr><td><strong>Entry User Count</strong></td><td>Number of unique users who entered the SMS step. Each user is <strong>counted only once</strong>, even if they reach the step multiple times.</td></tr><tr><td><strong>Sent Count</strong></td><td>Total number of SMS messages sent from this step.</td></tr><tr><td><strong>Failed Count</strong></td><td>Total number of SMS messages that could not be sent successfully from this step.</td></tr></tbody></table>
+
+<figure><img src="/files/AVcQPU4IiLJcU1jkFGgg" alt="" width="176"><figcaption></figcaption></figure>
+
+#### In-App
+
+In-App steps primarily show how many unique users reached the step.
+
+<table><thead><tr><th width="185.5008544921875">Metric</th><th>Description</th></tr></thead><tbody><tr><td><strong>Entry User Count</strong></td><td>Number of unique users who entered the In-App step. Each user is <strong>counted only once</strong>, even if they reach the step multiple times.</td></tr></tbody></table>
+
+<figure><img src="/files/bufBZ0y008dVTjKa5i4T" alt="" width="203"><figcaption></figcaption></figure>
+
+### Interpreting the results
+
+Use overview and step-level metrics together:
+
+* A high sent count with a low clicked count may indicate low message engagement
+* A large drop between steps may indicate friction in timing, targeting, or content
+* Failed counts may point to delivery or configuration issues
+* High entries with low conversions may suggest the wrong audience or weak step logic
+
+Use these signals to improve message content, branch logic, wait times, and targeting.
+
+### Viewing Campaign Reports from a Journey
+
+For campaign components that have sent messages within a journey, you can open the related campaign report directly from the Journey flow.
+
+A **Report** button is displayed next to campaign components after a send action is completed. Clicking this button redirects you to the related campaign’s detailed analytics page.
+
+Supported campaign channels include:
+
+* **Push Notification**
+* **Email**
+* **SMS**
+* **In-App**
+
+The **Report** button appears only for components with sent campaign data. If no message has been sent, the button is not displayed.&#x20;
+
+This helps you analyze campaign performance directly from the Journey screen and keeps journey-level and campaign-level reporting connected.
+
+<figure><img src="/files/Og3xP3EINibCaizBeDyO" alt="" width="178"><figcaption><p>Click the Report button to view <br>the related campaign's analytic page</p></figcaption></figure>
+
+<figure><img src="/files/V5WvW3Z1zItDetrNkyxo" alt="" width="563"><figcaption><p>Campaign's analytics page</p></figcaption></figure>
+
+### Export analytics data
+
+You can export **user-level analytics data** directly from journey reports with the download icon next to supported metrics.
+
+<figure><img src="/files/QrVqgtggUtXRpfwd2RSI" alt="" width="563"><figcaption></figcaption></figure>
+
+{% columns %}
+{% column width="50%" %}
+
+#### How it works
+
+* Click the **download icon** next to a journey analytics metric
+* Choose **.csv** or **.xlsx**
+* Exported files contain **user-level data** for the selected metric
+  {% endcolumn %}
+
+{% column width="50%" %}
+
+<figure><img src="/files/Mco6b0u9OAt2CyynKrca" alt=""><figcaption></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+<figure><img src="/files/JICHIUCfxzIlEvLuO4Ss" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Use cases
+
+Use exports for operational follow-up and deeper analysis.
+
+* **Tag Assignments**: Apply tags to exported users to segment and re-target them in future campaigns
+* **Recovery Campaigns**: Export users with a *failed* status and reach them through another channel such as email, push, SMS, or widget
+* **Re-Engagement Campaigns**: Identify inactive or dropped-off users and create personalized follow-ups
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-analytics.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,162 @@
+URL: https://user.netmera.com/netmera-user-guide/web-tools/tag-manager/workspace/triggers.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/web-tools/tag-manager/workspace/triggers.md).
+
+# Triggers
+
+Triggers define the conditions **under which tags are executed.** While tags specify what action to perform (e.g., send an event, update a profile, execute HTML code), triggers specify when that action should run.
+
+Every tag must have at least one trigger assigned. Without a trigger, a tag will never fire. By combining different trigger types and filters, you can build both simple rules (e.g., fire on all pages) and complex logic (e.g., fire only if a user visits the checkout page, scrolls 50%, and clicks the "Buy" button).
+
+{% hint style="info" %}
+
+### Trigger Lifecycle
+
+1. **Trigger Listeners** – Tag Manager continuously monitors events such as page loads, user interactions, or variable changes.
+2. **Evaluation** – When the specified event occurs, the system checks if the trigger’s conditions and filters are satisfied.
+3. **Execution** – If all conditions match, the trigger fires, and the attached tags are executed.
+   {% endhint %}
+
+### Step 1: Open the Triggers Tab
+
+1. From your **Workspace**, select **Triggers** in the left-hand menu.
+2. You will see a list of existing triggers with the following details:
+   * **Name** – the trigger’s unique identifier.
+   * **Type** – what event activates it.
+   * **Attached Tags** – tags that will run when the trigger fires.
+   * **Last Edited** – when the trigger was last modified.
+   * **Actions** – edit, view, or delete options.
+
+<figure><img src="/files/v5kJrjoQ1oqRtg1SjoFP" alt=""><figcaption></figcaption></figure>
+
+### Step 2: Create a New Trigger
+
+1. Click **Create Trigger**.
+2. Enter a **Name** for your trigger (choose something descriptive, like *Checkout Button Click*).
+3. Select a **Type** from the dropdown menu. You can choose from options such as:
+   * **Page View / DOM Ready / Window Loaded** – fires on page load events.
+   * **Click / Link Click** – fires when users click elements or links.
+   * **Scroll Depth** – fires at a set scroll percentage.
+   * **Element Visibility** – fires when an element becomes visible.
+   * **Custom Event** – fires on developer-defined events.
+   * **Timer, API Call, Exit Intent**, and many more.
+
+<figure><img src="/files/ZuMQFjYNmUTO86g42Njn" alt=""><figcaption></figcaption></figure>
+
+### Trigger Types
+
+#### Page Load Triggers
+
+1. **Page View**: Fires as soon as the page starts loading.
+2. **Window Loaded**: Fires only after the entire page and its resources (images, CSS, scripts) have fully loaded.
+3. **DOM Ready**: Fires when the HTML document structure is fully loaded (but before images and other resources).
+
+**Use Cases:**
+
+* Fire analytics events when any page is viewed.
+* Trigger marketing pixels after full page load to ensure reliability.
+* Run DOM-dependent scripts when the HTML is ready.
+
+#### User Interaction Triggers
+
+1. **Click**: Fires whenever a user clicks on an element.
+2. **Link Click**: Fires specifically for link clicks (`<a>` tags).
+3. **Scroll Depth**: Fires when a user scrolls down a certain percentage (e.g., 25%, 50%, 100%).
+4. **Element Visibility**: Fires when a specific element appears in the viewport.
+5. **Exit Intent**: Fires when the system detects that the user is about to leave the page (e.g., mouse moving toward the browser’s close button).
+
+**Use Cases:**
+
+* Track CTA button clicks.
+* Log engagement when users scroll through long-form content.
+* Trigger a widget when a banner comes into view.
+* Show an exit survey if the user is about to leave without purchasing.
+
+#### Event-Based Triggers
+
+1. **Custom Event**: Fires when a developer-defined event is pushed into the data layer.
+2. **History Change**: Fires when the browser history changes (e.g., in Single Page Applications).
+3. **Navigation**: Fires when the user navigates to a new page or section.
+4. **Mutation**: Fires when a DOM element changes (attribute, content, or child nodes).
+5. **Crash**: Fires when a JavaScript error occurs.
+6. **Console Log**: Fires based on captured console messages.
+7. **API Call**: Fires when a specified network/API request is detected.
+
+**Use Cases:**
+
+* Capture SPA navigation without reloading the page.
+* Track form validation errors (via console logs).
+* Fire conversion tags when specific API calls (e.g., purchase confirmation) are made.
+
+#### Time-Based Triggers
+
+1. **Timer**: Fires repeatedly at defined intervals (e.g., every 10 seconds).
+2. **Trigger Group**: Fires when multiple triggers occur together (all conditions must be satisfied).
+
+**Use Cases:**
+
+* Track how long users stay on a page.
+* Fire an event only if a combination of conditions are met (e.g., scroll depth + click).
+
+### Step 3: Add Filters / Variables (Optional)
+
+Filters allow you to define **conditions** for when the trigger should activate.
+
+1. Click **Add New Filter**.
+2. Choose a **Variable** (e.g., Page URL, Click Text, Element ID).
+3. Select an **Operator** (equals, contains, starts with, matches regex, etc.).
+4. Enter a **Value** (e.g., `/checkout`, `Subscribe Button`).
+5. Combine multiple filters with **AND / OR logic** for advanced rules.
+
+{% hint style="info" %}
+**Variable**: The data point to evaluate (e.g., Page URL, Click ID, Element Text).
+
+**Operator**: The comparison method (e.g., equals, contains, starts with, greater than).
+
+**Value**: The expected value (e.g., `/checkout`, `true`, `button-123`).
+{% endhint %}
+
+{% hint style="info" %}
+You can add multiple filters, combining them with **AND/OR logic**:
+
+**AND** = all conditions must be true.
+
+**OR** = at least one condition must be true.
+{% endhint %}
+
+**Examples:**
+
+* Fire only if **Page URL contains `/checkout`**.
+* Fire only if **Click Text equals "Subscribe" AND Page Path starts with `/blog`**.
+* Fire if **User Role variable equals "Premium" OR Page Path equals `/thank-you`**.
+
+<figure><img src="/files/L5SfVCeNkCEt8jtTcJHN" alt=""><figcaption></figcaption></figure>
+
+### Step 4: Save and Attach the Trigger to a Tag
+
+1. Click **Save** to create the trigger.
+2. Go to the **Tags** section.
+3. Edit or create a tag, and under the **Trigger** step, select the trigger you just created.
+4. Save the tag.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/web-tools/tag-manager/workspace/triggers.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

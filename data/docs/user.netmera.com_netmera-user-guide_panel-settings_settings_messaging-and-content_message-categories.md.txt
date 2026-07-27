@@ -1,0 +1,194 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content/message-categories.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content/message-categories.md).
+
+# Message Categories
+
+**Path**: `Settings> Messaging & Content>Message Categories`
+
+Message Categories define the **business purpose** of a campaign. They allow you to classify every message according to *why* it is sent, independently from the channel used (Push, Email, SMS, Web Push, WhatsApp etc.).
+
+A message category represents intent, not delivery method.
+
+Examples of categories:
+
+* promotions
+* order\_tracking
+* security
+* transactions
+* announcements
+
+Categories are cross-channel. A single category (for example, `order_tracking`) can be used for Push, Email, and SMS campaigns.
+
+### Why Message Categories Are Important
+
+#### 1. Purpose-Based Consent (Granular Permission Management)
+
+Traditional communication models rely only on channel-based permission:
+
+* Push: allowed / not allowed
+* Email: allowed / not allowed
+
+However, modern privacy standards and user expectations require more granular control. Users may want to receive some types of communication while rejecting others.
+
+<table><thead><tr><th width="344.05712890625">Purpose</th><th>User Preference</th></tr></thead><tbody><tr><td>Promotions</td><td>Opted out</td></tr><tr><td>Order Updates</td><td>Opted in</td></tr><tr><td>Security Alerts</td><td>Opted in</td></tr></tbody></table>
+
+This is called **purpose-based consent**.
+
+When a campaign is assigned a message category:
+
+* Netmera checks whether the user has granted permission for that purpose.
+* Delivery occurs only if both channel permission and purpose permission are valid.
+* If the user has opted out of that category, the message is automatically blocked.
+
+Without a category assignment, purpose-level enforcement cannot be applied.
+
+#### 2. Compliance and Governance
+
+Message Categories help ensure regulatory compliance and internal governance.
+
+They:
+
+* Separate marketing content from transactional or mandatory messages.
+* Prevent accidental misuse of transactional channels for promotional content.
+* Provide a clear audit trail of communication intent.
+* Support compliance with regulations requiring explicit purpose limitation.
+
+Each campaign must clearly define its purpose. This reduces ambiguity and operational risk.
+
+### Delivery Logic: Channel + Purpose Model
+
+Netmera evaluates message delivery using two independent checks:
+
+1. Channel Permission\
+   Whether the user allows communication through the selected channel (Push, Email, SMS, etc.).
+2. Purpose Permission (Message Category)\
+   Whether the user allows communication for the specific business purpose.
+
+Delivery occurs only if both conditions are satisfied.
+
+This dual-layer model ensures both technical and regulatory compliance.
+
+For the complete consent structure, see [Granular User Consent Management](/netmera-user-guide/customer-data/granular-consent-management.md).
+
+### Create a Message Category
+
+{% stepper %}
+{% step %}
+
+#### Open Message Categories
+
+Go to **Settings > Message Categories**.
+{% endstep %}
+
+{% step %}
+
+#### Create and save
+
+1. Click **Create**.
+2. Fill in **Category ID** and **Category Name**.
+3. Click **Save**.
+   {% endstep %}
+   {% endstepper %}
+
+<figure><img src="/files/LHhfvrp6Ygho5L1xMysb" alt=""><figcaption><p>Create a category in Settings</p></figcaption></figure>
+
+#### Field definitions
+
+**Category ID**
+
+Stable key used in reporting and exports. Treat it like an immutable identifier.
+
+**Category Name**
+
+Human-readable name shown in the panel. You can adjust naming later without breaking analysis (as long as the ID stays stable).
+
+#### Best practices for Category ID
+
+* Keep it **short** and **stable** (example: `promo`).
+* Use a **purpose**, not a channel. Categories are cross-channel.
+* Prefer lowercase and avoid spaces (example: `order_tracking`).
+* Don’t change IDs after launch. Create a new category instead.
+
+<figure><img src="/files/JWXJgSHbJKuJAAbdtX0F" alt=""><figcaption><p>Category ID and Name</p></figcaption></figure>
+
+### Assign a Category to a Campaign
+
+{% stepper %}
+{% step %}
+
+#### Go to the content step
+
+While creating a campaign, open **Step 2: What** (or the channel’s equivalent “Content” step).
+{% endstep %}
+
+{% step %}
+
+#### Select the category
+
+Pick the category that matches the campaign’s purpose.
+{% endstep %}
+{% endstepper %}
+
+<figure><img src="/files/naNOAsERfxQRneX5fTgm" alt=""><figcaption><p>Select a category in the campaign flow</p></figcaption></figure>
+
+#### More examples (different channels)
+
+<figure><img src="/files/m6NrjVMOxJJdYnQ7gJsZ" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/hpNT1rsf3ZrzD71qghfJ" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/0PiRp01RPDCNPICMEYyY" alt=""><figcaption></figcaption></figure>
+
+{% hint style="warning" %}
+If you don’t assign a category, you can’t reliably analyze campaigns by purpose. If you use purpose-based consent, Netmera can’t enforce it without a category.
+{% endhint %}
+
+### Purpose-Based Reporting and Analytics
+
+Message Categories enable reporting by business intent rather than by channel alone. For example, Channel Reachability reports can show how many users are reachable for:
+
+* promotions
+* order\_tracking
+* security
+
+Without category assignment, this level of analysis is not reliable.
+
+* [Channel Reachability](/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/channel-reachability.md)
+
+<figure><img src="/files/50ewav97nJnNO2oaT3CM" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/4svcVA9XUayVdUEN1DBD" alt=""><figcaption><p>Opt-in and opt-out users by message category</p></figcaption></figure>
+
+### Summary
+
+Message Categories are a structural foundation for:
+
+* Granular consent enforcement
+* Compliance with purpose limitation principles
+* Clean campaign classification
+* Reliable reporting by business intent
+
+They are not optional labels. They are a core part of how Netmera manages responsible and measurable communication.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content/message-categories.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

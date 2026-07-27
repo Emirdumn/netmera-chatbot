@@ -1,0 +1,138 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/delivery/automated-transactional-and-geofence-reports.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/delivery/automated-transactional-and-geofence-reports.md).
+
+# Automated, Transactional & Geofence Reports
+
+This report combines automated, transactional, and geofence messaging in one view. Use it to understand how triggered communication performs after a user action, a system event, or a location change.
+
+**Available paths:**
+
+* `Reports > Delivery > Automated`
+* `Reports > Delivery > Transactional`
+* `Reports > Delivery > Geofence`
+
+This matters because triggered campaigns behave differently from scheduled campaigns. They respond to context, not to a one-time send plan, so volume, timing, and engagement patterns often look very different from standard campaign reports.
+
+Use it to answer four practical questions:
+
+* How many triggered campaigns ran in the selected period?
+* Which scenarios generated the strongest open and conversion rates?
+* Which campaign details explain the performance difference?
+* How do triggered campaigns compare with manually launched campaigns?
+
+{% hint style="info" %}
+Use this report for triggered messaging. Use [Campaigns](/netmera-user-guide/reports-and-analytics/reports/delivery/campaigns.md) when you want to evaluate manually launched campaigns.
+{% endhint %}
+
+### Report overview
+
+Triggered campaigns build up quickly over time. Filtering first helps you narrow the list before you compare performance.
+
+Use **Dates** to focus on the reporting period you want to inspect. Use **Message Label** to isolate one initiative, and use **Message Content Search** to find campaigns by internal name or visible message text.
+
+For example, if you want to review only abandoned-cart automations from last month, set the date range first, then filter by the label or message text tied to that flow.
+
+This report includes three triggered message types:
+
+* **Automated campaigns** — messages triggered by behavioral rules or workflows, such as cart abandonment or welcome flows.
+* **Transactional campaigns** — messages triggered by a user action or system event, such as purchase confirmations or account alerts.
+* **Geofence campaigns** — messages triggered when a user enters or leaves a defined location.
+
+What these message types share is their timing. They run because a condition is met, not because a team manually sends them on a calendar.
+
+<figure><img src="/files/JmfRJjnV3APUvTNhNdsO" alt=""><figcaption></figcaption></figure>
+
+### Core metrics
+
+The top cards give you a fast view of both campaign volume and campaign quality. Read them together, not in isolation.
+
+Key metrics:
+
+* **Today Number of Campaigns** — how many triggered campaigns ran today. Use it for a quick operational snapshot.
+* **Number of Campaigns** — how many campaigns ran in the selected period. Use it to understand overall triggered-message volume.
+* **Best Open Rate** — the highest open rate achieved by a campaign in the selected set.
+* **Average Open Rate** — the mean open rate across campaigns. Use it as the baseline for comparison.
+* **Best Conversion** — the strongest conversion result in the selected set.
+* **Average Conversion** — the average conversion rate across campaigns. Use it to judge whether one strong result is exceptional or part of a broader pattern.
+
+Read these cards together rather than separately. High campaign volume does not automatically mean strong engagement, and a high open rate does not always mean strong conversion.
+
+The gap between **Best Open Rate** and **Average Open Rate** is often useful. A large gap usually means one campaign performed unusually well, while a small gap suggests performance is more consistent across scenarios.
+
+For example, a transactional purchase confirmation may have a moderate open rate but a very strong conversion pattern because users are already close to completion. A geofence promotion may have lower volume but still outperform on conversion quality.
+
+<figure><img src="/files/8qVDQPDs6Aj6xwSvDOmX" alt=""><figcaption></figcaption></figure>
+
+### Campaign list and details
+
+The campaign list gives you the context behind the top-line numbers. This matters because triggered-message performance often depends on the scenario itself, not only on the message text.
+
+Use this section to review:
+
+* **Start Date** — when the campaign started running.
+* **Campaign ID** — the internal identifier used for support, exports, and exact reference.
+* **Campaign Name** — the internal name of the flow or scenario.
+* **Campaign Title** and **Message Text** — the visible content shown to users.
+* **Expire Date** — when the message or scenario stops being valid.
+* **Scenario** — the business rule or trigger behind the campaign.
+
+For example, two campaigns may target similar users, but the one with clearer urgency or stronger context may earn a higher open rate.
+
+<figure><img src="/files/SKwsCJWOIW7XG8AuqCWd" alt=""><figcaption></figcaption></figure>
+
+Before comparing performance deeply, check that the campaign context matches what you expect. This becomes especially important when several similar triggered campaigns ran in the same period.
+
+### Performance table
+
+The lower table moves from campaign identity to campaign outcome. Read these fields together to understand both scale and quality.
+
+The main fields are:
+
+* **Message Label** — groups campaigns under the same initiative or content family.
+* **Target Audience** — shows intended audience size before you interpret results.
+* **Success** — shows successful delivery or completion in the report context.
+* **Direct App Opens** — shows how many app opens came directly from the message.
+* **Open Rate** — shows the share of recipients who opened the message.
+* **Conv. (Conversion)** — shows how many users completed the target action after the message.
+* **Rev. (Revenue)** — shows the total value generated by the campaign.
+* **Avg. Rev.** — shows the average value per converting user.
+* **Avg. Time In App** — shows post-engagement app usage time.
+
+For one campaign, conversion may mean a purchase. For another, it may mean an app open, a form completion, or another tracked event.
+
+**Rev.** and **Avg. Rev.** answer different questions. Total revenue shows overall impact, while average revenue helps you understand the quality of each conversion.
+
+You can also review results across daily, weekly, or monthly groupings. This is useful when you want to see whether triggered messaging stays stable or shifts with seasonality, campaign pressure, or operational changes.
+
+<figure><img src="/files/K00oskxQNCusIFYYV5Gw" alt=""><figcaption></figcaption></figure>
+
+### How to use this report
+
+Start with the summary cards to understand volume and overall quality. Then move to the campaign list to identify the scenario behind the numbers. Finally, use the lower table to compare engagement, conversion, revenue, and post-click behavior.
+
+This report works best as a complement to standard campaign reporting. Manual campaign reports are usually easier to compare by send date, while triggered reports are usually more meaningful when compared by scenario, business rule, or audience behavior.
+
+If two campaigns were sent on the same date, that does not mean they had the same opportunity. One may have been a password reset sent to active users, while another may have been a store-entry geofence sent to a much narrower audience.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/delivery/automated-transactional-and-geofence-reports.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

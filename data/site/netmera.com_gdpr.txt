@@ -1,0 +1,540 @@
+URL: https://netmera.com/gdpr/
+
+Netmera GDPR Compliance & Privacy Notice
+
+AI did the predicting, and Journeys did the convincing. UPTION's churn fell 16.6%. →
+
+ 
+
+ 
+
+			Skip to content		
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Login
+
+Get a Demo
+
+    Copy .SVG
+  
+
+    Media Kit
+  
+
+    Newsroom
+  
+
+ 
+
+Netmera GDPR Privacy Notice
+ 
+
+Contents
+Introduction and Scope of this Privacy Notice
+Contact Information
+How Do We Collect Your Personal Data?
+Which Personal Data Do We Collect and Process?
+Why Do We Process Your Personal Data and What Is the Legal Basis for This Use (purpose of the processing)?
+To Whom, Why and Where We Transfer Your Personal Data?
+How Long Do We Retain Your Personal Data?
+Principles relating to personal data privacy
+Use of cookies
+Use of Digital Platforms
+Data security
+What are Your Rights as Data Subjects?
+Changes to this Privacy Notice
+1. Introduction and Scope of this Privacy Notice
+This Privacy Notice explains how Netmera (“we”, “us”, “our”) collects, uses, stores, and discloses personal data in compliance with the General Data Protection Regulation (“GDPR”).
+Netmera is a company established and operating in Türkiye. Although Netmera is not located within the European Union, we process personal data in accordance with the General Data Protection Regulation (“GDPR”) to the extent that our Services are used by Customers or Data Subjects located in the EU.
+Accordingly, whenever Netmera processes personal data of individuals who are in the European Union, or where an EU-based Customer uses our Services, we comply with the obligations set out under the GDPR, including transparency requirements, data subject rights, international data transfer mechanisms, and security measures.
+Netmera may act in different roles under the GDPR depending on the nature of the processing activity:
+Data Processor
+For personal data of Customer End Users processed through Netmera’s software development kits (SDKs), APIs, and cloud-based customer engagement and analytics solutions (the “Service”), Netmera acts as a data processor.
+In these cases, the Customer determines the purposes and means of the processing and acts as the data controller.
+Data Controller
+For personal data collected directly through our corporate website (netmera.com), marketing activities, communications with representatives of business clients and vendors, and applications submitted by job candidates, Netmera acts as the data controller.
+This Privacy Notice provides information regarding:
+the categories of personal data we collect,
+the purposes for which we process personal data and the legal bases we rely upon,
+Netmera’s roles and responsibilities as a data controller and data processor,
+how and with whom we share personal data,
+the technical and organizational measures we apply to safeguard personal data,
+the rights granted to individuals under the GDPR and how these rights can be exercised.
+Netmera is committed to ensuring that personal data is processed lawfully, fairly, transparently, and in accordance with all applicable data protection laws and regulations.
+2. Contact Information
+If you have any questions, comments, complaints, or requests relating to this Privacy Notice or wish to exercise your rights under the GDPR, you may contact Netmera’s Data Protection Officer using the details below:
+NETMERA ARGE VE BİLİŞİM HİZMETLERİ ANONİM ŞİRKETİ
+BUDOTEK, Dudullu OSB Mah. DES 2. Caddesi No: 8 D:8
+34776 Ümraniye, İstanbul, Türkiye
+Website: 
+www.netmera.com
+Email: 
+privacy@netmera.com
+Phone: +90 850 757 83 21
+Data Subjects may submit requests to exercise their GDPR rights by contacting us through the channels listed above. If preferred, you may also use the application form provided at the following link:
+https://netmera.com/wp-content/uploads/2025/12/DATA_SUBJECT_RIGHTS_REQUEST_FORM.docx.pdf
+3. How Do We Collect Your Personal Data?
+We collect personal data through different channels depending on how you interact with us and how you use our Services. Personal data may be collected:
+Directly from you
+When you contact us via our website, submit a form, request information, subscribe to marketing communications, communicate with our sales or support teams, or apply for a job.
+Automatically through your use of our website and digital platforms
+This includes data collected through cookies and similar technologies, log files, analytics tools, and your device or browser when you visit our website or interact with our online materials. Further details are provided in our Cookie Policy.
+Through our Services as a Data Processor
+When Customers use Netmera’s SDKs, APIs, or cloud-based engagement and analytics tools, we process Customer End User data on behalf of the Customer. In such cases, the Customer is the data controller, and Netmera acts strictly under the Customer’s instructions.
+From business partners or third parties
+Where permitted by law, we may receive personal data from service providers, business partners, or publicly available sources to support our business operations and customer relationships.
+4. Which Personal Data Do We Collect and Process?
+The categories of personal data we collect depend on how you interact with Netmera and how our Services are used. Netmera may process the following categories of personal data:
+A. Data We Process as a Data Controller
+1. Website Visitors
+Contact information: name, email address, phone number (when voluntarily provided).
+Technical and usage data: IP address, browser type, device information, log data, and cookie-related data.
+Communication data: information you provide when contacting us through forms or support channels.
+2. Customer and Business Contacts
+Business contact information: name, surname, job title, email address, telephone number.
+Account and billing information: company name, invoicing details, and communication records related to our business relationship.
+3. Job Applicants
+Application information: CV/resume data, contact information, employment history, and other information voluntarily submitted during the recruitment process.
+B. Data We Process as a Data Processor (Customer End Users)
+When Customers integrate Netmera SDKs or APIs into their applications or websites, Netmera processes the following categories of data on behalf of the Customer:
+Device identifiers: device ID, push notification token, mobile advertising ID (IDFA, GAID).
+Technical data: IP address, operating system, device type, browser information, network information.
+Engagement and analytics data: user events, session data, actions taken within the Customer’s app or website, preferences, and interaction history.
+Communication data: details related to push notifications and in-app messaging (timestamps, delivery status, etc.).
+Netmera processes these data categories strictly under the instructions of the Customer, who acts as the data controller.
+C. Categories of Data We Do Not Intentionally Collect
+Netmera does not intentionally collect or process the following categories of personal data in relation to Website visitors, Customer representatives, or Customer End Users:
+special categories of personal data (sensitive data) as defined under GDPR Article 9,
+health data, biometric data,
+precise geolocation data,
+information about family members,
+financial data of individuals (credit card numbers, bank details) unless required for billing of business clients.
+Netmera may process certain categories of personal data listed above only for internal human resources, employment, occupational health and safety, and legal compliance purposes, in accordance with applicable employment laws and GDPR requirements. Such processing is governed by a separate Employee Privacy Notice, which is provided directly to employees and job applicants and is not part of this Customer-facing Privacy Notice.
+This clarification ensures that Netmera does not process the above categories of data within the scope of its Services or website operations, unless required for internal employment-related purposes.
+5. Why Do We Process Your Personal Data and What Is the Legal Basis for This Use?
+The purposes for which we process personal data depend on whether Netmera acts as a data controller or a data processor.
+A. When Netmera Acts as a Data Controller
+We process personal data for the following purposes and on the corresponding legal bases:
+1. Operating and improving our website and digital platforms
+Purposes:
+Ensuring the proper functioning and security of our website,
+Performing analytics and improving user experience,
+Managing cookie preferences and website performance.
+Legal Basis:
+Legitimate interests (Art. 6(1)(f))
+Consent for non-essential cookies (Art. 6(1)(a))
+2. Responding to inquiries and providing support
+Purposes:
+Responding to contact forms, emails, and support requests,
+Managing communication with potential or existing business clients.
+Legal Basis:
+Legitimate interests (Art. 6(1)(f))
+Performance of a contract or pre-contractual steps (Art. 6(1)(b))
+3. Managing commercial relationships with Customers and partners
+Purposes:
+Administering accounts and business contacts,
+Managing contracts, orders, invoicing, and payments,
+Maintaining CRM records.
+Legal Basis:
+Performance of a contract (Art. 6(1)(b))
+Legal obligations (Art. 6(1)(c))
+Legitimate interests (Art. 6(1)(f))
+4. Marketing and communication activities
+Purposes:
+Sending newsletters, product updates, and promotional materials,
+Conducting marketing analytics and event communications.
+Legal Basis:
+Consent (Art. 6(1)(a))
+Legitimate interests for B2B communications (Art. 6(1)(f))
+5. Recruitment and job application management
+Purposes:
+Evaluating job applications,
+Communicating with applicants,
+Conducting interview and recruitment processes.
+Legal Basis:
+Pre-contractual steps (Art. 6(1)(b))
+Legitimate interests (Art. 6(1)(f))
+Consent, if sensitive or optional data is provided (Art. 6(1)(a))
+6. Compliance, security, and legal obligations
+Purposes:
+Ensuring network and information security,
+Responding to legal requests,
+Protecting our legal rights and preventing misuse of our services.
+Legal Basis:
+Legal obligations (Art. 6(1)(c))
+Legitimate interests (Art. 6(1)(f))
+B. When Netmera Acts as a Data Processor (Customer End Users)
+Netmera processes Customer End User data solely on behalf of the Customer, for purposes determined by the Customer, which may include:
+Delivering push notifications,
+Performing analytics and segmentation,
+Measuring user engagement and app interactions,
+Operating communication workflows.
+Legal Basis:
+Determined by the Customer (the data controller).
+Netmera processes such data only under the Customer’s documented instructions, in accordance with Art. 28 GDPR.
+6. To Whom, Why and Where Do We Transfer Your Personal Data?
+The recipients of personal data depend on whether Netmera acts as a data controller or a data processor. Personal data is shared only where necessary, proportionate, and lawful under the GDPR.
+A. When Netmera Acts as a Data Controller
+When we process personal data for our own business purposes (e.g., website operations, marketing, customer relationships), we may share personal data with:
+1. Service Providers (Processors)
+We use trusted third-party providers to support our operations, such as:
+cloud hosting and infrastructure providers,
+analytics and IT service providers,
+email delivery and communication platforms,
+payment and billing service providers.
+These parties process personal data only under our instructions and are bound by GDPR-compliant data processing agreements.
+2. Business Partners
+Where relevant, personal data may be shared with:
+resellers,
+integration partners,
+marketing and event partners.
+This occurs solely to deliver or support Netmera’s products and services.
+3. Professional Advisors
+Such as:
+legal advisors,
+accountants,
+audit firms.
+Only where necessary to protect our legitimate interests or comply with legal obligations.
+4. Public Authorities
+We may share personal data with courts, regulators, or government authorities only where legally required (Art. 6(1)(c)).
+B. When Netmera Acts as a Data Processor
+When Customers use Netmera’s Services and integrate our SDKs or APIs, Netmera may transfer Customer End User data:
+1. To Sub-processors
+These include:
+cloud hosting vendors (e.g., servers where data is stored),
+communication delivery platforms (e.g., push notification gateways),
+analytics and monitoring services.
+A current list of Netmera’s Sub-processors is maintained and made available to Customers upon request.
+Netmera enters into GDPR-compliant sub-processor agreements in accordance with Article 28(4) GDPR.
+2. Transfers Outside the EU
+If Customer End User data is transferred outside the European Economic Area (EEA), Netmera ensures that appropriate safeguards are in place, such as:
+Standard Contractual Clauses (SCCs) approved by the European Commission,
+adequacy decisions, or
+other lawful transfer mechanisms.
+Netmera also conducts Transfer Impact Assessments where required.
+C. Categories of Data We Do Not Share
+We do not sell personal data.
+We do not share personal data with:
+unrelated third parties,
+sponsors,
+insurance companies,
+banks or financial institutions (except for our own B2B billing needs),
+entities unrelated to the performance of our Services.
+Netmera does not transfer special categories of personal data unless expressly provided by the data subject and required under a lawful basis.
+D. Retention and Disposal
+Personal data is retained only for as long as necessary to fulfill the purpose for which it was collected or as required by applicable law.
+After the retention period expires, personal data is securely deleted, anonymized, or destroyed.
+7. How Long Do We Retain Your Personal Data?
+We retain personal data only for as long as necessary to fulfill the purposes for which it was collected, or to comply with applicable legal, contractual, or regulatory requirements. Retention periods may vary depending on whether Netmera is acting as a data controller or a data processor.
+A. When Netmera Acts as a Data Controller
+We retain personal data for the following periods unless a longer retention period is required by law:
+Website analytics and log data: typically retained for up to 12 months.
+Marketing and communication data: retained until you withdraw your consent or object to processing, or for up to 24 months after your last interaction with us.
+Customer account and contract data: retained for the duration of the contract and for up to 10 years thereafter to comply with legal obligations (e.g., accounting, tax, audit).
+Support and inquiry records: retained for up to 3 years after the request is resolved.
+Job applicant data: retained for up to 6 months, unless you consent to a longer period.
+B. When Netmera Acts as a Data Processor (Customer End User Data)
+Customer End User data is retained only for the period defined in the contract with the Customer.
+Upon termination of the Customer’s subscription or upon instruction from the Customer, Netmera will:
+delete the data,
+return the data to the Customer, or
+anonymize it,
+in accordance with Article 28 GDPR.
+Netmera does not retain Customer End User data beyond the Customer-defined retention period.
+C. Secure Deletion
+Once the applicable retention period expires, personal data is irreversibly:
+deleted,
+anonymized, or
+destroyed
+using secure industry-standard methods.
+8. Principles Relating to Personal Data Privacy
+Netmera processes personal data in accordance with the core principles set out in Article 5 of the GDPR. We adhere to the following principles in all of our data processing activities:
+Lawfulness, fairness and transparency:
+Personal data is processed lawfully and fairly, and individuals are informed about how their data is used.
+Purpose limitation:
+Personal data is collected for specified, explicit, and legitimate purposes and not further processed in a manner incompatible with those purposes.
+Data minimisation:
+Only the personal data that is necessary for the relevant purposes is collected and processed.
+Accuracy:
+Personal data is kept accurate and, where necessary, updated. We take reasonable steps to ensure that inaccurate data is corrected or deleted without delay.
+Storage limitation:
+Personal data is retained only for as long as necessary to fulfill the purposes for which it was collected or as required by law.
+Integrity and confidentiality:
+Appropriate technical and organizational measures are implemented to ensure the security of personal data, including protection against unauthorized access, loss, destruction, or damage.
+Accountability:
+Netmera is responsible for complying with these principles and is able to demonstrate such compliance.
+9. Use of cookies
+Netmera uses cookies and similar technologies (such as JavaScript tags, pixels, and local storage) to operate and improve our website, analyze usage patterns, and enhance user experience.
+Cookies we use may include:
+Session cookies, which expire when you close your browser, and
+Persistent cookies, which remain on your device for a specified period or until you delete them.
+Certain cookies are essential for the functionality and security of the website. Other cookies—such as analytics or marketing cookies—are used only with your consent, in accordance with GDPR requirements.
+You can manage or disable non-essential cookies at any time through your browser settings or through the cookie preference tool displayed on our website.
+For more information about the types of cookies we use, their purposes, and how you can manage your cookie preferences, please refer to our full Cookie Policy available at:
+https://netmera.com/cookie-policy-eu
+.
+10. Use of Digital Platforms
+When you use Netmera’s digital platforms—including our website, dashboards, and online tools—we may process personal data to:
+operate, maintain, and secure the platform,
+optimize and improve your user experience,
+understand how the platform is accessed and used,
+provide personalized features and account-related functionality,
+ensure proper delivery of the services you request,
+communicate information about features or services relevant to your use of the platform.
+Personal data processed through our digital platforms is used only for purposes necessary to deliver, improve, or support the services you choose to use, and is handled in accordance with this Privacy Notice and applicable data protection laws.
+11. Data Security
+Netmera implements appropriate technical and organizational measures to protect personal data against unauthorized access, accidental loss, destruction, or alteration, in accordance with Article 32 of the GDPR. Our security measures include:
+Use of secure infrastructure:
+We employ industry-standard security technologies, including firewalls, encryption, intrusion detection and prevention systems, and continuous monitoring tools.
+Access control:
+Access to personal data is restricted on a strict need-to-know basis and is granted only to authorized personnel who require such access to perform their job responsibilities.
+Data minimization and retention controls:
+Personal data is stored only for as long as necessary and is securely deleted or anonymized once no longer required.
+Secure development and operational practices:
+We maintain policies, procedures, and frameworks to ensure secure development, deployment, and operation of our systems and services.
+Third-party security obligations:
+When we engage third-party service providers, we require them to implement GDPR-compliant security measures and enter into appropriate data processing agreements.
+Employee training and awareness:
+Netmera regularly trains employees on privacy, security, and data protection responsibilities to ensure effective compliance with applicable laws.
+Netmera continually reviews, evaluates, and enhances its security practices to ensure an appropriate level of protection corresponding to the risks associated with personal data processing.
+12. What are Your Rights as Data Subjects?
+Under the GDPR, you are entitled to exercise the following rights regarding your personal data.
+Further information about these rights is available at the official website of the European Commission:
+https://commission.europa.eu/law/law-topic/data-protection/reform/rights-citizens_en
+You have the following rights:
+Right to withdraw consent (Art. 7 GDPR):
+You may withdraw your consent at any time where we rely on your consent for processing.
+Right of access (Art. 15 GDPR):
+You have the right to obtain confirmation as to whether we process your personal data and to request a copy of such data.
+Right to rectification (Art. 16 GDPR):
+You may request the correction of inaccurate or incomplete personal data.
+Right to erasure (“right to be forgotten”) (Art. 17 GDPR):
+You may request the deletion of your personal data under certain circumstances.
+Right to restriction of processing (Art. 18 GDPR):
+You may request that we limit the processing of your personal data in specific cases.
+Right to data portability (Art. 20 GDPR):
+You have the right to receive your personal data in a structured, commonly used, and machine-readable format and to transmit it to another controller.
+Right to object (Art. 21 GDPR):
+You may object to the processing of your personal data based on our legitimate interests, including profiling and direct marketing activities.
+Limitations to These Rights
+These rights are not absolute and may be subject to limitations under the GDPR or applicable national laws. For example, we may decline a request if:
+fulfilling it would adversely affect the rights and freedoms of others,
+we are legally required to retain the information, or
+we have compelling legitimate grounds for continuing the processing.
+We will inform you of any applicable exemptions when responding to your request.
+How to Exercise Your Rights
+You may exercise your rights by contacting us using the contact details provided in Section 2 of this Privacy Notice.
+To help us respond efficiently, please specify which right you wish to exercise. For security and verification purposes, we may request certain information to confirm your identity. We will only request the minimum information necessary.
+If we request identification documents, you may redact irrelevant data (e.g., only name and address may remain visible).
+Legal Basis for Processing Your Request
+We process personal data provided in connection with your rights request on the basis of our legitimate interests (Art. 6(1)(f) GDPR) in verifying your identity and responding to your request.
+Right to Lodge a Complaint
+If you believe that we have processed your personal data in violation of the GDPR, you have the right to lodge a complaint with a competent supervisory authority (Art. 77 GDPR).
+A list of EU supervisory authorities is available at:
+https://edpb.europa.eu/about-edpb/about-edpb/members_en
+13. Changes to This Privacy Notice
+We may update this Privacy Notice from time to time in order to reflect changes in our data processing practices, legal requirements, or developments in our Services.
+If we make any material changes, we will notify Data Subjects through appropriate means, such as:
+publishing a notice on our website,
+updating the effective date at the top of the Privacy Notice, or
+contacting you directly where required by law.
+All updates will take effect once the revised Privacy Notice is published, unless otherwise stated. We encourage you to review this Privacy Notice periodically to stay informed about how we protect your personal data.
+ 
+
+Let’s create something amazing. 
+ 
+
+Request a Demo
+
+ 
+
+Subscribe to our newsletter
+ 
+
+ 
+
+Products
+ 
+
+Customer Data Management
+
+Customer Journeys
+
+AI Site Search & Browse
+
+Web Personalization
+
+Testing and Experimentation
+
+Data & Analytics
+
+Tagless Data Capture
+
+Surveys & Feedback​
+
+Funnels
+
+Channels
+ 
+
+Mobile & Web Push
+
+E-Mail
+
+SMS
+
+Whatsapp
+
+Mobile In-App
+
+Web Pop-Ups
+
+Live Activities
+
+Feedback Button
+
+Netmera AI
+
+Industries
+ 
+
+Media and Entertainment
+
+Banking and Finance
+
+Retail and E-commerce
+
+Travel and Hospitality
+
+Telecommunication
+
+Company
+ 
+
+About Us
+
+Careers
+
+Contact Us
+
+Partners
+
+Why Netmera
+
+Newsroom
+
+Information for AI
+
+Resources
+ 
+
+Blog
+
+Glossary
+
+Top Use Cases
+
+Resources
+
+Success Stories
+
+Developer and User Guide
+
+ 
+
+© 2026 — 
+Netmera
+. All Rights Reserved.   |   
+Privacy Policy
+   |   
+Cookie Policy (EU)
+   |   
+GDPR
+   |   
+KVKK
+ 
+
+Linkedin
+
+ 
+
+Youtube
+
+ 
+
+ 
+
+ 
+
+Manage Cookie Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+						Always active					
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+
+Deny
+
+View preferences
+
+Save preferences
+
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent

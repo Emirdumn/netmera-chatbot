@@ -1,0 +1,121 @@
+URL: https://user.netmera.com/netmera-user-guide/ai-features/performance-insights.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/ai-features/performance-insights.md).
+
+# Performance Insights
+
+Use **AI Performance Insights** on the Dashboard to spot changes in user behavior and messaging performance faster.
+
+These cards summarize patterns, trends, and shifts across your audience and engagement data. They help you decide where to investigate next.
+
+**Path:** `Dashboard`
+
+{% hint style="info" %}
+AI card availability depends on your workspace setup, enabled modules, data volume, and permissions.
+{% endhint %}
+
+### What AI Insights helps you do
+
+Use the Dashboard AI area to:
+
+* detect changes in user behavior,
+* monitor engagement trends,
+* identify unusual day-to-day movement,
+* and review broader monthly patterns.
+
+Unlike detailed reports, these cards are designed for quick interpretation. Start here when you want a fast summary before going deeper.
+
+### User Overview
+
+**User Overview** gives you a high-level summary of your audience and how it is changing.
+
+Use this card to understand whether user activity and user composition are moving in the expected direction.
+
+It is useful for questions like:
+
+* Are active users increasing or declining?
+* Is the audience behaving differently than usual?
+* Should I inspect a segment, funnel, or campaign more closely?
+
+<figure><img src="/files/pX43OuuF50J1DhGnqAOu" alt="AI Insights - User Overview card"><figcaption><p>AI Insights: User Overview</p></figcaption></figure>
+
+### Engagement Insights
+
+**Engagement Insights** highlights aggregated engagement signals from your messaging activity.
+
+Use this card to understand what is driving interaction across your channels. It helps you notice whether engagement is improving, weakening, or shifting.
+
+This card is especially useful when:
+
+* campaign results feel inconsistent,
+* one channel appears stronger than others,
+* or you want a quick read on overall engagement health.
+
+<figure><img src="/files/thNGEIJaQ7P5zZmc4GFH" alt="AI Insights - Engagement Insights card"><figcaption><p>AI Insights: Engagement Insights</p></figcaption></figure>
+
+### Daily Review Analysis
+
+**Daily Review Analysis** focuses on short-term movement.
+
+Use it to detect sudden spikes, drops, or unusual behavior from one day to the next. This helps you catch issues or opportunities early.
+
+Typical use cases:
+
+* spotting a sudden drop in engagement,
+* noticing a campaign-driven lift,
+* or identifying a day that needs deeper investigation.
+
+<figure><img src="/files/aNhzl021DYhnNEccpQ4p" alt="AI Insights - Daily Review Analysis card"><figcaption><p>AI Insights: Daily Review Analysis</p></figcaption></figure>
+
+### Monthly Review Analysis
+
+**Monthly Review Analysis** focuses on longer-term patterns.
+
+Use it to track whether engagement and user behavior are trending up, down, or staying stable over time.
+
+This card helps answer questions like:
+
+* Are recent changes temporary or part of a broader trend?
+* Is engagement improving month over month?
+* Do we need to adjust strategy for a persistent decline?
+
+<figure><img src="/files/3mw2F2tZ5ykHhBaDMaNc" alt="AI Insights - Monthly Review Analysis card"><figcaption><p>AI Insights: Monthly Review Analysis</p></figcaption></figure>
+
+### How to read AI Insights effectively
+
+Use the cards in this order when reviewing the Dashboard:
+
+1. Start with **User Overview** for audience-level changes.
+2. Check **Engagement Insights** for interaction patterns.
+3. Review **Daily Review Analysis** for sudden short-term shifts.
+4. Use **Monthly Review Analysis** to confirm long-term direction.
+
+This sequence helps you move from summary to pattern to timeframe.
+
+### When to use this page
+
+Open this page when you want to understand what each AI card means before using the Dashboard for daily monitoring.
+
+For the full Dashboard overview, see [Dashboard](/netmera-user-guide/dashboard.md).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/ai-features/performance-insights.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

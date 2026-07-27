@@ -1,0 +1,301 @@
+URL: https://user.netmera.com/netmera-user-guide/ai-features/netmera-mcp-server/setup-netmera-mcp-server.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/ai-features/netmera-mcp-server/setup-netmera-mcp-server.md).
+
+# Setup Netmera MCP Server
+
+Use this page as your first-run guide.
+
+If you are connecting Netmera MCP Server for the first time, start here.
+
+By the end, you will:
+
+* connect your MCP-compatible client,
+* confirm the connection works,
+* and understand when to enable write access.
+
+{% hint style="info" %}
+Start with `mcp:read`.
+
+You can do reporting, analysis, and lookups without exposing write actions.
+{% endhint %}
+
+### What you need
+
+Before you connect, make sure you have:
+
+1. access to the target Netmera app,
+2. an MCP-compatible client or environment,
+3. and the right permission level in Netmera.
+
+### How access works
+
+Each token is tied to one Netmera app.
+
+The token also inherits your Netmera panel permissions.
+
+Your MCP client cannot do more than your user account can do.
+
+#### Scopes
+
+<table><thead><tr><th width="135.90008544921875">Scope</th><th width="345.85986328125">What it allows</th><th>Best for</th></tr></thead><tbody><tr><td><code>mcp:read</code></td><td>Reporting, inspection, analytics, and lookups</td><td>First connection and safe exploration</td></tr><tr><td><code>mcp:write</code></td><td><code>mcp:read</code> plus create, update, send, pause, resume, and approval actions</td><td>Operational work with human review</td></tr></tbody></table>
+
+Tools marked with `🔒` require `mcp:write`.
+
+#### Token lifetime
+
+<table><thead><tr><th width="322.541259765625">Token type</th><th>Lifetime</th></tr></thead><tbody><tr><td>JWT</td><td>30 days</td></tr><tr><td>OAuth access token</td><td>8 hours</td></tr></tbody></table>
+
+### Get connected
+
+Follow this flow if your goal is a working connection as fast as possible.
+
+{% stepper %}
+{% step %}
+
+#### 1) Choose the target app
+
+Decide which Netmera app you want the client to access.
+
+Each token works for one app only.
+{% endstep %}
+
+{% step %}
+
+#### 2) Create a read-only token
+
+If your client supports direct connector sign-in, complete the login flow there.
+
+If you need to request a token directly, use:
+
+```json
+POST https://ai.netmera.com/ai/mcp
+Content-Type: application/json
+
+{
+  "email": "your@email.com",
+  "password": "your-netmera-password",
+  "scope": "mcp:read"
+}
+```
+
+Use `mcp:read` for read-only access, or `mcp:write` to allow write operations such as creating or sending campaigns.
+{% endstep %}
+
+{% step %}
+
+#### 3) Add Netmera to your client
+
+Open your client’s connector, integration, or MCP settings first.
+
+Then add Netmera as a new connector or MCP source.
+
+In most clients, the flow looks like this:
+
+1. Open **Settings**, **Integrations**, **Connectors**, or **MCP**.
+2. Click **Add connector**, **Add source**, or **Add server**.
+3. Choose **Netmera** if it appears in the list.
+4. Complete sign-in or paste your token when prompted.
+5. Approve access for the target app.
+
+There are usually two connection paths:
+
+* **Built-in sign-in** — the client opens a login flow. Sign in with your Netmera account and approve the app access request.
+* **Token-based setup** — the client asks for a token. Paste the token from the previous step. If the client asks for an authorization type, use **Bearer token**.
+
+#### Example client configuration
+
+**Claude Desktop** (`claude_desktop_config.json`):
+
+```json
+{
+  "mcpServers": {
+    "netmera": {
+     "url": "https://ai.netmera.com/ai/mcp",
+      "headers": { "Authorization": "Bearer <token>" }
+    }
+  }
+}
+```
+
+**Cursor**, **Warp**, and other MCP-compatible clients accept the same URL + Authorization header combination.
+
+{% hint style="info" %}
+Client labels vary.
+
+Some clients call this a **connector**. Others call it an **MCP server**, **tool source**, or **integration**
+{% endhint %}
+{% endstep %}
+
+{% step %}
+
+#### 4) Ask a few simple questions
+
+Use low-risk prompts first.
+
+Good first prompts:
+
+* “What is the health status of my app today?”
+* “How many users are in the VIP segment?”
+* “Show daily revenue for the last 30 days.”
+  {% endstep %}
+
+{% step %}
+
+#### 5) Confirm the connection is real
+
+Make sure:
+
+* you are connected to the correct app,
+* reports return data,
+* and write actions are still unavailable.
+  {% endstep %}
+
+{% step %}
+
+#### 6) Enable write access later
+
+Move to `mcp:write` only when you want to create drafts or run approved actions.
+
+Create a new token with `scope: "mcp:write"` when you are ready.
+{% endstep %}
+{% endstepper %}
+
+### What a successful first setup looks like
+
+Your setup is ready when:
+
+* the client answers read-only questions with live Netmera data,
+* the app context matches the app you expected,
+* and no write-capable tools appear unless you enabled `mcp:write`.
+
+### Write better prompts
+
+The best prompts are specific.
+
+Include these parts when relevant:
+
+1. **Time range** — `last 7 days`, `yesterday`, `this month`
+2. **Target** — a campaign, segment, user, workflow, channel, or event
+3. **Output** — a summary, trend, comparison, ranking, or draft
+4. **Action boundary** — `prepare only`, `show preview`, `do not send`
+
+#### Example prompt patterns
+
+**Analysis**
+
+* “Summarize app performance for the last 7 days.”
+* “Compare push and email performance for the last 14 days.”
+* “Which campaigns drove the most revenue last week?”
+
+**Audience and user investigation**
+
+* “How many users are in the churn-risk segment?”
+* “Show the recent events for this user.”
+* “List messages sent to this user in the last 3 days.”
+
+**Safe operational requests**
+
+* “Create a push draft for dormant Android users.”
+* “Pause the automation named Welcome Flow.”
+* “Refresh the count for the VIP segment.”
+
+### When to enable write access
+
+You only need `mcp:write` when the client should change something.
+
+Typical cases:
+
+* create a campaign draft,
+* pause or resume a flow,
+* submit an approval action,
+* or refresh an operational object.
+
+{% hint style="warning" %}
+Campaign sending always requires a preview first.
+
+If the audience exceeds **100,000 users**, the request is blocked. Netmera returns a panel link instead.
+{% endhint %}
+
+### Built-in safeguards
+
+Write actions stay controlled by both token scope and panel permissions.
+
+Netmera also applies these safeguards:
+
+* Write actions require `mcp:write`.
+* Campaign sends require preview and approval.
+* All actions follow your panel permissions.
+* Large sends are blocked from direct MCP execution.
+* All actions are recorded in audit logs.
+
+### Troubleshooting
+
+If the setup does not work, check these first:
+
+1. the token is still valid,
+2. the token has the right scope,
+3. the selected app is the correct one,
+4. and your user permissions allow the action.
+
+#### Token expired
+
+Request a new token.
+
+Token lifetime depends on the token type:
+
+* **JWT** — 30 days
+* **OAuth access token** — 8 hours
+
+#### Write scope required
+
+This means your token was created with `mcp:read`.
+
+Create a new token with `scope: "mcp:write"` if you need write actions.
+
+#### Cannot access another app
+
+Each token is tied to one Netmera app.
+
+Create a separate token for each app you want to use.
+
+#### Send request blocked
+
+This usually means one of these conditions was not met:
+
+* the audience is below **100,000 users**,
+* preview was completed,
+* approval was completed when required,
+* or your panel permissions allow the action.
+
+#### User fields are masked
+
+Masking is expected for regulated personal data.
+
+Use profile, event, and message history to investigate without exposing PII.
+
+### Next step
+
+Once the connection works, continue with [Available API Functions](/netmera-user-guide/ai-features/netmera-mcp-server/available-api-functions.md) to see what the MCP server can do.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/ai-features/netmera-mcp-server/setup-netmera-mcp-server.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

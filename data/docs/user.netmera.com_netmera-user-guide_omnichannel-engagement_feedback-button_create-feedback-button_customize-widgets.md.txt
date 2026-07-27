@@ -1,0 +1,243 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/feedback-button/create-feedback-button/customize-widgets.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/feedback-button/create-feedback-button/customize-widgets.md).
+
+# Customize Widgets
+
+{% hint style="warning" %}
+**Important Note:**
+
+**Click actions** can be assigned to "**Buttons**" and "**Images**" and they can be assigned by clicking on the button/image and navigating to the **⚡ (lightning) icon.**
+{% endhint %}
+
+{% hint style="warning" %}
+**Important Note:**
+
+Your **"Identifier**" code is crucial when you are analyzing your data or assigning click actions to your buttons. Therefore, while you are creating a new widget, pay attention to attributing distinguishable "Identifier" codes to your elements and buttons. You may just simple click on the code and rewrite your own name on it.
+{% endhint %}
+
+## How to Customize a Feedback Button Widget
+
+{% embed url="<https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FX6uilbEAw42gqsudlclY%2Fuploads%2FNBBEKgJZvly5KbbgUvWq%2Fwebpopup-2.mp4?alt=media&token=9cb9028e-979f-47c6-99d5-c00a46bff95d>" fullWidth="false" %}
+Design Widget
+{% endembed %}
+
+After completing Extend Widget part, you may choose a pre-designed template or one of your widgets to edit and save or a blank template to create a new template.
+
+### View Settings/General Settings
+
+<figure><img src="/files/iBfUGruJCgOAjUdka8ra" alt=""><figcaption><p>View Settings</p></figcaption></figure>
+
+When you first start customizing your widget, you may decide on Width, Border Radius, Background Color, Border Width and Border Color on **"View Settings"** and decide on how your widget will look on your website.
+
+### Adding a Widget Element
+
+<figure><img src="/files/MZBFJknKg72UaN5WqdvR" alt=""><figcaption><p>View 1 - Widget</p></figcaption></figure>
+
+{% hint style="warning" %}
+**Important Note:**
+
+View 1 represents the first page you will introduce to your users, if you aim to publish a widget with more than a single page, you may add views to your widget by clicking "Add View" and create further steps you want your users to take to complete the widget.&#x20;
+{% endhint %}
+
+On the left side of the screen, Elements show you the options you might choose for your widget. There are eighteen elements that you might choose from to customize your widget.&#x20;
+
+When you decide on your widget element which is suitable for your aim, by drag and drop method, you may easily choose your element and drag and drop it into your widget. You may also add elements by clicking **+ sign** and choose your element with options **"Add to Left"** or **"Add to Right".**
+
+<figure><img src="/files/Fat1EvNLgTt9qxQM6wkX" alt=""><figcaption><p>Add an Element</p></figcaption></figure>
+
+### Text Customizations
+
+When you add a **"Text"** to your widget, you may customize it with the options that you will see on the right side of the page. That page includes **bold, italics, underlined, font types, contrast, alignment, hyperlinks and more**. You may customize your text in line with your design, branding and widget aim by using these features on your Netmera panel.
+
+<figure><img src="/files/7yeBJ4tS7ILGCQvGVvkP" alt=""><figcaption><p>Text Options</p></figcaption></figure>
+
+### Color Settings
+
+When you choose an element, you will see "**Background Color"** on the right side of the page. You may change background color of your buttons or any element background.&#x20;
+
+If you click on the box below Background Color, you will see a color palette. **B box** below represents **black** color, while **W box** represents color **white**. If you have a custom color code, you may use it in text box below and create widgets representing your brand colors. Next to color palette box, you may see **Gradient** color option where you may create a gradient background for your elements.
+
+<figure><img src="/files/or7qs8ymgcxLDRqjkbBG" alt=""><figcaption><p>Color Settings</p></figcaption></figure>
+
+### Further Visual Settings
+
+For all your elements, the customization box on the right corner of the page will be available for your design. Aside from general customizations, if you need further adjustments on your design, you may use this design tool with **"Spacing, Border, Text, Corners, Shadow, Display, Position, and Effects"** options.&#x20;
+
+<figure><img src="/files/nRPDuHiq1qHGPq0lk9ru" alt=""><figcaption></figcaption></figure>
+
+## Elements
+
+When customizing your widget, you have a wide range of elements at your disposal to create an engaging and interactive experience for your website visitors with Netmera's drag and drop dashboard. These elements allow you to capture their attention, collect valuable data, and encourage user participation.&#x20;
+
+Here are eighteen elements you can incorporate into your widget using Netmera Widget Dashboard which are;
+
+| [#text](#text "mention")                     | [#image](#image "mention")               | [#input](#input "mention")                     |
+| -------------------------------------------- | ---------------------------------------- | ---------------------------------------------- |
+| [#button](#button "mention")                 | [#radio-button](#radio-button "mention") | [#button-group](#button-group "mention")       |
+| [#text-area](#text-area "mention")           | [#checkbox](#checkbox "mention")         | [#select-box](#select-box "mention")           |
+| [#gif](#gif "mention")                       | [#video](#video "mention")               | [#rating](#rating "mention")                   |
+| [#score-rating](#score-rating "mention")     | [#spin-to-win](#spin-to-win "mention")   | [#slider-feedback](#slider-feedback "mention") |
+| [#emoji-feedback](#emoji-feedback "mention") | [#story](#story "mention")               | [#q-and-a](#q-and-a "mention")                 |
+
+{% hint style="info" %}
+**Tip:**
+
+You may customize all the elements supported in Netmera Panel. You may add and remove elements from your widget and make it appealing and convenient for your users. You may customize all your widgets using the tool bar on the right corner of your screen where you see "**box, spacing, border**" and more. For special customization for different elements, after you add the element in your widget; you will see "**Settings**" button on the right corner of the elements.
+{% endhint %}
+
+### **Text**
+
+The text element allows you to add customized text to your widget. You can specify the font, size, color, and formatting options such as bold or italic. Additionally, you can align the text to the left, center, or right. This element is useful for displaying messages, instructions, descriptions, or any other text content you want to convey to your users. You may also add an image to your text to make it more appealing for your users.
+
+When you add a **"Text"** to your widget, you may customize it with the options that you will see on the right side of the page. That page includes **bold, italics, underlined, font types, contrast, alignment, hyperlinks and more**. You may customize your text in line with your design, branding and widget aim by using these features on your Netmera panel.
+
+<figure><img src="/files/rA7CjHplRMpck4jtwFRg" alt=""><figcaption><p>Text</p></figcaption></figure>
+
+### **Image**
+
+With the image element, you can upload and display images within your widget. Adding images will make your widgets more appealing to your users and may possible result in better conversion rates.
+
+When you add an image element on your widget, you will see 3 options appear on image. You may **"choose an image"**, **"edit"**, or **"add click actions"**. Also, you may **align** your image using the tool bar on the right side of the screen.
+
+<figure><img src="/files/4rjP6xzgL1nQAnisyJMW" alt=""><figcaption><p>Image</p></figcaption></figure>
+
+### **Input**
+
+The input element enables you to include text input fields in your widget, allowing users to enter their information. You can specify the input type, such as text, email, or password, and set validation rules to ensure the entered data meets specific criteria. Customization options include setting the width, height, font, color, and placeholder text for the input field.
+
+You may add an Input element in your widget. If you want to change the written context in the Input box, you may choose "**Attributes**" as shown in the image below and next to **Placeholder,** write your own text to be shown to your users.
+
+<figure><img src="/files/75gn7r1Y4XisUH0541bT" alt=""><figcaption><p>Input</p></figcaption></figure>
+
+### **Button**
+
+Buttons are essential for triggering actions within your widget. You can customize the button's appearance by choosing "**Edit**" option and customize the **color, size, and shape**. Additionally, you can add text or icons to the button and define the action it performs, such as submitting a form, redirecting to another page, or initiating a specific event.&#x20;
+
+<figure><img src="/files/dqcmz2ffWiHZrNaTv8qk" alt="" width="563"><figcaption><p>Button Editor</p></figcaption></figure>
+
+Additionally, when you click on "**Edit**" option you can see "**Templates**" and choose a button for your widget from a wide variety of options.
+
+<figure><img src="/files/DstS8VVUb7514x0JixXd" alt="" width="563"><figcaption><p>Button Templates</p></figcaption></figure>
+
+### **Radio Button**
+
+The radio button element allows you to present users with a set of options where they can select only one choice. You can customize the appearance of the radio buttons, including the size, color, and spacing between options. Each option can have a label associated with it to provide clear descriptions.
+
+By using the identifier code on the right top corner of the page, you may edit your Click Action conditions for your buttons. For example, you may add an button under your radio buttons, and while adding a click action to your button; you may choose that radio button identifier as a condition.&#x20;
+
+<figure><img src="/files/mdnOr0cAiMcP8giMMOQH" alt=""><figcaption><p>Radio Button</p></figcaption></figure>
+
+### **Button Group**
+
+With the button group element, you can display **multiple buttons together**, offering users a selection of choices. You have control over the layout and styling of the button group, including the spacing between buttons and the overall design. Users can select a single option from the group, making it suitable for scenarios where only one choice is allowed.
+
+You can customize the button's appearance by choosing "**Edit**" option and customize the **color, size, and shape**. Additionally, you can add text or icons to the button and define the click action it performs, such as submitting a form, redirecting to another page, or initiating a specific event.&#x20;
+
+<figure><img src="/files/fm9Veb1D0YKABftaxKzO" alt=""><figcaption><p>Button Group</p></figcaption></figure>
+
+### **Text area**
+
+The text area element provides users with a larger text input area compared to a regular input field. It is useful when you expect users to enter longer responses, comments, or feedback. You can customize the size, font, color, and other styling options for the text area, providing a comfortable and visually appealing space for users to input their text.
+
+You may add an Input element in your widget. If you want to change the written context in the Input box, you may choose "**Attributes**" as shown in the image below and next to **Placeholder,** write your own text to be shown to your users.
+
+<figure><img src="/files/BJZlyZLa79M9EGvD9PJn" alt=""><figcaption><p>Text Area</p></figcaption></figure>
+
+### **Checkbox**
+
+Checkbox elements allow users to **select one or more options** from a list of choices. You can define the layout and appearance of the checkboxes, including the size, color, and spacing between options. Users can toggle the checkboxes to indicate their selections, making it suitable for scenarios where multiple choices can be made.
+
+Similar to Radio Button, by using the identifier code on the right top corner of the page, you may include your checkbox responses to your **Click Action** conditions.&#x20;
+
+<figure><img src="/files/Zdt2rYZ7u76rERcN9Jyq" alt=""><figcaption><p>Checkbox</p></figcaption></figure>
+
+### **Select box**
+
+The select box element, also known as a dropdown menu, presents users with a list of options from which they can choose a single selection. You can customize the appearance of the select box, including the size, color, and style of the dropdown arrow. Each option can have a label and a corresponding value, making it versatile for various selection scenarios.
+
+To customize the written context of your dropdown menu, click on **"Options"** on design widget menu and fill in **Names** and **Values** that you will use to track your data with.
+
+<figure><img src="/files/7ywD4cUnsUjN6litpQ3u" alt=""><figcaption><p>Select box</p></figcaption></figure>
+
+### **GIF**
+
+With the GIF element, you can incorporate animated GIFs into your widget to add visual interest and captivate users' attention. Customization options include adjusting the background, spacing, position of the GIF, etc. to ensure it fits seamlessly within your widget.
+
+To add a GIF to your GIF element, click on "**GIF Module**" and choose "**Settings**". Then add your GIF URL to and click OK.
+
+<figure><img src="/files/J14wdebmB6FNkneAwjCA" alt=""><figcaption><p>GIF</p></figcaption></figure>
+
+### **Video**
+
+The video element allows you to embed videos directly into your widget, enabling users to watch and interact with multimedia content. You can upload video files or embed videos from popular hosting platforms like YouTube or Vimeo. Customization options include setting the video size, aspect ratio, autoplay settings, and controlling the playback.
+
+To add a Video, simply drag and drop the video element, then click on "**Video Module**" and choose "**Settings**". Then add your Video URL to and click OK.
+
+<figure><img src="/files/6FJDc8hpcmgPWFsI9JGr" alt=""><figcaption></figcaption></figure>
+
+### **Rating**
+
+The rating element allows users to provide a numerical rating or feedback based on a specified scale. You can customize the number of rating stars, their appearance, and the scale range. This element is commonly used for gathering feedback, opinions, or ratings on products, services, or user experiences.
+
+<figure><img src="/files/HIPasAwhjfqUZYf8kDvR" alt=""><figcaption><p>Rating</p></figcaption></figure>
+
+### **Score Rating**
+
+The score rating element is similar to the rating element, but it allows users to provide a score or rating on a numeric scale instead of using stars. You can define the range of the scale, customize the appearance of the rating indicators, and specify the feedback text or labels associated with minimum and maximum scores.
+
+In order to customize your score rating, when you add the element to your widget, click on "Score Rating" and then click "Settings" inside of your widget. Then you may customize your element according to your needs. You may enter **a title, description, liked text, disliked text, button text,** and more. An example of how to fill in your score rating element is given below;
+
+<figure><img src="/files/1gPj4KMLLCh4vI6dNAWd" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/42Jr2GTRHOP6HJcaS1Jg" alt="" width="375"><figcaption></figcaption></figure>
+
+### **Slider Feedback**
+
+The slider feedback element enables users to provide feedback or input on a continuous scale by dragging a slider along a predefined range. You can customize the appearance with the slider. This element is ideal for capturing subjective opinions, preferences, or sentiment analysis. You may edit Text, Box, Spacing, and more in the tool bar on the right side of the screen.
+
+<figure><img src="/files/hgBQY72tzTQaqP0ELE1J" alt=""><figcaption><p>Slider Feedback</p></figcaption></figure>
+
+### **Emoji Feedback**
+
+The emoji feedback element allows users to express their emotions or opinions using a set of emojis or emoticons. Users can select an emoji that best represents their feelings or feedback. You can add an emoji feedback to your feedback widget to make it seem more friendly and casual than a score rating or rating button, which might be more suitable for formal businesses.&#x20;
+
+<figure><img src="/files/ER0zhfEQjoTY3bpxzSFV" alt=""><figcaption></figcaption></figure>
+
+### **Story**
+
+The story element provides a multimedia-rich format for presenting narratives, tutorials, or interactive content within your widget. It supports **thumbnails, videos and images**, however; you may add other interactive elements to create an engaging storytelling experience. You can customize the layout within the story to guide users through the content.
+
+<figure><img src="/files/Ha1RCI4tC6VMS6YF1Qr3" alt=""><figcaption><p>Story</p></figcaption></figure>
+
+To create your story module, add a story title and add icon and story url. Then, you may continue adding more URL's to your storyline to create an engaging storytelling experience.&#x20;
+
+<figure><img src="/files/8w6JDuEZKuw6tofzNxY1" alt=""><figcaption><p>Story Module Settings</p></figcaption></figure>
+
+### **Q\&A**
+
+The Q\&A element enables users to ask questions and receive answers within the widget. Users can submit their queries, and you can provide responses or engage in a conversation. This element is useful for customer support, FAQ sections, or interactive discussions. You can customize the layout, formatting, collect data for questions or answers to ensure a smooth Q\&A experience.
+
+<figure><img src="/files/B5XnmHxq7FfCJ8aiRDyR" alt=""><figcaption><p>Q&#x26;A</p></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/feedback-button/create-feedback-button/customize-widgets.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

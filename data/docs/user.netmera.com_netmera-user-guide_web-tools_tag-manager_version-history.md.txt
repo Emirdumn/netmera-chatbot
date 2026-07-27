@@ -1,0 +1,68 @@
+URL: https://user.netmera.com/netmera-user-guide/web-tools/tag-manager/version-history.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/web-tools/tag-manager/version-history.md).
+
+# Version History
+
+The **Version History** page provides a full record of changes made in your Tag Manager workspace. Each version represents a snapshot of your workspace at the time of publishing, including all tags, triggers, and variables.
+
+This ensures that you can:
+
+* Track what changes were made, by whom, and when.
+* Roll back to previous versions if needed.
+* Maintain accountability and transparency across your team.
+
+### Step 1: Open Version History
+
+From your **Workspace**, select **Version History**.
+
+<figure><img src="/files/xPuQ966wBLDLnSl3P1eX" alt=""><figcaption></figcaption></figure>
+
+### Step 2: Review Versions
+
+At the top of the page, you will see a summary:
+
+* **Live Version** – the currently published version number and who published it.
+* **Tag Count** – total number of tags in the workspace.
+* **Trigger Count** – total number of triggers in the workspace.
+* **Variable Count** – total number of variables in the workspace.
+
+Below the summary, a table lists all published versions with:
+
+* **Version** – the incremental version number.
+* **Release Note** – description of what was changed in that version.
+* **Published at** – timestamp of when the version was published.
+* **Published by** – the team member who published the version.
+* **Actions** – options to view, compare, or roll back.
+
+The latest version is marked as **LIVE**.
+
+### Step 3: Use Actions
+
+For each version, you can:
+
+* **Fork** – Create a copy of that version to use as a starting point. This is useful if you want to branch off an older version without overwriting it.
+* **Publish** – Make that version the **live workspace**. This overwrites the current live version with the selected one.
+* **Preview** – Test the selected version before publishing. This allows you to validate tags, triggers, and variables in a safe environment.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/web-tools/tag-manager/version-history.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

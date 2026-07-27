@@ -1,0 +1,64 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel/troubleshoot-funnel-issues.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel/troubleshoot-funnel-issues.md).
+
+# Troubleshoot Funnel Issues
+
+Use this page when a funnel does not behave as expected. After following these steps, you will be able to check visibility, validate why a funnel shows no data, reduce slow load times, and verify that report changes are reflected correctly.
+
+### Step 1: Check whether the funnel is visible
+
+If you cannot find a funnel, check its visibility badge on the Funnel Dashboard.
+
+A funnel set to **Only me** is only visible to the user who created it.
+
+If needed, ask the funnel owner to change the visibility.
+
+### Step 2: Check why the funnel shows no data
+
+Review the configuration in this order.
+
+1. Make sure the selected date range includes event data.
+2. Make sure the funnel contains at least two steps.
+3. Make sure the selected events were triggered during the selected date range.
+4. Check whether audience filters or excluded events are narrowing the result too much.
+
+For example, a new funnel can return no data if the selected date range starts before the event collection begins.
+
+### Step 3: Reduce slow report loading
+
+Large accounts and long date ranges can take longer to load.
+
+Narrow the date range first.
+
+This is especially useful when the current range is **6M** or **12M**.
+
+### Step 4: Check why the visualization does not update
+
+Refresh the page and open the funnel again.
+
+The configured settings are preserved after refresh.
+
+If the view still looks outdated, confirm that the funnel was saved after the last change.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel/troubleshoot-funnel-issues.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

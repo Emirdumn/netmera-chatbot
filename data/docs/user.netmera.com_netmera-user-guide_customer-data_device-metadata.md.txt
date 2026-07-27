@@ -1,0 +1,81 @@
+URL: https://user.netmera.com/netmera-user-guide/customer-data/device-metadata.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/customer-data/device-metadata.md).
+
+# Device Metadata
+
+Netmera SDK automatically collects key metadata from user devices to help you deliver smarter segmentation, real-time personalization, and meaningful analytics. These predefined system attributes serve as foundational building blocks in audience targeting, behavior tracking, and campaign optimization.
+
+### Key Advantages
+
+Device metadata plays a foundational role in how Netmera enables data-driven customer engagement. This information allows businesses to:
+
+* **Deliver relevant content:** By understanding the user's device, operating system, and location, you can adjust your messaging strategy to match the technical context of the recipient.
+* **Improve segmentation accuracy:** System-level data supports the creation of dynamic audiences based on attributes like OS version, app version, device region, or language.
+* **Enhance analytical depth:** These fields help enrich dashboards and reporting by enabling breakdowns by platform, version, manufacturer, and more.
+* **Support targeted debugging:** Understanding which environments are affected during technical issues (e.g., crashes on specific devices or OS versions) speeds up resolution time.
+
+### Collected Fields
+
+<table><thead><tr><th width="198.55133056640625">Field</th><th>Description</th></tr></thead><tbody><tr><td><code>appV</code></td><td>Application version (e.g., <code>4.3.3.0</code>)</td></tr><tr><td><code>mdl</code></td><td>Device model code (e.g., <code>T782H</code>)</td></tr><tr><td><code>lang</code></td><td>System language setting (<code>tr_TR</code>, <code>en_US</code>, etc.)</td></tr><tr><td><code>mnf</code></td><td>Device manufacturer (<code>TCL</code>, <code>Apple</code>, <code>Samsung</code>, etc.)</td></tr><tr><td><code>oc</code></td><td>Operator code (MCC + MNC as integer, e.g., <code>28502</code> = Operator TR)<br><strong>Note:</strong> Deprecated in iOS 15.4+</td></tr><tr><td><code>oper</code></td><td>Mobile operator name (e.g., <code>Operator TR</code>)<br><strong>Note:</strong> Deprecated in iOS 15.4+</td></tr><tr><td><code>osV</code></td><td>Operating system version (e.g., Android <code>11</code>, iOS <code>16.5</code>)</td></tr><tr><td><code>psV</code> (Android only)</td><td>Google Play Services version</td></tr><tr><td><code>rgn</code></td><td>Region/country code (<code>TR</code>, <code>US</code>, <code>DE</code>, etc.)</td></tr><tr><td><code>tzid</code></td><td>Time zone identifier (e.g., <code>Europe/Istanbul</code>)</td></tr></tbody></table>
+
+#### About `oc` (operator code) and `oper` (operator name) Parameters
+
+* **iOS**: These fields are collected **only on iOS versions 13 through 15.3**. As of iOS 15.4, Apple has deprecated access to this data due to privacy policy updates.
+* **Android**: These fields are still supported and continue to be collected.
+
+### Common Use Cases
+
+Device metadata contributes to several critical use cases across marketing, analytics, and development teams:
+
+#### 1. Version-Based Targeting
+
+Use **App Version** and **Operating System Version** to:
+
+* Identify users on outdated versions and prompt them to upgrade.
+* Run A/B tests for new features based on OS or app version compatibility.
+
+#### 2. Region and Language-Specific Campaigns
+
+Use **Region Code** and **Device Language** to:
+
+* Automatically localize message content according to the user’s language settings.
+* Filter or exclude users in unsupported countries or regions.
+
+#### 3. Telecom-Specific Analysis (Android Only)
+
+Use **Operator Code** and **Operator Name** to:
+
+* Analyze user distribution by mobile carrier.
+* Correlate user engagement or churn with specific telecom providers.
+
+> **Note:** These two fields are only available on Android and iOS versions 13 through 15.3. They are deprecated on iOS 15.4 and later due to Apple’s privacy restrictions.
+
+#### 4. Device-Specific Performance Analysis
+
+Use **Device Model** and **Device Manufacturer** to:
+
+* Detect patterns in performance issues or crashes linked to specific devices.
+* Adapt in-app experiences or campaign content based on device capabilities (e.g., optimize for low-end vs. high-end devices).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/customer-data/device-metadata.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

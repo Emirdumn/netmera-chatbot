@@ -1,0 +1,353 @@
+URL: https://netmera.com/tamfinans-case-study/
+
+Tam Finans Case Study
+
+AI did the predicting, and Journeys did the convincing. UPTION's churn fell 16.6%. →
+
+ 
+
+ 
+
+			Skip to content		
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Login
+
+Get a Demo
+
+    Copy .SVG
+  
+
+    Media Kit
+  
+
+    Newsroom
+  
+
+ 
+
+ 
+
+Success Story
+ 
+
+Tam Finans mobile re-engages users with 
+personalized automation,
+ sees 39% growth in MAU
+ 
+
+ 
+
+Introduction
+ 
+
+Tam Finans
+ is one of Turkey’s leading non-bank financial institutions, specializing in micro SME focused factoring solutions. With 55,000+ active customers, 48 branches and 70 teams, it helps small businesses and tradespeople turn their postdated checks and invoices into cash, offering fast and accessible working capital. With the
+ Tam Finans Mobile
+ app, users can manage their financing needs in seconds — from uploading invoices to tracking limits and payments.
+ 
+
+ 
+
+Challenge
+ 
+
+Tam Finans Mobile wanted to re-engage inactive users and increase daily app activity. While the app had a strong user base, a significant portion of users became inactive after initial sign-up. The team needed a way to automate personalized outreach and bring users back into the app experience without manual effort.
+ 
+
+ 
+
+Solution
+ 
+
+Using Netmera’s 
+push notification
+, 
+in-app messaging
+, automation and 
+segmentation capabilities
+, Tam Finans Mobile launched a personalized “We Miss You” campaign targeting users who hadn’t opened the app in the last 7 days. The message was crafted to feel personal and timely, encouraging users to return and explore available financial services.
+ 
+
+Results
+ 
+
+By identifying the right timing and audience, and automating personalized communication, Tam Finans Mobile successfully reactivated dormant users and strengthened long-term engagement. The win-back campaign delivered impressive results within just a few months:
+ 
+
+0
+
+K
+
+Monthly active users increased from
+ 22,160
+ in March to 
+30,940
+ in June.
+ 
+
+0
+
+%
+
+This represented a 39.62% growth in 
+active user base.
+ 
+
+0
+
+%
+
+21%
+ of users who clicked the push notification 
+converted
+, meaning they used the 
+microfactoring calculator
+ on the landing page.
+ 
+
+Product
+ 
+
+Marketing Automation
+ 
+
+Data-Driven Messaging
+ 
+
+Push Notification
+ 
+
+Topic
+ 
+
+Inactive Users
+ 
+
+Retention
+ 
+
+ 
+
+ 
+
+Testimonial
+ 
+
+									“With Netmera, we’re able to send automated, personalized messages triggered by user behavior, which helped us successfully bring inactive users back to the app. This strategy significantly boosted engagement and contributed to revenue growth. By combining automation, segmentation, and personalization, we achieved a major lift in active users — all while cutting campaign setup time by 50%, with zero need for developer support.”								
+
+Esra Selen Demir
+ 
+
+Growth Leader
+ 
+
+ 
+
+Check other stories
+ 
+
+Blog
+Turkcell Pasaj Case Study
+Turkcell Pasaj cut cart abandonment and doubled conversions, increasing monthly revenue up to 150% with automated push campaigns.
+Read More
+DenizBank Case Study
+DenizBank cut bounce rates 41% and restored loan application completion to 10% using Funnel Analysis and targeted push notifications.
+Read More
+Fastpay Case Study
+Automated push and data tracking doubled Fastpay's conversions. Comms efficiency rose 80%, and CTR 55%.
+Read More
+ 
+
+ 
+
+Subscribe to our newsletter
+ 
+
+ 
+
+Products
+ 
+
+Customer Data Management
+
+Customer Journeys
+
+AI Site Search & Browse
+
+Web Personalization
+
+Testing and Experimentation
+
+Data & Analytics
+
+Tagless Data Capture
+
+Surveys & Feedback​
+
+Funnels
+
+Channels
+ 
+
+Mobile & Web Push
+
+E-Mail
+
+SMS
+
+Whatsapp
+
+Mobile In-App
+
+Web Pop-Ups
+
+Live Activities
+
+Feedback Button
+
+Netmera AI
+
+Industries
+ 
+
+Media and Entertainment
+
+Banking and Finance
+
+Retail and E-commerce
+
+Travel and Hospitality
+
+Telecommunication
+
+Company
+ 
+
+About Us
+
+Careers
+
+Contact Us
+
+Partners
+
+Why Netmera
+
+Newsroom
+
+Information for AI
+
+Resources
+ 
+
+Blog
+
+Glossary
+
+Top Use Cases
+
+Resources
+
+Success Stories
+
+Developer and User Guide
+
+ 
+
+© 2026 — 
+Netmera
+. All Rights Reserved.   |   
+Privacy Policy
+   |   
+Cookie Policy (EU)
+   |   
+GDPR
+   |   
+KVKK
+ 
+
+Linkedin
+
+ 
+
+Youtube
+
+ 
+
+ 
+
+ 
+
+Manage Cookie Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+						Always active					
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+
+Deny
+
+View preferences
+
+Save preferences
+
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent

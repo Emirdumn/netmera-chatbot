@@ -1,0 +1,134 @@
+URL: https://user.netmera.com/netmera-user-guide/web-tools/web-personalization/create-new-experience/setup-and-rules.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/web-tools/web-personalization/create-new-experience/setup-and-rules.md).
+
+# Setup and Rules
+
+**Web Tools > Experiences > Web Personalization > Publish a New Experience**
+
+## Step 1: Setup
+
+Click the "Publish New Personalization Experience" button in the upper right. **Ensure each experience has a unique name; you cannot use the same name more than once.**
+
+<figure><img src="/files/miuvggRsD6y4EpJ1cJOq" alt=""><figcaption></figcaption></figure>
+
+## Step 2: Rules
+
+In the "Publish New Experience" pages "**Rules**" section, you have five functions. You can select the trigger type, the page you want to modify, add changes, apply filters, and schedule your experience.
+
+### Trigger Type
+
+The default trigger type is "**page load**," recommended for most websites, except for single-page applications, which require the "**continuous**" trigger type due to site structure.
+
+### Changes
+
+In the "Changes" section, you can make modifications by entering the URL of the page you want to change and clicking the "Add Changes" button. No need to enter URL information for changes on the home page. When entering URL information, **include the part of the URL after the home page,** not the entire URL. For example, to make changes to "[www.netmera.com/products](http://www.netmera.com/products)" page, type "/products" in the Page field.
+
+<figure><img src="/files/RzbjmSbA69I33EB4ZyuN" alt=""><figcaption></figcaption></figure>
+
+### Filters
+
+When you press "Filters" from the Rules section, the filter menu will open on the right, presenting you with 12 different filter types to refine your web personalization experiences. Below you might find descriptions of available filters and some suggestions on how you may implement those filters for your web personalization experiences.
+
+{% hint style="info" %}
+**Tip**:
+
+You may add multiple filters and combine them to create sophisticated and precisely targeted web personalization experiences.
+{% endhint %}
+
+1. **Device Type:** Filter your experiences based on users' devices, including Desktop, Mobile, and Tablet.
+2. **Operating System:** Segment your audience by operating system, such as Windows, MacOS, iOS, Android, and Others.
+3. **Browser:** Target users according to their web browsers, such as Chrome, Safari, Firefox, Edge, Opera, Yandex, and Others.
+4. **Screen Width:** Refine experiences by filtering users based on screen width minimum and maximum values, manually entered to fit specific requirements.
+5. **Current Date:** Deliver personalized experiences based on the current date using Match, Before, or After operators, along with specific time zones.
+6. **Cookie:** Filter your experiences based on a specific cookie value, tailoring content to users' browsing history.
+
+{% hint style="success" %}
+**Example:**
+
+Personalize content based on users' previous interactions using cookies. For instance, show personalized product recommendations or display targeted advertisements based on users' browsing history.
+{% endhint %}
+
+7. **Tag:** Segment users with specific Tags using Has and Has not operators, allowing precise targeting.
+
+{% hint style="success" %}
+**Example:**
+
+Segment users using specific tags associated with their behavior or preferences. For example, create tags like **"frequent shoppers," "new users," or "loyalty program members"** to deliver tailored content and offers to each group.
+{% endhint %}
+
+8. **Segment:** Refine experiences by filtering users based on specific Segments using In or Not in operators, creating personalized interactions.
+
+{% hint style="success" %}
+**Example:**
+
+Refine experiences for different segments of users based on **demographics, interests, or engagement levels.** For example, target a segment of "premium subscribers" with exclusive content or perks.
+{% endhint %}
+
+9. **Time Spent on Site:** Customize experiences based on users' time spent on the site, offering tailored content for various engagement levels.
+
+{% hint style="success" %}
+**Example:**
+
+Customize experiences based on users' time spent on the website. For instance, show exit-intent pop-ups or special offers to users who have spent a significant amount of time on a specific page to encourage conversions.
+{% endhint %}
+
+10. **Location:** Filter experiences for users in specific locations, enabling targeted promotions for different geographic regions.
+
+{% hint style="success" %}
+**Example:**
+
+Deliver location-specific content and promotions to target users in different geographic regions. For example, promote local events, store openings, or regional offers based on users' geolocation data.
+{% endhint %}
+
+11. **Source URL:** Segment users based on the Medium, Source, and Campaign parameters of their referring URLs, enhancing campaign targeting.
+
+{% hint style="success" %}
+**Example:**
+
+Segment users based on the sources that directed them to your website. For example, deliver personalized messages or offers to users coming from specific referral sources, such as social media platforms or email campaigns.
+{% endhint %}
+
+12. **Page URL:** Filter experiences for users on specific Page URLs, ensuring precise content delivery.
+
+{% hint style="success" %}
+**Example:**
+
+Customize experiences based on the specific pages users are visiting. For instance, provide personalized content recommendations or offers related to the page's topic or category to enhance user engagement.
+{% endhint %}
+
+<figure><img src="/files/274ZZGWZaec1HHk78gOp" alt=""><figcaption></figcaption></figure>
+
+### Advanced Settings
+
+You can schedule your experiences start and end date with **Advanced Settings > Schedule** option. Also you can set client timezone parameter to dynamically optimize time.
+
+<figure><img src="/files/jD8LrXS0cOAIIyFPEZ5C" alt=""><figcaption></figcaption></figure>
+
+### **Creating Experiences**
+
+You can start creating your experiences with **Add Changes** button in **Rules > Changes** section.
+
+<figure><img src="/files/YAu1gG1Tigpy94uvGBuZ" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/web-tools/web-personalization/create-new-experience/setup-and-rules.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

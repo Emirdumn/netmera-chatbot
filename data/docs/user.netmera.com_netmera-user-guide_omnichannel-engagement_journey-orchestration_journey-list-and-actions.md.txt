@@ -1,0 +1,155 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-list-and-actions.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-list-and-actions.md).
+
+# Journey List and Actions
+
+Use the **Journey List** to review existing journeys, identify the correct draft or live journey, and take the next action without opening every flow one by one. After following this page, you will be able to read the list accurately, locate the right journey faster, and choose the correct action for editing, testing, launching, archiving, or cloning.
+
+### Step 1: Open the Journey List and understand what it shows
+
+The **Journey List** is the main workspace for journey management. It brings creation, search, sorting, and row-level actions into one view.
+
+Use this page when you need to check journey status, continue work on a draft, activate a completed journey, or reuse an existing configuration.
+
+{% hint style="info" %}
+Use the list when you want to manage many journeys quickly. Open the journey itself only when you need to change the actual flow or settings.
+{% endhint %}
+
+<figure><img src="/files/a3YkdzWT8zxmSNxzJs8O" alt=""><figcaption></figcaption></figure>
+
+### Step 2: Read the list columns before taking action
+
+Each row represents one journey. The columns help you decide whether you are looking at the correct journey and whether it is safe to act on it.
+
+<table><thead><tr><th width="163.12744140625">Column</th><th width="208.8758544921875">What it shows</th><th>How to use it</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td>The internal journey name.</td><td>Use clear naming to distinguish drafts, tests, and production journeys.</td></tr><tr><td><strong>Status</strong></td><td>The current lifecycle state of the journey.</td><td>Check whether the journey is still being prepared, already running, or no longer active.</td></tr><tr><td><strong>Type</strong></td><td>How the journey starts.</td><td>Use this to confirm whether the journey is <strong>Action Based</strong> or <strong>Time Based</strong>.</td></tr><tr><td><strong>Created By</strong></td><td>The user who created the journey.</td><td>Use this when ownership matters or when you need to contact the original builder.</td></tr><tr><td><strong>Created At</strong></td><td>The date the journey was created.</td><td>Use this to identify older drafts or recently added journeys.</td></tr><tr><td><strong>Last Updated By</strong></td><td>The user who last changed the journey.</td><td>Use this to see who made the most recent edit.</td></tr><tr><td><strong>Last Updated At</strong></td><td>The date of the most recent change.</td><td>Use this to find the newest working version.</td></tr><tr><td><strong>Action</strong></td><td>The available quick actions for that row.</td><td>Use this area to edit, activate, test, archive, or clone the journey.</td></tr></tbody></table>
+
+If a value is not available, the field may appear empty or display **—**. This usually means the system does not have a value to show for that field on that journey yet.
+
+### Step 2.1: Use sorting to review journeys in the right order
+
+Select **Created At** or **Last Updated At** to sort the list. Selecting the same column again reverses the sort direction between ascending and descending order.
+
+Use **Created At** when you want to review journeys by age. Use **Last Updated At** when you want to find work that changed recently.
+
+For example, if several team members edit journeys during the same week, sorting by **Last Updated At** helps you find the latest draft without opening each one.
+
+<figure><img src="/files/4gEFkIqww6Dziq48pyQn" alt="" width="245"><figcaption></figcaption></figure>
+
+### Step 3: Find the journey you want to manage
+
+Use search when you know part of the journey name. Use filters when the list is too broad and you need to narrow the results before choosing an action.
+
+#### Step 3.1: Search by name
+
+Enter part of the journey name to reduce the visible rows. This is the fastest option when your naming pattern is consistent.
+
+For example, searching for `Winback` can surface all winback journeys even if they use different channels or audiences.
+
+<figure><img src="/files/HiwSys7ITOKklwhjRqbz" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Step 3.2: Apply filters when search is not enough
+
+Use the available filters to narrow the list further. This is helpful when many journeys share similar naming patterns or when you need to review a smaller working set.
+
+For example, if your space contains many draft journeys, filters can help isolate the set you want to review before activation or cleanup.
+
+<figure><img src="/files/vZ3WTweTXbuo4ndWyJkh" alt="" width="242"><figcaption></figcaption></figure>
+
+### Step 4: Choose the correct row action
+
+Once you find the correct journey, use the controls in the **Action** column. Pick the action based on the journey state and the outcome you want.
+
+<table><thead><tr><th width="141.0535888671875">Action</th><th>When to use it</th><th>What happens next</th></tr></thead><tbody><tr><td><strong>Edit</strong></td><td>You need to change configuration or flow logic.</td><td>The journey opens for further updates.</td></tr><tr><td><strong>Activate</strong></td><td>The journey is fully reviewed and ready to run.</td><td>The journey starts running as a live journey.</td></tr><tr><td><strong>Test Activate</strong></td><td>You want to validate behavior before a wider launch.</td><td>The journey runs in a test state for validation.</td></tr><tr><td><strong>Archive</strong></td><td>You no longer manage the journey as part of active work.</td><td>The journey is moved out of the regular working set.</td></tr><tr><td><strong>Clone</strong></td><td>You want to reuse an existing setup without changing the original.</td><td>A copied version is created as a new draft.</td></tr></tbody></table>
+
+#### Step 4.1: Use **Edit** to continue work on a journey
+
+Select the **edit** icon when you need to change entry rules, audience settings, conversion configuration, or the journey flow itself. This is the right action for unfinished drafts and for planned updates to a journey that is not ready to launch yet.
+
+For example, if a draft uses the wrong segment or an outdated delay step, open it with **Edit**, update the configuration, and save the revised version before you consider activation.
+
+#### Step 4.2: Use **Activate** when the journey is final
+
+Select the **activate** icon when the journey is ready to go live. Use this only after you confirm that the entry rule, audience, and conversion setup match the intended production behavior.
+
+{% hint style="info" %}
+Before activation, confirm the same core areas you review on [Launch](/netmera-user-guide/omnichannel-engagement/journey-orchestration/launch.md): conversion event, entry rule, audience, and journey flow.
+{% endhint %}
+
+For example, if your journey should start when users complete a purchase event and should target a single audience segment, verify those settings before activation. If either setting is still under review, keep the journey as a draft.
+
+#### Step 4.3: Use **Test Activate** to validate the journey safely
+
+Select **Test Activate** from the action menu when you want to check the journey behavior before a broader rollout. This is especially useful for journeys that include communication steps such as mobile push or in-app messages.
+
+For example, if a journey sends a push notification one hour after a trigger event, use **Test Activate** to confirm the trigger, timing, and message delivery on test users before you activate the live version.
+
+If you need test devices first, see [Test Devices](/netmera-user-guide/panel-settings/settings/administration/test-devices.md).
+
+#### Step 4.4: Use **Archive** to reduce clutter in active work
+
+Select **Archive** for journeys you no longer work on regularly. This keeps the list easier to review when your team manages many drafts, tests, and live journeys at the same time.
+
+For example, if a seasonal campaign has ended and the journey is no longer part of the current operating set, archive it so current journeys are easier to find.
+
+#### Step 4.5: Use **Clone** to reuse a proven setup
+
+Select **Clone** when you want to create a new draft based on an existing journey. This is useful when the structure is already correct and you only need to change a few details.
+
+For example, if you already have a working onboarding journey for one audience, clone it to create a version for a second audience instead of rebuilding the flow from the beginning.
+
+{% hint style="success" %}
+Clone before major experiments. This preserves the original journey while giving you a separate draft for testing new timing, branches, or messages.
+{% endhint %}
+
+<figure><img src="/files/31bXADoo3BLpJ9pziH5x" alt="" width="211"><figcaption></figcaption></figure>
+
+### Step 5: Create a new journey from the list
+
+Select **Create New Journey** when you want to build a new flow instead of managing an existing one. This takes you into the journey creation flow.
+
+Use this path when no existing journey is close enough to reuse with **Clone**.
+
+For example, if you are launching a completely new retention program with different triggers and goals, create a new journey rather than editing an unrelated existing one.
+
+Continue with [Setup](/netmera-user-guide/omnichannel-engagement/journey-orchestration/setup.md) to configure the new journey.
+
+### Step 6: Confirm the result in the list
+
+After you complete an action, return to the list and verify that the row reflects the expected outcome. The exact confirmation depends on the action you used.
+
+* After **Edit**, review **Last Updated By** and **Last Updated At**.
+* After **Activate** or **Test Activate**, review the **Status** field.
+* After **Clone**, look for the new draft entry in the list.
+
+For example, if you activated a journey and the status does not change as expected, review the journey again before assuming it is live.
+
+### What to do next
+
+Use the next page based on the task you are performing:
+
+* Continue configuration in [Setup](/netmera-user-guide/omnichannel-engagement/journey-orchestration/setup.md).
+* Finalize launch behavior on [Launch](/netmera-user-guide/omnichannel-engagement/journey-orchestration/launch.md).
+* Monitor performance in [Journey Analytics](/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-analytics.md).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-list-and-actions.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,85 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/email-onboarding/email-integrations.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/email-onboarding/email-integrations.md).
+
+# Email Integrations
+
+At Netmera, we prioritize a seamless integration experience when connecting with third-party email platforms like **Amazon SES**, **Setrow**, or **Uzman Posta**. Our goal is to guide you through each step of the process to ensure successful setup and optimal campaign performance.
+
+<div align="left"><figure><img src="/files/O9qyWPmAjaWUvgdgDxBx" alt="" width="259"><figcaption></figcaption></figure> <figure><img src="/files/OhXOxxOR8OkXJzgP4zqv" alt=""><figcaption></figcaption></figure> <figure><img src="/files/GXSdJ4PGtvUnarAakeKa" alt=""><figcaption></figcaption></figure></div>
+
+#### 1. Account Activation & Setup
+
+* **Provide Information**: Share your company details and specific email requirements.
+* **Contact Establishment**: Netmera will initiate communication with your selected email platform.
+* **Provider Collaboration**: We coordinate with Amazon, Setrow, or Uzman Posta to ensure your account is configured correctly.
+* **Account Activation**: Once verified, your account will be activated for use.
+
+#### 2. DNS Configuration
+
+Proper DNS setup is essential for successful email delivery.
+
+* **Amazon SES**: Netmera handles DNS configuration to ensure a streamlined setup.
+* **Setrow**: The provider performs its own DNS checks and completes the process by whitelisting your domain.
+* **Uzman Posta**: DNS settings must be obtained from the provider and added as instructed.
+
+> Ensure all DNS records are correctly configured to maintain high deliverability and proper sender authentication (e.g., SPF, DKIM, and DMARC).
+
+#### 3. Integration with Netmera
+
+* **Navigation**:\
+  `Netmera Panel > Connectors > Email > Install`
+* **Configuration**:\
+  After clicking **Install**, you'll be redirected to the integration setup page. Enter the details provided by your email platform.
+* **API Key Requirement**:\
+  Your Netmera API Key is required to complete the integration. You can find it under:\
+  `Netmera Panel > Developers > API`
+
+<figure><img src="/files/6ao4pLxCjy8hCuXxuLUH" alt=""><figcaption></figcaption></figure>
+
+#### 4. Platform-Specific Guidance
+
+Each platform may require unique settings or credentials. Ensure you collect and enter the following where applicable:
+
+* **Amazon SES**: Access key, secret key, region, verified domain, etc.
+
+<figure><img src="/files/oxPh3FobCt5bYODR6goo" alt="" width="563"><figcaption></figcaption></figure>
+
+* **Setrow**: API credentials and domain verification details.
+
+<figure><img src="/files/RYyuok9S27DUIyNPVdOQ" alt="" width="563"><figcaption></figcaption></figure>
+
+* **Uzman Posta**: SMTP settings or API key, based on integration type.
+
+<figure><img src="/files/wSlZjUXq7UnDWf4BCZwT" alt=""><figcaption></figcaption></figure>
+
+#### 5. IYS (Permission Management System) Management
+
+Netmera supports flexible IYS management options:
+
+* **Internal Management**: If you prefer to manage IYS within Netmera, you can configure your IYS Code and Brand Code under the **Integration** section.
+* **External Management**: Alternatively, if IYS is managed externally, we’ll coordinate accordingly.
+
+> Proper IYS integration ensures compliance with Turkish email marketing regulations and improves message deliverability.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/email-onboarding/email-integrations.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

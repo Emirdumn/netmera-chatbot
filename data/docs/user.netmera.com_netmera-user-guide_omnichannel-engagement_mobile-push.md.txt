@@ -1,0 +1,99 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push.md).
+
+# Mobile Push
+
+Mobile Push is for delivering instant, personalized messages on mobile devices. Use it to engage users with announcements, highlight promotions, send transactional alerts, and trigger behavior-based nudges that drive retention, conversions, and in-app activity. Campaigns can be targeted, timed, and measured with rich notification formats including text, image/video, carousel/slider, and product recommendations.
+
+<figure><img src="/files/nzjeYCOSr834xqeN4smG" alt="" width="563"><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+Want to send your first push? Start here: [Create Mobile Push](/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push.md).
+{% endhint %}
+
+### Start here (most-used topics)
+
+<table data-view="cards"><thead><tr><th>What you want to do</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Create and send a push campaign</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/KtUozACholqznnj4kXht">/spaces/X6uilbEAw42gqsudlclY/pages/KtUozACholqznnj4kXht</a></td></tr><tr><td>Personalize title/body/subtext with profile attributes</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/D6B5xlczmUlcdNHoiZr0">/spaces/X6uilbEAw42gqsudlclY/pages/D6B5xlczmUlcdNHoiZr0</a></td></tr><tr><td>Know what each push element means (icon, title, body, media, buttons)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/Bx4l2qIMAKFXCHw2jNDO">/spaces/X6uilbEAw42gqsudlclY/pages/Bx4l2qIMAKFXCHw2jNDO</a></td></tr><tr><td>Add image/video content</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/msJkIldvDzQaPIQFq2MP">/spaces/X6uilbEAw42gqsudlclY/pages/msJkIldvDzQaPIQFq2MP</a></td></tr><tr><td>Add buttons and click actions</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/WxyGgVj8kDV2arBwBiTK">/spaces/X6uilbEAw42gqsudlclY/pages/WxyGgVj8kDV2arBwBiTK</a></td></tr><tr><td>Organize pushes for reporting and filtering</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/sb9MyDtGyvOprLJw0SpE">/spaces/X6uilbEAw42gqsudlclY/pages/sb9MyDtGyvOprLJw0SpE</a></td></tr><tr><td>Use rich formats (banner, carousel, slider, product discovery)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/TbGnArP3ywYmJ14sM8pe">/spaces/X6uilbEAw42gqsudlclY/pages/TbGnArP3ywYmJ14sM8pe</a></td></tr><tr><td>Add custom notification sounds</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/eGS3qAORxgy4PoqFZesI">/spaces/X6uilbEAw42gqsudlclY/pages/eGS3qAORxgy4PoqFZesI</a></td></tr></tbody></table>
+
+### Quickstart: send a push campaign
+
+{% stepper %}
+{% step %}
+
+#### 1) Pick the goal and format
+
+Text for speed. Media for engagement. Carousel/slider for multiple items.
+
+Use Android-only formats only when the audience is Android-heavy.
+{% endstep %}
+
+{% step %}
+
+#### 2) Build the campaign
+
+Follow the guided flow: Setup → What → Who → When → GO.
+{% endstep %}
+
+{% step %}
+
+#### 3) Add targeting and guardrails
+
+Use segments/tags.
+
+Use message limits and expiry to avoid spam and stale pushes.
+{% endstep %}
+
+{% step %}
+
+#### 4) Test and send
+
+Send a test to your device.
+
+Then launch to your target audience.
+{% endstep %}
+
+{% step %}
+
+#### 5) Measure results
+
+Use campaign reports for delivery/open/conversion.
+
+Use Event Insight for behavioral follow-through.
+{% endstep %}
+{% endstepper %}
+
+### Notification formats
+
+<figure><img src="/files/RfiandKbbvpNQ8Uji471" alt=""><figcaption><p>Types of Push Notifications</p></figcaption></figure>
+
+#### Picking a format (fast rule of thumb)
+
+* If the push must be read in 2 seconds → **Text**
+* If the push must sell visually → **Image/Video**
+* If you need choice inside the push → **Carousel/Slider**
+* If you’re sending product recs to Android users → **Product Discovery**
+
+<table><thead><tr><th width="117.48738606770831">Notification</th><th width="254.13568115234375">Strengths</th><th width="247.7098388671875">Weaknesses</th><th>Platform</th></tr></thead><tbody><tr><td><strong>Text</strong></td><td>Fast and clear.</td><td>Low visual impact.</td><td>Mobile</td></tr><tr><td><strong>Image</strong></td><td>Higher attention with rich media.</td><td>Less room for details.</td><td>Mobile</td></tr><tr><td><strong>Banner</strong></td><td>Prominent layout.</td><td>Android only. Can feel intrusive.</td><td>Android</td></tr><tr><td><strong>Carousel</strong></td><td>Multiple items in one push.</td><td>Can overwhelm if overstuffed.</td><td>Mobile</td></tr><tr><td><strong>Slider</strong></td><td>Good for browsing items.</td><td>Not ideal for every use case.</td><td>Mobile</td></tr><tr><td><strong>Product Discovery</strong></td><td>Product cards + CTA.</td><td>Android only.</td><td>Android</td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

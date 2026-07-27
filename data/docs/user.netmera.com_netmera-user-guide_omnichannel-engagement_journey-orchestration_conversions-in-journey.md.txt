@@ -1,0 +1,149 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/conversions-in-journey.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/conversions-in-journey.md).
+
+# Conversions in Journey
+
+### Defining Conversion Success in a Journey
+
+After creating a journey and providing a clear name and description, the next critical step is defining **how success will be measured**. This is done by selecting a **conversion event**, which determines whether the journey has achieved its intended goal.
+
+For more information about configuring a journey, see **Journey Setup**.
+
+Choosing the correct conversion event is essential, as **all conversion metrics within the journey are calculated based on this selection**.
+
+### What Is a Conversion?
+
+A **conversion** represents the successful completion of a user action that is valuable for the business.
+
+A **conversion event** is the specific event used to identify when this success occurs. It is defined by the business or marketing team and serves as the primary success indicator for the journey.
+
+Conversion metrics help evaluate:
+
+* How effectively a journey drives the desired user behavior
+* How well the journey supports overall business objectives
+
+#### Common Conversion Event Examples
+
+* Making a purchase
+* Applying for a credit card
+* Updating profile information
+* Viewing a specific screen
+
+### Choose Conversion Event for Your Journeys
+
+In this step, select the event that represents success for the journey. The selected conversion event directly determines how journey performance is measured. Use the dropdown menu to choose a conversion event that aligns with the journey’s objective.
+
+**Example:**\
+Selecting **Purchase** means the journey is considered successful when a user completes a transaction.
+
+<figure><img src="/files/Ta6o789au6jdBGIGkqet" alt=""><figcaption></figcaption></figure>
+
+### Add Trigger Filters
+
+To track specific conditions of the selected conversion event, enable **Add Trigger Filters**.
+
+This option allows you to define rules based on event attributes using **AND logic**, ensuring that only relevant event occurrences are counted as conversions.
+
+**Example filter setup:**
+
+* Payment Method equals Credit Card
+* AND Order Value is greater than 50
+
+Trigger filters improve measurement accuracy by excluding irrelevant event occurrences from conversion metrics.
+
+### Stop Counting Conversion After User Exits
+
+After selecting a conversion event, you must define a **time window** during which user actions can still be counted as conversions **after the user exits the journey**.
+
+This window determines how long the selected conversion event remains eligible to contribute to the journey’s conversion metrics.
+
+* The duration can be configured in minutes, hours, or days
+* By default, no duration is selected
+* A duration selection is mandatory
+
+<figure><img src="/files/qxGDuwQs2GlUtMxoZj2c" alt=""><figcaption></figcaption></figure>
+
+| Scenario                                                                    | Is the Conversion Counted?      | Explanation                                                                                                                           |
+| --------------------------------------------------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Conversion triggered within the post-exit time window                       | ✅ Yes                           | If the user triggers the conversion event within the configured duration after exiting the journey, the user is counted as converted. |
+| Conversion triggered outside the post-exit time window                      | ❌ No                            | Conversions occurring after the configured duration expires are not attributed to the journey.                                        |
+| Multiple conversion events triggered within the same journey entry          | ✅ Yes (counted once)            | Conversion counting is user-based. Multiple event triggers by the same user result in only one conversion.                            |
+| Conversion triggered after re-entry, when the user has not converted before | ✅ Yes                           | If the user has not been counted as converted previously, the conversion is counted after re-entry.                                   |
+| Conversion triggered after re-entry, when the user has already converted    | ❌ No (no additional conversion) | A user can be counted as converted only once per journey. Re-entry does not create an additional conversion or reduce the user count. |
+
+#### Conversion Attribution Rules
+
+* Conversions triggered **within** the configured duration after exit are **counted**
+* Conversions triggered **after** the duration expires are **not counted**
+* Conversion counting is **user-based**, not event-based
+
+This means that within the same journey, a user can trigger the conversion event multiple times, but **only one conversion per user is recorded**.
+
+#### Example
+
+A journey uses **Open App** as the conversion event with a post-exit window of **2 days**.
+
+* If the user opens the app within 2 days after exiting the journey, the journey is counted as converted
+* If the app is opened after the 2-day window, the conversion is not attributed to the journey
+
+### Conversion Rate
+
+The **conversion rate** measures the effectiveness of a journey by indicating the percentage of users who complete the selected conversion action.
+
+This metric is calculated based on the conversion event defined during journey setup.
+
+<figure><img src="/files/xRjG2LBXSr77TGKx3lx0" alt=""><figcaption></figcaption></figure>
+
+### How the Conversion Rate Is Calculated
+
+When a user enters a journey, messages are delivered through supported channels such as:
+
+* Mobile push notifications
+* SMS
+* Email
+* In-app messages
+
+After completing the journey flow, the user exits the journey.
+
+Using the **Stop Counting Conversion After User Exits** setting, the system determines how long after exit a conversion event can still be attributed to the journey.
+
+* If the conversion occurs within the defined time window, it is counted
+* If it occurs after the window expires, it is excluded
+
+Even if a user triggers the same conversion event multiple times within the same journey, **only one conversion is counted**, as metrics are calculated per user.
+
+#### Example
+
+A user triggers the **Open App** event multiple times after receiving a push message within the same journey.\
+Only **one conversion** is counted for that user.
+
+### Conversion Counting Logic Summary
+
+* Conversion metrics are calculated **per user**, not per event
+* Multiple occurrences of the same conversion event by a single user do not increase the conversion count
+* Each user can contribute **only one conversion** to a journey
+* Conversions occurring within the configured post-exit window are attributed to the journey
+* Conversions triggered after the window expires are not counted
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/conversions-in-journey.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

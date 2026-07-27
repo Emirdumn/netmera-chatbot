@@ -1,0 +1,68 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/what/advanced-ios-settings.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/what/advanced-ios-settings.md).
+
+# Advanced iOS Settings
+
+These settings help fine-tune how your push notifications are presented and prioritized on iOS devices, ensuring that critical or urgent information reaches users effectively, while less important messages are delivered more passively.
+
+{% @arcade/embed flowId="vOKJDB0vQ8HZARQVzJao" url="<https://app.arcade.software/share/vOKJDB0vQ8HZARQVzJao>" %}
+
+### Relevance Score
+
+The **Relevance Score** is a numerical value ranging from `0` to `1` that determines the importance level of a push notification on iOS devices. Notifications with higher scores appear more prominently in the notification summary, improving visibility and user awareness.
+
+<table><thead><tr><th width="287.74969482421875">Range</th><th>Usage</th></tr></thead><tbody><tr><td><strong>0.0 – 0.3</strong></td><td>Low importance</td></tr><tr><td><strong>0.4 – 0.7</strong></td><td>Medium importance</td></tr><tr><td><strong>0.8 – 1.0</strong></td><td>High importance</td></tr></tbody></table>
+
+<figure><img src="/files/yJS366EUYzcB4PPeIcJr" alt="" width="563"><figcaption><p>Relevance Score</p></figcaption></figure>
+
+**Purpose**\
+This score enables apps to sort notifications based on relevance and ensure that critical messages do not get buried under less urgent ones.
+
+**Example Use Case**
+
+* A **suspicious transaction alert** may receive a relevance score of `0.95`, placing it at the top of the user’s notification stack.
+* A **holiday announcement** may receive a score of `0.2`, appearing further down in the summary.
+
+> **Tip:** Use higher relevance scores for time-sensitive, security-related, or highly personalized notifications. Lower scores are suitable for informational or promotional messages.
+
+### Interruption Level&#x20;
+
+**Interruption Level** controls how a push notification interacts with iOS Focus Modes such as “Do Not Disturb,” “Work,” “Sleep,” or “Personal.” By selecting the appropriate level, you can balance between urgency and user experience.
+
+<figure><img src="/files/dMTmwPMEMN0HV7SH934a" alt="" width="563"><figcaption><p>Interruption Level</p></figcaption></figure>
+
+<table><thead><tr><th width="174.6024169921875">Level</th><th width="330.3978271484375">Description</th><th>Requires Approval</th></tr></thead><tbody><tr><td><strong>Passive</strong></td><td>Silent delivery with no sound or vibration. For non-urgent, informative content.</td><td>❌</td></tr><tr><td><strong>Active</strong></td><td>Sounds, vibrates, and turns on the screen. Used for general notifications (non-focus mode).</td><td>❌</td></tr><tr><td><strong>Time Sensitive</strong></td><td>Overrides focus modes. Vibrates, makes sound, and turns on the screen. Requires justification.</td><td>✅ Requires enforcement</td></tr><tr><td><strong>Critical</strong></td><td>Overrides silent and focus modes. Reserved for emergencies. Requires Apple approval.</td><td>✅ Apple review</td></tr></tbody></table>
+
+**iOS Focus Modes Overview**
+
+* **iOS < 15**: Users can enable *Do Not Disturb*, silencing all notifications.
+* **iOS ≥ 15**: Users have granular control via *Focus Modes* for work, sleep, and personal time.
+
+**Example Use Case**
+
+<table><thead><tr><th width="283.99957275390625">Scenario</th><th>Suggested Level</th></tr></thead><tbody><tr><td>App update announcement</td><td>Passive</td></tr><tr><td>New message notification</td><td>Active</td></tr><tr><td>Fraud alert or OTP</td><td>Time Sensitive</td></tr><tr><td>Earthquake warning</td><td>Critical</td></tr></tbody></table>
+
+> **Critical notifications** must be registered with Apple and approved. Use them only for situations like health, security, or natural disasters.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/what/advanced-ios-settings.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

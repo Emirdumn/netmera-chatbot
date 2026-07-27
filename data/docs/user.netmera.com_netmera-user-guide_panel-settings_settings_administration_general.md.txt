@@ -1,0 +1,189 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/general.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/general.md).
+
+# General
+
+**Path**: `Settings > Administration > General`
+
+## General Settings
+
+**Application Name**
+
+The "Application Name" setting is a crucial identifier for your app within Netmera's ecosystem. This name is used across Netmera's Control Panel and reports, providing a consistent reference point. Opting for a name that resonates with your brand, such as "Netmera," ensures seamless recognition and aligns your app's presence with your brand identity.
+
+**Category**
+
+The "Category" setting aids in tailoring Netmera's offerings to your specific application type. By selecting the most relevant category, such as "E-Commerce," you enable Netmera to provide default events and segments tailored to your app's nature. This choice streamlines your data analysis and enhances the relevance of Netmera's features to your use case.
+
+**Icon**
+
+The "Icon" setting adds a visual dimension to your app's representation within Netmera's Control Panel. By uploading an icon, you create a distinctive visual marker that simplifies the process of identifying and selecting your application. This enhancement offers a seamless user experience and contributes to efficient navigation within the Control Panel.
+
+{% hint style="info" %}
+Fancy Box **displays the same icon** as the one configured for your application.
+{% endhint %}
+
+<figure><img src="/files/V0SlPFvTYtq4JFORFs4V" alt=""><figcaption><p>Application</p></figcaption></figure>
+
+## Messaging
+
+**Limit Notifications**
+
+The "Limit Notifications" setting empowers you to strike a balance between user engagement and user experience. By setting a maximum limit for push notifications, you ensure that users are not overwhelmed with excessive messages, which could potentially lead to frustration and app uninstalls. This feature safeguards user satisfaction while maintaining effective communication.
+
+{% hint style="info" %}
+**Tip:**
+
+Push notification limit for application users. Too many notifications may disturb users and cause app uninstalls. To ignore this limit for a notification, use **"Ignore User Message Limits"** setting on campaign form.
+{% endhint %}
+
+**Default Message Time Restriction**
+
+With the "Default Message Time Restriction" setting, you gain the capability to exert control over the timing of push notifications. This functionality is invaluable for adhering to corporate policies or optimizing user engagement during specific timeframes. By sending notifications only within specified hours, you enhance the relevance of your messages and respect users' preferences.
+
+**SMS Cost Per Message**
+
+The "SMS Cost Per Message" setting facilitates a clear understanding of messaging costs within the context of your communication strategy. By defining the cost of a single SMS message, you enable precise cost comparisons between push notifications and SMS messaging. This knowledge empowers you to make informed decisions about cost-effective communication channels.
+
+**Use Push Inbox**
+
+The "Use Push Inbox" setting caters to applications featuring a "Message Inbox" screen. Selecting this option enhances your ability to manage push notifications efficiently using Netmera's dedicated functionalities. This feature enriches user engagement by providing users with a centralized location to access and interact with notifications.
+
+**UTM Parameter**
+
+The "UTM Parameter" feature enhances campaign tracking for Web push notifications. By specifying UTM Source, Medium, and ID, you optimize the attribution of campaign performance. This feature facilitates the collection of valuable insights, enabling you to measure the effectiveness of your campaigns accurately.
+
+{% hint style="info" %}
+**Example:**
+
+UTM Source:Netmera, UTM Medium:Campaign Title, UTM ID:Campaign Name.
+{% endhint %}
+
+**iOS Badge Handling**
+
+The "iOS Badge Handling" setting offers flexibility in managing badges on iOS devices. You have the choice between "App manages badges" and "Netmera manages badges." Opting for the latter empowers you to send push notifications with badges directly from the campaign screen, streamlining the badge management process.
+
+**Rest Bulk Notification Approval**
+
+The "Rest Bulk Notification Approval" feature simplifies the management of bulk push notifications through REST API. When activated, this mechanism ensures that bulk notifications undergo the approval process, aligning with your organization's approval workflows. This enhancement streamlines communication management while maintaining control.
+
+<figure><img src="/files/cfkKi3rt4DxZcsccmK24" alt=""><figcaption><p>Messaging</p></figcaption></figure>
+
+## Control Panel
+
+**Authentication**
+
+The "Authentication" setting offers flexibility in defining the login process for Netmera's Control Panel. Choose between "Only password Authentication" or incorporate SMS OTP (One Time Password) authentication, with GSM number registration handled by Netmera's operations team. This customization ensures a secure and tailored login experience.
+
+## Style Settings
+
+The "Style Settings" cater to your app's visual identity by enabling font customization. Specify the font name to be used in Netmera's Widget Panel, and take it a step further by uploading a custom font for widgets. This personalization contributes to a consistent and engaging visual experience for users.
+
+**Font Name**
+
+This field is used in Netmera's Widget Panel to specify the name of the font you want to use for widgets.
+
+**Font Upload**
+
+In Netmera's Widget Panel, you can upload a custom font for use in widgets.
+
+{% hint style="info" %}
+**The supported font types include:**
+
+*ttf, otf, woff, woff2,* and *eot.*
+{% endhint %}
+
+<figure><img src="/files/Q68ETI4ykt6ngSn5ReSz" alt=""><figcaption><p>Control Panel - Style Settings</p></figcaption></figure>
+
+## Language
+
+**Multi Language**
+
+The "Multi Language" setting introduces the power of multi-language campaign sending. Tailor your messaging strategy based on user device language or specific profile attributes. This level of personalization ensures that users receive messages in their preferred language, enhancing engagement and user satisfaction.
+
+**Language Settings**
+
+With the "Language Settings" feature, you can customize language preferences to match your audience's diversity. Choose between "Device Language" or a "Custom Profile Attribute" to store language information. This customization guarantees that your communication resonates with users across different linguistic backgrounds.
+
+<figure><img src="/files/wqxEmADT5HVcdJO46tTD" alt=""><figcaption><p>Language</p></figcaption></figure>
+
+## Uninstall Tracking
+
+The "Uninstall Tracking" feature empowers you to manage uninstall tracking efficiently through silent push notifications. Set the time for sending these notifications and even test their effectiveness using the "Send Test Push" function. This enhancement allows you to maintain insights into user behavior even after app uninstalls.
+
+{% hint style="info" %}
+**Test/Silent Push:**
+
+Silent Push refers to a type of push notification that is sent to a user's device without displaying a visible message or alert to the user. Unlike traditional push notifications that show a message on the device's screen, silent push notifications operate in the background, allowing for the execution of specific tasks or updates without directly engaging the user. This method is particularly useful for scenarios where user interaction is not necessary, such as **updating content, syncing data, or triggering background processes.** These notifications can be configured and tested through both the Netmera API and the Netmera Panel, providing flexibility and comprehensive testing capabilities.
+{% endhint %}
+
+**Enable Uninstall Tracking**
+
+Check this option to activate silent push sending for uninstall tracking.
+
+**Schedule Time**
+
+Set the time for sending silent push notifications.
+
+**Test Targeting**
+
+This feature is used for the "Send Test Push" function, where a test silent push will be sent to the specified tag.
+
+{% hint style="info" %}
+
+#### Why is my Uninstall Data Increasing on Android Devices?
+
+At Netmera, we receive device token information for your apps through Firebase Cloud Messaging (FCM). Tokens from devices that haven't connected to FCM for over 270 days become invalid. These tokens are linked to passive devices, which have likely been inactive for a long time. Messages sent to these old tokens won't be delivered.
+
+Reasons for inactive tokens:
+
+* Devices lost, destroyed, or forgotten
+* Long periods of inactivity
+
+If a token is inactive for 270 days, FCM marks it as invalid. Once a device reconnects, it gets a new token, and Netmera assigns a new installation ID. This process can lead to higher uninstall numbers, as previously successful message deliveries to these old tokens are now counted as failures. However, this change specifically impacts **Android** **devices inactive for 270+ days.**
+{% endhint %}
+
+<figure><img src="/files/hSZCLxif4rksPkCivUGA" alt=""><figcaption><p>Uninstall Tracking</p></figcaption></figure>
+
+## User Products
+
+**Available Products**
+
+The "Available Products" section provides a clear overview of the products accessible within your application. This knowledge serves as a foundation for effective product integration and utilization.
+
+**Assigned Products**
+
+Here, you can view the modules of the products assigned to your application. This section offers insights into the components that contribute to your app's functionality.
+
+**Available Modules**
+
+Explore the "Available Modules" section to discover potential modules that can enhance your application's capabilities. This exploration equips you with the knowledge to make informed decisions about integrating new features.
+
+**Assigned Modules**
+
+The "Assigned Modules" section presents a detailed view of the modules that are currently integrated into your application. This insight allows you to manage and optimize your app's performance effectively.
+
+<figure><img src="/files/IyeawhePunV2rE6DMV4x" alt=""><figcaption><p>User Products</p></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/general.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

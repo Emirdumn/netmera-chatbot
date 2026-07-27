@@ -1,0 +1,443 @@
+URL: https://netmera.com/tod-case-study/
+
+Tod Case Study - Netmera - Mobile First Growth Platform
+
+AI did the predicting, and Journeys did the convincing. UPTION's churn fell 16.6%. →
+
+ 
+
+ 
+
+			Skip to content		
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Login
+
+Get a Demo
+
+    Copy .SVG
+  
+
+    Media Kit
+  
+
+    Newsroom
+  
+
+ 
+
+ 
+
+Success Story
+ 
+
+The opt-in effect: Purchases increased by 187 to 190 percent after push permission
+ 
+
+Over 120K devices opted into push notifications
+ 
+
+40% conversion rate (users who clicked “Enable Now”)
+ 
+
+187%+ increase in purchases among users who enabled notifications
+ 
+
+About TOD
+ 
+
+TOD,
+ a beIN Media Group streaming platform, delivers live sports, series, and movies to over hundreds of thousands of viewers. The platform competes on content discovery and retention. When a subscriber’s favorite team plays or a new season drops, push notifications have to reach them instantly.
+ 
+
+The challenge
+ 
+
+									A considerable number of active users hadn’t enabled push notifications. Without permission, the platform couldn’t send timely content alerts or personalized recommendations. Every user without push access meant TOD couldn’t act on viewing patterns, abandoned browsing sessions, or exclusive content drops.								
+
+01
+ 
+
+Increasing push opt-ins with benefit-first messaging
+ 
+
+									TOD was aware that their users needed to understand what they’d gain if they enabled opt-in. The goal was to show the users the benefit before asking for access.								
+
+ 
+
+How TOD solved it
+ 
+
+They used Netmera’s in-app widget to deliver permission requests at specific moments in the user journey. The message focused on value: Turn on notifications to get instant updates on special content and offers.
+The pop-up appeared once every two months and allowed users to choose “Enable Now” or select “Ask Later.” This approach gave users control and kept the option available for future sessions.
+ 
+
+What changed
+ 
+
+The campaign added well over 120K new opt-in devices. iOS saw tens of thousands of new opt-ins, while Android added several tens of thousands.
+Of the users who clicked ‘Enable Now,’ roughly 
+40% granted permission. 
+TOD could now deliver content alerts and offers to a substantially larger base.
+ 
+
+02
+ 
+
+Re-engaging users who postponed permission
+ 
+
+Many users clicked “Ask Later” on the initial request. This signaled interest but not immediate commitment. The next step was to reach these users without overwhelming them.
+ 
+
+How TOD solved it
+ 
+
+They let users get familiar with the app, then planned a second opt-in message two months later. During that time, they worked with their Netmera success manager and monitored behavior through 
+Funnel Analytics. 
+At the two-month mark, TOD sent a second in-app message to the “Ask Later” segment.
+ 
+
+What changed
+ 
+
+Of the users who clicked ‘Ask Later,’ 
+18% eventually granted permission.
+ Combined with those who clicked ‘Enable Now,’ the campaign reached a
+ 22.4 percent overall conversion rate.
+ Giving users time to decide, rather than pressuring them immediately, built sustainable opt-in growth.
+ 
+
+03
+ 
+
+Connecting permission growth to purchase behavior
+ 
+
+TOD aimed to connect opt-in growth to business outcomes to prove that push-enabled users brought in more revenue and increased retention.
+ 
+
+How TOD solved it
+ 
+
+The team used Netmera’s 
+behavioral segmentation
+ to compare purchase activity before and after users enabled notifications. They looked at two groups: users who opted in right away and those who tapped “Ask Later.” Purchase behavior was tracked over six months to measure the impact of push opt-ins on conversions.
+ 
+
+What changed
+ 
+
+Users who clicked ‘Enable Now’ 
+increased purchases by about 90%
+ after granting permission. Users who initially selected “Ask Later” showed a similar impact: 
+purchases rose by about 187%.
+Push clicks surged across both groups. The data proved that opt-in directly drove higher engagement and revenue, validating the campaign’s ROI.
+ 
+
+“We needed a permission strategy that respected user choice while clearly communicating value. The in-app widget worked. Even those who tapped ‘Ask Later’ converted at 18 percent. The real surprise was purchase behavior. Users who enabled notifications bought almost 190 percent more. Permission requests are now a core part of our growth playbook.”
+ 
+
+ 
+
+Özge Özmen
+ 
+
+Head of OTT Growth Manager
+ 
+
+The impact: Opt-in growth with proven ROI
+ 
+
+0
+
+%
+
+Postponed users who converted
+ 
+
+0
+
+%
+
+Immediate conversion rate
+ 
+
+0
+
+%
+
+Overall conversion rate
+ 
+
+0
+
+%+
+
+Purchase increase after opt-in
+ 
+
+18% of users who postponed
+ converted on second touchpoint
+40% conversion rate
+ on immediate permission requests
+22.4% overall conversion rate
+ (“Enable now” + “Ask Later”)
+187%+ increase in purchases
+ among push-enabled users
+ 
+
+TOD proved that well-timed, relevant permission requests expand your audience and increase revenue. 
+ 
+
+Beyond opt-in: Turning permission into engagement
+ 
+
+Permission granted. Now keep users engaged with these capabilities.
+ 
+
+ 
+
+Segment users and automate responses
+ 
+
+Group users by viewing patterns, purchase history, or app activity. 
+Build automated journeys
+ that trigger based on events or time delays.
+ 
+
+Reach users across multiple channels
+ 
+
+Netmera’s omnichannel capability lets you connect through push, email, SMS, WhatsApp, and geofencing.
+ 
+
+Build without waiting for developers
+ 
+
+Tagless data capture
+ collects user behavior automatically. Track which content users browse, segment by viewing patterns, and launch campaigns from one dashboard without coding.
+ 
+
+Predict who will churn
+ 
+
+Predictive AI
+ shows what your users will do next. Identify users at risk of canceling or likely to upgrade. Send retention offers while users are still active.
+ 
+
+ 
+
+ 
+
+									Netmera brings data collection, messaging, and analytics together in one no-code platform. 
+Schedule a demo
+ to turn reach into revenue.								
+
+Check other stories
+ 
+
+Blog
+Bein Connect Case Study
+beIN CONNECT grew new subscriptions 3X and active users 15% using targeted push notifications and behavior-based campaigns.
+Read More
+Sarmady Case Study
+Netmera's fast, personalized push notifications and segmentation drove 5X engagement for Sarmady, increasing active users 20%
+Read More
+Mackolik Case Study
+Delivering 20K+ daily notifications to 40M+ sessions, Mackolik improved open rates and retention 20%.
+Read More
+ 
+
+ 
+
+Subscribe to our newsletter
+ 
+
+ 
+
+Products
+ 
+
+Customer Data Management
+
+Customer Journeys
+
+AI Site Search & Browse
+
+Web Personalization
+
+Testing and Experimentation
+
+Data & Analytics
+
+Tagless Data Capture
+
+Surveys & Feedback​
+
+Funnels
+
+Channels
+ 
+
+Mobile & Web Push
+
+E-Mail
+
+SMS
+
+Whatsapp
+
+Mobile In-App
+
+Web Pop-Ups
+
+Live Activities
+
+Feedback Button
+
+Netmera AI
+
+Industries
+ 
+
+Media and Entertainment
+
+Banking and Finance
+
+Retail and E-commerce
+
+Travel and Hospitality
+
+Telecommunication
+
+Company
+ 
+
+About Us
+
+Careers
+
+Contact Us
+
+Partners
+
+Why Netmera
+
+Newsroom
+
+Information for AI
+
+Resources
+ 
+
+Blog
+
+Glossary
+
+Top Use Cases
+
+Resources
+
+Success Stories
+
+Developer and User Guide
+
+ 
+
+© 2026 — 
+Netmera
+. All Rights Reserved.   |   
+Privacy Policy
+   |   
+Cookie Policy (EU)
+   |   
+GDPR
+   |   
+KVKK
+ 
+
+Linkedin
+
+ 
+
+Youtube
+
+ 
+
+ 
+
+ 
+
+Manage Cookie Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+						Always active					
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+
+Deny
+
+View preferences
+
+Save preferences
+
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent

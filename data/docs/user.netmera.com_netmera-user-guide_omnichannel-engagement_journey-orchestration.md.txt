@@ -1,0 +1,122 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration.md).
+
+# Journey Orchestration
+
+Journey is a multi-step workflow that reacts to time and user behavior. Use it to guide users through onboarding, post-purchase follow-ups, cart abandonment, or reactivation flows with timed actions and branching logic. Define entry rules, audiences, and conversion events, then monitor engagement and conversions to optimize each step.
+
+{% hint style="info" %}
+This page is the overview. Use the cards below for the actual setup steps.
+{% endhint %}
+
+Need help managing existing drafts and live journeys? See [Journey List and Actions](/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-list-and-actions.md).
+
+<figure><img src="/files/ItNEmTwzU8GpIAjiRxga" alt="" width="563"><figcaption></figcaption></figure>
+
+<table data-view="cards"><thead><tr><th>Journey creation flow</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Step 1: Setup (name, conversion event, trigger filters)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/o2ey0RhEv0QQh6VgHmIp">/spaces/X6uilbEAw42gqsudlclY/pages/o2ey0RhEv0QQh6VgHmIp</a></td></tr><tr><td>Step 2: Entry Rules (time-based vs action-based)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/qlEdV7eOpzqdNRUkhCkO">/spaces/X6uilbEAw42gqsudlclY/pages/qlEdV7eOpzqdNRUkhCkO</a></td></tr><tr><td>Step 3: Audience (who is eligible)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/AH1qrg9qODtLVkllkpdO">/spaces/X6uilbEAw42gqsudlclY/pages/AH1qrg9qODtLVkllkpdO</a></td></tr><tr><td>Step 4: Build (design the flow)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/HVCZphHUZAhbtNfn7EWk">/spaces/X6uilbEAw42gqsudlclY/pages/HVCZphHUZAhbtNfn7EWk</a></td></tr><tr><td>Step 5: Launch (start, schedule, stop)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/qSgh6Lmm0P8QS0EdACst">/spaces/X6uilbEAw42gqsudlclY/pages/qSgh6Lmm0P8QS0EdACst</a></td></tr><tr><td>Measure results and optimize</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/Baxy81pRlyOFPfkPRKPY">/spaces/X6uilbEAw42gqsudlclY/pages/Baxy81pRlyOFPfkPRKPY</a></td></tr><tr><td>Conversions in Journey</td><td><a href="/pages/KsyNuS6h8OhYJOLtWjNp">/pages/KsyNuS6h8OhYJOLtWjNp</a></td></tr></tbody></table>
+
+### When to use a journey
+
+Use a journey when timing and branching matter.
+
+Common patterns:
+
+* Onboarding sequences
+* Cart abandonment and browse abandonment
+* Post-purchase follow-ups
+* Reactivation when users go inactive
+
+### Key concepts (fast)
+
+* **Entry rule**: When a user can enter (time-based or action-based).
+* **Eligibility**: How often a user can re-enter (once, lock duration, capping).
+* **Audience**: Who can enter (segments, tags, profile filters).
+* **Conversion event**: What “success” means for the journey.
+* **Correlation** (optional): A key that ties events to one journey instance.
+
+### Quickstart: build a working journey
+
+{% stepper %}
+{% step %}
+
+#### 1) Decide the goal and the success signal
+
+Pick a conversion event if you will measure lift.
+
+You can’t change it after launch.
+{% endstep %}
+
+{% step %}
+
+#### 2) Choose an entry rule
+
+Use **time-based** for schedules.
+
+Use **action-based** for event-triggered flows.
+{% endstep %}
+
+{% step %}
+
+#### 3) Define the audience
+
+Start with a narrow segment.
+
+Expand once you trust the logic.
+{% endstep %}
+
+{% step %}
+
+#### 4) Build the flow
+
+Add steps using core components.
+
+Use branches for “did/did not” and attribute-based splits.
+{% endstep %}
+
+{% step %}
+
+#### 5) Launch and monitor
+
+Launch once the entry rule and conversion event are final.
+
+Use analytics to validate volume, drop-offs, and conversions.
+{% endstep %}
+{% endstepper %}
+
+### Components reference
+
+<figure><img src="/files/78meOBgNNf7kCRwrhXn8" alt="" width="563"><figcaption></figcaption></figure>
+
+<table data-view="cards"><thead><tr><th>Core building blocks</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>All journey components overview</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/swDpsAy1b7SUu462cERm">/spaces/X6uilbEAw42gqsudlclY/pages/swDpsAy1b7SUu462cERm</a></td></tr><tr><td>State (timing and holding users)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/0MZzNi77JPI1ubjM8azf">/spaces/X6uilbEAw42gqsudlclY/pages/0MZzNi77JPI1ubjM8azf</a></td></tr><tr><td>Branch (split users based on rules)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/yV83RWQI30AgMh04pZob">/spaces/X6uilbEAw42gqsudlclY/pages/yV83RWQI30AgMh04pZob</a></td></tr><tr><td>Action (send messages, update context)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/A8ujWkWlQc5MA7EKeDt2">/spaces/X6uilbEAw42gqsudlclY/pages/A8ujWkWlQc5MA7EKeDt2</a></td></tr></tbody></table>
+
+### Examples and how-to videos
+
+<table data-view="cards"><thead><tr><th>Learn by copying</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>End-to-end journey patterns</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/N3Xdar1K7FAdLCBGZhNx">/spaces/X6uilbEAw42gqsudlclY/pages/N3Xdar1K7FAdLCBGZhNx</a></td></tr><tr><td>Walkthrough videos (step-by-step)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/TFgqL6cvMONXQEaWwl4V">/spaces/X6uilbEAw42gqsudlclY/pages/TFgqL6cvMONXQEaWwl4V</a></td></tr><tr><td>Handbook: Customer Journeys From First Touch To Loyal Advocate</td><td><a href="https://netmera.com/omnichannel-customer-journeys/">https://netmera.com/omnichannel-customer-journeys/</a></td></tr></tbody></table>
+
+### Related prerequisites
+
+* Events and tracking: [Events](/netmera-user-guide/customer-data/events.md)
+* Segmentation: [Segments](/netmera-user-guide/targeting/segments.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

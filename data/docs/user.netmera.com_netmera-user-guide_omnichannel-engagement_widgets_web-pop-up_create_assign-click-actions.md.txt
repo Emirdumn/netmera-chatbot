@@ -1,0 +1,364 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/assign-click-actions.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/assign-click-actions.md).
+
+# Assign Click Actions
+
+Use this page to define what happens when a user clicks a web widget element.
+
+This page focuses on behavior. If you are still building the widget layout, start with [Customize Components](/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/customize-components.md). If you need help choosing the right element first, see [Widget Elements Reference](/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/widget-elements-reference.md).
+
+### Quick workflow
+
+{% stepper %}
+{% step %}
+
+#### Select the interactive element
+
+Click actions can be assigned to **Buttons** and **Images**.
+{% endstep %}
+
+{% step %}
+
+#### Open the click action panel
+
+Click the ⚡ **lightning** icon in the toolbar and choose the action you want.
+{% endstep %}
+
+{% step %}
+
+#### Add conditions if needed
+
+Use **Action Conditions** when the action should run only for a specific value or user choice.
+{% endstep %}
+
+{% step %}
+
+#### Save and test
+
+Preview the widget and test every path before saving.
+{% endstep %}
+{% endstepper %}
+
+<figure><img src="/files/cz2zRDHmXpquoHMSNoSW" alt="" width="375"><figcaption><p>Click Actions</p></figcaption></figure>
+
+### Click action types
+
+#### User Update
+
+Use **User Update** when a click should update profile data or user properties.
+
+This is useful for saving form responses, updating user fields, or writing back preference data.
+
+How to set it up:
+
+1. Select the button or image.
+2. Choose **User Update**.
+3. Pick the field you want to update.
+4. Map the value from a widget component if needed.
+
+<figure><img src="/files/WY9P81I828UqGEAa4ley" alt="" width="375"><figcaption><p>User Update</p></figcaption></figure>
+
+{% hint style="success" %}
+
+#### Matching components with attributes
+
+To access subcategories of the target profile attribute:
+
+* **Windows:** `CTRL + ALT + 7`
+* **Mac:** `FN + Option + 7`
+  {% endhint %}
+
+<figure><img src="/files/C2aFRAegEyQVvAQVI16N" alt="" width="375"><figcaption></figcaption></figure>
+
+**Example**
+
+To update a user’s email through a button:
+
+1. Assign an identifier to the button.
+2. Select **User Update**.
+3. Open the subcategory and choose the update method.
+4. Select **Content** if the value comes from another widget component.
+5. Match the content with the component you want to use, such as `emailattributebutton`.
+
+<figure><img src="/files/aMzV2rc4kU3bOIL2qp16" alt="" width="375"><figcaption></figcaption></figure>
+
+<figure><img src="/files/X7FhVBxoWtP7hUpATqgL" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Redirect to URL
+
+Use **Redirect to URL** when a click should open a web page.
+
+Best for external websites, landing pages, product pages, and campaign detail pages.
+
+How to set it up:
+
+1. Enter the destination URL.
+2. Add a condition if the redirect should run only in a specific case.
+
+<figure><img src="/files/dEojKTCJ2yUIpFbTz4l1" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Go to View
+
+Use **Go to View** to move users to another screen inside the same widget.
+
+This is the main action for multi-step flows such as rating → thank you or form → success.
+
+<figure><img src="/files/RaEjaVpIkbmeM5JwUP90" alt="" width="375"><figcaption></figcaption></figure>
+
+How to set it up:
+
+1. Choose **Go to View**.
+2. Select the target view.
+3. Add **Action Conditions** if the target should depend on user input.
+
+<figure><img src="/files/RVvVBd9tSnJbFQgkBjvt" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Send Data
+
+Use **Send Data** when the click should send form or interaction data to an endpoint.
+
+This is useful for custom data collection and server-side workflows.
+
+How to set it up:
+
+1. Define the data or parameters to send.
+2. Enter the endpoint URL.
+3. Add conditions if the send action should be limited.
+
+<figure><img src="/files/Bt4Hx0EN0wQNqv4FR71y" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Close Widget
+
+Use **Close Widget** when the interaction should simply dismiss the widget.
+
+This works well for actions such as `Dismiss`, `Maybe later`, or `No thanks`.
+
+<figure><img src="/files/6plhxPanek1HPX5PEBNV" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Open Widget
+
+Use **Open Widget** when one widget should launch another widget.
+
+This is useful for chained flows such as summary widget → detailed widget.
+
+How to set it up:
+
+1. Choose **Open Widget**.
+2. Select the target widget.
+3. Make sure the target widget already exists.
+
+<figure><img src="/files/D2wmUojYw8vSk06IZz7h" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Get Web Push Permission
+
+Use **Get Web Push Permission** when the widget should request browser notification permission directly from the user.
+
+This is useful during onboarding, subscription prompts, or well-timed opt-in requests.
+
+How it works:
+
+1. The user clicks the component.
+2. The browser shows the native notification permission pop-up.
+3. The user’s allow or deny response is reflected in Netmera automatically.
+
+<figure><img src="/files/qHQZJLRIYNIgv9SetExy" alt="" width="563"><figcaption></figcaption></figure>
+
+<figure><img src="/files/KgkddkZ4Mnw68Y4opIvA" alt="" width="563"><figcaption><p>Widget shown to users</p></figcaption></figure>
+
+<figure><img src="/files/a9r6v2Nwg5zdK4taBo1C" alt="" width="563"><figcaption><p>Native permission pop-up</p></figcaption></figure>
+
+#### Fire Event
+
+Use **Fire Event** when a click should trigger a custom event inside your app or tracking setup.
+
+This is useful when another workflow, report, or integration depends on the interaction.
+
+<figure><img src="/files/Myq977BvGDwqVpFopH9K" alt="" width="375"><figcaption></figcaption></figure>
+
+How to set it up:
+
+1. Create the event first in [Create Custom Events](/netmera-user-guide/panel-settings/settings/app-configuration/events.md).
+2. Assign **Fire Event** to the button or image.
+3. Select the event from the list.
+
+{% hint style="success" %}
+
+#### Matching widget components with events
+
+To access subcategories:
+
+* **Windows:** `CTRL + ALT + 7`
+* **Mac:** `FN + Option + 7`
+  {% endhint %}
+
+<figure><img src="/files/xB5p36oT8jxLWsfxUold" alt="" width="375"><figcaption></figcaption></figure>
+
+**Example**
+
+To fire an event from an image click:
+
+1. Assign an identifier to the image.
+2. Select **Fire Event**.
+3. Open the subcategory and choose the method.
+4. Select **Content** if the mapping comes from a widget component.
+5. Match the event with the right component, such as pairing `LikeEvent` with the image identifier.
+
+<figure><img src="/files/yBiR45QzohSGBiKsHNi4" alt="" width="375"><figcaption></figcaption></figure>
+
+<figure><img src="/files/2xNUbP6VJrj8KYeIxVLQ" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Deep Link
+
+Use **Deep Link** when the click should open a specific destination inside the app.
+
+This is useful for product pages, article detail pages, feature screens, or campaign destinations.
+
+<figure><img src="/files/6kYqgbaZ3j9noJV7BOQ1" alt="" width="375"><figcaption></figcaption></figure>
+
+### Validations
+
+Validations help you prevent bad or incomplete input before an action runs.
+
+<figure><img src="/files/Cn5xHRxiHUatgXJUWosB" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Example
+
+If a field must not be empty, set the rule to **Not Empty** and write an error message such as `Please fill in.`
+
+<figure><img src="/files/tRgwHHnAjwgTn7AzCR66" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Validation rules
+
+Available rules include **Not Empty**, **String Length**, **Number**, **Percentage**, and **Regex**.
+
+<figure><img src="/files/FnPchrMkttvOWWcVN3XH" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Email validation
+
+Widgets support email validation with custom error messages such as *Please enter a valid email address.*
+
+If the value is invalid and the user clicks submit, the error appears immediately and the action is blocked.
+
+<figure><img src="/files/wi82OvBRdvLNAg3msbqe" alt="" width="563"><figcaption></figcaption></figure>
+
+{% hint style="warning" %}
+
+#### Important step
+
+Do not forget **Check Form Validations Before Performing This Action**.
+
+This ensures that all validation rules run before the click action is executed.
+{% endhint %}
+
+### Check Form Validations Before Performing This Action
+
+When enabled, the widget checks validations first. If validation passes, the action runs. If validation fails, the action is blocked and the user sees the related error message.
+
+<figure><img src="/files/sb4gLMLt5CUmvwPLZQfj" alt="" width="375"><figcaption></figcaption></figure>
+
+### Manage App
+
+Use **Manage App** when the action should be handled by the app itself. This is commonly needed for app-level deep link behavior.
+
+<figure><img src="/files/UPHiLXQK9CNDS07adi3D" alt="" width="375"><figcaption></figcaption></figure>
+
+### Action Conditions
+
+Use **Action Conditions** to control when a click action should run.
+
+How it works:
+
+1. Choose the identifier to evaluate.
+2. Select the condition.
+3. Enter the expected value.
+4. Run the action only when the condition is matched.
+
+<figure><img src="/files/c3pf4ybhGrekENiaW8T3" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/idi4VdHoSjaqNaDL2WQ5" alt="" width="375"><figcaption></figcaption></figure>
+
+### Example scenario: rating flow
+
+This example creates a simple feedback flow with conditions.
+
+{% hint style="success" %}
+
+#### Goal
+
+Ask for a 5-star rating. Users who rate **4-5** go to a **Thank You** page. Users who rate **1-3** go to a **Feedback** page.
+{% endhint %}
+
+#### Step 1: Add the rating element and identifiers
+
+Design the widget first. Add the rating element and the button users will click after rating.
+
+Then assign a clear identifier to the rating element, such as `rating`.
+
+<figure><img src="/files/mFELx7b4p0RGbjch73Jx" alt=""><figcaption><p>Identifiers</p></figcaption></figure>
+
+{% hint style="info" %}
+Identifiers are usually shown at the top-right of the selected component. Replace random defaults with clear names before you start action setup.
+{% endhint %}
+
+<figure><img src="/files/6o3XETzuq56Agm6vrBBw" alt="" width="563"><figcaption><p>Identifiers</p></figcaption></figure>
+
+#### Step 2: Create the views
+
+Add the extra views needed for the flow:
+
+* **View 2:** Feedback
+* **View 3:** Thank You
+
+<figure><img src="/files/nAYtGMfMQVbOykisxk3i" alt=""><figcaption><p>View 2</p></figcaption></figure>
+
+<figure><img src="/files/tT2SE1pJs5GmZEKh9iVT" alt=""><figcaption><p>View 3</p></figcaption></figure>
+
+#### Step 3: Add conditional actions to the button
+
+Add two **Go to View** actions to the same button.
+
+First action:
+
+* choose **Go to View**
+* select **View 2**
+* add the condition `rating <= 3`
+
+<figure><img src="/files/4RDRvYZrvSUEjVYweHGh" alt=""><figcaption><p>Action 1</p></figcaption></figure>
+
+Second action:
+
+* click **+ Add Action**
+* choose **Go to View**
+* select **View 3**
+* add the condition `rating >= 4`
+
+<figure><img src="/files/o7Xcay7SdAMjejgS7lQV" alt=""><figcaption><p>Action 2</p></figcaption></figure>
+
+You can add more actions later if the flow needs data send, redirect, or event trigger steps.
+
+<figure><img src="/files/QZpgnGgVEuAFZNCxhBMK" alt=""><figcaption><p>Select Action</p></figcaption></figure>
+
+After testing the logic, click **Save Widget and Return**.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/assign-click-actions.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,101 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/opt-out.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/opt-out.md).
+
+# Opt Out
+
+**Path:** `Analytics>User & Audience>Opt Out`
+
+Opt Out helps you understand how users withdraw message consent over time. It gives you a clearer view of opt-out trends, the messaging context before opt-out, and the users affected within a selected period.
+
+This is useful when you want to understand whether consent loss is tied to campaign pressure, weaker message relevance, or a recent operational change.
+
+Use this page when you want to answer questions such as:
+
+* Is opt-out increasing?
+* Did message pressure contribute?
+* Which users opted out in a specific period?
+
+### Choose the time period
+
+You can choose from these time ranges:
+
+* Last Week
+* Last Month
+* Last Year
+* Dates Between
+
+Use a custom range when you want to isolate a campaign period, a release window, or a specific consent-related change. A narrower range is often the best way to test whether a certain campaign or policy change affected opt-out behavior.
+
+### Export opted-out users
+
+You can export the list of users who opted out during the selected date range. The export includes the relevant external identifiers for those users.
+
+Changing the visible charts or chart breakdowns does not change the export scope. The export always follows the selected opt-out date range. This makes the export stable even when you change how the dashboard is visualized.
+
+<figure><img src="/files/06CvesIlKyZAWElIZCHG" alt=""><figcaption></figcaption></figure>
+
+### Analyze the charts
+
+These sections help you connect opt-out behavior with recent campaign pressure and recent user activity, so you can understand both possible causes and the context around consent loss. Looking at the trend alone is rarely enough. The surrounding context is what makes the result actionable.
+
+These sections connect opt-out behavior with recent campaign pressure and activity.
+
+**Push messages received before opt-out** shows how many push messages opted-out users received in the **last 7 days before** opting out. Use it to understand whether message volume may have influenced consent withdrawal.
+
+For example, if opt-out spikes appear mostly among users who received several pushes in a short period, you may need to review campaign frequency, audience overlap, or message timing.
+
+<figure><img src="/files/3yNVJUMF3OXcryYJRrFQ" alt=""><figcaption></figcaption></figure>
+
+**Last campaigns** shows the campaigns users interacted with before they opted out. It helps you spot campaigns that correlate with opt-out spikes or unusual consent loss.
+
+This does not always mean the campaign itself caused the opt-out, but it helps narrow the period and the messaging context you should inspect first.
+
+<figure><img src="/files/bnNP6C0x5Qv1jd5Pvnqo" alt=""><figcaption></figcaption></figure>
+
+**Last events** compares recent activity between retained and churned users before opt-out. It helps you understand whether users were still active before leaving or had already started to disengage.
+
+The main controls in this view are:
+
+* **Events in last (x) days** defines the lookback window.
+* **Total Event** counts every event occurrence.
+* **Unique User** counts distinct users only.
+
+<figure><img src="/files/csjxZWkRjhzdH8dLNtiU" alt=""><figcaption></figcaption></figure>
+
+In this view:
+
+* **Retain** means users stayed active in the selected window.
+* **Churn** means users stopped being active in the selected window.
+
+For example, if the chart shows **Retain: 2** and **Churn: 1**, that means two users remained active while one user became inactive in the selected period. This distinction matters because active users who opt out often point to messaging dissatisfaction, while inactive users may simply be disengaging overall.
+
+<figure><img src="/files/pNb0wr1e2KtCz7rtl4Xn" alt=""><figcaption></figcaption></figure>
+
+### How to use the results
+
+Use Opt Out findings to review campaign pressure, improve consent strategy, compare message quality across campaigns, and reduce avoidable opt-out behavior.
+
+In practice, this report is most useful when teams use it as an early warning signal. A rising opt-out rate often tells you to review frequency, targeting, and relevance before the problem becomes visible in broader engagement metrics.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/opt-out.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

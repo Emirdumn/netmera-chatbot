@@ -1,0 +1,150 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/revenue-and-engagement/customer-touch.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/revenue-and-engagement/customer-touch.md).
+
+# Customer Touch
+
+**Path**: `Analytics > Revenue & Engagement > Customer Touch`
+
+Customer Touch shows how campaign frequency is distributed across users and devices within a selected period. It helps you understand messaging pressure, compare platform distribution, and identify audiences that were either untouched or contacted too often.
+
+This report is especially useful when you want to control communication fatigue. Instead of looking only at sent campaign counts, you can see how often users and devices were actually exposed to communication.
+
+Use this page when you want to answer questions such as:
+
+* Which users were contacted too often?
+* Which users received nothing?
+* How does campaign pressure differ at user and device level?
+
+{% @arcade/embed url="<https://app.arcade.software/share/rf4NCBn4XdHetFc4wWZ0>" flowId="rf4NCBn4XdHetFc4wWZ0" %}
+
+### Understand the counting logic
+
+Customer Touch uses two different counting methods, and reading the table correctly depends on understanding the difference between them. The same number can mean something very different depending on whether it is read at user level or device level.
+
+<figure><img src="/files/XfSclR9JlHWVPxM2AZMp" alt=""><figcaption></figcaption></figure>
+
+Customer Touch uses two different counting methods:
+
+* **Unique Users** is calculated on a user basis. Each person is counted once, even if that person has multiple devices.
+* **Devices** is calculated on a device basis. Campaign counts are evaluated separately for iOS and Android devices.
+
+The user column answers a reach question. The device columns answer a delivery-distribution question.
+
+Example:
+
+Assume one user received **9** campaigns in total. That user has **2 Android devices** and **1 iOS device**. Out of those 9 campaigns, **7** were sent to the iOS device and **2** were sent to the Android devices.
+
+In the table, that same user appears in three different places:
+
+* In row **9** under **Unique Users**.
+* In row **7** under **Devices (iOS)**.
+* In row **2** under **Devices (Android)**.
+
+This is why the user columns and device columns should not be read as if they were expected to match. They describe two different views of the same communication pattern.
+
+{% hint style="info" %}
+The same person can appear once in **Unique Users** and also appear in one or more device rows. This is expected and reflects the difference between user-based and device-based counting.
+{% endhint %}
+
+<figure><img src="/files/evpXcWxkUaGDOvVCEgPG" alt="" width="375"><figcaption></figcaption></figure>
+
+### Set the analysis filters
+
+Choose the date range you want to analyze first. A custom range is useful when you want to inspect a campaign burst, a release window, or another specific operational period.
+
+Then select the campaign types you want to include. You can review a single type on its own or combine multiple types in the same result set.
+
+For example, you may want to inspect only push campaigns during a campaign burst, or review push, in-app, and popup campaigns together to understand total contact pressure.
+
+<figure><img src="/files/1ybsORcIQBgLs7zhTobz" alt=""><figcaption></figcaption></figure>
+
+### Read the dashboard
+
+The main table groups results into notification-count buckets. The left column shows how many campaigns were received during the selected period.
+
+* **Did not receive any**
+* **1**
+* **2**
+* higher exact counts
+* **10+**
+
+Each bucket tells you how many users or devices fall into that exact campaign count. The table then separates those results into report groups so you can compare overall messaging pressure with channel-specific behavior.
+
+* **All Message Types**
+* **Campaigns**
+* **Automated**
+* **Transactional**
+* **Geofence**
+
+Each group contains these columns:
+
+* **Unique Users**
+* **Devices (iOS)**
+* **Devices (Android)**
+* **Total Devices**
+
+<figure><img src="/files/gDZqqZVVQkCER6knDMNU" alt=""><figcaption></figcaption></figure>
+
+This structure lets you compare user-level pressure and device-level delivery distribution in the same view, which makes it easier to understand both reach and intensity.
+
+Each row represents an exact number of received notifications for the selected period. Read the row labels as campaign-frequency buckets rather than campaign summaries.
+
+For example:
+
+* **Did not receive any** means the user or device received no campaigns in the selected period.
+* **1** means exactly one campaign.
+* **2** means exactly two campaigns.
+* **10+** groups results with ten or more campaigns.
+
+You should not expect the **Unique Users** count to match the device columns row by row. That difference is intentional, because user-based and device-based counts follow separate logic.
+
+For example, a user may appear once in a higher **Unique Users** bucket while the same person appears in lower or mixed device buckets depending on how campaigns were split across devices.
+
+### Export to Excel
+
+Use **Export to Excel** when you want to analyze the results outside the panel.
+
+Exports are useful for:
+
+* deeper analysis,
+* internal reporting,
+* preparing audience operations.
+
+The exported file keeps the same counting logic shown on the screen, so the numbers remain consistent between the panel and the exported data. This is useful when you need to validate exposure strategy with another team or build follow-up rules from the output.
+
+### Use exports for retargeting
+
+You can use exported results to build follow-up actions and turn the analysis into an operational audience strategy.
+
+This helps with:
+
+* targeting users who received too many campaigns,
+* excluding over-contacted audiences,
+* re-engaging users who received no campaigns.
+
+That makes Customer Touch more than a monitoring report. It also helps you act on under-contacted and over-contacted audiences in a more controlled way.
+
+For tagging details, see [Tags](/netmera-user-guide/targeting/tags.md).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/revenue-and-engagement/customer-touch.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

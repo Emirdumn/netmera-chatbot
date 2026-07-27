@@ -1,0 +1,116 @@
+URL: https://user.netmera.com/netmera-user-guide/web-tools/tag-manager/workspace.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/web-tools/tag-manager/workspace.md).
+
+# Workspace
+
+The **Netmera Tag Manager** allows you to capture and manage user interactions on your website or application without additional coding. By using **Tags**, **Triggers**, and **Variables**, you can define the actions to track, the conditions under which they should fire, and the data they should carry.
+
+This section explains how to work with the **Workspace** components: **Tags**, **Triggers**, and **Variables**.
+
+### Workspace Overview
+
+The **Workspace** is the main area where you create and manage your Tag Manager configuration. It contains three key elements:
+
+* **Tags**: Define what should happen (e.g., fire a Netmera Event, inject custom HTML).
+* **Triggers**: Define when a tag should fire (e.g., all pages, specific page view, DOM ready).
+* **Variables**: Provide dynamic values that can be used in triggers and tags (e.g., `Page URL`, `Click ID`).
+
+Each workspace change can be tested in **Preview** mode and finalized with **Publish**.
+
+### Tags
+
+Tags represent the actions you want Netmera to perform. They can be:
+
+* **Netmera Events**: Predefined or custom events that are logged to Netmera.
+* **Custom HTML/JavaScript**: Code snippets injected into your site.
+
+#### Creating a Tag
+
+1. Navigate to **Tag Manager > Workspace > Tags**.
+2. Click **Create Tag**.
+3. Enter a **Name** and select a **Type** (e.g., Netmera Event, Custom HTML).
+4. Attach one or more **Triggers** to define when the tag will fire.
+5. Save your tag.
+
+#### Example Tags
+
+* `screenview` (Netmera Event triggered on all pages).
+* `Purchase Event Web` (fires when a purchase occurs).
+* `add banner` (Custom HTML tag that runs when a banner is added).
+
+<figure><img src="/files/O5zQXLnpUPdY0eFUnEWl" alt=""><figcaption></figcaption></figure>
+
+### Triggers
+
+Triggers determine **when** a tag should fire. A trigger can be built-in or custom.
+
+* **Built-in triggers**: Provided by Netmera (e.g., All Pages).
+* **Custom triggers**: Defined by the user (e.g., a specific DOM Ready event).
+
+#### Creating a Trigger
+
+1. Go to **Tag Manager > Workspace > Triggers**.
+2. Click **Create Trigger** or **Import Built-in Trigger**.
+3. Choose the **Trigger Type** (Page View, DOM Ready, Click, etc.).
+4. Name your trigger and save it.
+5. Attach it to one or more tags.
+
+#### Example Triggers
+
+* `All Pages` (built-in, fires on every page view).
+* `All Page View` (custom page view trigger).
+* `banneradd` (fires when DOM is ready and banner code executes).
+
+<figure><img src="/files/sM27RboPe5jxiMIeu4kk" alt=""><figcaption></figcaption></figure>
+
+### Variables
+
+Variables provide dynamic data that can be used inside triggers and tags.
+
+* **Built-in variables**: Common properties like Page URL, Page Path, Click ID, Time on Site.
+* **Custom variables**: User-defined values, such as a specific banner variable.
+
+#### Creating a Variable
+
+1. Go to **Tag Manager > Workspace > Variables**.
+2. Click **Create Variable** or **Import Built-in Variable**.
+3. Choose the variable type (e.g., Data Layer Variable, URL, Custom JavaScript).
+4. Save and attach to triggers or tags.
+
+<figure><img src="/files/oGQ4Jw7zvxgmmP0iLeXs" alt=""><figcaption></figcaption></figure>
+
+#### Example Variables
+
+* `Click Classes` (data layer variable).
+* `Page URL` (used for page view triggers).
+* `addBannerVar` (custom URL variable attached to the `banneradd` trigger).
+
+### Publishing Changes
+
+After configuring tags, triggers, and variables:
+
+1. Click **Preview** to test the setup before going live.
+2. Once verified, click **Publish** to activate the changes in your live environment.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/web-tools/tag-manager/workspace.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

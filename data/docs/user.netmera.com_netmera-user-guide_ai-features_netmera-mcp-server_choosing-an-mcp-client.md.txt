@@ -1,0 +1,54 @@
+URL: https://user.netmera.com/netmera-user-guide/ai-features/netmera-mcp-server/choosing-an-mcp-client.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/ai-features/netmera-mcp-server/choosing-an-mcp-client.md).
+
+# Choosing an MCP Client
+
+While both Claude and ChatGPT support Netmera MCP connection flows, existing authentication, authorization, and permission controls remain in effect during MCP usage.\
+Since MCP support is still evolving across AI platforms, users should connect only to trusted MCP servers such as Netmera.
+
+#### Choose Claude if you prefer:
+
+* a more streamlined setup experience,
+* a more direct connector flow,
+* and fewer manual setup steps.
+
+#### Choose ChatGPT if:
+
+* your team already works in the OpenAI ecosystem,
+* Developer Mode usage is acceptable,
+* OAuth-only authentication fits your workflow,
+* and ChatGPT Plus, Pro, or Team plans are already available.
+
+### Claude vs ChatGPT MCP Comparison
+
+<table><thead><tr><th width="249">Feature</th><th>Claude</th><th>ChatGPT</th></tr></thead><tbody><tr><td>Setup Experience</td><td>Very easy</td><td>Easy</td></tr><tr><td>Custom Connector Support</td><td>Native support</td><td>Requires Developer Mode</td></tr><tr><td>Security Model</td><td>Verified flow</td><td>Unverified custom connectors</td></tr><tr><td>Authentication Support</td><td>OAuth + Basic</td><td>OAuth only</td></tr><tr><td>Debugging Experience</td><td>More detailed</td><td>More limited</td></tr><tr><td>Subscription Requirement</td><td>Free plan sufficient</td><td>Plus / Pro / Team required</td></tr><tr><td>MCP Maturity</td><td>Production-ready</td><td>Beta / Developer Mode</td></tr></tbody></table>
+
+{% hint style="info" %}
+
+## Important Note
+
+Claude and ChatGPT both support Netmera MCP connection flows, but their setup experiences may differ depending on each platform’s current MCP support. This page compares the current setup flow and platform-level requirements without replacing the individual setup guides.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/ai-features/netmera-mcp-server/choosing-an-mcp-client.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

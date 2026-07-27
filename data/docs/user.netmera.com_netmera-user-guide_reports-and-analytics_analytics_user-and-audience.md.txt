@@ -1,0 +1,37 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience.md).
+
+# User & Audience
+
+**Path:** `Analytics > User & Audience`
+
+Use **User & Audience** to understand who your users are, how they behave on the web, and where churn or consent loss starts. Start here when you need to inspect profile traits, website activity, uninstall trends, or opt-out behavior.
+
+<figure><img src="/files/451GeUZYaOVc2rIRn8Ri" alt=""><figcaption></figcaption></figure>
+
+### What you can analyze
+
+<table data-view="cards"><thead><tr><th>What you can analyze</th><th data-card-target data-type="content-ref">Target</th></tr></thead><tbody><tr><td>User Path</td><td></td></tr><tr><td>Inspect profile attributes over time and understand how user traits are distributed.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/odnjibmLQhvXMoxysboH">/spaces/X6uilbEAw42gqsudlclY/pages/odnjibmLQhvXMoxysboH</a></td></tr><tr><td>Measure website visitors, pageviews, sessions, and referral sources in one place.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/riNLYCcvtgvjza9BM8jN">/spaces/X6uilbEAw42gqsudlclY/pages/riNLYCcvtgvjza9BM8jN</a></td></tr><tr><td>Understand uninstall trends, inspect pre-churn behavior, and act on churned users.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/phvgytLwXx2YSYzaw8RC">/spaces/X6uilbEAw42gqsudlclY/pages/phvgytLwXx2YSYzaw8RC</a></td></tr><tr><td>Analyze opt-out trends, inspect messaging before opt-out, and export opted-out users.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/P3B3rEhG4Wzn9ik7fGt7">/spaces/X6uilbEAw42gqsudlclY/pages/P3B3rEhG4Wzn9ik7fGt7</a></td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

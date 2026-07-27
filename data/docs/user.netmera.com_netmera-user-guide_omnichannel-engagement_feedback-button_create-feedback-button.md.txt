@@ -1,0 +1,192 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/feedback-button/create-feedback-button.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/feedback-button/create-feedback-button.md).
+
+# Create Feedback Button
+
+{% hint style="info" %}
+**Quick Steps Guidelines**
+
+Go to your Netmera Panel and click:
+
+**Web Tools > Widget > Feedback Button >  + New Feedback**
+
+1. Choose from existing Widget Templates or create a new one with "Blank Widget".
+2. **Customize** your feedback button, background color and add elements according to your needs.&#x20;
+3. **Define your target audience** by specifying conditions based on various criteria
+4. **Set rules** for when the Feedback Button should appear, including options to show it instantly or after a delay.&#x20;
+5. **Review your feedback** widget setup, preview how it will appear on your site, and confirm targeting and triggering criteria. Decide whether to save the widget as a draft or **publish** it.
+   {% endhint %}
+
+## Feedback Button Dashboard
+
+&#x20;The feedback dashboard plays a central role in managing feedback-related content within the system. It offers a clear overview of feedback items, categorizing them into three main sections:
+
+**Published Count:** This section provides an account of the total number of feedback items that have been published and are currently accessible to users.
+
+**Draft Count:** Here, you can easily track the number of feedback items that are still in draft form, indicating they are undergoing development and have not yet been made available to users.
+
+**Archived Count:** The archived count reflects the number of feedback items that have been archived, often signaling that they are no longer in active use or relevance.
+
+<figure><img src="/files/VtdNkx19p2sS3LDpCgad" alt=""><figcaption></figcaption></figure>
+
+In addition to these counts, the dashboard offers more detailed information under "Published Widgets" and "Draft Widgets." In the "Published Widgets" section, you can find specifics such as the feedback name, widget name, creation date, publish date, and the publisher for each published feedback item. Similarly, in the "Draft Widgets" section, details about feedback items in draft form, including their names, widget names, creation dates, publish dates, and the respective publishers, are presented.
+
+## Step 1: Feedback Widget Design
+
+In this initial stage of creating a feedback widget, you have the opportunity to design its appearance and functionality according to your preferences. You are presented with two primary options:
+
+1. **Choose from Existing Widget Templates:** If you want a quick and convenient way to create your feedback widget, you can select from a variety of pre-designed templates. These templates come with predefined styles and configurations, allowing you to get started with a design that suits your needs. Simply choose the template that aligns with your goals and proceed with further customization.
+
+   <figure><img src="/files/siXE4uZavD60liEt17Jm" alt=""><figcaption></figcaption></figure>
+2. **Start with a "Blank Widget":** For those who prefer full creative control and want to design a feedback widget from scratch, the "Blank Widget" option is available. This choice provides a clean slate where you can build and customize your widget entirely according to your unique requirements. You'll have the freedom to choose every aspect of the widget's design, layout, and functionality.
+
+   <figure><img src="/files/IwW4a1utUE9rvKQhhvq0" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+**More Tips on How to Design your Widgets:**
+
+You may find more information about how you might customize your widgets in our title [Customize Widgets](/netmera-user-guide/omnichannel-engagement/feedback-button/create-feedback-button/customize-widgets.md).
+{% endhint %}
+
+## Step 2: Feedback Button Appearance
+
+In this step, you have the ability to tailor the visual aspects of your feedback button to create an engaging and aesthetically pleasing user experience. The following customization options are available:
+
+1. **Text Feedback Position:** This option allows you to specify where the text associated with your feedback button should be displayed. You can choose its placement to best suit your design and user interface.
+2. **Background Color:** You can select the background color for your feedback button. This color choice will contribute to the overall look and feel of the button, ensuring it aligns with your brand's visual identity.
+3. **Text Color:** Customize the color of the text displayed on the feedback button. This ensures that the text remains easily readable and complements the background color.
+4. **Font Type:** Choose the specific font style for the text on your feedback button. This selection allows you to match the button's typography with your brand's or application's overall design.
+5. **Font Size (in pixels):** Define the font size in pixels to control the text's readability and prominence on the button. Finding the right font size is crucial for ensuring the button's message is clear to users.
+6. **Font Weight:** Adjust the font weight to determine how bold or light the text appears on the button. Font weight can influence the button's visual impact and emphasis.
+
+By customizing these appearance settings, you can craft a feedback button that not only looks visually appealing but also aligns with your brand's style and messaging. This level of customization ensures that the button seamlessly integrates with your application's design, enhancing user engagement and interaction.
+
+{% hint style="info" %}
+**Web and Mobile Preview**
+
+To ensure that your feedback button appears as expected, you can utilize the "Web" and "Mobile" preview options available at the bottom of the preview page. These buttons enable you to test the appearance and functionality of your feedback button in both web and mobile environments.
+{% endhint %}
+
+<figure><img src="/files/eDkTk6ImAoqAOzAgmTnj" alt=""><figcaption></figcaption></figure>
+
+## Step 3: Targeting
+
+In this phase of creating your feedback widget, you have the opportunity to precisely define the conditions under which the widget should be displayed to users. This step is crucial for ensuring that your feedback requests are presented to the right audience at the right time. Here's how you can configure your targeting:
+
+1. **Target Type:** You have a wide range of options to choose from to define your target audience. These options include:
+   * **Time Spent on Site:** Target users based on the amount of time they have spent on your website or application.
+   * **Source URL:** Specify the source URL from which users arrive at your site. This allows you to target visitors coming from specific sources.
+   * **Browser:** Choose particular web browsers to target users who use those browsers.
+   * **Device Type:** Target users based on the type of device they are using, such as mobile, tablet, or desktop.
+   * **Operating System:** Specify certain operating systems to target users who use those OSs.
+   * **Cookies:** Set targeting conditions based on the presence or absence of specific cookies on users' devices.
+   * **Screen Width:** Target users based on their device's screen width, allowing for responsive design considerations.
+   * **Location:** Define geographic locations where the widget should be displayed, ensuring localized targeting.
+   * **Segment:** Use predefined user segments to target specific groups of users with similar characteristics or behaviors.
+   * **Tag:** Apply targeting based on assigned tags to users or content.
+2. **Targeting Summary:** This section provides a summary of the targeting criteria you've defined. It's a quick reference to ensure that your targeting rules align with your intended audience and objectives.
+
+By leveraging the various targeting options and criteria in this step, you can ensure that your feedback widget reaches the most relevant users under specific conditions. This level of precision helps optimize user engagement and increases the likelihood of collecting valuable feedback from your desired audience.
+
+<figure><img src="/files/75hELBJQI9i9b53hLx4s" alt=""><figcaption></figcaption></figure>
+
+## Step 4: Rules
+
+By leveraging the following trigger options, you can tailor the display of your Feedback Button to specific user behaviors, interactions, or events, enhancing the user experience, increasing engagement, and maximizing the impact of your feedback collection efforts.
+
+### Trigger Types
+
+* **Scroll Trigger:** The scroll trigger allows you to control when the Feedback Button is displayed based on the user's scrolling behavior. You can specify a scroll ratio, such as 50% or 75%, and when the user scrolls beyond that ratio on the page, the Feedback Button will be triggered and shown. This trigger is particularly useful when you want to engage users who have shown a certain level of interest or engagement with your content.
+
+<figure><img src="/files/75qx2S7meFOhKGdq7Ftn" alt="" width="563"><figcaption><p>Scroll Trigger</p></figcaption></figure>
+
+* **Click Selector Trigger:** The click selector trigger gives you the ability to display the Feedback Button when a specific element on the page is clicked by the user. You can identify the element using its CSS selector, which allows for precise targeting. For example, you can set a trigger for when a "Buy Now" button or a specific image is clicked. This trigger is effective for capturing user intent and offering relevant information or assistance at the moment of interaction. It also provides the flexibility to select elements based on class names or IDs.
+
+<figure><img src="/files/De8zCcs4VCSW4GqrrKh3" alt="" width="563"><figcaption><p>Click Selector Trigger</p></figcaption></figure>
+
+* **Page View Trigger:** The page view trigger enables you to show the Feedback Button when the user visits a particular page or a set of pages. This trigger is useful for delivering contextual information or promotions based on the specific content the user is viewing. For example, you can display the Feedback Button offering a discount on related products when a user visits a product detail page. It allows you to provide targeted messaging based on the user's browsing context.
+
+<figure><img src="/files/EylNRvUqFHsmkDCFnSuz" alt="" width="563"><figcaption></figcaption></figure>
+
+* **Exit Intent Trigger:** The exit intent trigger is designed to capture the user's intention to leave the web page. It detects when the user's cursor moves towards the browser's close button or when they navigate to another tab. By triggering the Feedback Button at this critical moment, you have an opportunity to offer incentives, additional information, or personalized recommendations to encourage the user to stay or complete an action before leaving. This trigger helps in reducing bounce rates and retaining users.
+
+<figure><img src="/files/8bubsZTIqOWEmuLtQaoL" alt="" width="563"><figcaption></figcaption></figure>
+
+* **Widget Shown Trigger:** The widget shown trigger allows you to display the Feedback Button after a specific widget, chosen from the available widgets, has already been shown to the user. This trigger is useful for creating sequential or follow-up interactions. For instance, you can present a survey or feedback widget after the user has interacted with a support widget. It enables you to guide users through a predefined flow and provide a seamless user experience.
+
+<figure><img src="/files/zrVaY46wJK23CPeHo32Z" alt="" width="563"><figcaption></figcaption></figure>
+
+* **Netmera Event Trigger:** The Netmera event trigger offers a versatile way to display the Feedback Button based on specific events tracked by Netmera. You can define the event name, attributes, operators, and values to trigger the Feedback Button when the desired event occurs. This trigger can be used to engage users based on their interactions, preferences, or custom-defined events. For example, you can trigger the Feedback Button to offer personalized recommendations based on a user's purchase history or when a specific action is performed within the app.
+
+<figure><img src="/files/raShvmCij7G0PCmKANf3" alt="" width="563"><figcaption></figcaption></figure>
+
+### **Set when your personalization should start appearing to users**
+
+In this section, you have the ability to define when your personalized content (in this case, the Feedback Button) should become visible to users. You can choose between two primary options:
+
+**Show instantly:** Selecting this option means that the Feedback Button will be displayed immediately to users when the specified conditions are met. There's no delay, ensuring instant engagement.
+
+**Show Later:** Alternatively, you can choose to display the Feedback Button after a specified delay. This delay can be customized to meet your preferences and user experience objectives.
+
+* **Show (seconds later):** If you choose the "Show Later" option, you can specify the exact number of seconds you want to elapse before the Feedback Button appears to users.
+* **Hide (seconds later):** You can also specify the number of seconds after which the Feedback Button should disappear if needed.
+
+**Show Priority:** This setting allows you to assign a priority level to the Feedback Button. When you have multiple widgets with similar trigger conditions, the priority determines the order in which they are displayed to users.
+
+**Schedule:** The scheduling feature permits you to set specific start and end dates for when the Feedback Button should be active. By defining this schedule, you can ensure that the widget is displayed during specific time frames, aligning with events or promotions.
+
+* **Start Date and End Date:** Specify the dates when you want the Feedback Button to be active. This helps ensure that the widget is displayed only during the desired time frame.
+* **Fire based on client's timezone:** This option allows you to ensure that the widget's behavior is aligned with the timezone of the user's device, enhancing the accuracy of when it appears.
+
+**Rules Summary:** At the end of this section, you'll find a summary that provides an overview of the rules you've defined. It outlines the conditions for triggering the Feedback Button, making it easy to review and confirm that your rules match your intentions.
+
+<figure><img src="/files/sXlkRZCYMxQc9EpyIQWa" alt=""><figcaption></figcaption></figure>
+
+By establishing these rules, you can control precisely when and how the Feedback Button is presented to users. Whether you want immediate engagement, delayed interactions, or specific scheduling, this step empowers you to tailor the widget's behavior to create a user experience that suits your needs.
+
+## Step 5: Summary
+
+1. **Preview on Your Site:** You can see a preview of how your feedback widget will appear on your website or application. This preview allows you to visualize the widget's placement and appearance, ensuring it aligns with your design and user experience.
+2. **Users Will Be Targeted Based on Criteria Below:** This section displays the criteria you've defined for targeting users. It provides transparency about the conditions under which the feedback widget will be displayed to specific users.
+3. **Feedback Button Will Be Triggered Based on Criteria Below:** Similarly, this section outlines the triggering criteria you've set for the feedback button. It clarifies when and how the button will appear to users based on their interactions or behaviors.
+4. **Set When Your Personalization Should Start Appearing to Users:** You can revisit the rules you've established regarding when the personalization (the feedback widget) should become visible to users. This summary ensures that your timing preferences align with your objectives.
+5. **Save as a Draft or Publish Widget:** Finally, you are presented with the crucial decision of either saving the widget as a draft or publishing it. If you choose to save it as a draft, you can continue to refine and edit the widget setup. If you opt to publish it, the widget will become active and displayed to users according to your defined rules and criteria.
+
+<figure><img src="/files/qJ2z8zbNAOzc45garTLM" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+**Web and Mobile Preview**
+
+To ensure that your feedback button appears as expected, you can utilize the "Web" and "Mobile" preview options available at the bottom of the preview page. These buttons enable you to test the appearance and functionality of your feedback button in both web and mobile environments.
+{% endhint %}
+
+If you select **"Save as Draft**" option, your Feedback Button configuration will be saved as a draft. This means that you can continue to make changes and refinements to your widget setup before making it active. Saving as a draft is ideal when you want to fine-tune your widget or need more time to review its settings.
+
+Choosing "**Publish Widget"** option means that your Feedback Button will be immediately activated and displayed to users on your website or application according to the rules and criteria you've defined. If you're satisfied with your widget's configuration and want it to be live, select "Publish Widget."
+
+<figure><img src="/files/wstwyeHnt23Tjcta1TBu" alt="" width="563"><figcaption></figcaption></figure>
+
+Designing your widget is a crucial step in creating an engaging and visually appealing user experience. On the next page, you'll find guidance and tools to help you customize the widget's appearance to match your branding and user interface requirements.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/feedback-button/create-feedback-button.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

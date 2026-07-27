@@ -1,0 +1,303 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content/mail-templates.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content/mail-templates.md).
+
+# Mail Templates
+
+**Path:** `Settings> Messaging & Content> Mail Templates`
+
+## Create Mail Template
+
+{% hint style="info" %}
+**Quick Steps Guideline**
+
+`Settings` > `Messaging & Content`> `Mail Templates` > `Create Email Template`
+
+1. Open **Mail Templates**.
+2. Click **Create Email Template**.
+3. Set **Template Label** and **Email Type**.
+4. Fill sender details and subject fields.
+5. Build the layout with **Structures** and **Blocks**.
+6. Preview, test, then **Save.**
+   {% endhint %}
+
+### Windows Outlook Configurations <a href="#windows-outlook-configurations" id="windows-outlook-configurations"></a>
+
+Some versions of Windows Outlook may display distortions if **CSS definitions** are **missing** or **not properly applied**. To ensure consistent apperance across all email clients, especially Outlook, make sure your template **includes media styles** in the CSS section.
+
+**Adding media styles in the CSS section:**
+
+1. Open the template and switch to the Code Editor.
+2. Open the CSS tab in the top right corner.
+3. Add your media style definitions and save them.
+4. Test: Preview in several different clients (Outlook, Gmail, Apple Mail).
+
+Example:
+
+```css
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+```
+
+### Template Attributes
+
+<figure><img src="/files/IcHnIL9pgfrzHJJECeBI" alt="" width="563"><figcaption></figcaption></figure>
+
+<table><thead><tr><th width="156.70953369140625">Attribute</th><th>Description</th></tr></thead><tbody><tr><td><strong>Template Label</strong></td><td>Internal name visible only to you. Choose descriptive names to quickly identify templates.</td></tr><tr><td><strong>Email Type</strong></td><td>Select one:<br>- <strong>Notification</strong>: For transactional emails (password resets, confirmations). Sent to all users regardless of opt-in.<br>- <strong>Campaign/Advertisement</strong>: Marketing emails sent only to opt-in users.</td></tr><tr><td><strong>From Address</strong></td><td>Pre-registered sender email address visible to recipients.</td></tr><tr><td><strong>Sender Name</strong></td><td>Display name your recipients will recognize (e.g., company name).</td></tr><tr><td><strong>Mail Subject</strong></td><td>Clear, concise email subject reflecting email content.</td></tr><tr><td><strong>Mail Pre-header</strong></td><td>Optional preview text shown after the subject line (min 40 characters recommended).</td></tr><tr><td><strong>Reply Email</strong></td><td>Optional reply-to address if you want recipients to reply directly. Leave blank to disable.</td></tr></tbody></table>
+
+{% hint style="warning" %}
+
+#### Important Notes on Email Type and Opt-Outs
+
+* **Notification emails** bypass opt-in preferences and send to all users; intended for essential info.
+* **Campaign emails** respect opt-in status, sending only to users who have not unsubscribed.
+  {% endhint %}
+
+## Netmera Email Editor
+
+<figure><img src="/files/5oyxe9A0760PKoDbZBhJ" alt=""><figcaption></figcaption></figure>
+
+### Structures & Modules
+
+Predefined layouts organizing content (e.g., one-column, two-column). Easily dragged into the template workspace. You can customize borders (size, color, rounded edges) individually or collectively.
+
+<figure><img src="/files/DHEOoZK6jCc36czvVl6O" alt="" width="563"><figcaption></figcaption></figure>
+
+### Blocks (Icon Toolbar)
+
+On the left side of the editor, the icon-based toolbar (highlighted in green) provides access to all available content blocks. Blocks are drag-and-drop elements used inside predefined layouts to build email content. Customizable properties include font, alignment, colors, padding, and size.
+
+<table><thead><tr><th width="118.27545166015625">Block Type</th><th width="165.36749267578125" valign="middle">Description</th><th width="268.45458984375" valign="top">Key Features</th><th>Use Cases</th></tr></thead><tbody><tr><td><strong>Image</strong></td><td valign="middle">Adds an image (or GIF) to your email.</td><td valign="top"><ul><li>Upload from your library or use a URL</li><li>Optional link on click</li><li>Responsive sizing inside the layout</li></ul></td><td>Logos, hero images, product shots</td></tr><tr><td><strong>Text</strong></td><td valign="middle">Adds formatted text content.</td><td valign="top"><ul><li>Headings, paragraphs, lists</li><li>Links</li></ul></td><td>Body copy, disclaimers, announcements</td></tr><tr><td><strong>Button</strong></td><td valign="middle">Adds a call-to-action (CTA) button.</td><td valign="top"><ul><li>Custom label + link</li><li>Works across all email clients</li></ul></td><td>Shop now, reset password, confirm email</td></tr><tr><td><strong>Spacer</strong></td><td valign="middle">Adds vertical spacing between blocks.</td><td valign="top"><ul><li>Fixed-height whitespace</li></ul></td><td>Separate sections and improve readability</td></tr><tr><td><strong>Social</strong></td><td valign="middle">Adds social media icons with profile links.</td><td valign="top"><ul><li>Common networks (e.g., Instagram, X, LinkedIn)</li><li>Click-through links</li></ul></td><td>Footer social links</td></tr><tr><td><strong>Menu</strong></td><td valign="middle">Adds navigation links similar to website headers.</td><td valign="top"><ul><li>Multiple links</li><li>Horizontal or vertical layout</li><li>Optional separators</li></ul></td><td>Navigation for newsletters and multi-section emails</td></tr><tr><td><strong>HTML</strong></td><td valign="middle">Inserts custom HTML/CSS.</td><td valign="top"><ul><li>Full control for advanced layouts</li><li>Email client support may vary</li></ul></td><td>Custom components, bespoke layouts</td></tr><tr><td><strong>Banner</strong></td><td valign="middle">Highlights a promotion with a prominent visual.</td><td valign="top"><ul><li>Image + optional title/caption</li><li>Optional link on click</li></ul></td><td>Promotions, featured announcements</td></tr><tr><td><strong>Video</strong></td><td valign="middle">Adds a video preview that links to a video URL.</td><td valign="top"><ul><li>Thumbnail + play indicator</li><li>Opens the video externally when clicked</li></ul></td><td>Product demos, webinar invitations</td></tr><tr><td><strong>Timer</strong></td><td valign="middle">Adds a countdown timer to a target date/time.</td><td valign="top"><ul><li>Counts down to a specific date/time</li><li>Can hide or replace after expiry</li></ul></td><td>Flash sales, limited-time offers</td></tr><tr><td><strong>Carousel</strong></td><td valign="middle">Shows multiple images/items in a slider.</td><td valign="top"><ul><li>Multiple images with links</li><li>Auto-play or manual controls</li></ul></td><td>Product galleries, highlights, testimonials</td></tr><tr><td><strong>Accordion</strong></td><td valign="middle">Expandable sections for long content (AMP-only).</td><td valign="top"><ul><li>Multiple sections (header + body)</li><li>Expand/collapse interaction in AMP-supported clients</li></ul></td><td>FAQs, long-form content without scrolling</td></tr><tr><td><strong>Form</strong></td><td valign="middle">Collects input inside the email (AMP-only).</td><td valign="top"><ul><li>Input fields + submit button</li><li>Requires external handling/endpoint</li></ul></td><td>Surveys, RSVPs, quick lead capture</td></tr></tbody></table>
+
+<figure><img src="/files/5rEG4e3oemdUKskLvwUU" alt=""><figcaption></figcaption></figure>
+
+#### Content Blocks
+
+Used to display static or custom content within the email.
+
+* **Image** – Upload and edit images and GIFs.
+* **Text** – Add text, headings, merge styles and lists.
+* **Banner** – Image and text combinations for highlighted sections
+* **HTML** – Add element with custom HTML/CSS for advanced layouts
+
+<div><figure><img src="/files/R8zX0NeSYFSckx8EX5x7" alt=""><figcaption></figcaption></figure> <figure><img src="/files/2MSA7xshHqj8Q3yXIcdj" alt=""><figcaption></figcaption></figure> <figure><img src="/files/Pv9Ts4IZtjkWvIzjcRzE" alt=""><figcaption></figcaption></figure></div>
+
+#### Action & Engagement Blocks
+
+Designed to encourage interaction directly from the email.
+
+* **Button** – Call-to-action elements
+* **Form** – Collect user input (surveys, RSVPs, contact forms; handled externally)
+* **Accordion** – Expandable sections for structured content
+
+{% hint style="warning" %}
+**Note**: Accordion and Form blocks are AMP-based components. They are supported only in the AMP HTML version of the email. If the recipient’s email client does not support AMP:
+
+* Accordion content **will not** be interactive
+* Form submissions **will not** work inside the email Form submissions always require external handling.
+  {% endhint %}
+
+<div><figure><img src="/files/y0Z1slsAYy6LItAw7JEf" alt=""><figcaption></figcaption></figure> <figure><img src="/files/dBMGRqG6yJjwMgkCk1g8" alt=""><figcaption></figcaption></figure> <figure><img src="/files/i8lhVbOAsq8SwSzI0wqG" alt=""><figcaption></figcaption></figure></div>
+
+#### Layout & Structure Blocks
+
+Used to control spacing and navigation.
+
+* **Spacer** – Add vertical spacing
+* **Menu** – Display navigation links
+
+<div><figure><img src="/files/QXSmsgfuSs86wj97RDoX" alt=""><figcaption></figcaption></figure> <figure><img src="/files/4UcU5ApIDwLLPtkE5ZCY" alt=""><figcaption></figcaption></figure> <figure><img src="/files/x1LlPdzuUojfNhPdVpW9" alt=""><figcaption></figcaption></figure></div>
+
+#### Dynamic / Media Blocks
+
+Used to add dynamic or time-based content.
+
+* **Carousel** – Rotating images or content
+* **Timer** – Countdown timers
+* **Video** – Video previews or thumbnails
+
+<div><figure><img src="/files/4Ivk8dUDwg5JAW6Rd9CL" alt=""><figcaption></figcaption></figure> <figure><img src="/files/74WWaMa6iMIvRDkV6d39" alt=""><figcaption></figcaption></figure> <figure><img src="/files/kaFJ0VwXUpPFCP6u9XXC" alt=""><figcaption></figcaption></figure></div>
+
+#### Social & Utility Blocks
+
+Supporting elements commonly used in emails.
+
+* **Social** – Social media icons and profile links
+
+<div><figure><img src="/files/Yl0WJh5FAc9zwwVKt3yK" alt=""><figcaption></figcaption></figure> <figure><img src="/files/QplyG6mFgo7auKWWhSsA" alt=""><figcaption></figcaption></figure></div>
+
+### Modules
+
+* Save reusable content blocks or full templates for future use
+* Search and filter modules by name or tags
+* Edit or delete modules as needed
+
+<div><figure><img src="/files/CYVPq7NzNVAdxmtrwRM3" alt=""><figcaption></figcaption></figure> <figure><img src="/files/ga34ufRQV7jwfUP0KALP" alt=""><figcaption></figcaption></figure></div>
+
+### Visual Configuration
+
+Visual Configuration refers to global style settings available in the **Global Styles & Layout** panel.\
+These settings affect the entire email template and remain active regardless of which block is selected.
+
+Typical use cases include:
+
+* Defining a consistent content width
+* Controlling spacing and margins across the template
+* Applying background colors or background images
+* Ensuring the layout adapts correctly on different devices
+
+> These configurations apply globally and are independent of individual content blocks.
+
+<div align="left"><figure><img src="/files/OEXYBkj9hQRJgiFQpD5m" alt="" width="301"><figcaption></figcaption></figure> <figure><img src="/files/L2wyI4JAV7T9EJ4bsLH4" alt=""><figcaption></figcaption></figure> <figure><img src="/files/s8bVLEK5AP7ettF0QEw2" alt="" width="301"><figcaption></figcaption></figure></div>
+
+### Global Appearance & Layout
+
+The **Global Styles & Layout** panel allows you to configure visual settings that apply to the entire email template. Unlike block-level settings, the options in this panel remain active regardless of which content block is selected.
+
+* **Default Padding** – Control the spacing between content and template edges, either globally or per section.
+* **Background Color** – Set a base background color for the entire template.
+* **Font and Line Spacing** – Choose font styles and adjust line spacing to improve readability.
+* **Paragraph Bottom Space** – Define the spacing between paragraphs.
+* **Underline Links** – Toggle link underlining to make links more visible.
+* **Responsive Design** – Ensure the layout adapts properly to mobile devices.
+* **RTL Text Direction** – Enable right-to-left text flow for supported languages.
+* **Background Image** – Upload a PNG, JPG, or GIF (max 1 MB), or use a URL to add a background image.
+* **Custom List Styles** – Adjust list indentation, spacing above and below lists, item spacing, list type (bulleted or numbered), and list marker color.
+
+#### Dynamic Behavior
+
+The settings panel updates automatically based on the selected element:
+
+* When no block is selected, global email settings are displayed.
+* When a content block is selected (e.g., Button, Image, Form), block-specific settings appear.
+
+The available options change dynamically depending on the current selection.
+
+> The available settings change automatically depending on the selected element.
+
+### Message Settings
+
+The **Message Settings** tab is used to configure email-level properties that are not related to layout or content blocks.
+
+These settings define how the email appears in the recipient’s inbox **before it is opened**.
+
+You can configure the following options:
+
+* **Subject / Title**\
+  Defines the email subject line displayed in the inbox.\
+  \&#xNAN;*Recommended length: up to 65 characters.*
+* **Hidden Preheader**\
+  A short preview text shown next to the subject line in inboxes.\
+  \&#xNAN;*Recommended length: 50–100 characters.*
+* **Email Annotations for Gmail**\
+  Allows you to highlight deals, discounts, or offers directly in Gmail’s **Promotions** tab, especially on mobile devices.
+* **UTM Parameters**\
+  Automatically adds UTM tags to all links in the email to support campaign tracking in tools like Google Analytics.
+
+### Stripes
+
+Stripes are horizontal sections used to structure the template. They help separate content clearly and improve readability.
+
+#### Stripe Sections
+
+* **Header:**\
+  Customize the top of your template with options for text size, font color, background color, link color, and background image.
+* **Content:**\
+  Adjust the main body settings like text size, font color, link color, and content background.
+
+  **Tip:** Use this area to enhance readability with clear fonts and contrasting background colors.
+* **Footer:**\
+  Design the bottom section with options for background colors, font and link colors, and an optional background image.
+
+  **Tip:** Add contact details and social media links here.
+* **Info Area:**\
+  A separate section for details like dates, times, or links to external actions (e.g., registration or ticket purchase).
+
+  **Tip:** Ideal for highlighting event-related information.
+
+### Headings
+
+Customize the appearance of headings across your template:
+
+* Set font type and size
+* Adjust line spacing and color
+* Apply italic or bold styling
+
+### Button
+
+Control how buttons look in your template:
+
+* Set button and font colors
+* Choose font size and style (italic/bold)
+* Adjust border size, color, and corner radius
+
+{% hint style="info" %}
+**Support for Outlook**
+
+This option improves button rendering in Microsoft Outlook email clients.\
+When enabled, buttons are rendered using Outlook-compatible markup to ensure consistent appearance across different Outlook versions.
+
+> Note: Enabling this option may slightly increase the email size for each button.
+> {% endhint %}
+
+<div><figure><img src="/files/nuWG8ihFkvs8gfqF9sBd" alt="" width="202"><figcaption></figcaption></figure> <figure><img src="/files/MLVYXnDgXA6Nizbmn540" alt="" width="225"><figcaption></figcaption></figure></div>
+
+You can switch between Desktop and Mobile views to configure layout and appearance settings separately for each device.
+
+### Preview & Testing
+
+<div align="center" data-full-width="false"><figure><img src="/files/fqbDLMGdyxwfF9rxlSnP" alt="" width="375"><figcaption></figcaption></figure></div>
+
+Before sending an email campaign, it is recommended to preview and test the template across different devices and email clients to ensure consistent rendering.
+
+The editor allows you to switch between **Desktop** and **Mobile** views to simulate how the email layout adapts to different screen sizes.\
+This helps verify responsive behavior such as:
+
+* Content stacking on mobile
+* Image and button alignment
+* Text readability on smaller screens
+
+#### Using the Email Editor in Expanded View
+
+You can use the **Expand** button to open the editor in a larger view for easier editing and previewing.
+
+This view provides a wider workspace, which makes it easier to work with email content, especially on smaller screens.
+
+To return to the default editor view, click **Collapse**.
+
+#### How It Works
+
+1. Open the **Stripo Editor**.
+2. Click **Expand** to open the editor in expanded view.
+3. Edit and preview your email template in the larger workspace.
+4. Click **Collapse** to return to the default view.
+
+{% hint style="success" %}
+You can use the external preview option to view the email as it would appear in real email clients.\
+This is useful for identifying layout differences caused by email client limitations.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content/mail-templates.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

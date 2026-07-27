@@ -1,0 +1,257 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components.md).
+
+# Journey Components
+
+Use this page to understand what each journey component does, when to use it, and how it changes the path a user follows. After reading it, you will be able to choose the right component for timing, branching, and delivery inside a journey.
+
+Journey components fall into three groups:
+
+<table><thead><tr><th width="190.6494140625">Group</th><th width="257.6905517578125">Purpose</th><th>Typical outcome</th></tr></thead><tbody><tr><td>State components</td><td>Control when the journey waits or continues</td><td>Users move forward after an event or delay</td></tr><tr><td>Branch components</td><td>Split users into different paths</td><td>Different users receive different follow-up actions</td></tr><tr><td>Action components</td><td>Send messages or update data</td><td>The journey performs an outbound or profile-changing action</td></tr></tbody></table>
+
+### State components
+
+State components control pace and progression. Use them when the next part of the journey should depend on time, an event, or a future profile change.
+
+<figure><img src="/files/eTaaDf9faaxLMtEofttD" alt=""><figcaption></figcaption></figure>
+
+#### On Event
+
+Use **On Event** when the journey should move only after a specific event happens. The event can come from user behavior or from the product itself.
+
+This component works well when the next message should react to a clear signal. That signal might be a signup, a purchase, a completed booking, or any tracked event that marks a meaningful change.
+
+<figure><img src="/files/sYyPk2vyzGcZfa0TBCYq" alt="" width="375"><figcaption></figcaption></figure>
+
+Common uses:
+
+* Start a welcome flow after account creation.
+* Send post-purchase messaging after checkout.
+* Trigger a survey after a support case closes.
+
+For example, a learning app can wait for a `course_enrolled` event before sending onboarding content for that course. Users who sign up but never enroll do not receive course-specific guidance.
+
+#### Delay
+
+Use **Delay** when users should wait for a fixed amount of time before the next action runs. This helps you pace the journey and avoid sending several messages too close together.
+
+Delay is useful when timing matters more than immediate reaction. It is often placed between two actions, or after an event, to create space before the next message.
+
+<figure><img src="/files/PYvv3rumSjnpi0o3AiX8" alt="" width="375"><figcaption></figcaption></figure>
+
+Common uses:
+
+* Wait 24 hours before a cart reminder.
+* Spread onboarding emails over several days.
+* Hold a follow-up until closer to an event date.
+
+For example, if a user abandons a cart, you can wait 24 hours before sending the first reminder. You can then add another 48-hour delay before a second reminder with an incentive.
+
+#### Attribute Wait (Coming Soon)
+
+Use **Attribute Wait** when the journey should pause until a profile attribute reaches a specific value. This is useful when the next action depends on user state rather than elapsed time.
+
+This component is relevant for workflows that depend on subscription status, profile completeness, account tier, or another field stored on the user profile.
+
+Common uses:
+
+* Wait until `subscription_status` becomes `active`.
+* Hold a premium onboarding flow until payment succeeds.
+* Pause reward messaging until a loyalty tier updates.
+
+For example, a fitness app can wait until `subscription_status = active` before sending premium workout recommendations. Users with a pending payment stay in the wait state until that profile value changes.
+
+#### On Interaction (Coming Soon)
+
+Use **On Interaction** when the journey should react to how users engage with an earlier journey step. This is meant for reactive flows where the next action depends on whether users open, click, or otherwise interact.
+
+Unlike a fixed delay, this component changes the path based on behavior. That makes it useful for follow-ups that should respond to engagement rather than time alone.
+
+Common uses:
+
+* Continue only if a user clicks a message.
+* Send different follow-ups after email engagement.
+* React to in-app actions after a prompt appears.
+
+For example, a course platform can send an assessment email, then wait for interaction. Users who complete the quiz move to a feedback message. Users who do not interact can receive a reminder path later.
+
+### Branch components
+
+Branch components divide users into separate paths. Use them when one journey should adapt to different audiences, behaviors, or test variants.
+
+<figure><img src="/files/3ITT7h0w99wsN9E50YPS" alt=""><figcaption></figcaption></figure>
+
+#### User Branch
+
+Use **User Branch** when users should follow different paths based on segments, attributes, or audience traits. This lets one journey handle more than one user type without duplicating the whole flow.
+
+The branch decision happens at the point where the component is evaluated. Each user continues only through the matching path.
+
+<figure><img src="/files/5K2LRUEoBJBNp9o4kWv1" alt="" width="375"><figcaption></figcaption></figure>
+
+Common uses:
+
+* Separate new users from returning users.
+* Change messaging by region or language.
+* Personalize content by loyalty tier or lifecycle stage.
+
+For example, an ecommerce journey can branch by purchase history. First-time buyers receive onboarding and product education. Returning buyers receive cross-sell recommendations based on prior orders.
+
+#### Check Interaction
+
+Use **Check Interaction** when you need to branch based on engagement with a push notification or campaign that was sent before this journey step. This component is useful for follow-up logic that depends on past engagement.
+
+This component does not wait for a future interaction inside the current journey. It checks whether the user already interacted with a relevant push notification or campaign before the branch is evaluated.
+
+<figure><img src="/files/iz0uhgBf9AzvL6DluFNs" alt="" width="326"><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+Use **Check Interaction** for engagement that already happened before this branch runs.
+
+Use **On Interaction** for interaction-based progression inside the journey after that component becomes available.
+{% endhint %}
+
+Common uses:
+
+* Follow up differently for users who opened a prior push.
+* Send a reminder to users who ignored an earlier campaign.
+* Reward users who engaged with an announcement.
+
+For example, after a webinar invitation push, you can branch users by engagement. Users who opened the push can receive registration details. Users who ignored it can receive a reminder with a stronger reason to attend.
+
+#### Variants
+
+Use **Variants** when you want to test different versions of a message or path. This component helps you compare alternatives inside the same journey.
+
+Variants are commonly used for experiments. You can test message copy, offers, timing, or channel decisions without building separate journeys for each version.
+
+<figure><img src="/files/2A8U2gjCFMbuyf4cenOy" alt="" width="563"><figcaption></figcaption></figure>
+
+Common uses:
+
+* Compare two subject lines.
+* Test a discount against free shipping.
+* Compare different push message phrasing.
+
+For example, a promotion can split users into two email variants. One variant offers `10% off`. The other offers free shipping. You can then compare engagement or conversion and reuse the stronger option in future journeys.
+
+### Action components
+
+Action components do the actual work of the journey. Use them to send a message, write data to the user profile, or emit an event for downstream use.
+
+<figure><img src="/files/eViK3Osand3RkOWCdKae" alt=""><figcaption></figcaption></figure>
+
+#### Update Profile
+
+Use **Update Profile** when the journey should write or change a user attribute. This is useful when later logic depends on a value that the journey itself can set.
+
+Profile updates help keep user data aligned with behavior. They can also support future segmentation, targeting, and reporting.
+
+<figure><img src="/files/oPTqt9XBWzaF8M5rrEst" alt="" width="375"><figcaption></figcaption></figure>
+
+Common uses:
+
+* Store product or content preferences.
+* Update subscription or lifecycle fields.
+* Adjust loyalty points or membership tier.
+
+For example, after a purchase, the journey can increase a loyalty score on the profile. Later journeys can then target users who reached a reward threshold.
+
+#### Send Mobile Push
+
+Use **Send Mobile Push** when the message should reach users on their mobile device. This is best for fast, time-sensitive communication.
+
+Push works well for reminders, nudges, and urgent updates. It is often used when the value of the message drops quickly if delivery is delayed.
+
+<figure><img src="/files/2vb1oOdykVnHpn2P38wD" alt="" width="375"><figcaption></figcaption></figure>
+
+Common uses:
+
+* Remind users about an upcoming event.
+* Bring inactive users back into the app.
+* Send transaction-related updates.
+
+For example, a fitness app can send a push 30 minutes before a scheduled workout. That timing gives the user enough notice to act while the message is still relevant.
+
+#### In App Message
+
+Use **In App Message** when users should see the message while they are already active in the app. This keeps the communication inside the product experience.
+
+This component is useful when context matters. Because the user is already present, the message can react to what they are doing right now.
+
+<figure><img src="/files/RDWDqtMH8fi6mWnH7LXr" alt="" width="375"><figcaption></figcaption></figure>
+
+Common uses:
+
+* Introduce a feature during relevant app usage.
+* Show a limited-time offer while users browse.
+* Ask for feedback after a completed action.
+
+For example, an ecommerce app can show an in-app message with a category discount while the user is viewing products in that category. The offer appears at the moment of highest intent.
+
+#### Fire Event
+
+Use **Fire Event** when the journey should emit a custom event. This is useful for logging milestones, triggering downstream workflows, or making journey activity available to other systems.
+
+This component does not deliver a message to the user. Instead, it records or broadcasts that something happened at this point in the journey.
+
+<figure><img src="/files/2tmpffczQShgsU7DpWDh" alt="" width="375"><figcaption></figcaption></figure>
+
+Common uses:
+
+* Log that a user reached a milestone.
+* Trigger an external automation.
+* Mark a state that later journeys can use.
+
+For example, a music app can fire an event when a user creates a playlist after onboarding. That event can then trigger recommendation logic in another connected system.
+
+#### Send E-Mail
+
+Use **Send E-Mail** when the message should arrive through email. This is a good fit for longer content, transactional updates, and messages users may need to revisit later.
+
+Email is often better than push when the content needs more detail, richer formatting, or a longer decision window.
+
+<figure><img src="/files/YAmjB9scpbuTmqpmoLQR" alt="" width="375"><figcaption></figcaption></figure>
+
+Common uses:
+
+* Send onboarding or welcome series messages.
+* Deliver promotional campaigns with more detail.
+* Send receipts, confirmations, or shipping updates.
+
+For example, after checkout, a retailer can send an order confirmation email with the order summary, estimated delivery date, and tracking details. Users can return to that email later without needing the app open.
+
+<figure><img src="/files/eBSIPKqFxpU3j8dAsUmY" alt=""><figcaption></figcaption></figure>
+
+### Choose the right component
+
+Use this quick guide when deciding which component to place next:
+
+* Choose a **State** component when timing or progression is the main requirement.
+* Choose a **Branch** component when different users need different paths.
+* Choose an **Action** component when the journey needs to send, update, or log something.
+
+If you need to build the full flow after choosing your components, learn more in [Build Journey](/netmera-user-guide/omnichannel-engagement/journey-orchestration/build-journey.md).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

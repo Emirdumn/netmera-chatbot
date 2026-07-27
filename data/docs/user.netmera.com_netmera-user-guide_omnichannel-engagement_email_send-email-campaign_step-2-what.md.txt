@@ -1,0 +1,146 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/send-email-campaign/step-2-what.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/send-email-campaign/step-2-what.md).
+
+# Step 2: What
+
+Configure the content and settings of your email campaign on this page.
+
+<figure><img src="/files/I5AK3wWzZwo6siwC1N5G" alt=""><figcaption></figcaption></figure>
+
+#### Mail Template
+
+Select from the email templates you’ve created under **Settings > Mail Templates**. If you haven’t created any yet, refer to the [Mail Templates](/netmera-user-guide/panel-settings/settings/messaging-and-content/mail-templates.md) guide. After selecting a template, you can edit it here to customize it for your campaign.
+
+#### Email Type
+
+Choose between two email types:
+
+* **Notification:** Used to inform subscribers about events, updates, or important information.
+* **Campaign/Advertisement:** Used to promote products, services, or special offers.\
+  Select the type that matches the purpose of your campaign.
+
+{% hint style="info" %}
+**Important Opt-in Policy Notice**
+
+If you select **Notification**, the email will be sent to all users regardless of their email opt-in status. This option should only be used for mandatory regulatory notifications that users are required to receive. For promotional content such as product announcements or special offers, always choose **Campaign/Advertisement** to ensure the opt-in check mechanism is enforced.
+{% endhint %}
+
+#### From Address
+
+Specify the sender email address that will appear to recipients. This address must be registered and transmitted to Netmera by authorized panel users.
+
+#### Sender Name
+
+Enter the name that appears as the sender. Use a recognizable name (like your company or brand) so subscribers can easily identify you as a trusted source.
+
+#### Mail Subject
+
+Write a concise, clear, and attention-grabbing subject line that accurately reflects your email content to encourage recipients to open it.
+
+#### Mail Pre-header
+
+This optional text appears next to the subject line in the inbox preview. It helps give subscribers more context and entice them to open your email. Your pre-header should be at least 40 characters.
+
+#### Reply Email
+
+Specify the email address where replies should be sent. If left blank, subscribers will not be able to reply, and no reply email will be set.
+
+#### Test Mail
+
+Before sending to your full list, test your email to check formatting, layout, and content:
+
+* Specify how many users you want to send the test to.
+* Add testers by making them panel users first.
+* Manage the test list on the **Send Test Mail** sidebar screen; you can add or remove testers, or clear the entire list with the **Clear List** button.
+* Send the test email by clicking **Send a Test**.\
+  Test emails are sent only to these testers, ensuring the rest of your subscribers do not receive it.
+
+<figure><img src="/files/ywpL5qYiLBAlY4uodmea" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Profile Attributes
+
+Use [Profile Attributes](/netmera-user-guide/customer-data/profile-attributes.md) to target your campaign based on your contacts’ specific characteristics or data stored in their profiles. Selecting relevant attributes lets you tailor your message precisely to your audience. Please refer to the guide [Broken mention](broken://pages/P2LFUa7yIl7nYjCRRwvC) on transferring email lists with profile attributes to your Netmera Panel for detailed instructions.
+
+<figure><img src="/files/jmKFJpL75Vr9lJ7YjnOV" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Promotion Code
+
+Include promotion codes or discounts to encourage desired actions from your audience, such as purchases. Choose codes from your predefined promotion value lists in Netmera. Click the **copy** button next to the code and paste it where you want it to appear in your email.
+
+<figure><img src="/files/fqNoGKChYOwxGJefz5fJ" alt=""><figcaption></figcaption></figure>
+
+#### Message Label
+
+Assign labels to your messages for better organization and reporting. This is especially useful when sending multiple campaigns or notifications. Labels allow you to filter and analyze campaign performance by categories such as product type, promotion, or target group.
+
+<figure><img src="/files/8pN2gENfGPBQQxCnYUWc" alt=""><figcaption></figcaption></figure>
+
+#### Conversion Analytics
+
+Use the **Conversion Analytics** settings to define and measure the effectiveness of your campaign by tracking user actions and conversions.
+
+**Conversion Event**
+
+Select the specific **event** that represents a successful conversion for your campaign (e.g., purchase completed, app install, form submission).
+
+**Event Attribute**
+
+Optionally, specify one or more **event attributes** to filter or segment your conversion data, allowing for more detailed analysis based on event properties.
+
+**Control Group**
+
+Enable the **control group** feature to create a subset of users who do not receive the campaign. This allows you to compare conversion rates between exposed and unexposed users and accurately calculate the campaign’s impact.
+
+**Conversion Deadline**
+
+#### Conversion Deadline
+
+A conversion is counted when the user receives the message, clicks it, and completes the conversion event within the same session.
+
+For a click to be attributed, it must happen within the **Conversion Deadline** window. This window starts at message delivery.
+
+Clicks outside this window are not counted as conversions, even if the conversion event is completed later in the same session.
+
+**Example**
+
+<table><thead><tr><th>Scenario</th><th>Delivery</th><th width="141.27508544921875">Click</th><th width="136.802490234375">Deadline</th><th>Result</th></tr></thead><tbody><tr><td>Within window</td><td>14:00</td><td>17:30</td><td>2 hours</td><td>✅ Conversion +1</td></tr><tr><td>Outside window</td><td>14:00</td><td>18:30</td><td>2 hours</td><td>❌ Not counted</td></tr></tbody></table>
+
+<figure><img src="/files/i7ft9gJQJiiGrm29vixX" alt=""><figcaption></figcaption></figure>
+
+#### Conversion and Revenue Metrics
+
+* **Conversion**: The total number of times the specified conversion event is triggered.
+* **Revenue**: The cumulative value of the `revenue` parameter associated with the conversion event, aggregated across all users (only applicable if revenue events are integrated).
+
+{% hint style="info" %}
+**Prerequisites for Conversion and Revenue Tracking**
+
+To display conversion and revenue metrics in your campaign reports (such as email performance reports), you must define a **Conversion Event** in this step.
+
+Additionally, to enable revenue tracking, ensure that your application sends revenue data within the relevant conversion events to Netmera. Refer to the Developer Guide for detailed integration instructions.
+{% endhint %}
+
+<figure><img src="/files/3cHdTm8ZI4Ukun16vYFj" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/send-email-campaign/step-2-what.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

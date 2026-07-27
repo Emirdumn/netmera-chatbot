@@ -1,0 +1,108 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets.md).
+
+# Widgets
+
+{% columns %}
+{% column width="58.333333333333336%" %}
+Widgets are no-code UI components you add to apps and websites to engage users through announcements, promotions, and gamified flows.
+
+* Deliver tailored content.
+* Engage with coupon reveals, pop-ups, and banners.
+* Launch quickly with precise targeting.
+* Reflect your brand with dynamic content.
+* Measure user engagement in real-time.
+
+Widgets turn every interaction into an opportunity to convert and retain users.
+{% endcolumn %}
+
+{% column width="41.666666666666664%" %}
+
+<figure><img src="/files/OSvOrcLbumlRz4tyz5gs" alt=""><figcaption></figcaption></figure>
+
+{% endcolumn %}
+{% endcolumns %}
+
+### Choose a widget type
+
+<table data-view="cards"><thead><tr><th>Widget type</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Mobile In-App widgets (inside your mobile app)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/hVOA4j9IiBuynhkuRKzH">/spaces/X6uilbEAw42gqsudlclY/pages/hVOA4j9IiBuynhkuRKzH</a></td></tr><tr><td>Web Pop-up widgets (on your website)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/GPeZElUnuoQU149TyAZo">/spaces/X6uilbEAw42gqsudlclY/pages/GPeZElUnuoQU149TyAZo</a></td></tr><tr><td>Spin to Win (works on both mobile + web)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/NUVdFaH4gKjTfFmGhG4A">/spaces/X6uilbEAw42gqsudlclY/pages/NUVdFaH4gKjTfFmGhG4A</a></td></tr></tbody></table>
+
+### Quickstart: build and publish a widget
+
+{% stepper %}
+{% step %}
+
+#### 1) Pick channel and format
+
+Mobile widgets are published via **Mobile Widget** automation.
+
+Web widgets are published via **Web Tools → Widget** rules.
+{% endstep %}
+
+{% step %}
+
+#### 2) Design the widget
+
+Start from a template or create a blank widget.
+{% endstep %}
+
+{% step %}
+
+#### 3) Configure click actions
+
+Decide what happens on tap/click (deeplink, URL, close, etc.).
+{% endstep %}
+
+{% step %}
+
+#### 4) Set targeting + eligibility and publish
+
+Use segments/tags and show limits to avoid overexposure.
+{% endstep %}
+
+{% step %}
+
+#### 5) Measure and iterate
+
+Track “shown” and “action” events in Event Insight.
+{% endstep %}
+{% endstepper %}
+
+### Mobile widgets: design → publish → analyze
+
+<table data-view="cards"><thead><tr><th>Mobile widget flow</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Design / create a mobile widget</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/YnBdXP9WXJDfIMjrqzY3">/spaces/X6uilbEAw42gqsudlclY/pages/YnBdXP9WXJDfIMjrqzY3</a></td></tr><tr><td>Assign click actions (buttons, images, components)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/3yWTs8ppf4yNV5arnXdr">/spaces/X6uilbEAw42gqsudlclY/pages/3yWTs8ppf4yNV5arnXdr</a></td></tr><tr><td>Publish mobile widget (automation + audience + testing)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/gflki7GpL6SqdAjdLtSw">/spaces/X6uilbEAw42gqsudlclY/pages/gflki7GpL6SqdAjdLtSw</a></td></tr><tr><td>Analyze widget performance (shown/action events)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/0WUjAejaJyzKzLzubCsA">/spaces/X6uilbEAw42gqsudlclY/pages/0WUjAejaJyzKzLzubCsA</a></td></tr></tbody></table>
+
+### Web widgets: design → publish → analyze
+
+<table data-view="cards"><thead><tr><th>Web widget flow</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Design / create a web widget</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/ZCD26z8jUZf0cHiYwVue">/spaces/X6uilbEAw42gqsudlclY/pages/ZCD26z8jUZf0cHiYwVue</a></td></tr><tr><td>Assign click actions (buttons, images, components)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/OiZpt381SIiMgrpwk9gB">/spaces/X6uilbEAw42gqsudlclY/pages/OiZpt381SIiMgrpwk9gB</a></td></tr><tr><td>Publish web widget (triggers, filters, placement)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/MG4H1xHP5yPujND1weBw">/spaces/X6uilbEAw42gqsudlclY/pages/MG4H1xHP5yPujND1weBw</a></td></tr><tr><td>Analyze widget performance (shown/action events)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/QhhYeNhifv8nJ1Vhnb2o">/spaces/X6uilbEAw42gqsudlclY/pages/QhhYeNhifv8nJ1Vhnb2o</a></td></tr></tbody></table>
+
+### Spin to Win: configure → publish → analyze
+
+<table data-view="cards"><thead><tr><th>Spin to Win workflow</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Configure slices, rewards, weights, and coupon logic</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/NUVdFaH4gKjTfFmGhG4A">/spaces/X6uilbEAw42gqsudlclY/pages/NUVdFaH4gKjTfFmGhG4A</a></td></tr><tr><td>Deliver coupon codes via SMS and push</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/Og0P2ptrWNXc6D7rQQPF">/spaces/X6uilbEAw42gqsudlclY/pages/Og0P2ptrWNXc6D7rQQPF</a></td></tr><tr><td>Publish on mobile (automation + audience + testing)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/gflki7GpL6SqdAjdLtSw">/spaces/X6uilbEAw42gqsudlclY/pages/gflki7GpL6SqdAjdLtSw</a></td></tr><tr><td>Publish on web (triggers, filters, placement)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/MG4H1xHP5yPujND1weBw">/spaces/X6uilbEAw42gqsudlclY/pages/MG4H1xHP5yPujND1weBw</a></td></tr><tr><td>Analyze Spin to Win events in Event Insight</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/DBKbcgDMXDBTB4faVEo6">/spaces/X6uilbEAw42gqsudlclY/pages/DBKbcgDMXDBTB4faVEo6</a></td></tr></tbody></table>
+
+### How-to videos
+
+{% embed url="<https://youtu.be/7XIZGV0rj1I?si=8Mzh1IBLQBoseYrz>" %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

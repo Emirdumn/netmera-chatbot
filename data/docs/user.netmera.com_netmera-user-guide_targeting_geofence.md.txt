@@ -1,0 +1,150 @@
+URL: https://user.netmera.com/netmera-user-guide/targeting/geofence.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/targeting/geofence.md).
+
+# Geofence
+
+Geofences are reusable location boundaries.
+
+Use them to define physical areas like stores, branches, airports, or event venues. After you create and publish a geofence, Netmera can use it as a trigger for location-based messaging and targeting.
+
+<figure><img src="/files/NuLIXgQTwzhFVYEOS7xF" alt="" width="375"><figcaption></figcaption></figure>
+
+**Path:** `Targeting > Geofences`
+
+{% hint style="info" %}
+**Quick steps**
+
+1. Create a geofence with a **circle, shape or a rectangle** .
+2. Name it and optionally assign a group or multiple groups.
+3. Save the geofence.
+4. Publish it to devices.
+5. Use it in [Geofence Messaging](/netmera-user-guide/messaging-features/geofence-messaging.md).
+   {% endhint %}
+
+### Geofences tab overview
+
+The **Geofences** tab lists the locations you already created.
+
+From this view, you can:
+
+* review geofence names and IDs,
+* see the assigned group,
+* check **entry** and **exit** counts,
+* review status as **Active** or **Passive**,
+* and use row actions to edit, resume, or remove.
+
+Use the search field to find a geofence or group by name.
+
+<figure><img src="/files/4ba3lACLuP1tezzclDXQ" alt=""><figcaption><p>Edit, Remove or Resume Existing Geofences</p></figcaption></figure>
+
+### Create a geofence
+
+Go to `Targeting > Geofences > Create Geofence`.
+
+1. Enter a **Geofence Name**.
+2. Optionally assign a **Group or multiple Groups**.
+3. Choose how to define the area:
+   * **Draw a Circle** — set a center point and radius.
+   * **Draw a Shape** — draw a custom shape on the map.
+   * **Draw a Rectangle** — draw a rectangular area on the map.
+4. Select the location by search or directly on the map.
+5. Adjust the size or outline of the area.
+6. Click **Save**.
+
+### Toolbox
+
+Use the toolbox to draw and manage the geofence area on the map. You can use **Stop Drawing**, **Draw a Circle**, **Draw a Shape**, and **Draw a Rectangle** depending on the area you want to define.
+
+<figure><img src="/files/4RvPXZY9IDvLgrGjq3Tt" alt=""><figcaption><p>Create Geofence</p></figcaption></figure>
+
+#### Stop Drawing
+
+Use **Stop Drawing** to exit drawing mode when you want to stop creating or adjusting an area on the map.
+
+#### Draw a Circle
+
+Use **Draw a Circle** for simple radius-based areas, such as a store, branch, restaurant, or event location.
+
+After selecting the circle tool, click the center point on the map and adjust the radius to cover the area you want to target.
+
+<figure><img src="/files/XZigeaXmVnxxCipObl3b" alt="" width="563"><figcaption><p>Draw a Circle</p></figcaption></figure>
+
+#### Draw a Rectangle
+
+Use **Draw a Rectangle** when the target area has a clear rectangular shape, such as a street block, shopping area, parking zone, or business district.
+
+Click and drag on the map to define the rectangular geofence area.
+
+<figure><img src="/files/A2Os5e34QtOY4dDqBvvz" alt="" width="563"><figcaption><p>Draw a Rectangle</p></figcaption></figure>
+
+#### Draw a Shape
+
+Use **Draw a Shape** to create a custom geofence area when the target location does not fit into a simple circle or rectangle.
+
+This option is useful for areas with irregular boundaries, such as campuses, malls, parks, airports, or outdoor event spaces.
+
+<figure><img src="/files/oAw3x0unQKDPIpX3oSz3" alt="" width="563"><figcaption><p>Draw a Shape</p></figcaption></figure>
+
+#### Map and Satellite Views
+
+You can switch between **Map** and **Satellite** views while creating or editing a geofence.
+
+Use **Map** view for a cleaner street-level layout. Use **Satellite** view when you need more visual detail, such as buildings, open areas, roads, or real-world surroundings.
+
+Satellite view can help you define the geofence area more accurately.
+
+<figure><img src="/files/MYxc6NPdNrArv543Fki9" alt="" width="563"><figcaption><p>Switch between Map and Satellite View</p></figcaption></figure>
+
+### Publish geofences to devices
+
+After you save a geofence, publish it so devices can receive the updated location definitions.
+
+1. Open the **Geofences** tab.
+2. Find the geofence you want to publish.
+3. Click **Publish to Devices**.
+
+<figure><img src="/files/5entJOtutH7vHCpevLrP" alt="" width="236"><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+**Why publish is required**
+
+Publishing sends the updated geofence definitions to devices with a **silent push**. Without this step, devices may not use the latest location setup.
+{% endhint %}
+
+### What you can do next
+
+After a geofence is published, you can:
+
+* use it in [Geofence Messaging](/netmera-user-guide/messaging-features/geofence-messaging.md),
+* group multiple locations under one structure,
+* and monitor entry and exit counts from the geofence list.
+
+### Best practices
+
+* Use clear names like `istanbul_kadikoy_store`.
+* Group related locations if the same campaign logic applies to all of them.
+* Keep the radius tight enough to avoid accidental triggers.
+* Re-publish after any geofence update.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/targeting/geofence.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

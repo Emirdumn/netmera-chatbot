@@ -1,0 +1,160 @@
+URL: https://user.netmera.com/netmera-user-guide/smart-linking/deferred-deep-link/create-custom-landing-page.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/smart-linking/deferred-deep-link/create-custom-landing-page.md).
+
+# Create Custom Landing Page
+
+**Path**: `Settings > App Configuration > Deferred Deep Link>Settings`
+
+#### Minimum SDK Requirement
+
+To use the **Deferred Deep Link** feature, please update your SDKs to the following minimum versions:
+
+* **Swift SDK:** v4.13.0
+* **Android SDK:** v4.11.0
+
+***
+
+Deferred Deep Link Settings allow you to create a **branded** **landing** **page** that directs users to the correct destination based on their device and app installation status. If the app is not installed, users are sent to the respective app store and, upon first launch, routed to the intended in-app screen. If installed, they are directed immediately.
+
+The configuration page defines:
+
+* Landing page appearance (app name, icon, title, subtitle, button text)
+* Store redirections (Google Play / iOS App Store)
+* Link domain to be used for deep link generation
+
+<figure><img src="/files/yWwVt5j8K3mb0zNaAhru" alt=""><figcaption></figcaption></figure>
+
+### Landing Page Settings
+
+Defines the metadata and visual components displayed on the landing page before app installation or when the link is opened from a desktop browser.
+
+<figure><img src="/files/khn5lrkqfexRiSlpzmiU" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Steps
+
+1. **Enter Application Name**\
+   Type the display name of your application.\
+   Example: `Impact Fintech`
+2. **Upload Application Icon**\
+   Paste the URL of the icon to be displayed on the landing page.
+   * Image must be hosted publicly.
+   * Size limit: **110x110 pixels**.\
+     Example:\
+     `https://media.iidcn.com/dms/image/v2/D4D0BAQF.../company-logo_200_200/0/f1`
+3. **Set Button Text**\
+   Defines the CTA (Call to Action) shown on the button.\
+   Example: `Download the App`
+   * Character limit: **20 characters**
+4. **Enter Title**\
+   The main heading displayed under your app name.\
+   Example: `Join Impact Fintech: The Future of Banking`
+   * Character limit: **55 characters**
+5. **Enter Subtitle**\
+   Secondary descriptive line supporting the title.\
+   Example: `Access your wallet, track expenses, and invest smarter`
+   * Character limit: **55 characters**
+6. **Preview**\
+   Review how your landing page will look under the **Landing Page Preview** section on the right.
+   * Tabs available: **iOS** and **Android** preview modes.
+
+### Store Redirections
+
+Configures where users are sent when the app is not installed.
+
+<figure><img src="/files/LTPoAUwD4MiHpimirzQC" alt="" width="563"><figcaption></figcaption></figure>
+
+1. **Add Redirection**
+
+   * Click **Add Redirection**.
+   * Select store type: `Google Play`, `iOS Store`, `Oppo App Market`, `Huawei App Gallery`
+   * Paste your app’s store URL.
+
+   **Example URLs:**
+
+   * Google Play:\
+     `https://play.google.com/store/apps/details?id=com.impactfintech.wallet`
+   * iOS App Store:\
+     `https://apps.apple.com/app/impact-fintech-wallet/id1587648392`
+2. **Delete Redirection (if needed)**\
+   Click the red trash icon next to a store entry to remove it.
+
+### Deferred Deep Link Domain
+
+<figure><img src="/files/l7KWolDXQDedYgCgGZEz" alt="" width="563"><figcaption></figcaption></figure>
+
+Defines the domain used for your deep links. This domain appears in the URL sent to users.
+
+#### Steps
+
+1. **Add Link Domain**
+
+   * Click **Add Link Domain**.
+   * Enter your chosen subdomain (e.g., `impactwallet`).
+   * The system will automatically append the Netmera-managed domain suffix (e.g., `.nms.ist`).
+
+   Example:\
+   Final link format → `https://impactwallet.nms.ist`
+2. **Delete or Edit Domain**
+   * Click the trash icon to remove the existing domain.
+   * You can then add a new one as required.
+
+### Landing Page Preview
+
+Shows a real-time preview of how your landing page appears to end users.
+
+* Toggle between **iOS** and **Android** tabs.
+* Verify that icons, title, subtitle, and button text fit visually.
+* Adjust text fields in the left panel until the preview aligns with branding.
+
+{% columns %}
+{% column width="50%" %}
+![](/files/tOcGTEhfeEoKYC59ggOW)
+{% endcolumn %}
+
+{% column width="50%" %}
+![](/files/phm8c3kaR32pIqF1xKtr)
+{% endcolumn %}
+{% endcolumns %}
+
+### Notes and Best Practices
+
+* Use short, clear text for **Title** and **Subtitle** to avoid truncation on smaller screens.
+* Confirm all store links are correct and functional before saving.
+* Ensure the **domain name** aligns with your app or brand name for consistency.
+* For optimal experience, verify how links behave across devices and browsers.
+* When testing, open your deferred deep link both on a device **with** and **without** the app installed to confirm proper redirection.
+
+### Example Configuration Summary
+
+<table><thead><tr><th width="178.271484375">Field</th><th>Example Value</th></tr></thead><tbody><tr><td>Application Name</td><td>Impact Fintech</td></tr><tr><td>Application Icon</td><td>https://media.iidcn.com/.../company-logo_200_200</td></tr><tr><td>Button Text</td><td>Download the App</td></tr><tr><td>Title</td><td>Join Impact Fintech: The Future of Banking</td></tr><tr><td>Subtitle</td><td>Access your wallet, track expenses, and invest smarter</td></tr><tr><td>Google Play URL</td><td>https://play.google.com/store/apps/details?id=com.impactfintech.wallet</td></tr><tr><td>iOS Store URL</td><td>https://apps.apple.com/app/impact-fintech-wallet/id1587648392</td></tr><tr><td>Link Domain</td><td>https://impactwallet.nms.ist</td></tr></tbody></table>
+
+### Outcome
+
+Once configured, your deferred deep links will:
+
+* Display a branded landing page for new users.
+* Redirect existing users directly to in-app content.
+* Ensure unified tracking across acquisition channels (SMS, email, push, web, QR).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/smart-linking/deferred-deep-link/create-custom-landing-page.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

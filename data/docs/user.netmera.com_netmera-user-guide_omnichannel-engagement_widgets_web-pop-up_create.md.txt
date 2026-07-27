@@ -1,0 +1,202 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create.md).
+
+# Create
+
+{% hint style="info" %}
+**Quick Steps Guideline**
+
+Go to your Netmera Panel and click:
+
+**Web Tools >** **Widget > Design Widget**
+
+1. Select your widget from [**Widget Gallery**](#widget-gallery) or [**Your Widgets**](#your-widgets) and edit your design.
+2. If you want to create a new custom widget, select **"Blank Widget"**, add a name and configure your widget in[ **Extend Widget**](#extend-widget)**.**
+3. Customize your widget using drag and drop widget tools in **Elements.**
+4. Define [**Click Actions**](/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/assign-click-actions.md) for your buttons or images.
+5. Click on **Save Widget & Return**.
+   {% endhint %}
+
+When you click **Blank Widget**, the **Extend Widget** page opens. This is where you configure your widget’s core settings and customize how it looks and behaves. Each option helps you create a widget that is easy to identify, fits your campaign purpose, and delivers the right user experience.
+
+## Widget Gallery
+
+The **Widget Gallery** provides you with a collection of pre-designed templates that you can use as a starting point for your campaigns. These templates save you time and effort while still giving you the flexibility to customize them according to your needs.
+
+<figure><img src="/files/Qw912MSqF9atl7atlfgh" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/o7MMqzdipSn19v9HeMuT" alt=""><figcaption><p>Widget Gallery</p></figcaption></figure>
+
+## Your Widgets
+
+In the **Your Widgets** section, you have access to the widgets you created previously. This section allows you to manage and maintain widgets efficiently with the following options:
+
+* **Search**\
+  Quickly find specific widgets by entering keywords. Useful when you have a large library.
+* **Edit**\
+  Update design, content, or behavior settings. For example, you may change the look of the close button or update campaign text.
+* **Delete**\
+  Remove unwanted widgets permanently. Helps keep your library organized.
+* **Clone**\
+  Duplicate an existing widget to create a new version with small modifications.
+
+**Example:**\
+If you have a “Welcome Discount” widget offering **10%**, you can use **Edit** to update it to **15%**, instead of creating one from scratch.
+
+<figure><img src="/files/Qw912MSqF9atl7atlfgh" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/o7MMqzdipSn19v9HeMuT" alt=""><figcaption><p>Widget Gallery</p></figcaption></figure>
+
+## Extend Widget
+
+When you select **Blank Widget**, the **Extend Widget** page opens. Here, you configure your widget’s fundamentals and advanced options.
+
+### Name
+
+Give your widget a descriptive, memorable name, e.g., **“Summer Sale Pop-up”**.
+
+### Description
+
+Add a short explanation of the widget’s purpose, e.g., “Promotes seasonal discounts with an interactive pop-up.”
+
+<figure><img src="/files/H43QQUbahiYjhbSWCuPE" alt=""><figcaption></figcaption></figure>
+
+### Background Overlay Feature
+
+Background Overlay is designed to give you **greater visual control** over how popups are presented, without breaking existing or simple use cases. It enables more advanced visual customization while preserving backward compatibility and keeping basic popup implementations simple.
+
+{% hint style="info" %}
+**Minimum SDK Versions**
+
+* **Android SDK:** 4.13.1
+* **Swift SDK (iOS):** 4.14.2
+  {% endhint %}
+
+#### Background Overlay
+
+The **Background Overlay** toggle is enabled by default.
+
+When enabled:
+
+* All areas outside the popup are covered by an tinted gray overlay.
+* The overlay is applied in **full screen**.
+* The overlay includes the **status bar area** (such as time, battery, and carrier information).
+* The **Overlay Color** option becomes available.
+
+<figure><img src="/files/0Fy3xTSWb7ZBwTU1s5LP" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/Z7ggleHLkUiIkJYVJSoH" alt=""><figcaption></figcaption></figure>
+
+#### Overlay Color
+
+* By default, the overlay color is set to a **tinted gray**.
+* You can select a custom color using the **color picker**.
+* Both **HEX** and **RGBA** color formats are supported.
+* The selected color is applied to the **full-screen overlay area behind the popup**.
+* Opacity can be adjusted either:
+  * Directly within the color picker, or
+  * Via a separate opacity control (slider).
+
+#### Clear Background
+
+<figure><img src="/files/PYux3w4I8NMbuUH7sPgK" alt=""><figcaption></figcaption></figure>
+
+When the **Clear Background** toggle is enabled:
+
+* The popup is displayed on a **transparent app background**.
+* **Background Overlay is automatically disabled.**
+* The **Overlay Color** option becomes disabled.
+
+{% hint style="success" %}
+
+### What You Can Achieve with Background Overlay
+
+* Display popups on a **transparent background** when you want the underlying app content to remain visible.
+* **Dim or colorize the area outside the popup** to draw user attention to the message.
+* Create an overlay experience that is **consistent with brand colors**.
+* Provide a **seamless modal experience**, including the status bar area, for full-screen or immersive presentations.
+  {% endhint %}
+
+### Widget Closes When Clicked Outside
+
+When this option is enabled, users only need to **tap or click outside the widget area** to close it.
+
+* The feature works across **both web and mobile platforms**.
+* It provides a smoother, more natural interaction that aligns with common digital behavior patterns.
+
+<figure><img src="/files/aOu44EWUyuYBVVGlzlgb" alt="" width="563"><figcaption></figcaption></figure>
+
+### Type
+
+Choose the widget type best suited for your campaign:
+
+* **Pop-up:** Eye-catching overlay for promotions, offers, or subscriptions.
+* **Floating Bar** – Slim bar at the top/bottom of the page, ideal for persistent announcements.
+
+### Close Button Location
+
+You can place the close (X) button in any of these positions:
+
+* **Widget Top-Right** **Corner** (default)
+* **Above the Right Corner of Widget**
+* **Custom Button Position**
+
+This behavior works across both **web and mobile platforms**, allowing you to align interactions with your branding and UX flow.
+
+#### Custom Button Position
+
+If you select **Custom Button Position**, additional controls will appear:
+
+* **Right Position**: Adjust the horizontal distance of the button from the right edge (0–100%).
+* **Top Position**: Adjust the vertical distance of the button from the top edge (0–100%).
+
+This flexibility allows you to place the close button anywhere inside the widget, ensuring it never overlaps important content and always matches your layout.
+
+<figure><img src="/files/EWRjhyuhyhyiWpqm0t5s" alt=""><figcaption></figcaption></figure>
+
+### Close Button Color
+
+Choose a color that matches your design. For example, you may use a contrasting color for visibility or a brand color for consistency.
+
+### Placement
+
+You can define where the widget itself appears on the user’s screen:
+
+* **Top**
+* **Center**
+* **Bottom**
+
+Preview the widget in both **desktop and mobile** views to confirm correct alignment.
+
+### Example
+
+If you’re creating a **Feedback Pop-up** for mobile users, you could:
+
+* Place the widget at the **bottom of the screen** for easy thumb access.
+* Set the **close button** at the **top-left**, making it stand out from your form fields.
+* Use your brand’s **accent color** for the close button, ensuring it matches the rest of the widget.
+
+✅ With these options, you have complete control over how your widgets look and behave, from basic design to subtle details like close button placement. Small changes in positioning can make a big impact on **user comfort** and **brand alignment**.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

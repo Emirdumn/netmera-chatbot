@@ -1,0 +1,93 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/profile.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/profile.md).
+
+# Profile
+
+**Path:** `Analytics>User & Audience>Profile`
+
+Use **Profile** to analyze user attributes and their values across your audience. It is useful when you want to understand who your users are, not just what they did. This view helps you turn raw attribute data into a clearer picture of audience composition.
+
+For example, you can use it to see whether a certain city dominates your active audience, whether a loyalty tier is missing from a campaign group, or whether subscription status changes during a launch period.
+
+Use this page when you want to answer questions such as:
+
+* Which user traits are most common?
+* How are attribute values distributed?
+* Did profile composition change during a campaign or release?
+
+### What you can analyze
+
+Profile analysis helps answer questions like these:
+
+* Which cities or countries are most common?
+* How are loyalty levels distributed?
+* Which user traits changed during a release or campaign period?
+* Which attribute values define a high-value audience?
+
+These questions are often the starting point for better segmentation. Once you understand how an audience is distributed, it becomes easier to personalize messaging and validate whether your data model reflects real user behavior.
+
+### Choose the time period
+
+You can analyze profile data for:
+
+* **Last Week**
+* **Last Month**
+* **Last Year**
+* **Dates Between**
+
+Use a custom range when you want to focus on a launch, a campaign period, or a seasonal window. A narrower range is especially useful when you want to compare profile patterns before and after a change.
+
+### Select attributes and values
+
+Start by choosing the profile attribute you want to inspect. Begin with one meaningful attribute so the result stays readable and easy to interpret.
+
+Examples:
+
+* city,
+* membership level,
+* preferred store,
+* subscription status,
+* or any custom profile attribute.
+
+Then narrow the analysis with specific attribute values when needed. This helps you focus on a smaller part of the user base and compare distributions more clearly.
+
+For example, if you start with **membership level**, you can first review the full distribution and then narrow the analysis to one or two values to understand how a smaller audience behaves or changes over time.
+
+<figure><img src="/files/TjNa6Ot3bW6k1a3ZFahU" alt=""><figcaption></figcaption></figure>
+
+### How to use the results
+
+Use the output to build better segments, personalize campaigns, compare user groups, and validate whether profile enrichment is working as expected.
+
+For example, if a loyalty tier is missing for a large share of users, that usually points to a data quality gap rather than a real audience pattern. In the same way, if one store preference appears far more often than expected, that may reflect a real business trend or a biased acquisition source.
+
+<figure><img src="/files/ti4nO5BODv8vAHLG6vKF" alt="" width="563"><figcaption></figcaption></figure>
+
+### Best practices
+
+Start with one important attribute and use a clean date range. Narrow by value only when you need a sharper view, because too many filters at once can hide the broader pattern.
+
+When behavior matters too, compare profile findings with [People Insight](/netmera-user-guide/reports-and-analytics/analytics/people-insight.md) or [Event Insight](broken://spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY). That combination helps you connect user traits with actual activity instead of reading the attribute distribution in isolation.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/profile.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

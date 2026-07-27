@@ -1,0 +1,107 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/sms.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/sms.md).
+
+# SMS
+
+SMS is for sending high-visibility, time-sensitive messages directly to users’ phone numbers. Use it for OTPs, transactional alerts, reminders, or as a reliable fallback when push notifications can’t reach the user. Campaigns can be targeted, personalized, and tracked for delivery, while remaining fully compliant with consent and local regulations.
+
+<figure><img src="/files/kr1kOXY7g8jsir1MpiLq" alt="" width="563"><figcaption></figcaption></figure>
+
+### Start here (most-used topics)
+
+<table data-view="cards"><thead><tr><th>What you want to do</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Set up the SMS channel (provider + prerequisites)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/WjxENBlmOqZ3HR8gv2Xg">/spaces/X6uilbEAw42gqsudlclY/pages/WjxENBlmOqZ3HR8gv2Xg</a></td></tr><tr><td>Create and send an SMS campaign</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/RKPYdiFnBnXjzsOtgTgj">/spaces/X6uilbEAw42gqsudlclY/pages/RKPYdiFnBnXjzsOtgTgj</a></td></tr><tr><td>Track delivery, failures, and provider receipts</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/hCXkW2bJLNfIE2pt1Z1e">/spaces/X6uilbEAw42gqsudlclY/pages/hCXkW2bJLNfIE2pt1Z1e</a></td></tr><tr><td>Manage SMS consent (İYS integration)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/lNvKqMKry9KCVqCaJVfo">/spaces/X6uilbEAw42gqsudlclY/pages/lNvKqMKry9KCVqCaJVfo</a></td></tr></tbody></table>
+
+### Quickstart: send an SMS campaign
+
+{% stepper %}
+{% step %}
+
+#### 1) Make sure the channel is ready
+
+You need:
+
+* an SMS provider configured in Netmera
+* user contact data (MSISDN) available
+* consent model decided (İYS, if applicable)
+  {% endstep %}
+
+{% step %}
+
+#### 2) Create the campaign
+
+Follow the standard flow: Setup → What → Who → When → GO.
+{% endstep %}
+
+{% step %}
+
+#### 3) Add targeting and guardrails
+
+Use segments/tags for targeting.
+
+Use user limits and “limit target users” to control cost.
+{% endstep %}
+
+{% step %}
+
+#### 4) Include links carefully
+
+SMS is character-limited.
+
+Use URL shortening when you include links.
+{% endstep %}
+
+{% step %}
+
+#### 5) Validate delivery in reports
+
+Use SMS Reports to compare **Sent** vs **Delivered** vs **Failed**.
+
+Some providers finalize status later (retries can take days).
+{% endstep %}
+{% endstepper %}
+
+### Key concepts (fast)
+
+#### SMS Header (Sender ID)
+
+This is the name/number users see as the sender.
+
+It is configured via your SMS provider integration.
+
+#### Consent and compliance (İYS)
+
+If you operate in Turkey, decide whether Netmera manages İYS sync or acts as an integrator.
+
+#### Personalization
+
+Personalization depends on profile attributes (e.g., `{@name}`).
+
+See: [Profile Attributes](/netmera-user-guide/customer-data/profile-attributes.md).
+
+### Related setup pages
+
+* Upload contact lists: [Contact Upload](/netmera-user-guide/targeting/contact-upload.md)
+* Organize campaigns: [Message Categories](/netmera-user-guide/panel-settings/settings/messaging-and-content/message-categories.md) and [Message Labels](/netmera-user-guide/panel-settings/settings/messaging-and-content/message-labels.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/sms.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,31 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/elements-of-push-notifications.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/elements-of-push-notifications.md).
+
+# Elements of Push Notifications
+
+<figure><img src="/files/rycwfGTTjfvNpxJfOVrC" alt=""><figcaption><p>Elements of Push Notifications</p></figcaption></figure>
+
+<table><thead><tr><th width="117.002197265625" align="center">Representation </th><th width="155.01934814453125" align="center">Element</th><th align="center">Description</th><th>Specifications</th></tr></thead><tbody><tr><td align="center">a</td><td align="center"><strong>Small Icon</strong> </td><td align="center">The small icon displayed in the notification bar.</td><td><strong>Size</strong>: 24×24 – 96×96 px to fit all device sizes<br><strong>Format</strong>: PNG<br><strong>Color</strong>: White with transparent background</td></tr><tr><td align="center">b</td><td align="center"><strong>Title</strong> </td><td align="center">The main heading of the notification.</td><td>Restricted to 50 characters.</td></tr><tr><td align="center">c</td><td align="center"><strong>Body</strong> (Notification Message)</td><td align="center">The content text shown below the title.</td><td>Restricted to 150 characters.</td></tr><tr><td align="center">d</td><td align="center"><strong>Large Picture</strong> (Android/iOS Media URL)</td><td align="center">A large image that appears in expanded notifications.</td><td><strong>Size</strong>: 1440×720 px (2:1 aspect ratio)<br><strong>Formats</strong>: PNG, JPG, GIF <em>(non-animated)</em></td></tr><tr><td align="center">e</td><td align="center"><strong>App Name</strong></td><td align="center">The app name displayed in the notification.</td><td><strong>Fixed-cannot be changed.</strong></td></tr><tr><td align="center">f</td><td align="center"><strong>Time Stamp</strong></td><td align="center">Time when the message received.</td><td>Automatically generated.</td></tr><tr><td align="center">g</td><td align="center"><strong>Icon</strong> (Android/iOS Thumbnail)</td><td align="center">The main image or logo shown with the message.</td><td><strong>Size</strong>: 192×192 px or larger<br><strong>Formats</strong>: PNG, JPG, GIF <em>(non-animated)</em></td></tr><tr><td align="center">h</td><td align="center"><strong>Action Buttons</strong>  (Settings> <a data-mention href="/pages/in0WbxT23UGyabCsI3bk">/pages/in0WbxT23UGyabCsI3bk</a>)</td><td align="center">Interactive buttons for user engagement.</td><td>Supports <strong>up to 3 buttons</strong><br>Can be configured in <strong>Settings > Button Sets</strong></td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/elements-of-push-notifications.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

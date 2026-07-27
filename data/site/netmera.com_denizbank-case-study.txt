@@ -1,0 +1,376 @@
+URL: https://netmera.com/denizbank-case-study/
+
+DenizBank Case Study
+
+AI did the predicting, and Journeys did the convincing. UPTION's churn fell 16.6%. →
+
+ 
+
+ 
+
+			Skip to content		
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Login
+
+Get a Demo
+
+    Copy .SVG
+  
+
+    Media Kit
+  
+
+    Newsroom
+  
+
+ 
+
+ 
+
+Success Story
+ 
+
+How DenizBank improved loan application rates with 
+Netmera’s Funnels
+ 
+
+ 
+
+ 
+
+Challenge
+ 
+
+Despite rising loan search volumes, DenizBank noticed a decline in loan applications. They aimed to identify where users faced difficulties during the loan application journey on their mobile app.
+ 
+
+ 
+
+Solution
+ 
+
+They leveraged 
+Netmera’s Funnel Analysis
+ to identify the exact stages where customers encountered challenges during the application process, enabling them to streamline the journey and enhance user experience.
+ 
+
+ 
+
+Results
+ 
+
+The analysis helped Denizbank boost conversion rates and engagement. By identifying the bottleneck, the company achieved higher loan application rates and enhanced customer satisfaction. 
+ 
+
+Metrics
+ 
+
+0
+
+%
+
+Restored loan application rates to 10%
+ 
+
+0
+
+%
+
+Reduced  bounce rates by 41%
+ 
+
+0
+
+%
+
+Loan utilization rate
+ 
+
+Product
+ 
+
+Funnel
+ 
+
+Mobile Push Notifications
+ 
+
+Topic
+ 
+
+Data Analysis
+ 
+
+ 
+
+DenizBank
+ 
+
+									Denizbank, a leading bank in Turkey, has distinguished itself since its establishment by placing technology and innovation at the forefront, making it among the pioneering financial institutions in the country and a prominent player in its sector.
+
+MobilDeniz, on the other hand, is DenizBank’s mobile banking application that enables individuals to carry out their daily banking transactions through their mobile phones 24/7 from anywhere they wish.								
+
+Challenge
+ 
+
+Despite rising loan search volumes, DenizBank noticed a decline in loan applications. They realized the issue went beyond financial factors. To improve the process, DenizBank aimed to identify where users faced difficulties during the loan application journey on their mobile app.
+ 
+
+ 
+
+Solution
+ 
+
+DenizBank used Netmera’s 
+Funnel Analysis
+ to understand at which step customers faced problems in the application process. 
+DenizBank analyzed all screens from loan application start to approval, considering both quantity and proportion, even breaking down the analysis based on operating systems and device variations. They reviewed the daily and monthly proportional development from a few years back to identify any issues within the flow.
+First, they found out that only 5% of users entering the credit application flow reached the result screen. This rate was previously 10%. This was a significant decrease. 
+ 
+
+ 
+
+DenizBank also discovered that users were abandoning the flow due to technical issues. Funnels, a powerful tool for tracking user journeys, enabled them to visualize the expected flow by setting up events in Netmera. This allowed effective monitoring of user behavior within the app.
+ 
+
+ 
+
+ 
+DenizBank realized that users dropping out of the loan application process were 
+using Android devices
+. These users faced a continuous loading screen animation when trying to view or approve credit contracts due to outdated phone models and operating system versions, which prevented proper display and approval of contract screens.
+After resolving the issue, they 
+retargeted affected users with push notifications
+, successfully re-engaging them and boosting loan application completions.
+ 
+
+Results
+ 
+
+DenizBank and Netmera successfully addressed the issue of low conversion rates in loan applications with a good strategy and advanced Funnel Analysis. 
+As a result, the percentage of customers reaching the final screen of the application process was restored to 10%. Additionally,  bounce rates decreased by 41%. Moreover, retargeting the affected audience with push notifications helped increase loan utilization rate to 35%. 
+ 
+
+Testimonial
+ 
+
+“With Netmera’s advanced Funnel Analysis and a targeted strategy, we boosted loan application conversion rates, restored final-stage completion to 10%, reduced bounce rates by 41%, and increased loan utilization to 35% through effective retargeting. 
+Thanks to Netmera’s advanced data analytics and omnichannel engagement platform, DenizBank  continues to enhance customer experience — all with zero IT reliance
+“
+
+ 
+
+Yalçın Yalınkılıç
+SVP – Digital Sales and Marketing
+ 
+
+ 
+
+Check other stories
+ 
+
+Blog
+Tam Finans Case Study
+Tam Finans Mobile re-engaged inactive users with automated, personalized campaigns, boosting monthly active users by 40%.
+Read More
+DenizBank Super Limit Case Study
+DenizBank increased Super Limit applications from 34K to 357K and drove 7X loan disbursements with targeted in-app pop-ups.
+Read More
+Fastpay Case Study
+Automated push and data tracking doubled Fastpay's conversions. Comms efficiency rose 80%, and CTR 55%.
+Read More
+ 
+
+ 
+
+Subscribe to our newsletter
+ 
+
+ 
+
+Products
+ 
+
+Customer Data Management
+
+Customer Journeys
+
+AI Site Search & Browse
+
+Web Personalization
+
+Testing and Experimentation
+
+Data & Analytics
+
+Tagless Data Capture
+
+Surveys & Feedback​
+
+Funnels
+
+Channels
+ 
+
+Mobile & Web Push
+
+E-Mail
+
+SMS
+
+Whatsapp
+
+Mobile In-App
+
+Web Pop-Ups
+
+Live Activities
+
+Feedback Button
+
+Netmera AI
+
+Industries
+ 
+
+Media and Entertainment
+
+Banking and Finance
+
+Retail and E-commerce
+
+Travel and Hospitality
+
+Telecommunication
+
+Company
+ 
+
+About Us
+
+Careers
+
+Contact Us
+
+Partners
+
+Why Netmera
+
+Newsroom
+
+Information for AI
+
+Resources
+ 
+
+Blog
+
+Glossary
+
+Top Use Cases
+
+Resources
+
+Success Stories
+
+Developer and User Guide
+
+ 
+
+© 2026 — 
+Netmera
+. All Rights Reserved.   |   
+Privacy Policy
+   |   
+Cookie Policy (EU)
+   |   
+GDPR
+   |   
+KVKK
+ 
+
+Linkedin
+
+ 
+
+Youtube
+
+ 
+
+ 
+
+ 
+
+Manage Cookie Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+						Always active					
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+
+Deny
+
+View preferences
+
+Save preferences
+
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent

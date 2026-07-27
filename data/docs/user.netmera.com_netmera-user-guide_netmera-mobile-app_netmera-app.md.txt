@@ -1,0 +1,426 @@
+URL: https://user.netmera.com/netmera-user-guide/netmera-mobile-app/netmera-app.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/netmera-mobile-app/netmera-app.md).
+
+# Netmera App
+
+Your campaigns don't pause when you step away from your desk. Netmera App puts the most critical parts of your marketing operation in your pocket, so you can monitor, validate, and act on what matters wherever you are.
+
+Netmera App is purpose-built for mobile. It is not a condensed version of the web panel. It is a different kind of tool, optimized for speed and presence rather than depth and configuration. The web panel is where you build. The app is where you stay in control.
+
+#### Why Netmera App
+
+Marketing operations don't follow a schedule. Campaigns launch, events spike, and approval queues fill up, often when you're not at your desk. Netmera App gives you real-time visibility and fast-action capability built specifically for those moments. Every screen is designed around one question: *what do you need to know or do right now?* With Netmera App, you can:
+
+* Monitor active campaigns across all channels
+* Review key performance metrics at a glance
+* Take action on urgent campaign situations
+* Inspect user profiles and event activity
+* Validate audiences and segment definitions
+
+### Install Netmera App
+
+Download the app from the appropriate distribution link:
+
+* **Android**: [Netmera App for Android](https://play.google.com/store/apps/details?id=com.netmera.panel)
+* **iOS:** [Netmera App for iOS](https://apps.apple.com/us/app/netmera/id6761046478)
+
+*After installation, open the app and allow the required notification permissions.*
+
+### Sign in
+
+Sign in with the same credentials you use for the Netmera web panel. No new account needed.
+
+{% stepper %}
+{% step %}
+
+#### Enter your email and password
+
+Open the app and enter your panel login details.
+{% endstep %}
+
+{% step %}
+
+#### Verify your login with OTP
+
+Netmera sends a one-time password (OTP) to your registered email address as a second layer of verification.
+
+Enter the OTP and tap **Verify**.
+{% endstep %}
+{% endstepper %}
+
+{% columns %}
+{% column %}
+
+<figure><img src="/files/n7iqUGpKYrHQF7AYIska" alt="" width="260"><figcaption><p>Enter your Netmera panel credentials.</p></figcaption></figure>
+{% endcolumn %}
+
+{% column %}
+
+<figure><img src="/files/ubLlho7MgqPBrqx25OPM" alt="" width="260"><figcaption><p>Enter the OTP from your email to complete sign-in.</p></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+### Select a panel
+
+{% columns %}
+{% column width="58.333333333333336%" %}
+After verification, the app displays the panels you are authorized to access.
+
+Tap the panel you want to open. If the list is long, use the **Search apps...** field to find it faster.
+{% endcolumn %}
+
+{% column width="41.666666666666664%" %}
+
+<figure><img src="/files/PXaneCTd5rv1vLPbOWux" alt="" width="300"><figcaption><p>Select the panel you want to manage.</p></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+### Navigate the app
+
+{% columns %}
+{% column width="50%" %}
+Selecting a panel takes you directly to the Dashboard, your command center for real-time channel health.
+
+From any screen, tap the **menu icon (☰)** in the top-left corner to open the sidebar. The sidebar gives you instant access to every major work area in the app.
+
+<figure><img src="/files/wj7qNRz6Sh9Ps4geyV5L" alt="" width="260"><figcaption><p>Open the sidebar from the top-left menu icon.</p></figcaption></figure>
+{% endcolumn %}
+
+{% column width="50%" %}
+
+<figure><img src="/files/v6johTD1QJej1yybf7dc" alt="" width="260"><figcaption><p>Use the sidebar to jump to the app’s main sections.</p></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+### Dashboard
+
+The Dashboard gives you a high-level read on how your channels are performing right now. It is the best place to start every session.
+
+#### Dashboard metrics
+
+Start every day with a quick Dashboard scan. A sudden drop in Opt-in Users or Monthly Active Devices is often the first signal of an issue worth investigating.
+
+{% columns %}
+{% column width="58.333333333333336%" %}
+These metrics appear across channels. Their exact meaning depends on the channel.
+
+<table><thead><tr><th width="131.721923828125">Metric</th><th>Description</th></tr></thead><tbody><tr><td><strong>Total Users</strong></td><td>Unique users with at least one registered device or reachable contact for that channel</td></tr><tr><td><strong>Total Devices</strong></td><td>Unique devices registered for that channel</td></tr><tr><td><strong>Monthly Active Devices</strong></td><td>Unique devices active in the last 30 days</td></tr><tr><td><strong>Opt-in Users</strong></td><td>Users or devices with channel notification permission enabled</td></tr><tr><td><strong>Opt-out Users</strong></td><td>Unique users with all devices fully opted out for that channel</td></tr><tr><td><strong>Subscribed Users</strong></td><td>Unique users subscribed to receive SMS, Email, or WhatsApp messages</td></tr><tr><td><strong>Unsubscribed Users</strong></td><td>Unique users unsubscribed from SMS, Email, or WhatsApp messages</td></tr></tbody></table>
+{% endcolumn %}
+
+{% column width="41.666666666666664%" %}
+
+<figure><img src="/files/S1OkxJzk7FZQg1F1VbkL" alt="" width="375"><figcaption><p>Review top-level channel metrics from one screen.</p></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+### Monitor campaign activity
+
+The Messages area is your live view into campaign performance. It brings all active campaign types together in one place, optimized for fast review.
+
+#### Recent Campaigns
+
+{% columns %}
+{% column width="58.333333333333336%" %}
+Recent Campaigns shows your latest campaigns across all your channels updated in real time.
+
+**For a quick check:**
+
+1. Open **Messages**.
+2. Scan the newest campaigns first.
+3. Find the campaign you want to validate.
+4. Tap the campaign to inspect its details.
+
+**Use this screen to:**
+
+* Confirm that a campaign launched as expected
+* Spot campaigns that need immediate attention
+* Identify campaigns you may need to pause or review urgently
+* Use Recall to quickly withdraw a sent message when it contains incorrect information, needs to be updated, or should no longer be shown to users
+* Use Pending Approval to review campaigns waiting for approval before launch
+  {% endcolumn %}
+
+{% column width="41.666666666666664%" %}
+
+<figure><img src="/files/2d5wRqIdYe4sATr3Gtvb" alt="" width="375"><figcaption><p>Use Recent Campaigns to scan the newest Push, SMS, and Email launches.</p></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+#### Recall Campaigns
+
+{% columns %}
+{% column width="58.333333333333336%" %}
+Use **Recall** to withdraw a sent push message from a campaign. This action removes the message from users’ devices and inboxes, helping prevent outdated, incorrect, or unintended content from remaining visible.
+
+**For a fast check:**
+
+1. Open Recent Campaigns.
+2. Scan the latest sent campaigns.
+3. Find the campaign you want to review.
+4. Tap **Recall** if the sent message should no longer remain visible.
+
+**Use it to:**
+
+* remove a sent push message from users’ view
+* respond quickly to incorrect content
+* remove outdated or no longer relevant notifications
+* prevent confusion caused by unintended messaging
+  {% endcolumn %}
+
+{% column width="41.666666666666664%" %}
+
+<figure><img src="/files/dSZ6Shazc2EGr2vPxkUI" alt=""><figcaption><p>Use Recall Button to withdraw a sent push message from a campaign.</p></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+#### Message Report
+
+{% columns %}
+{% column width="58.333333333333336%" %}
+Tap into any campaign to review its message-level results and decide whether action is needed. This screen gives you the signal you need to either move on or escalate.
+
+**For a fast review:**
+
+1. Open the campaign from Recent Campaigns.
+2. Review the top-level results first.
+3. Compare current performance against your expected trend.
+4. If something looks off, open the full report in the web panel for a deeper investigation.
+
+**Use this screen to:**
+
+* Check whether delivery looks healthy
+* Validate early engagement after launch
+* Confirm the campaign is performing within expectations
+  {% endcolumn %}
+
+{% column width="41.666666666666664%" %}
+
+<figure><img src="/files/jyLv5okPeZzzofXPVmCj" alt="" width="375"><figcaption><p>Open a campaign to inspect delivery and engagement at message level.</p></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+#### Pending Approval
+
+{% columns %}
+{% column width="58.333333333333336%" %}
+Pending Approval shows every campaign that is blocked from launch and waiting on a sign-off. This screen is your fastest way to prevent delays during high-volume campaign days.
+
+**For a fast check:**
+
+1. Open **Pending Approval** before each launch window.
+2. Review the waiting items.
+3. Tap a blocked campaign to get more context.
+4. Follow up with the right approver when timing is critical.
+
+**Use it to:**
+
+* Identify campaigns waiting on approval
+* Prevent launch delays before they happen
+* Confirm whether urgent campaigns are still blocked
+* Coordinate with the right approver quickly
+
+*Build a two-step habit: check Pending Approval before each launch window, and check Recent Campaigns after. Together, they cover your full launch cycle.*
+{% endcolumn %}
+
+{% column width="41.666666666666664%" %}
+
+<figure><img src="/files/2BJSmw5bb3ntpEnTuhvD" alt="" width="375"><figcaption><p>Review approval queues and catch blocked campaigns before launch.</p></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+### Analyze event activity
+
+Event Insight shows how often specific user actions are occurring, filtered by date and event type. Use it to validate that key behaviors are trending as expected.
+
+An *event* is any tracked user action: sign-up, add-to-cart, purchase, app open, and so on.
+
+{% columns %}
+{% column width="58.333333333333336%" %}
+Use this screen when you need to validate whether a key user action is trending normally.
+
+**To analyze event activity:**
+
+1. Select the date range.
+2. Choose an event from the **Search Event** dropdown.
+3. Review the ranked list of results, ordered from highest to lowest event count.
+
+The list is ordered from the highest event count to the lowest.
+
+**Use this screen when you want to:**
+
+* Confirm that a key event is firing normally
+* Compare event volume across time periods
+* Investigate sudden changes in user behavior
+* Validate a trigger or conversion event tied to an active campaign
+
+*If you spot a sudden drop or spike, open the web panel to run a deeper segmented analysis. The app gives you the signal, and the panel gives you the full picture.*
+{% endcolumn %}
+
+{% column width="41.666666666666664%" %}
+
+<figure><img src="/files/7xbV2el0y4bv1CUSpk4f" alt="" width="375"><figcaption><p>Select an event, review its volume, and spot sudden behavior changes.</p></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+### Review app health
+
+Netmera App includes two dedicated analytics screens for monitoring installation trends and version distribution. Both are designed for fast, high-confidence reads.
+
+#### Installation Analytics
+
+{% columns %}
+{% column width="58.333333333333336%" %}
+Installation Analytics tracks how your app is being installed, reinstalled, and uninstalled over time: broken down by platform.
+
+**For a fast check:**
+
+1. Open **Installation Analytics**.
+2. Compare iOS and Android trends side by side.
+3. Look for spikes, drops, or sharp deviations from the baseline.
+4. Investigate anomalies around release dates or major campaign days.
+
+You can review results for both **iOS** and **Android**.
+
+**Use it to catch:**
+
+* Sudden uninstall spikes
+* Release-related installation changes
+* Platform-specific trends
+* Unexpected shifts after a campaign or app update
+  {% endcolumn %}
+
+{% column width="41.666666666666664%" %}
+
+<figure><img src="/files/ZWRC1L1yPj0B6em6q8rs" alt="" width="375"><figcaption><p>Compare install, reinstall, and uninstall trends by date and platform.</p></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+#### App Version Analytics
+
+{% columns %}
+{% column width="58.333333333333336%" %}
+App Version Analytics shows which app versions are most common among your users. It lists them from highest to lowest count, split by iOS and Android.
+
+**For a fast check:**
+
+1. Open **App Version Analytics**.
+2. Review the top versions for iOS and Android.
+3. Confirm whether adoption is high enough for version-based targeting.
+
+**Use this screen to:**
+
+* Identify outdated app versions still in wide use
+* Estimate upgrade adoption rates
+* Decide whether a campaign should target or exclude specific versions
+* Confirm sufficient user coverage before version-specific campaigns go live
+
+*Always check App Version Analytics before launching a campaign that targets a specific app version. It takes 30 seconds and prevents targeting the wrong audience.*
+{% endcolumn %}
+
+{% column width="41.666666666666664%" %}
+
+<figure><img src="/files/EDixgiWJ0Fcn0Vk7rBYc" alt="" width="375"><figcaption><p>Review version distribution before you target or exclude specific app versions.</p></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+### Find users and inspect targeting data
+
+The Targeting menu gives you direct access to user profiles and audience definitions. Use it when you need to validate who is, or is not, in a campaign's reach.
+
+* **People**
+* **Segments**
+
+These screens help you inspect users and understand existing audience definitions.
+
+#### People
+
+People lets you search for any individual user by their known identifiers.
+
+**Search by:**
+
+* External ID
+* Email
+* GSM number
+* WhatsApp number
+
+Tap a result row to open that user's full profile detail page.
+
+**Use this screen to:**
+
+* Verify whether a specific user exists in the panel
+* Inspect an individual user profile
+* Support campaign troubleshooting at the user level
+* Review a user before taking urgent action
+
+#### Segments
+
+A *segment* is a saved audience definition based on user attributes, rules, or behavior. The Segments screen shows every segment created in the selected panel.
+
+Tap a segment row to inspect:
+
+* Audience size
+* Creator
+* Creation date
+* Filter definition
+
+**Use this screen when you need to confirm:**
+
+* Which audience a campaign is targeting
+* Whether a segment still reflects current expectations
+* How a segment was originally defined
+
+{% columns %}
+{% column %}
+
+<figure><img src="/files/R6gQpUmb0V6Ks3ShAVVO" alt="" width="260"><figcaption><p>Search for a user by identifier and open their profile.</p></figcaption></figure>
+{% endcolumn %}
+
+{% column %}
+
+<figure><img src="/files/4zOsvdYL6NMFUhwcDeeN" alt="" width="260"><figcaption><p>Inspect saved segment size, owner, and filter logic.</p></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+### Get the Most Out of Netmera App
+
+The app is most powerful when it becomes part of your daily rhythm. These habits take under five minutes per check and keep you ahead of issues before they escalate.
+
+* Start with the **Dashboard** every morning. A 30-second scan tells you if anything needs attention before the day begins.
+* Check **Recent** **Campaigns** after every launch window. Confirm the campaign is live and performing as expected.
+* Open **Pending** **Approval** before high-volume launch days. Don't let an approval bottleneck delay a time-sensitive send.
+* Use **Event** **Insight** when a campaign depends on a key conversion event. Validate that the trigger is firing before the campaign window closes.
+* Check **App** **Version** Analytics before version-targeted campaigns. Confirm your audience size before sending.
+* Use **People** for any user-level troubleshooting. Fast profile lookups save back-and-forth with support teams.
+
+### What Netmera App Is Built For
+
+Netmera App excels at short, high-value workflows:
+
+* **Quick monitoring**: channel health, campaign status, event trends
+* **Urgent review**: message reports, approval queues, anomaly detection
+* **Fast validation**: user lookups, segment checks, version distribution
+* **Lightweight intervention**: acting on campaigns that need immediate attention
+
+For campaign creation, advanced configuration, and full analytics depth, the Netmera web panel is the right tool. The app and the panel are designed to work together, and each does what it does best.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/netmera-mobile-app/netmera-app.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

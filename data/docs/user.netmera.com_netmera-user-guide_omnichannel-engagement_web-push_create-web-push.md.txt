@@ -1,0 +1,383 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push/create-web-push.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push/create-web-push.md).
+
+# Create Web Push
+
+{% hint style="info" %}
+Quick path
+
+**Messages** → **Campaigns** → **Create New Campaign**
+
+1. Set the campaign name and format in [**Step 1: Setup**](#step-1-setup).
+2. Add content, links, and optional personalization in [**Step 2: What**](#step-2-what).
+3. Define the audience in [**Step 3: Who**](#step-3-who).
+4. Set timing, expiry, and delivery speed in [**Step 4: When**](#step-4-when).
+5. Review, test, and send in [**Step 5: GO**](#step-5-go).
+   {% endhint %}
+
+Create Web Push is the guided flow for building a browser notification campaign from start to send.
+
+Use it to:
+
+* create one-time web push campaigns,
+* target all subscribers or a filtered audience,
+* schedule delivery now or later,
+* and test the notification before launch.
+
+### Before you start
+
+Before creating a campaign, make sure:
+
+* your web push channel is already configured,
+* the audience data you need already exists,
+* and the destination URL is ready before you write the message.
+
+{% hint style="info" %}
+If you plan to personalize the notification, prepare the required [**Profile Attributes**](/netmera-user-guide/customer-data/profile-attributes.md) first.
+{% endhint %}
+
+### Web push formats
+
+Netmera supports two formats:
+
+* **Text** — includes the title, message, and icon.
+* **Image** — adds a larger banner image on supported browsers.
+
+Use **Text** for reminders, updates, and alerts.
+
+Use **Image** when the campaign benefits from stronger visual context.
+
+{% hint style="info" %}
+You can add **interactive buttons** to both formats.
+{% endhint %}
+
+{% @arcade/embed url="<https://app.arcade.software/share/BTSE1e98FeovGVSx88Ks>" flowId="BTSE1e98FeovGVSx88Ks" %}
+
+### Campaign flow
+
+When you click **Create New Campaign**, Netmera opens five steps:
+
+1. **Setup** — define the campaign basics.
+2. **What** — build the notification content.
+3. **Who** — choose the audience.
+4. **When** — set timing and expiry.
+5. **GO** — review, test, and launch.
+
+<figure><img src="/files/SvUhANMwKKxuAXtVBVLn" alt=""><figcaption></figcaption></figure>
+
+### Step 1: Setup
+
+In **Setup**, define the campaign basics.
+
+Set a clear **Campaign Name**.
+
+Confirm **Campaign Type** as **Web Push**.
+
+Choose **Text** or **Image**.
+
+Enable **Add Buttons (Interactive)** if needed.
+
+The right panel shows **Reach Estimate**. Use it to confirm the campaign still fits the expected audience before you continue.
+
+<figure><img src="/files/tZZurGaUKqy59t604aGS" alt=""><figcaption></figcaption></figure>
+
+### Step 2: What
+
+In **What**, you build the notification itself.
+
+This step defines what users see, where the click goes, and which delivery and tracking options apply.
+
+#### Main fields
+
+Most campaigns use the same fields:
+
+* **Category** — supports consent handling and reporting.
+* **Notification Message** and **Title** — define the copy users see.
+* **Click URL** — defines the destination page.
+* **Icon URL** — defines the notification thumbnail.
+
+Keep the message direct.
+
+Make sure the destination matches the promise of the notification.
+
+If the message promotes a limited offer, the click should open that offer page, not a generic homepage.
+
+#### Personalization
+
+You can personalize the content with profile attributes such as `{@name}` or `{@age}`.
+
+This is useful for lifecycle messages, reminders, and milestone campaigns.
+
+Example:
+
+* Default text: `Happy birthday!`
+* Personalized text: `Wishing you a sweet {@age}th birthday {@name}!`
+
+<figure><img src="/files/R92ZkTaZIWg7OV8qXB3L" alt=""><figcaption></figcaption></figure>
+
+Personalization requires [**Profile Attributes**](/netmera-user-guide/customer-data/profile-attributes.md). For a full walkthrough, see [**Personalized Web Push**](/netmera-user-guide/omnichannel-engagement/web-push/create-web-push/personalized-web-push.md).
+
+#### Browser-specific options
+
+{% hint style="warning" %}
+**Image URL** is available only for Chrome and only for the **Image** format.
+{% endhint %}
+
+Some options depend on browser support and format:
+
+* **Image URL** adds a banner image.
+* **User Interaction Required** keeps the notification visible until the user interacts with it.
+* **Push Button** adds a predefined button set.
+
+For image notifications, use a **2:1** aspect ratio.
+
+If you plan to use buttons, create the set first in [**Button Sets**](/netmera-user-guide/omnichannel-engagement/mobile-push/button-sets.md).
+
+#### Tracking and delivery options
+
+You can also configure tracking and delivery behavior here.
+
+* **Disable Webhooks** stops interaction data from being sent to your backend.
+* **Fallback (SMS / Call External URL)** defines a backup action if push delivery fails.
+* **Message Label** helps with filtering later.
+* **Conversion Analytics**, **Control Group**, and **Conversion Deadline** help measure post-click behavior and campaign impact.
+
+<figure><img src="/files/PKmFIb5wIflbVNn4nQ9a" alt="" width="563"><figcaption></figcaption></figure>
+
+{% hint style="danger" %}
+Fallback delivery needs the required channel integration before use.
+{% endhint %}
+
+<figure><img src="/files/9gfmUALYxKnTJf0iEkjc" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Control Group
+
+If you use a control group, Netmera withholds that portion of the audience from the send.
+
+This lets you compare users who received the notification with similar users who did not.
+
+That gives you a clearer view of campaign impact.
+
+{% hint style="info" %}
+Example: with an audience of **100,000** and a control group of **1%**, **1,000** users do not receive the notification.
+{% endhint %}
+
+#### Conversion Deadline
+
+A conversion is counted when the user receives the message, clicks it, and completes the conversion event within the same session.
+
+For a click to be attributed, it must happen within the **Conversion Deadline** window. This window starts at message delivery.
+
+Clicks outside this window are not counted as conversions, even if the conversion event is completed later in the same session.
+
+**Example**
+
+<table><thead><tr><th>Scenario</th><th>Delivery</th><th width="141.27508544921875">Click</th><th width="136.802490234375">Deadline</th><th>Result</th></tr></thead><tbody><tr><td>Within window</td><td>14:00</td><td>17:30</td><td>2 hours</td><td>✅ Conversion +1</td></tr><tr><td>Outside window</td><td>14:00</td><td>18:30</td><td>2 hours</td><td>❌ Not counted</td></tr></tbody></table>
+
+<figure><img src="/files/6gUqzEfFpVpiB4v6vbHu" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Test on device
+
+You can preview the notification on supported devices and browsers from this step.
+
+Use it to test on registered test devices before the campaign goes live.
+
+This helps you validate how the message behaves outside the editor and across different test environments.
+
+Manage test devices in [**Settings → Test Devices**](/netmera-user-guide/panel-settings/settings/administration/test-devices.md).
+
+<figure><img src="/files/vpUpmVtiDkJduN80tmUz" alt=""><figcaption></figcaption></figure>
+
+#### Test on My Device
+
+Use **Test on My Device** to preview the notification on your current browser before launch. It sends a real system notification based on the title, message, icon, and hero image in the editor. This is the fastest way to check the visual result while you are still editing.
+
+{% hint style="warning" %}
+**Test on My Device** does not start a campaign send. The preview notification is not recorded in campaign analytics and does not create a user profile event.
+{% endhint %}
+
+To use it:
+
+1. Enter the title and message.
+2. Add an icon or hero image if needed.
+3. Click **Test on My Device**.
+
+Netmera triggers a preview notification on your active browser and labels it so you can distinguish it from a real campaign notification.
+
+{% hint style="info" %}
+
+#### Test on My Device vs Test on Device
+
+Use **Test on Device** when you want to send a test notification to registered test devices.
+
+Use **Test on My Device** when you want to preview the notification directly on your current browser without starting a campaign send or creating analytics or user-profile records.
+{% endhint %}
+
+**Browser notification permissions**
+
+When you click **Test on My Device**, what happens next depends on your browser permission state:
+
+* **Allowed** — you see the preview notification immediately.
+* **Not requested yet** — your browser asks for permission. After you allow notifications, you see the preview notification.
+* **Denied** — you see: `Notification permission is required to preview. Go to browser settings to enable notifications.`
+* **Blocked in browser settings** — you see `Notifications are blocked in your browser. Go to browser settings to enable notifications.` The preview notification is not triggered.
+* **Title or message is empty** — you see `Title and message fields are required to preview.` The preview notification is not triggered.
+
+**Preview personalized messages**
+
+If your notification includes dynamic variables or placeholders, you are prompted to enter preview values after you click **Test on My Device**.
+
+Enter the values you want to test, then continue with the browser permission flow.
+
+You then see the preview with those values, so you can confirm the final message before sending.
+
+{% hint style="info" %}
+Required placeholder fields must be filled before sending the preview notification. If a required placeholder value is missing, the modal remains open and the preview notification is not triggered.
+{% endhint %}
+
+<figure><img src="/files/ECpe3l5K1hGdGJ2klU3s" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/8nGqNWIo7ha9tVw7A6dW" alt=""><figcaption></figcaption></figure>
+
+### Step 3: Who
+
+In **Who**, you decide which subscribers should receive the campaign.
+
+This is where the message is matched with the right audience.
+
+<figure><img src="/files/aKbidMCvQB52U7HgnDUA" alt=""><figcaption></figcaption></figure>
+
+#### Audience options
+
+You can target the campaign in several ways:
+
+* **Send All** reaches all subscribed web push users.
+* **Select Users** lets you filter by selected criteria.
+* **Advanced** supports condition groups with **AND** and **OR** logic.
+* **Distribution List** uses a saved audience list when one is available.
+
+Use **Send All** for broad announcements.
+
+Use filters for product-specific or behavior-based messages.
+
+#### Select Users
+
+Use **Select Users** when a simple filter is enough.
+
+This is a good fit for campaigns based on a few known conditions.
+
+To learn more about saved audience logic, see [**Segments**](/netmera-user-guide/targeting/segments.md).
+
+#### Advanced
+
+Use **Advanced** when the audience needs more detailed logic.
+
+This is the right option when one condition is not enough and you need to combine several behaviors or attributes.
+
+<details>
+
+<summary>Advanced Users Options</summary>
+
+Each condition represents a behavior or attribute. Groups combine conditions with **AND** or **OR** logic. **AND** includes only users who meet all selected conditions, while **OR** includes users who meet any selected condition. As you build the rule set, Netmera updates the matching audience in the right panel.
+
+<figure><img src="/files/5HEkGEOieDGyF5Balci9" alt=""><figcaption></figcaption></figure>
+
+The **Selection Criteria** panel shows the matching users, devices, and browsers.
+
+<div align="left"><figure><img src="/files/bxJWyOl2AqoeMWAbo02W" alt="" width="285"><figcaption></figcaption></figure></div>
+
+</details>
+
+#### Additional controls
+
+You can also adjust delivery guardrails here.
+
+* **Ignore User Message Limits** bypasses frequency limits for this send.
+* **Limit Target Users** caps the number of recipients.
+
+Recipient limits are useful for phased launches, controlled rollouts, or smaller test sends before a full campaign.
+
+<figure><img src="/files/gtQHoNWS5ZavqbvSp2eo" alt="" width="297"><figcaption></figcaption></figure>
+
+### Step 4: When
+
+<figure><img src="/files/ghW4GEIaTcExm1phQj40" alt=""><figcaption></figcaption></figure>
+
+In **When**, you define when the campaign starts and how long it stays eligible for delivery.
+
+This step controls timing, pacing, and expiry.
+
+#### Start Sending Messages
+
+Choose whether the campaign should send **Now** or **On Specific Time**.
+
+Send immediately for urgent or live campaigns.
+
+Schedule for later when timing matters, such as a promotion window or launch time.
+
+<figure><img src="/files/a18JQmGD1IPe88B0G0Uf" alt="" width="540"><figcaption><p>Start Sending Messages</p></figcaption></figure>
+
+#### Delivery Speed
+
+Choose how quickly Netmera should send the campaign.
+
+* **Send Fast** delivers to all eligible users at once.
+* **Send in Packages** sends in batches of a defined size.
+
+Package-based delivery is useful for large audiences or when you want a more gradual rollout.
+
+<figure><img src="/files/vHCLFZ3gZigDFNgsuSbR" alt="" width="544"><figcaption><p>Delivery Speed</p></figcaption></figure>
+
+Use packaged delivery when a gradual rollout is safer.
+
+#### Message expiry when not reached to client
+
+Set an expiration time for a push notification to control how long it stays valid for **delivery**. This is useful for time-sensitive campaigns where the message loses its relevance after a certain point. For instance, if you are using a **packaged delivery**, you can use this option to prevent messages from being delivered after a specific date and time.
+
+{% hint style="warning" %}
+Keep in mind that this setting applies to delivery only. It **won't remove a notification** that has already reached the user and appears in their notification center.
+{% endhint %}
+
+**Options**
+
+* **Never** — The message stays valid for delivery using the default period.
+* **Until a specific time** — The message can be delivered only until the selected date and time. After that time, any remaining undelivered messages expire and are no longer delivered.
+
+<figure><img src="/files/ozwzSd8R8JTGc6gg9X9d" alt="" width="563"><figcaption><p>Message expire time</p></figcaption></figure>
+
+### Step 5: GO
+
+In **GO**, review the full campaign before launch.
+
+This is the final checkpoint for confirming the content, targeting, and timing before you send or submit the campaign for approval.
+
+### Related pages
+
+* [Personalized Web Push](/netmera-user-guide/omnichannel-engagement/web-push/create-web-push/personalized-web-push.md)
+* [Profile Attributes](/netmera-user-guide/customer-data/profile-attributes.md)
+* [Button Sets](/netmera-user-guide/omnichannel-engagement/mobile-push/button-sets.md)
+* [Message Categories](/netmera-user-guide/omnichannel-engagement/mobile-push/message-categories.md)
+* [Segments](/netmera-user-guide/targeting/segments.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push/create-web-push.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

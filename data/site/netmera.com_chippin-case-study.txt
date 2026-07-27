@@ -1,0 +1,435 @@
+URL: https://netmera.com/chippin-case-study/
+
+Chippin Case Study - Netmera - Mobile First Growth Platform
+
+AI did the predicting, and Journeys did the convincing. UPTION's churn fell 16.6%. →
+
+ 
+
+ 
+
+			Skip to content		
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Login
+
+Get a Demo
+
+    Copy .SVG
+  
+
+    Media Kit
+  
+
+    Newsroom
+  
+
+ 
+
+ 
+
+Success Story
+ 
+
+Location, timing, scale: how Chippin ran campaigns across three retail partners
+ 
+
+~8% average open rate across geofence campaigns
+ 
+
+A significant share of geofence-driven revenue came from users who had not shopped at partner stores in the previous month
+ 
+
+30–60x higher revenue per message: location-triggered vs. broadcast push
+ 
+
+3 retail partners, 1 coordinated two-channel strategy
+ 
+
+About Chippin
+ 
+
+Chippin
+ is Turkey’s first mobile payment-enabled shopping and loyalty app. Users pay in-store, online, or on the go across hundreds of partner brands and earn reward points on every transaction. Retail partners span major grocery, market, and home improvement chains.
+Every campaign Chippin runs is designed to build a habit: users return to partner stores, pay with Chippin, and earn more with each visit. Knowing a relevant campaign will be waiting at their favorite stores, users develop genuine trust and loyalty in the app. 
+ 
+
+The challenge
+ 
+
+Users at two leading supermarket chains, and a major home improvement retailer were actually engaged with Chippin: they were paying in-store, interacting with the app during visits, and showing genuine interest in partner campaigns. The behavior was there.
+The team saw an opportunity to build on this foundation. Bringing more visibility to those in-store moments would create a smoother, more connected shopping experience.
+ 
+
+01
+ 
+
+Reaching users at the moment of purchase
+ 
+
+Chippin’s campaigns required users to complete purchases across multiple visits to partner stores. Users were already inside partner stores with Chippin on their phones, but without a timely signal, the campaign moment passed unnoticed.
+ 
+
+ 
+
+How Chippin solved it
+ 
+
+The team set up geofence triggers across all three retail partners using Netmera. The moment a user entered a store, a message fired automatically, referencing the active campaign for that specific retailer and the reward waiting for them. Setup ran once per campaign, with Netmera handling delivery from there.
+ 
+
+What changed
+ 
+
+Geofence campaigns averaged an ~8% open rate across all three partners, 40 to 50 times higher than push in the same period. A meaningful share of users who converted through geofence triggers had not made a purchase at that retail partner in the previous month. Geofence brought lapsed users back into the purchase flow at the moment they were physically present in the store. 
+That reactivation effect, combined with high purchase intent, explains why geofence generated 30 to 60 times more revenue per send than broadcast push, despite reaching a fraction of the total audience. 
+ 
+
+02
+ 
+
+Keeping campaigns visible between store visits
+ 
+
+Geofence messaging covered the in-store moment, but campaigns ran over multiple days and required repeat visits. Users who hadn’t entered a partner store recently had no visibility into active campaigns or approaching deadlines. Awareness alone was a conversion lever Chippin hadn’t fully used.
+ 
+
+How Chippin solved it
+ 
+
+The team ran parallel push notification campaigns across all three retail partners using Netmera. Messages highlighted campaign details, reward amounts, and deadlines to pull users back to the app. Every registered user received these communications, regardless of whether they had visited a store recently.
+ 
+
+ 
+
+What changed
+ 
+
+Push campaigns reached millions of users across all three partners combined. Open rates sat between 0.15% and 0.2%, consistent with broad-audience push benchmarks. The channel contributed roughly 40% of total campaign revenue, a meaningful share given the scale of reach and the low per-message cost of delivery.
+ 
+
+Some users hadn’t purchased in a month, but they were still walking into stores. Geofence reached them there, while push notifications kept Chippin visible for everyone else until they were ready. Both the support from Netmera’s team and their customer engagement platform made running two channels in one coordinated campaign possible.
+ 
+
+ 
+
+Armağan Yılmaz
+ 
+
+Product Management Supervisor
+ 
+
+03
+ 
+
+Finding the channel that drives efficiency
+ 
+
+Chippin had data on campaign performance: Push notifications reached millions while geofence reached far fewer. Without channel-level revenue data, there was no basis for deciding where to invest next.
+ 
+
+How Chippin solved it
+ 
+
+Netmera’s reporting gave the team a clear view of revenue per sent message across both channels. Because geofence and push ran simultaneously across the same retail partners and campaigns, the results were directly comparable, with no external factors distorting the picture.
+ 
+
+What changed
+ 
+
+Geofence messages reached users inside the store, at the moment of highest purchase intent, and a notable portion of those users had been inactive at that partner in the prior month. Push covered scale and kept campaigns visible between visits. Geofence drove efficiency and reactivation. Together they gave Chippin a complete picture of where to invest next. 
+ 
+
+The impact
+ 
+
+~
+
+0
+
+%
+
+open rate on geofence
+ 
+
+30–
+
+30
+
+X
+
+more revenue: geofence vs. push
+ 
+
+~
+
+0
+
+%
+
+of campaign revenue driven by geofence
+ 
+
+~8% average open rate across geofence campaigns, 40 to 50 times higher than push
+30 to 60x more revenue per message via geofence vs. push notifications
+~60% of total campaign revenue driven by geofence
+Millions of users reached through parallel push campaigns across three retail partners
+ 
+
+Segmentation, campaign delivery, and performance tracking all happened inside Netmera. We could compare geofence against push on the same dashboard, and both channels had a clear role. Geofence drove efficiency, push drove scale, and together they accounted for the full campaign result.
+ 
+
+ 
+
+Armağan Yılmaz
+ 
+
+Product Management Supervisor
+ 
+
+What's next on your engagement stack
+ 
+
+Automate the full journey
+ 
+
+Connect geofence triggers, push, in-app messages, and email into 
+one automated flow
+. Each next step fires based on what the user has just done, no manual setup between steps.
+ 
+
+Reach users inside the app
+ 
+
+In-app messages 
+go beyond simple notifications. Run stories, surveys, feedback forms, or rich media like video and images, delivered to users while they are active in the app.								
+
+Send push at each user's peak moment
+ 
+
+AI time optimization
+ analyzes 60 days of individual activity and delivers each message during the hour that specific user is most likely to open it.
+ 
+
+Connect your AI tools to Netmera
+ 
+
+Netmera’s MCP server connects AI assistants
+ like Claude and ChatGPT to your Netmera panel. Ask questions about campaign performance, segments, and user behavior in plain language and get answers sourced from your live data. Draft campaigns, create segments, and manage journeys through your AI tool, with confirmation required before anything goes live. 
+ 
+
+ 
+
+Geofence, push, in-app, and every channel in between, each one tracked against revenue data so you always know where to invest next. See how Netmera can do the same for your campaigns.
+Schedule a demo 
+ 
+
+ 
+
+Check other stories
+ 
+
+Blog
+DCEY Case Study
+DCEY automated push notifications based on browsing behavior and saw an 84% jump in purchase conversion rates.
+Read More
+Passo Case Study
+Passo increased revenue 9X and CTR 10X with a behavioral funnel that guided users from signup to purchase.
+Read More
+Turkcell Pasaj Case Study
+Turkcell Pasaj cut cart abandonment and doubled conversions, increasing monthly revenue up to 150% with automated push campaigns.
+Read More
+ 
+
+ 
+
+Subscribe to our newsletter
+ 
+
+ 
+
+Products
+ 
+
+Customer Data Management
+
+Customer Journeys
+
+AI Site Search & Browse
+
+Web Personalization
+
+Testing and Experimentation
+
+Data & Analytics
+
+Tagless Data Capture
+
+Surveys & Feedback​
+
+Funnels
+
+Channels
+ 
+
+Mobile & Web Push
+
+E-Mail
+
+SMS
+
+Whatsapp
+
+Mobile In-App
+
+Web Pop-Ups
+
+Live Activities
+
+Feedback Button
+
+Netmera AI
+
+Industries
+ 
+
+Media and Entertainment
+
+Banking and Finance
+
+Retail and E-commerce
+
+Travel and Hospitality
+
+Telecommunication
+
+Company
+ 
+
+About Us
+
+Careers
+
+Contact Us
+
+Partners
+
+Why Netmera
+
+Newsroom
+
+Information for AI
+
+Resources
+ 
+
+Blog
+
+Glossary
+
+Top Use Cases
+
+Resources
+
+Success Stories
+
+Developer and User Guide
+
+ 
+
+© 2026 — 
+Netmera
+. All Rights Reserved.   |   
+Privacy Policy
+   |   
+Cookie Policy (EU)
+   |   
+GDPR
+   |   
+KVKK
+ 
+
+Linkedin
+
+ 
+
+Youtube
+
+ 
+
+ 
+
+ 
+
+Manage Cookie Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+						Always active					
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+
+Deny
+
+View preferences
+
+Save preferences
+
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent

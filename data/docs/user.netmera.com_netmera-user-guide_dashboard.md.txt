@@ -1,0 +1,112 @@
+URL: https://user.netmera.com/netmera-user-guide/dashboard.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/dashboard.md).
+
+# Dashboard
+
+The **Dashboard** is the central command center for monitoring the health and performance of your app and messaging channels. It brings key signals together in one view so you can quickly understand what’s happening, identify changes, and decide where to investigate further.
+
+Most Dashboard cards are interactive. You can click on a chart or metric to drill down into detailed views, reports, or analytics where deeper analysis is available.
+
+{% hint style="info" %}
+Card availability and metrics depend on your enabled modules, data volume, and permissions.
+{% endhint %}
+
+### How Dashboard cards work
+
+Cards can be channel-specific (Mobile, Web, SMS, Email, WhatsApp) or cross-channel (AI Insights).
+
+* **Interaction**: Hover for tooltips. Click a card/chart to open a deeper view when available.
+* **Empty cards**: Most often caused by no activity in the selected range, missing channel setup, or permissions.
+
+### AI Insights
+
+#### User Overview
+
+A high-level view of your user base and trends identified by Netmera AI. Use this to detect changes in user behavior before exploring detailed reports.
+
+<figure><img src="/files/pX43OuuF50J1DhGnqAOu" alt="AI Insights - User Overview card"><figcaption><p>AI Insights: User Overview</p></figcaption></figure>
+
+#### Engagement Insights
+
+Aggregated engagement signals from your messaging activity. Helps you understand what is driving engagement across channels.
+
+<figure><img src="/files/thNGEIJaQ7P5zZmc4GFH" alt="AI Insights - Engagement Insights card"><figcaption><p>AI Insights: Engagement Insights</p></figcaption></figure>
+
+#### Daily Review Analysis
+
+Day-by-day summaries to identify sudden changes or anomalies in engagement.
+
+<figure><img src="/files/aNhzl021DYhnNEccpQ4p" alt="AI Insights - Daily Review Analysis card"><figcaption><p>AI Insights: Daily Review Analysis</p></figcaption></figure>
+
+#### Monthly Review Analysis
+
+Month-by-month summaries to monitor long-term engagement trends.
+
+<figure><img src="/files/3mw2F2tZ5ykHhBaDMaNc" alt="AI Insights - Monthly Review Analysis card"><figcaption><p>AI Insights: Monthly Review Analysis</p></figcaption></figure>
+
+### Mobile
+
+Mobile cards focus on app reach, engagement, and delivery outcomes. They typically include metrics such as sends, delivery, opens or clicks, and opt-in health.
+
+<figure><img src="/files/qJFyWMFZ4OfzaHzGB7Fm" alt="Mobile dashboard card 1 of 4"><figcaption><p>Mobile cards (1/4)</p></figcaption></figure>
+
+<figure><img src="/files/IfNlDQiGvtIusLivw6RC" alt="Mobile dashboard card 2 of 4"><figcaption><p>Mobile cards (2/4)</p></figcaption></figure>
+
+<figure><img src="/files/PCgUsyb5eS4YqzOUO2Mw" alt="Mobile dashboard card 3 of 4"><figcaption><p>Mobile cards (3/4)</p></figcaption></figure>
+
+<figure><img src="/files/cDDlUaG9zVQUR5i59iuZ" alt="Mobile dashboard card 4 of 4"><figcaption><p>Mobile cards (4/4)</p></figcaption></figure>
+
+### Web
+
+Web cards summarize performance for web push and web experiences, helping you track reachability and engagement for website visitors.
+
+<figure><img src="/files/L3zSYbyHVkFWkUrXMjwl" alt="Web dashboard card 1 of 3"><figcaption><p>Web cards (1/3)</p></figcaption></figure>
+
+<figure><img src="/files/oT94glCpBTHLe6qk0yiJ" alt="Web dashboard card 2 of 3"><figcaption><p>Web cards (2/3)</p></figcaption></figure>
+
+<figure><img src="/files/Wsca5EyUYBUkJl5qK06l" alt="Web dashboard card 3 of 3"><figcaption><p>Web cards (3/3)</p></figcaption></figure>
+
+### SMS
+
+SMS cards provide an at-a-glance view of delivery and engagement. Use them to quickly identify delivery issues such as provider errors or invalid numbers.
+
+<figure><img src="/files/K2REIHRMtFsbM5HXy3go" alt="SMS dashboard card"><figcaption><p>SMS cards</p></figcaption></figure>
+
+### Email
+
+Email cards summarize delivery and engagement performance, including sends, delivery and engagement metrics such as opens and clicks when tracking is enabled.
+
+<figure><img src="/files/AQz6mXDlOvciG7Bh05HZ" alt="Email dashboard card"><figcaption><p>Email cards</p></figcaption></figure>
+
+### WhatsApp
+
+WhatsApp cards highlight delivery and engagement performance, helping you validate template effectiveness and overall sending health.
+
+<figure><img src="/files/aKZjUJBluepCO9OvBBCm" alt="WhatsApp dashboard card"><figcaption><p>WhatsApp cards</p></figcaption></figure>
+
+{% hint style="warning" %}
+If a card looks empty, check the date range first. Then confirm the channel is configured and you have the right permissions.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/dashboard.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

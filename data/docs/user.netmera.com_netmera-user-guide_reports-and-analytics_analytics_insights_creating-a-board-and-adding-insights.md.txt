@@ -1,0 +1,81 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights/creating-a-board-and-adding-insights.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights/creating-a-board-and-adding-insights.md).
+
+# Creating a Board and Adding Insights
+
+This page covers the first task in the Insight Boards workflow: creating a board and getting insights onto it. On its own, board creation takes seconds; the decisions that shape how useful the board becomes are made in the step right after, when you choose between building a new insight and reusing an existing one. The page walks through both paths and explains when each is the right choice, ending where the Insight Builder page picks up.
+
+### Before You Start
+
+Boards are created per app. Make sure the correct app is selected in the panel before creating a board, since the insights available to place on it come from that app's event catalog. Think briefly about what question the board should answer as a whole. Boards work best when they are organized around a single audience or purpose, a product area, a campaign, a release, rather than as a catch-all. This keeps every card on the board relevant to the person opening it, and it becomes the natural basis for the board's name and description.
+
+### Creating a Board
+
+1. Open the **Insight Boards** page from the main menu. The page lists every existing board along with its insight count, and each board row offers pin and delete actions.
+2. Select **Create a New Dashboard** in the upper right corner.
+
+<figure><img src="/files/qW3Jbk4dbyrL9T727ND9" alt=""><figcaption></figcaption></figure>
+
+3. In the dialog, enter a **Name**. Choose something the intended audience will recognize, for example Finance Dashboard rather than an internal abbreviation.
+4. Optionally enter a **Description**. The description is the right place to record what the board tracks and for whom, so that a teammate landing on it months later understands its purpose without opening every card.
+5. Select **Create**. Selecting **Cancel** closes the dialog without creating anything.
+
+<figure><img src="/files/rzcVco5yqmh00cttl80R" alt=""><figcaption></figcaption></figure>
+
+The new board opens immediately in an empty state. The **No Data** message confirms that the board exists but holds no insights yet, and offers **Add Insight** as the only next step. The same button is always available in the board header, so insights can be added at any point in a board's life, not only at creation.
+
+<figure><img src="/files/k88GzWd29YiEo4CVajw8" alt=""><figcaption></figcaption></figure>
+
+### Adding an Insight
+
+Select **Add Insight** from either location. A dialog opens with two paths, and the split reflects the fact that insights are reusable objects stored at the app level rather than inside any single board.
+
+#### Build a New Insight
+
+**Build a new insight** opens the Insight Builder, where you define a query from scratch: which events to measure, how to aggregate them, over what breakdown, and across what date range. This is the path to take when the board needs a question answered that no saved insight covers yet, which is the usual situation when setting up a board for the first time. The builder is covered in detail on its own page; once you finish there and select Add to Board, the insight lands on the board you started from.
+
+<figure><img src="/files/1U0k2rwIIfBiJ3pBLvOW" alt=""><figcaption></figcaption></figure>
+
+#### Pick an Existing Insight
+
+Below the build option, the dialog lists every insight already saved in the app. Each entry shows the insight's name and a tag with its current chart type, and the **Search insights** field filters the list by name as you type.
+
+Select **Add** next to an insight to place it on the board immediately, with no builder step. This is the right path whenever the question is already answered somewhere: the same App Open Analytics insight can serve a Finance board, a weekly review board, and an executive summary board as three cards referencing one definition. Reuse has two advantages over rebuilding. It is faster, and it keeps a single source of truth: when the definition is later refined, every board showing it updates together.
+
+The reference model also carries a warning. The delete icon next to each insight in this dialog removes the saved insight itself, not a placement. An insight deleted here disappears from every board that was displaying it. To take an insight off one board while leaving it available elsewhere, use the delete action on the board card instead, which is covered on the Managing Insights on a Board page.
+
+<figure><img src="/files/Mo3Xhe3lTpkUut8YbdLg" alt=""><figcaption></figcaption></figure>
+
+#### Choosing Between the Two Paths
+
+The decision comes down to one question: does a saved insight already measure what this board needs, with the definition it needs? If yes, pick it, and adjust only presentation on the card, since date range, chart type, and width are all per-card choices that do not touch the shared definition. If the board needs different events, a different aggregation, or a different breakdown, build a new insight, even when an existing one is close. Editing a shared insight to fit one board changes it on every other board that uses it, so near-matches are better handled by building a variant under its own name.
+
+### After Adding
+
+Each added insight appears on the board as a card, ready to be sized, arranged, and configured. From here the workflow continues in two directions:
+
+* To define a new query in full, continue with the **Building an Insight** page, which walks through the Insight Builder from event selection to Add to Board.
+* To configure how cards look and behave on the board, continue with the **Managing Insights on a Board** page, which covers card date ranges, chart types, widths, refresh behavior, and board-level actions.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights/creating-a-board-and-adding-insights.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

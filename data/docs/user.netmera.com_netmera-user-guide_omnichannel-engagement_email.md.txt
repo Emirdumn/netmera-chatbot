@@ -1,0 +1,86 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email.md).
+
+# Email
+
+Email is for delivering rich, content-driven messages directly to subscribers’ inboxes. Use it for newsletters, lifecycle campaigns, personalized updates, and transactional notifications to drive engagement, strengthen user relationships, and nurture long-term retention.&#x20;
+
+Campaigns can be built, scheduled, and measured, all while respecting consent and compliance requirements.
+
+<figure><img src="/files/exhHGgUViQMDf5ExKfcQ" alt="" width="563"><figcaption></figcaption></figure>
+
+### Start here (most-used topics)
+
+<table data-view="cards"><thead><tr><th>What you want to do</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Set up email sending (providers, domains, deliverability)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/AHFy6LUxbSNNMLpB56nB">/spaces/X6uilbEAw42gqsudlclY/pages/AHFy6LUxbSNNMLpB56nB</a></td></tr><tr><td>Create reusable templates</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/BxXADlfMhp5E35VPhtQY">/spaces/X6uilbEAw42gqsudlclY/pages/BxXADlfMhp5E35VPhtQY</a></td></tr><tr><td>Send an email campaign</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/4Mjtn1zNNcHr5PsXVMYE">/spaces/X6uilbEAw42gqsudlclY/pages/4Mjtn1zNNcHr5PsXVMYE</a></td></tr><tr><td>Email performance metrics (delivery, opens, clicks, bounces)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/MkdMfSclktOIqr16TiPy">/spaces/X6uilbEAw42gqsudlclY/pages/MkdMfSclktOIqr16TiPy</a></td></tr></tbody></table>
+
+### Quickstart: send your first email campaign
+
+{% stepper %}
+{% step %}
+
+#### 1) Complete onboarding first
+
+Make sure your sending domain and provider setup are ready.
+{% endstep %}
+
+{% step %}
+
+#### 2) Build or pick a template
+
+Create a template once, then reuse it across campaigns.
+{% endstep %}
+
+{% step %}
+
+#### 3) Create the campaign
+
+Follow the standard flow to select template, audience, and schedule.
+{% endstep %}
+
+{% step %}
+
+#### 4) Respect consent and unsubscribe
+
+Campaign emails require opt-in.
+
+Notification emails are for essential messages.
+{% endstep %}
+
+{% step %}
+
+#### 5) Measure delivery and engagement
+
+Use Email Reports for campaign totals.
+
+Use Event Insight for deeper breakdowns by bounce reason or user.
+{% endstep %}
+{% endstepper %}
+
+### Related topics
+
+* Consent management (Turkey / İYS): [IYS Permissions](/netmera-user-guide/customer-data/iys-permissions.md)
+* User traits for personalization: [Profile Attributes](/netmera-user-guide/customer-data/profile-attributes.md)
+* Audience building: [Segments](/netmera-user-guide/targeting/segments.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

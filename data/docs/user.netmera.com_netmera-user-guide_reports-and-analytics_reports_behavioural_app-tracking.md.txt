@@ -1,0 +1,76 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/behavioural/app-tracking.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/behavioural/app-tracking.md).
+
+# App Tracking
+
+**Path:** `Reports > Behavioural > App Tracking`
+
+App Tracking is an Android-focused report that shows which other applications appear on your users’ devices. It helps you understand app overlap, surrounding usage patterns, and the wider Android environment around your audience.
+
+Use this report when you want to answer questions such as:
+
+* Which other apps are common among my users?
+* Which app ecosystems overlap with my audience?
+* How large is that overlap, and how reachable is it?
+
+### Report overview
+
+This report is useful for directional competitive analysis and audience context. It helps you see whether your users also appear around specific retail, finance, media, or utility apps.
+
+That view can support positioning, campaign planning, and broader market understanding. It is most useful as a signal of overlap, not as a complete market map.
+
+<figure><img src="/files/EhKlG4LEjIn6Y7iM1LVH" alt=""><figcaption></figcaption></figure>
+
+#### Core columns
+
+* **Application Name** lists the Android applications detected on user devices.
+* **Push Opt-in Devices** shows how many devices for that application have push permission enabled.
+* **Total Devices** shows how many devices in your audience include that application.
+
+{% hint style="info" %}
+One user can have multiple devices, so Total Devices can be higher than the number of unique users.
+{% endhint %}
+
+Read these values together. A high device count shows strong overlap, while a higher push opt-in count can signal a more communication-friendly app environment.
+
+### How to use this report
+
+Use App Tracking to understand audience overlap and device-level context. For example, if many of your users also use a specific app in the same category, that can shape your positioning, partnership ideas, or communication strategy.
+
+This report works best as contextual insight. It shows surrounding app usage inside your reachable Android audience and helps you ask better follow-up questions elsewhere.
+
+### Export users from Total Devices
+
+Use the export icon under **Total Devices** when you want to act on the audience behind a specific application.
+
+1. Select the export icon for the application you want.
+2. Tag the users linked to those devices.
+3. Select the identifiers to include in the export.
+4. Start the export.
+
+The export is prepared and sent by email.
+
+<figure><img src="/files/vdfAT3u2cM3L1RsjCsbr" alt="" width="345"><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/behavioural/app-tracking.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

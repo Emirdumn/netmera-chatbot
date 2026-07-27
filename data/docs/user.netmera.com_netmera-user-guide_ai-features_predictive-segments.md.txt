@@ -1,0 +1,159 @@
+URL: https://user.netmera.com/netmera-user-guide/ai-features/predictive-segments.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/ai-features/predictive-segments.md).
+
+# Predictive Segments
+
+Netmera’s AI-Based Predictive Segments offer a **highly flexible**, event-driven structure that allows businesses to build predictive models based on any event—such as purchases, clicks, or notifications. Whether aiming to prevent churn, boost conversions, or re-engage users, Netmera’s AI adapts to each use case by learning from **behavioral patterns** and **identifying real-time correlations** for proactive engagement.
+
+<figure><img src="/files/i2RCCIPpnnkO7elcOynH" alt="" width="563"><figcaption></figcaption></figure>
+
+AI-based segments can be customized to suit a wide variety of business goals. Some common predictive segment types may include:
+
+1. **Churn Risk Predictor** – Identifies users likely to disengage or stop using the product.
+2. **Abandonment Recovery** – Predicts users who are likely to abandon their actions (e.g., cart or form).
+3. **High-Value Customer Predictor** – Highlights users with the potential for high lifetime value.
+4. **Engagement Booster** – Targets users who are likely to respond positively to increased interaction.
+5. **Likely-to-Convert Audience** – Pinpoints users who are statistically more inclined to complete a defined conversion event.
+
+These use cases are examples—you are free to define your own custom events and goals. Netmera's AI segmentation engine is designed to calculate and adapt to any scenario defined by you.
+
+## Example Use Cases
+
+Netmera’s AI-Based Predictive Segments are fully customizable—there are no fixed or default events. You can define any event that matters to your business goals and build predictive segments around it. Below are some example use cases to inspire how you might apply AI segmentation in your own strategies.
+
+<figure><img src="/files/E2e5xvdvhdW4Y2hdxcSl" alt=""><figcaption></figcaption></figure>
+
+### AI Based Conversion Segments
+
+A conversion event is any interaction that signals a meaningful action for your business, such as a purchase, registration, or form completion. With AI-based conversion segments, you can:
+
+* Predict which users are most likely to complete a specific action (e.g., making a purchase or subscribing).
+* Identify behavioral patterns that lead to conversions and create proactive campaigns to accelerate them.
+
+**Example events:** `Purchase Completed`, `Add to Cart`, `Form Submission`, `Plan Upgrade`
+
+### AI Based Churn Segments
+
+Churn segments help identify users who may be losing interest or are likely to disengage. With this setup, you can:
+
+* Define what signals disengagement for your product—this could be no activity, absence from a key feature, or a drop in frequency.
+* Use the AI to detect at-risk users early, enabling timely retention efforts.
+
+**Example events:** `Open App`, `Message Read`, `Content Viewed`, `Transaction Made`
+
+### AI-Based Engagement Segments
+
+These segments focus on boosting interaction with your platform by targeting users who are likely to respond to increased engagement efforts.
+
+* Identify users with emerging interest who might benefit from nudges like personalized content or push campaigns.
+* Set up custom engagement-related events and trigger points to detect growing or declining interest.
+
+**Example events:** `Screen Viewed`, `Click Notification`, `Browse Content`, `Feature Used`
+
+### AI-Based High-Value Segments
+
+These segments help highlight users with high potential lifetime value or strong interest indicators.
+
+* Use behavioral trends to predict which users are likely to become VIPs or big spenders.
+* Focus marketing efforts on nurturing these valuable users.
+
+**Example events:** `Frequent Purchases`, `Multiple Logins`, `Premium Feature Usage`, `Referral Sent`
+
+### :sparkles: Event Attribute-Based Predictive Segments
+
+With this enhancement, Predictive Segments can now be created **not only based on events themselves** but also on the **attributes associated with those events.**
+
+By incorporating event attributes into the predictive model, Netmera enables more contextual, fine-grained, and accurate analyses, resulting in smarter and more meaningful audience targeting.
+
+You can still continue using event-based Predictive Segments as before. The attribute-based approach serves as an **additional**, **more** **detailed** **prediction** **layer**, empowering you to define and understand user behaviors with greater precision.
+
+#### How it Works?
+
+1. Each event in Netmera can include multiple attributes such as `amount`, `category`,  `productId`, `channel` or `device type` and these attributes values are now incorporated as input variables into the predictive model, alongside the event itself.
+2. As a result, the model can identify not only users who have triggered a particular event, but also **those with similar attribute profiles**, improving predictive depth.
+3. To use this feature, contact your Customer Success Manager and provide the specific Event Attribute you want included in your Predictive Segments.
+
+#### Example Use Cases
+
+<table><thead><tr><th width="129">Use Case </th><th width="176.5999755859375">Example Event</th><th width="246.9490966796875">Key Attributes Used</th><th>Model Goal</th></tr></thead><tbody><tr><td><strong>Conversion Segment</strong></td><td><code>Purchase completed</code></td><td><code>amount>1000</code></td><td>Predict users with high amounts of purchase potential</td></tr><tr><td><strong>Churn Segment</strong></td><td><code>Open App</code></td><td><code>deviceType=iOS</code></td><td>Detect iOS users showing early signs of disengagement</td></tr><tr><td><strong>Engagement Segment</strong></td><td><code>Feature Used</code></td><td><code>featureName=Wishlist</code></td><td>Identify users likely to engage with specific features</td></tr><tr><td><strong>High-Value Segment</strong></td><td><code>Transaction made</code></td><td><code>paymentMethod = CreditCard</code></td><td>Forecast users with high lifetime value potential</td></tr></tbody></table>
+
+#### Advantages
+
+* **Higher precision:** Adds context-awareness to predictive modeling.
+* **Deeper analysis:** Moves from event-level to attribute-level learning.
+* **Smarter targeting:** Enables campaigns with more accurate audience selection.
+* **Adaptive learning:** AI continuously updates models with new attribute data.
+
+## How it Works?
+
+### Calculation Metrics for Netmera's AI-Based Segments
+
+Netmera’s AI-Based Segments are designed to help you predict user behavior by analyzing historical event data and projecting future actions. This predictive approach relies on three core stages:
+
+* **Past (P1)** – Historical data: User actions within a defined time window
+* **Present (P2)** – The moment the analysis occurs
+* **Future (P3)** – The predicted outcome window
+
+You can define both the **past analysis period** (e.g., "last 7 days") and the **prediction timeframe** (e.g., "next 3 days"), making the AI model fully customizable to specific goals such as conversions, churn, or engagement.
+
+<figure><img src="/files/3POfo8E0STl2POwLfiuI" alt=""><figcaption></figcaption></figure>
+
+### Key Metrics Used in Predictions
+
+To deliver reliable predictions, the AI model uses several key behavioral metrics. These metrics allow the AI model to form a nuanced understanding of user behavior, which can be used to predict the likelihood of a future event.
+
+**Recency –** Measures how recently a user performed an action. This is crucial for understanding current engagement levels. Recency helps identify users who are still interacting versus those who may need re-engagement strategies.
+
+**Frequency –** Tracks how often a specific event occurs within the defined time period. Helps identify highly active users or popular behaviors. For example, frequent visits to a product page may indicate high purchase intent.
+
+**Duration Between Events –** Measures the time intervals between two specific user actions. This helps detect patterns in user pacing—whether they act quickly or drop off over time. It’s especially useful for spotting inactivity that could indicate churn.
+
+### Precision Level
+
+The **Precision Level** determines how strictly the AI model classifies users into a segment. It reflects how many users identified by the model are *actually* likely to perform the predicted action.
+
+* **High Precision Level** → Smaller, more accurate segments
+* **Low Precision Level** → Larger segments with broader targeting
+
+Precision is calculated as: **Precision = True Positives / (True Positives + False Positives)**
+
+Choosing a higher precision level results in more confident predictions, but fewer users in the segment. A lower precision level includes more users but may increase the chance of including those less likely to take the action.
+
+<figure><img src="/files/Esvn5X43hsYdeuZ9bfqK" alt="" width="375"><figcaption></figcaption></figure>
+
+### FAQ
+
+**Is there a recommended precision level?**
+
+There isn’t a one-size-fits-all answer. It depends on your goal. Want high certainty and accurate targeting? Go for higher precision. Need to reach more people, even if it includes some who won’t convert? Use a lower setting. Your CSM can help you choose the right balance.
+
+**How often are AI-Based Segments updated?**
+
+Your segments are updated **every night**. This daily refresh means your predictions are always based on the latest user behavior, giving you up-to-date insights for smarter decisions.
+
+**How can I create a new AI-Based Segment?**
+
+To create your own AI-Based Segment, just contact your **Customer Success Manager (CSM)**. They’ll walk you through the setup and make sure it matches your goals. Once it's ready, you can use it in your campaigns like any other segment.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/ai-features/predictive-segments.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

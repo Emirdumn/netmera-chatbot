@@ -1,0 +1,175 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/channel-reachability.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/channel-reachability.md).
+
+# Channel Reachability
+
+**Path:** `Reports > Audience & Growth > Channel Reachability`
+
+Channel Reachability shows how many users you can actually reach on each messaging channel. It focuses on permission status, so you can compare real reachability across **Mobile**, **Web**, **Email**, and **SMS**.
+
+Use this report when you want to answer questions such as:
+
+* Which channel currently gives me the widest reach?
+* Is my reachable audience growing or shrinking?
+* Which categories drive opt-in or opt-out behavior?
+
+### Report overview
+
+This report is useful when total audience size is not enough. You may have a large user base, but your most effective channel depends on how many users have actually granted permission.
+
+That makes Channel Reachability a practical report for permission-aware planning. It helps you choose the right channel, review weaker consent areas, and track whether reachability is improving over time.
+
+<figure><img src="/files/5RMMGJfiXAKLRKj0qmhn" alt="" width="563"><figcaption><p>Follow the path in the panel Reports> Audience &#x26; Growth> Channel Reachability</p></figcaption></figure>
+
+<figure><img src="/files/XhFd06VfIUXLXHmWUl4H" alt=""><figcaption><p>Click Create Report</p></figcaption></figure>
+
+### Create a report
+
+1. Open **Reports** and select **Channel Reachability**.
+2. Click **Create Report**.
+3. Enter a report name.
+4. Optionally select a segment if you want to limit the report to a specific audience.
+5. Click **Save**.
+
+{% hint style="info" %}
+Leave the segment field empty if you want to track all users. Use a segment only when you want to monitor permission behavior for a specific audience, such as new users, loyalty members, or users from one region.
+{% endhint %}
+
+After the report is created, Netmera starts collecting permission data for the selected scope.
+
+<figure><img src="/files/R7E7G11oRTHk5YVs7uQ1" alt="" width="563"><figcaption><p>Optionally select a segment if you want to limit the report to a specific audience.</p></figcaption></figure>
+
+<figure><img src="/files/uthoF2xHZhT4nIRnIsDt" alt=""><figcaption><p>Channel Reachability report creation screen.</p></figcaption></figure>
+
+### What you see in the report
+
+The report breaks permission data down by channel. Each tab uses the same logic, which makes channel-to-channel comparison much easier.
+
+Click the **View** icon to open the report dashboard.
+
+The dashboard shows opt-in and opt-out data for the selected channel. You can switch between the following channel tabs:
+
+* **Mobile**
+* **Web**
+* **Email**
+* **SMS**
+
+Each tab displays reachability metrics for that channel, including opt-in users, opt-out users, daily trends, and category-level breakdowns when available.
+
+Use these tabs to compare how reachable your audience is across different messaging channels.
+
+<figure><img src="/files/WBp9mJSRPFcnZeGvnjIv" alt=""><figcaption><p>Use the <strong>View</strong> icon to open the report dashboard.</p></figcaption></figure>
+
+{% @arcade/embed url="<https://app.arcade.software/share/TI6Cfb7G9egdWzAhjbyk>" flowId="TI6Cfb7G9egdWzAhjbyk" %}
+
+* **Opt-in Users** shows how many users granted permission on the selected channel. These are the users you can actively target.
+* **Opt-out Users** shows how many users are not reachable on that channel because they never granted permission or later withdrew it.
+
+If the **Mobile** tab shows a high opt-in count while **Email** stays lower, push may currently offer broader reach than email.
+
+{% hint style="info" %}
+The **Email** tab appears after you connect an email provider. The **SMS** tab appears after you connect an SMS provider.
+{% endhint %}
+
+<figure><img src="/files/1dSmyrOPztDfKQvuq3Oa" alt=""><figcaption><p>Channel Reachability report with channel tabs and opt-in or opt-out users.</p></figcaption></figure>
+
+### Counting logic and update frequency
+
+The summary metrics at the top of the report update in real time. The detailed tables refresh nightly, which makes them better for day-by-day trend analysis.
+
+The report uses **user-based counting**, not device-based counting. A user is counted as **opted in** if at least one of their devices has permission enabled. A user is counted as **opted out** only if all of their devices are opted out.
+
+{% hint style="info" %}
+If one user has three devices and only one is opted in, that user still appears as **opted in**. This keeps the report focused on reachable users instead of raw device totals.
+{% endhint %}
+
+<figure><img src="/files/taXpQSeKj27mfuTruUZM" alt=""><figcaption><p>Summary metrics and detailed permission counts in the report.</p></figcaption></figure>
+
+### Trends and breakdowns
+
+The trend charts help you understand whether permission coverage is improving, staying flat, or weakening over time.
+
+* The **Daily Trends Graph** shows **Total Users**, **Opt-in Users**, and **Opt-out Users** across the selected date range.
+* The **Bar Graph** shows the same movement in a day-by-day format, which makes sudden changes easier to spot.
+* The **Daily Changes List View** shows the exact values behind the charts for closer inspection.
+
+<figure><img src="/files/fNePp9RuwIbZkpLwMMrt" alt=""><figcaption><p>Daily Trends Graph for total, opt-in, and opt-out users.</p></figcaption></figure>
+
+<figure><img src="/files/lzkFhZfWEfkLaPnQVy16" alt=""><figcaption><p>Bar Graph view for day-by-day permission changes.</p></figcaption></figure>
+
+<figure><img src="/files/j0D4WKY35fMQpkA0Oa9x" alt=""><figcaption><p>Daily Changes List View with exact values by date.</p></figcaption></figure>
+
+Use the date picker to select quick ranges such as **Last Week**, **Last Month**, or **Last Year**, or choose a custom range for a specific campaign or release window.
+
+<figure><img src="/files/MUHF2vHsrbf8UV6XkdQH" alt="" width="563"><figcaption><p>Date picker with quick ranges and custom range selection.</p></figcaption></figure>
+
+{% hint style="info" %}
+You cannot select dates earlier than the report creation date. Data starts from the moment the report begins running.
+{% endhint %}
+
+### Category-level reachability
+
+The category table shows opt-in and opt-out counts by message category. Categories are created under **Settings → Message Categories** and usually represent communication types such as promotions, reminders, announcements, or updates.
+
+This view helps you understand what users are willing to receive. A category with strong opt-in usually aligns well with user expectations. A category with high opt-out may need better targeting, lower frequency, or clearer value.
+
+<figure><img src="/files/dY9FkUwpYxmhKeTcZTV8" alt=""><figcaption><p>Category-level reachability table with opt-in and opt-out counts.</p></figcaption></figure>
+
+Use the related category views to inspect the selected category in more detail.
+
+#### Export Category Data
+
+Click the **Export** icon to download report data for the selected category.
+
+The exported file includes the data for the date range selected in the report. It shows daily values such as total users, opt-in users, and opt-out users across available channels, including Mobile, Web, Email, and SMS.
+
+Use this export when you want to analyze reachability trends, share the report with your team, or compare permission changes over time.
+
+<div align="center"><figure><img src="/files/YpWdtoJMmRL9GWSqLBf1" alt="" width="563"><figcaption><p>File type can be <strong>XLSX</strong> or <strong>CSV</strong>.</p></figcaption></figure></div>
+
+### Tag and export
+
+Use **Tag** when you want to turn report results into an actionable audience. Use **Export** when you need the same data outside the platform.
+
+1. Open the report view you want to use.
+2. Select **Tag** to create an audience from the current results.
+3. Select **Export** to download the current results.
+4. Choose the identifiers to include, such as external ID, email, MSISDN, or mobile advertiser ID.
+5. Select **XLSX** or **CSV**.
+
+For example, you can tag users who are opted out on one channel, exclude them from future outreach, and export the same audience for additional analysis.
+
+### How to use this report
+
+Use Channel Reachability to plan communication based on actual permission coverage, not just audience size.
+
+This report helps you:
+
+* Choose the most reachable channel
+* Monitor consent health over time
+* Identify weak opt-in areas
+* Understand which categories strengthen or weaken reachability
+* Turn permission data into actionable audiences through tagging or export
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/channel-reachability.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

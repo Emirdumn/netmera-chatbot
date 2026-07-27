@@ -1,0 +1,326 @@
+URL: https://user.netmera.com/netmera-user-guide/targeting/segments/rule-based-segments/create-new-rule-based-segment.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/targeting/segments/rule-based-segments/create-new-rule-based-segment.md).
+
+# Create New Rule Based Segment
+
+Use a rule-based segment when you want to target a reusable audience built from conditions.
+
+You can combine profile data, tags, message response, behavior, platform, time, and location into one segment definition.
+
+**Path:** `Targeting > Segments > Rule Based Segments > Create New Segment`
+
+{% @arcade/embed url="<https://app.arcade.software/share/j2FAxUfJzTHe5MYNSCq2>" flowId="j2FAxUfJzTHe5MYNSCq2" %}
+
+### Step 1: Start the segment
+
+Go to **Targeting > Segments > Rule Based Segments** and create a new segment.
+
+<figure><img src="/files/VY5bncErqxfUa7Efu2pN" alt=""><figcaption></figcaption></figure>
+
+Then complete the setup fields:
+
+1. **Segment Name** — enter a clear, unique name.
+2. **Segment Criteria** — define the rules that decide who enters the segment.
+3. **Send to Facebook** — enable this only if your workspace uses Facebook audience sync.
+4. **Is predefined segment** — enable this if the segment should appear in the curated predefined list.
+
+{% hint style="info" %}
+Use names that describe the audience logic.
+
+Examples:
+
+* `buyers_last_30d`
+* `inactive_14d_ios`
+* `clicked_push_no_purchase`
+  {% endhint %}
+
+{% hint style="warning" %}
+You must enter a unique segment name and add at least one rule.
+{% endhint %}
+
+{% hint style="danger" %}
+If you enable **Is predefined segment**, the segment appears in [Ready to Use Segments](/netmera-user-guide/targeting/segments/ready-to-use-segments.md) after the next daily refresh at **12 AM**.
+{% endhint %}
+
+<figure><img src="/files/hh9Zd05tzUaey1kLkcFM" alt=""><figcaption></figcaption></figure>
+
+### Step 2: Build the rule logic
+
+Choose whether the segment should match **Any** rule or **All** rules in the group.
+
+{% hint style="info" %}
+Think of **Any** as `OR`.
+
+Think of **All** as `AND`.
+
+* **Any** includes a user if at least one rule matches.
+* **All** includes a user only if every rule matches.
+  {% endhint %}
+
+#### Simple example
+
+Say your segment has these two rules:
+
+* `Platform is iOS`
+* `Tag is VIP`
+
+With **Any**:
+
+* a VIP Android user is included,
+* an iOS user without the VIP tag is included,
+* and an iOS user with the VIP tag is also included.
+
+With **All**:
+
+* only users who are both **iOS** and **VIP** are included.
+
+#### When to use each
+
+Use **Any** when several different user types should enter the same segment.
+
+Example:
+
+* users in **Istanbul**
+* or users in **Ankara**
+
+Use **All** when each rule adds another required filter.
+
+Example:
+
+* users in **Istanbul**
+* and purchased in the last **30 days**
+* and have push permission
+
+#### Quick rule of thumb
+
+* Use **Any** to make the segment broader.
+* Use **All** to make the segment narrower.
+
+#### Available rule types
+
+Use one or more of these condition types:
+
+* **Channel** — target users by communication channel.
+* **Platform** — target users by device platform or app environment.
+* **Tag** — target users with specific tags.
+* **Profile** — target users by profile attributes.
+* **Response** — target users by message delivery or engagement outcome.
+* **Behavior** — target users by specific events or actions.
+* **Behavior Aggregation** — target users by counts, totals, or repeated behavior.
+
+#### Channel
+
+Use **Channel** when the segment depends on how users can be reached or how they interacted.
+
+Examples:
+
+* users reachable on push,
+* users with SMS eligibility,
+* or users active on a specific messaging channel.
+
+<figure><img src="/files/Q5MbYHA4vHJrLwYfZa7t" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Platform
+
+Use **Platform** to narrow the audience by operating system, device type, or similar platform-level properties.
+
+Typical use cases:
+
+* iOS-only campaigns,
+* Android-only tests,
+* or platform-specific troubleshooting.
+
+<figure><img src="/files/gmOyMUF94v76MnMsW4pF" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Tag
+
+Use **Tag** when you already classify users with labels such as lifecycle stage, loyalty tier, or interest group.
+
+<figure><img src="/files/kCWhiY9wr7xJ07AEoGXj" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Profile
+
+Use **Profile** to filter by stored user attributes like city, language, gender, age, or custom profile fields.
+
+<figure><img src="/files/tM6H09ppFnsDoQhglp1j" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Response
+
+Use **Response** to build retargeting audiences from message outcomes.
+
+Examples:
+
+* users who clicked a campaign,
+* users who received but did not click,
+* or users who were not reached.
+
+<figure><img src="/files/nq8fYxk7ZhLr4KGVnVyM" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Behavior
+
+Use **Behavior** to target users by specific events.
+
+Examples:
+
+* purchased in the last 7 days,
+* opened the app this week,
+* or completed onboarding.
+
+<figure><img src="/files/xhx8XgJKZooV1bkfo6NP" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Behavior Aggregation
+
+Use **Behavior Aggregation** when the rule depends on totals or thresholds rather than a single event.
+
+Examples:
+
+* more than 5 purchases,
+* at least 3 sessions,
+* or total revenue above a threshold.
+
+<figure><img src="/files/FHHOWkS775WDwbTLpVAq" alt="" width="375"><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+Use **Behavior** for one event occurrence.
+
+Use **Behavior Aggregation** for counts, totals, averages, or thresholds.
+{% endhint %}
+
+### Time and location restrictions
+
+Behavior-based rules can include extra limits for **when** and **where** the behavior happened.
+
+Use time restrictions for rules like:
+
+* purchased in the last 24 hours,
+* used the app during business hours,
+* or triggered an event within a campaign window.
+
+Use location restrictions for rules like:
+
+* visited a store in a specific city,
+* completed an event in a region,
+* or entered a target geography.
+
+<figure><img src="/files/JOk8QALkJ434lDQX9vFW" alt="" width="375"><figcaption></figcaption></figure>
+
+<figure><img src="/files/2LHmUN1UDWsiUnJGzUre" alt="" width="375"><figcaption></figcaption></figure>
+
+### Add groups for complex logic
+
+Use **Add Group** when you need nested logic inside the segment.
+
+This is useful when one part of the audience should match **All** rules, but another part should match **Any** rules.
+
+{% hint style="info" %}
+Use groups when the segment has more than a few conditions or when the logic includes mixed `AND` and `OR` structure.
+{% endhint %}
+
+**Example**
+
+You want users who:
+
+* purchased in the last 30 days,
+* and are in **Istanbul** or **Ankara**.
+
+You can build that as:
+
+Main group: **All**
+
+* **Behavior** — Purchase in last 30 days
+
+Sub-group: **Any**
+
+* **Profile** — City is Istanbul
+* **Profile** — City is Ankara
+
+<figure><img src="/files/wYXwqHhu7PDWDLiMCWcq" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 3: Save and generate
+
+Click **Save and Generate** when the rules are ready.
+
+Netmera calculates the audience from the criteria you defined. Once processing completes, the segment becomes available in the segment list.
+
+You can then open the segment to review metrics and usage details in [Segment Details](/netmera-user-guide/targeting/segments/segment-details.md).
+
+### Example segment recipes
+
+Use these as starting points when building your own audience logic.
+
+#### Re-engage users who received but did not click
+
+Use this when you want to follow up with users who saw a campaign but did not engage.
+
+Suggested logic:
+
+**All**
+
+* **Response** — Received message
+* **Response** — Did not click message
+
+#### Find recent purchasers on a specific platform
+
+Use this when you want to promote platform-specific features to active buyers.
+
+Suggested logic:
+
+**All**
+
+* **Behavior** — Purchase in the last 30 days
+* **Platform** — iOS or Android
+
+#### Build a high-value repeat buyer segment
+
+Use this when you want to identify strong customers for loyalty or upsell campaigns.
+
+Suggested logic:
+
+**All**
+
+* **Behavior Aggregation** — Purchase count greater than 3
+* **Behavior Aggregation** — Revenue greater than your threshold
+* **Profile** or **Tag** — optional loyalty marker
+
+### Before you save
+
+Run this quick check before generating the segment:
+
+* Does the segment name describe the audience clearly?
+* Does the logic use **Any** and **All** in the right places?
+* Are time and location filters really needed?
+* Should this segment stay in the main list, or be marked predefined?
+* Will another team member understand the rules later?
+
+### Step 4: Use the segment
+
+After the segment is ready, you can use it across Netmera wherever audience selection is supported.
+
+Common next steps:
+
+* select it in campaign targeting,
+* use it in journeys and analysis,
+* or open the segment and send a message from there.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/targeting/segments/rule-based-segments/create-new-rule-based-segment.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

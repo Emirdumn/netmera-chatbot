@@ -1,0 +1,311 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push/fancy-box.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push/fancy-box.md).
+
+# Fancy Box
+
+Fancy Box is Netmera’s branded pre-permission prompt for **Web Push**. It appears before the native browser permission request and helps you explain the value of subscribing, control when the prompt appears, and match the opt-in flow to your site branding.
+
+<img src="/files/uI7HPbDHue7fWwQKylDC" alt="" width="563">
+
+{% hint style="info" %}
+Fancy Box does **not** replace the native browser permission prompt. It prepares the user for that step.
+{% endhint %}
+
+### When to use Fancy Box
+
+Use Fancy Box when you want to:
+
+* explain why users should subscribe before the browser asks,
+* match the opt-in flow to your brand,
+* and control when the prompt appears again.
+
+If you want the shortest possible opt-in flow, you can use the native browser prompt only.
+
+{% columns %}
+{% column width="50%" %}
+
+#### Use Fancy Box
+
+Best when:
+
+* the subscription value needs context,
+* branding matters,
+* or you want re-show control.
+  {% endcolumn %}
+
+{% column width="50%" %}
+
+#### Use native browser prompt only
+
+Best when:
+
+* you want the fewest steps,
+* the subscription value is already obvious,
+* or you do not need UI customization.
+  {% endcolumn %}
+  {% endcolumns %}
+
+### Before you start
+
+Before using Fancy Box, make sure:
+
+* your **Web Push** setup is complete,
+* your site is ready for the subscription flow,
+* and your browser support plan is clear.
+
+If you are still setting up the channel, start with [**Web Push**](/netmera-user-guide/omnichannel-engagement/web-push.md).
+
+For iOS Home Screen web apps, complete [**Mobile Web Push for iOS**](/netmera-user-guide/omnichannel-engagement/web-push/mobile-web-push-for-ios.md) first.
+
+### How Fancy Box works
+
+{% stepper %}
+{% step %}
+
+#### 1) Show the pre-permission prompt
+
+Fancy Box appears on your site before the native browser prompt.
+{% endstep %}
+
+{% step %}
+
+#### 2) Explain the value
+
+Use the title, description, and button text to set expectations.
+{% endstep %}
+
+{% step %}
+
+#### 3) Open the native prompt
+
+When the user accepts, the browser shows its own permission request.
+{% endstep %}
+
+{% step %}
+
+#### 4) Re-show when appropriate
+
+Use **Show Again After** to avoid repeating the prompt too often.
+{% endstep %}
+{% endstepper %}
+
+### Choose the right trigger
+
+Fancy Box performs best after the user has some context.
+
+Good trigger points:
+
+* after a product or category visit,
+* after login or signup,
+* or after a meaningful content view.
+
+Avoid showing it immediately on first page load unless the benefit is already clear.
+
+### Configure Fancy Box
+
+Open the Fancy Box settings in your web push setup flow.
+
+<img src="https://user.netmera.com/~gitbook/image?url=https%3A%2F%2F2578508252-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F0bOAscrXzPSujyzq8DEz%252Fuploads%252FAK1z41MUzz8EoJbLNunN%252FScreenshot%25202025-01-15%2520at%252012.45.55.png%3Falt%3Dmedia%26token%3Da7a8dd55-fe4d-4cb6-af7e-7b894ece722a&#x26;width=768&#x26;dpr=4&#x26;quality=100&#x26;sign=1e7c0c30&#x26;sv=2" alt="" width="563">
+
+#### Settings reference
+
+These settings control how Fancy Box appears and behaves:
+
+* **Enable Fancy Box** — Turns the pre-permission prompt on or off. If disabled, users see only the native browser permission request.
+* **Show Again After** — Controls when Fancy Box appears again after a dismissal or decline. Use a longer interval if your site has frequent repeat visits.
+* **Animate Fancy Box** — Adds animation to the prompt.
+* **Preview** — Shows the current design before you publish changes.
+* **Customize Fancy Box** — Opens the design settings for text, size, color, and font.
+
+### Customize the design
+
+You can edit the default Fancy Box from the panel.
+
+#### Text
+
+Edit the title, description, and button labels. Keep the message short and benefit-led.
+
+Good copy usually answers one question:
+
+**What will the user get if they subscribe?**
+
+Examples:
+
+* product drops and price alerts,
+* order and delivery reminders,
+* or breaking updates and announcements.
+
+<img src="https://user.netmera.com/~gitbook/image?url=https%3A%2F%2F2578508252-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F0bOAscrXzPSujyzq8DEz%252Fuploads%252FddHPtCoi1AoROh6IEL8m%252FScreenshot%25202025-01-15%2520at%252012.48.26.png%3Falt%3Dmedia%26token%3Dee99ae9c-485b-4611-841e-60f0da7cb7ee&#x26;width=768&#x26;dpr=4&#x26;quality=100&#x26;sign=93ed20a2&#x26;sv=2" alt="" width="563">
+
+#### Size
+
+Adjust width, height, border radius, and text size. Keep the prompt readable on smaller screens, and prioritize readability over visual density.
+
+<img src="https://user.netmera.com/~gitbook/image?url=https%3A%2F%2F2578508252-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F0bOAscrXzPSujyzq8DEz%252Fuploads%252FD99PgIRUhe8bA5sQe3H3%252FScreenshot%25202025-01-15%2520at%252012.49.39.png%3Falt%3Dmedia%26token%3Da9ead144-1992-4082-8fbc-795faa74982a&#x26;width=768&#x26;dpr=4&#x26;quality=100&#x26;sign=217449fa&#x26;sv=2" alt="" width="563">
+
+#### Colors
+
+Set the background, button, and text colors. Keep contrast high for readability, and use one clear primary CTA color.
+
+For Fancy Box buttons, you can configure:
+
+* **Background Color**: Defines the button background color.
+* **Text Color**: Defines the button label color.
+* **Border Color**: Defines the button border color.
+
+Configure border color separately for both **Accept** and **Dismiss** buttons. If no border color is selected, the border is applied as transparent by default.
+
+Changes are reflected in the preview area in real time.
+
+<img src="https://user.netmera.com/~gitbook/image?url=https%3A%2F%2F2578508252-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F0bOAscrXzPSujyzq8DEz%252Fuploads%252FqxH4mPrSz2ZXq9leLee4%252FScreenshot%25202025-01-15%2520at%252012.51.31.png%3Falt%3Dmedia%26token%3D216ca948-85d4-4f56-bdcc-5ba91a76eb44&#x26;width=768&#x26;dpr=4&#x26;quality=100&#x26;sign=71c752f4&#x26;sv=2" alt="" width="563">
+
+#### Typography
+
+Choose the font used in the prompt, and keep it consistent with the rest of your site.
+
+You can select the font family and font weight used in the Fancy Box.
+
+The font selection includes Source Sans Pro, Calibri, Cambria and more.
+
+Available font weight options are:
+
+* Regular
+* Semibold
+* Bold
+
+The selected font and font weight are applied to the Fancy Box title, body text, and button labels.
+
+<figure><img src="/files/1e2jEPEgBMnrv7PZ49vM" alt="" width="563"><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+Existing Fancy Box campaigns continue to use their current design settings. If no border color or font weight is selected, default values are applied to preserve backward compatibility.
+{% endhint %}
+
+{% hint style="info" %}
+Font settings apply only to Fancy Box. Other web engagement components keep their existing font behavior.
+{% endhint %}
+
+### Application icon
+
+Fancy Box uses the **Application Icon** from [**General Settings**](/netmera-user-guide/panel-settings/settings/administration/general.md).
+
+![](/files/B9bRF8DcrxgcL2RxG9yE)
+
+To change the icon:
+
+1. Go to **Settings → General Settings**.
+2. Update the **Application Icon**.
+3. Click **Apply**.
+
+{% hint style="info" %}
+Changing the application icon also updates other features that inherit it.
+{% endhint %}
+
+### Measure opt-in performance
+
+Netmera tracks the main web push opt-in steps on the web.
+
+Common events include:
+
+* **Fancy Box Shown**
+* **Fancy Box Accept**
+* **Fancy Box Later**
+* **Enable Push**
+* **Disable Push**
+
+Use these events to answer two questions:
+
+1. Are users engaging with the pre-permission prompt?
+2. Are they completing the browser permission step?
+
+The gap between **Fancy Box Accept** and **Enable Push** shows how well the full opt-in flow performs.
+
+### Best practices
+
+* Show one clear benefit, not a long explanation.
+* Use one primary action label.
+* Delay the prompt until the user has context.
+* Test the full flow on the browsers you support.
+
+{% hint style="success" %}
+Fancy Box performs best when the copy explains a concrete benefit such as offers, reminders, or updates.
+{% endhint %}
+
+### Choose default or custom Fancy Box
+
+Use the default Fancy Box when panel-level customization is enough. Use Custom Fancy Box when you need full hosted UI control.
+
+{% columns %}
+{% column width="50%" %}
+
+#### Default Fancy Box
+
+Use when you need:
+
+* text edits,
+* size and color changes,
+* and fast setup from the panel.
+  {% endcolumn %}
+
+{% column width="50%" %}
+
+#### Custom Fancy Box
+
+Use when you need:
+
+* full hosted UI control,
+* custom layout behavior,
+* or advanced brand implementation.
+  {% endcolumn %}
+  {% endcolumns %}
+
+### Custom Fancy Box
+
+Custom Fancy Box replaces the default Netmera-managed UI with your own hosted version. Use it when panel customization is not enough.
+
+#### Requirements
+
+Before using Custom Fancy Box:
+
+1. Contact Netmera support to enable the feature.
+2. Host `netmera_worker.html` on your own server.
+3. Define your custom Fancy Box inside `netmera_worker.html`.
+
+{% hint style="warning" %}
+Custom Fancy Box cannot be enabled from the panel. Initial activation requires Netmera support.
+{% endhint %}
+
+#### What you can customize
+
+Inside `netmera_worker.html`, you can control:
+
+* button styles and borders,
+* background and overlay styling,
+* and layout, typography, and dimensions.
+
+When you update the hosted file, the new design is used in the flow.
+
+This gives you control beyond the panel-level text, size, color, and font settings.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push/fancy-box.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

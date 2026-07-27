@@ -1,0 +1,39 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up.md).
+
+# Web Pop-up
+
+Web Pop-up helps you engage website visitors with on-site widgets. Use it for promotions, lead capture, announcements, coupon reveals, and behavior-based nudges that drive clicks and conversions.
+
+### Core workflow
+
+<table data-view="cards"><thead><tr><th>Step</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Create and design your widget</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/ZCD26z8jUZf0cHiYwVue">/spaces/X6uilbEAw42gqsudlclY/pages/ZCD26z8jUZf0cHiYwVue</a></td></tr><tr><td>Customize components and layout</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/O0zQXxHKBmAOUsB33FjV">/spaces/X6uilbEAw42gqsudlclY/pages/O0zQXxHKBmAOUsB33FjV</a></td></tr><tr><td>Review widget elements</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/4Xl9SEe6jjnuF4iMyewj">/spaces/X6uilbEAw42gqsudlclY/pages/4Xl9SEe6jjnuF4iMyewj</a></td></tr><tr><td>Assign click actions</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/OiZpt381SIiMgrpwk9gB">/spaces/X6uilbEAw42gqsudlclY/pages/OiZpt381SIiMgrpwk9gB</a></td></tr><tr><td>Publish with rules and targeting</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/MG4H1xHP5yPujND1weBw">/spaces/X6uilbEAw42gqsudlclY/pages/MG4H1xHP5yPujND1weBw</a></td></tr><tr><td>Analyze widget performance</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/QhhYeNhifv8nJ1Vhnb2o">/spaces/X6uilbEAw42gqsudlclY/pages/QhhYeNhifv8nJ1Vhnb2o</a></td></tr></tbody></table>
+
+### Common use cases
+
+* Promote sales, launches, and seasonal campaigns.
+* Capture leads with forms or coupon offers.
+* Guide visitors to key pages with focused calls to action.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

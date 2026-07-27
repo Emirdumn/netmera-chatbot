@@ -1,0 +1,76 @@
+URL: https://user.netmera.com/netmera-user-guide/customer-data/iys-permissions/iys-sync-mode.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/customer-data/iys-permissions/iys-sync-mode.md).
+
+# IYS Sync Mode
+
+The IYS Sync Mode enables businesses to treat **IYS as the master system** of record for user communication consents. With this mode, Netmera can **read** and **update** existing user records in IYS but cannot create new users.
+
+### Two Modes of IYS Integration
+
+<table><thead><tr><th width="211.1990966796875">Mode</th><th>Description</th><th>Key Behavior</th></tr></thead><tbody><tr><td><strong>IYS Sync Mode</strong></td><td>IYS is the master source and Netmera regularly imports consent data</td><td>Netmera can <strong>read</strong> and <strong>update</strong> existing user records in IYS but cannot create new users.</td></tr><tr><td> <strong>IYS Integrator Mode</strong></td><td>Netmera manages permissions and updates IYS directly</td><td>Netmera can <strong>create</strong> your brand entry under a user’s IYS profile and <strong>push</strong> <strong>consent</strong> <strong>records</strong> directly to IYS.</td></tr></tbody></table>
+
+### Step 1: Access the Integrations Section
+
+1. In your **Netmera Panel**, navigate to **Integrations**.
+2. Locate **İleti Yönetim Sistemi** under **Data Security**.
+3. Click **Install** to start the integration.
+
+### Step 2: Enter Your İYS Credentials
+
+When prompted:
+
+* **Brand Code:** Retrieved from your İYS account.
+* **İYS Code:** Retrieved from your İYS account.
+
+These codes are required to activate the integration.
+
+**Optional settings:**
+
+* Via Integration: If you want to use Via, select the checkbox. *(*&#x53;ee detailed documentation [here](https://user.netmera.com/netmera-developer-guide/integrated-modules/via-integration) for configuration instructions.)
+* İYS Integrator: If you want Netmera to act as the source for updating İYS records, check İYS Integrator and continue from the [IYS Integrator Mode](/netmera-user-guide/customer-data/iys-permissions/iys-integrator-mode.md) page.
+
+<figure><img src="/files/ZCNw6lAp20sGWwdEkT8I" alt="" width="563"><figcaption></figcaption></figure>
+
+### Authorizing Netmera in the İYS Panel
+
+To enable full functionality, you must authorize Netmera within the İYS platform:
+
+1. Log in to your IYS Panel.
+2. Go to the **İş Ortaklığı (Partnerships)** section.
+3. Search for and select **Netmera** as your solution partner.
+4. Make sure the following permissions are enabled:
+   * Message Permissions
+   * Call Permissions
+   * Email Permissions
+
+This step allows Netmera to receive and manage user permission data on your behalf, ensuring that all communication is aligned with İYS regulations.
+
+<figure><img src="/files/6jHdqs8b69zlWF3PgQEQ" alt="" width="489"><figcaption></figcaption></figure>
+
+Once the integration is installed, **Netmera will automatically begin syncing user permissions** with İYS.
+
+* The **initial synchronization** starts overnight and runs in batches until all existing user records are processed.
+* After the initial sync is complete, Netmera will continue to **update user permissions** based on your latest İYS data.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/customer-data/iys-permissions/iys-sync-mode.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

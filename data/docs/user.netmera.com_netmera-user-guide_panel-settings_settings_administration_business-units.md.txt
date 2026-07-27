@@ -1,0 +1,69 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/business-units.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/business-units.md).
+
+# Business Units
+
+`Settings > Administration> Business Units > Create New Business Unit`
+
+A business unit is a logical **grouping or division within your organization that operates independently and has its own marketing strategies.** It allows you to manage different segments of your user base separately based on their characteristics, behaviors, or preferences. Using business units, you can target specific groups of users with personalized content and campaigns, tailoring your marketing efforts to suit their unique needs.
+
+{% hint style="info" %}
+**Example:**
+
+For example, if your organization has multiple brands or product lines, you can create different business units for each brand or product line. This way, you can customize the messages and content sent to users who are interested in specific brands or products.
+{% endhint %}
+
+#### Create New Business Unit
+
+"Edit Business Unit" is a feature that enables you to modify the settings and configurations of a specific business unit. When you create a business unit, you can later access its details through the "Edit Business Unit" option to make changes as needed.
+
+**Business Unit Id**
+
+A "Business Unit Id" is a unique identifier automatically assigned to each business unit by Netmera. It serves as a primary key to distinguish one business unit from another within the system.
+
+**Business Unit Name**
+
+A "Business Unit Name" is a unique and descriptive name that you assign to a business unit. It helps you easily identify and differentiate between different business units. Choose a name that reflects the purpose or theme of the business unit.
+
+**Logo URL**
+
+The "Logo URL" refers to the web address (URL) where the logo image of the business unit is stored. This logo will appear as a small thumbnail on mobile phones and represents the branding or identity of the business unit.
+
+**Profile Attribute**&#x20;
+
+A "Profile Attribute" is a characteristic or parameter associated with user profiles in Netmera. You can define specific profile attributes based on user information, behavior, or preferences. For example, you might have profile attributes for user age, location, interests, or purchase history.
+
+**Create your Business Unit Criteria**
+
+This is an important aspect of business units in Netmera. "Business Unit Criteria" refers to the conditions or rules you set to define the members of a particular business unit. These criteria help ensure that the right users are targeted and included in the specific business unit's campaigns.
+
+{% hint style="info" %}
+**Example:**
+
+For instance, you can create criteria based on user actions, such as users who made a purchase within the last month or users who have not opened the app in the last two weeks. By defining such criteria, you can dynamically include or exclude users from the business unit based on their behavior, allowing you to deliver personalized content and promotions.
+{% endhint %}
+
+<figure><img src="/files/XJNxLzIPA2KaTDokFndx" alt=""><figcaption><p>Business Unit</p></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/business-units.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

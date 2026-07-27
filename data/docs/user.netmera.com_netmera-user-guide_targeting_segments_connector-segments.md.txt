@@ -1,0 +1,125 @@
+URL: https://user.netmera.com/netmera-user-guide/targeting/segments/connector-segments.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/targeting/segments/connector-segments.md).
+
+# Connector Segments
+
+Connector Segments are audiences imported into Netmera from an external connector.
+
+Use them when your audience definition already exists in another tool and you want to activate that audience in Netmera. A common example is a segment synced from an analytics platform such as Mixpanel.
+
+**Path:** `Targeting > Segments > Connector Segments`
+
+{% hint style="info" %}
+**Quick steps**
+
+1. Open **Connector Segments**.
+2. Find the synced audience you want to use.
+3. Check imported user counts and status.
+4. Refresh the segment if needed.
+5. Use it for messaging once it is ready.
+   {% endhint %}
+
+### What appears on this page
+
+The **Connector Segments** page lists audiences created through connected external sources.
+
+Use this page to:
+
+* review synced segment names,
+* compare connector-side users with imported Netmera users,
+* monitor sync status,
+* and take actions on each segment.
+
+<figure><img src="/files/gzfpJDidyPpOGxqWwEkS" alt=""><figcaption></figcaption></figure>
+
+### Segment list columns
+
+Each row represents one imported connector segment.
+
+Typical columns include:
+
+* **Segment Name** — the segment name coming from the connector or sync definition
+* **Connector Users** — the number of users returned by the connected source
+* **Netmera Users** — the number of users successfully matched or imported into Netmera
+* **Message Sent** — messages already sent to this audience in Netmera
+* **Description** — short context for what the segment represents
+* **Last Update Date** — the latest sync or refresh time
+* **Status** — the current segment state, such as **Ready** or **Calculating**
+* **Actions** — options available for that segment
+
+### Connector Users vs Netmera Users
+
+These two columns are important and do not always match.
+
+* **Connector Users** shows the audience size in the external source.
+* **Netmera Users** shows how many of those users were recognized in Netmera.
+
+If the Netmera count is lower, that usually means some connector-side users could not be matched to existing Netmera users.
+
+{% hint style="info" %}
+A lower **Netmera Users** count does not always mean something is wrong. It often reflects identifier matching between the external source and Netmera.
+{% endhint %}
+
+### Available actions
+
+Available actions can vary by connector setup and segment state.
+
+Typical actions include:
+
+* **Send Message** — start a campaign for that audience
+* **Message Report** — review campaign activity tied to the segment
+* **Refresh** — pull the latest audience data from the connector
+
+Use **Refresh** when the external audience changed and you want the latest synced membership in Netmera.
+
+### When to use Connector Segments
+
+Use Connector Segments when:
+
+* the audience is already maintained in another platform,
+* your team wants external analysis tools to define targeting,
+* or you want to activate connector-built audiences without rebuilding them as rule logic.
+
+If you want to define the audience directly in Netmera using profile, tag, response, and behavior rules, use [Rule Based Segments](/netmera-user-guide/targeting/segments/rule-based-segments.md) instead.
+
+### Example use cases
+
+Common use cases include:
+
+* importing a product analytics audience for re-engagement,
+* syncing a churn-risk audience from an external model,
+* or activating a high-value user list maintained outside Netmera.
+
+### Before using a connector segment
+
+Check these points first:
+
+* Is the segment **Status** ready?
+* Does the **Netmera Users** count look reasonable?
+* Has the segment been refreshed recently enough?
+* Is this audience better managed externally, or should it become a rule-based segment in Netmera?
+
+For metrics and follow-up actions on a specific audience, see [Segment Details](/netmera-user-guide/targeting/segments/segment-details.md).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/targeting/segments/connector-segments.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

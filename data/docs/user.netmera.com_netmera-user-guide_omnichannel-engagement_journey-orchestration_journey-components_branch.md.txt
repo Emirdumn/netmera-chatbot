@@ -1,0 +1,163 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components/branch.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components/branch.md).
+
+# Branch
+
+Branch components are developed to effectively manage and optimize your user journeys. It provides the ability to meticulously track user actions, interactions, and conversions through a defined process. This makes it an indispensable tool for those looking to maximize user experiences. With Branches, you can systematically create journeys by progressing step by step, detailing every user interaction, and crafting personalized experiences.
+
+<figure><img src="/files/j0oqfcTwnPmrhRKxLlbJ" alt="" width="563"><figcaption></figcaption></figure>
+
+## User Branch
+
+The **User Branch** functionality in the Branch platform allows you to create decision-based models within your user journeys. By using this feature, you can customize different user paths based on specific conditions, leading to highly personalized experiences for your users. Below is a step-by-step guide to setting up a **User Branch**:
+
+<figure><img src="/files/3Jt0RlAb1hzr9btpPvh9" alt="" width="563"><figcaption></figcaption></figure>
+
+### Adding Conditions
+
+Once you've added a User Branch to your journey, the next step is defining the conditions that will direct users down different paths. Conditions are specific criteria that users must meet to follow a particular path. To add a condition, click on **"Add Condition" or "Add Group"**. Choose the condition type, such as: **Profile Attribute, Segment, Tag, or Event.**
+
+<figure><img src="/files/FAD6kMMjfeBHPIlFppgL" alt="" width="375"><figcaption></figcaption></figure>
+
+**Select Condition Type**
+
+Here are the different condition types and examples of how they can be used:
+
+1. **Profile Attribute**
+
+Use [**profile attributes**](/netmera-user-guide/customer-data/profile-attributes.md) to create rules based on specific data within a user's profile, including:
+
+* **Subscription Level**: Differentiate between free-tier and premium-tier users.
+* **Last Login Date**: Target users who have not logged in for a specific period.
+
+2. **Segment**
+
+This allows you to check if the user belongs to a specific group of users, known as a [**segment**](/netmera-user-guide/targeting/segments.md). Examples include:
+
+* **New Users**: Users who have recently signed up.
+* **High-Value Customers**: Users with high purchase activity or engagement.
+
+3. **Tag**
+
+Verify if the user has a specific [**tag**](/netmera-user-guide/targeting/tags.md), which is a label applied to users based on actions or attributes. Examples include:
+
+* **Push Notification Opened**: Users who interacted with a push notification.
+* **Did Not Receive Mail**: Users expected to receive an email but did not.
+
+4. **Event**
+
+Events are actions that users take in your app or service. You can use these [**events**](/netmera-user-guide/customer-data/events.md) to define paths. Examples include:
+
+* **Purchase Made**: Check if the user completed a purchase.
+* **App Installed**: Determine if the user installed the app.
+
+### Define the Condition
+
+Select the appropriate **operator** for each condition (e.g., equals, does not equal, greater than, less than). Then, specify the **value** for the condition (e.g., "Subscription Level equals Premium").
+
+After defining the condition, click **"Add"** to save it. The condition will now be listed in the conditions section for that specific branch. You can also add more than one condition if necessary to refine the branching logic further.
+
+### Adding Groups
+
+Groups allow you to combine multiple conditions using logical operators (All/Any). To create groups or logical sequences, click on "Add group." Inside the group, you can add multiple conditions and specify whether all conditions (All) or any condition (Any) must be met.
+
+<figure><img src="/files/t25TQKPjUD6S9jlLnPZW" alt="" width="375"><figcaption></figcaption></figure>
+
+## Check Interaction
+
+The **Check Interaction** step in Netmera allows you to evaluate how users engage with messages or campaigns that **were created prior to the journey setup.** This step is essential for tracking user responses and tailoring subsequent actions to create more personalized and effective user journeys.
+
+<figure><img src="/files/t4KgS0KvzUa2zVW9CiRT" alt="" width="375"><figcaption></figcaption></figure>
+
+### Steps to Check Interaction
+
+**Step Name**
+
+Assign a meaningful name to this step that accurately reflects the interaction you are tracking. This helps in easily identifying and managing different tracking steps within your analysis workflow.
+
+**Search Message by Name**
+
+Choose the specific **message** or **campaign** you want to check for user interactions. For example, you might select a campaign named *"interactive push - campaigns"*. This allows you to focus on the particular message or campaign that is relevant to your analysis.
+
+**Interaction Type**
+
+Select the type of interaction you want to monitor from the available options. These options include: **Received, Not Received, Opened, Not Opened, Clicked, Not Clicked.** Identifying the interaction type will help narrow down the specific user actions you are interested in tracking.
+
+{% hint style="info" %}
+**Clicked or Opened?**
+
+Clicked & Not Clicked are metrics used for Push Notifications while Opened & Not Opened apply to Widgets (Mobile & Web), SMS and E-mail. Be sure to select the appropriate interaction type based on your campaign.&#x20;
+{% endhint %}
+
+**Time Frame for Check (Days)**
+
+Specify the number of days to monitor whether the interaction occurred. For instance, if you set it to **7 days**, the system will check if the user engaged with the message within the past week. This time frame can help you understand recent user behavior.
+
+<figure><img src="/files/OJjAxTLFjNcNUIWKgb4m" alt="" width="375"><figcaption></figcaption></figure>
+
+## Variants
+
+The **Variants** step in Netmera allows you to conduct A/B testing within user journeys. By using this feature, you can compare multiple versions of a message or action to see which one performs better. This data-driven approach helps optimize user engagement, conversion rates, and overall effectiveness of your communication strategies.
+
+<figure><img src="/files/2A8U2gjCFMbuyf4cenOy" alt="" width="563"><figcaption></figcaption></figure>
+
+### Configure Variants
+
+1. **Step Name**: Provide a clear and meaningful name for the Variants step to reflect the purpose of the test. For example, if you are testing two different push notification messages, you could name the step *"Push Notification A/B Test."* This makes it easier to identify the step within the journey and track the results later.
+2. **Add Variants**: Click the **"+"** button to create different variants. Each variant represents a different version of the message or action you want to test. For example, if you're testing two types of promotional messages, you can add:
+
+* *"Variant A - Discount Offer"* for users receiving a push notification offering a discount.
+* *"Variant B - Free Shipping"* for users receiving a push notification offering free shipping.
+
+Adding multiple variants helps you test different approaches and understand which resonates best with your audience.
+
+### Set Distribution Percentages
+
+After adding variants, you need to define how the audience will be split between the different versions. Click on the percentage value next to each variant (e.g., **"0%"**) to set the user distribution.
+
+For example, you might want to equally divide your audience between both variants:
+
+* Set **50%** for *Variant A - Discount Offer*.
+* Set **50%** for *Variant B - Free Shipping*.
+
+This ensures that half of your users receive the discount offer and the other half receive the free shipping offer, allowing a fair comparison of their effectiveness.
+
+If you prefer to test one variant with a smaller subset of users, you could set a different ratio (e.g., 70% to Variant A and 30% to Variant B).
+
+### Define Actions for Each Variant
+
+For each variant, you can specify a distinct action or message to test. Under each variant, add the steps that will be presented to the users who receive that specific variant.
+
+Example:
+
+* **Variant A - Discount Offer**: Add a push notification step with a message like *"Get 20% off your next purchase!"*
+* **Variant B - Free Shipping**: Add a push notification step with a message like *"Enjoy free shipping on your next order!"*
+
+These variations allow you to test different messaging strategies and understand which version drives better engagement. Each variant can also include different content formats, designs, or incentives depending on your campaign objectives.
+
+**Save the Configuration**
+
+After configuring all the variants, distribution percentages, and actions, click **"Save"** to finalize the setup. This saves the Variants step in your journey, and you can now connect it to the subsequent steps based on how users interact with the different versions.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components/branch.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

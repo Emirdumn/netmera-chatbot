@@ -1,0 +1,188 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/delivery/campaigns.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/delivery/campaigns.md).
+
+# Campaigns
+
+**Path:**  `Reports > Delivery > Campaigns`
+
+Campaigns gives you a cross-channel view of message performance. Use it when you want one report that compares campaign volume, delivery, engagement, conversion, and revenue in the same place.
+
+This is usually the best starting point when the question is broad. For example, if you want to know which campaigns performed best this month before moving into channel-specific detail, start here.
+
+<figure><img src="/files/vlARKV3XIAfXu4oPWC5A" alt="" width="563"><figcaption></figcaption></figure>
+
+Use this report to compare campaigns quickly and understand what drives results.
+
+### Get to an answer fast
+
+{% stepper %}
+{% step %}
+
+#### Set the date range
+
+Start with the period you want to evaluate. A shorter range is better for recent campaign reviews, while a longer range is better for trend comparison.
+{% endstep %}
+
+{% step %}
+
+#### Add filters
+
+Narrow the list by label or message content. This is useful when several campaigns ran in the same period and you want to focus on one theme, business unit, or message family.
+{% endstep %}
+
+{% step %}
+
+#### Read the right section
+
+Use **Highlights** for top-line KPIs, **Campaign Analytics** for campaign-level rows, and **Campaigns Summary** for time-based trends.
+{% endstep %}
+{% endstepper %}
+
+### What this report helps you answer
+
+* How many campaigns ran in a period?
+* Which campaign had the best open rate or conversion?
+* Which campaigns drove app opens or revenue?
+* How do results change by day, week, or month?
+
+These questions are useful because strong delivery or open performance does not always mean strong business impact. One campaign may look healthy at the top of the funnel and still contribute little conversion or revenue.
+
+<figure><img src="/files/5ebly18eAsUEiLk6L2zt" alt=""><figcaption></figcaption></figure>
+
+<table><thead><tr><th width="259.8740234375">Metric</th><th>What it shows</th></tr></thead><tbody><tr><td><strong>Today Number of Campaigns</strong></td><td>Total campaigns executed today.</td></tr><tr><td><strong>Number of Campaigns</strong></td><td>Total campaigns executed in the selected range.</td></tr><tr><td><strong>Best Open Rate</strong></td><td>Highest open rate achieved by a campaign.</td></tr><tr><td><strong>Average Open Rate</strong></td><td>Average open rate across campaigns.</td></tr><tr><td><strong>Best Conversion</strong></td><td>Highest conversion rate achieved by a campaign.</td></tr><tr><td><strong>Average Conversion</strong></td><td>Average conversion rate across campaigns.</td></tr><tr><td><strong>Success</strong></td><td>Number of successfully delivered notifications.</td></tr><tr><td><strong>Open Rate</strong></td><td>Percentage of delivered messages that were opened.</td></tr><tr><td><strong>Avg. Time In App</strong></td><td>Average time users spend in the app after engagement.</td></tr><tr><td><strong>Conversion</strong></td><td>Number of users who completed the campaign goal.</td></tr><tr><td><strong>Revenue</strong></td><td>Revenue attributed to the campaign.</td></tr><tr><td><strong>Average Revenue</strong></td><td>Revenue per conversion.</td></tr></tbody></table>
+
+### Search campaigns
+
+Use filters to find the campaigns you want to inspect.
+
+<figure><img src="/files/xLv7GLKq4su83LfeJYxI" alt=""><figcaption></figcaption></figure>
+
+#### Available filters
+
+* **Dates** — limit the report to a selected time range.
+* **Message Label** — focus on campaigns grouped under the same label.
+* **Message Content Search** — search by campaign name or message text.
+
+Together, these filters help turn a broad report into a practical working view. For example, you can isolate campaigns related to one launch, one promotion, or one operational period.
+
+### Campaign highlights
+
+Use this section for a quick KPI summary.
+
+<figure><img src="/files/ARUBTZDef41lo8bbSwBn" alt=""><figcaption></figcaption></figure>
+
+<details>
+
+<summary>Examples</summary>
+
+* **Today Number of Campaigns = 10** means ten campaigns ran today.
+* **Best Open Rate = 45%** means one campaign outperformed all others on opens.
+* **Average Conversion = 8%** gives a baseline for overall campaign effectiveness.
+
+</details>
+
+### Campaign analytics
+
+Use this section to inspect campaign-level rows and compare individual campaigns.
+
+<figure><img src="/files/1UXZXBIg2Lqi3HwKSBtM" alt=""><figcaption></figcaption></figure>
+
+<table><thead><tr><th width="222.10638427734375">Field</th><th>What it shows</th></tr></thead><tbody><tr><td><strong>Start Date</strong></td><td>When the campaign started running.</td></tr><tr><td><strong>Campaign ID</strong></td><td>Internal unique identifier for the campaign.</td></tr><tr><td><strong>Campaign Name</strong></td><td>Internal campaign name used for identification.</td></tr><tr><td><strong>Campaign Title</strong></td><td>Display-facing title or message title.</td></tr><tr><td><strong>Message Text</strong></td><td>Main message body or content.</td></tr><tr><td><strong>Message Type</strong></td><td>Message purpose, such as promotional, transactional, or informational.</td></tr><tr><td><strong>Message Style</strong></td><td>Visual format, such as iOS Rich Push or Text Push.</td></tr><tr><td><strong>Message Label</strong></td><td>Label used to group campaigns for filtering and reporting.</td></tr><tr><td><strong>Target Audience</strong></td><td>Intended recipient count or target segment.</td></tr><tr><td><strong>Success</strong></td><td>Delivered notifications acknowledged by devices. Failed deliveries are shown as fail.</td></tr></tbody></table>
+
+{% hint style="warning" %}
+**Success** is based on message logs returned by Apple APNS and Google FCM.
+{% endhint %}
+
+<figure><img src="/files/KjzwUqEi7LH5IZlx4k9h" alt=""><figcaption></figcaption></figure>
+
+### Metric definitions
+
+#### Direct App Opens
+
+Tracks users who open the app by interacting with the campaign.
+
+Netmera attributes the `OpenApp` event to the campaign that triggered it. This helps you separate general app activity from campaign-driven activity.
+
+#### Open Rate
+
+Measures the percentage of delivered messages that were opened.
+
+Example: `300 opens / 1,000 delivered = 30%`.
+
+#### Conversion
+
+Counts users who complete the defined campaign goal, such as purchase or sign-up.
+
+Conversion tracking uses campaign attribution from links or user behavior. This is why the same campaign can show strong opens and weak conversion if the message created interest but not enough follow-through.
+
+For push campaigns, define the conversion event during **Step: What** in push creation.
+
+#### Revenue
+
+Shows total revenue attributed to the campaign.
+
+Revenue is calculated from campaign-attributed purchases or subscriptions. Reading revenue together with conversion is usually more useful than reading either one alone.
+
+#### Average Revenue
+
+Shows revenue per conversion.
+
+Example: `$5,000 / 50 conversions = $100`.
+
+### Campaigns summary
+
+Use this section to review aggregated performance over time.
+
+<figure><img src="/files/SbKfukY5QUgrci1KHGGe" alt=""><figcaption></figcaption></figure>
+
+The summary table groups campaign data by:
+
+* **Daily**
+* **Weekly**
+* **Monthly**
+
+It uses these columns:
+
+<table><thead><tr><th width="228.99365234375">Column</th><th>What it shows</th></tr></thead><tbody><tr><td><strong>Target Audience</strong></td><td>Total intended recipients.</td></tr><tr><td><strong>Success</strong></td><td>Successfully delivered notifications.</td></tr><tr><td><strong>Direct App Opens</strong></td><td>App opens driven by the campaign.</td></tr><tr><td><strong>Open Rate</strong></td><td>Share of delivered messages that were opened.</td></tr><tr><td><strong>Conversion</strong></td><td>Users who completed the target action.</td></tr><tr><td><strong>Rev.</strong></td><td>Total attributed revenue.</td></tr><tr><td><strong>Avg. Rev.</strong></td><td>Revenue per conversion.</td></tr></tbody></table>
+
+{% hint style="info" %}
+**Summation (Σ)** shows the cumulative total for the selected period.
+
+Example: if daily direct app opens are `100` and `150`, the total is `250`.
+{% endhint %}
+
+### How to read the summary table
+
+Use the summary table when you want to compare performance across time periods, spot engagement or revenue trends, validate targeting quality, and measure campaign impact at a glance.
+
+For example, if daily open rates remain stable while conversion drops across the same period, the issue may be downstream from the message itself. That often points to landing-page quality, in-app experience, or weaker offer relevance.
+
+### Related pages
+
+* [Reports](/netmera-user-guide/reports-and-analytics/reports.md)
+* [Push Reports](/netmera-user-guide/reports-and-analytics/reports/delivery/campaigns/push-reports.md)
+* [Email Reports](/netmera-user-guide/reports-and-analytics/reports/delivery/campaigns/email-reports.md)
+* [SMS Reports](/netmera-user-guide/reports-and-analytics/reports/delivery/campaigns/sms-reports.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/delivery/campaigns.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

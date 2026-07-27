@@ -1,0 +1,206 @@
+URL: https://user.netmera.com/netmera-user-guide/ai-features/netmera-mcp-server/available-api-functions.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/ai-features/netmera-mcp-server/available-api-functions.md).
+
+# Available API Functions
+
+Netmera MCP Server exposes Netmera capabilities as callable functions for MCP-compatible clients.
+
+Use this page as the reference for what each function group does.
+
+### Function naming patterns
+
+<table><thead><tr><th width="296.171142578125">Pattern</th><th>Meaning</th></tr></thead><tbody><tr><td><code>*_list</code></td><td>Returns a collection</td></tr><tr><td><code>*_detail</code></td><td>Returns details for one item</td></tr><tr><td><code>*_summary</code> / <code>*_stats</code></td><td>Returns aggregates or KPIs</td></tr><tr><td><code>*_create</code> / <code>*_update</code> / <code>*_delete</code></td><td>Performs a write action</td></tr><tr><td><code>*_send</code> / <code>*_approve</code> / <code>*_pause</code></td><td>Performs an operational action</td></tr></tbody></table>
+
+Functions marked with `🔒` require `mcp:write`.
+
+### Analytics
+
+<table><thead><tr><th width="267.740966796875">Function</th><th width="323.716552734375">Description</th><th>Scope</th></tr></thead><tbody><tr><td><code>analytics_daily_stats</code></td><td>Daily or monthly user stats, DAU, installs, and uninstalls</td><td>read</td></tr><tr><td><code>analytics_event_insights</code></td><td>Event count and unique users with filters</td><td>read</td></tr><tr><td><code>analytics_event_trend</code></td><td>Time-based trend for one or more events</td><td>read</td></tr><tr><td><code>analytics_event_dimensions</code></td><td>Break down events by platform, OS, device, country, or attribute</td><td>read</td></tr><tr><td><code>analytics_funnel_list</code></td><td>List saved funnel reports</td><td>read</td></tr><tr><td><code>analytics_funnel_detail</code></td><td>Get details for a funnel report</td><td>read</td></tr><tr><td><code>analytics_funnel_summary</code></td><td>Real-time funnel conversion and drop-off analysis</td><td>read</td></tr><tr><td><code>analytics_crashes</code></td><td>Crash reports for a date range</td><td>read</td></tr><tr><td><code>analytics_revenue</code></td><td>Revenue and conversion analytics</td><td>read</td></tr><tr><td><code>analytics_revenue_by_product</code></td><td>Revenue breakdown by product</td><td>read</td></tr><tr><td><code>analytics_uninstall</code></td><td>Uninstall trends by platform</td><td>read</td></tr><tr><td><code>analytics_opt_out</code></td><td>Push opt-out trends</td><td>read</td></tr><tr><td><code>analytics_churn_campaigns</code></td><td>Campaigns sent before uninstall</td><td>read</td></tr></tbody></table>
+
+### App overview
+
+<table><thead><tr><th>Function</th><th width="386.37347412109375">Description</th><th>Scope</th></tr></thead><tbody><tr><td><code>app_overview</code></td><td>Combined user stats, 7-day trend, and recent campaigns</td><td>read</td></tr><tr><td><code>app_health</code></td><td>Health check for devices, certificates, crashes, delivery, and automation</td><td>read</td></tr></tbody></table>
+
+### Event-based automation
+
+<table><thead><tr><th>Function</th><th width="364.566162109375">Description</th><th>Scope</th></tr></thead><tbody><tr><td><code>automation_list</code></td><td>List automations, filtered by status if needed</td><td>read</td></tr><tr><td><code>automation_detail</code></td><td>Channel, trigger, and status details</td><td>read</td></tr><tr><td><code>automation_pause</code></td><td>Pause an active automation</td><td>🔒 write</td></tr><tr><td><code>automation_resume</code></td><td>Resume a paused automation</td><td>🔒 write</td></tr></tbody></table>
+
+### Campaign reports
+
+<table><thead><tr><th width="241.5633544921875">Function</th><th width="294.38995361328125">Description</th><th>Scope</th></tr></thead><tbody><tr><td><code>campaign_list</code></td><td>Filter, sort, and paginate campaigns</td><td>read</td></tr><tr><td><code>campaign_top</code></td><td>Top-performing campaigns in the last N days</td><td>read</td></tr><tr><td><code>campaign_detail</code></td><td>Campaign title, content, target, and schedule details</td><td>read</td></tr><tr><td><code>campaign_report</code></td><td>Sent, delivered, clicked, converted, and daily trend</td><td>read</td></tr><tr><td><code>campaign_profile_report</code></td><td>Performance by profile attributes</td><td>read</td></tr><tr><td><code>campaign_ab_test</code></td><td>A/B test variant comparison</td><td>read</td></tr><tr><td><code>campaign_revenue</code></td><td>Revenue impact of a campaign</td><td>read</td></tr><tr><td><code>campaign_daily_stats</code></td><td>Daily delivery and click stats</td><td>read</td></tr><tr><td><code>campaign_interactive</code></td><td>Performance for buttons, carousel, and similar interactions</td><td>read</td></tr><tr><td><code>campaign_conversion</code></td><td>Conversion funnel data</td><td>read</td></tr></tbody></table>
+
+### Campaign draft and send
+
+| Function         | Description                         | Scope    |
+| ---------------- | ----------------------------------- | -------- |
+| `campaign_draft` | Create a campaign draft and preview | 🔒 write |
+| `campaign_send`  | Send a reviewed draft               | 🔒 write |
+
+{% hint style="warning" %}
+Campaign sending always requires a preview first.
+
+Large sends above **100,000 users** are blocked from AI execution.
+{% endhint %}
+
+### Campaign management
+
+| Function             | Description                                      | Scope    |
+| -------------------- | ------------------------------------------------ | -------- |
+| `campaign_stop`      | Stop an ongoing campaign                         | 🔒 write |
+| `campaign_cancel`    | Cancel a scheduled campaign                      | 🔒 write |
+| `campaign_recall`    | Recall a sent push from inbox                    | 🔒 write |
+| `campaign_approve`   | Approve a pending campaign                       | 🔒 write |
+| `campaign_reject`    | Reject a pending campaign and return it to draft | 🔒 write |
+| `campaign_send_test` | Send a test message to a user or test device     | 🔒 write |
+
+### Cohort
+
+| Function           | Description                           | Scope |
+| ------------------ | ------------------------------------- | ----- |
+| `cohort_analytics` | Retention analysis between two events | read  |
+
+### Configuration
+
+| Function                         | Description                               | Scope |
+| -------------------------------- | ----------------------------------------- | ----- |
+| `config_app_info`                | App name, type, and status                | read  |
+| `config_notification_categories` | Notification categories                   | read  |
+| `config_channels`                | Configured channels                       | read  |
+| `config_connectors`              | Active integrations and connectors        | read  |
+| `config_settings`                | Retention, language, and general settings | read  |
+| `config_certificates`            | FCM, APNS, and HMS certificate status     | read  |
+| `config_deeplinks`               | Defined deeplinks                         | read  |
+
+### Custom dashboard
+
+| Function                  | Description                                 | Scope |
+| ------------------------- | ------------------------------------------- | ----- |
+| `custom_dashboard_save`   | Save an AI-generated dashboard to the panel | read  |
+| `custom_dashboard_list`   | List saved AI dashboards                    | read  |
+| `custom_dashboard_get`    | Retrieve a dashboard by ID                  | read  |
+| `custom_dashboard_update` | Update a saved dashboard                    | read  |
+| `custom_dashboard_delete` | Delete a dashboard                          | read  |
+
+### Dashboard
+
+| Function                 | Description                                                   | Scope |
+| ------------------------ | ------------------------------------------------------------- | ----- |
+| `dashboard_performance`  | KPI, session, trend, channel breakdown, and period comparison | read  |
+| `dashboard_channel_data` | Dashboard data for one channel                                | read  |
+| `dashboard_daily_review` | Daily user and session metrics                                | read  |
+| `dashboard_realtime`     | Real-time active users and activity                           | read  |
+| `dashboard_overview`     | Combined metric summary for a selected period                 | read  |
+
+### Event definition
+
+| Function                 | Description                          | Scope |
+| ------------------------ | ------------------------------------ | ----- |
+| `event_list`             | All event definitions and attributes | read  |
+| `event_detail`           | Attributes and types for one event   | read  |
+| `event_attribute_values` | Possible values for an attribute     | read  |
+| `event_search`           | Search events by name or code        | read  |
+
+### Geofence
+
+| Function          | Description                                 | Scope    |
+| ----------------- | ------------------------------------------- | -------- |
+| `geofence_list`   | List geofences and groups                   | read     |
+| `geofence_detail` | Location, radius, status, and group details | read     |
+| `geofence_create` | Create a circular geofence                  | 🔒 write |
+| `geofence_update` | Update a geofence                           | 🔒 write |
+| `geofence_delete` | Delete a geofence permanently               | 🔒 write |
+
+### IYS consent management
+
+| Function                   | Description                                      | Scope    |
+| -------------------------- | ------------------------------------------------ | -------- |
+| `iys_consent_query`        | Query SMS or email consent for a recipient       | read     |
+| `iys_consent_update_sms`   | Update SMS consent to `APPROVED` or `REJECTED`   | 🔒 write |
+| `iys_consent_update_email` | Update email consent to `APPROVED` or `REJECTED` | 🔒 write |
+
+### People
+
+| Function          | Description                                         | Scope |
+| ----------------- | --------------------------------------------------- | ----- |
+| `people_stats`    | Total users, devices, installs, uninstalls, and DAU | read  |
+| `people_search`   | Paginated user list                                 | read  |
+| `people_growth`   | User growth trend                                   | read  |
+| `people_profile`  | Profile and devices for one user                    | read  |
+| `people_events`   | Event history for one user                          | read  |
+| `people_messages` | Sent messages and delivery status for one user      | read  |
+| `people_count`    | Total user count                                    | read  |
+| `people_devices`  | Device and platform breakdown                       | read  |
+
+### Profile attributes
+
+| Function              | Description                         | Scope |
+| --------------------- | ----------------------------------- | ----- |
+| `profile_attr_list`   | List standard and custom attributes | read  |
+| `profile_attr_detail` | Get details for one attribute       | read  |
+| `profile_attr_values` | Possible values for one attribute   | read  |
+
+### Recommendation
+
+| Function                 | Description                                    | Scope |
+| ------------------------ | ---------------------------------------------- | ----- |
+| `recommendation_list`    | List recommendation models and product modules | read  |
+| `recommendation_detail`  | Show model configuration                       | read  |
+| `recommendation_stats`   | Period-based stats for one model               | read  |
+| `recommendation_summary` | Combined summary of all models                 | read  |
+
+### Segment
+
+| Function             | Description                                             | Scope    |
+| -------------------- | ------------------------------------------------------- | -------- |
+| `segment_list`       | List segments, optionally filtered by type              | read     |
+| `segment_summary`    | Segment totals, largest segment, and total users        | read     |
+| `segment_detail`     | Conditions, user count, and related campaigns           | read     |
+| `segment_user_count` | Current member count                                    | read     |
+| `segment_predefined` | Predefined and predictive segments                      | read     |
+| `segment_create`     | Create a segment with event, profile, or tag conditions | 🔒 write |
+| `segment_delete`     | Deactivate a segment                                    | 🔒 write |
+| `segment_clone`      | Clone a segment with the same conditions                | 🔒 write |
+| `segment_refresh`    | Refresh member counts manually                          | 🔒 write |
+
+### Tag
+
+| Function     | Description               | Scope    |
+| ------------ | ------------------------- | -------- |
+| `tag_list`   | List tags and user counts | read     |
+| `tag_create` | Create a tag              | 🔒 write |
+| `tag_delete` | Delete a tag              | 🔒 write |
+
+### Workflow
+
+| Function              | Description                                  | Scope    |
+| --------------------- | -------------------------------------------- | -------- |
+| `workflow_list`       | List workflows, filtered by status if needed | read     |
+| `workflow_detail`     | Steps, configuration, and status details     | read     |
+| `workflow_stats`      | User flow metrics                            | read     |
+| `workflow_activate`   | Activate a workflow                          | 🔒 write |
+| `workflow_deactivate` | Stop a workflow                              | 🔒 write |
+| `workflow_archive`    | Archive a workflow                           | 🔒 write |
+| `workflow_clone`      | Clone a workflow as draft                    | 🔒 write |
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/ai-features/netmera-mcp-server/available-api-functions.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

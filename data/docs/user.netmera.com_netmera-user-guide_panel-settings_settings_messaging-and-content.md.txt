@@ -1,0 +1,35 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content.md).
+
+# Messaging  & Content
+
+<figure><img src="/files/DhbkoEGmoia9f18J3FeX" alt=""><figcaption></figcaption></figure>
+
+Use **Messaging & Content** to manage the shared assets your campaigns use. Open the right setup area for classification, email content, and coupon code management.
+
+### What you can manage
+
+<table data-view="cards"><thead><tr><th>What you can manage</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Create category IDs that define a campaign’s purpose. Use them for consent management and consistent reporting.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/Nm9UJB8MkGJhMvaX6Igg">/spaces/X6uilbEAw42gqsudlclY/pages/Nm9UJB8MkGJhMvaX6Igg</a></td></tr><tr><td>Create reusable labels for campaign organization and analysis. Use them to filter, compare, and group campaigns.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/nctTjVEVmoQ2YFCcM7mE">/spaces/X6uilbEAw42gqsudlclY/pages/nctTjVEVmoQ2YFCcM7mE</a></td></tr><tr><td>Create reusable email templates for campaigns and notifications. Set sender details, subject lines, and content blocks.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/BxXADlfMhp5E35VPhtQY">/spaces/X6uilbEAw42gqsudlclY/pages/BxXADlfMhp5E35VPhtQY</a></td></tr><tr><td>Upload and manage coupon codes for campaigns. Track inventory, expiry, and assignment history.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/ZHVzNqGwS9yJXsJ1ribI">/spaces/X6uilbEAw42gqsudlclY/pages/ZHVzNqGwS9yJXsJ1ribI</a></td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

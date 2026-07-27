@@ -1,0 +1,69 @@
+URL: https://user.netmera.com/netmera-user-guide/customer-data/profile-attributes.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/customer-data/profile-attributes.md).
+
+# Profile Attributes
+
+Profile Attributes are a core part of how Netmera helps you understand and engage your users. They represent structured pieces of information tied to individual customer profiles, forming the foundation of segmentation, targeting, and personalization across the platform.
+
+From basic identifiers to advanced behavioral traits, Profile Attributes allow you to create meaningful user models that fuel real-time decision-making and tailored communication strategies.
+
+### What Are Profile Attributes?
+
+Every user profile in Netmera can include a variety of attributes. These may range from standard fields like name or email to business-specific values such as membership tier, last order amount, or preferred product category.
+
+This flexibility enables you to build rich, actionable customer profiles that support smarter engagement across mobile, web, email, and more.
+
+<figure><img src="/files/EVJnLmMB2AiB38vzFSx2" alt="" width="375"><figcaption></figcaption></figure>
+
+### The Role of Profile Attributes in Netmera
+
+Profile Attributes serve as the backbone of Netmera’s data-driven engagement model. They bring structure to your user base and allow your team to:
+
+* Segment audiences based on meaningful traits
+* Trigger personalized journeys and campaigns
+* Enrich messages with dynamic content
+* Inform analytics and performance tracking
+* Respect consent and privacy boundaries with greater precision
+
+Whether you're designing a push campaign, running A/B tests, or building complex customer journeys, Profile Attributes are what ensure those experiences are relevant, targeted, and effective.
+
+### Flexible by Design
+
+Netmera gives you the flexibility to define the data that matters most to your business. You’re not limited to default fields, you can introduce your own structure and evolve it as your strategy grows.
+
+From the moment a user signs up, installs your app, or interacts with your brand, their attributes begin forming. These values can come from SDK events, backend APIs, CSV uploads, all unified within the platform to create a centralized user model.
+
+### How Profile Attributes Work Across Netmera
+
+You can update and access Profile Attributes via SDKs, APIs, or manual uploads. Once in place, these attributes can be:
+
+* Filtered within campaign targeting
+* Referenced in message templates
+* Used in automation logic and journey steps
+* Included in custom dashboards and reports
+* Synced with external systems through integrations
+
+They function as the connective tissue between your customer data and your engagement decisions.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/customer-data/profile-attributes.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

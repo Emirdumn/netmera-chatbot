@@ -1,0 +1,68 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/total-users.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/total-users.md).
+
+# Total Users
+
+**Path:** `Reports > Audience & Growth > Total Users`
+
+Total Users gives you a broad health check for the selected period. It brings user scale, device scale, opt-in status, activity, sessions, and revenue into one view, so you can understand how the business is moving before you drill into a channel or campaign.
+
+Use this report when you want to answer practical questions such as:
+
+* Is the platform growing?
+* Are users still active after growth?
+* Is activity turning into revenue?
+
+### Report overview
+
+This report is best for high-level monitoring. It helps you compare one period with another and understand whether changes come from audience growth, stronger engagement, or improved monetization.
+
+Because the metrics sit side by side, you can read them as a story instead of as isolated numbers. That makes the page useful for weekly reviews, monthly summaries, and quick performance checks.
+
+<figure><img src="/files/0K1qpAVBIgdeELiDpVip" alt=""><figcaption></figcaption></figure>
+
+### Core metrics
+
+* **Dates** define the reporting window. Every number on the page follows the selected range.
+* **Total Devices** shows how many devices accessed your platform during that period. This is useful when one user may have more than one device.
+* **Opt-in** shows how many users granted permission for the related channel or feature. It helps you understand how much of your audience is actually reachable.
+* **Daily Active** shows how many users actively used the platform on a daily basis. This is one of the clearest engagement signals on the page.
+* **Revenue** shows the total value generated during the selected period. It helps connect usage with business outcome.
+* **Sessions** shows how often users came back and interacted. It adds depth beyond total user count alone.
+
+{% hint style="info" %}
+Opt-in changes often reflect more than permission behavior. They can also point to shifts in user trust, message strategy, or overall experience.
+{% endhint %}
+
+### How to read the metrics together
+
+The value of this report comes from comparison. One metric rarely tells the full story on its own.
+
+For example, if total users stay flat while sessions and revenue rise, existing users are becoming more active or more valuable. If total devices rise but daily active stays weak, acquisition may be improving while engagement stays soft. If opt-in drops while activity holds steady, your product may still be healthy even though your reachable audience is shrinking.
+
+### How to use this report
+
+Use Total Users as your first stop before deeper analysis. It helps you decide whether the next question belongs in a campaign report, an event report, or a retention-focused workflow.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/total-users.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

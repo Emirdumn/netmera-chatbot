@@ -1,0 +1,205 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/whatsapp/whatsapp-integration.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/whatsapp/whatsapp-integration.md).
+
+# WhatsApp Integration
+
+Before setting up the integration, make sure you read the following requirements:
+
+* **Content rules:** All messages must follow WhatsApp and Meta's content policies.
+* **Compliance:** You must comply with all applicable Meta policies and regulations.
+* **Businesses** can only start a conversation using an **approved message template**.
+
+### Requirements
+
+| Requirement                       | Description                                                                    |
+| --------------------------------- | ------------------------------------------------------------------------------ |
+| **Meta Business Manager account** | A Meta Business account is required to manage WhatsApp Business and templates. |
+| **WhatsApp Business account**     | Needed to connect and send messages via the WhatsApp Business API.             |
+| **WhatsApp phone number**         | You must acquire a phone number that meets WhatsApp’s requirements.            |
+
+### Integration Steps
+
+### Step 1: WhatsApp Business Setup
+
+1. **Create or select a Meta Business account** (if your company already has one, select the appropriate account).
+2. **Create or select a WhatsApp Business account** under your Meta Business Manager.
+3. **Set up your WhatsApp Business profile**, including display name and business information (ensure it follows Meta’s [display name guidelines](http://facebook.com/business/help/757569725593362)).
+4. **Verify your WhatsApp Business number** through Meta.
+
+### Step 2: Connect WhatsApp to Netmera
+
+* In the Netmera panel, navigate to **Integrations > Messaging Provider > WhatsApp**.
+* Follow the guided setup flow to connect your Meta Business Manager account.
+* Select the WhatsApp Business account you want to use.
+* Assign the phone number that will be used for sending campaigns.
+
+{% embed url="<https://www.youtube.com/watch?feature=youtu.be&v=1HMLeGEeZbs>" %}
+
+Once completed, your WhatsApp account will be connected to Netmera for campaign management.
+
+### Step 3: Configure Webhook (Required for Analytics)
+
+Without this webhook connection, you can still create and send WhatsApp campaigns through Netmera. However, if you want to view **detailed WhatsApp message reports** in Netmera and export specific user data from those reports, you need to configure a webhook integration between your **Meta Business Profile** and **Netmera**.
+
+Once the configuration is completed, you will see the following metrics in your reports:
+
+* **Target Audience** – The number of users targeted in the campaign
+* **Users** – The actual number of distinct users included
+* **Sent** – Total messages successfully sent
+* **Delivery** – Messages that were delivered to recipients’ devices
+* **Read** – Messages that were opened and read by recipients
+
+<figure><img src="/files/61mL0FsO3jksJ6sH4mCM" alt=""><figcaption></figcaption></figure>
+
+#### Webhook Configuration in Meta Business Profile
+
+{% embed url="<https://www.youtube.com/watch?v=Nlh_VrMAUqM>" %}
+
+To enable reporting, you must configure the following details in your **Meta Business Profile > Webhooks** section:
+
+**Callback URL**
+
+`https://report.netmera.com/reporter/whatsapp/webhooks`
+
+**Verify Token**
+
+`ZOjDrXwwpPAEMofzIJ7wYxxrJ9g0PCqJTPIqVyyiCSI=`
+
+<figure><img src="/files/vQP4gHCWX49UBk3bY9Mp" alt=""><figcaption></figcaption></figure>
+
+### Step 4: Create WhatsApp Templates
+
+{% hint style="info" %}
+Only **approved templates** can be used to **start** WhatsApp campaigns with your customers. You can see the status of your templates on Netmera Panel as well.
+{% endhint %}
+
+**To create a template on Meta:**
+
+1. Log into **Meta Business Manager**.
+2. Under **Account Tools**, select **Message Templates > Marketing**.
+3. Click **Create Template** and design your message following [Meta’s guidelines.](https://developers.facebook.com/docs/whatsapp/message-templates/guidelines)
+
+<figure><img src="/files/40CXjrzkwRESQHW4YFPF" alt=""><figcaption></figcaption></figure>
+
+#### Editing the Template
+
+When creating your message template, you can define:
+
+* **Header (optional):** Text or media (image, video, document).
+* **Body (required):** Main text of your message.
+* **Footer (optional):** Additional supporting text.
+* **Buttons (optional):** Add up to two Call-to-Action buttons (e.g., Visit Website, Call Phone).
+
+A live preview of your message will display in the panel as you build it.
+
+{% columns %}
+{% column width="41.66666666666667%" %}
+
+#### Using Variables
+
+You can insert **variables** into your template by selecting **+ Add Variable**.
+
+* These placeholders (e.g., *{{1}}*, *{{2}}*) can later be mapped to **Netmera Profile Attributes**.
+* Example: *Hello {{1}}* → becomes *Hello Sarah* when personalized through Netmera.
+  {% endcolumn %}
+
+{% column width="58.33333333333333%" %}
+
+<figure><img src="/files/9zQpfKyCN62IgmZHQbrC" alt="" width="375"><figcaption></figcaption></figure>
+
+{% endcolumn %}
+{% endcolumns %}
+
+#### Submit for Approval
+
+* Submit the template to Meta for review.
+* Approval may take **up to 24 hours**.
+
+Your templates are automatically **synced into Netmera**, where you can further personalize them and use them in your campaigns. Once approved, you can start sending campaigns directly using **Create WhatsApp Campaign** in the Netmera panel.
+
+### WhatsApp Number File Import
+
+The **WhatsApp Number File Import** allows you to upload and manage user consent records for WhatsApp campaigns through bulk files. This section explains the requirements, validation logic, and behavior of the system during import.
+
+#### File Requirements
+
+**Mandatory Fields**
+
+* Only **WhatsApp number (wpNumber)** and **consent status (permission)** are required in the file.
+* For permissions use 1 (opt\_in) and 2 (opt\_out) in your files.
+* Other identifiers such as **External ID (ExID)**, **email**, or **MSISDN** are optional.
+
+**Number Format**
+
+* All WhatsApp numbers must include the **country code** (as required by Meta).
+* During upload, a **format validation** check ensures that the number structure complies with international standards.
+
+### How to Upload WhatsApp Users to Netmera
+
+* Go to **Panel > Targeting > Contact Upload**
+* Select your file and click **Upload**.
+* The system automatically validates numbers and formats.
+
+#### Sample Format
+
+<table><thead><tr><th>exid</th><th width="187.7376708984375">email</th><th>msisdn</th><th width="153.2137451171875">wpNumber</th><th width="124.59521484375">permission</th></tr></thead><tbody><tr><td>12345</td><td>test1@example.com</td><td>905301112233</td><td>+905301112233</td><td>1</td></tr><tr><td>34328</td><td>user2@example.co.uk</td><td>442071234567</td><td>+442071234567</td><td>0</td></tr><tr><td>78901</td><td>test1@example.com</td><td>905112345678</td><td>+905112345678</td><td>1</td></tr></tbody></table>
+
+{% hint style="warning" %}
+
+* Always include `+` and country code in `wpNumber`.
+* Use **`1`** (opt\_in) and **`0`** (opt\_out) in your files. for permission values.
+* `wpNumber` and `permission` is mandatory. `email`, `msisdn` and `exid` is optional.
+  {% endhint %}
+
+#### User Matching Logic
+
+When the file is processed, the system checks whether the user already exists. This check follows a **priority sequence**:
+
+1. **ExID** (if provided)
+2. **Email** (if provided)
+3. **MSISDN** (if provided)
+4. **WhatsApp Number (wpNumber)**
+
+* If a user is found at any step in this sequence, that user record is used.
+* If no matching user is found, a **new user profile** is created with the provided details.
+
+**Consent Updates**
+
+If a **matching user exists**:
+
+* Only the **WhatsApp consent** field is updated.
+* Other profile information (e.g., `ExID`, `email`, `MSISDN`) is **not changed**.
+
+If a **new user is created**:
+
+* All provided information in the file (`ExID`, `email`, `MSISDN`, `wpNumber`, etc.) is added to the new profile.
+
+**Number Deduplication**
+
+* A WhatsApp number can only belong to **one user profile** at a time.
+* If the same number is found under multiple user profiles:
+  * The system automatically **removes the number** from other users.
+  * The profile from the **most recently imported file** becomes the **master record** for that number.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/whatsapp/whatsapp-integration.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

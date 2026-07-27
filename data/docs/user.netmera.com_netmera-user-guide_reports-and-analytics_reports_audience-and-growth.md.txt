@@ -1,0 +1,35 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audience-and-growth.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audience-and-growth.md).
+
+# Audience & Growth
+
+Use **Audience & Growth** to review audience size, acquisition trends, monthly KPIs, and channel availability. Open the report that matches the growth or reachability question you want to answer.
+
+<figure><img src="/files/2OAwurLTvLTwaBnRqgls" alt=""><figcaption></figcaption></figure>
+
+### What you can review
+
+<table data-view="cards"><thead><tr><th>What you can review</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Review how your total audience changes over time. Use this report to track overall user growth.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/AojEX4nB2W0gtVqyENWg">/spaces/X6uilbEAw42gqsudlclY/pages/AojEX4nB2W0gtVqyENWg</a></td></tr><tr><td>Review install trends across the selected period. Use this report to monitor acquisition volume.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/VbNyCxpQj1IYxoPfjpbm">/spaces/X6uilbEAw42gqsudlclY/pages/VbNyCxpQj1IYxoPfjpbm</a></td></tr><tr><td>Review monthly performance KPIs in one view. Use this report to compare growth and engagement trends month by month.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/Qbaze8s87zxON2IJBDib">/spaces/X6uilbEAw42gqsudlclY/pages/Qbaze8s87zxON2IJBDib</a></td></tr><tr><td>Review how many users are reachable by each messaging channel. Use this report to understand channel coverage.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/6dpBPuQzZNHjYFWxhuQg">/spaces/X6uilbEAw42gqsudlclY/pages/6dpBPuQzZNHjYFWxhuQg</a></td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audience-and-growth.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

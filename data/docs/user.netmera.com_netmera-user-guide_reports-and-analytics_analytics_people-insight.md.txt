@@ -1,0 +1,113 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/people-insight.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/people-insight.md).
+
+# People Insight
+
+**Path:** Analytics > People Insight
+
+People Insight helps you find users who match a precise set of conditions. It is useful when the question is about an audience, not just about raw event volume. Instead of asking how many times something happened, you can ask which users match the pattern you care about.
+
+Typical use cases include:
+
+* users who allowed push but never purchased,
+* users in a segment who also match a profile attribute,
+* users who performed one behavior but not another.
+
+This makes People Insight especially useful when you want to turn analysis into action. Once the right users are identified, you can inspect them, tag them, export them, or reuse the result in later targeting work.
+
+Use this page when you want to answer questions such as:
+
+* Which users match a specific behavioral pattern?
+* Which audience should I tag or export?
+* How can I combine profile, segment, and behavior conditions?
+
+### Build the query
+
+Click the **+** button to start defining the audience. From there, you can add one or more conditions that describe the users you want to find.
+
+A good query usually starts simple. Begin with the most important rule, review the result, and then add more conditions only if you need a narrower audience.
+
+<figure><img src="/files/Qpn9RDxBBFz3Yzb2jHPL" alt=""><figcaption></figcaption></figure>
+
+### Add conditions
+
+Use **Add Condition** to define the rules users must match. Available condition types include:
+
+* Push Permission
+* Segment
+* Tag
+* Profile
+* Behavior
+
+Each condition adds another layer to the audience definition. For example, you can combine **Push Permission** with **Behavior** to find users who are reachable but have not completed an important action yet.
+
+<figure><img src="/files/Sp8AvMBjYOM1Tzjb0sq2" alt=""><figcaption></figcaption></figure>
+
+### Group conditions with logic
+
+Use **Add Group** when you need a more complex rule set. Groups let you combine conditions with logical operators such as:
+
+* **and**
+* **or**
+
+For example, you can find users who are in **Segment A** and also have **push permission enabled**. You can also create a broader rule, such as users who are in **Segment A** or **Segment B**, while still requiring a shared profile condition across both groups.
+
+This structure becomes important when one audience definition includes several valid paths. Grouping keeps the logic readable and reduces the chance of building a query that is broader or narrower than intended.
+
+<figure><img src="/files/2uBhRn0MPMdyYm8SOn2m" alt=""><figcaption></figcaption></figure>
+
+### Run the search
+
+After setting the conditions, click **Find**. The result shows the users or unique devices that match your query.
+
+This output is useful for campaign targeting, churn investigation, audience validation, and data exploration.
+
+For example, if you are investigating low conversion, you can use People Insight to isolate users who opened the app, received push, but never purchased. That gives you a practical audience to inspect or retarget.
+
+### Tag matching users
+
+Use the circular arrow icon to create a tag from the result set. This is useful when you want to reuse the same audience later in messaging or reporting. It also saves time when the same logic will be used repeatedly across teams.
+
+<figure><img src="/files/tgiBXmm1iaqyu8xiDsC2" alt=""><figcaption></figcaption></figure>
+
+### Export the result
+
+You can export the matched users for offline analysis. Supported export choices include identifiers such as:
+
+* `External ID`
+* `Email`
+* `MSISDN`
+* `Mobile Advertiser ID`
+
+Choose the identifiers that best fit your operational need. For example, `External ID` may work best for analytics reconciliation, while `Email` or `MSISDN` may be more useful for operational follow-up outside the platform.
+
+<figure><img src="/files/cR5gLYhWotzehXxcpUjT" alt="" width="375"><figcaption></figcaption></figure>
+
+### Best practices
+
+Start with the smallest set of conditions that answers the question. Group logic carefully before running large queries, because one misplaced operator can change the result more than expected.
+
+Use tags when the same audience will be reused, and export when you need deeper analysis outside the panel. This keeps People Insight both analytical and operational, instead of limiting it to one-time query work.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/people-insight.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

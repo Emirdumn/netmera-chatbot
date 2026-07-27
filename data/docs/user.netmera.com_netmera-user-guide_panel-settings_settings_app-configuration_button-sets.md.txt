@@ -1,0 +1,126 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration/button-sets.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration/button-sets.md).
+
+# Button Sets
+
+**Path**: `Settings > App Configuration > Button Sets`
+
+{% hint style="info" %}
+**Quick Steps Guideline**
+
+**Settings** > **Button Settings >**  **Create New Button Set**
+
+1. Go to the **Settings** section of Netmera. Click on **Button Sets** and then click **Create New Button Set**.
+2. Choose a name for your button set from the **Button Set Name** field.
+3. Enter an entry for your button in the **Button Text** field.
+4. Customize your Button according to your needs.
+5. Click on the **Add Button** button and **Create New Button**.
+6. :warning: Click **Publish to Devices**.&#x20;
+   {% endhint %}
+
+{% @arcade/embed flowId="qDIkAkmn73itL79e4GJn" url="<https://app.arcade.software/share/qDIkAkmn73itL79e4GJn>" %}
+
+### Create New Button
+
+{% hint style="warning" %}
+**Important Note**
+
+After you have created your button sets and clicked on **Create New Button**, for the final step you need to click on **Publish to Devices.** When you click on Publish to Devices it sends a silent push to your customers' devices for the button sets update.&#x20;
+{% endhint %}
+
+There are some additional features that you can use when creating buttons:
+
+**Button Name**
+
+This is the text that will be displayed on the button.
+
+**Button Icon (Android)**
+
+This is a feature that allows you to select an icon to appear on the button, but it is only available on the Android platform.
+
+**Destructive (IOS)**
+
+This is a feature that allows the buttons to be displayed in red, but it is only available on the iOS platform.
+
+**Authorization mode (IOS)**
+
+This is a feature that requires iOS users to unlock their device's lock screen before opening the app by clicking the button.
+
+**Run application in (IOS)**
+
+This is a feature that allows you to decide whether the application will open in the foreground or the background when the user clicks the button, but it is only available on the iOS platform.
+
+**Button Behavior (IOS)**
+
+This is a feature that allows the user to enter a text by clicking the button, but it is only available on the iOS platform.
+
+If you want to remove a button from your button set, you can use the **Remove Button from Button Set** option.
+
+<figure><img src="/files/4YiVP1BG8bS31351RdKP" alt=""><figcaption><p>Button Sets</p></figcaption></figure>
+
+{% hint style="info" %}
+When creating buttons for your app:
+
+* You can choose the text that will be displayed on the button,&#x20;
+* Select an icon to appear on the button (Android only),
+* Make the button display in red (iOS only).&#x20;
+
+For iOS, you can also require users to unlock their device's lock screen before opening the app with the button, choose whether the app will open in the foreground or background when the button is clicked, and allow users to enter text by clicking the button.
+{% endhint %}
+
+### Click Actions
+
+After you save your button set, when you are on page What on your notification, you will see that button sets are ready for your use. Then you may decide on your **Click Action** for those buttons you have created before. When creating a button in Netmera, there are several options available to you.
+
+**Open App Home Screen**
+
+This option will bring the user to the app's home screen when the button is clicked.
+
+**Show Web Page**
+
+Selecting "Show Web Page" will make your button navigate the user to the URL you have entered.
+
+**Go to Deep Link**
+
+This option allows you to create a deep link for your app. When the user clicks on the button, the app will open at a specific location or content.
+
+**Show Custom Page**
+
+This option allows you to create a custom page within your app. When the user clicks on the button, they will be directed to this page.
+
+**Nothing**
+
+Selecting this option means that nothing will happen when the user clicks on the button.
+
+**Web Hook for Button Action**
+
+This option allows you to integrate your button with an external service through web hooks. When the button is clicked, it will trigger the web hook and execute the associated action.
+
+**Set User Attribute or Tag**
+
+This option allows you to assign a tag or attribute to the user when they click on the button. This information can be used for future targeting and segmentation purposes.
+
+<figure><img src="/files/EV9hvfYJ5qeyCB7Xumub" alt="" width="563"><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration/button-sets.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

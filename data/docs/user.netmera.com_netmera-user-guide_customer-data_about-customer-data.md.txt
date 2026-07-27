@@ -1,0 +1,89 @@
+URL: https://user.netmera.com/netmera-user-guide/customer-data/about-customer-data.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/customer-data/about-customer-data.md).
+
+# About Customer Data
+
+Netmera is built to help you engage users in the most personal, timely, and effective ways. At the center of that promise lies **Customer Data** — a powerful module that enables you to capture, unify, and act on the information that defines your users.
+
+This is more than just user storage. Customer Data acts as a **strategic data layer** that connects identity, behavior, and consent — empowering every campaign, journey, and automation you run inside Netmera.
+
+<figure><img src="/files/xT5GQVUlfvg6vrJrqM69" alt="" width="563"><figcaption></figcaption></figure>
+
+### Profile Attributes
+
+**Know who your users are and what matters to them.**
+
+Profile Attributes are structured fields that describe each user. You can store anything from basic contact info to custom traits like membership level, favorite category, or device type.
+
+* Create custom attributes tailored to your business
+* Auto-update via SDKs, APIs, or contact uploads
+* Use in segmentation, personalization, and journey triggers
+
+### Device Metadata
+
+**Turn device data into personalized engagement and sharper insights.**
+
+Netmera captures device metadata to power smarter engagement. With this data, you can:
+
+* **Deliver tailored content** by adapting messages to device, OS, and location.
+* **Segment with precision** using attributes like app version, region, or language.
+* **Gain deeper insights** with analytics by platform, version, and manufacturer.
+* **Troubleshoot faster** by identifying issues across specific devices or OS versions.
+
+### Events
+
+**Understand what your users do in real time.**
+
+Events capture user actions like button clicks, logins, purchases, or onboarding steps. These signals are essential for powering behavioral targeting and automation logic across Netmera.
+
+* Built-in and custom event tracking
+* Parameter support for richer data
+* Visualize user actions in Event Insight
+
+<figure><img src="/files/n2ceyo9IgE9bG7egoRxA" alt="" width="375"><figcaption></figcaption></figure>
+
+### Tagless Data Capture
+
+**Collect more, configure less.**
+
+Not every product team has time for manual tagging. Tagless Data Capture lets you gather behavioral data from your website or app automatically, helping you get started faster and track more with less code.
+
+<figure><img src="/files/pfQIByZweAjblHXXlklw" alt="" width="375"><figcaption></figcaption></figure>
+
+### Why Customer Data Powers the Whole Platform
+
+Customer Data isn’t a silo, it’s a shared source of truth for your entire engagement strategy.
+
+Every attribute, event, and permission feeds directly into Netmera’s:
+
+* Campaign targeting
+* Audience segmentation
+* Journey triggers
+* Personalization logic
+* Message eligibility filters
+* and advanced analytics
+
+By treating data as the starting point for engagement, not just a reporting layer. Netmera helps you create more relevant, effective, and responsible user experiences.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/customer-data/about-customer-data.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

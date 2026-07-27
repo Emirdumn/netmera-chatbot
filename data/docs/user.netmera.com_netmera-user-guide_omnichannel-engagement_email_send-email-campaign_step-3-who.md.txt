@@ -1,0 +1,110 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/send-email-campaign/step-3-who.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/send-email-campaign/step-3-who.md).
+
+# Step 3: Who
+
+In this step, you define the target audience for your email campaign. You can send the email to all users or narrow the audience by using the options **Send All**, **Select Users**, **Advanced**, or **Distribution List** (explained below).
+
+#### Send All
+
+Select this option to send your email to **all subscribers** who have opted in (if the campaign type is Campaign/Announcement) to receive your e-mails.
+
+<figure><img src="/files/fpNCyG9C5hepodtWZb22" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Select Users
+
+Target specific users based on criteria such as location, language, and other basic filters.
+
+<details>
+
+<summary>User Filtering</summary>
+
+**Tag**&#x20;
+
+You can segment your users based on tags that you have created in the 'Targeting->Tags' section. Once you have added at least two tags, you can modify your tag preference using 'And/Or' logical operators. This allows you to refine your targeting and reach specific groups of users who share certain characteristics or behaviors.
+
+![](/files/7PerTs8ObPZKn4AKVeG0)
+
+**Segment**
+
+Segments are groups of users that are dynamically structured. Based on the actions they take on the app, users can either enter or exit these segments. In this section you can seperate your users by their segment. After adding at least 2 parameters, you can modify your segment preference with "**And/Or**" logical operators. Also you can add new segments from "**Targeting->Segments**". To learn more, please refer to the [**Define Segment**](broken://pages/xNC4H15bplYGvAIMWDre) section.
+
+![](/files/Y3c0sTACc6gBwubikJza)
+
+**Device Type**
+
+You can separate your users by their device type, such as **Desktop, Mobile, Tablet**. Additionally, you can modify your device type preference using logical operators "And/Or" after adding at least 2 parameters. This allows for greater flexibility in targeting specific groups of users based on their device type.
+
+<img src="/files/41PpPDCiJmK3tOTbfIvd" alt="" data-size="original">
+
+**Profile**
+
+The users who’s specified profile attribute is equal to specified value. This refers to a targeting option where you can select users whose specific profile attribute matches a particular value. For example, you can select users whose "gender" attribute is equal to "female" or users whose "age" attribute is equal to "25". After adding at least 2 parameters, you can modify your profile attribute preference with "**And/Or**" logical operators.
+
+![](/files/hS24WlHUHK4MGvfYrI6y)
+
+**Response**
+
+The targeting for the push notification will be based on users who either did or did not interact with a specific previous push notification. For example, if you select a previous push notification that advertised a sale and then choose to target users who did not interact with it, your new push notification might offer a different promotion to try to entice those users who didn't take advantage of the previous sale.&#x20;
+
+![](/files/xnsymExNuy29r0uQ2BBx)
+
+**Location**
+
+This targeting option allows you to select users based on their geographic location. You can specify a region, such as a city, state, or country, and target users who are located within that area. You can search location by its latitude and longitude. Or you can just simply serch by the location name. Also from distance part you can select the radius value and type for your location then by clicking on map you can select your location by determined radius.
+
+![](/files/c9L9kGgtz1MCSHMRjHQc)
+
+</details>
+
+<figure><img src="/files/7JNIlMLkKoRywirjDOVl" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Advanced
+
+This option allows for more granular targeting based on user behaviors and actions on your website or app. You can create highly personalized campaigns by defining conditions and groups.
+
+* Use **Add Condition** or **Add Group** to specify targeting rules.
+* Multiple conditions/groups can be combined using **AND** or **OR** logic:
+  * **AND**: Users must meet all conditions/groups to be included.
+  * **OR**: Users who meet any condition/group will be included.
+* The right section displays the resulting target audience based on your criteria.
+* The **Selection Criteria** summary shows the number of users your campaign will reach.
+
+<figure><img src="/files/8KVX4CRQoIQOqhuJJLQS" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Ignore User Message Limits
+
+This option allows sending emails to users who have exceeded normal message limits (set to prevent spam or overload). Use this only for urgent or time-sensitive messages, as overusing it can increase user annoyance and opt-outs.
+
+#### Limit Target Users
+
+Enable this option to set a maximum number of users who will receive the campaign. This is useful when:
+
+* Controlling campaign reach to avoid exceeding inventory or capacity (e.g., limited-time offers).
+* Running tests with a smaller audience before a full rollout.\
+  Once the limit is reached, no additional users will receive the message, even if they match the targeting criteria.
+
+<figure><img src="/files/YXukrbhWA2kzMeuhtPMr" alt="" width="373"><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/send-email-campaign/step-3-who.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

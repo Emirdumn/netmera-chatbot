@@ -1,0 +1,120 @@
+URL: https://user.netmera.com/netmera-user-guide/customer-data/iys-permissions.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/customer-data/iys-permissions.md).
+
+# IYS Permissions
+
+IYS (İleti Yönetim Sistemi) is Turkey’s central consent registry for email and SMS. IYS Permissions lets you decide how consent data flows between Netmera and IYS.
+
+### Choose an integration mode
+
+This choice sets the “source of truth” for consent.
+
+<table data-view="cards"><thead><tr><th>Mode</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td><strong>IYS Sync Mode</strong></td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/Pgwn9cndjRDu5FGWlm2p">/spaces/X6uilbEAw42gqsudlclY/pages/Pgwn9cndjRDu5FGWlm2p</a></td></tr><tr><td><strong>IYS Integrator Mode</strong></td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/kNLJpbewWYNVPMM6mVsU">/spaces/X6uilbEAw42gqsudlclY/pages/kNLJpbewWYNVPMM6mVsU</a></td></tr></tbody></table>
+
+#### IYS Sync Mode
+
+Use this when **IYS already contains the definitive consent records**.
+
+Key behavior:
+
+* Netmera can **pull** consent from IYS.
+* Netmera can **update** consent in IYS for **existing** IYS users.
+* Netmera **cannot create** new consent records in IYS.
+
+#### IYS Integrator Mode
+
+Use this when **Netmera collects consent** (web/app/call center) and you need to **push** it to IYS.
+
+Key behavior:
+
+* Netmera can **create** and **update** consent records in IYS.
+* Netmera acts as the master system for consent state.
+
+{% hint style="info" %}
+Both modes use the same operational screen for bulk changes: [Contact Upload](/netmera-user-guide/targeting/contact-upload.md).
+{% endhint %}
+
+### Quickstart
+
+{% stepper %}
+{% step %}
+
+#### Get your IYS credentials
+
+Have these ready from the IYS portal:
+
+* **Brand Code**
+* **IYS Code**
+  {% endstep %}
+
+{% step %}
+
+#### Install and configure the integration
+
+In the Netmera panel:
+
+1. Go to **Integrations**.
+2. Find **İleti Yönetim Sistemi** under **Data Security**.
+3. Click **Install**.
+4. Enter **Brand Code** and **IYS Code**.
+5. Enable **IYS Integrator** only if you will use Integrator Mode.
+   {% endstep %}
+
+{% step %}
+
+#### Authorize Netmera in the IYS portal
+
+In IYS, open **İş Ortaklığı (Partnerships)**.
+
+Select **Netmera**.
+
+Enable the needed permissions (Email/SMS/Call).
+
+If you use **Integrator Mode**, also enable the integrator permission and make sure **Mutabakat Yönetimi** is on.
+{% endstep %}
+
+{% step %}
+
+#### Validate consent flow with Contact Upload
+
+Go to `Targeting > Contact Upload`.
+
+Choose one of these actions:
+
+* **Pull Consents from IYS**: refresh Netmera from IYS.
+* **Push Consents to IYS**: send file consent to IYS.
+  {% endstep %}
+  {% endstepper %}
+
+{% hint style="warning" %}
+If email and SMS have different consent statuses, upload them in separate files.
+{% endhint %}
+
+### Related topics
+
+* [Contact Upload](/netmera-user-guide/targeting/contact-upload.md)
+* [IYS Sync Mode](/netmera-user-guide/customer-data/iys-permissions/iys-sync-mode.md)
+* [IYS Integrator Mode](/netmera-user-guide/customer-data/iys-permissions/iys-integrator-mode.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/customer-data/iys-permissions.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

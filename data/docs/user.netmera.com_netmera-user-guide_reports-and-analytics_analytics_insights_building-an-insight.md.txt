@@ -1,0 +1,142 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights/building-an-insight.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights/building-an-insight.md).
+
+# Building an Insight
+
+The Insight Builder is where analytics queries are defined. Every chart on every board originates here: you name the insight, choose the events it measures, decide how each event is aggregated, optionally split the results by a breakdown, and run the query to see the outcome before committing it to a board. This page walks through the builder from an empty state to a saved insight, following the same App Open Analytics example used throughout this guide, and explains the reasoning behind each choice along the way.
+
+The builder opens in two situations. Selecting **Build a new insight** from a board's Add Insight dialog opens it empty, titled Insight Builder, with **Add to Board** as the final action. Selecting the edit icon on an existing card opens the same screen titled Edit Insight, prefilled with the saved definition and offering **Save changes** instead. Everything below applies to both; the differences at save time are covered at the end of the page.
+
+### The Builder Layout
+
+The screen is divided into two areas that stay in view together. The query panel on the left holds the insight name, the metric list, and the breakdown section; this is where the definition lives. The preview area on the right renders results after each run, together with its own toolbar for chart type, granularity, and display settings. Until the first run, the preview shows a No Data state with the hint to run an insight to see results. Across the top, a shared bar carries the date range controls on the left and the query actions, Estimate cost, Show Query, Run, and the save action, on the right.
+
+<figure><img src="/files/QjEATE7rFOsU2cJfsWsy" alt=""><figcaption></figcaption></figure>
+
+A useful habit is to read the builder as question and answer: the left panel is the question you are asking of your event data, and the right panel is the current answer. Nothing on the right changes the question; the two sides only meet when you select Run.
+
+### Step 1: Name the Insight
+
+Type a name into the **Insight** field at the top of the query panel, for example App Open Analytics. The name is how the insight will be found later, in the Add Insight dialog's search and on every board card that displays it, so name it for the question it answers rather than for the board it was first built for. An insight named App Open Analytics travels well between boards; one named Finance Chart Left does not.
+
+<figure><img src="/files/nHFq5ajSYZgsT9Pn2tW4" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 2: Select an Event
+
+Each metric begins with an event. Select the **Select event** field on the first metric and either browse or type to search the app's event catalog. The search matches as you type: entering "open" surfaces every event containing the term, such as Renewal Window Open, Email Open, Install(First Open) App, Open App, and Screen Open. Select the event to measure; a check mark confirms the selection and the metric header takes on the event's name and color.
+
+<figure><img src="/files/jMTYPrcIORqWCrBSpXlS" alt="" width="563"><figcaption></figcaption></figure>
+
+The catalog contains both Netmera's standard events and the custom events your app sends, so the search is also a quick way to confirm what is available to measure. If an expected event is missing, it has not been collected for this app, which is a matter of SDK configuration rather than of the builder.
+
+**Add event attribute**, shown above the measurement dropdowns once an event is selected, narrows the metric to occurrences matching an attribute condition. Without attributes, the metric counts every occurrence of the event; with an attribute condition, it counts only the occurrences that carry the specified value. Use this when the question is about a subset of an event rather than the event as a whole.
+
+<figure><img src="/files/YVyWFuzeqlFUI8sdb1sp" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 3: Choose the Measurement
+
+Two dropdowns under the event control how occurrences become a number.
+
+The first, the measurement source, is set to **Event itself** by default and determines what aspect of the event feeds the calculation.
+
+<figure><img src="/files/czz8YPhrX606SE0WcjLe" alt="" width="563"><figcaption></figcaption></figure>
+
+The second is the aggregation, and it is the most consequential choice in the metric:
+
+<figure><img src="/files/ylJKQsBxoCwkJkgJhiXr" alt="" width="563"><figcaption></figcaption></figure>
+
+<table><thead><tr><th width="186.08319091796875">Aggregation</th><th>Question it answers</th><th>Label prefix</th></tr></thead><tbody><tr><td>Event count</td><td>How many times did this event happen in total?</td><td>Count</td></tr><tr><td>Unique users</td><td>How many distinct users triggered this event at least once?</td><td>Uniq</td></tr></tbody></table>
+
+Selecting the aggregation field opens a small list with both options; pick the one matching your question. The difference is not cosmetic. Over the same 30-day range, the same Open App event produces 950 as an event count and 143 as unique users: the app was opened 950 times in total, by 143 distinct people. Event count measures activity volume and rises with heavy users; unique users measures reach and counts every user once. Retention and adoption questions usually want unique users, while load and engagement-intensity questions usually want event counts. When both matter, define both, either as two metrics in one insight or as two insights.
+
+The **Name this metric (optional)** field below the dropdowns replaces the default label in chart headers and legends. Default labels are technical, Count · Open App, which suits analysts; a custom name such as App Opens reads better on boards meant for a wider audience. Custom names are part of the insight definition, so they follow the insight to every board.
+
+<figure><img src="/files/HDYqF4qAD0U0873Jbbpg" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 4: Add More Metrics
+
+An insight can hold several metrics, and metrics in the same insight share the chart and the date range, which makes them directly comparable. Select **Select Metric** below the first metric to add another, then repeat the same steps: search for the event, select it, and set its measurement. Searching for "first", for example, quickly surfaces Install(First Open) App among neighbors like RequestLoanFirstStep and First Visit Web.
+
+<figure><img src="/files/3m6x8v9XfPmAsRsqinn8" alt="" width="375"><figcaption></figcaption></figure>
+
+Each metric receives its own color, visible in the metric header and carried through to every legend and series. With Open App and Install(First Open) App defined side by side as event counts, the single insight now tracks overall usage and new-user arrival together, and any chart drawn from it shows both series over the same period.
+
+<figure><img src="/files/44vEeScgayy3nMmh5NNo" alt="" width="563"><figcaption></figcaption></figure>
+
+Group metrics into one insight when they belong on the same chart and answer facets of one question. When two measurements answer unrelated questions, or need different date ranges on a board, keep them as separate insights, since everything inside one insight always shares a range.
+
+Each metric's overflow menu, the three dots in its header, offers metric-level actions such as removing the metric from the insight.
+
+### Step 5: Add a Breakdown
+
+The **Breakdown** section at the bottom of the query panel splits results by a dimension. Select **Add breakdown** and choose the dimension; the chart then shows one series per segment instead of a single total per metric. Breakdowns answer distribution questions, which segment drives the total, where did the spike come from, and they apply to the insight's results as a whole. Leave the section empty when totals are all the question needs, since fewer series keep charts easier to read.
+
+<figure><img src="/files/DH3xu70duIXc4RAgaQJ8" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 6: Set the Date Range
+
+The bar at the top of the builder controls the period the query covers. Choose a preset, **Today**, **Yesterday**, **7D**, **30D**, **3M**, **6M**, or **12M**, or select **Custom** and set exact start and end dates with the calendar picker. The range applies to every metric in the insight.
+
+The range chosen here is the working range for building and previewing. Once the insight is on a board, each card selects its own range independently, so the builder range is a starting point rather than a commitment.
+
+<figure><img src="/files/yvMxX8pXiVIghRCIAt1O" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 7: Run and Review
+
+The action bar in the upper right closes the loop:
+
+**Estimate cost** calculates the processing cost of the query before running it. Check it before running wide custom ranges or high-volume events, and prefer narrowing the range or the events over running a query far larger than the question requires.
+
+**Show Query** displays the query the builder has generated from your definition. It is the fastest way for an advanced user to verify exactly what will be computed, particularly when attribute conditions and breakdowns combine.
+
+**Run** executes the query and renders the results in the preview. The header of the preview repeats each metric's label and its total for the range, the legend maps colors to metrics, and the elapsed query time appears in the lower right corner, for example 250ms. Run as often as needed while iterating; each run reflects the current state of the query panel.
+
+The preview's toolbar offers the full set of visualization controls, chart types from line to table, time granularity from 15 minutes to 1 month, axis scale, and line style. These are presentation choices and are covered in depth on the Chart Types and Display Settings page; while building, their role is to let you sanity-check the result from several angles before saving. A quick pass through the number view confirms totals, the line view confirms the shape of the trend, and a finer granularity confirms that nothing odd hides inside the daily buckets. The download icon in the preview's corner exports the current result when you want to inspect the numbers outside Netmera.
+
+<figure><img src="/files/zzAV952Kis90FAehcNMk" alt=""><figcaption></figcaption></figure>
+
+### Step 8: Save
+
+How the work is saved depends on how the builder was opened.
+
+When building a new insight, select **Add to Board**. The insight is saved to the app's insight catalog and placed as a card on the board you started from. From that moment it also appears in every Add Insight dialog, available for reuse on other boards.
+
+When editing an existing insight, the same position offers **Save changes**, with **Cancel** alongside it to discard the edits. Saving updates the shared definition, and because boards reference insights rather than copy them, the change appears on every board displaying this insight. Before saving edits to an insight that lives on several boards, confirm the change is wanted everywhere; when only one board needs the variation, build a new insight instead and leave the shared one untouched.
+
+### Worked Example
+
+The App Open Analytics insight from this guide's screenshots comes together in under a minute once the steps are familiar:
+
+1. From the Finance board, Add Insight and Build a new insight open the builder.
+2. The insight is named App Open Analytics.
+3. The first metric's event is set to Open App via search, with Event itself and Event count as the measurement.
+4. Select Metric adds a second metric, set to Install(First Open) App, also as an event count.
+5. No breakdown is added; the question is about totals over time.
+6. The range is set to 30D and Run produces the preview: 950 opens, 13 first opens, two daily series.
+7. A pass through the chart types and a 4h granularity check confirm the shape of the data.
+8. Add to Board saves the insight and places it on Finance.
+
+The next page continues in the preview and on board cards, covering each chart type, time granularity, and the scale and line style settings in detail.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights/building-an-insight.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

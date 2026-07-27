@@ -1,0 +1,225 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/web-analytics.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/web-analytics.md).
+
+# Web Analytics
+
+**Path:** `Analytics>User & Audience>Web Analytics`
+
+Web Analytics helps you understand how users arrive, browse, and engage on your website. It is useful for monitoring traffic quality, content performance, session behavior, and referral sources in one place.
+
+This page is designed for teams that need both a quick traffic view and a more detailed explanation of how users behave once they land on the site.
+
+Use this page when you want to answer questions such as:
+
+* Is website traffic growing?
+* Which pages attract attention?
+* Are sessions engaged or shallow?
+
+<figure><img src="/files/lTA2kAxfyXmcF48hYFRp" alt="" width="563"><figcaption></figcaption></figure>
+
+### Why use Web Analytics
+
+Web Analytics gives you a direct view of website behavior inside Netmera. It is especially useful when you want to understand:
+
+* visitor trends,
+* page-level performance,
+* device mix,
+* session quality,
+* referrer-based acquisition insight.
+
+Taken together, these metrics help you answer whether traffic is growing, whether users are engaging with the right content, and whether the incoming audience is actually valuable.
+
+### Web event definitions
+
+Web Analytics uses standard web events. These events form the basis of the dashboard, so understanding them makes the metrics easier to interpret.
+
+1. **First Visit**
+   * fired when a browser visits the website for the first time
+2. **Visit Web**
+   * fired on repeat visits
+3. **Pageview**
+   * fired for each page visit in a session
+4. **Time Spent in Web**
+   * measures on-site engagement duration
+
+Each event captures a different part of website activity. Together, they let you read new visits, repeat visits, content consumption, and session quality from one reporting area.
+
+{% hint style="success" %}
+**First Visit** and **Visit Web** are collected by default. If you also want **Pageview** and **Time Spent in Web**, contact your Customer Success Manager.
+{% endhint %}
+
+### User & Device
+
+This area shows how many users visited and which devices they used. It gives you a quick answer to both audience size and device mix.
+
+<figure><img src="/files/WrJqGstMp67yUp3hm1lD" alt=""><figcaption></figcaption></figure>
+
+Main metrics:
+
+1. **All Users**
+   * total unique website visitors in the selected range
+2. **New Users**
+   * users visiting for the first time
+3. **Returning Users**
+   * users who visited before and came back
+4. **Device Breakdown**
+   * desktop, mobile, and tablet distribution
+
+If the same user visits from both desktop and mobile, device-level counts can appear in both categories while total users remain unique.
+
+This distinction matters when you compare total traffic with device distribution. A user is still one person, even if that person contributes to more than one device category.
+
+{% hint style="info" %}
+If the selected date range includes today, summary cards include today’s data but graphs only show data up to the previous day.
+{% endhint %}
+
+This area also includes **User daily trends**, which show how **All Users**, **New Users**, and **Returning Users** change day by day.
+
+<figure><img src="/files/xzv5iZYecpqQCK28SrpJ" alt=""><figcaption></figcaption></figure>
+
+The **Device share** chart shows whether the experience is primarily mobile, desktop, or tablet driven.
+
+<figure><img src="/files/Z6XPaPCOU4nfWpghGXBs" alt=""><figcaption></figcaption></figure>
+
+### Pageviews
+
+Pageviews help you evaluate content interest and landing-page performance. They are useful when you want to understand which pages attract attention and how often users return to the same content.
+
+<figure><img src="/files/L8gWKzuPwt6IrvhnBQ0B" alt=""><figcaption></figcaption></figure>
+
+Main metrics:
+
+1. **Pageviews**
+   * total number of page loads in the selected range
+2. **Unique Pageviews**
+   * number of distinct pages visited
+3. **Pageview Daily Trends**
+   * daily movement of pageview metrics
+
+{% hint style="success" %}
+Example: if one user opens the homepage 3 times and a product page 4 times, **Total Pageviews = 7** and **Unique Pageviews = 2**.
+{% endhint %}
+
+This difference is important because total pageviews show intensity, while unique pageviews show content breadth. Reading both together gives a more balanced view of content performance.
+
+### Sessions
+
+Session metrics help you judge visit quality and friction. They are often the clearest signal of whether traffic is engaged or only passing through briefly.
+
+<figure><img src="/files/ZNHpoe5yDDmUE3VNVc8R" alt=""><figcaption></figcaption></figure>
+
+Main metrics:
+
+1. **Session**
+   * total visits in the selected range
+2. **Bounce Session**
+   * sessions shorter than 10 seconds with only one pageview
+3. **Bounce Rate**
+   * bounce sessions divided by all sessions
+4. **Average Session Time**
+   * total visit duration divided by session count
+
+Sessions are often derived from time-spent events that fire every 10 seconds during an active session.
+
+For example, a high session count with a high bounce rate may suggest landing-page or audience-quality issues, while longer average session time often points to stronger engagement.
+
+<figure><img src="/files/Lwd2sKWLOgLWnpy0iwfp" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/Rb80q011b7NVCsUaP6He" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/hfYAQS1HatGEzhQXfYDR" alt=""><figcaption></figcaption></figure>
+
+### Graph settings
+
+You can switch graph type based on the comparison you need. The underlying data stays the same, but the visual form can make certain patterns easier to read.
+
+Use a **Line graph** when you want to read changes over time more easily.
+
+<figure><img src="/files/htzZgWoJU0jxhMTAx5DF" alt=""><figcaption></figcaption></figure>
+
+Use a **Bar graph** when you want a faster day-to-day comparison.
+
+<figure><img src="/files/2Ed8zDvxlwlKZIFhKdlo" alt=""><figcaption></figcaption></figure>
+
+You can also hover over data points to see exact values and download charts for reporting. This is useful when you need a fast visual summary for internal communication.
+
+### Referrer URL tracking
+
+Referrer URL shows the last website a user came from before landing on your site. This is useful for:
+
+* campaign attribution,
+* partner traffic analysis,
+* referral quality checks.
+
+It helps you understand not only where traffic came from, but also whether that traffic source produced meaningful engagement.
+
+The referrer dimension is available for:
+
+* **Visit Web**
+* **First Visit**
+* **Pageview**
+
+#### How to access referrer data
+
+1. Open [Event Insight](broken://spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY).
+2. Select **Visit Web**, **First Visit**, or **Pageview**.
+3. Apply the **Referrer URL** breakdown.
+
+<figure><img src="/files/xhazRrGE8EABgpXEiKdd" alt=""><figcaption></figcaption></figure>
+
+### How metrics map to Event Insight
+
+Some Web Analytics metrics can also be traced in Event Insight. This is useful when you want to validate a web metric with event-level detail or continue the analysis with additional breakdowns.
+
+User metrics:
+
+* **All Users** → **Visit Web** with **Unique User Count**
+* **New Users** → **First Visit** with **Unique User Count**
+
+<figure><img src="/files/i1ZffY1JfPr74NMHEtKx" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/rS9s0myhTIexQP0QS5qW" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/L4k3GVuX7tuvNlGq8udf" alt=""><figcaption></figcaption></figure>
+
+Pageview metrics:
+
+* **Pageviews** → **Pageview** event
+* **Unique Pageviews** → **Page View > By Session** with **Page URL** dimension, then sum the results
+
+<figure><img src="/files/vvcTcrD20egg5ZKUciez" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/T3uxR48ItnSKQYqvgyvw" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/LboTZLWdDJeMBg46nlld" alt=""><figcaption></figcaption></figure>
+
+Session metric:
+
+* **Session** → **Visit Event** with **By Session** breakdown
+
+<figure><img src="/files/caj7FqOc1HvVLqpvkA17" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/bBuJ0IipuzcS02mEe8dv" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/web-analytics.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,122 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/retention-and-cohort.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/retention-and-cohort.md).
+
+# Retention & Cohort
+
+**Path:** `Analytics > Retention`&#x20;
+
+**Path:** `Analytics > Cohort`&#x20;
+
+Retention & Cohort helps you understand whether users come back and what they do after a starting event. It is useful when the main question is about repeat behavior over time rather than one-time activity.
+
+This is the right analysis when you want to move past single-event totals and understand whether users keep engaging after the first interaction.
+
+Use this page when you want to answer questions such as:
+
+* Do users come back after the first event?
+* Which starting cohorts perform better over time?
+* Do users complete a second event after they begin?
+
+### Understand the two analysis types
+
+* **Retention** measures how many users return to perform an event again after the starting date. This is useful for app opens, repeat engagement, ongoing usage, and post-campaign return behavior.
+* **Cohort** groups users by a first event, then measures how many of them complete a second event over time.
+
+Retention answers a continuity question. Cohort answers a progression question across groups that started at different times.
+
+{% @arcade/embed url="<https://app.arcade.software/share/kGDAOswEqn2azBGX1gln>" flowId="kGDAOswEqn2azBGX1gln" %}
+
+### Start a retention chart
+
+Retention includes separate **Mobile** and **Web** tabs. Start by choosing the event that represents the behavior you want to measure. A common example is **Open App**. Then select the starting date or date range for the analysis.
+
+Choose the starting event carefully, because it defines what “return” means in the chart. If you start from **Open App**, the result describes ongoing app usage. If you start from another event, the retention pattern reflects that specific behavior instead.
+
+<figure><img src="/files/0JTEhocAuUu9WXeRMAok" alt="" width="375"><figcaption></figcaption></figure>
+
+### Read retention results
+
+The retention table shows how engagement evolves after the first day. The main fields are:
+
+1. **Day of Open App**
+   * days since the initial event
+2. **Users**
+   * number of users who returned on that day
+3. **% of Users Open App**
+   * percentage of the starting cohort that returned
+
+<figure><img src="/files/7cRr6T2Dov4cgYjllXKu" alt=""><figcaption></figcaption></figure>
+
+Use this table to see how quickly users fall off or stabilize over time. For example, a sharp drop after day 1 may point to weak early engagement, while a flatter curve later on can signal a stable core audience.
+
+### Start a cohort analysis
+
+Choose two events:
+
+1. **Event 1** defines the starting cohort.
+2. **Event 2** defines the later behavior you want to measure.
+
+Example:
+
+* **Event 1:** Open App
+* **Event 2:** Purchase
+
+Then choose the start date for the cohort.
+
+This setup is useful when you want to ask a more directional question, such as how many users who first opened the app later purchased, subscribed, or came back again.
+
+<figure><img src="/files/iphaGWVBPm7kqrmKKKmd" alt="" width="563"><figcaption></figcaption></figure>
+
+<figure><img src="/files/6nRs45H4Uzb0d47y88K8" alt="" width="375"><figcaption></figcaption></figure>
+
+### Read cohort results
+
+The cohort table tracks how users from each starting day move toward Event 2. It helps you compare the quality of different starting cohorts instead of looking only at one combined average.
+
+Main columns:
+
+1. **Day of Event 1**
+   * the day the starting cohort was created
+2. **Users (+0, +1, +2, ...)**
+   * how many users completed Event 2 on each later day
+3. **% of Users (+0, +1, +2, ...)**
+   * what share of the starting cohort completed Event 2 on each later day
+
+<figure><img src="/files/TOBfVWvi5g1rcHwgvtCc" alt="" width="563"><figcaption></figcaption></figure>
+
+### Export or tag users
+
+Use **Export** when you need:
+
+* offline analysis,
+* reporting,
+* deeper comparison in Excel.
+
+You can also reuse the result operationally by tagging users for later campaign targeting. This is useful when you want to act on retained users, at-risk users, or users who progressed to a valuable second event.
+
+<figure><img src="/files/bycpmU3bYeAJ8g31zCbV" alt="" width="375"><figcaption></figcaption></figure>
+
+For tagging details, see [Tags](/netmera-user-guide/targeting/tags.md).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/retention-and-cohort.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

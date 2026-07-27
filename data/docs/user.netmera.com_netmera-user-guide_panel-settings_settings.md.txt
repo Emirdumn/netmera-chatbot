@@ -1,0 +1,93 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings.md).
+
+# Settings
+
+## Netmera Panel Settings
+
+Panel Settings are where you configure app-level behavior and admin controls.
+
+Use them for access control, messaging defaults, integrations, and shared assets.
+
+{% hint style="info" %}
+Most teams set this up once, then revisit when they add new channels, products, or users.
+{% endhint %}
+
+### Quickstart
+
+{% stepper %}
+{% step %}
+
+#### 1) Start with General Settings
+
+Set naming, messaging defaults, and language.
+{% endstep %}
+
+{% step %}
+
+#### 2) Lock down access
+
+Create roles, assign users, and set up test devices.
+{% endstep %}
+
+{% step %}
+
+#### 3) Standardize messaging taxonomy
+
+Create shared categories, labels, and button sets.
+{% endstep %}
+
+{% step %}
+
+#### 4) Add integrations and shared assets
+
+Webhooks, landing pages, and business units.
+{% endstep %}
+{% endstepper %}
+
+### Administration
+
+<table data-view="cards"><thead><tr><th>What you can manage</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Configure application-level settings such as messaging, authentication, language, and uninstall tracking.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/FqMiUc9rkk7VxA5Xv9k1">/spaces/X6uilbEAw42gqsudlclY/pages/FqMiUc9rkk7VxA5Xv9k1</a></td></tr><tr><td>Invite users, update their details, and assign the roles they need.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/KvzMqRH2c5I8OUttTwBM">/spaces/X6uilbEAw42gqsudlclY/pages/KvzMqRH2c5I8OUttTwBM</a></td></tr><tr><td>Create roles and define what each user can view, edit, or manage.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/plYHt8VGmKMwGgHQowi7">/spaces/X6uilbEAw42gqsudlclY/pages/plYHt8VGmKMwGgHQowi7</a></td></tr><tr><td>Organize users and campaigns into separate business units with their own targeting criteria.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/CZwsyMyvjVYfQKtTxpU5">/spaces/X6uilbEAw42gqsudlclY/pages/CZwsyMyvjVYfQKtTxpU5</a></td></tr><tr><td>Add and manage tester entries before you send campaigns live.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/Szk4YuPygbeBmx2Un1Hh">/spaces/X6uilbEAw42gqsudlclY/pages/Szk4YuPygbeBmx2Un1Hh</a></td></tr></tbody></table>
+
+### App Configuration
+
+<table data-view="cards"><thead><tr><th>What you can configure</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Create custom events, define attributes, and generate event code. Import event definitions between apps when needed.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/IUuxxgNFME45UjCE9CET">/spaces/X6uilbEAw42gqsudlclY/pages/IUuxxgNFME45UjCE9CET</a></td></tr><tr><td>Create push notification buttons and define tap actions. Configure labels, icons, and platform-specific behavior before publishing.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/in0WbxT23UGyabCsI3bk">/spaces/X6uilbEAw42gqsudlclY/pages/in0WbxT23UGyabCsI3bk</a></td></tr><tr><td>Create deferred links that route users to the right in-app destination after install. Support landing pages and review link performance.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/yTSuHsQjsxWQ6kN6DuEO">/spaces/X6uilbEAw42gqsudlclY/pages/yTSuHsQjsxWQ6kN6DuEO</a></td></tr><tr><td>Create and manage the landing pages users see before entering the app. Publish updates so the latest content becomes available.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/dIlmW4hzKoV51fYEZUqN">/spaces/X6uilbEAw42gqsudlclY/pages/dIlmW4hzKoV51fYEZUqN</a></td></tr><tr><td>Track Android app interactions through the SDK. Analyze app usage and support engagement workflows.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/9TP79Jv7dnUEkGziJzv4">/spaces/X6uilbEAw42gqsudlclY/pages/9TP79Jv7dnUEkGziJzv4</a></td></tr><tr><td>Capture screen views and user actions without manual tagging. Map flows, publish them, and use the results for analytics.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/612pXs97yAF9lfB6JF95">/spaces/X6uilbEAw42gqsudlclY/pages/612pXs97yAF9lfB6JF95</a></td></tr><tr><td>Send Netmera event data to external systems in real time. Trigger workflows or enrich external reporting as events occur.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/zZ1AWgZGknWctr31x4bI">/spaces/X6uilbEAw42gqsudlclY/pages/zZ1AWgZGknWctr31x4bI</a></td></tr><tr><td>Configure real-time analytics and report update intervals. Align reporting frequency with your monitoring needs.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/DurNAPXAeXHdXU9OexhG">/spaces/X6uilbEAw42gqsudlclY/pages/DurNAPXAeXHdXU9OexhG</a></td></tr></tbody></table>
+
+### Messaging & Content
+
+<table data-view="cards"><thead><tr><th>What you can manage</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Add users and manage their access.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/KvzMqRH2c5I8OUttTwBM">/spaces/X6uilbEAw42gqsudlclY/pages/KvzMqRH2c5I8OUttTwBM</a></td></tr><tr><td>Create roles and permissions for teams.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/plYHt8VGmKMwGgHQowi7">/spaces/X6uilbEAw42gqsudlclY/pages/plYHt8VGmKMwGgHQowi7</a></td></tr><tr><td>Register devices for testing and approvals.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/Szk4YuPygbeBmx2Un1Hh">/spaces/X6uilbEAw42gqsudlclY/pages/Szk4YuPygbeBmx2Un1Hh</a></td></tr></tbody></table>
+
+### Messaging foundations (shared building blocks)
+
+<table data-view="cards"><thead><tr><th>What you can configure</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Button sets for push actions.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/in0WbxT23UGyabCsI3bk">/spaces/X6uilbEAw42gqsudlclY/pages/in0WbxT23UGyabCsI3bk</a></td></tr><tr><td>Categories for organizing messages.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/Nm9UJB8MkGJhMvaX6Igg">/spaces/X6uilbEAw42gqsudlclY/pages/Nm9UJB8MkGJhMvaX6Igg</a></td></tr><tr><td>Labels for filtering and reporting.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/nctTjVEVmoQ2YFCcM7mE">/spaces/X6uilbEAw42gqsudlclY/pages/nctTjVEVmoQ2YFCcM7mE</a></td></tr></tbody></table>
+
+### Integrations and shared infrastructure
+
+<table data-view="cards"><thead><tr><th>What you can configure</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Send real-time events to external systems.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/zZ1AWgZGknWctr31x4bI">/spaces/X6uilbEAw42gqsudlclY/pages/zZ1AWgZGknWctr31x4bI</a></td></tr><tr><td>Build and manage landing page templates.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/dIlmW4hzKoV51fYEZUqN">/spaces/X6uilbEAw42gqsudlclY/pages/dIlmW4hzKoV51fYEZUqN</a></td></tr><tr><td>Separate data and permissions by org structure.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/CZwsyMyvjVYfQKtTxpU5">/spaces/X6uilbEAw42gqsudlclY/pages/CZwsyMyvjVYfQKtTxpU5</a></td></tr></tbody></table>
+
+### Commerce assets
+
+<table data-view="cards"><thead><tr><th>What you can manage</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Manage coupon pools for messaging and widgets.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/ZHVzNqGwS9yJXsJ1ribI">/spaces/X6uilbEAw42gqsudlclY/pages/ZHVzNqGwS9yJXsJ1ribI</a></td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

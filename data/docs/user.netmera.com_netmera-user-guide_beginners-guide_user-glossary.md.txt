@@ -1,0 +1,1984 @@
+URL: https://user.netmera.com/netmera-user-guide/beginners-guide/user-glossary.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/beginners-guide/user-glossary.md).
+
+# User Glossary
+
+### A
+
+### **A/B Testing**
+
+#### TL;DR
+
+A/B testing, also known as split testing, compares two versions of content to see which one performs better.
+
+#### DEFINITION
+
+A/B testing is the process of comparing two versions of a page, message, or customer-facing element to determine which one performs better for a specific conversion goal. The original version is called the Control, while the modified version is the Variation. Users are randomly assigned to each group, and their behavior is measured to identify the higher-performing option. You can run A/B tests for Mobile Push and Web Push notifications to optimize communication and maximize engagement.
+
+#### Learn More
+
+[A/B Testing](https://user.netmera.com/netmera-user-guide/messaging-features/push-a-b-testing)
+
+### **Active Sessions**
+
+#### TL;DR
+
+An active user session in which the user is actively interacting within an application or website.
+
+#### DEFINITION
+
+In Netmera, an active session/user refers to an installation or user who has sent any event from the mobile or web applications. This metric provides a real-time view of how many users are currently active on the app or website, helping marketers and analysts track instant engagement levels, monitor live campaign performance, and understand peak usage moments.
+
+### **Audience**
+
+#### TL;DR
+
+The audience is the group of users who will receive your campaign.
+
+#### DEFINITION
+
+An audience represents the group of users targeted in a campaign, journey, or notification. Audiences can include all users or a specific subset filtered by segments, tags, events, or profile attributes. Multiple filters (AND/OR) can be combined to define highly specific target groups. Audiences are updated in real time and serve as the foundation of all targeting activities. Used across all omnichannel engagement features: Push, WhatsApp, In-App, Web Push, and Journeys—to determine who receives the message.
+
+### **Automated Messages**
+
+#### TL;DR
+
+Marketing automation uses technology to deliver relevant, timely, and personalized messages across channels automatically so you can reach users efficiently and consistently.
+
+#### DEFINITION
+
+Automated campaigns allow you to engage users through rule-based, behavior-driven, or time-scheduled messages without manual intervention. They can be used for onboarding flows, personalized product recommendations, re-engagement journeys, and timely updates or promotions. With automation, you can build dynamic, always-on push notifications that improve retention and strengthen customer loyalty.
+
+#### Learn More
+
+[Automated Messages](https://user.netmera.com/netmera-user-guide/messaging-features/automated-messages)
+
+### **Action Button**
+
+#### TL;DR
+
+Action buttons let users take immediate action such as opening a page, following a link, or triggering an in-app event with a single tap.
+
+#### DEFINITION
+
+An action button is a clickable element added to push notifications, in-app messages, or other user-facing content to drive a specific action. These buttons help guide users to a page, deep link, custom screen, external URL, or trigger an event such as tagging a user or calling a webhook.
+
+Action buttons enhance engagement by providing clear next steps and improving the overall interaction rate. It is available in Mobile Push, Web Pop Up, and In-App Messages to create more interactive and conversion-focused campaigns.
+
+#### Learn More
+
+[Action button](https://user.netmera.com/netmera-user-guide/panel-settings/netmera-panel-settings/button-sets)
+
+### **Acquisition**
+
+#### TL;DR
+
+Acquisition is the process of gaining new users and understanding how they start interacting with your product.
+
+#### DEFINITION
+
+Acquisition refers to the process of attracting new users to your app, website, or digital product. It includes all marketing and product-driven activities that generate installs, sign-ups, or first-time engagements. In Netmera, acquisition insights help you understand where new users come from, how they behave after onboarding, and which campaigns contribute most effectively to early growth. Acquisition insights appear in Reports & Analytics, especially in areas focused on:
+
+* Installs
+* First-time user behavior
+* Campaign attribution
+* Early engagement trends
+* Funnel performance
+
+These metrics help measure how effectively your campaigns convert visitors into active customers.
+
+#### Learn More
+
+[Deferred Deep Links](/netmera-user-guide/smart-linking/deferred-deep-link.md)
+
+### **Active User**
+
+#### TL;DR
+
+Users who interact with your app within a defined time window (daily, weekly, or monthly).
+
+#### DEFINITION
+
+An active user is someone who opens or interacts with your app within a specific time period. Activity is typically measured using standard engagement metrics such as:
+
+* **Daily Active Users (DAU)**: Users who open the app at least once per day
+* **Weekly Active Users (WAU)**: Users who interact with the app at least once a week
+* **Monthly Active Users (MAU)**: Users active at least once during the month
+
+For example, in Netmera, an active user may be someone who opens the mobile app, triggers an event, or performs a meaningful in-app action within the selected reporting period. You can track DAU, WAU, and MAU under the Performance section of the dashboard. These metrics are essential for understanding your application's reach, usage frequency, and overall engagement trends.
+
+#### Learn More
+
+[App Dashboard](https://user.netmera.com/netmera-user-guide/beginners-guide-to-netmera/app-dashboard)
+
+### **AI Text Generator**
+
+#### TL;DR
+
+A tool that uses AI to generate tailored push notification text based on your inputs.
+
+#### DEFINITION
+
+The AI Text Generator helps you create engaging and relevant push notification content with minimal effort. By using AI, Netmera generates message text based on inputs such as language, industry, and use case. This feature supports faster content creation and helps marketers craft personalized, high-quality notifications. It is available in push notifications to quickly create optimized and personalized message content.
+
+#### Learn More
+
+[AI Text Generator](https://user.netmera.com/netmera-user-guide/ai-features/ai-text-generator)
+
+### **API**
+
+#### TL;DR
+
+An API (Application Programming Interface) allows external systems to connect with Netmera and trigger actions or exchange data programmatically.
+
+#### DEFINITION
+
+In Netmera, APIs allow your systems to communicate with Netmera without using the panel manually for every action.
+
+APIs can be used for use cases such as triggering transactional messages, sending campaign requests, updating user profile data, retrieving specific information, or using dynamic parameters in reusable templates.
+
+#### Learn More
+
+[REST API](https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api)
+
+### **App Tracking**
+
+#### TL;DR
+
+A foundational system that records every meaningful user action to power analytics, personalization, and lifecycle marketing.
+
+#### DEFINITION
+
+App Tracking is the core process of recording user behavior, interactions, and lifecycle events within your mobile app or website. In Netmera, these events are collected through SDKs and APIs and distributed to various analytics data stores to support real-time metrics, long-term reporting, and enriched user profiles. This end-to-end tracking flow enables marketers to view both immediate and historical campaign performance with full accuracy.
+
+#### Learn More
+
+[App Tracking](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/app-tracking)
+
+### **Application Version**
+
+#### TL;DR
+
+The specific build or release number of an app, identifying which version a user is currently running.
+
+#### DEFINITION
+
+The **application version** shows which release of your mobile or web app a user is currently running.\
+It is an essential data point for tracking user behavior, analyzing update adoption, and creating audiences based on app versions.
+
+Netmera automatically collects the application version from the SDK whenever the app starts. If a user updates the app, Netmera detects this change and records an update event. This allows you to see how many users are on older or newer versions, monitor rollout performance, and target campaigns to specific versions when needed.
+
+#### Learn More
+
+[Application Version](https://user.netmera.com/netmera-user-guide/customer-data/device-metadata)
+
+### **Audit Logs**
+
+#### TL;DR
+
+A detailed record of all system activities, changes, and user actions for security, compliance, and troubleshooting.
+
+#### DEFINITION
+
+Within the Netmera platform, **Audit Logs** provide a detailed, time-stamped record of all actions performed in the Netmera Panel. They track *who* did *what* and *when*, offering full visibility into user activity and system changes.
+
+Audit Logs can show which screens were accessed, how often they were visited, and whether any updates or modifications were made. They also track key events such as login/logout activity, content creation or edits, and interactions with specific features. This information supports transparency, troubleshooting, compliance, and operational oversight.
+
+#### Learn More
+
+[Audit Logs](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audit-logs)
+
+### **Average Conversion Rate**
+
+#### TL;DR
+
+The percentage of users who complete a desired action (purchase, signup, click) out of the total audience exposed to a campaign.
+
+#### DEFINITION
+
+Average Conversion represents the mean conversion rate across all your marketing campaigns. It shows, on average, how often users complete a desired action such as a purchase, signup, or checkout after receiving a message or interacting with your content.\
+This metric helps you evaluate the overall effectiveness of your marketing efforts in driving meaningful user actions.
+
+In Netmera, conversions are tracked by monitoring user events that occur after a campaign is delivered. For example, after a push notification is sent, Netmera measures whether the user opens the message and proceeds to complete a key action like purchase or complete\_checkout.\
+These post-message actions are matched with the campaign to calculate the conversion rate.
+
+### **Average Open Rate**
+
+#### TL;DR
+
+The percentage of users who opened a delivered message or notification.
+
+#### DEFINITION
+
+**Average Open Rate** shows how often users open messages you send through channels like Push Notifications or Email. It represents the average percentage of delivered messages that were actually opened by users.
+
+In Netmera, an "open" is recorded whenever a user opens a push notification or an email sent from your campaigns. These open actions are linked with the original message so that Netmera can measure how effective your communication was.
+
+The open rate is calculated by comparing:
+
+* how many messages were **delivered**, and
+* how many of them were **opened**.
+
+This metric helps you understand the performance of your messaging strategy across all campaigns.
+
+### **Average Revenue**
+
+#### TL;DR
+
+The mean revenue generated within a specific period, typically used to measure overall business performance.
+
+#### DEFINITION
+
+**Average Revenue** represents the average amount of revenue generated per converted user. It shows the typical monetary impact of your marketing campaigns by revealing how much revenue, on average, each converting user brings in.\
+Revenue data is collected through events that include a **revenue attribute**, such as *purchase* or *complete\_checkout*. When these events are processed in the analytics pipeline, their revenue values are added to cumulative revenue counters.
+
+### **Average Revenue per User (ARPU)**
+
+#### TL;DR
+
+Average revenue generated from each active user over a given time frame.
+
+#### DEFINITION
+
+**ARPU** (Average Revenue Per User) indicates how much revenue each active user generates within a selected time period. It is calculated by dividing total revenue by the total number of active users.
+
+The platform aggregates all revenue-related event data and divides the sum by the number of active users during that period. In some cases, this computed value can also be written as a **Calculated Attribute** on the user profile for segmentation and reporting purposes.
+
+### **Average Usage Frequency**
+
+#### TL;DR
+
+How often the average user returns to use the app within a given time period.
+
+#### DEFINITION
+
+Average Usage Frequency measures how often users engage with your mobile or web app within a given time frame. It represents the average number of times users return to your app, helping you evaluate app stickiness and engagement consistency.Each time such an event occurs, a frequency counter associated with the user is incremented. Analytics systems then calculate frequency values, which may also feed into RFM scoring (specifically the **Frequency** component) for segmentation.
+
+### **Attribution Window**
+
+#### TL;DR
+
+The time range in which a conversion, revenue event, or action is credited back to a campaign.
+
+#### DEFINITION
+
+Attribution Window is the period during which Netmera credits a user action back to a campaign after delivery or interaction. If the tracked action happens within this period, the platform attributes the conversion, revenue event, or other measured outcome to that campaign.
+
+This window helps you measure campaign impact consistently and prevents late actions from being counted indefinitely.
+
+### **Avg. Time In App**
+
+#### TL;DR
+
+The average time users spend in the app after a campaign interaction or during the measured session.
+
+#### DEFINITION
+
+Avg. Time In App shows the average duration users stay active in the app within the measured context. Depending on the report, this can represent time spent after interacting with a campaign or time spent during the tracked session.
+
+This metric helps you understand the depth of engagement after entry, not only whether users opened the app.
+
+### B
+
+### **Blacklist**
+
+#### TL;DR
+
+A list of users who should not receive messages through specific channels such as Push, Email, or SMS.
+
+#### DEFINITION
+
+Blacklist is a platform-wide control mechanism used to prevent certain users from receiving messages through specific communication channels (Push, Email, SMS, etc.). Brands typically use blacklists to comply with unsubscribe requests, spam complaints, regulations (GDPR/KVKK), or internal communication policies.
+
+When a blacklist file is uploaded, Netmera identifies the users based on provided identifiers (such as email, phone number, external ID, or device token) and marks them as ineligible for the selected channel. Once blacklisted, the user will not receive messages from any campaign, journey, or automation that uses that channel.
+
+### **Best Time Delivery**
+
+#### TL;DR
+
+AI-powered delivery that sends each user’s message at their personal best engagement time.
+
+#### DEFINITION
+
+Best Time Delivery automatically determines the optimal hour to send push notifications to each user for every day of the week. Instead of selecting a single delivery time, Netmera analyzes each user’s historical activity and identifies when they are most likely to be active and responsive. This ensures messages are delivered when the probability of engagement is highest. Currently, Best Time Delivery is supported for push campaigns only. It is not available for SMS, email, or other channel types.
+
+#### Learn More
+
+[Best Time Delivery](https://user.netmera.com/netmera-user-guide/ai-features/best-time-delivery)
+
+### **Bounce Rate**
+
+#### TL;DR
+
+A bounce is when a user leaves instantly (web) or when an email fails to deliver (email).
+
+#### DEFINITION
+
+Bounce Rate generally refers to the percentage of users who leave a webpage without taking further action. In email communication, “Bounced” represents messages that could not be delivered to a recipient’s inbox. Email bounces occur for two reasons:
+
+**Hard Bounce**: Permanent delivery failure (invalid or non-existent address).
+
+**Soft Bounce**: Temporary delivery failure (full inbox, server issue).
+
+Tracking bounce rate helps maintain quality and identify deliverability issues.
+
+#### Learn More
+
+[Email Reports](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/campaigns/email-reports)
+
+### **Bounce Management**
+
+#### TL;DR
+
+Bounce Management helps protect email deliverability by managing users who receive repeated soft or hard bounce responses.
+
+#### DEFINITION
+
+Bounce Management is Netmera’s process for handling email delivery failures based on bounce type and bounce reason. Each app key starts with default bounce and suppression rules, such as frozen duration, suppression threshold, and suppression duration. These rules can be adjusted to match your deliverability strategy.
+
+Based on the active rules, users may be temporarily frozen or added to the suppression list.
+
+This helps reduce repeated delivery failures, protect sender reputation, and support smoother IP warm-up processes.
+
+#### Learn More
+
+[Bounce and Suppression Management](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/campaigns/email-reports#bounce-and-suppression-management)
+
+### **Banner**
+
+#### TL;DR
+
+A rich, image-based push notification format supported on Android.
+
+#### DEFINITION
+
+A Banner is a visually enriched push notification format displayed on Android devices. It allows you to use background, left, and right images and customize the message text or image content. You can also include a custom push icon to personalize the appearance of your banner notification. It is used in Mobile Push campaigns to deliver visually engaging notifications. Banner notifications are supported on Android only and are not available on iOS.
+
+#### Learn More
+
+[Banner, Carousel, Slider & Product Discovery](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/banner-carousel-slider-and-product-discovery)
+
+### **Best Conversion**
+
+#### TL;DR
+
+The campaign with the highest conversion rate in the selected date range.
+
+#### DEFINITION
+
+Best Conversion identifies the campaign with the strongest conversion rate within the selected reporting period. It helps you quickly spot which campaign drove the highest share of completed target actions.
+
+This metric reflects relative conversion performance, not total conversion volume.
+
+### **Best Open Rate**
+
+#### TL;DR
+
+The campaign with the highest open rate in the selected date range.
+
+#### DEFINITION
+
+Best Open Rate identifies the campaign that achieved the highest percentage of opens among delivered messages in the selected period. It is useful for comparing subject lines, send timing, and notification copy across campaigns.
+
+This metric focuses on opening performance, not clicks or downstream conversions.
+
+### **Bounced**
+
+#### TL;DR
+
+The number of emails that could not be delivered to recipients’ inboxes.
+
+#### DEFINITION
+
+Bounced shows how many email messages failed to reach the destination inbox. These failures can be temporary or permanent, depending on the provider response.
+
+This metric helps you monitor list quality, sender health, and delivery issues in email reports.
+
+### **Bounce Detail**
+
+#### TL;DR
+
+The detailed provider-side explanation returned for an email bounce.
+
+#### DEFINITION
+
+Bounce Detail is the granular message returned by the email provider when delivery fails. It gives more specific context than the bounce category alone.
+
+For example, a bounce may be grouped as temporary, while the detail explains that the inbox is full or the remote server is unavailable.
+
+### **Bounce Reason**
+
+#### TL;DR
+
+The summarized category used to explain why an email bounced.
+
+#### DEFINITION
+
+Bounce Reason groups email delivery failures into a simpler reason label so you can analyze problems at scale. It summarizes the underlying provider response into a readable category.
+
+This field helps you review bounce trends across campaigns without inspecting every raw provider message.
+
+### C
+
+### **Channel**
+
+#### TL;DR
+
+A channel is a communication medium used to deliver messages to users—such as Push, Email, SMS, WhatsApp, In-App, or Web Push.
+
+#### DEFINITION
+
+A channel is the method or platform through which Netmera delivers messages and content to users. Each channel supports different formats (e.g., push notification, WhatsApp template, email HTML, in-app banner) and plays a unique role in omnichannel engagement.
+
+Netmera’s supported channels include:
+
+* **Mobile Push**
+* **Web Push**
+* **In-App Messaging**
+* **Email**
+* **SMS**
+* **WhatsApp**
+
+Netmera connects these channels, enabling consistent, personalized communication that enhances both impact and satisfaction.
+
+### **Conversion Rate**
+
+#### TL;DR
+
+The percentage of users who complete your target action.
+
+#### DEFINITION
+
+The conversion rate is the percentage of users who complete a desired action, such as making a purchase, signing up, or completing a key step in a journey. In Netmera, conversions help measure how effectively your campaigns, messages, and user experiences drive meaningful outcomes.\
+Displayed in Reports & Analytics, especially within:
+
+* Revenue & Conversion reports
+* Campaign performance dashboards
+* Funnel and journey insights
+
+Conversion metrics help brands evaluate the impact of Push, In-App, Email, WhatsApp, and other engagement channels.
+
+#### Learn More
+
+[Revenue & Conversion](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/revenue-and-conversion)
+
+### **Click-Through Rate (CTR)**
+
+#### TL;DR
+
+How many users clicked an URL after seeing your message.
+
+#### DEFINITION
+
+Click-Through Rate is the percentage of users who click on a message, ad, or notification after seeing it. CTR helps measure how relevant or engaging your content is to your audience.\
+Formula:\
+CTR = (Total Clicks / Total Impressions) × 100
+
+Click- Through Rate is displayed in Reports & Analytics for Push, In-App, Email, WhatsApp, and other campaign performance dashboards.
+
+#### Learn More
+
+[Click-Through Rate](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/campaigns/email-reports#click-through-rate-ctr)
+
+### **Call-to-Action (CTA)**
+
+#### TL;DR
+
+A button or link that tells users what to do next.
+
+#### DEFINITION
+
+A Call-to-Action is a prompt such as “Buy Now,” “Sign Up,” or “View Cart” that encourages the user to take a specific action. CTAs appear on webpages, push notifications, emails, in-app messages, and ads. Clear and well-designed CTAs increase engagement and conversions. It is used across Push, In-App, Web, and Email content to guide users toward a desired action.
+
+### **CTOR (Click-to-Open Rate)**
+
+#### TL;DR
+
+Measures how effective your message content is after it has been opened.
+
+#### DEFINITION
+
+CTOR (Click-to-Open Rate) indicates how compelling and relevant a message’s content is to users who have already opened it. Unlike CTR, CTOR focuses only on users who showed initial interest by opening the message and measures how many of them clicked on the content or call-to-action (CTA). A high CTOR means that the offer, message copy, or CTA successfully motivated users to take action
+
+### **Control Group**
+
+#### TL;DR
+
+A randomly selected group of users who do **not** receive a campaign, used to measure the real impact (lift) of marketing actions.
+
+#### DEFINITION
+
+A Control Group is a subset of the target audience that is intentionally excluded from receiving a campaign or automation message. These users share the same characteristics as the users who receive the message (Test Group) but are not exposed to the campaign action.
+
+By comparing the conversion or behavior of the Test Group with the Control Group, Netmera enables businesses to measure the true incremental impact (lift) of a campaign. Control group allocation is handled by Netmera’s Targeting Module, where a predefined percentage of eligible users is randomly assigned to the control group and excluded from message delivery.
+
+### **Churn Rate**
+
+#### TL;DR
+
+The percentage of users who stop using or stop returning to your app.
+
+#### DEFINITION
+
+Churn Rate is the percentage of users who stop engaging with your app after a certain period. High churn often indicates decreased interest, lower activity, or friction in the user journey. Understanding churn helps brands improve retention and identify at-risk users before they leave.
+
+Churn insights appear in:
+
+* AI-Based Churn Segments (predictive modeling to detect at-risk users)
+* Reports & Analytics (engagement, session trends, retention patterns)
+
+#### Learn More
+
+[AI-Based Churn Segments](https://user.netmera.com/netmera-user-guide/targeting/segments/predictive-segments#ai-based-churn-segments), [Reports → Engagement & Sessions](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/glossary)
+
+### **Contact Upload**
+
+#### TL;DR
+
+Bulk upload tool used to update user data, manage consent, and prepare users for targeting.
+
+#### DEFINITION
+
+Contact Upload is a dashboard that allows brands to upload and update user information in bulk, including profile attributes, opt-in and opt-out statuses, and consent data for different communication channels.
+
+Once uploaded, users can be automatically tagged or grouped, making them immediately available for targeting across push notifications, email, SMS, web push, and automation campaigns. This feature helps keep user data up to date and ensures accurate, consent-aware engagement.
+
+#### Learn More
+
+[Contact Upload](https://user.netmera.com/netmera-user-guide/targeting/contact-upload)
+
+### **Cohort**
+
+#### TL;DR
+
+A user group defined by a shared trait or action in a specific time period.
+
+#### DEFINITION
+
+A cohort is a group of users who share a common characteristic or action within a defined time period such as installing the app in the same week or completing a purchase during a specific campaign. Cohort analysis helps track how groups behave over time, revealing patterns in retention, conversions, and engagement. It is used in Reports & Analytics to analyze retention, revenue, and behavioral patterns over time.
+
+#### Learn More
+
+[Retention & Cohort](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/retention-and-cohort)
+
+### **Cross-Channel Messaging**
+
+#### TL;DR
+
+Coordinated messaging across multiple channels to create a seamless user experience.
+
+#### DEFINITION
+
+Cross-channel messaging refers to delivering coordinated communications across multiple channels such as Push, In-App, Email, SMS, and WhatsApp to ensure consistent engagement. By using multiple channels together within a unified strategy, brands can reach users at the right moment, on the right device, and improve overall campaign performance. It is used in Journeys and Campaigns to design connected mobile, web, and messaging flows.
+
+### **Coupon Code Lists**
+
+#### TL;DR
+
+A feature for managing and delivering your own coupon codes in campaigns.
+
+#### DEFINITION
+
+Coupon Code Lists allow you to upload, manage, and distribute your existing coupon codes for campaigns. You can track available codes, set expiry dates, monitor usage, and export assignment logs. Netmera supports both fixed codes (shared by all users) and unique code lists, each assigned once per user.
+
+Netmera does not generate coupon codes; it only manages and distributes the codes you provide. Used in Push, SMS, Widgets (e.g., Spin to Win), and any flow that assigns coupon codes to users.
+
+#### Learn More
+
+[Coupon Code Lists](https://user.netmera.com/netmera-user-guide/panel-settings/netmera-panel-settings/coupon-code-lists)
+
+### **Clicked**
+
+#### TL;DR
+
+The number or rate of click actions recorded for a message, campaign, or report row.
+
+#### DEFINITION
+
+Clicked shows how many click actions were recorded in the selected reporting context. Depending on the report, it may appear as a total count or as a rate.
+
+This metric helps you measure direct interaction with links, buttons, or message content.
+
+### **Conversion**
+
+#### TL;DR
+
+The count of users or events that completed the selected goal in the measured scope.
+
+#### DEFINITION
+
+Conversion represents the number of successful goal completions recorded in the selected campaign, report, or analysis scope. The goal is usually defined by a tracked event such as purchase, signup, or another target action.
+
+This metric measures outcome volume, while conversion rate measures the percentage relative to the audience or delivered messages.
+
+### **CSV**
+
+#### TL;DR
+
+A flat-file export format that stores rows and columns as plain text values.
+
+#### DEFINITION
+
+CSV stands for Comma-Separated Values. It is a simple export format used to download tabular data from reports and open it in spreadsheets, databases, or external tools.
+
+Depending on the export settings, the separator may use a comma, semicolon, or another delimiter.
+
+### D
+
+### **Daily Active**
+
+#### TL;DR
+
+The number of unique users who actively interact with your app on a given day.
+
+#### DEFINITION
+
+Daily Active refers to the count of unique users who perform at least one meaningful action within your application during a single day. These actions may include opening the app, browsing screens, clicking features, or completing events such as purchases. This metric helps measure daily engagement and indicates how many users are actively using the app on a typical day.
+
+### **Daily Event Count**
+
+#### TL;DR
+
+The total number of events triggered by users in your app within a single day.
+
+#### DEFINITION
+
+Daily Event Count represents the total volume of tracked events generated by users during a single day. Events may include actions such as clicks, page views, add-to-cart actions, purchases, or interactions with specific features.\
+This metric provides detailed insight into user behavior frequency and allows analysis of how often specific interactions occur over time.
+
+### **Deep Links**
+
+#### TL;DR
+
+A link that opens a specific screen inside your app instead of the homepage.
+
+#### DEFINITION
+
+Deep linking directs users to a precise in-app location such as a product page, category, cart, or campaign detail when they click a notification, email, SMS, or web link. This improves relevance and reduces friction by taking the user directly to the content they intended to see, increasing engagement and conversion rates.
+
+### **Deferred Deep Linking**
+
+#### TL;DR
+
+A deep link that still works even if the app is not installed - sending the user to the App Store first, then automatically to the correct in-app screen after install.
+
+#### DEFINITION
+
+Deferred Deep Linking allows users to reach the exact target screen in your app, even if the app is not installed at the time they click the link. The user is first redirected to the App Store, and after installation, they are taken directly to the intended location (e.g., product page, onboarding step, checkout flow).\
+This feature unifies all channels push, SMS, email, QR codes, web banners into a seamless journey, ensuring campaign flows continue without interruption. It also supports customized pre-install landing pages, fallback routing, and full-funnel reporting (Click → App Store → Install → Target Screen), making omnichannel engagement consistent and measurable.
+
+#### Learn More
+
+[Deferred Deep Linking](https://user.netmera.com/netmera-user-guide/smart-linking/deferred-deep-links)
+
+### **Dynamic Content**
+
+#### TL;DR
+
+Automatically adapts message content based on user data and real-time context at delivery time.
+
+#### DEFINITION
+
+Dynamic Content refers to the ability to modify the content of a message at the moment it is delivered, based on the recipient’s profile attributes, past behavior, or real-time context. Instead of sending static messages, dynamic content ensures that each user receives a personalized and relevant version of the same message.\
+In Netmera, dynamic content is typically implemented using placeholders and API parameters, allowing messages across channels such as push notifications, email, SMS, and in-app messages to reflect user-specific data instantly.
+
+### **Date Range**
+
+#### TL;DR
+
+The selected start and end period used to calculate report results.
+
+#### DEFINITION
+
+Date Range defines the time window used to calculate the data shown in a report or analysis view. Only events, deliveries, conversions, or user actions within this selected period are included in the results.
+
+Changing the date range can significantly affect totals, rates, trends, and comparisons.
+
+### **Delivered**
+
+#### TL;DR
+
+The number of messages confirmed as delivered by the channel or provider.
+
+#### DEFINITION
+
+Delivered shows how many messages were successfully received by the delivery channel or provider. It confirms that the message reached the destination endpoint, such as a device, inbox, or phone network.
+
+Delivered does not mean the user opened, read, or clicked the message.
+
+### **Delivery (Success)**
+
+#### TL;DR
+
+The count of messages successfully delivered in the current report context.
+
+#### DEFINITION
+
+Delivery (Success) represents the successful delivery total for the channel and report you are viewing. It is often used in delivery summaries to distinguish completed deliveries from failed or pending ones.
+
+This label always refers to successful delivery rather than post-delivery engagement.
+
+### **Delivery Rate**
+
+#### TL;DR
+
+The percentage of sent messages that were delivered successfully.
+
+#### DEFINITION
+
+Delivery Rate measures how efficiently sent messages reach their destination. It is calculated by comparing successful deliveries against the total number of sent messages.
+
+A low delivery rate may indicate invalid contact data, provider issues, suppression rules, or permission-related limitations.
+
+### **Delivery Receipt**
+
+#### TL;DR
+
+The provider confirmation showing whether an SMS or similar message was delivered or failed.
+
+#### DEFINITION
+
+Delivery Receipt is the status response returned by the message provider after attempting delivery. It confirms whether the message reached the recipient or failed at the network or provider level.
+
+This term is commonly used in SMS and other telecom-based delivery flows.
+
+### **Delimiter**
+
+#### TL;DR
+
+The character used to separate values in a text export file, such as a comma or semicolon.
+
+#### DEFINITION
+
+Delimiter is the separator character used in flat-file exports such as CSV files. It defines how one column ends and the next begins.
+
+For example, one export may use commas, while another uses semicolons to match regional spreadsheet settings.
+
+### **Dimension**
+
+#### TL;DR
+
+A field used to break down results, such as platform, month, bounce type, or external ID.
+
+#### DEFINITION
+
+Dimension is a grouping field used to analyze report data from different angles. It lets you split totals and metrics by values such as platform, campaign, date, country, bounce type, or user identifier.
+
+Dimensions help you move from a single total to a more detailed performance breakdown.
+
+### E
+
+### **Engagement**
+
+#### TL;DR
+
+Engagement refers to how actively users interact with your app, messages, and brand across all touchpoints.
+
+#### DEFINITION
+
+Engagement describes the level of interaction between users and your app, website, notifications, or campaigns. It includes all actions that show user interest or activity such as opening the app, clicking a notification, viewing a screen, responding to a message, or triggering events.
+
+In Netmera, engagement is measured through a combination of events, channel interactions, and behavioral metrics. It powers segmentation, journey triggers, personalization, predictive models, and campaign performance analytics.
+
+Netmera’s omnichannel structure Mobile Push, In-App, Web Push, Email, SMS, WhatsApp allows you to analyze engagement holistically and deliver personalized experiences that improve activity, retention, and long-term loyalty.
+
+### **Engagement Window**
+
+#### TL;DR
+
+Engagement Window defines the days and time range when Journey messages are allowed to be sent.
+
+#### DEFINITION
+
+Engagement Window is a Journey setting that helps control when users can receive Journey messages. You can define allowed sending hours and active days of the week from the Journey Entry Rules step.
+
+If a message is triggered outside the Engagement Window, it can either be held until the next available window or discarded, depending on the selected message handling option.
+
+Engagement Window helps prevent messages from being delivered at unsuitable times, such as late-night hours or sensitive communication periods.
+
+#### Learn More
+
+[Engagement Window](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/entry-rules#engagement-window)<br>
+
+### **Email Reputation**
+
+#### TL;DR
+
+A measure of how trustworthy an email sender is in the eyes of email service providers.
+
+#### DEFINITION
+
+Email Reputation refers to the overall trust score assigned to a sender based on their email sending behavior. It is influenced by factors such as bounce rates, spam complaints, unsubscribe actions, and compliance with permission management regulations.
+
+Maintaining a strong email reputation helps ensure high deliverability and prevents emails from being filtered as spam. Netmera supports email reputation management by monitoring delivery signals, consent status, and user feedback to keep sender activity compliant and reliable.
+
+### **Event**
+
+#### TL;DR
+
+An event is any user action or system-triggered activity tracked by Netmera to understand behavior and power targeting, analytics, and automation.
+
+#### DEFINITION
+
+An event represents a recorded action performed by the user or automatically generated by the application or system. Netmera collects events to analyze user behavior, build dynamic segments, trigger automated journeys, and measure app performance.
+
+**Event types in Netmera include:**
+
+* Automated Events captured automatically by the SDK
+* Predefined Events with a standardized structure
+* Custom Events defined based on application-specific needs
+
+#### Learn More
+
+[Automated events](https://user.netmera.com/netmera-user-guide/customer-data/events/netmera-events#automated-events), [Pre-defined events](https://user.netmera.com/netmera-user-guide/customer-data/events/netmera-events#pre-defined-events), [Custom-events](https://user.netmera.com/netmera-user-guide/customer-data/events/netmera-events#custom-events)
+
+### **Export**
+
+#### TL;DR
+
+Automatically or manually transfers selected data from Netmera to an external destination such as an FTP server.
+
+#### DEFINITION
+
+Export is a feature that allows selected data to be transferred from the Netmera platform to an external location, such as an FTP server, in a structured and automated way. Exports can be scheduled to run at regular intervals or triggered manually to retrieve up-to-date data on demand. This functionality helps teams access campaign results, user data, or reports without manual data extraction, supporting reliable data sharing and reporting workflows.
+
+#### Learn More
+
+[Export](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/export)
+
+### **Error Code**
+
+#### TL;DR
+
+The provider-side technical code returned for a delivery or bounce failure.
+
+#### DEFINITION
+
+Error Code is the machine-readable response returned when a delivery attempt fails. It is usually provided by the channel vendor, email provider, or telecom operator.
+
+This code helps technical teams diagnose the exact failure reason more precisely than a general status label.
+
+### **Error Message**
+
+#### TL;DR
+
+The human-readable explanation returned for a delivery or bounce failure.
+
+#### DEFINITION
+
+Error Message is the readable failure description returned by the provider when a delivery attempt does not succeed. It explains the issue in plain language, such as invalid recipient, temporary server issue, or blocked content.
+
+This field is useful for operational review and troubleshooting.
+
+### **Event Insight**
+
+#### TL;DR
+
+An analysis view used to explore a selected event with filters and breakdowns.
+
+#### DEFINITION
+
+Event Insight is an analytics view that helps you analyze a specific event in detail. You can review event volume, unique users, trends, and breakdowns across selected dimensions.
+
+This view helps teams understand how often an event occurs and which user groups or contexts drive it.
+
+### **Events in Push Session**
+
+#### TL;DR
+
+User actions that happen during the app session started by a push interaction.
+
+#### DEFINITION
+
+Events in Push Session refers to the events users trigger after opening the app from a push notification and continuing within that same session. It helps connect push engagement with downstream in-app behavior.
+
+This metric is useful for measuring what users actually do after interacting with a push message.
+
+### **Export Users**
+
+#### TL;DR
+
+A user-list export flow that downloads selected users and related fields from a report or analysis view.
+
+#### DEFINITION
+
+Export Users allows you to download the user records behind a report result, segment, or analysis state. The export can include identifiers and selected related fields, depending on the view and permissions.
+
+This is useful when you need to inspect, share, or action the user set outside the panel.
+
+### **External ID**
+
+#### TL;DR
+
+The identifier used to represent the same user consistently across systems.
+
+#### DEFINITION
+
+External ID is the business-side user identifier shared between Netmera and your own systems. It helps keep the same user matched across events, campaigns, exports, and integrations.
+
+Unlike device-based identifiers, External ID is usually stable across sessions and devices.
+
+### F
+
+### **Fallback**
+
+#### TL;DR
+
+A backup delivery scenario that ensures a message reaches the user through an alternative channel if the primary channel fails.
+
+#### DEFINITION
+
+Fallback is a mechanism that allows brands to define alternative delivery paths when a message cannot be delivered through the primary channel. If a notification is undelivered within a defined time or condition, the system automatically triggers a secondary channel such as SMS, Email, or WhatsApp.
+
+Fallback scenarios are commonly used in omnichannel flows, including WhatsApp Deferred Deep Linking, to preserve context and ensure users still reach the intended content or destination even when the original delivery fails.
+
+### **Frequency Capping**
+
+#### TL;DR
+
+Controls how often users can receive messages to prevent over-messaging and protect engagement.
+
+#### DEFINITION
+
+Frequency Capping is a mechanism that limits the number of messages a user can receive within a defined time period. It helps prevent message fatigue, protects sender reputation, and ensures a balanced communication experience across campaigns and automation flows.
+
+**Common Frequency Capping Types include:**
+
+* **Application-level limits:** Restrict the total number of messages a user can receive from an app.
+* **Message-level limits:** Limit how often a specific campaign or automation message is sent.
+* **Maximum action count:** Caps how many times a user can receive messages from the same trigger.
+* **Channel-level limits:** Apply frequency controls per channel (Push, SMS, Email).
+
+### **FTP Push & Data Transfer**
+
+#### TL;DR
+
+A secure FTP-based integration for automated data import and export.
+
+#### DEFINITION
+
+FTP Push & Data Transfer is a secure integration method that enables automated data exchange between external systems and the Netmera platform. It allows brands to import user data, trigger personalized push notifications, update user profile attributes, and export campaign or transactional reports. This approach simplifies large-scale data operations while ensuring reliability and security.
+
+#### Learn More
+
+[FTP Push & Data Transfer](https://user.netmera.com/netmera-user-guide/messaging-features/ftp-push-and-data-transfer)
+
+### **Funnel**
+
+#### TL;DR
+
+A funnel tracks how users progress through a series of steps from first interaction to final conversion.
+
+#### DEFINITION
+
+A Funnel is a visual representation of the user journey, showing how people move through key stages such as “View → Click → Add to Cart → Purchase.” It reveals where users continue, where they drop off, and which steps need improvement.
+
+In Netmera, funnels can be built from events, channel interactions, and behavioral sequences. They are essential for optimizing campaigns, journeys, and user experience design.
+
+#### Learn More
+
+[Funnel Analysis](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel-analysis)
+
+### **Fail Reason**
+
+#### TL;DR
+
+The reason a delivery or user-level message action failed.
+
+#### DEFINITION
+
+Fail Reason describes why a message, delivery attempt, or user-level action did not complete successfully. It usually appears in failed-user exports, delivery logs, or channel-specific status details.
+
+This field helps you separate network issues, permission problems, invalid targets, and provider-side failures.
+
+### **Failed**
+
+#### TL;DR
+
+The number of messages, deliveries, or actions that did not complete successfully.
+
+#### DEFINITION
+
+Failed is the total count of unsuccessful items in the selected reporting context. Depending on the report, this may refer to message deliveries, provider submissions, or related processing outcomes.
+
+This metric should be read together with success or delivery totals to understand the full completion picture.
+
+### **Full Export**
+
+#### TL;DR
+
+An export of the complete result set, not only the preview rows visible on the page.
+
+#### DEFINITION
+
+Full Export downloads the entire dataset behind a report or table, including rows not currently visible in the preview. This is useful when result sets are paginated or summarized on screen.
+
+It ensures the exported file contains the complete matching scope, not only the visible subset.
+
+### G
+
+### **Geofence**
+
+#### TL;DR
+
+A virtual geographic boundary that triggers actions when a user enters or exits a location.
+
+#### DEFINITION
+
+A geofence is a virtual perimeter placed around a real-world geographic area. In Netmera, geofencing enables location-based engagement by sending targeted, real-time notifications when users enter or leave designated zones. This feature is ideal for store visits, physical events, or region-specific promotions.
+
+#### Learn More
+
+[Geofence](https://user.netmera.com/netmera-user-guide/targeting/geofence)
+
+### H
+
+### **Hard Bounce**
+
+#### TL;DR
+
+A permanent email delivery failure, such as an invalid or non-existent email address.
+
+#### DEFINITION
+
+Hard Bounce means the email cannot be delivered for a lasting reason. Common causes include invalid email addresses, non-existent domains, or recipient addresses that no longer accept mail.
+
+Hard bounces usually require list cleanup because future delivery attempts are unlikely to succeed.
+
+### **Heatmap**
+
+#### TL;DR
+
+A visual summary that uses color intensity to show higher and lower values across time or groups.
+
+#### DEFINITION
+
+Heatmap is a report visualization that highlights patterns using color strength instead of only numbers. Stronger colors usually indicate higher volume, frequency, or intensity.
+
+This helps you spot peaks, gaps, and recurring trends faster across dates, hours, or categories.
+
+### **Hot Conversion**
+
+#### TL;DR
+
+The number of users who completed the selected conversion event after clicking a push notification.
+
+#### DEFINITION
+
+Hot Conversion measures conversion events completed by users after they clicked a push notification. It focuses on conversions tied to an active push interaction rather than passive exposure.
+
+This helps evaluate how effectively push clicks lead to downstream outcomes.
+
+### **Hot Revenue**
+
+#### TL;DR
+
+The revenue generated by users who converted after clicking a push notification.
+
+#### DEFINITION
+
+Hot Revenue represents the monetary value generated from users who completed the target action after clicking a push notification. It connects push-driven engagement to revenue outcome.
+
+This metric is useful when you want to measure not only conversion count but also conversion value.
+
+### **Hourly Events (Average)**
+
+#### TL;DR
+
+The average number of tracked events recorded per hour.
+
+#### DEFINITION
+
+Hourly Events (Average) shows the mean event volume per hour across the selected period. It smooths event activity into an hourly average so you can compare usage intensity over time.
+
+This is useful for understanding recurring behavior patterns and expected event load.
+
+### I
+
+### **Installs**
+
+#### TL;DR
+
+The number of new users who install an app within a selected time period.
+
+#### DEFINITION
+
+Installs represent the total number of users who have newly installed an application during a defined timeframe, such as daily, weekly, or monthly. This metric is commonly used to evaluate user acquisition performance and measure the effectiveness of marketing, promotional, and app store optimization efforts
+
+### **IYS Permission Hub**
+
+#### TL;DR
+
+A centralized solution for managing and synchronizing user communication consents with Turkey’s IYS system.
+
+#### DEFINITION
+
+The IYS Permission Hub is a Netmera feature that helps brands manage user communication permissions in compliance with Turkey’s IYS (İleti Yönetim Sistemi) regulations. It provides a single interface to control how consent data is synchronized between Netmera and IYS, allowing businesses to choose the most suitable compliance flow based on their operational needs.\
+By supporting different permission management modes, the IYS Permission Hub ensures accurate consent handling, reduces legal risk, and simplifies omnichannel permission management at scale.
+
+#### Learn More
+
+[IYS Permission Hub](https://user.netmera.com/netmera-user-guide/customer-data/iys-permission-hub)
+
+### **In Push Session**
+
+#### TL;DR
+
+Actions completed during the session started by a push interaction.
+
+#### DEFINITION
+
+In Push Session refers to user behavior that happens within the app session opened from a push notification. It helps isolate actions that occurred after a push-driven entry into the app.
+
+This makes it easier to evaluate the immediate downstream effect of push campaigns.
+
+### **Inbox Stats**
+
+#### TL;DR
+
+A report section that shows how users interacted with stored push messages in the inbox.
+
+#### DEFINITION
+
+Inbox Stats summarizes user interaction with push messages that remain available in the message inbox. It can include reads, opens, and related stored-message behavior depending on the inbox implementation.
+
+This helps measure engagement beyond the initial delivery moment.
+
+### J
+
+### **Journey**
+
+#### TL;DR
+
+A Journey is an automated, multi-step workflow that guides each user through personalized messages and actions based on real-time behaviors.
+
+#### DEFINITION
+
+A **Journey** is a no-code, multichannel workflow in Netmera that delivers personalized, behavior-driven communications across channels such as Push, Email, SMS, In-App, and WhatsApp. Journeys react to real-time user actions like opening a notification, viewing a product, or completing an event and automatically guide each user through the most relevant path.
+
+Journeys support:
+
+* Behavior-based triggers
+* Time delays
+* Conditional branching (AND/OR)
+* Multiple channels within a single flow
+* Live performance monitoring
+* A/B testing of steps
+
+Marketers can design simple onboarding sequences or complex engagement funnels without technical support. Journeys ensure that users receive the right message at the right time, improving conversions, retention, and overall engagement.
+
+#### Learn More
+
+[Journey Orchestration](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration)
+
+### K
+
+### **KPI (Key Performance Indicator)**
+
+#### TL;DR
+
+A measurable metric used to track performance and progress toward specific business goals.
+
+#### DEFINITION
+
+A KPI (Key Performance Indicator) is a quantifiable metric used to evaluate how effectively a product, team, or organization is achieving its defined objectives. KPIs translate strategic goals into measurable outcomes, allowing teams to monitor performance, identify trends, and make data-driven decisions. In product and marketing contexts, KPIs are commonly used to assess growth, engagement, retention, and revenue performance.
+
+### **KPI's Monthly**
+
+#### TL;DR
+
+A set of key metrics that summarize product performance and user engagement on a monthly basis.
+
+#### DEFINITION
+
+Monthly KPIs represent core performance indicators calculated over a monthly period to provide a high-level view of an application’s health and effectiveness. These metrics help teams track long-term trends, evaluate the impact of campaigns and product changes, and align performance with business objectives.\
+In Netmera, Monthly KPIs typically include metrics related to conversion, revenue, retention, and user engagement.
+
+**Common Monthly KPIs include:**
+
+* **App Conversion Rate (%)** – Measures how effectively users complete desired actions.
+* **Average Revenue per User (ARPU)** – Indicates the average revenue generated per user.
+* **30-Day Retention (%)** – Shows how many users return after 30 days.
+* **Session Length (Minutes)** – Reflects average time spent per session.
+* **Average Usage Frequency (Times)** – Indicates how often users interact with the app.
+
+### L
+
+### **Landing Pages**
+
+#### TL;DR
+
+Dedicated web pages designed to drive conversions from marketing campaigns.
+
+#### DEFINITION
+
+Landing Pages are standalone web pages created for specific marketing or promotional goals, such as sign-ups, downloads, or purchases. They are typically accessed through campaign touchpoints like push notifications, email messages, social media ads, or paid advertisements. By focusing on a single action, landing pages help reduce friction, improve conversion rates, and maintain message consistency across channels.
+
+#### Learn More
+
+[Landing Pages](https://user.netmera.com/netmera-user-guide/panel-settings/netmera-panel-settings/landing-pages)
+
+### **Live Activities**
+
+#### TL;DR
+
+Displays real-time, glanceable updates on iOS surfaces without requiring users to open the app.
+
+#### DEFINITION
+
+Live Activities enable mobile apps to show dynamic, real-time information on iOS surfaces such as the Lock Screen, Dynamic Island, StandBy, and Apple Watch Smart Stack. They are designed for short- to medium-duration activities like delivery tracking, live sports scores, or fitness updates, allowing users to monitor ongoing events at a glance. Live Activities focus on timely, useful information and should avoid promotional or sensitive content to maintain a high-quality user experience.
+
+#### Learn More
+
+[Live Activities](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/live-activities)
+
+### **Last Opened**
+
+#### TL;DR
+
+The timestamp of the most recent recorded email open.
+
+#### DEFINITION
+
+Last Opened shows the latest time Netmera recorded an open for the related email recipient or message record. It helps you understand recent engagement recency at the user or campaign level.
+
+This field is especially useful in user-level exports or detailed delivery views.
+
+### M
+
+### **MSISDN**
+
+#### TL;DR
+
+The phone number identifier used for SMS and telecom-based messaging.
+
+#### DEFINITION
+
+MSISDN is the standard phone number format used in mobile network systems to identify recipients for SMS and related telecom messaging. In practice, it represents the subscriber phone number stored in a normalized structure.
+
+This identifier is commonly used in uploads, provider routing, and delivery records.
+
+### O
+
+### **Opt-in**
+
+#### TL;DR
+
+Opt-in is the user’s explicit permission to receive messages through channels like Push, Email, SMS, or WhatsApp.
+
+#### DEFINITION
+
+Opt-in refers to a user voluntarily granting permission for receiving communications from your application. Depending on the channel, opt-in may be required by the device (push permission on iOS/Android), by law (GDPR, KVKK), or by platform rules (email/SMS/WhatsApp consents).
+
+In Netmera, a user must opt in before becoming eligible to receive channel-specific messages such as Push, Email, SMS, or WhatsApp. Opt-in directly impacts deliverability, audience size, and the effectiveness of campaigns. Monitoring opt-in rates is essential for maintaining healthy engagement and compliance.
+
+#### Learn More
+
+[Opt-in](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/channel-reachability#opt-in-users)
+
+### **Opt-out**
+
+#### TL;DR
+
+Opt-out occurs when users revoke permission and stop receiving communications from a specific channel.
+
+#### DEFINITION
+
+Opt-out refers to users withdrawing consent to receive messages through one or more communication channels. Once a user opts out, they become ineligible for related campaigns such as Push, Email, SMS, or WhatsApp.
+
+Netmera provides an Opt-Out page where you can track users who have opted out over different time ranges (last week, month, year, or custom dates). This feature helps you analyze trends, understand consent behavior, and maintain compliance with privacy requirements (GDPR, KVKK).
+
+You can also export opted-out users, including their external IDs, for deeper analysis. Export files remain unaffected by chart filters or date adjustments, ensuring consistent data extraction.
+
+#### Learn More
+
+[Opt-out users](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/channel-reachability#opt-out-users), [Opt-out](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/opt-out)
+
+### **Open Rate**
+
+#### TL;DR
+
+The percentage of delivered messages that were opened.
+
+#### DEFINITION
+
+Open Rate measures how many delivered messages were opened by recipients. It is calculated as a percentage and is commonly used in email and push reporting.
+
+The exact meaning of an open can vary by channel, so tracking behavior may affect the final value.
+
+### **Opened**
+
+#### TL;DR
+
+The count of opens recorded for a message or campaign.
+
+#### DEFINITION
+
+Opened is the total number of open events recorded for the selected message, campaign, or report row. Depending on the report, this may count total opens rather than unique recipients.
+
+This metric measures volume, while open rate measures proportion.
+
+### P
+
+### **Permission-based Marketing**
+
+#### TL;DR
+
+Permission-based marketing means sending messages only to users who have given consent to receive them.
+
+#### DEFINITION
+
+Permission-based marketing is a communication approach where brands contact users only after receiving their permission through opt-in, subscription preferences, or consent settings.
+
+In omnichannel engagement, permission-based marketing helps teams respect user choices across channels such as Push, SMS, Email, and WhatsApp. It reduces unwanted communication, supports compliance with permission requirements, and helps brands build more relevant customer relationships.
+
+Instead of sending every message to every reachable user, teams should check whether the user has the required permission for the selected channel and communication type.
+
+#### Learn More
+
+[Granular Consent Management](https://user.netmera.com/netmera-user-guide/customer-data/granular-consent-management)
+
+### **Personalization**
+
+#### TL;DR
+
+Delivers tailored messages, content, and experiences to users based on their data and behavior.
+
+#### DEFINITION
+
+Personalization is the ability to customize user experiences by using profile attributes, behavioral data, and real-time events. It allows brands to show different messages, offers, or content to different users based on who they are, what they do, and when they interact.\
+In Netmera, personalization is powered by user profile attributes, event tracking, segmentation, and dynamic content, enabling highly relevant communication across channels such as push notifications, email, SMS, in-app messages, and journeys.
+
+### **Predictive Segments**
+
+#### TL;DR
+
+AI-powered segments that predict user actions such as churn, conversion, or engagement based on past behavior.
+
+#### DEFINITION
+
+Predictive Segments use Netmera’s AI to analyze user behaviors, event histories, and real-time interaction patterns to estimate the likelihood of future actions. Unlike static segments, these dynamic models learn from historical and contextual data, helping you identify users who are likely to churn, convert, return, re-engage, or perform any custom event you define. This feature is fully customizable your team can choose any event or event attribute as the basis for prediction, enabling precise, proactive, and highly targeted omnichannel campaigns.
+
+#### Learn More
+
+[Predictive Segments](https://user.netmera.com/netmera-user-guide/ai-features/predictive-segments)
+
+### Preference Management
+
+#### TL;DR
+
+Preference management lets users choose which types of messages they want to receive and through which channels.
+
+#### DEFINITION
+
+Preference management is the process of collecting, storing, and managing users’ communication choices. These choices may include channel permissions, subscription categories, communication topics, or unsubscribe preferences.
+
+In omnichannel engagement, preference management helps brands avoid sending irrelevant or unwanted messages. It also gives users more control over their communication experience instead of forcing them to fully unsubscribe from all messages.
+
+#### Learn More
+
+[Preference Management](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/email-unsubscribe-page#category-based-unsubscribe-link)
+
+### **Profile Analytics**
+
+#### TL;DR
+
+Analyzes user profile attributes over time to understand audience composition and behavioral trends.
+
+#### DEFINITION
+
+Profile Analytics is a feature that enables brands to analyze user profile attributes—such as demographics, preferences, and engagement indicators—within a selected time period. By filtering profiles based on specific attributes and values, teams can identify patterns, segment users more effectively, and gain insights into how different user groups evolve over time.\
+This analysis supports data-driven decisions for personalization, targeting, and retention strategies by providing a clear view of who users are and how their profiles change.
+
+#### Learn More
+
+[Profile](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/profile)
+
+### **Profile Attributes**
+
+#### TL;DR
+
+Profile Attributes are user details that help to segment, target, and personalize campaigns.
+
+#### DEFINITION
+
+Profile Attributes are structured pieces of information tied to each user profile such as name, email, membership tier, preferred categories, or last order amount. These attributes form the foundation of segmentation, targeting, and personalization. By defining meaningful traits for each user, Profile Attributes help to build rich customer profiles and deliver more relevant, data-driven communication across channels.\
+Profile Attributes are used in:
+
+* Segments
+* Personalized campaigns
+* Journeys and automation
+* Dynamic content
+* Reports & Analytics
+
+They allow you to create precise audiences and tailor messages based on user traits.
+
+#### Learn More
+
+[Profile Attributes](https://user.netmera.com/netmera-user-guide/customer-data/profile-attributes)
+
+### **Periodic Export**
+
+#### TL;DR
+
+An automated export that runs on a schedule and sends data to an external destination.
+
+#### DEFINITION
+
+Periodic Export is a recurring export job that automatically generates and sends data at defined intervals. It is used when teams need regular report delivery without running exports manually.
+
+This is useful for operational reporting, warehouse feeds, and scheduled data sharing.
+
+### **Preview Table**
+
+#### TL;DR
+
+A partial view of a larger result set shown before export.
+
+#### DEFINITION
+
+Preview Table is the on-screen sample or paginated subset of the full dataset shown in a report or export view. It helps you inspect the structure and values before downloading the complete results.
+
+The preview may not include all matching rows.
+
+### **Push Clicks**
+
+#### TL;DR
+
+The total number of push notification clicks recorded for a campaign.
+
+#### DEFINITION
+
+Push Clicks is the count of click or open-through interactions generated by a push notification campaign. It measures how many times users engaged directly with the push after delivery.
+
+This metric is often reviewed together with delivered, open, conversion, and revenue metrics.
+
+### R
+
+### **Recall Mechanism**
+
+#### TL;DR
+
+Allows sent push notifications to be removed or updated after delivery.
+
+#### DEFINITION
+
+The Recall Mechanism gives brands control over push notifications even after they have been sent to users’ devices. If a message contains an error or needs urgent updates, Recall enables the notification to be withdrawn from the user’s view. This feature helps maintain message accuracy, reduce confusion, and ensure a consistent and trustworthy communication experience.
+
+#### Learn More
+
+[Recall Mechanism](https://user.netmera.com/netmera-user-guide/messaging-features/recall-mechanism)
+
+### **Reinstalls**
+
+#### TL;DR
+
+Tracks users who reinstall the app after previously uninstalling it.
+
+#### DEFINITION
+
+Reinstalls measure the number of users who return to an application after having uninstalled it earlier. This metric provides insight into re-engagement and brand loyalty, helping teams understand how often users reconsider the app and what factors may drive them back.
+
+### **Retention**
+
+#### TL;DR
+
+Retention measures how many users continue returning to your app or engaging with your brand over time.
+
+#### DEFINITION
+
+Retention is a key metric that shows the percentage of users who remain active after their initial interaction with your product. It measures how effectively you sustain user engagement across days, weeks, or months. High retention indicates strong satisfaction, continued interest, and successful user experience.
+
+In Netmera, retention is observed through behaviors such as opening the app, triggering events, responding to notifications, or progressing through journeys. Retention insights help teams identify drop-off points, evaluate long-term engagement, and improve re-engagement strategies.
+
+#### Learn More
+
+[Retention & Cohort](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/retention-and-cohort#retention)
+
+### **Roles and Permissions**
+
+#### TL;DR
+
+Defines what each user can see and do within the Netmera platform.
+
+#### DEFINITION
+
+Roles and Permissions control access levels and capabilities within the Netmera platform by assigning predefined privileges to different user roles. This structure ensures that users have appropriate visibility and control based on their responsibilities, supporting secure collaboration and operational efficiency.\
+Permissions can be customized to align with organizational needs, allowing teams such as administrators, developers, marketers, and viewers to work within clearly defined boundaries.
+
+#### Learn More
+
+[Roles and Permissions](https://user.netmera.com/netmera-user-guide/panel-settings/netmera-panel-settings/roles-and-permissions)
+
+### **Read**
+
+#### TL;DR
+
+The number of delivered messages users opened or viewed, depending on the channel.
+
+#### DEFINITION
+
+Read represents the count of messages that users opened, viewed, or otherwise consumed according to the channel’s tracking logic. The exact behavior can vary between channels such as inbox, WhatsApp, or other messaging formats.
+
+This metric should be interpreted using the channel context shown in the report.
+
+### **Read Rate**
+
+#### TL;DR
+
+The percentage of delivered messages that were read.
+
+#### DEFINITION
+
+Read Rate measures what share of delivered messages were read by recipients. It helps evaluate post-delivery consumption, especially in channels where read status is more meaningful than open status.
+
+This metric depends on whether the channel can reliably report a read event.
+
+### **Revenue**
+
+#### TL;DR
+
+The total monetary value generated by the selected campaign, report, or conversion event.
+
+#### DEFINITION
+
+Revenue is the total purchase or monetary value attributed to the selected scope. It is usually calculated from tracked events that include a revenue field, such as purchase or checkout completion.
+
+This metric helps measure campaign outcome in business terms rather than only engagement terms.
+
+### **Revenue Per User**
+
+#### TL;DR
+
+The average revenue generated per user within the selected audience or breakdown.
+
+#### DEFINITION
+
+Revenue Per User shows how much revenue, on average, each user generated within the selected scope. It is calculated by dividing total revenue by the number of users in the measured group.
+
+This helps compare monetization efficiency across audiences, campaigns, or segments.
+
+### **Revenue Total**
+
+#### TL;DR
+
+The total revenue generated by the selected group, campaign, or breakdown row.
+
+#### DEFINITION
+
+Revenue Total is the summed monetary value for the selected report row, audience, or campaign scope. It shows the complete revenue amount without averaging it across users.
+
+This metric is useful when you need absolute monetary contribution rather than per-user efficiency.
+
+### S
+
+### **SDK**
+
+#### TL;DR
+
+An SDK is a software package that connects your app with Netmera features.
+
+#### DEFINITION
+
+SDK stands for Software Development Kit. In Netmera, SDKs are integrated into mobile or web applications to enable features such as push notifications, event tracking, user profile updates, in-app messages, widgets, and other app-based engagement capabilities.
+
+SDK support may vary depending on platform and version, such as iOS, Android, Flutter, React Native, or Web SDK.
+
+### **Segments**
+
+#### TL;DR
+
+Segments group users based on shared attributes, behaviors, or events so you can deliver highly targeted and personalized communication.
+
+#### DEFINITION
+
+Segments are dynamic user groups created within Netmera to organize your audience based on behavioral patterns, profile attributes, actions, interests, or external data. Segmentation allows you to deliver personalized, relevant, and timely messages to specific user cohorts rather than sending the same message to everyone.
+
+In Netmera, segmentation enables:
+
+* Targeting users by demographics (age, location, device)
+* Behavioral filtering (purchase history, app usage, engagement level)
+* Event-based segmentation (search, product view, add to cart, purchase)
+* Tag-based segmentation
+* AI-powered predictive segmentation
+* External-data-based segmentation (via connectors)
+
+Segments update in real time, ensuring that users automatically enter or leave a segment as their behavior or profile changes.
+
+#### Learn More
+
+[Predictive Segments](https://user.netmera.com/netmera-user-guide/targeting/segments/predictive-segments), [Ready To Use Segments](https://user.netmera.com/netmera-user-guide/targeting/segments/ready-to-use-segments), [Rule-Based Segments](https://user.netmera.com/netmera-user-guide/targeting/segments/rule-based-segments), [Connector Segments](https://user.netmera.com/netmera-user-guide/targeting/segments/connector-segments)
+
+### **Stickiness Rate**
+
+#### TL;DR
+
+Stickiness Rate shows how consistently users return to your app within a selected period.
+
+#### DEFINITION
+
+Stickiness Rate is an engagement metric used to understand how frequently users come back to your app. It helps you evaluate whether users interact with the app regularly instead of using it only once or rarely.
+
+A higher stickiness rate usually indicates stronger user engagement and more frequent app usage.
+
+### **Spin to Win**
+
+#### TL;DR
+
+A gamified widget that lets users spin a wheel to win rewards and increase engagement.
+
+#### DEFINITION
+
+Spin to Win is an interactive, gamified reward component that allows users to spin a digital wheel and receive randomized rewards such as coupon codes, deep links, or custom messages. It is commonly used in engagement campaigns, lead collection flows, promotional activities, and loyalty programs.\
+Each wheel includes configurable slices, visual design options, reward logic, and probability settings. By combining interactivity with measurable outcomes, Spin to Win helps brands boost user engagement, conversions, and retention while tracking performance through detailed analytics.
+
+#### Learn More
+
+[Spin To Win](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/spin-to-win)
+
+### **Suppression List**
+
+#### TL;DR
+
+A Suppression List includes users who are excluded from email targeting due to bounce behavior or suppression rules.
+
+#### DEFINITION
+
+A Suppression List is used to prevent emails from being sent to users who should not receive them because of repeated delivery failures, hard bounces, or configured suppression rules. Users may be added to the suppression list according to bounce type, bounce reason, threshold, and suppression duration.
+
+Suppression records can be managed when needed, including removing users from suppression.
+
+Bounce and suppression management is handled by Netmera; contact Netmera if changes to suppression rules are required.
+
+#### Learn More
+
+[Bounce and Suppression Management](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/campaigns/email-reports#bounce-and-suppression-management)
+
+### **Sent**
+
+#### TL;DR
+
+The number of messages submitted to the delivery provider or channel.
+
+#### DEFINITION
+
+Sent is the total number of messages submitted for delivery through the selected channel. It represents the sending attempt volume before final delivery or failure outcomes are fully confirmed.
+
+This metric is often higher than delivered when some messages fail downstream.
+
+### **Session Expire Interval**
+
+#### TL;DR
+
+The configured duration used to decide when one session ends and a new one begins.
+
+#### DEFINITION
+
+Session Expire Interval defines the inactivity threshold used to separate one user session from the next. If the user remains inactive longer than this configured period, Netmera starts a new session when activity resumes.
+
+This setting affects session-based metrics such as session count, session length, and in-session event reporting.
+
+### **Session Length (Minute)**
+
+#### TL;DR
+
+The average duration of a user session, measured in minutes.
+
+#### DEFINITION
+
+Session Length (Minute) shows how long a typical session lasts on average. It measures the time between session start and session end according to the session calculation rules.
+
+This metric helps evaluate engagement depth and usage intensity.
+
+### **Soft Bounce**
+
+#### TL;DR
+
+A temporary email delivery failure, such as a full inbox or a temporary server issue.
+
+#### DEFINITION
+
+Soft Bounce means an email delivery failed for a temporary reason. Common examples include a full mailbox, temporary provider outage, or transient server rejection.
+
+Unlike hard bounce cases, soft bounces may succeed in later delivery attempts.
+
+### **Successful Deliveries**
+
+#### TL;DR
+
+The number of emails that reached recipients’ inboxes successfully.
+
+#### DEFINITION
+
+Successful Deliveries is the count of emails that were accepted and delivered successfully to recipient inboxes. It is used in email reporting to distinguish successful outcomes from bounces and failures.
+
+This metric is a core input for delivery rate calculations.
+
+### **Success**
+
+#### TL;DR
+
+The number of items completed successfully in the current report context.
+
+#### DEFINITION
+
+Success is a general completion metric whose exact meaning depends on the report you are viewing. In many campaign reports, it refers to successful delivery. In other contexts, it can represent successful completion of the tracked process or outcome.
+
+Always read this metric together with the surrounding report labels to understand its scope.
+
+### T
+
+### **Tag Manager**
+
+#### TL;DR
+
+A tool that manages tracking tags from a single interface without requiring code changes.
+
+#### DEFINITION
+
+Tag Manager is a system that allows teams to create, update, and manage tracking tags without modifying a website’s codebase. Tags are small code snippets used to track user behavior, collect analytics data, or integrate third-party tools. By centralizing tag management in one interface, Tag Manager enables faster deployments, reduces dependency on developers, and ensures consistent control over data collection.
+
+#### Learn More
+
+[Tag Manager](https://user.netmera.com/netmera-user-guide/web-tools/tag-manager)
+
+### **Tagless Data Capture**
+
+#### TL;DR
+
+Automatically collects user behavior data without manual tagging.
+
+#### DEFINITION
+
+Tagless Data Capture is a Netmera capability that automatically detects and records user actions without requiring manual tagging or custom code. By analyzing user interactions, it builds a comprehensive behavioral dataset for analytics, segmentation, and automated marketing workflows while significantly reducing development effort.
+
+#### Learn More
+
+[Tagless Data Capture](https://user.netmera.com/netmera-user-guide/customer-data/tagless-data-capture)
+
+### **Transactional Message**
+
+#### TL;DR
+
+An automated message sent to users to deliver critical, action-related information in real time.
+
+#### DEFINITION
+
+A Transactional Message is an automated notification sent to users in response to a specific action or event, such as completing a purchase, resetting a password, or updating an order status.
+
+These messages are typically triggered via backend integrations and delivered instantly to ensure timely and relevant communication. Transactional messages focus on providing essential information or confirmations that improve the user experience and support the successful completion of a user’s interaction with the platform. Common examples include order confirmations, shipping notifications, appointment reminders, and password reset emails.
+
+#### Learn More
+
+[Transactional Messages](https://user.netmera.com/netmera-user-guide/messaging-features/transactional-messages)
+
+### **Target Audience**
+
+#### TL;DR
+
+The full set of users the campaign was intended to reach.
+
+#### DEFINITION
+
+Target Audience is the complete eligible user group selected for a campaign, journey step, or report scope before delivery outcomes are applied. It represents the intended reach, not the final delivered count.
+
+This metric is useful for comparing planned audience size against actual send, delivery, and engagement results.
+
+### **Today Number of Campaigns**
+
+#### TL;DR
+
+The number of campaigns created or run today.
+
+#### DEFINITION
+
+Today Number of Campaigns shows how many campaigns were created or executed during the current day, depending on the dashboard context. It helps teams monitor daily campaign activity at a glance.
+
+This is a quick operational metric rather than a performance metric.
+
+### **Total**
+
+#### TL;DR
+
+The overall aggregated value across all rows or groups in a report section.
+
+#### DEFINITION
+
+Total is the full summed or aggregated result for the current report scope. It combines all applicable rows, segments, or breakdown values into one overall figure.
+
+This is often used as the baseline before drilling into dimensions.
+
+### **Total Clicks**
+
+#### TL;DR
+
+The full count of click actions, including repeated clicks by the same user.
+
+#### DEFINITION
+
+Total Clicks counts every recorded click action, even when the same user clicks multiple times. It measures total interaction volume rather than distinct user participation.
+
+This value is usually higher than unique clicks when repeat engagement exists.
+
+### **Total Devices**
+
+#### TL;DR
+
+The total number of devices associated with the selected audience or installation base.
+
+#### DEFINITION
+
+Total Devices represents the full count of devices linked to the measured app, audience, or report scope. It is useful in device-based reporting, reach analysis, and installation tracking.
+
+This metric may differ from user count when one user has multiple devices.
+
+### **Total Opens**
+
+#### TL;DR
+
+The full count of opens, including repeated opens by the same recipient.
+
+#### DEFINITION
+
+Total Opens counts all recorded open actions, even if the same recipient opened the message multiple times. It measures total engagement volume rather than the number of distinct recipients.
+
+This is typically larger than unique opens when messages are revisited.
+
+### U
+
+### **Uninstalls**
+
+#### TL;DR
+
+The number of users who remove the app from their devices.
+
+#### DEFINITION
+
+Uninstalls indicate how many users have deleted an application from their devices within a given timeframe. Monitoring uninstall trends helps identify potential retention issues such as poor onboarding, performance problems, or unmet user expectations, and supports data-driven improvements to the overall user experience.
+
+### **Unique Clicks**
+
+#### TL;DR
+
+The number of distinct recipients or users who clicked at least once.
+
+#### DEFINITION
+
+Unique Clicks counts each recipient or user only once, even if that person clicked multiple times. It measures how many distinct people engaged with the content through a click.
+
+This metric is useful when you want audience reach rather than total interaction volume.
+
+### **Unique Opens**
+
+#### TL;DR
+
+The number of distinct recipients who opened at least once.
+
+#### DEFINITION
+
+Unique Opens counts each recipient only once after the first recorded open. It helps you understand how many distinct recipients engaged with the message, regardless of repeated opens.
+
+This metric is commonly compared with total opens to understand repeat viewing behavior.
+
+### **Unread**
+
+#### TL;DR
+
+Delivered or stored messages that have not been opened yet.
+
+#### DEFINITION
+
+Unread refers to messages that are available to the recipient but have not yet been opened or marked as read. It is commonly used in inbox-style message storage and channel views that track read state.
+
+This metric helps you measure remaining unseen content.
+
+### **Unsubscribed**
+
+#### TL;DR
+
+Recipients who opted out after receiving a message, usually by email.
+
+#### DEFINITION
+
+Unsubscribed shows the number of recipients who revoked permission after receiving a communication. This is most commonly used in email reporting, where users can unsubscribe from future messages.
+
+This metric helps monitor message relevance, list health, and consent loss over time.
+
+### W
+
+### **Webhooks**
+
+#### TL;DR
+
+A real-time mechanism that sends event data from your organisation to an external system when a specific action occurs.
+
+#### DEFINITION
+
+A Webhook is an event-driven communication method that allows Netmera to automatically send data to an external system when a predefined event occurs. Instead of external systems continuously requesting updates, Netmera pushes event data to a specified URL in real time.\
+Webhooks are commonly used to synchronize user actions, trigger workflows in external platforms, and keep systems aligned without unnecessary polling or delays.
+
+### **Whitelist**
+
+#### TL;DR
+
+A list of users who are allowed to receive messages again after previously being blacklisted.
+
+#### DEFINITION
+
+Whitelist allows you to restore messaging permission for users who were previously blacklisted for channels such as Email, SMS, or Push. It is essentially the reverse of the blacklist process.
+
+When a Whitelist Upload file is added, Netmera identifies the users based on the provided identifiers (email, phone number, external ID, device token). These users are then removed from the blacklist and become eligible to receive communications through the selected channels again.
+
+Netmera instantly reflects this change during message delivery checks, ensuring that users who were restored can receive messages without delay. A tag may also be assigned during the whitelist process to track reinstated users.
+
+### **Widgets**
+
+#### TL;DR
+
+No-code, interactive UI components used to engage users and drive actions directly inside apps and websites.
+
+#### DEFINITION
+
+Widgets are customizable, in-app and web UI components that enable brands to deliver personalized and interactive experiences without writing code. They can be used to display pop-ups, banners, announcements, coupon reveals, or call-to-action elements, and are shown to targeted user segments at the right moment.\
+By bringing engagement directly into the user interface, Widgets help increase interaction, conversions, and retention while allowing teams to launch quickly and measure user responses in real time.
+
+#### Learn More
+
+[Widgets](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets)
+
+### X
+
+### **XLSX**
+
+#### TL;DR
+
+A spreadsheet export format used for Excel-compatible downloads.
+
+#### DEFINITION
+
+XLSX is the standard spreadsheet file format used by Microsoft Excel and many compatible tools. It is commonly offered as an export option when you need structured report data with rows, columns, and worksheet support.
+
+Compared with CSV, XLSX supports richer spreadsheet behavior such as formatting and multiple sheets.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/beginners-guide/user-glossary.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

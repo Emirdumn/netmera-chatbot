@@ -1,0 +1,193 @@
+URL: https://user.netmera.com/netmera-user-guide/ai-features/content-optimizer.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/ai-features/content-optimizer.md).
+
+# Content Optimizer
+
+Content Optimizer helps you create campaign copy faster. Instead of writing every message from scratch, you provide a prompt and a few context fields. Netmera then generates multiple message suggestions that fit your campaign goal.
+
+{% columns %}
+{% column width="55%" %}
+
+### Why It Matters
+
+Writing campaign copy takes time. It also slows down testing.
+
+Content Optimizer helps you move from idea to message faster. It answers a simple question:
+
+> *“How do I turn a campaign idea into ready-to-use copy in seconds?”*
+
+By combining your prompt with campaign context such as language, industry, and use case, the optimizer produces message options you can review and apply directly.
+{% endcolumn %}
+
+{% column width="45%" %}
+
+<figure><img src="/files/w1c2GxakHYw4JSRUJZzu" alt="" width="375"><figcaption></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+### How It Works
+
+Content Optimizer uses the information you provide to create several text suggestions for your campaign. You define the core idea in the prompt, then refine the result with fields such as **Language**, **Industry**, and **Use Case**.
+
+Once the suggestions are generated, you choose the one that best matches your message. When you click **Done**, the selected text is inserted into your campaign content field.
+
+{% hint style="info" %}
+Content Optimizer is available all in **Mobile Push**, **Web Push**, **SMS**, and **Email** campaigns.
+{% endhint %}
+
+### Configuration
+
+{% @arcade/embed url="<https://app.arcade.software/share/tjNkzNfj8CjYwT7XTdOy>" flowId="tjNkzNfj8CjYwT7XTdOy" %}
+
+1. **Open a Campaign**\
+   Go to **Messages > Campaigns > Create New Campaign**.
+2. **Go to the What Step**\
+   Open the content step where you write your campaign message.
+3. **Open Content Optimizer**\
+   Launch the optimizer from the message creation area.
+4. **Enter Your Prompt**\
+   Describe the campaign idea you want the AI to turn into copy.
+5. **Add Context Fields**\
+   Select **Language**, **Industry**, and **Use Case**. Enable **Use Emoji** if needed.
+6. **Generate Suggestions**\
+   Run the optimizer to receive multiple message options.
+7. **Choose and Apply a Suggestion**\
+   Review the options and click **Done** to insert the selected text into your campaign.
+
+<figure><img src="/files/Urafa0Lo48jFhOtQxR5k" alt=""><figcaption></figcaption></figure>
+
+#### Terminology Table
+
+<table><thead><tr><th width="147.11236572265625">Term</th><th>Definition</th></tr></thead><tbody><tr><td><strong>Prompt</strong></td><td>The main campaign idea or instruction you want the AI to turn into message copy.</td></tr><tr><td><strong>Language</strong></td><td>The output language used for the generated suggestions.</td></tr><tr><td><strong>Industry</strong></td><td>The business category that helps guide wording and context.</td></tr><tr><td><strong>Use Case</strong></td><td>The campaign objective, such as <strong>Cart Abandonment</strong>, <strong>New Purchase</strong>, or <strong>Increase Retention</strong>.</td></tr><tr><td><strong>Use Emoji</strong></td><td>An optional setting that adds emoji to generated suggestions.</td></tr><tr><td><strong>Suggestions</strong></td><td>Multiple message options created from your selected inputs.</td></tr><tr><td><strong>Done</strong></td><td>The action that inserts the selected suggestion into the campaign content field.</td></tr></tbody></table>
+
+### Behavior at Generation Time
+
+Content Optimizer builds message suggestions from the fields you provide. Each field influences the output in a different way.
+
+#### Input Logic
+
+* **Prompt** defines the main offer, reminder, or campaign idea.
+* **Language** controls the language of the generated copy.
+* **Industry** adds business context to the wording.
+* **Use Case** aligns the message with the campaign goal.
+* **Use Emoji** adds emoji-based styling when enabled.
+
+{% hint style="info" %}
+Specific prompts usually produce better suggestions than short generic prompts.
+{% endhint %}
+
+<figure><img src="/files/QFEMax8OjM98eziPBLg4" alt="" width="563"><figcaption></figcaption></figure>
+
+### Writing better prompts
+
+The prompt is the main driver of output quality. A clear prompt gives the optimizer better direction.
+
+#### What to include
+
+Add the details that matter most:
+
+* the offer or message
+* the user action you want
+* the campaign context
+
+#### Prompt examples
+
+{% tabs %}
+{% tab title="Stronger prompt" %}
+`Remind users about items left in cart and offer 10% off to complete purchase today`
+{% endtab %}
+
+{% tab title="Weaker prompt" %}
+`cart campaign`
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+Best results usually come from prompts that describe the offer, the audience intent, and the expected action.
+{% endhint %}
+
+#### Output Flow
+
+1. **You submit the inputs**
+   * Add your prompt and select the supporting fields.
+2. **Netmera generates suggestions**
+   * The system returns multiple text options based on your selections.
+3. **You select one suggestion**
+   * Choose the message that best fits your campaign.
+4. **The message is inserted into the campaign**
+   * Clicking **Done** transfers the selected text into the campaign editor.
+
+<figure><img src="/files/t3R7oc9Cd729ZMjcmfjt" alt="" width="375"><figcaption></figcaption></figure>
+
+### Example Scenarios
+
+| Goal                         | Sample Prompt                                               | Selected Use Case      | Result                                                          |
+| ---------------------------- | ----------------------------------------------------------- | ---------------------- | --------------------------------------------------------------- |
+| Recover a lost sale          | `10% discount for users who left items in cart`             | **Cart Abandonment**   | Generates reminder-focused copy for recovering abandoned carts. |
+| Reinforce a completed action | `Thank users after first purchase and invite them back`     | **New Purchase**       | Generates follow-up copy for post-purchase engagement.          |
+| Re-engage inactive users     | `Encourage users to return to the app with a limited offer` | **Increase Retention** | Generates retention-focused copy for reactivation campaigns.    |
+
+### Best practices
+
+* Write prompts with a clear offer or action.
+* Match the **Use Case** to the campaign objective.
+* Review multiple suggestions before selecting one.
+
+### When to use it
+
+Content Optimizer is most useful when you need to:
+
+* launch campaigns faster
+* test multiple message angles
+* create a strong first draft for different channels
+
+Content Optimizer reduces copywriting time and helps teams produce campaign-ready content faster. It is especially useful when you want to launch quickly, test message variations, or create copy across multiple channels with less manual effort.
+
+#### FAQs
+
+**Where can I use Content Optimizer?**
+
+You can use it in Mobile Push, Web Push, SMS, and Email campaigns.
+
+**What do I need to provide before generating text?**
+
+You should enter a Prompt and select the relevant Language, Industry, and Use Case. You can also enable Use Emoji.
+
+**Does the optimizer create only one message?**
+
+No. It generates multiple suggestions so you can compare and choose the best option.
+
+**How do I apply a generated suggestion?**
+
+Select the suggestion you want, then click Done. Netmera inserts that text into your campaign.
+
+**How can I improve the results?**
+
+Use a clear prompt with a specific campaign goal. Then choose the most accurate Industry and Use Case.
+
+**Can I generate emoji-based copy?**
+
+Yes. Enable Use Emoji if you want the suggestions to include emoji.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/ai-features/content-optimizer.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,118 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/launch.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/launch.md).
+
+# Launch
+
+Launch is the final step of journey creation.
+
+Use it to review the setup, save the journey as a draft, or activate it.
+
+{% hint style="info" %}
+Launch only when the **conversion event**, **entry rule**, and **audience** are final.
+{% endhint %}
+
+### Before you launch
+
+Check these four areas first:
+
+1. **Setup**: journey name, conversion event, and conversion filters
+2. **Entry Rules**: time-based or action-based entry logic
+3. **Audience**: segments or “all users” targeting
+4. **Build**: steps, branches, and action configurations
+
+If any of these are still changing, save the journey as a draft and return later.
+
+### Launch options
+
+#### Save & Launch
+
+Use **Save & Launch** when the journey is ready to go live.
+
+This saves your latest changes and activates the journey immediately.
+
+#### Save
+
+Use **Save** when you want to keep the current setup as a draft.
+
+This is the safer option if you still need review, testing, or approval.
+
+<figure><img src="/files/BThoDVYeps9ZNuY2MjSC" alt="" width="563"><figcaption></figcaption></figure>
+
+### Navigation behavior
+
+#### Back
+
+Use **Back** to return to the previous step.
+
+Your existing work in **Build** stays available while you continue editing.
+
+#### Back to Journey List
+
+Use **Back to Journey List** to leave the creation flow and return to the journey listing page.
+
+If you leave this way without saving, your latest changes are not kept.
+
+<figure><img src="/files/b7u4zH0dU1c8yASg6g7l" alt=""><figcaption></figcaption></figure>
+
+### After launch
+
+Once the journey is active, monitor its performance in [Journey Analytics](/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-analytics.md).
+
+If you need to manage the journey later, use the [Journey List and Actions](/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-list-and-actions.md) page for actions like **Activate**, **Test Activate**, **Archive**, and **Clone**.
+
+### Quick checklist
+
+{% stepper %}
+{% step %}
+
+#### Review the core setup
+
+Confirm the journey goal and conversion event.
+{% endstep %}
+
+{% step %}
+
+#### Recheck entry and audience
+
+Make sure the right users can enter at the right time.
+{% endstep %}
+
+{% step %}
+
+#### Validate the flow
+
+Review every state, branch, and action before going live.
+{% endstep %}
+
+{% step %}
+
+#### Choose the right save action
+
+Use **Save** for drafts.
+
+Use **Save & Launch** for production.
+{% endstep %}
+{% endstepper %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/launch.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

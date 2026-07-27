@@ -1,0 +1,406 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components/action.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components/action.md).
+
+# Action
+
+Action components enable you to execute various tasks such as sending emails, push notifications, or in-app messages, thereby engaging users at critical points in their journey. By leveraging action components, you can automate personalized communication, ensuring timely and relevant interactions that enhance user engagement and conversion rates. These actions can be tailored based on user behavior and preferences, allowing for a more dynamic and responsive marketing strategy.
+
+<figure><img src="/files/Ua7g0D5kNR7x9ghXZM1I" alt=""><figcaption><p>Add <strong>Send Data Push</strong> from the <strong>Action</strong> section in the Build flow</p></figcaption></figure>
+
+## Update Profile
+
+The "Update Profile" component in Netmera's journey setup allows you to **dynamically modify user profile attributes** based on interactions and behaviors. This component is vital for maintaining accurate user data, enhancing personalization in future communications, and optimizing marketing strategies.
+
+<figure><img src="/files/sYmnls9QA0X4vlGbj9tT" alt="" width="298"><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+**Should I use Fire Event or Update Profile?**
+
+Update Profile component modifies user profile attributes, ensuring that user data, like "Most Recent Conversion Date" or "User Status," is current and reflective of their actions. On the other hand, Fire Event component triggers specific events based on user interactions within the journey, such as viewing a product or completing a purchase, allowing you to track user behavior in real-time and initiate follow-up actions.
+
+While the Fire Event component focuses on capturing and responding to user interactions for analysis, the Update Profile component is dedicated to managing and updating user data to personalize future communications effectively.
+{% endhint %}
+
+### Step Properties
+
+**Step Name**
+
+This serves as an internal label for the update profile step within the journey. It helps you identify and manage different steps effectively. For instance, you might name it "User Conversion."
+
+**Select Attribute**
+
+This dropdown allows you to choose **specific user profile attributes** to update, such as "Most Recent Conversion Date," "User Status," or "Last Login Date." This ensures that the correct attribute is modified based on user journey actions.
+
+**Action**
+
+The "Action" dropdown specifies the **type of operation** to perform on the selected attribute. The available actions include:
+
+* **Update**: Modify the existing attribute value.
+* **Delete**: Remove the attribute from the user's profile.
+
+### Value Types
+
+This dropdown determines the nature of **the value assigned to the attribute.** You can select from:
+
+* **Constant**: A static value specified by you.
+* **Variable**: A dynamic value sourced from the journey (e.g., a journey variable or profile attribute).
+
+**Value**
+
+This is where you enter the specific value for the attribute. If "Variable" is selected, this field allows you to select a journey variable or profile attribute. For constant values, you can directly enter the desired value.
+
+**Add More and Save**
+
+The "Add More" button lets you update multiple attributes within the same step, enabling several changes to the user profile based on a single interaction or event. After configuring the update profile actions, clicking the "Save" button applies these changes to the journey, ensuring real-time updates to user profiles as they progress.
+
+<figure><img src="/files/nvVOUIyCwwLIB26brAeH" alt="" width="563"><figcaption></figcaption></figure>
+
+By utilizing the "Update Profile" component, you can keep user profiles current and accurate, which is crucial for delivering personalized experiences. This dynamic updating of user attributes allows for more responsive and relevant marketing efforts, ultimately enhancing user engagement and satisfaction.
+
+## Send Mobile Push
+
+The "Send Push Notification" action in Netmera allows you to **send targeted, real-time notifications** directly to mobile devices. Push notifications are an essential tool for engaging users, improving retention, and encouraging interactions by delivering relevant information. This component supports personalization, dynamic content, deep linking, and multimedia assets to enhance user experience and drive conversions.
+
+<figure><img src="/files/HucdNO89YIpRtOSj8NXl" alt="" width="347"><figcaption></figcaption></figure>
+
+### Key Elements of Push Notifications
+
+Each push notification contains several key elements that determine how it appears on users' devices and how they interact with it.
+
+**Push Name**
+
+The internal identifier for your push notification. This helps you manage and track different push steps within your journey or campaign. The Push Name does not appear to the user but is crucial for your workflow organization.\
+**Example**: "Welcome Push with Exclusive Offers."
+
+**Push Title**
+
+The headline or main title of the push notification that appears on the user's device. A well-crafted title grabs attention and sets the context for the message.\
+**Example**: "Exclusive Offer Just for You!" or "New Arrivals Await!"
+
+**Push Message**
+
+The body of the notification where the key message is delivered. This space should be concise but informative, clearly communicating the call-to-action (CTA) or the benefit to the user.\
+**Example**: "Unlock your 20% discount on your next purchase! Click here to explore the latest arrivals."\
+A short, engaging message can drive higher open rates and engagement.
+
+<figure><img src="/files/x6Hgy0UAUw9ND4gt7Zqs" alt="" width="563"><figcaption></figcaption></figure>
+
+### Personalization Options
+
+Personalization significantly increases the relevance of the push notification by tailoring it to each individual user. This can be done using dynamic variables that pull data from the user's profile or their journey interactions.
+
+* **Personalized Title**: Use dynamic attributes to customize the title for each user.\
+  **Example**: *"Welcome back, @{user.name}! Your offer is waiting at @{journey.BrandName}."*
+* **Personalized Message**: Similarly, the message body can include dynamic fields to make the content more relatable to the recipient.\
+  **Example**: "Hi @{user.name}, don't miss out on your exclusive @{journey.BrandName} offer! Visit now and claim it today!"
+
+{% hint style="info" %}
+**Profile Attributes:**
+
+Utilize your users' profile attributes, such as past interactions or demographic information, to tailor your messaging. These attributes can help personalize notifications, making them more relevant to each individual user, enhancing engagement. You may check [Profile Attributes](/netmera-user-guide/customer-data/profile-attributes.md) guide for further information.
+{% endhint %}
+
+{% hint style="info" %}
+**Journey Variables:**
+
+To use Journey Variables in your push notifications, select the Journey Variable in **Step 2: Entry Rules >** [Entry Rules](/netmera-user-guide/omnichannel-engagement/journey-orchestration/entry-rules.md#action-based-entry-rules) **> Add Trigger Filters > Journey Variable**. This allows you to personalize messages based on the user’s actions. For example, if a customer adds a specific brand to their cart, the `@{journey.BrandName}` will automatically update in the message. Instead of a generic message like "Check out your cart," you can send "Check out the amazing deals on @{journey.BrandName} in your cart!" making the notification more relevant.
+{% endhint %}
+
+<figure><img src="/files/wcbJudmSxaRKFIfn5rQX" alt="" width="563"><figcaption></figcaption></figure>
+
+By integrating variables such as user name, location, or recent activity (e.g., abandoned cart), personalization fosters a deeper connection with the recipient, leading to better response rates.
+
+### Advanced Push Notification Settings
+
+To further refine the notification’s behavior and impact, you can configure several additional options:
+
+**Push Click Action**\
+Defines the action that occurs when the user interacts with the notification (clicks or taps on it).
+
+* **Nothing**: The notification is displayed, but clicking on it does not trigger any further action.
+* **Open App**: Opens the app when the notification is tapped, landing the user on the default screen.
+* **Go to Deeplink**: Directs the user to a specific location within the app or to an external URL through a deeplink.
+  * **Example Deeplink**: "app\://home?category=@{user.favoriteCategory}"\
+    Deeplinks are particularly useful for guiding users to personalized content, such as a product page, promotional offer, or a previously abandoned cart.
+
+**Deeplink Type**\
+Select whether the deeplink leads to an internal app destination or an external web URL. The deep linking type should align with your campaign objectives, ensuring a smooth user experience.
+
+**Additional Parameters**\
+You can append extra data or parameters to the deeplink or URL to further customize the user’s navigation experience. These additional parameters may include specific attributes, such as a product ID, category name, or other personalized data relevant to the campaign.
+
+**Example**: "[www.yourshop.com/cart?item=@{user.lastViewedItem](http://www.yourshop.com/cart?item=@{user.lastViewedItem)}"
+
+<figure><img src="/files/yxVO8Lb93Dkfd8QFf3fK" alt="" width="375"><figcaption></figcaption></figure>
+
+### Rich Media
+
+Enhance your notification by embedding rich media, making it visually more appealing and interactive. Visual elements can boost engagement and make your message stand out among other notifications.
+
+* **Android/iOS-Specific Media**: You can customize the media content based on the user's platform (Android/iOS), ensuring compatibility and optimizing the user experience.
+
+**Example**: Add a promotional banner image: "<https://example.com/media/banner-offer.jpg>"
+
+Including visual elements like product images or promotional banners can improve user click-through rates.
+
+<figure><img src="/files/DbFAhs1IDkUGQOa351RD" alt="" width="563"><figcaption></figcaption></figure>
+
+**Test Before Sending**
+
+Before sending your push notifications to a broad audience, it’s important to test them to ensure everything works as expected, from content rendering to deep link behavior. The **Test Devices** feature in Netmera enables you to preview and verify push notifications on specific mobile devices before launching the notification to the full segment of users.
+
+To use test devices in Netmera, you need to register the devices you want to use for testing. Once a test device is added, you can send push notifications to it directly from the platform to preview your messaging. Please see our documentation on [Test Devices](/netmera-user-guide/panel-settings/settings/administration/test-devices.md) to set up your test device to receive tests before launching your push notifications.
+
+<figure><img src="/files/9zfn4hU55BafnAdQIYj1" alt="" width="375"><figcaption></figcaption></figure>
+
+## In-App Messsage
+
+In-App message component allows you to deliver targeted messages directly within the app, providing a seamless and immediate way to engage users. This feature is essential for prompting user actions, enhancing their experience, and delivering timely information or promotions while they actively use the app.
+
+{% hint style="warning" %}
+**Important: Create Your Widgets Before Journey Creation**
+
+Before accessing this step, ensure that you have created your widget on the Netmera Panel. The widget must be set up in advance to be visible here. Please complete this step to ensure a seamless experience when delivering in-app messages.
+{% endhint %}
+
+<figure><img src="/files/Ev9jvOCtHFwUxdcjflRI" alt="" width="290"><figcaption></figcaption></figure>
+
+### Step Properties
+
+**Step Name**
+
+This is an internal identifier for the in-app message step within the journey, allowing you to easily manage and track various steps. For instance, you might label it as "Welcome Widget" to reflect its purpose.
+
+**Widget**
+
+The "Widget" dropdown provides access to a variety of pre-designed in-app message templates, including banners, modals, and pop-ups. These templates are strategically crafted to capture user attention and encourage specific actions. You can quickly find the desired widget using the "Search Widget" field, streamlining the selection process.
+
+### Preview and Test
+
+This section offers a real-time visual representation of how the in-app message will look on different devices, such as Android and iPhone. This feature ensures that your design and content are not only appealing but also optimized for various screen sizes and orientations, enhancing usability across platforms.
+
+**Test Before Sending**
+
+Before setting up your widgets to a broad audience, it’s important to test them to ensure everything works as expected. **Test Devices** feature enables you to preview and verify your communications on specific mobile devices before launching the notification to the full segment of users.
+
+To use test devices in Netmera, you need to register the devices you want to use for testing. Once a test device is added, you can send your messages to it directly from the platform to preview them. Please see our documentation on [Test Devices](/netmera-user-guide/panel-settings/settings/administration/test-devices.md) to set up your test device to receive tests before launching your push notifications.
+
+<figure><img src="/files/vvfPgAw6eEJJaA8plMtq" alt=""><figcaption></figcaption></figure>
+
+## Fire Event
+
+The Fire Event component in Netmera's journey setup is a crucial tool that empowers you to respond dynamically to user interactions. By **triggering specific events** based on how users engage with your content or products, you can effectively track their actions, and initiate subsequent steps in their journey. This feature allows you to create a more personalized and engaging experience for users, as it ensures that your marketing efforts are responsive to real-time behaviors.
+
+<figure><img src="/files/fMN5UyrYGovFtSH5jqeg" alt="" width="297"><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+**Should I use Fire Event or Update Profile?**
+
+The Fire Event component triggers specific events based on user interactions within the journey, such as viewing a product or completing a purchase, allowing you to track user behavior in real-time and initiate follow-up actions. In contrast, the Update Profile"component modifies user profile attributes, ensuring that user data, like "Most Recent Conversion Date" or "User Status," is current and reflective of their actions.&#x20;
+
+While the Fire Event component focuses on capturing and responding to user interactions for analysis, the Update Profile component is dedicated to managing and updating user data to personalize future communications effectively.
+{% endhint %}
+
+### Step Properties
+
+**Step Name**
+
+This is an internal label for the fire event step within the journey. It helps you identify and manage different steps effectively. For example, you might name it *"View Product Name"* to clearly indicate its purpose.
+
+**Select Event**
+
+Use this dropdown to choose the specific event you want to trigger. Options include actions such as "View Product," "Add to Cart," and "Purchase." Selecting the correct event ensures that your journey accurately reflects user interactions; for example, you might choose "View Product."
+
+**Select Attribute**
+
+This dropdown allows you to specify which attribute of the event you want to set or update. This could include important data points like "Product Name," "Category," or "Price." This step is crucial for ensuring that each event carries the necessary information for effective tracking and analysis, such as selecting "Product Name."
+
+### Value Types
+
+Value Type dropdown determines the nature of the value assigned to the attribute. You can choose from:
+
+* **Variable**: A dynamic value sourced from the journey, such as a journey variable or a profile attribute.
+* **Fixed**: A static value that you define.
+
+**Value**:
+
+In the Value field, you enter the specific value to be assigned to the attribute. If you choose "Variable" as the value type, you can select a journey variable or profile attribute. For fixed values, simply enter the desired value directly. For instance, you might use "ProductName" as the variable.
+
+**Add More and Save**
+
+Add More button lets you set multiple attributes for the event within a single step. This feature is beneficial for providing comprehensive event data based on a single user interaction. After configuring the fire event actions, click the **Save** button to apply these changes to the journey. This ensures that the specified event is triggered in real time as users progress through their journey.<br>
+
+<figure><img src="/files/4POrlopMKFPzFyQ7bRUo" alt="" width="563"><figcaption></figcaption></figure>
+
+## Send E-Mail
+
+Send Email component is designed for you to send personalized and targeted email campaigns as part of an automated customer journey. This component plays a crucial role in nurturing leads, enhancing customer engagement, and driving conversions through carefully timed and personalized email communication.
+
+<figure><img src="/files/2XTfmYeqXS6go08fL8d8" alt="" width="319"><figcaption></figcaption></figure>
+
+### Step Properties
+
+When configuring the "Send Email" component in a journey, the following properties help you design, personalize, and send emails effectively:
+
+**Step Name**
+
+Step Name is an internal label for each email step in the journey, serving as a unique identifier. This facilitates easy tracking and management of various actions within the journey, allowing you to quickly recognize the purpose of each email, such as "Black Friday Campaign Email."
+
+**Mail Template**
+
+Mail Template dropdown enables you to select from **pre-designed** templates for their campaigns. These templates ensure consistency in branding, formatting, and layout across emails, streamlining the creation process while reinforcing brand identity and trust.
+
+**From Address**
+
+From Address is the sender email address that recipients see in their inbox. Using a credible and recognizable address, like <info@yourbrand.com>, helps build trust and improve open rates, as recipients are more likely to engage with familiar and authentic senders. The from address should be set while integrating your email provider with Netmera. For further information please see [Email Onboarding](/netmera-user-guide/omnichannel-engagement/email/email-onboarding.md) documentation.
+
+**Sender Name**
+
+Sender Name appears next to the "From Address" and influences recipients' perceptions of the email. A familiar name, such as "Your Brand Support Team," can increase open rates by adding a personal touch and enhancing credibility.
+
+**Subject**
+
+Subject line is critical for capturing recipients’ attention and encouraging them to open the email. It should be engaging and relevant to the recipient's interests. **Personalization**, like including the recipient's name or referencing a specific product, can significantly boost open rates. See [#personalization-options](#personalization-options "mention") titles on how to personalize your subject.
+
+**Preheader**
+
+Preheader is the short text that follows the subject line in an inbox preview, providing additional context. A compelling preheader can entice recipients to open the email, acting as a secondary hook that complements the subject line.
+
+**Reply To**
+
+Reply To address directs responses from recipients and can differ from the "From Address." It’s essential to monitor this address regularly to address customer inquiries and feedback promptly, fostering positive engagement and trust.  The address should be set while integrating your email provider with Netmera. For further information please see [Email Onboarding](/netmera-user-guide/omnichannel-engagement/email/email-onboarding.md) documentation.
+
+<figure><img src="/files/5ZmlUB2MicqXzdSzIfOG" alt="" width="563"><figcaption></figcaption></figure>
+
+### Personalization Options
+
+The "Send Email" component in Netmera offers dynamic personalization to create tailored messages for each recipient, increasing engagement and relevance. Personalization can be applied to:
+
+* **Subject Lines**: Using profile attributes such as the recipient's name or journey-specific variables.
+* **Email Content**: Dynamic placeholders can be inserted into the email body for personalization, such as product recommendations, location-based offers, or personalized discount codes.
+
+For example:
+
+A subject line can include the recipient's name: Hello @name!, making the email feel more personal. Similarly, inserting product names from a user's browsing history: Check out our latest deals on @ProductName! can drive higher engagement.
+
+Personalization values such as **profile attributes** (e.g., Name, Email) and **journey variables** (e.g., Product Name, Discount Code) can be easily inserted into email fields via the interface, making it seamless to craft highly customized emails.
+
+{% hint style="info" %}
+**Profile Attributes:**
+
+Utilize your users' profile attributes, such as past interactions or demographic information, to tailor your messaging. These attributes can help personalize notifications, making them more relevant to each individual user, enhancing engagement. You may check [Profile Attributes](/netmera-user-guide/customer-data/profile-attributes.md) guide for further information.
+{% endhint %}
+
+{% hint style="info" %}
+**Journey Variables:**
+
+To use Journey Variables in your push notifications, select the Journey Variable in **Step 2: Entry Rules >** [Entry Rules](/netmera-user-guide/omnichannel-engagement/journey-orchestration/entry-rules.md#action-based-entry-rules) **> Add Trigger Filters > Journey Variable**. This allows you to personalize messages based on the user’s actions. For example, if a customer adds a specific brand to their cart, the `@{journey.BrandName}` will automatically update in the message. Instead of a generic message like "Check out your cart," you can send "Check out the amazing deals on @{journey.BrandName} in your cart!" making the notification more relevant.
+{% endhint %}
+
+<figure><img src="/files/Wnulos0SpjGEvOVlMjZF" alt="" width="563"><figcaption></figcaption></figure>
+
+## Send Data Push action
+
+Use **Send Data Push** to send a custom JSON payload to the mobile SDK through a silent push. After you add this step, the app can receive structured journey data and use it to trigger an app-side experience.
+
+### What this step does
+
+When the journey reaches **Send Data Push**, the step sends the JSON payload to the mobile SDK through a silent push.
+
+The payload does not appear as a visible push notification. The application receives the data in the background and can use it to update content, prepare an in-app flow, or trigger another app-side experience.
+
+If the payload includes **Profile Attribute** values, Netmera resolves those values for each user before sending the payload. If the payload includes **Journey Variable** values, Netmera uses the values available in the current journey context.
+
+For example, a journey can send a payload with a recommended content ID and category. The app can then open the matching recommendation module when the user returns.
+
+### When to Use It
+
+Use **Send Data Push** when you want to send structured data from a journey to the mobile application without displaying a visible message to the user.
+
+This action is useful when the app needs to receive custom data and decide how to use it on the application side.
+
+Common use cases include:
+
+* Sending a personalized content recommendation, such as a podcast, article, or video
+* Updating a content module in the app based on user behavior
+* Preparing a personalized app-side flow after a user performs a specific action
+* Passing journey or profile-based context to the mobile application
+* Triggering app-side logic without sending a visible push notification
+
+For example, after a user views marketing-related content, you can send a podcast recommendation object to the app. The app can then use this object to display the recommended podcast in the user's home recommendations area.
+
+{% hint style="info" %}
+Use this action for **immediate-action** scenarios. If the step follows a time-delayed **Wait** step, precise delivery timing cannot be guaranteed.
+{% endhint %}
+
+{% stepper %}
+{% step %}
+
+#### Step 1: Add Send Data Push
+
+1. In **Journey Builder**, select **Add Step**.
+2. In the **Action** section, select **Send Data Push**.
+3. Enter a step name.
+
+<figure><img src="/files/Ua7g0D5kNR7x9ghXZM1I" alt=""><figcaption><p>Add <strong>Send Data Push</strong> from the <strong>Action</strong> section in the Build flow</p></figcaption></figure>
+{% endstep %}
+
+{% step %}
+
+#### Step 2: Configure the JSON payload
+
+1. Define the **JSON Payload**.
+2. Choose one of these configuration methods:
+   * **Visual Builder -** Build the payload field by field.
+   * **Edit JSON** - Enter or update the JSON payload directly.
+3. If you use **Visual Builder**, select a value source for each field.
+
+| Value Source          | Description                                                 |
+| --------------------- | ----------------------------------------------------------- |
+| **Constant**          | Uses a fixed value that remains the same for all users.     |
+| **Journey Variable**  | Uses a dynamic value available in the current journey flow. |
+| **Profile Attribute** | Uses a value from the user's profile.                       |
+
+For example, you can set `contentType` as **Constant**, `campaignId` as **Journey Variable**, and `favoriteCategory` as **Profile Attribute**. The app then receives one payload with both fixed and user-specific values.
+
+<figure><img src="/files/CFPRAuLJUDJU9dYZeMEK" alt=""><figcaption><p>Choose the proper type for the key value</p></figcaption></figure>
+
+<figure><img src="/files/Ny5CsKS2aDIv3V7E6J1N" alt="" width="557"><figcaption><p>Define JSON payload by using a Visual Builder</p></figcaption></figure>
+
+<figure><img src="/files/smUZqMzj7BNbm6KQ67ge" alt="" width="558"><figcaption><p>Define JSON payload by entering or updating JSON payload directly</p></figcaption></figure>
+{% endstep %}
+
+{% step %}
+
+#### Step 3: Save the step
+
+Select **Save**.
+
+After you save, the step appears in the journey flow as a data push action. You can then continue building the journey or move to the next step in the flow.
+
+<div align="center"><figure><img src="/files/qNyUUsPiZ0YuUyctVh50" alt="" width="235"><figcaption><p>Send Podcast Recommendation added <br>as a Send Data Push step</p></figcaption></figure></div>
+{% endstep %}
+{% endstepper %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components/action.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

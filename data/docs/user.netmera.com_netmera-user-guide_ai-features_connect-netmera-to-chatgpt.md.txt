@@ -1,0 +1,306 @@
+URL: https://user.netmera.com/netmera-user-guide/ai-features/connect-netmera-to-chatgpt.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/ai-features/connect-netmera-to-chatgpt.md).
+
+# Connect Netmera to ChatGPT
+
+Connect ChatGPT to Netmera and turn everyday marketing questions into faster answers.
+
+Instead of jumping across dashboards and reports, you can ask ChatGPT to analyze campaign results, compare audiences, and summarize performance in plain language.
+
+### What marketers can do with it
+
+Once connected, ChatGPT can help you:
+
+* review campaign performance without pulling multiple reports,
+* compare channels, segments, and conversion trends faster,
+* inspect user activity, events, and message history,
+* and prepare summaries your team can act on quickly.
+
+Common marketing prompts:
+
+* “Analyze push campaign performance for the last 30 days.”
+* “Compare email and SMS engagement for last week.”
+* “Show revenue trends for the last 30 days.”
+* “Which campaigns had the highest click-through rate this month?”
+* “Summarize last week's engagement metrics for my team.”
+
+### How ChatGPT connects to Netmera
+
+Netmera MCP connects ChatGPT to your Netmera app through a secure MCP connection.
+
+That lets ChatGPT retrieve permitted data, compare results, and generate readable summaries from your Netmera workspace.
+
+### Prerequisites
+
+{% hint style="warning" %}
+Before starting the setup, make sure you have:
+
+* **an active ChatGPT Plus, Pro, or Team subscription,**
+* access to the relevant Netmera app,
+* and permission to use MCP-compatible integrations.
+  {% endhint %}
+
+## Integration Steps
+
+{% stepper %}
+{% step %}
+
+#### Step 1: Open the Settings Menu
+
+In ChatGPT, click your profile name located in the bottom-left corner.
+
+From the opened menu, select **Settings**.
+
+<figure><img src="/files/zf3D89ymnDLr8eSU3Cox" alt="" width="175"><figcaption><p>Open the Settings menu and Select Settings</p></figcaption></figure>
+{% endstep %}
+
+{% step %}
+
+#### Step 2: Go to the Apps Menu
+
+In the Settings screen, click the **Apps** tab from the left-side menu.
+
+<figure><img src="/files/WMESBLYRJLHp0Q9P0Zb7" alt="" width="375"><figcaption><p>Click the Apps tab from the left-side menu in the Settings screen</p></figcaption></figure>
+{% endstep %}
+
+{% step %}
+
+#### Step 3: Open Advanced Settings
+
+In the Apps menu, click **Advanced settings**.
+
+<figure><img src="/files/2mHck0P73mZLyInehz8h" alt="" width="375"><figcaption><p>Click Advanced settings in the Apps menu</p></figcaption></figure>
+{% endstep %}
+
+{% step %}
+
+#### Step 4: Enable Developer Mode
+
+In the **Apps → Advanced settings** screen, enable the **Developer mode** toggle.
+
+After enabling it, return to the Apps menu.
+
+<figure><img src="/files/TphhRCeXPX6I8TLaQH3P" alt="" width="375"><figcaption><p>Enable the Developer mode toggle In the Apps → Advanced settings screen,</p></figcaption></figure>
+{% endstep %}
+
+{% step %}
+
+#### Step 5: Create a New App
+
+In the Apps menu, click the **Create app** button located in the top-right corner.
+
+<figure><img src="/files/ZqKsawfWBJplueLhKued" alt="" width="375"><figcaption><p>In the Apps menu, click the Create app button located in the top-right corner.</p></figcaption></figure>
+{% endstep %}
+
+{% step %}
+
+#### Step 6: Enter the App Details
+
+<figure><img src="/files/wivWECAT9hKeWSGqil7Z" alt="" width="269"><figcaption><p>Enter the Name, Description, MCP Server URL<br>and Select Authentication as OAuth</p></figcaption></figure>
+
+In the opened form, enter the following information:
+
+#### Name
+
+```
+Netmera
+```
+
+#### Description (Optional)
+
+```
+Netmera MCP
+```
+
+#### MCP Server URL
+
+```
+https://ai.netmera.com/ai/mcp
+```
+
+#### Authentication
+
+```
+OAuth
+```
+
+{% endstep %}
+
+{% step %}
+
+#### Step 7: Authenticate with Netmera
+
+After clicking **Create**, the Netmera Sign In page will open.
+
+Log in using your Netmera account credentials:
+
+* Username or email
+* Password
+
+Then click **Sign In**.
+
+<figure><img src="/files/aZvsQOsGjtCskVurl9XF" alt="" width="375"><figcaption><p>Log in using your Netmera account credentials</p></figcaption></figure>
+{% endstep %}
+
+{% step %}
+
+#### Step 8: Email Verification
+
+If this is your first connection, Netmera may send a verification email for security purposes.
+
+Click the verification link in the email to complete the process.
+{% endstep %}
+
+{% step %}
+
+#### Step 9: Verify the App Connection
+
+After successful authentication, you will return to the Apps menu.
+
+You should now see the **Netmera** app under the **Enabled apps** section with the DEV badge.
+{% endstep %}
+
+{% step %}
+
+#### Step 10: Review Connection Details
+
+Click the Netmera app to review connection details such as:
+
+#### Information
+
+* Connected on
+* MCP Server URL
+* Authorization supported: OAuth
+* Authorization used: OAuth
+* Developer mode status
+
+#### Actions
+
+* **Disconnect** — remove the connection
+* **Refresh** — refresh the connection
+
+#### Preferences
+
+* **Reference memories and chats** — allows ChatGPT to reference previous chats and memories while interacting with Netmera data.
+  {% endstep %}
+  {% endstepper %}
+
+{% hint style="success" %}
+
+### Setup Complete
+
+You can now access Netmera data directly from ChatGPT through MCP integration.
+{% endhint %}
+
+### Connection Management
+
+**Disconnect the Connection**
+
+Go to Settings → Apps → Netmera → Disconnect
+
+**Refresh the Connection**
+
+Go to Settings → Apps → Netmera → Refresh
+
+**Disable Developer Mode**
+
+Go to Settings → Apps → Advanced settings and disable the Developer mode toggle.
+
+{% hint style="info" %}
+Existing Netmera connections will continue to work, but you will no longer be able to add new custom connectors.
+{% endhint %}
+
+### ChatGPT MCP Limitations
+
+* Developer Mode is required to add custom connectors.
+* Custom MCP connectors are not reviewed by OpenAI and may introduce potential security risks.
+* OAuth authentication is required. Basic authentication is not supported.
+* ChatGPT MCP support currently operates as a beta/developer feature.
+* Error and debugging information may be more limited compared to Claude.
+
+### Frequently Asked Questions
+
+**Is Developer Mode safe?**
+
+Developer Mode allows connections to custom MCP servers that are not reviewed by OpenAI.
+
+Only connect to trusted MCP servers, such as Netmera.
+
+**Do I need to accept the “I understand and want to continue” warning?**
+
+Yes. ChatGPT requires confirmation before connecting to custom MCP servers.
+
+**What should I do if the connection is disconnected?**
+
+Go to: Settings → Apps → Netmera → Refresh. Re-authentication may be required.
+
+**Can I use MCP with the free ChatGPT plan?**
+
+No. MCP/Apps support requires a ChatGPT Plus, Pro, or Team subscription.
+
+**What happens if I disable Developer Mode?**
+
+Existing Netmera connections will continue to work, but you will not be able to add new custom connectors.
+
+**Why is email verification required?**
+
+For security purposes, Netmera may require email verification during the first OAuth authentication flow.
+
+### Security Notes
+
+* Custom MCP connectors are not reviewed by OpenAI.
+* OAuth tokens are securely stored by the platform.
+* ChatGPT only accesses data allowed by your granted permissions.
+* You can disconnect the integration at any time.
+* Review the “Reference memories and chats” setting carefully before enabling it.
+
+### Troubleshooting
+
+**"Developer mode required” Error**
+
+Enable Developer Mode from Settings → Apps → Advanced settings
+
+**"Connection failed” Error**
+
+Verify that the MCP Server URL is correct:
+
+```
+https://ai.netmera.com/ai/mcp
+```
+
+Also make sure your internet connection is active.
+
+**OAuth Flow Does Not Complete**
+
+* Disable pop-up blockers
+* Check browser cookie settings
+* Make sure your Netmera account is active
+
+**The App Does Not Appear in the List**
+
+* Refresh the page
+* Reopen the Apps menu
+* Sign out and sign back into ChatGPT
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/ai-features/connect-netmera-to-chatgpt.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

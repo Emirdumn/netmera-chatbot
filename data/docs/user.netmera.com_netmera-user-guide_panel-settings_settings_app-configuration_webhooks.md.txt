@@ -1,0 +1,118 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration/webhooks.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration/webhooks.md).
+
+# WebHooks
+
+`Settings > App Configuration> WebHooks > Create New WebHook`
+
+**WebHooks** emerges as your bridge between Netmera and the wider digital landscape. Imagine a virtual messenger that carries insights, triggers, and actions between your Netmera hub and external applications, all in real-time.&#x20;
+
+Therefore, it is a mechanism that **allows you to send information from Netmera to an external web application or service in real-time.** It is a way to integrate your Netmera application with other systems, and it enables you to trigger actions in your external application based on certain events or data changes in Netmera.
+
+{% hint style="info" %}
+**Tip:**
+
+For example, let's say you want to track and analyze user interactions with push notifications sent from Netmera. You could create a **WebHook** that triggers when a user clicks on a push notification (**Push Click** event). This WebHook could then send data about the click event to an external analytics system for further analysis and reporting.
+{% endhint %}
+
+### Create New WebHook
+
+**WebHook Name**
+
+A user-defined name to identify the WebHook within the Netmera Control Panel and reports. This name is used for organizational purposes and does not affect the functioning of the WebHook.
+
+**WebHook URI**
+
+The URL (Uniform Resource Identifier) to which Netmera will send the WebHook data. This URL should point to the endpoint of the external web application or service that will receive the WebHook data. (Put parameters in braces as shown in placeholder. After validating params, you will need to enter corresponding labels which are used while composing notification.)
+
+**Request Method**
+
+The HTTP method to be used when sending the WebHook request. In this case, it is `GET`, meaning that the WebHook will be triggered with an HTTP GET request to the specified URI.
+
+**Trigger Type**
+
+The type of event or action that will trigger the WebHook. In this case, the available options are:
+
+* **Push Click:** The WebHook will be triggered when a user clicks on a push notification.
+* **Message Log:** The WebHook will be triggered when a message log event occurs.
+* **Geofence:** The WebHook will be triggered when a geofence event is detected.
+
+**Select Event**
+
+If **Event** is chosen as the trigger type, this field allows you to select a specific event (e.g., a particular push notification or geofence) that will trigger the WebHook.
+
+<figure><img src="/files/QUfLZXFsTIzvmlBtqnZX" alt=""><figcaption><p>WebHooks</p></figcaption></figure>
+
+{% hint style="info" %}
+**Example:**
+
+You may want to track user interactions with specific product categories. You can set up a WebHook to trigger when a user views a product detail screen. You can then use the "Context Parameter" option to include the product category as a header value, which is taken from the context of the viewed product. This way, the external system receiving the WebHook can analyze user interests in different product categories.
+{% endhint %}
+
+**WebHook Headers**
+
+These are HTTP headers that can be included in the WebHook request. They can carry additional information or authentication data for the external application to process.
+
+1. **Context Parameter:** When using the "Context Parameter" option for a header, the value of the header will be taken from the context of the specific event that triggered the WebHook. The context could be related to a user's profile attribute, device attribute, or any other relevant data specific to the event. This allows you to pass dynamic information based on the event.
+2. **Fixed Value:** When using the "Fixed Value" option for a header, you provide a static value that will be sent as the header value in every WebHook request. This means that the same value will be used regardless of the specific event that triggered the WebHook. It is useful when the header value is constant for all WebHook requests.
+
+{% hint style="info" %}
+**Key:** The name of the header parameter.&#x20;
+
+**Value Source:** Specifies how the value of the header parameter will be determined. It can be taken from the user's profile attribute, device attribute, or a fixed value.&#x20;
+
+**Value:** The actual value of the header parameter.
+{% endhint %}
+
+{% hint style="warning" %}
+**Important Note:**
+
+In some cases, you may need to **authenticate** the WebHook requests by including an **API key or authentication token** in the request headers. In this scenario, you can use the **"Fixed Value"** option to provide the API key or token as a static value in the header. This ensures that all WebHook requests carry the required authentication, regardless of the specific events that trigger them.
+{% endhint %}
+
+<figure><img src="/files/vKBRuegBxXciCd8qdRDE" alt=""><figcaption><p>WebHook Headers</p></figcaption></figure>
+
+**WebHook Parameters**
+
+These are additional parameters that can be included in the WebHook request. Like headers, they can also carry specific data related to the event that triggered the WebHook.
+
+<figure><img src="/files/AGCQauhsmekAqgo1weQr" alt=""><figcaption><p>WebHook Parameters</p></figcaption></figure>
+
+{% hint style="info" %}
+**Key:** The name of the parameter.&#x20;
+
+**Value Source:** Specifies how the value of the parameter will be determined. It can be taken from the user's profile attribute, device attribute, or a fixed value.&#x20;
+
+**Value:** The actual value of the parameter.
+{% endhint %}
+
+**Sample Request**
+
+A sample request is provided as a cURL command that demonstrates how the WebHook request will be made. The `${hook.url}` is a placeholder that will be replaced with the actual WebHook URI when the request is sent.
+
+<figure><img src="/files/VFODjw4r2FqLEi2YSEzs" alt=""><figcaption><p>Sample</p></figcaption></figure>
+
+Overall, creating a WebHook in Netmera enables you to extend the functionality of your application by integrating it with other services, automating workflows, and gaining deeper insights into user behavior.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration/webhooks.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

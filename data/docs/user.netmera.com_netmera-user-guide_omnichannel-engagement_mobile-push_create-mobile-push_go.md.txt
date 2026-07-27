@@ -1,0 +1,65 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/go.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/go.md).
+
+# Go
+
+**GO!** stage provides a summary of your campaign setup and allows you to **test and finalize your push notification** before sending it to your audience. At this stage, you can review all configuration details, including:
+
+* **Message Content (What)** – the content or parameters you defined.
+* **Selection Criteria (Who)** – the target audience filters and segments you selected.
+* **Schedule (When)** – the delivery time and delivery settings.
+
+{% @arcade/embed flowId="C6Oq0KzcSRpnKDP5Dlk3" url="<https://app.arcade.software/share/C6Oq0KzcSRpnKDP5Dlk3>" %}
+
+<figure><img src="/files/Whr41KMUZmBUwmsflk3e" alt="" width="563"><figcaption><p>Step 5: GO!</p></figcaption></figure>
+
+Message content (What), selection criteria (Who), and schedule (When) all of which you have set before can be checked before sending your notification to your audience. If you notice any details that need adjustment, click the **Change** button next to the relevant section to return and edit it easily.&#x20;
+
+<figure><img src="/files/ER9P74jt6xvm2AHAk3vE" alt="" width="563"><figcaption><p>Step 5: GO!</p></figcaption></figure>
+
+### Test on Device
+
+On the right side of the page, you can preview how your push notification will appear on both iOS and Android devices. Before launching your campaign, you can test your notification on your **registered test devices** or only on **your personal test device**, which can be managed under **Settings >** [Test Devices](/netmera-user-guide/panel-settings/settings/administration/test-devices.md)
+
+{% hint style="info" %}
+Testing your notification on multiple devices allows you to check how it appears across different operating systems, device types, and screen sizes. This helps you identify any potential display or content issues before sending the notification to your entire audience, ensuring a consistent and high-quality user experience.
+{% endhint %}
+
+{% columns %}
+{% column width="50%" %}
+
+<figure><img src="/files/LxqbgAeCZctwNyKiJiXN" alt=""><figcaption></figcaption></figure>
+
+{% endcolumn %}
+
+{% column width="50%" %}
+
+<div align="center"><figure><img src="/files/BHpgIZCkWP6clTP8qfoA" alt="" width="375"><figcaption></figcaption></figure></div>
+
+{% endcolumn %}
+{% endcolumns %}
+
+After checking the details and testing on your device, it's finally time to send your notification to your audience. Just click on "Send" and wait for your Reports!
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/go.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

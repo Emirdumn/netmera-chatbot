@@ -1,0 +1,115 @@
+URL: https://user.netmera.com/netmera-user-guide/security/api-key-security-and-safeguards.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/security/api-key-security-and-safeguards.md).
+
+# API Key Security & Safeguards
+
+Most issues come from REST API keys being exposed or panel accounts being accessed by the wrong person. The impact is highest when a key can trigger messaging actions. This page explains how Netmera keys work and how to lock them down.
+
+### API Key Architecture (SDK vs. REST)
+
+Netmera uses a split model. **SDK keys** and **REST API keys** have different scopes and use cases.
+
+#### SDK key (client-side)
+
+* Used by the Netmera SDK in your apps.
+* Expected to be present in the application bundle.
+* Do not rely on it for privileged operations.
+
+#### REST API key (server-side)
+
+* Used for server-to-server integrations.
+* Not required for any in-app use case.
+* Don’t embed it in a mobile app or web frontend.
+
+{% hint style="warning" %}
+If a REST API key is shipped in a client app, it can be extracted. Reduce the blast radius with REST API IP whitelisting.
+{% endhint %}
+
+### Key Generation & Storage Model
+
+* Keys are generated when a specific panel user requests them for a specific app.
+* Keys are not stored in plaintext. Access is controlled by panel authorization.
+* Different users of the same app may see different keys. This does not change permissions. It helps you trace an exposed key back to a panel account.
+
+### REST API IP Restriction (Whitelist)
+
+Restrict REST API usage with an **IP whitelist**. This blocks requests from unknown networks, even if a valid key leaks.
+
+{% hint style="info" %}
+Use a small set of stable outbound IPs. Example: your API gateway, VPN egress, or a dedicated NAT.
+{% endhint %}
+
+### Panel Access & Security Options
+
+API keys are accessible only through the Netmera panel. Lock panel access down first.
+
+1. **Email/SMS OTP**: Users must enter a one-time password to access the panel/app. (For more details on authentication, see [General](/netmera-user-guide/panel-settings/settings/administration/general.md#control-panel) )
+2. **IP-Restricted User Login**: Allows access only from approved IP ranges (e.g., a company VPN/network).
+3. **Domain-Restricted User Login:** Limits panel user creation and access to specific email domains, ensuring only users from approved domains can access the app.
+
+#### Additional Panel Authorization Controls:
+
+* Role-Based Access Control: API key visibility can be restricted by panel roles.
+* Approval Mechanism (Approver): Message sending can be configured to require approval. Messages are not sent unless an authorized approver confirms the action.
+
+For roles and approval flows, see [Roles and Permissions](/netmera-user-guide/panel-settings/settings/administration/roles-and-permissions.md).
+
+{% hint style="success" %}
+
+### Recommended Setup
+
+{% stepper %}
+{% step %}
+**Keep REST API keys server-side only**
+
+Do not ship REST keys in mobile apps. Do not use them in browser JavaScript.
+{% endstep %}
+
+{% step %}
+**Enable REST API IP whitelisting**
+
+Allow only your backend outbound IPs.
+{% endstep %}
+
+{% step %}
+**Enforce stronger panel authentication**
+
+Enable Email/SMS OTP in [General Settings](/netmera-user-guide/panel-settings/settings/administration/general.md).
+{% endstep %}
+
+{% step %}
+**Reduce who can view keys**
+
+Use roles to limit API key visibility. Keep “admin” access rare.
+{% endstep %}
+
+{% step %}
+**Require approvals for message sending (optional)**
+
+Turn on Approver if you have multiple operators.
+{% endstep %}
+{% endstepper %}
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/security/api-key-security-and-safeguards.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

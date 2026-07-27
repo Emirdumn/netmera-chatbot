@@ -1,0 +1,269 @@
+URL: https://user.netmera.com/netmera-user-guide/beginners-guide/faqs.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/beginners-guide/faqs.md).
+
+# FAQs
+
+Explore the topics below to get the most out of your experience with Netmera. If you have any further inquiries, feel free to reach out to our support team for prompt assistance.
+
+### API
+
+#### Can the "getDevice" service be used via the API for bulk audiences (to send SMS to users who could not receive Push Notifications)?&#x20;
+
+This cannot be done. Instead, you can provide daily exports via [**FTP**](/netmera-user-guide/messaging-features/ftp-push-and-imports.md) to the customer. Alternatively, our panel supports a "fallback" mechanism for SMS sending to users who did not receive the push. While you're creating your notification on step "What" you may set up fallback mechanism.
+
+<figure><img src="/files/0EmbK5OGCuQIdARbc4Px" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Can the user limit (maximum number of times a push is delivered to a user) be set via the REST API?&#x20;
+
+No, the user limit cannot be set via the REST API.&#x20;
+
+### Push Notifications
+
+#### Is there an "Add Buttons" feature for push notifications sent through the API-CRM?&#x20;
+
+No, adding the "Add Buttons" (interactive) feature cannot be done via the API. However, it is possible to add the interactive feature for push notifications created within the Netmera Panel. Please refer to [Broken mention](broken://pages/chlrIUKvjfOwocFu8wSv).
+
+#### Is there a system to alert or inform us in case of issues with push notifications (such as delivery failure or unreachability)?&#x20;
+
+Yes, we have a system in place. In case of rare issues with push notifications, our operations team receives alerts and communicates with the customers to provide relevant information.
+
+#### When "Send All" is selected for push notification in the Netmera panel, does it reach all users, including those who were not integrated with Netmera?&#x20;
+
+No, "Send All" does not reach users who were not integrated with Netmera before. Segments should be used to target those users. Please refer to [Broken mention](broken://pages/xNC4H15bplYGvAIMWDre).
+
+#### Can bulk messages be stopped midway?
+
+Yes, bulk messages can be stopped midway. This is done by our operations team. Additionally, it is possible to [**recall**](/netmera-user-guide/messaging-features/recall-sent-messages.md) a push notification from the panel.
+
+#### Is there a feature to recall push notifications sent via the web?&#x20;
+
+No, our web push notifications are sent through Google CDN, so recalling them is not possible.
+
+### Email
+
+#### What are the send mail quotas related to mail sending in the system?
+
+Amazon SES is the platform where you manage your sending quotas. There are two main quotas are set by Amazon SES and the exact number of email quotas change for each account.
+
+* **Total number of emails that can be sent within 24 hours:** This is the overall limit for the number of emails that can be sent in a 24-hour period. <br>
+* **Number of emails that can be sent per second:** This represents the maximum rate at which emails can be sent in one second.&#x20;
+
+<figure><img src="/files/FPPe5xt3Fa6k6NXLigI4" alt="" width="563"><figcaption><p>Sample Sending Limit on Amazon SES</p></figcaption></figure>
+
+Above you may see a **sample** sending limits image on Amazon SES Account dashboard. In order to monitor your own sending quotas using the Amazon SES console please see the following document.&#x20;
+
+[**Monitoring your Amazon SES sending quotas**](https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas-monitor.html)
+
+### Events
+
+#### Do funnels provide data on a device or user basis?
+
+The panel provides device-based data in funnels. If you export the data using tagging, it provides user-based data.
+
+#### Is there a limit for event attributes?&#x20;
+
+Yes, there is a limit for event attributes. The maximum number of attributes is 25, with varying limits for different data types.
+
+#### Why does my Event Values change over time?
+
+When filtering for the same event over the same date range on different days, you might notice variations in the reported values. This is due to how our system manages offline events:
+
+1. **Offline Event Handling:** When a user logs in while offline, the event is recorded with the correct timestamp and stored locally.
+2. **Synchronization:** Once the device reconnects to the internet, or when the user logs in again, these offline events are sent to our database.
+
+As a result, you may see an increase in event values over time as offline events are processed and added to the data. This means that values for the same date range may grow as more data becomes available. The benefits of this approach are:
+
+* **Maintain Data Accuracy:** By recording events with their original timestamps, we ensure accurate reflection of all user actions, even if they occur while offline.
+* **Enhance Reliability:** Storing events locally prevents data loss during temporary connectivity issues, providing a more complete view of user interactions.
+
+This method allows us to deliver accurate and reliable data, accommodating users' varying connectivity conditions.
+
+### Funnels
+
+#### Why do I see some variations of data in a Funnel?
+
+To improve page performance, we use a calculation module that processes data efficiently. As a result, some variations in data may occur as the number of events and users in a funnel increases. These variations can appear both positively and negatively.&#x20;
+
+For instance, adding a single event to a funnel might show a different user count compared to when additional events are included. The user count can decrease or increase **slightly** as more steps or data are added.
+
+{% hint style="info" %}
+**The level of discrepancy in your funnels:**\
+The level of discrepancy is generally very low. For large funnels with 1,000,000 or more users, discrepancies may range from **0.08%** to **0.4%**. For funnels with around 500,000 users, discrepancies are typically between **0.006%** and **0.05%**. The discrepancy decreases as the user count in the funnel decreases.
+{% endhint %}
+
+Despite these minor variations, the standard level of discrepancy is very low, and the funnel data remains highly reliable for analysis. If exact user data is required, **you can export the data to obtain precise figures.** The export provides accurate information not affected by the on-screen display discrepancies.
+
+**Note on Exported Data:**
+
+In cases where export data appears shows lower data than on-screen Funnel page, there are a few potential reasons:
+
+1. **Standard Discrepancy:** The discrepancy might be more noticeable in export data due to the upward variation compared to the on-screen data. This means that the export may sometimes show less data than the on-screen display.
+2. **Excluded User Data:** If users who previously triggered events are no longer registered in the system (e.g., they have been removed or their data has been deleted), their information will not appear in the export. Consequently, if tags or external IDs are used for export, the data will not include them because these users are no longer available.
+
+### Cookies
+
+#### How can I distinguish Netmera's cookies?
+
+Netmera's cookies start with **"*****n*****"**. Additionally, Netmera now uses local storage instead of cookies. All the cookies used by Netmera are shared on the relevant page.
+
+### Catalog Messages
+
+#### When creating a catalog message, the catalog scenarios are not available. How can I access them?&#x20;
+
+Under the [**Settings -> General** ](/netmera-user-guide/panel-settings/settings/administration/general.md)section, set the "Category" to "E-commerce" or "Media" to enable the catalog scenarios.
+
+### Location
+
+#### What happens when a push with Time Zone setting is sent to a user who does not provide location information?
+
+Our SDK retrieves the timezone information from the user's device and performs the necessary actions based on that information. Whether or not the user provides location information does not affect the process.
+
+### File Uploads
+
+#### Why Turkish characters aren't displaying properly on the Panel after uploading a new file?
+
+To ensure Turkish characters appear correctly after uploading your files to Netmera, ensure they are encoded in **UTF-8** format before uploading them to the panel. This will resolve any issues with character rendering.
+
+### Uninstall App
+
+#### How does Netmera determine if a user has uninstalled the app?
+
+We have two methods to collect uninstall data:
+
+1. Google and Apple services share uninstall data with Netmera, allowing us to obtain the information.
+2. We can also determine the uninstall status of users through silent pushes. If the silent pushes do not reach the user (e.g., due to the device being in airplane mode or having no internet connection), the user is not marked as uninstalled. You may refer to[General](/netmera-user-guide/panel-settings/settings/administration/general.md#uninstall-tracking) for settings.
+
+#### Why is my Uninstall Data Increasing on Android Devices?
+
+At Netmera, we receive device token information for your apps through Firebase Cloud Messaging (FCM). Tokens from devices that haven't connected to FCM for over 270 days become invalid. These tokens are linked to passive devices, which have likely been inactive for a long time. Messages sent to these old tokens won't be delivered.
+
+Reasons for inactive tokens:
+
+* Devices lost, destroyed, or forgotten
+* Long periods of inactivity
+
+If a token is inactive for 270 days, FCM marks it as invalid. Once a device reconnects, it gets a new token, and Netmera assigns a new installation ID. This process can lead to higher uninstall numbers, as previously successful message deliveries to these old tokens are now counted as failures. However, this change specifically impacts **Android** **devices inactive for 270+ days.**
+
+### Deeplinks
+
+#### Can we send push notifications with different deeplinks for each user who interacts with the push notification using deeplinks?
+
+No, such a feature is not currently available in Netmera.&#x20;
+
+### Geofence
+
+#### Is it possible to send a push notification to a geofence via the REST API?
+
+No, it is not possible to send push notifications to a geofence via the REST API. However, you can create a geofence using the REST API.
+
+### Segments
+
+#### When do segments become inactive?
+
+Segments become inactive if no triggers occur for a segment within ***90 days.***
+
+#### Can an active segment become inactive even if it is included in an active push notification?&#x20;
+
+Yes, if a segment does not trigger a send via a push notification, even if the push notification is active, the segment becomes inactive.
+
+### Web
+
+#### How does Netmera track anonymous users on the web?
+
+Netmera uses cookies and browser-based user identification methods to track anonymous users on websites. Anonymous users are tracked with user IDs assigned to their browsers, which remain anonymous until the user logs in (or until an external ID is assigned). These user IDs persist as unique identifiers on the user’s browser until cookies are cleared.&#x20;
+
+Additionally, opt-in or opt-out mechanisms can be tracked via these user IDs, and web push notifications can be sent based on them. Anonymous users are associated with events (e.g., page visits, product views, searches), enabling the creation of segments for personalized notifications or experiences.
+
+#### Can Netmera identify the source of traffic on the web?
+
+Yes, Netmera can track traffic sources through UTM parameters. These parameters can be sent to Netmera as events or attributes, providing insights into where users are coming from.\
+For example:
+
+* UTM parameter: `utm_source=facebook&utm_campaign=blackfriday`\
+  This information is stored as an event, allowing users to be segmented based on campaign data.
+
+#### Can search bar activity be tracked using events?
+
+Yes, developers can trigger events with specific data when actions such as pressing the search button occur. For example, when a user performs a search (e.g., searching for hotels), an event is triggered, and the search query can be passed as an event attribute to track the search activity. For more details, visit: [Netmera Developer Guide - Fire Events](https://user.netmera.com/netmera-developer-guide/targeting/events/fire-events).
+
+#### Which web events can I track?
+
+* **Open App**: Triggered when the user visits the website.
+* **Install (First Open) App**: Triggered when the user visits the website for the first time.
+* **Fancy Box Shown**: Triggered when the Fancy Box (a pop-up asking for push notification permission) is displayed to the user.
+* **Fancy Box Accept**: Triggered when the user clicks the "Accept" button on the Fancy Box.
+* **Fancy Box Later**: Triggered when the user clicks the "Later" button on the Fancy Box.
+* **Enable Push**: Triggered when the user grants push notification permission.
+* **Disable Push**: Triggered when the user denies push notification permission.
+* **Click Push**: Triggered when the user clicks on a sent push notification.
+* **Widget Shown Web**: Triggered when a sent widget is displayed to the user on the website.
+* **Widget Action Web**: Triggered when the user clicks a link or a deeplink within a widget displayed on the website.
+
+### Widgets
+
+#### Are there any restrictions for visual elements (images) in widgets?&#x20;
+
+If you encounter issues with your widget displays, ensure that the file uploaded to your widget design is **below 1 MB** to optimize performance and compatibility.
+
+#### Are there any restrictions for video elements in widgets?&#x20;
+
+The video size should not exceed 12 MB.
+
+### Export Data
+
+#### How can we retrieve the information of users who can be reached via push notifications?
+
+Generally, the information of targeted users can be obtained by exporting them from the Targeting > Segment section. By creating a segment and exporting the data, you can access the information.
+
+### Netmera SDK
+
+#### What are the default behaviors tracked and reported by the Netmera SDK?&#x20;
+
+The Netmera SDK tracks and reports various behaviors, including app installations, app openings, time spent in the app, push receipts, push opens, push dismisses, geofence enter/exit actions, location updates, actions taken inside web views presented by Netmera, log events (for errors), and more. You may visit [Netmera Events](/netmera-user-guide/customer-data/events/netmera-events.md) for more information.
+
+### Panel Security Details
+
+#### What is the default password expiration policy in Netmera?
+
+The default password expiration period is set to **90 days**, requiring users to update their passwords every 90 days.
+
+#### Can the password expiration period be customized?
+
+Yes, customers can modify the password expiration period on an **app key** or **user-specific** basis. To make these changes, they need to contact Netmera Support or their Customer Success Manager (CSM).
+
+#### What happens if a user does not log in for 30 days?
+
+If a user does not log in for **30 consecutive days**, the system will prompt the user to reset their password when they log in for the first time after this period.
+
+#### How long does an inactive session remain open in the Netmera panel?
+
+If no activity occurs in the Netmera panel, the session will automatically time out after **30 minutes** of inactivity. The user will need to sign in again to continue using the panel.
+
+#### How do I keep my session active without automatic logout?
+
+Select the **"Keep Me Logged In"** option at login. This keeps your session active without automatic logout, so you can maintain continuous access until you decide to log out manually.
+
+<figure><img src="/files/JZ7C5uvA85EAgk0yuUe3" alt="" width="321"><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/beginners-guide/faqs.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

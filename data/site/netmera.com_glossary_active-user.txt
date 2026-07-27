@@ -1,0 +1,277 @@
+URL: https://netmera.com/glossary/active-user/
+
+What is Active User? - Explained by Netmera
+
+AI did the predicting, and Journeys did the convincing. UPTION's churn fell 16.6%. →
+
+ 
+
+ 
+
+			Skip to content		
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Login
+
+Get a Demo
+
+    Copy .SVG
+  
+
+    Media Kit
+  
+
+    Newsroom
+  
+
+ 
+
+ 
+
+Back to Glossary
+
+Active User
+ 
+
+What is Active User?
+ 
+
+Active User refers to people who regularly use products or services in the customer lifecycle. 
+The most important features that distinguish active users from other users are; a certain period and a meaning-dependent use. There are daily, weekly, and monthly active users.
+1. Daily Active Users (DAU):
+ 
+Users interact with the product or the service on a daily basis.
+2. Weekly Active Users (WAU):
+ 
+Users interact with the product or the service on a weekly basis.
+3. Monthly Active Users (MOU):
+ 
+Users interact with the product or the service on a monthly basis. 
+ 
+
+Why We Measure Active Users
+ 
+
+Brands monitor active users to gain an understanding of how many people use their website or app on a daily, weekly, or monthly basis. This accurate calculation benefits brands by helping them measure growth, track consumer behavior patterns and improve customer engagement. 
+ 
+
+Remember that each active user wandering around your website or application is a potential customer for you to convert. Measuring active users can help you understand how many potential customers you have to engage and convert. Calculating monthly active users is important for many businesses because it is an indication of whether the business’ 
+retention rate
+ is healthy or not.
+ 
+But, more than looking and tracking active users what is needed – is to track the performance and growth of businesses. 
+ 
+
+What's The Difference: Users vs. Active Users?
+ 
+
+Active users are calculated by counting each user uniquely. So, if a single user is active multiple times daily, they will be counted as one. However, an application also has inactive users who have installed the application but have not used it for the selected period. Counting active users allows businesses to differentiate between active and inactive users within an app. 
+ 
+
+How To Measure Active Users
+ 
+
+–
+ Define the parameters for identifying an engaged user. 
+–
+ Specify the time frame of interest for analysis, such as a day, week, or month.
+–
+ Gather data and calculate the total count of distinct users who fulfill the requirements for an active user during each designated time period.
+ 
+
+Get the latest growth insights
+
+ 
+
+ 
+
+Subscribe to our newsletter
+ 
+
+ 
+
+Products
+ 
+
+Customer Data Management
+
+Customer Journeys
+
+AI Site Search & Browse
+
+Web Personalization
+
+Testing and Experimentation
+
+Data & Analytics
+
+Tagless Data Capture
+
+Surveys & Feedback​
+
+Funnels
+
+Channels
+ 
+
+Mobile & Web Push
+
+E-Mail
+
+SMS
+
+Whatsapp
+
+Mobile In-App
+
+Web Pop-Ups
+
+Live Activities
+
+Feedback Button
+
+Netmera AI
+
+Industries
+ 
+
+Media and Entertainment
+
+Banking and Finance
+
+Retail and E-commerce
+
+Travel and Hospitality
+
+Telecommunication
+
+Company
+ 
+
+About Us
+
+Careers
+
+Contact Us
+
+Partners
+
+Why Netmera
+
+Newsroom
+
+Information for AI
+
+Resources
+ 
+
+Blog
+
+Glossary
+
+Top Use Cases
+
+Resources
+
+Success Stories
+
+Developer and User Guide
+
+ 
+
+© 2026 — 
+Netmera
+. All Rights Reserved.   |   
+Privacy Policy
+   |   
+Cookie Policy (EU)
+   |   
+GDPR
+   |   
+KVKK
+ 
+
+Linkedin
+
+ 
+
+Youtube
+
+ 
+
+ 
+
+ 
+
+Manage Cookie Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+						Always active					
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+
+Deny
+
+View preferences
+
+Save preferences
+
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent

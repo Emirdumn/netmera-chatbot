@@ -1,0 +1,222 @@
+URL: https://user.netmera.com/netmera-user-guide/targeting/file-transfers.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/targeting/file-transfers.md).
+
+# File Transfers
+
+Netmera's File Transfer simplifies the process of updating and managing user data for campaign targeting. This flexible feature supports various upload types, enabling efficient segmentation, tagging, and permission synchronization.
+
+#### Navigation Path
+
+**Targeting > File Transfers > File Type > Upload**
+
+1. **Navigate to Targeting:** Access the **Targeting** section from the left-hand menu in your Netmera panel.
+2. **Access File Transfers:** Click on **File Transfers** to open the upload interface.
+3. **Choose File Type:** Select the appropriate file type depending on your goal (e.g., Distribution List, Tag Upload, User Upload).
+4. **Enter List or File Name:** Provide a unique name for the file. This name will appear on the File Transfers screen.
+5. **Select and Upload File:** Choose your file, ensuring it follows the correct format.
+6. **Initiate Transfer:** Click to begin the upload. Netmera will validate and process the data.
+
+{% @arcade/embed flowId="DuC0NXpTEcJARGMerZDU" url="<https://app.arcade.software/share/DuC0NXpTEcJARGMerZDU>" %}
+
+## File Transfer Dashboard
+
+<figure><img src="/files/fZXW0TCmWoRAk70AQDrS" alt=""><figcaption></figcaption></figure>
+
+{% hint style="warning" %}
+
+#### General File Requirements
+
+* The file must be in **.csv** or **.txt** format.
+* Each column must contain a **single data entry**.
+* Avoid unnecessary spacing, headers, or formatting.
+* To avoid character encoding issues (especially with Turkish characters), ensure your files are saved in **UTF-8** format before uploading.
+  {% endhint %}
+
+### Upload Distribution Lists
+
+The Upload Distribution List feature allows you to create and manage lists for targeted distribution. This streamlined process facilitates the efficient organization and utilization of distribution lists for your tailored campaigns.
+
+Used to create audience segments based on user identifiers.
+
+* **List Name:** Unique name used for targeting.
+* **File:** Text file (.txt or .csv)
+
+**Format:** One user identifier per line.
+
+{% file src="/files/1iksBaKpRiC9MA4Anjqq" %}
+
+### Tag Uploads
+
+Used to assign a specific tag to a group of users for segmentation.
+
+* **Tag Name:** The name of the tag to assign.
+* **File:** Text file (.txt)
+* **Format:** Each line should include a single user identifier.
+
+{% file src="/files/jhFXdAAFexb4KLvjsqjF" %}
+
+### User Uploads
+
+Used to update user information with external IDs and tokens.
+
+* **File Name:** Descriptive file name for File Transfers screen.
+* **File:** Text file (.txt)
+* **Format:** Each line should follow the format: `token, externalId`
+
+  ```
+  APA91bGxyz... , user123
+  c2a62iOS... , user456
+  ```
+
+{% file src="/files/k93FnplUXNhW4FElICWF" %}
+
+{% hint style="info" %}
+**Additional Notes**
+
+If your file includes device tokens (used for push notifications), Netmera will automatically identify the platform (iOS or Android) based on the structure of the token:
+
+* Tokens beginning with strings like `APA91bG...` typically represent **Android** devices.
+* Tokens beginning with strings like `c2a62...` are often associated with **iOS** devices.
+* This automatic detection ensures correct routing of notifications without requiring manual platform selection.
+  {% endhint %}
+
+### Email Uploads
+
+{% hint style="warning" %}
+This section allows you to upload a list of email addresses to create or update your audience within Netmera. Please note that this functionality **does not perform İYS permission synchronization**. It is used solely for uploading standard email lists. **If you want to sync with İYS**, see the relevant title.
+{% endhint %}
+
+* **File Name:** Descriptive identifier.
+* **Tag Name (Optional):** For segmenting uploaded users.
+* **File:** Text file (.txt or .csv)
+* **Format:** One email per line.
+
+{% file src="/files/VHLACHWppkWojmAnSAGX" %}
+
+### SMS Uploads
+
+{% hint style="warning" %}
+This section allows you to upload a list of sms addresses to create or update your audience within Netmera. Please note that this functionality **does not perform İYS permission synchronization**. It is used solely for uploading standard sms lists. **If you want to sync with İYS**, see the relevant title.
+{% endhint %}
+
+* **File Name:** Descriptive identifier.
+* **Tag Name (Optional):** For segmenting uploaded users.
+* **File:** Text file (.txt or .csv)
+* **Format:** One phone number per line.
+
+{% file src="/files/muCqkMlAtV9abvAtvG0a" %}
+
+### Promotion Value Uploads
+
+Used to associate a promotion value with specific users.
+
+* **Promotion Name:** Descriptive name for internal tracking.
+* **Promotion Expiry Date:** Format: YYYY-MM-DD
+* **File:** Text file (.txt)
+* **Format:**
+
+  ```
+  externalid, promotionvalue
+  ```
+
+{% file src="/files/x6EWj70rMeB1iBdays3q" %}
+
+<figure><img src="/files/wzuOIj1hRuEOVmQNRGka" alt=""><figcaption></figcaption></figure>
+
+### Geofence Uploads
+
+Used to upload geolocation targeting areas.
+
+* **File:** CSV file only.
+* **Format (semicolon-separated):**
+
+  ```
+  Name;Latitude;Longitude;Radius;Entity Status;Distance Unit;Group
+  ```
+* Processing may take up to 5 minutes.
+
+{% hint style="info" %}
+Each row must contain the following values in the exact order listed below:
+
+1. **Name**: A unique identifier for the geofence. Example: `ShoppingCentre1`, `OfficeBuilding2`.
+2. **Latitude**: The center point’s latitude, in decimal degrees. Example: `40.712776`
+3. **Longitude**: The center point’s longitude, also in decimal degrees. Example: `74.005974`
+4. **Radius**: The radius around the center point that defines the geofence boundary. Example: `500`
+5. **Entity Status**: The operational state of the geofence. Accepted values: `ACTIVE` or `INACTIVE`
+6. **Distance Unit**: The unit for the radius. Accepted values: `METERS` or `KM`
+7. **Group**: A label used to categorize the geofence. Example: `RetailGroupA`, `BusinessGroupB`
+   {% endhint %}
+
+{% hint style="info" %}
+**Example**
+
+```
+ShoppingCentre1;40.712776;74.005974;500;ACTIVE;METERS;RetailGroup
+OfficeBuilding2;34.052235;118.243683;300;ACTIVE;METERS;BusinessGroup
+ParkArea3;37.774929;122.419418;3;ACTIVE;KM;PublicGroup
+```
+
+* Do not change the order of the columns.
+* Do not include additional spaces or line breaks.
+* Processing time may take up to 5 minutes depending on file size.
+  {% endhint %}
+
+{% file src="/files/UkFodgQ6FfkvhGsV5ZI7" %}
+
+## Uploading Email and SMS Data for İYS Sync
+
+When managing **İYS (İleti Yönetim Sistemi)** permissions for email and SMS communication, Netmera supports two key models. Each model defines how consent data is handled and synchronized with İYS.
+
+### İYS Sync Mode
+
+In this mode, Netmera automatically synchronizes user consent data with İYS.
+
+* Consent updates in Netmera (opt-ins or opt-outs) are synced with İYS.
+* İYS confirmations are reflected back to Netmera.
+* See full guide on İYS Sync Mode → [IYS Sync Mode](/netmera-user-guide/customer-data/iys-permissions/iys-sync-mode.md)
+
+### İYS Integrator Mode
+
+In this mode, Netmera acts as an **integrator**, meaning all permission management is led by İYS itself.
+
+* Users’ consent status is validated directly to İYS records.
+* Uploads into Netmera are matched with İYS-confirmed permissions.
+* See full guide on İYS Integrator Mode → [IYS Integrator Mode](/netmera-user-guide/customer-data/iys-permissions/iys-integrator-mode.md)
+
+#### Uploading Email and SMS Data
+
+When uploading contact data for **email and SMS campaigns**, you must include:
+
+* **Consent status** (e.g., opt-in / opt-out).
+* **Consent date** (timestamp required by İYS).
+* **Consent type**&#x20;
+
+Netmera ensures that the uploaded data is validated against İYS records according to the selected mode (Sync or Integrator). Invalid or missing consent data will be rejected to maintain compliance.
+
+For step-by-step instructions, see:
+
+* Uploading Data for İYS Sync → [IYS Sync Mode](/netmera-user-guide/customer-data/iys-permissions/iys-sync-mode.md#contact-upload-with-iys-integration)
+* Uploading Data for İYS Integrator → [IYS Integrator Mode](/netmera-user-guide/customer-data/iys-permissions/iys-integrator-mode.md#step-3-contact-upload-with-iys-integration)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/targeting/file-transfers.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

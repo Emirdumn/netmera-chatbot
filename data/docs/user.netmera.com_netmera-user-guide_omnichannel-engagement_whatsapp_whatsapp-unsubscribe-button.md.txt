@@ -1,0 +1,99 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/whatsapp/whatsapp-unsubscribe-button.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/whatsapp/whatsapp-unsubscribe-button.md).
+
+# WhatsApp Unsubscribe Button
+
+Managing user consent is a critical part of effective and compliant customer communication. The **WhatsApp Unsubscribe** flow enables businesses to respect user preferences while maintaining transparent and trustworthy interactions on WhatsApp.
+
+By allowing end users to unsubscribe directly through WhatsApp messages, this flow ensures that opt-out requests are captured **immediately**, **accurately**, and **without manual intervention**, helping businesses keep consent data up to date.
+
+<figure><img src="/files/EqJRmI3nj2bQf6MNWx53" alt="" width="563"><figcaption></figcaption></figure>
+
+{% stepper %}
+{% step %}
+**Create the WhatsApp template**
+
+Create a WhatsApp message template in your WhatsApp Business account. Add a button using the **unsubscribe link provided by Netmera.**
+{% endstep %}
+
+{% step %}
+**Use the template in Netmera**
+
+After approval, the template becomes available in the Netmera Panel.
+{% endstep %}
+
+{% step %}
+**Send the campaign**
+
+The campaign is delivered with an Unsubscribe button included in the message.
+{% endstep %}
+
+{% step %}
+**User clicks Unsubscribe**
+
+When the user clicks the button, an unsubscribe event is sent to Netmera.
+{% endstep %}
+
+{% step %}
+**Status is updated automatically**
+
+The user’s WhatsApp opt-out status is updated instantly, and the unsubscribe event appears in the user’s event history.
+{% endstep %}
+{% endstepper %}
+
+## How the Unsubscribe Flow Works
+
+### Step 1: Template Creation and Get Approval
+
+Create and approve a WhatsApp template in your WhatsApp Business account that includes a **button**. The button must contain a registered **unsubscribe link you will acquire from Netmera.**
+
+<figure><img src="/files/abLnvxItOzqGa8Pkmic5" alt=""><figcaption></figcaption></figure>
+
+### Step 2: Template Availability In Netmera
+
+Once the template is approved, it becomes available in Netmera Panel.
+
+<figure><img src="/files/40GJpxMNhtzlRLUJLlJ3" alt=""><figcaption></figcaption></figure>
+
+### Step 3: Campaign delivery
+
+When the campaign is created and sent to the end user, the WhatsApp message is delivered with the Unsubscribe button.
+
+### Step 4: User Interaction and Event Tracking&#x20;
+
+If the end user chooses to unsubscribe, they click the Unsubscribe button. This action triggers an event via the unsubscribe link, which is sent to Netmera.
+
+### Step 5: Opt-Out Status Update
+
+As a result, the end user’s **WhatsApp opt-out status** is updated in Netmera, and the **Unsubscribe WhatsApp Event** becomes visible for that user.
+
+<figure><img src="/files/Ukb7tszlhZRZDhY9WbIZ" alt="" width="563"><figcaption></figcaption></figure>
+
+#### What Happens After a User Unsubscribes?
+
+* The user’s WhatsApp opt-out status is updated in Netmera.
+* The user is automatically excluded from future WhatsApp campaigns.
+* The unsubscribe action is recorded as an event for tracking and auditing purposes.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/whatsapp/whatsapp-unsubscribe-button.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

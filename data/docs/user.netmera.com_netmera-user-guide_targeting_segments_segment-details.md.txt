@@ -1,0 +1,167 @@
+URL: https://user.netmera.com/netmera-user-guide/targeting/segments/segment-details.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/targeting/segments/segment-details.md).
+
+# Segment Details
+
+Use **Segment Details** to inspect one segment, understand its audience, and take action from a single view.
+
+This page helps you verify who is in the segment, how large it is, how it performs, and where it is already being used.
+
+**Path:** `Targeting > Segments > Rule Based Segments > Select a Segment`
+
+{% hint style="info" %}
+**Quick steps**
+
+1. Open a segment from the segment list.
+2. Review its definition and audience size.
+3. Check performance metrics and message usage.
+4. Export users or start a campaign if needed.
+   {% endhint %}
+
+### Open Segment Details
+
+To open a segment:
+
+1. Go to **Targeting > Segments > Rule Based Segments**.
+2. Click the segment name.
+
+<figure><img src="/files/uA2TqsP3gI4n2G0bZNsk" alt=""><figcaption></figcaption></figure>
+
+### Segment overview
+
+The overview section shows the core information that defines the segment.
+
+It typically includes:
+
+* **Segment Name** — the segment label used across targeting and reporting
+* **Created By** — the user who created the segment
+* **Created Date** — when the segment was first created
+* **Segment Criteria** — the rule logic that defines membership
+
+<figure><img src="/files/k3oQ9bEMkiuSTxQBRSZU" alt=""><figcaption></figcaption></figure>
+
+Use this section to confirm that the segment still reflects the audience you intended to build.
+
+### Number of users
+
+This section shows how many users currently belong to the segment.
+
+It can also include a platform split, such as:
+
+* **iOS**
+* **Android**
+* **Web**
+
+Use this area to answer quick questions like:
+
+* Is the segment large enough to use?
+* Does the platform mix look correct?
+* Did a recent rule change shrink or expand the audience?
+
+### Status metrics
+
+Status metrics help you understand how this audience behaves and how effective it may be for messaging.
+
+Typical metrics include:
+
+* **Message Sent** — total messages sent to this audience
+* **Push Click Average** — average push engagement rate for the segment
+* **Average Monthly App Opens** — how often users in this segment open the app
+* **Average Time in App** — how long they typically stay in the app
+* **Average Monthly Revenue** — the segment’s average revenue contribution
+
+Use these metrics when you want to compare audience quality before launching a campaign.
+
+For example:
+
+* a segment with high app opens may respond well to frequent messaging,
+* while a segment with low engagement may need a different offer or channel.
+
+### Messages using this segment
+
+This table shows the campaigns and messages that already use the segment.
+
+Typical columns include:
+
+* **Message ID** — the internal message reference
+* **Title** — the campaign or message name
+* **Date** — when the message was created or sent
+* **Status** — whether the message is draft, scheduled, or sent
+
+Use this table to understand where the segment is already active before editing or deleting it.
+
+{% hint style="warning" %}
+
+#### Deleting a segment that is already in use
+
+If a segment is used in one or more messages, you must remove those dependencies first.
+
+To delete the segment:
+
+1. Navigate to the **Messages Using This Segment** section to see where the segment is currently being used.
+2. Either delete the message(s) or remove the segment from the **Step 3: Who** section of the message.
+3. Once the segment is no longer associated with any active messages, you can proceed to delete it.
+   {% endhint %}
+
+<figure><img src="/files/Bxcw8bEqK56DiFDPrdTG" alt=""><figcaption></figcaption></figure>
+
+### Send push
+
+Use **Send Push** to start a push campaign directly from the segment.
+
+When you do this, the segment is already selected in the campaign targeting step. This is useful when you already know the audience and want to move straight into message creation.
+
+### User export
+
+Use **User Export** when you need the segment outside Netmera.
+
+Common reasons to export:
+
+* analyze the audience offline,
+* share the user list with another team,
+* or compare the segment with data in another system.
+
+<figure><img src="/files/DFyhE1zNBTknvOBqYBSS" alt=""><figcaption></figcaption></figure>
+
+### When to use Segment Details
+
+Open this page when you want to:
+
+* validate the audience before a campaign,
+* review how a segment performs over time,
+* check whether the segment is already used in active messaging,
+* or export users for analysis.
+
+### Quick checks before you act
+
+Before you send, export, edit, or delete a segment, verify:
+
+* does the user count look right,
+* does the platform distribution make sense,
+* do the engagement metrics support the campaign idea,
+* and is the segment already attached to other messages.
+
+For the full segment list and management view, see [Rule Based Segments](/netmera-user-guide/targeting/segments/rule-based-segments.md).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/targeting/segments/segment-details.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

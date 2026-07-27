@@ -1,0 +1,604 @@
+URL: https://netmera.com/how-netmera-handles-customer-data-protection-and-security/
+
+How Netmera handles customer data protection and security
+
+AI did the predicting, and Journeys did the convincing. UPTION's churn fell 16.6%. →
+
+ 
+
+ 
+
+			Skip to content		
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Login
+
+Get a Demo
+
+    Copy .SVG
+  
+
+    Media Kit
+  
+
+    Newsroom
+  
+
+ 
+
+Customer data protection at Netmera: GDPR compliance, data ownership, and how it works
+
+Last update
+: May 2026
+
+Your customers trust you with their data. When you integrate a customer engagement platform, that trust extends to how the platform collects, processes, and protects their information. Get this wrong, and the consequences compound: campaigns stall while legal reviews every data flow, security teams block integrations they can’t verify, and expansion into new markets gets delayed by compliance questions no one can answer.
+
+When you integrate Netmera, you remain in control. You define what data gets collected and how it’s used. Netmera processes that data under your instructions to power personalized campaigns, behavioral analytics, and omnichannel messaging. 
+
+See what that means for your marketing, product and legal teams.
+
+Netmera’s role in customer data protection
+
+Under GDPR, two distinct roles exist: 
+the data controller and the data processor
+. The controller decides what personal data gets collected, why it’s needed, and how long it stays. The processor handles the work of storing, organizing, and processing that data based on the controller’s instructions.
+
+Netmera functions as a data processor.
+ When you integrate Netmera’s SDK or APIs, you remain the data controller. Netmera processes customer end-user data 
+strictly under your documented instructions, consistent with GDPR Article 28
+.
+
+So what does “under your instructions” mean in practice? Let’s break it down.
+
+Who controls what: Your data responsibilities vs. Netmera’s
+
+You control:
+
+❖ Which data points your app or website sends to Netmera
+
+❖ What constitutes a trackable event and when it fires
+
+❖ How long customer data stays in the system
+
+❖ Which segments receive which messages
+
+❖ When and how data gets deleted
+
+Netmera handles:
+
+❖ Technical processing infrastructure that stores and organizes data
+
+❖ Message delivery systems across 
+push
+, 
+email
+, 
+SMS
+, and 
+in-app channels
+
+❖ Analytics engines that process behavioral patterns
+
+❖ Security measures protecting data in transit and at rest
+
+This clear controller-processor distinction streamlines compliance documentation by establishing which party documents which aspects of data handling.
+
+What customer data Netmera processes (and why)
+
+Customer data collection through Netmera
+ is intentional. Nothing gets tracked automatically 
+without
+ your team setting it up. You control what flows into your campaigns, analytics, and 
+customer journeys
+.
+
+Behavioral and event-based data
+
+Powers segmentation and automation. The platform tracks screen views, button clicks, purchase completions, and 
+custom events
+ your development team defines. These events feed into behavioral data patterns that segment users, trigger automated journeys, and 
+measure engagement data
+.
+
+Device and technical data
+
+Netmera processes device IDs
+, push tokens, operating system details, device type, and app version information. Push notifications reach the correct devices, analytics can separate iOS from Android user behavior, and campaigns can target users based on which app version they’re running.
+
+Profile attributes
+
+Enable personalization when you choose to use them
+. Name, email, phone number, membership tier, purchase history, or custom fields you define. These come from your CRM, backend systems, data warehouse, or SDK events. You can always update and access profile attributes via SDKs, APIs, or manual uploads. Think of them as the connective tissue between your customer data and your engagement decisions. 
+
+Communication metadata
+
+When Netmera sends a message, the platform logs timestamps, delivery status, open rates, and click-through behavior. This shows which messages users engage with, which channels work for specific segments, and how campaigns contribute to conversions.
+
+Takeaway:
+ Data ownership never transfers. You remain the controller throughout. Netmera processes this information under your instructions to power the campaigns and journeys you build.
+
+How customer data is collected and processed
+
+Data flows into Netmera through these primary methods: SDKs embedded in your applications, APIs connecting your backend systems, and event schemas your team defines.
+
+Data collection methods
+
+SDKs integrated into mobile and web applications
+ handle technical data automatically once installed. The SDK captures device metadata like app version, operating system, device model, and system language without manual tagging. On Android, carrier information flows through as well. iOS restricts this due to platform privacy rules.
+
+(For more details, 
+check our Developer’s Guide for SDK setup
+.)
+
+For teams that want automatic screen view and interaction tracking, 
+tagless data capture
+ works through the SDK as well. Enable this feature, and Netmera collects navigation patterns within predefined rules you set.
+
+Event-based tracking
+ captures user actions you identify through the SDK. Your developers implement events using standard Netmera events or custom events with specific schemas. 
+
+When a user views a product, the SDK reports that event with attributes like product ID and category. When they complete a purchase, another event fires with transaction details you’ve specified. This schema-based model gives you precise control over what gets tracked.
+
+APIs and third-party integrations
+ send data from your existing systems. Profile information from your CRM, transaction history from your data warehouse, or signals from other platforms flow into Netmera based on connections you configure. 
+
+As browsers move toward a cookieless future
+, behavioral data built on external trackers becomes both less reliable and harder to justify under GDPR and KVKK. SDK-based collection removes that dependency. The data flows from platforms you own and control, which means the compliance case for how you collected it is straightforward rather than contingent on third-party cookie policies you don’t govern.
+
+How long customer data is retained (and what happens when you leave)
+
+Data retention duration gets defined in your contract with Netmera
+. You set how long customer end-user data stays in the system based on your business needs and regulatory requirements. 
+
+When your subscription ends or you issue deletion instructions, Netmera follows your choice. Data deletion, return, or anonymization happens according to your directive. When you prefer anonymization to preserve aggregate analytics while removing personal identifiers, we provide it as well.
+
+Takeaway:
+ No customer data remains beyond the agreed retention period or after you’ve requested removal. You maintain control over retention policies throughout the relationship, and that control extends through the exit process.
+
+Data storage, hosting, and regulatory compliance
+
+Netmera doesn’t use a one-size-fits-all hosting model. Storage location and infrastructure adapt based on where your services operate and which regulations apply.
+
+Regional hosting approach
+
+When services target individuals in the EU
+, Netmera processes data in accordance with GDPR even though the company operates from Turkey. This means appropriate safeguards like 
+Standard Contractual Clauses
+ apply for cross-border transfers involving EU residents. 
+
+Cross-border transfers between regions use lawful safeguards. 
+Transfer Impact Assessments
+ happen where regulations require them.
+
+For Turkey operations
+, Netmera processes data on servers located in Turkey to support KVKK requirements. KVKK mirrors many GDPR principles while adding Turkey-specific requirements around data residency and consent management. 
+
+IYS manages electronic communication consent in Turkey
+, and Netmera’s IYS Integration Modes synchronize SMS and email permissions with Turkey’s national consent system.
+
+Financial sector requirements
+
+Financial institutions face additional layers beyond GDPR and KVKK. 
+Turkey’s BDDK regulations
+ distinguish between primary and secondary systems. Whether Netmera falls into these categories depends on the integration type and data processed. Central Bank requirements affect licensed institutions. 
+SPK currently requires Turkey-based hosting
+ for capital markets entities.
+
+A significant portion of Netmera’s customers
+ operate under these financial sector regulations. Our platform supports these requirements through certified hosting options that vary by regulatory scope. Some customers connect through Central Bank-certified cloud infrastructure, others use BDDK-compliant hosting, and some require fully isolated private cloud configurations.
+
+Security measures supporting customer data protection
+
+Netmera implements technical and organizational measures across data transmission, storage, access controls, and monitoring. 
+
+Security measures include:
+
+❖ Encryption for data in transit and at rest
+
+❖ Role-based access controls limiting who sees what data
+
+❖ Network security and intrusion detection systems
+
+❖ Regular vulnerability assessments and penetration testing
+
+❖ Audit logging and monitoring for unusual access patterns
+
+Netmera’s MCP server also follows strict access control principles. Permissions are scoped at the token level, write actions require explicit scope approval, and sends to large audiences are blocked from direct AI execution. User fields containing regulated personal data are masked by design, so AI tools work with profile, event, and message history to surface insights without exposing PII. 
+Learn how Netmera’s MCP server is built.
+
+Independent verification happens through:
+
+❖ External compliance assessments by independent firms
+
+❖ Institutional audits conducted by customer security teams
+
+❖ PwC engagement for GDPR and KVKK alignment verification
+
+❖ Regular internal audits reviewing security protocols
+
+The combination of implemented controls and independent verification gives your security teams concrete answers when they evaluate vendor risk. If you have any questions about these security measures, contact us at 
+info@netmera.com
+. 
+
+Certifications that strengthen Netmera’s customer data processing framework
+
+Netmera holds key ISO certifications
+ that address specific risks your security and compliance teams evaluate.
+
+ISO 27701
+ verifies how Netmera handles personal data throughout its lifecycle. Your legal team asks: Does the vendor follow documented privacy processes? This certification answers yes with audited proof, and typically satisfies the privacy annex requirements in enterprise procurement custom audit.
+
+ISO 27017
+ covers cloud security controls. When multiple customers share infrastructure, how does the platform prevent data leakage between tenants? This standard confirms isolation mechanisms work.
+
+ISO 20000
+ validates service management quality. When incidents happen or changes deploy, documented processes come in. This prevents ad-hoc responses that create security gaps.
+
+ISO 22301
+ proves business continuity planning exists and gets tested. If Netmera’s systems go down, your campaigns stop. This certification shows recovery procedures are documented, tested, and ready.
+
+How data protection becomes your advantage, not your blocker
+
+N Kolay, DenizBank, beIN Media Group, Tam Finans, and Turkcell, among others, trust Netmera to process customer data under GDPR and KVKK requirements. 
+
+Here’s what 
+one enterprise banking customer shared in a G2 review
+: 
+“Netmera is solving our bank’s data accessibility and efficiency problem. Netmera provides a user-friendly interface and offers real-time data visibility, allowing us to easily access all information from a single platform. Additionally, SFTP integration simplifies data collection and makes the process more secure.”
+
+N Kolay manages premium banking membership data while DenizBank uses the platform for loan application flows under BDDK regulations. beIN Media Group handles subscriber data for its streaming platforms. Tam Finans processes customer engagement data for its financial services app. Turkcell runs billions of behavioral events monthly across its digital services. 
+
+➠ 
+See how these companies achieved safe, secure and compliant engagement with Netmera
+.
+
+The data management framework supporting these customers removes friction for your team too.
+
+Marketing teams
+ launch campaigns without waiting on legal reviews for every segment built. Behavioral data flows through documented, compliant methods. When you create a loan application journey or 
+test message timing
+, the underlying data collection already aligns with GDPR and KVKK. You move faster because the compliance foundation exists.
+
+For product teams
+, features ship without triggering separate security assessments for each release. Event tracking, user attributes, and 
+analytics
+ operate within established data processing agreements. Your roadmap doesn’t stall while legal evaluates new data flows.
+
+For CX leaders
+, alignment with legal and security teams becomes straightforward. When stakeholders ask how customer data gets handled, documented answers exist. Processor relationships are clear, retention policies are defined, and security measures get verified externally. You focus on customer experience instead of explaining data processing logistics.
+
+The distinction between controller and processor clarifies who owns what. You define the strategy. Netmera executes it. That division lets you scale compliant customer engagement across regions and channels without rebuilding compliance frameworks from scratch each time.
+
+Already using Netmera and have further questions about data processing scenarios? Evaluating if we’re the right customer engagement platform for your compliance needs? Get in touch with our team at 
+info@netmera.com
+ 
+
+Frequently asked questions
+ 
+about protecting customer data
+
+What role does Netmera play in processing customer data?
+
+down-arrow1
+
+up-arrow
+
+Netmera functions as a data processor under GDPR Article 28. You remain the data controller, defining what data gets collected and how it’s used. Netmera processes customer end-user data strictly under your documented instructions to power campaigns and analytics.
+
+What types of customer data does Netmera collect?
+
+down-arrow1
+
+up-arrow
+
+Netmera processes behavioral events (clicks, purchases, screen views), device metadata (IDs, OS, app version), profile attributes you choose to send (name, email, membership tier), and communication metadata (message timestamps, delivery status, engagement metrics).
+
+How is customer data collected through Netmera?
+
+down-arrow1
+
+up-arrow
+
+Data flows through SDKs integrated into your mobile and web apps, APIs connecting your backend systems, and event schemas your developers define. Tagless data capture offers automatic screen view tracking within rules you configure. All collection requires intentional setup.
+
+How long does Netmera retain customer data?
+
+down-arrow1
+
+up-arrow
+
+Retention duration gets defined in your contract based on business needs and regulatory requirements. Upon subscription termination or deletion instructions, Netmera deletes, returns, or anonymizes data according to your directive. No data remains beyond agreed periods.
+
+Where is customer data stored in Netmera?
+
+down-arrow1
+
+up-arrow
+
+Storage location depends on where your services operate and which regulations apply. Netmera uses Turkey-based hosting for KVKK compliance and applies GDPR safeguards like Standard Contractual Clauses for EU data. Financial sector customers access specialized certified hosting options.
+
+What security measures protect customer data in Netmera?
+
+down-arrow1
+
+up-arrow
+
+Netmera implements encryption for data in transit and at rest, role-based access controls, network security systems, regular vulnerability assessments, and audit logging. Independent verification happens through external compliance assessments, institutional audits, and PwC engagement for GDPR and KVKK alignment.
+
+Is Netmera GDPR compliant?
+
+down-arrow1
+
+up-arrow
+
+Yes. Netmera functions as a data processor under GDPR Article 28, meaning your organization remains the data controller. Netmera processes customer data only under your documented instructions, applies Standard Contractual Clauses for EU cross-border transfers, and is independently verified by PwC for GDPR and KVKK alignment. ISO 27701 certification confirms that personal data is handled according to documented privacy processes.
+
+Burcu Uluçay
+ – Content Marketing, Netmera
+
+ 
+
+Burcu Ulucay
+
+Content Marketing, Netmera
+
+Get the latest growth insights
+
+ 
+
+Prev
+Next
+ 
+
+ 
+
+Subscribe to our newsletter
+ 
+
+ 
+
+Products
+ 
+
+Customer Data Management
+
+Customer Journeys
+
+AI Site Search & Browse
+
+Web Personalization
+
+Testing and Experimentation
+
+Data & Analytics
+
+Tagless Data Capture
+
+Surveys & Feedback​
+
+Funnels
+
+Channels
+ 
+
+Mobile & Web Push
+
+E-Mail
+
+SMS
+
+Whatsapp
+
+Mobile In-App
+
+Web Pop-Ups
+
+Live Activities
+
+Feedback Button
+
+Netmera AI
+
+Industries
+ 
+
+Media and Entertainment
+
+Banking and Finance
+
+Retail and E-commerce
+
+Travel and Hospitality
+
+Telecommunication
+
+Company
+ 
+
+About Us
+
+Careers
+
+Contact Us
+
+Partners
+
+Why Netmera
+
+Newsroom
+
+Information for AI
+
+Resources
+ 
+
+Blog
+
+Glossary
+
+Top Use Cases
+
+Resources
+
+Success Stories
+
+Developer and User Guide
+
+ 
+
+© 2026 — 
+Netmera
+. All Rights Reserved.   |   
+Privacy Policy
+   |   
+Cookie Policy (EU)
+   |   
+GDPR
+   |   
+KVKK
+ 
+
+Linkedin
+
+ 
+
+Youtube
+
+ 
+
+ 
+
+ 
+
+Manage Cookie Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+						Always active					
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+
+Deny
+
+View preferences
+
+Save preferences
+
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent
+
+ 
+
+Manage Cookie Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+						Always active					
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+
+Deny
+
+View preferences
+
+Save preferences
+
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent

@@ -1,0 +1,89 @@
+URL: https://user.netmera.com/netmera-user-guide/web-tools/web-personalization.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/web-tools/web-personalization.md).
+
+# Web Personalization
+
+Web Personalization is for dynamically adapting website content and UI for each visitor. Use it to display targeted banners, product recommendations, or tailored messaging that boosts engagement, conversions, and user satisfaction. Define rules and filters for specific audiences, then publish changes without code deploys.
+
+<figure><img src="/files/pn7RoAwlRhNx4iAijN4c" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+This feature lives under **Web Tools → Experiences → Web Personalization**.
+{% endhint %}
+
+### Start here (most-used topics)
+
+<table data-view="cards"><thead><tr><th>What you want to do</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Understand the dashboard (stop/clone/edit)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/wBMslLz0bbNLI0RRZh3F">/spaces/X6uilbEAw42gqsudlclY/pages/wBMslLz0bbNLI0RRZh3F</a></td></tr><tr><td>Create and publish a new experience</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/k19NEGSvoDY9Vn2aVIAN">/spaces/X6uilbEAw42gqsudlclY/pages/k19NEGSvoDY9Vn2aVIAN</a></td></tr><tr><td>Configure setup + rules (trigger, changes, filters, schedule)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/qaNuaJgCPOI8jfKOqTQY">/spaces/X6uilbEAw42gqsudlclY/pages/qaNuaJgCPOI8jfKOqTQY</a></td></tr><tr><td>Edit the page (CSS/HTML) and publish</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/he1ZlFAmc9KsBttVHEim">/spaces/X6uilbEAw42gqsudlclY/pages/he1ZlFAmc9KsBttVHEim</a></td></tr></tbody></table>
+
+### Quickstart: publish a personalization experience
+
+{% stepper %}
+{% step %}
+
+#### 1) Decide what you will change
+
+Examples: hero banner, CTA text, pricing block, homepage modules.
+{% endstep %}
+
+{% step %}
+
+#### 2) Define who should see it
+
+Use filters like Segment, Tag, device type, page URL, time spent, source URL.
+{% endstep %}
+
+{% step %}
+
+#### 3) Pick trigger + schedule
+
+Use **page load** for most sites.
+
+Use **continuous** for single-page apps.
+{% endstep %}
+
+{% step %}
+
+#### 4) Add changes and edit the page
+
+Select elements on the page and apply CSS/HTML changes.
+{% endstep %}
+
+{% step %}
+
+#### 5) Save and publish
+
+Use preview first.
+
+Then publish and monitor impact.
+{% endstep %}
+{% endstepper %}
+
+### Key concepts (fast)
+
+* **Experience**: one personalization variant with its own rules and changes.
+* **Filters**: who is eligible (segment/tag/device/page/source/etc).
+* **Changes**: what to modify on the page (CSS/HTML edits).
+* **Trigger**: when to apply (page load vs continuous).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/web-tools/web-personalization.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

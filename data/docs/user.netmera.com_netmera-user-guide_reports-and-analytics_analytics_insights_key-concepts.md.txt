@@ -1,0 +1,116 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights/key-concepts.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights/key-concepts.md).
+
+# Key Concepts
+
+Insight Boards is built around a small number of objects that work together: boards hold insights, insights are made of metrics, and metrics measure events. Understanding how these objects relate to each other, and especially which changes affect what, makes everything else in this guide easier to follow. This page introduces each concept, explains how they connect, and clarifies the one distinction that most often causes confusion: the difference between an insight's saved definition and the way it is presented on a board.
+
+### Insights Board
+
+A board is a dashboard: a named page that holds one or more insights and presents them as cards. Boards are created and managed from the Insight Boards page, and each board has a name and an optional description that explains what it tracks.
+
+Boards are organizational containers, not analytical objects. A board does not define any query of its own; it only decides which insights are displayed, in what order, at what size, and with what presentation. This means you can create boards freely around how your team works. A Finance board might collect usage and install metrics for a banking app, a campaign board might track push and email engagement during a send, and a release board might monitor adoption in the days after a version rollout. The same insight can appear on all three.
+
+Boards support quick-access actions from their header: pinning, marking as a favorite, renaming, and deleting. Deleting a board removes the board itself, not the insights placed on it, since those insights are independent objects that may be in use elsewhere.
+
+<figure><img src="/files/irfSHQPGCqved83XVuTw" alt=""><figcaption></figcaption></figure>
+
+### Insight Explore
+
+An insight is a saved analytics query. It is the central object of the feature: everything you build in the Insight Builder is stored as an insight, and everything a board displays is an insight rendered as a card.
+
+An insight's definition consists of:
+
+* One or more metrics, each measuring an event in a particular way.
+* An optional breakdown that splits results by a dimension.
+* A name that identifies the insight when browsing or searching.
+
+The most important property of an insight is that it is reusable. Insights are stored at the app level, not inside a board. When you add an insight to a board, the board references the saved definition rather than copying it. The practical consequences are worth internalizing early:
+
+* The same insight can be placed on any number of boards.
+* Editing an insight's definition, for example changing its event or aggregation, updates every board that displays it.
+* Deleting an insight from the Add Insight dialog removes the saved definition itself, which affects every board using it. Deleting a card from a board, by contrast, only removes that one placement.
+
+When one board needs a variation of an existing query, build a new insight with a new name instead of editing the shared one.
+
+<figure><img src="/files/PkjrknQzFHDiUfQERh6v" alt=""><figcaption></figcaption></figure>
+
+### Metric
+
+A metric is a single measurement inside an insight. It answers one question of the form "how much of this event happened", and it is defined by three choices:
+
+**Event:** The user or system action being measured, selected from your app's event catalog, for example Open App, Install(First Open) App, or View Push. Event attributes can optionally narrow the metric to occurrences that match a condition.
+
+**Measurement source:** What aspect of the event feeds the calculation. The default, Event itself, measures the event's occurrences directly.
+
+**Aggregation:** How occurrences are turned into a number. Two aggregations are available, and choosing between them is the most consequential decision in a metric:
+
+<table><thead><tr><th width="165.062255859375">Aggregation</th><th width="394.388427734375">Question it answers</th><th>Label prefix</th></tr></thead><tbody><tr><td>Event count</td><td>How many times did this event happen in total?</td><td>Count</td></tr><tr><td>Unique users</td><td>How many distinct users triggered this event at least once?</td><td>Uniq</td></tr></tbody></table>
+
+The two aggregations can produce very different numbers from the same event and the same period. Over one 30-day range, Open App can total 950 as an event count while counting only 143 unique users: the app was opened 950 times, by 143 people. Event count reflects activity volume and is sensitive to heavy users; unique users reflects reach and treats every user equally. Which one is right depends on the question, and it is common to build both as separate metrics or separate insights.
+
+An insight can hold multiple metrics, each with its own color that carries through legends and charts. Placing related metrics in one insight puts them on the same chart with the same date range, which makes them directly comparable. Total app opens next to first opens, for example, shows overall usage and new-user arrival in a single view. A metric can also be given a custom display name, which replaces the technical event label in headers and legends and is recommended for boards aimed at non-technical audiences.
+
+### Breakdown
+
+A breakdown splits a metric's results by a dimension, producing one series per segment instead of a single total. Without a breakdown, a metric answers "how much"; with a breakdown, it also answers "distributed how". Breakdowns are added in the Insight Builder below the metric list and apply to the insight's results as a whole.
+
+Use a breakdown when the composition of a number matters as much as the number itself. A total that looks healthy can hide a segment that is declining, and a spike is far easier to diagnose when you can see which segment produced it.
+
+<figure><img src="/files/f823tTRHQo8ARjDmWrlE" alt="" width="307"><figcaption></figcaption></figure>
+
+### Date Range
+
+Every query runs over a date range, selected either from presets, Today, Yesterday, 7D, 30D, 3M, 6M, and 12M, or as a custom start and end date. The range behaves slightly differently in the two places it appears, and the distinction matters:
+
+* In the Insight Builder, the range is part of the working query. All metrics in the insight are evaluated over the same range, so their series stay comparable.
+* On a board card, the range belongs to the card. Each card selects its own period independently, which is how one board can show a 30-day usage trend next to a 7-day campaign view without the two interfering.
+
+<figure><img src="/files/rmwsOkaM7HeY77XFd2A5" alt="" width="375"><figcaption></figcaption></figure>
+
+### Presentation Versus Definition
+
+The final concept is a boundary rather than an object: the separation between what an insight measures and how it is displayed. Everything on the presentation side can be changed freely without touching the saved definition, and different cards can present the same insight differently. Presentation includes:
+
+**Chart type:** Line, Bar, Pie, Number, or Table. The same result set can be a trend line on an analyst's board and a single KPI number on an executive board.
+
+**Granularity:** The size of each time bucket, from 15 minutes to 1 month, within what the selected range allows. Finer granularity reveals intraday patterns; coarser granularity smooths noise.
+
+**Chart settings:** Axis scale, Linear or Log, and line style, Smooth, Straight, or Step. A log scale is the standard tool for keeping a small-volume series readable next to a large one.
+
+**Card layout:** The width of a card on a board, Small, Mid, or Large, and its position, arranged by dragging.
+
+**Refresh behavior:** Manual refresh on demand, or auto-refresh on an interval for live monitoring.
+
+Changes on the definition side, made through Edit Insight, are the ones that propagate: events, attributes, aggregations, metrics, custom metric names, and breakdowns. If you are ever unsure whether a change is safe to make on a shared insight, the test is simple: if it changes the numbers, it is definition; if it changes only how the numbers look on this board, it is presentation.
+
+<figure><img src="/files/VFZWzhQ3algQi79oUwFk" alt=""><figcaption></figcaption></figure>
+
+### How the Pieces Fit Together
+
+Reading the objects top-down: a board displays cards, each card references one insight with its own presentation choices, each insight defines one or more metrics over a shared breakdown and a working date range, and each metric measures one event with a chosen aggregation. Reading bottom-up: events are the raw material, metrics turn them into numbers, insights group the numbers into a reusable query, and boards arrange the queries into a view your team actually reads.
+
+With these concepts in place, the next pages walk through each task in order: creating a board, building an insight in the Insight Builder, working with chart types and display settings, and managing insights on a board.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights/key-concepts.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,44 @@
+URL: https://user.netmera.com/netmera-user-guide/beginners-guide/introduction-to-netmera.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/beginners-guide/introduction-to-netmera.md).
+
+# Introduction to Netmera
+
+**Netmera** empowers businesses to deliver meaningful, data-driven customer engagement across multiple channels. With over a decade of experience, Netmera supports more than 400 enterprise clients across various industries, providing scalable and intelligent solutions for today’s marketing challenges.
+
+Backed by a team of 50+ dedicated professionals, our platform is built to meet the evolving needs of digital marketers and product managers. Netmera enables personalized, real-time customer interactions through a robust omnichannel engagement suite, including:
+
+* Customer journey orchestration
+* Mobile and web push notifications
+* Email and SMS campaigns
+* In-app messaging and pop-ups
+* Advanced analytics and segmentation
+* AI-driven marketing automation
+
+<figure><img src="/files/2urysMTyLJSosG5MkaMF" alt="" width="563"><figcaption></figcaption></figure>
+
+Our mission is to help companies reach, convert, and retain users more effectively by enabling personalized and consistent customer journeys. Whether the goal is to increase ROI, drive revenue, or boost retention, Netmera provides the tools and insights marketers need to stay competitive in a fast-paced digital landscape.
+
+By combining innovation with performance, Netmera gives organizations the edge they need to build strong, lasting relationships with their customers.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/beginners-guide/introduction-to-netmera.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

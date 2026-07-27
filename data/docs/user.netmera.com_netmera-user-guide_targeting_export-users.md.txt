@@ -1,0 +1,212 @@
+URL: https://user.netmera.com/netmera-user-guide/targeting/export-users.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/targeting/export-users.md).
+
+# Export Users
+
+**Export (User Selection) Module** is the action layer on top of user lists in the panel. It allows targeting users and performing follow‑up actions from the same screen, without switching contexts.
+
+The module combines **user list actions** and **data export** into a single, consistent experience designed for operational workflows such as audience creation, tagging, and data handoff to external systems.
+
+<figure><img src="/files/dLYNqUHKPrqZUwvAFheu" alt="" width="563"><figcaption></figcaption></figure>
+
+**Key benefits**:
+
+* Perform actions and exports without leaving the list view
+* Use a single, standardized export experience across the panel
+* Export multiple identifiers in one file for downstream matching and analysis
+
+### Where Is It Used?
+
+Export Module appears on all screens that display user lists.
+
+* **Targeting**
+* **Campaign Reports**
+* **Reports**
+* **Analytics**
+
+The available actions, identifiers, and export formats may vary depending on the screen context.
+
+#### Typical Actions
+
+Depending on permissions and screen context, the following actions can be available:
+
+* Add users to an audience
+* Tag users
+* Export selected users to a file
+
+Actions apply to the **current result set** or **selected users**, depending on the screen behavior.
+
+For tagging behavior and rules, see **Tags**.
+
+### Export Flow: Export Selected Users to File
+
+When exporting from a user list, a standard **Export dialog** opens. This dialog is used consistently across the panel to download user data in a structured format.
+
+#### End‑to‑End Flow
+
+1. Select users from the list or use the full result set
+2. Open the **Export** action
+3. Select identifiers
+4. Choose file format
+5. Start export and download the file
+
+### Step 1: Identifier Selection (Multi‑Select)
+
+The export dialog supports selecting **multiple user identifiers at the same time**.
+
+**Common Identifier Fields**
+
+* Email
+* External ID
+* MSISDN
+
+One or more identifiers can be selected in a single export.
+
+<figure><img src="/files/ApILCcCIwBKlq7l8TYjk" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 2: Optional Export Fields
+
+In addition to user identifiers, the export dialog supports optional **Profile Attributes** and **Device Information** fields. These fields can be selected from the field selector and included in the exported file as additional columns.
+
+#### Profile Attributes
+
+**Profile Attributes** add user-specific profile data to the exported file.
+
+Each selected attribute is included as a separate column. Values are populated using the matching profile key for each user.
+
+If a selected attribute does not exist for a user, the corresponding cell is left empty.
+
+<figure><img src="/files/I3R4L7DnqDhgPwE3Rvvw" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Device Information
+
+**Device Information** adds device-related data for each exported user. Available fields can include:
+
+* **Device Count**
+* **Device Type**
+* **Operating System (OS)**
+* **Device Model**
+
+These fields are optional. You can add only the columns you need.
+
+When **Device Information** is selected, exported values are based only on devices that are both **registered** and **installed** for the user.
+
+{% hint style="info" %}
+When you include **Device Information**, export covers only devices with **registered = true** and **installed = true**.
+{% endhint %}
+
+If a selected device value is not available for a user, the corresponding cell is left empty.
+
+<figure><img src="/files/VKZoEoI7bYeiCkMDLS7x" alt="" width="563"><figcaption></figcaption></figure>
+
+#### What Happens in the Export File?
+
+When these fields are included, the exported file contains additional columns alongside the selected user identifiers.
+
+For example, an export file can include columns such as:
+
+* **Email**
+* **External ID**
+* **Device Type**
+* **Operating System**
+* selected **Profile Attributes**
+
+Only the fields selected in the export dialog are included in the output. Unselected optional fields are not added to the file.
+
+{% hint style="success" %}
+
+### Use Cases
+
+Including **Device Information** and **Profile Attributes** can help you:
+
+* analyze exported users by device type, model, or operating system,
+* track issues that affect a specific OS or device model,
+* review profile-based audience data together with user identifiers,
+* support profile-based segmentation and performance analysis outside the panel,
+* support segmentation, reporting, CRM matching, and follow-up operational workflows with more detailed user data.
+  {% endhint %}
+
+#### Step 3: How Columns Are Created
+
+* Each selected identifier is exported as a **separate column** in the file
+* Each selected optional field is exported as a **separate column**
+* Column order is **deterministic** and follows the order selected in the UI
+* If a user does not have a value for a selected field, the corresponding cell is left **empty**
+
+This structure enables:
+
+* Carrying multiple matching keys in one file
+* Easier joins in CRM, CDP, or BI workflows
+* Reduced need for repeated exports
+
+#### Step 4: File Format
+
+Export output can be generated in the following formats:
+
+* `.csv`
+* `.xlsx`
+
+Both formats use the same selected data set and selected column set.
+
+This helps keep export results consistent, even for large user sets.
+
+<figure><img src="/files/8CpiyScEdeMkEfCdKuCW" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Missing Values
+
+A missing value means the user does not have that identifier, device value, or profile attribute stored for export. **This is not an export error.**
+
+#### Checks to Consider
+
+If unexpected null values appear:
+
+* Verify that the identifier is set by the app SDK or server‑side integration
+* Check profile merge and ID mapping configuration
+* Confirm that the identifier exists on the user profile
+
+### Failed Users Export (Campaign Reports)
+
+When a campaign fails partially or completely, failed users can be exported directly from the campaign report. This allows investigating delivery issues without rebuilding segments or rerunning the campaign.
+
+#### Where to Find It
+
+1. Open the relevant **Campaign Report** (mobile push, web push, in-app, pop-up, email, sms)
+2. Navigate to the **Failed** section
+3. Use the **Export** action
+
+<figure><img src="/files/WZFuVbAVShyI3EmyaFj5" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/8SUUI4yu5MQBiO1iFPex" alt="" width="375"><figcaption></figcaption></figure>
+
+#### What Is Included
+
+The export file includes:
+
+* Only users who failed in the campaign
+* Selected user identifiers
+* A **Fail Reason** column that explains why each user failed
+
+Fail reasons can include delivery, validation, configuration, or data-related issues, depending on the channel and campaign setup.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/targeting/export-users.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

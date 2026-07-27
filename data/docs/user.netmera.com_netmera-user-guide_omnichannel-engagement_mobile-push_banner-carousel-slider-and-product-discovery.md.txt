@@ -1,0 +1,65 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/banner-carousel-slider-and-product-discovery.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/banner-carousel-slider-and-product-discovery.md).
+
+# Banner, Carousel, Slider & Product Discovery
+
+{% embed url="<https://www.youtube.com/watch?v=SnnqIOXy2zM>" %}
+
+### Banner
+
+While sending a banner notification, you need to enter **a background, left, and right image URL**, or you may select images directly from your device. In the **Text Type** field, you can choose *Text* or *Image* and customize the content according to your needs. Optionally, you can add a custom push icon to personalize the appearance of your banner notification.
+
+{% hint style="info" %}
+Banner notifications are currently supported only on **Android** devices and are **not available on iOS**.
+{% endhint %}
+
+<figure><img src="/files/6hKVqvrrUyDhMFrkYupL" alt=""><figcaption></figcaption></figure>
+
+### Carousel
+
+When you click on **Carousel Items > Add New Item**, you will see a page where you may add your items to be seen in a series of images. You may choose Click Action and add separate items to be swiped through in the notification.
+
+<figure><img src="/files/C6flT5l10jthCH1uYfMW" alt=""><figcaption><p>Carousel</p></figcaption></figure>
+
+### Slider
+
+Different from Carousel, on Slider notification you can only add images and choose Click Action for your audience.
+
+<figure><img src="/files/X6hfIABCwcE7RFX8ukbN" alt=""><figcaption><p>Slider</p></figcaption></figure>
+
+{% hint style="danger" %}
+To use this feature, your app must be integrated with the **Netmera SDK version 3.9.1 or higher.**
+{% endhint %}
+
+### Product Discovery
+
+On **Product Discovery**, each product can be customized with an *image, title, content, button name,* and *button color.* You may add different **deeplinks** for each product to direct your audience to specific target pages. To create a proper product discovery layout, **at least two images** should be added. Each image represents a separate product card within the discovery view.
+
+{% hint style="info" %}
+Product discovery notifications are currently supported only on **Android** devices and are **not available on iOS**.
+{% endhint %}
+
+<figure><img src="/files/wiJxBVJIVIPXbnD3azBZ" alt=""><figcaption><p>Product Discovery</p></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/banner-carousel-slider-and-product-discovery.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

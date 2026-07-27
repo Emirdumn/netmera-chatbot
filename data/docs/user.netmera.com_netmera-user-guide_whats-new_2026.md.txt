@@ -1,0 +1,791 @@
+URL: https://user.netmera.com/netmera-user-guide/whats-new/2026.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/whats-new/2026.md).
+
+# 2026
+
+## June, 2026
+
+This release expands analytics and engagement workflows across Funnel, Journey, Insights Board, and Widget, with more control over funnel analysis, app-side journey data, custom dashboards, and widget presentation.
+
+### Funnel
+
+#### Analyze Funnel Performance with Flexible Conversion Logic
+
+Use Funnel to measure how users move through key steps, where they drop off, and how different audiences convert.
+
+You can now:
+
+* Select the funnel order logic that best matches your user flow.
+* Set conversion windows by time or sessions.
+* Count results by unique users or total event occurrences.
+* Exclude users based on specific events.
+* Apply audience filters directly to funnel calculations.
+* Turn funnel insights into action by using the actions to create targeted audiences from users who convert or drop off at specific funnel steps.
+* Detect unusual changes with anomaly detection.
+
+Create more accurate funnels and turn user behavior into clearer conversion and drop-off insights.
+
+<figure><img src="/files/TLLAqOSA0vnDx0crWYQj" alt="" width="563"><figcaption></figcaption></figure>
+
+[Analyze Funnel Performance with Flexible Conversion Logic](/netmera-user-guide/reports-and-analytics/analytics/funnel.md)
+
+### Journey
+
+#### Send Custom Data to the App through Journeys
+
+Use **Send Data Push** to send a custom JSON payload to the mobile SDK through a silent push.
+
+You can now:
+
+* Send structured journey data to the app without showing a visible notification.
+* Use constant values, profile attributes, or journey variables in the payload.
+* Trigger app-side experiences such as content recommendations, module updates, or personalized flows.
+* Pass custom context from Journey Builder to the mobile application.
+
+This helps teams connect journey behavior with app-side experiences more flexibly.
+
+[Send Custom Data to the App through Journeys](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components/action#send-data-push-action)
+
+<figure><img src="/files/sZ1d9AZe89uVHE9MV41s" alt="" width="235"><figcaption></figcaption></figure>
+
+#### Add Key-Value Parameters to Journey Messages
+
+You can now define custom key-value parameters for **Send In-App**, **Send Widget**, and **Send Mobile Push** steps in Journey Builder.
+
+Custom parameters help the application decide how or where a journey message should be handled, such as opening a specific screen, passing a deeplink, displaying an in-app message in a specific context, or controlling where a widget appears.
+
+This helps teams make journey messages more contextual and consistent with app-side behavior.
+
+[Add Key-Value Parameters to Journey Messages](/netmera-user-guide/omnichannel-engagement/journey-orchestration/build-journey.md#custom-parameters-for-journey-messages)
+
+<figure><img src="/files/Dnn8lZHQ0FozzaSSSGpk" alt=""><figcaption></figcaption></figure>
+
+### Insights Board
+
+#### Create Custom Event-Based Dashboards
+
+Use **Insights Board** to build custom analytics dashboards with event-based metrics.
+
+You can now:
+
+* Create boards for different reporting needs.
+* Define insights by selecting events and aggregations.
+* Display insights as **Line**, **Bar**, **Pie**, **Number**, or **Table** cards.
+* Configure each card with its own date range, chart type, size, granularity, and auto-refresh settings.
+
+This makes it easier to monitor campaigns, releases, and key product metrics from one place.
+
+<figure><img src="/files/uMQXxCU8gKqed1jegngk" alt=""><figcaption></figcaption></figure>
+
+[Create Custom Event-Based Dashboards](/netmera-user-guide/reports-and-analytics/analytics/insights.md)
+
+### Widget
+
+#### Blend Widgets Seamlessly with Your Page Design
+
+Use the new **Transparent** container option to display widget content without the default container background, border, or shadow.
+
+You can now:
+
+* Make the widget container visually transparent.
+* Remove default container effects such as background, border, and shadow.
+* Display widget content as if it is part of the host page design.
+* Use transparent mode across supported widget types.
+* Keep existing widgets unchanged unless transparent mode is enabled.
+
+This helps brands create cleaner widget designs that better match their own page or app experience.
+
+## May, 2026
+
+This release expands automation and analytics across Email, Journey, SMS, and Web Push, brings MCP support for AI-assisted Netmera data exploration, and adds finer control over preferences, deliverability, and on-device widgets.
+
+### Netmera MCP Server
+
+#### Explore Netmera Data with AI Prompts
+
+Use Netmera MCP Server to connect MCP-compatible AI clients with your permitted Netmera data.
+
+You can now:
+
+* Explore permitted Netmera data with natural language prompts.
+* Analyze campaign performance, segments, events, and users faster
+* Reduce repetitive reporting work
+* Generate summaries and comparisons through AI clients
+* Keep access controlled by existing permissions, token scopes, and approval rules
+
+Ask questions in natural language and get permission-based answers from your Netmera data.
+
+[Netmera MCP Server](/netmera-user-guide/ai-features/netmera-mcp-server.md)
+
+<figure><img src="/files/ozBRlacnuz759ZermAei" alt="" width="563"><figcaption></figcaption></figure>
+
+### Journey
+
+#### Journey Messages with Engagement Window
+
+Engagement Window governs exactly when Journey messages are allowed to reach users, keeping delivery aligned with the right days, hours, and urgency level.
+
+* Set start and end times for message delivery
+* Select active sending days from Monday through Sunday
+* Queue messages until the next available window
+* Discard messages triggered outside the window
+* Apply Ignore Engagement Window to critical Push, Email, and SMS steps that must send immediately
+
+[Journey Messages with Engagement Window](/netmera-user-guide/omnichannel-engagement/journey-orchestration/entry-rules.md#engagement-window)
+
+<figure><img src="/files/bQscEMZ1gt2BZpZxmhda" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Export Converted Users from Journey Analytics
+
+Converted users are now a dedicated, exportable metric, turning conversion insight into an actionable audience.
+
+* Track Total Converted Users as a dedicated metric card
+* Count the unique users who triggered the conversion event
+* Keep the metric consistent with the data behind Conversion Rate
+* Export only the users who converted within the selected Journey and time range
+* Reuse the exported audience for retargeting, segmentation, or channel comparison
+
+[Export Converted Users from Journey Analytics](/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-analytics.md#total-converted-users)
+
+<figure><img src="/files/6T8pc7dj438BvBWkZ0c1" alt="" width="312"><figcaption></figcaption></figure>
+
+#### Measure Total Conversion Events in Journey Analytics
+
+Beyond unique conversions, you can now measure conversion volume — including repeated actions by the same user — to analyze repeat purchases, reactivations, and high-frequency behavior.
+
+* Track Total Conversion Events as a separate metric
+* Count every conversion trigger, including repeat actions by the same user
+* Export event-level data with External ID and Timestamp
+* Analyze repeat purchases, reactivations, and high-frequency conversion patterns
+
+[Measure Total Conversion Events in Journey Analytics](/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-analytics.md#total-conversion-events)
+
+<figure><img src="/files/PPLbxZWjFVRGuPDonxXW" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Directly Access Journey Campaign Reports from Journey Steps
+
+A new Report action opens campaign analytics directly from Journey send steps, removing the context switch between Journey analysis and campaign reporting.
+
+* Open reports for Push, Email, SMS, and In-App Journey steps
+* Access the related campaign report wherever a send exists
+* Review campaign-level metrics without leaving the Journey flow
+
+[Directly Access Journey Campaign Reports from Journey Steps](/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-analytics.md#viewing-campaign-reports-from-a-journey)
+
+<figure><img src="/files/fIHPvx6b7fALWvMLwCLC" alt="" width="365"><figcaption></figcaption></figure>
+
+#### Find Journey Ownership Faster
+
+Ownership and edit history are now exposed directly in the Journey list, which matters most for teams managing many campaigns across accounts.
+
+* See creator and creation date in the Journey list
+* Identify the last editor and most recent update date
+* Sort by create or update date to surface recent changes
+
+[Find Journey Ownership Faster](/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-list-and-actions.md)
+
+<figure><img src="/files/kRKr7EDbNIUKYIdulGqd" alt=""><figcaption></figcaption></figure>
+
+### Email
+
+#### Understand Email Bounce Status at User Level
+
+Bounce visibility now extends to the individual user record, making it clear why a user is frozen or suppressed from email targeting.
+
+* Review bounce status on the user details page
+* Inspect soft bounce and hard bounce records per user
+* Check reason, last bounce date, current action, and remaining days
+* Cross-reference related message activity to trace campaign-level bounce behavior
+
+[Understand Email Bounce Status at User Level](/netmera-user-guide/reports-and-analytics/reports/delivery/campaigns/email-reports.md#email-bounce-status-on-user-details)
+
+<figure><img src="/files/rB4BPIb7bOYdcoBk9wx0" alt=""><figcaption></figcaption></figure>
+
+#### Manage Email Preferences by Category
+
+Recipients can now opt out at the category level instead of unsubscribing from all communication, giving teams a more granular and retainable audience.
+
+* Offer category-level unsubscribe alongside the existing full unsubscribe
+* Surface message categories from Settings > Message Categories
+* Let recipients opt out of selected categories only
+* Preserve full-category unsubscribe as a standing option
+
+[Manage Email Preferences by Category](/netmera-user-guide/omnichannel-engagement/email/email-unsubscribe-page.md#category-based-unsubscribe-link)
+
+<figure><img src="/files/TlIvkrzl6On1MdU3q2Dc" alt=""><figcaption></figcaption></figure>
+
+#### Automate Recurring Emails with Template IDs
+
+Reusable panel-defined templates can now be triggered through the API, removing the manual setup behind newsletters, reports, and recurring CRM sends.
+
+* Trigger a panel-defined email template directly through the bulk send API
+* Send a bulk campaign using a single template ID
+* Populate subject and body placeholders dynamically at send time
+* Target recipients through tags built from FTP-uploaded lists
+* Attach files to the send when required
+
+[Automate Recurring Emails with Template IDs](https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/notifications#trigger-an-existing-email-template-via-api)
+
+#### Export Email Control Group Audiences
+
+The Conversion Control Group is now visible and exportable from email reports, turning held-out audiences into measurable uplift data.
+
+* View the Control Group under the report's Target Audience section
+* Export the users excluded from the email send
+* Reuse the exported audience for uplift analysis, retargeting, or comparison
+
+[Export Email Control Group Audiences](/netmera-user-guide/reports-and-analytics/reports/delivery/campaigns/email-reports.md#export-control-group)
+
+<figure><img src="/files/2XPFevQZgeRaNZbDOsMK" alt=""><figcaption></figcaption></figure>
+
+### SMS
+
+#### Track Conversions & Export Control Group from SMS Campaigns
+
+SMS reporting now goes beyond delivery to measure whether campaigns drive meaningful user actions, including revenue and lift.
+
+* Define a conversion event for SMS campaigns
+* Set a conversion deadline
+* Filter conversions by event attributes
+* Track revenue where revenue data is available
+* Apply a control group to measure campaign lift
+* Export control group data from reports
+
+[Track Conversions & Export Control Group from SMS Campaigns](/netmera-user-guide/omnichannel-engagement/sms/create-sms-campaign.md#conversion-analytics)
+
+<figure><img src="/files/60JiM4RHUDgJv4sMxLKo" alt="" width="563"><figcaption></figcaption></figure>
+
+### Web Push
+
+#### Live Preview Web Push Before Launch
+
+Test on My Device renders a live preview of a Web Push notification on your active browser, so rendering and permission issues surface before an actual send.
+
+* Trigger a browser-level preview notification
+* Validate title, message, icon, and hero image rendering
+* Test personalized placeholders with custom preview values
+* Detect notification permission issues ahead of launch
+
+[Live Preview Web Push Before Launch](/netmera-user-guide/omnichannel-engagement/web-push/create-web-push.md#test-on-my-device)
+
+<figure><img src="/files/awybA5o4I2fL3qG8mban" alt=""><figcaption></figcaption></figure>
+
+### Widgets & Web
+
+#### Widget Backgrounds
+
+The Widget/HTML Builder now supports background images and text overlays from the panel.
+
+* Upload images as panel assets or use external URLs
+* Control text style, position, alignment, and size
+* Configure image dimensions and border radius from the panel
+
+[Widget Backgrounds](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create/customize-components.md#widget-background-image)
+
+<figure><img src="/files/tRVJlaWWHvXaWEdzEBFn" alt="" width="398"><figcaption></figcaption></figure>
+
+#### Style Fancybox Components More Freely
+
+Fancybox button and typography styling moves into the panel to match brand guidelines.
+
+* Add border colors to Accept and Dismiss buttons
+* Apply more fonts to Fancybox content
+* Choose Regular, Semibold, or Bold font weight
+
+[Style Fancybox Components More Freely](/netmera-user-guide/omnichannel-engagement/web-push/fancy-box.md#typography)
+
+<figure><img src="/files/0q9nZYlZh00jxIq5B1lc" alt="" width="563"><figcaption></figcaption></figure>
+
+### Live Activities
+
+#### Control Live Activity Updates More Clearly
+
+The REST API now exposes clearer parameters for the full Live Activity lifecycle — start, update, and end.
+
+* Start Live Activities with required `groupId` support
+* Define automatic end timing with `liveActEndDate`
+* Update or end active Live Activities using the UPDATE and END actions
+* Review Live Activity lifecycle events from user details
+
+[Control Live Activity Updates More Clearly](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/live-activities)
+
+<figure><img src="/files/nwCRV0wnav2tUCEtBlVE" alt=""><figcaption></figcaption></figure>
+
+### SDK & Events
+
+#### Capture SDK Events with Less Manual Setup
+
+A flexible global event format lets Netmera recognize and store incoming SDK events automatically, shortening the path from instrumentation to analysis.
+
+* Send events using a generic `events[]` and `params` structure
+* Let Netmera recognize incoming events without prior definition
+* Register undefined events as custom events when the option is enabled
+* Analyze captured events in Event Insight
+* Fall back to the existing custom event flow when the option is disabled
+
+[Capture SDK Events with Less Manual Setup](https://user.netmera.com/netmera-developer-guide/platforms/android/events#generic-events)
+
+<figure><img src="/files/97jA5kx6iA4loKkSCjmm" alt=""><figcaption></figcaption></figure>
+
+## March, 2026
+
+### Netmera App
+
+#### Take Your Campaigns Everywhere with the Netmera App
+
+Take Netmera with you and stay closer to your campaigns.
+
+You can now:
+
+* Monitor active campaigns on mobile
+* Review key metrics faster
+* Check approvals, users, segments, and event activity on the go
+
+This gives teams faster visibility and quicker reaction time outside the desktop.
+
+[Take Your Campaigns Everywhere with the Netmera App](/netmera-user-guide/say-hello-to-insight-boards.md)
+
+<figure><img src="/files/wE8ql7nZgkoqattK2zJ9" alt=""><figcaption></figcaption></figure>
+
+### SMS
+
+#### Expand Your SMS Reach with Turatel Integration
+
+Expand your SMS infrastructure with Turatel support.
+
+You can now:
+
+* Use Turatel as an SMS integration option
+* Run SMS operations with an additional provider alternative
+* Increase operational flexibility for SMS delivery setups
+
+This helps teams align SMS delivery with their preferred provider strategy.
+
+[Turatel Integration Guide](https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/turatel)
+
+<figure><img src="/files/sDidj71XL2NG8fl1rIE0" alt=""><figcaption></figcaption></figure>
+
+### Exports
+
+#### Get Richer Data in Every Export
+
+Make exports more useful for analysis and operational workflows.
+
+You can now:
+
+* Include **Device Information** fields in exports
+* Include **Profile Attribute** fields in the same export flow
+* Work with richer user-level datasets without extra manual steps
+
+This makes exported files more complete for targeting, reporting, and external processing.
+
+[Get Richer Data in Every Export](/netmera-user-guide/targeting/export-users.md)
+
+<figure><img src="/files/JjYrDydzE9CsMdnF15lw" alt=""><figcaption></figcaption></figure>
+
+### Analytics
+
+#### Reorder Funnel Steps Without Starting Over
+
+Adjust your funnel flow without rebuilding it from scratch.
+
+You can now:
+
+* Reorder steps after adding them
+* Align the funnel with the actual user journey faster
+* Update step sequence with drag-and-drop
+
+This makes funnel setup more flexible and easier to maintain.
+
+[Reorder Funnel Steps Without Starting Over](/netmera-user-guide/reports-and-analytics/analytics/funnel.md)
+
+<figure><img src="/files/5goPt61LCqd08R1l8pxN" alt=""><figcaption></figcaption></figure>
+
+### Widgets
+
+#### Build Smarter Forms with Better Input Validation
+
+Build stricter form flows directly inside widgets.
+
+You can now:
+
+* Apply additional validation types to widget inputs
+* Prevent invalid or incomplete form submissions more precisely
+* Show users clearer validation feedback before actions run
+
+This improves data quality and reduces avoidable submission errors.
+
+[Build Smarter Forms with Better Input Va](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create/assign-click-actions.md#validations)[lidation](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create/assign-click-actions.md#validations)
+
+<figure><img src="/files/tQEj4hQcsNK6VIYB1lW3" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Make Emoji Ratings More Expressive with Text and Unicode Support
+
+Make emoji-based feedback clearer and more expressive.
+
+You can now:
+
+* Add supporting text to emoji raters
+* Use Unicode emoji support in emoji-based feedback flows
+* Create more flexible and brand-friendly feedback experiences
+
+This helps users understand rating intent faster and improves widget expressiveness.
+
+[Make Emoji Ratings More Expressive with Text and Unicode Support](/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/widget-elements-reference.md#emoji-feedback)
+
+<figure><img src="/files/H3XqB431RxLGry5UIGyb" alt=""><figcaption></figcaption></figure>
+
+### Journey
+
+#### Clone Journeys and Iterate Faster
+
+Reuse successful journey flows faster.
+
+You can now:
+
+* Clone an existing journey into a new draft
+* Preserve the original journey while testing changes
+* Reuse structure, timing, and branching logic
+
+This makes journey iteration safer and much faster.
+
+[Clone Journeys and Iterate Faster](/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-list-and-actions.md)
+
+<figure><img src="/files/Q3uac8DJ3NAwwmwLwBfQ" alt=""><figcaption></figcaption></figure>
+
+### Mobile Push
+
+#### Test Push Notifications Your Way with Flexible A/B Splits
+
+Test push performance with more control.
+
+You can now:
+
+* Define flexible audience percentages for Variant A and Variant B
+* Run tests with or without a control group
+* Compare treated and untreated audiences when needed
+
+This gives you cleaner experiment design and better campaign measurement.
+
+[Test Push Notifications Your Way with Flexible A/B Splits](/netmera-user-guide/omnichannel-engagement/mobile-push/push-a-b-testing.md)
+
+<figure><img src="/files/gv7naNr7HIsPCZzao9Xi" alt=""><figcaption></figcaption></figure>
+
+### Email
+
+#### Edit Emails in Full Screen for a Better View
+
+Edit email templates in a larger workspace.
+
+You can now:
+
+* Open the email editor in expanded view
+* Work with more screen space while editing and previewing
+* Switch back to the default view when needed
+
+This makes long or complex email layouts easier to manage.
+
+[Edit Emails in Full Screen for a Better View](/netmera-user-guide/panel-settings/settings/messaging-and-content/mail-templates.md#using-the-email-editor-in-expanded-view)
+
+<figure><img src="/files/Sh1Xhjd1rYAyqG4EtWwf" alt="" width="563"><figcaption></figcaption></figure>
+
+## February, 2026
+
+### Widgets
+
+#### Take Full Control of Your Popup Backgrounds
+
+Gain greater visual control over your popups, without impacting existing configurations. You can now:
+
+* Manage popup background behavior from the new **Pop-Up Background** settings group in the widget configuration screen
+* Enable or disable **Background Overlay** (enabled by default) to dim the area outside the popup with a full-screen tinted layer, including the status bar
+* Customize the **Overlay Color** to better match your brand
+
+This update gives you more flexibility to fine-tune popup visibility and focus.
+
+[Take Full Control of Your Popup Backgrounds](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create.md#background-overlay-feature)
+
+<figure><img src="/files/NproXCgOkD3PTfahcUWZ" alt=""><figcaption></figcaption></figure>
+
+#### Set the Pace of Your Widget Stories
+
+Control story pacing with precision.
+
+You can now:
+
+* Set a **Custom Story Duration** (in seconds) to define how long each image remains on screen
+* Leave the field empty to maintain the default 2.5-second auto-advance behavior
+
+This gives you greater control over storytelling and user attention flow.
+
+[Set the Pace of Your Widget Stories](/netmera-user-guide/omnichannel-engagement/feedback-button/create-feedback-button/customize-widgets.md#story)
+
+<figure><img src="/files/3vNdydoGz9SuxalND4af" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Fine-Tune Your Score Element's Look and Scale
+
+Align scoring visuals with your brand more accurately.
+
+You can now:
+
+* Start the rating scale at **0** by setting **Min Rate = 0** (fully supported in both preview and live widget)
+* Adjust the **Number (Font) Size** in pixels within defined limits
+* Maintain proportional layout automatically with a **Circle Size** that scales according to the selected number size
+
+No more workaround configurations, just consistent visual control.
+
+[Fine-Tune Your Score Element's Look and Scale](/netmera-user-guide/omnichannel-engagement/feedback-button/create-feedback-button/customize-widgets.md#score-rating)
+
+<figure><img src="/files/1gPj4KMLLCh4vI6dNAWd" alt="" width="563"><figcaption></figcaption></figure>
+
+### Live Activities
+
+#### Keep Live Activities Timely and On-Brand
+
+Keep your Live Activities relevant, timely, and aligned with your campaign strategy.
+
+You can now:
+
+* Automatically end Live Activities at a planned time — perfect for flash sales, match days, limited offers, or time-bound campaigns
+* Control how long completed activities remain visible on the Lock Screen
+* Ensure outdated content is clearly marked if updates stop
+
+**Why this matters**
+
+This update helps you:
+
+* Prevent expired promotions from staying visible
+* Keep real-time experiences accurate and trustworthy
+* Manage time-sensitive campaigns more confidently
+
+[Keep Live Activities Timely and On-Brand](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/live-activities)
+
+<figure><img src="/files/wFFOMUy5lS4LBFyOGVa0" alt="" width="563"><figcaption></figcaption></figure>
+
+### Customer Data
+
+#### Turn User Preferences into Social Proof
+
+Turn user preferences into powerful social proof.
+
+You can now:
+
+* Instantly see how many users selected a specific preference (e.g., a favorite team or product)
+* Use this count to display popularity indicators inside your app or campaigns
+* Build dynamic experiences based on real user interest
+
+**Why this matters**
+
+This update enables you to:
+
+* Highlight trending choices
+* Strengthen engagement with “Most Popular” or “X people chose this” messaging
+* Increase trust and conversion using real-time interest signals
+
+Counts are near real-time and may update with a short delay (up to 2–3 hours).
+
+This makes it easier to turn profile data into engagement-driving experiences — without accessing or exposing user-level data.
+
+[Turn User Preferences into Social Proof](https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/favorite-count-and-social-proof)
+
+<figure><img src="/files/8NhZfOrqQm0MeJ0gCnj7" alt=""><figcaption></figcaption></figure>
+
+### Journey
+
+#### Measure Journey Conversions with Precision
+
+Measure conversions with greater clarity and control across your Journeys.
+
+You can now:
+
+* Define how long conversions should continue to be counted after a user exits a Journey
+* Apply **1 Entry = 1 Conversion** logic to ensure each journey participation is counted only once
+* Use built-in configuration checks and validation to set up conversion tracking correctly
+
+**Why this matters**
+
+These enhancements help you:
+
+* Align conversion tracking with your campaign strategy
+* Avoid inflated metrics caused by repeated user actions
+* Analyze performance with greater confidence
+
+Journey conversion reporting is now more structured, transparent, and easier to rely on for performance evaluation and optimization.
+
+[Measure Journey Conversions with Precision](/netmera-user-guide/omnichannel-engagement/journey-orchestration/conversions-in-journey.md)
+
+<figure><img src="/files/fG88HK4LMHWS0dyCvZqR" alt=""><figcaption></figcaption></figure>
+
+## January, 2026
+
+### Dashboard & AI
+
+#### Spot Performance Shifts Faster with AI Insights on Your Dashboard
+
+Spot performance shifts faster, right from your dashboard.
+
+You can now:
+
+* View **AI Insights** directly on the App Dashboard to monitor user and engagement trends
+* Click dashboard cards and metrics to drill down into detailed analytics
+* Access channel-specific cards (Mobile, Web, SMS, Email, WhatsApp) alongside cross-channel insights
+
+Card visibility may vary based on enabled modules, permissions, and available data.
+
+[Spot Performance Shifts Faster with AI Insights on Your Dashboard](/netmera-user-guide/dashboard.md)
+
+<figure><img src="/files/5X2CWDo1CPGvDX1jrJFZ" alt=""><figcaption></figcaption></figure>
+
+### WhatsApp
+
+#### See Your WhatsApp Campaign Performance End to End
+
+Validate campaign performance end to end in a single view.
+
+You can now:
+
+* Monitor Netmera sends, Meta delivery statuses, and end-user reads together
+* Use KPI cards to quickly assess delivery performance and investigate failures
+* Track read trends over time
+
+This makes WhatsApp reporting clearer and more actionable.
+
+[See Your WhatsApp Campaign Performance End to End](/netmera-user-guide/omnichannel-engagement/whatsapp/whatsapp-reports.md)
+
+<figure><img src="/files/7VsYBb6GOPuf2EDf3JGH" alt="" width="563"><figcaption></figcaption></figure>
+
+### Analytics
+
+#### Turn Uninstall Data into Immediate Re-Engagement Action
+
+You can now:
+
+* Take user-level actions directly from the Uninstall report (add to audience, tag, export)
+* Export uninstall data with **External ID**, plus related campaign and journey/flow breakdown
+* Use a consistent export experience across Analytics > Retention and Analytics > Cohort
+
+This enables faster re-engagement and deeper churn analysis.
+
+[Turn Uninstall Data into Immediate Re-Engagement Action](/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/uninstall.md#uninstalled-users-list)
+
+<figure><img src="/files/r3md0mNcIBrPo1xRII4g" alt="" width="563"><figcaption></figcaption></figure>
+
+### Automated Messaging
+
+#### Pause Automations on the Days That Matter
+
+You can now:
+
+* Define one or more **Quiet Dates** during Automated Scenario setup
+* Automatically suppress scenario runs for a full 24-hour period
+* Apply suppression based on time zone settings:
+  * If **User Time Zone** is enabled → suppression applies per user
+  * If disabled → suppression applies in project time zone
+
+No manual intervention required.
+
+[Pause Automations on the Days That Matter](/netmera-user-guide/messaging-features/automated-messaging.md#campaign-period)
+
+<figure><img src="/files/yC8HSS2s4O8Z9AtQ298o" alt="" width="563"><figcaption></figcaption></figure>
+
+### Exports
+
+#### Export Multiple Identifiers in a Single Run
+
+You can now:
+
+* Select multiple identifiers in Export Selected Users to File
+* Receive each identifier as a separate column
+* View null values for missing identifiers
+
+Available across Campaigns, Targeting, Reports, and Analytics export flows.
+
+[Export Multiple Identifiers in a Single Run](/netmera-user-guide/targeting/export-users.md#step-1-identifier-selection-multi-select)
+
+<figure><img src="/files/13u1aJLo0PWP2rPT2lB7" alt="" width="563"><figcaption></figcaption></figure>
+
+### Reports
+
+#### Turn Delivery Failures into Actionable Insights
+
+You can now:
+
+* Include **Fail Reason** in report exports
+* Access provider error codes and messages in a dedicated column
+* Use this across Campaign, Automated, Transactional, and Geofence reports
+
+Supported for SMS, Mobile Push, Web Push, and In-App notifications.
+
+[Turn Delivery Failures into Actionable Insights](/netmera-user-guide/targeting/export-users.md#failed-users-export-campaign-reports)
+
+<figure><img src="/files/iTmH7ztWknorf8y1Mavq" alt=""><figcaption></figcaption></figure>
+
+### Targeting
+
+#### Segment Users by How Many Devices They Use
+
+You can now:
+
+* Filter users by exact **Device Count**
+* Choose platform scope (Mobile, Web, All)
+* Take actions directly from the filtered results
+
+This enables more flexible targeting and analysis strategies.
+
+[Segment Users by How Many Devices They Use](/netmera-user-guide/targeting/people.md#filter-categories)
+
+<figure><img src="/files/G6g5NBCdj6vVhDyVR2Bs" alt=""><figcaption></figcaption></figure>
+
+#### Monitor and Manage Blacklist Status with Precision
+
+You can now:
+
+* Use **Blacklist – Exists** to find users blacklisted in any channel
+* Use **Blacklist – Equals** to filter by specific channel (Mobile, Web, SMS, Email, WhatsApp)
+* Continue with standard People actions (view, export, audience operations)
+
+This simplifies compliance monitoring and targeting control.
+
+[Monitor and Manage Blacklist Status with Precision](/netmera-user-guide/targeting/people.md#filter-categories)
+
+<figure><img src="/files/SeNmeuIsaySRXJRJfBh3" alt=""><figcaption></figcaption></figure>
+
+### Email
+
+#### Build Better Segments with Hard Bounce Date Visibility
+
+Improve bounce-based segmentation accuracy.
+
+You can now:
+
+* View **Hard Bounce Date** directly on the user profile
+* Build more precise segments using bounce timing information
+
+This enhances email hygiene and segmentation reliability.
+
+[Build Better Segments with Hard Bounce Date Visibility](broken://pages/MkdMfSclktOIqr16TiPy#advanced-email-bounce-reasons-in-event-insight-user-details-and-segments)
+
+<figure><img src="/files/MPHRPFocAq34I5XRz0ab" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/whats-new/2026.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

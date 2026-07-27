@@ -1,0 +1,253 @@
+URL: https://user.netmera.com/netmera-user-guide/customer-data/granular-consent-management.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/customer-data/granular-consent-management.md).
+
+# Granular Consent Management
+
+In line with KVKK (Kişisel Verilerin Korunması Kanunu) interpretations and guidance from the Kişisel Verileri Koruma Kurumu, users should be able to give consent **per purpose** (and not only per channel).
+
+* [Relevant Article](https://www.kvkk.gov.tr/Icerik/8578/mobil-uygulamalar-uzerinden-gonderilen-anlik-bildirimlere-iliskin-kamuoyu-duyurusu)
+
+One umbrella consent for both operational notifications (order tracking, security alerts) and marketing (promotions) is usually not enough to meet the “specific and informed” principle.
+
+Netmera supports a granular consent model across **push, SMS, email**, and other enabled channels.
+
+### How granular consent works in Netmera (high level)
+
+Two checks happen before a message is sent:
+
+1. **Channel permission**: can we reach the user on this channel at all?
+2. **Category (purpose) permission**: did the user opt in to this message purpose?
+
+If either one is missing, Netmera excludes the user from delivery.
+
+{% hint style="info" %}
+Purpose-based consent in Netmera is implemented via **Message Categories**. Keep Category IDs short and stable. See [Message Categories](/netmera-user-guide/panel-settings/settings/messaging-and-content/message-categories.md).
+{% endhint %}
+
+### Implementation checklist
+
+{% stepper %}
+{% step %}
+
+#### Define your purposes as Message Categories
+
+Create categories under **Settings > Message Categories**.
+
+Use stable IDs like `promo`, `order_tracking`, `security`.
+{% endstep %}
+
+{% step %}
+
+#### Build an in-app preference center (SDK)
+
+Fetch current category preferences with `getUserCategoryPreferenceList`.
+
+Update preferences with `setUserCategoryPreference`.
+{% endstep %}
+
+{% step %}
+
+#### Enforce category assignment in every campaign
+
+Require a category in your internal campaign checklist.
+
+This makes purpose-based filtering automatic at send time.
+{% endstep %}
+
+{% step %}
+
+#### If you operate in Turkey, decide IYS “source of truth”
+
+* [IYS Permissions](/netmera-user-guide/customer-data/iys-permissions.md)
+* [IYS Sync Mode](/netmera-user-guide/customer-data/iys-permissions/iys-sync-mode.md)
+* [IYS Integrator Mode](/netmera-user-guide/customer-data/iys-permissions/iys-integrator-mode.md)
+  {% endstep %}
+
+{% step %}
+
+#### Monitor and audit
+
+* [Channel Reachability](/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/channel-reachability.md)
+* [User Details](/netmera-user-guide/targeting/people.md#user-details)
+  {% endstep %}
+  {% endstepper %}
+
+### Message Categories (Purpose-Based Consent Structure)
+
+Message Categories form the structural foundation of granular consent in Netmera. Instead of managing consent only at the channel level (Push, SMS, Email), Netmera enables consent management at the **communication purpose level**.
+
+Organizations can define distinct categories in the Netmera Panel, such as:
+
+* Promotions
+* Campaign Announcements
+* Order Tracking
+* Transactional Updates
+* System Alerts
+* Account Security Notifications
+
+<figure><img src="/files/LHhfvrp6Ygho5L1xMysb" alt=""><figcaption><p>Create a category in Settings</p></figcaption></figure>
+
+* [Message Categories](/netmera-user-guide/omnichannel-engagement/mobile-push/message-categories.md)
+
+#### Independent Opt-In / Opt-Out
+
+Users can independently manage each category:
+
+* Opt in to Order Tracking
+* Opt out of Promotions
+* Keep System Alerts enabled
+
+Consent is stored at the category level and is:
+
+* Specific
+* Freely given
+* Revocable at any time
+
+#### Campaign Enforcement
+
+When creating a campaign:
+
+1. A Message Category must be assigned.
+2. Netmera automatically filters recipients based on category consent.
+3. Messages are delivered only to users who have opted in to that specific purpose.
+
+This enforces compliance at the infrastructure level.
+
+<figure><img src="/files/naNOAsERfxQRneX5fTgm" alt=""><figcaption><p>Select a category in the campaign flow</p></figcaption></figure>
+
+#### More examples (different channels)
+
+<figure><img src="/files/m6NrjVMOxJJdYnQ7gJsZ" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/hpNT1rsf3ZrzD71qghfJ" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/0PiRp01RPDCNPICMEYyY" alt=""><figcaption></figcaption></figure>
+
+### Granular Permission Management via Mobile SDK
+
+Netmera empowers developers to build fully functional in-app preference centers using dedicated SDK methods and APIs. This allows users to directly manage category-level and channel-level permissions inside the application.
+
+#### Fetching User Preferences
+
+Using the Mobile SDK, applications can retrieve a user’s current category permissions.
+
+* `getUserCategoryPreferenceList`
+
+This method enables:
+
+* Listing all defined message categories.
+* Displaying which categories the user has opted into.
+* Providing full transparency within the in-app settings page.
+
+This ensures users can clearly see which types of notifications they are currently subscribed to.
+
+#### Updating Category Permissions in Real Time
+
+Users can toggle specific categories directly within the app.
+
+* `setUserCategoryPreference`
+
+Example use case:
+
+* User enables “Transactions”
+* User disables “Offers” or “Campaign Notifications”
+
+When updated via SDK:
+
+* Changes are transmitted immediately to Netmera servers.
+* Consent status is updated in real time.
+* Campaign eligibility is recalculated instantly.
+
+This guarantees that consent updates are reflected immediately in active segmentation and targeting logic.
+
+* [Developer Guide](https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/user-and-device-management#category-preferences)
+
+### Centralized Permission Management (IYS Permission Hub)
+
+For organizations operating in Turkey, Netmera integrates with the national consent registry: İleti Yönetim Sistemi (IYS). The IYS Permission Hub ensures SMS and Email consents remain legally synchronized.
+
+**IYS Integrator Mode**
+
+* Netmera pushes consent updates directly to IYS.
+
+**IYS Sync Mode**
+
+* Netmera mirrors consent data from IYS without pushing changes.
+
+This supports different governance models and compliance structures.
+
+To set up IYS and choose the correct governance model, start with:
+
+* [IYS Permissions](/netmera-user-guide/customer-data/iys-permissions.md)
+* [IYS Sync Mode](/netmera-user-guide/customer-data/iys-permissions/iys-sync-mode.md)
+* [IYS Integrator Mode](/netmera-user-guide/customer-data/iys-permissions/iys-integrator-mode.md)
+
+### Consent-Aware Widgets
+
+Netmera’s No-Code Widgets allow contextual consent collection and permission education.
+
+Before triggering system-level prompts (Push, Location), widgets can:
+
+* Explain the reason for requesting permission.
+* Clarify benefits.
+* Improve informed consent quality.
+
+This enables compliant and structured permission journeys.
+
+* [Widgets](/netmera-user-guide/omnichannel-engagement/widgets.md)
+
+### Channel Reachability & Category Permission Reports
+
+* Opt-in / opt-out counts per channel.
+* Category-level audience breakdown.
+* Pre-campaign eligibility validation.
+
+<figure><img src="/files/mhKlCXrLR3PQNUsPG596" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/4svcVA9XUayVdUEN1DBD" alt=""><figcaption><p>Opt-in and opt-out users by message category</p></figcaption></figure>
+
+See:
+
+* [Channel Reachability](/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/channel-reachability.md)
+
+### Compliance and Strategic Impact
+
+By implementing Netmera’s granular consent capabilities across categories, SDK controls, IYS synchronization, and reporting:
+
+* KVKK’s specificity principle is **better supported** through purpose-level choices.
+* Legal and reputational risk is typically reduced.
+* Consent enforcement becomes automated.
+* Users gain transparent control.
+* Campaign targeting becomes more accurate and trustworthy.
+
+### Related pages
+
+* [Message Categories](/netmera-user-guide/panel-settings/settings/messaging-and-content/message-categories.md)
+* [IYS Permissions](/netmera-user-guide/customer-data/iys-permissions.md)
+* [Contact Upload](/netmera-user-guide/targeting/contact-upload.md)
+* [Channel Reachability](/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/channel-reachability.md)
+* [Opt Out](/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/opt-out.md)
+* [Developer Guide](https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/user-and-device-management#category-preferences)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/customer-data/granular-consent-management.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

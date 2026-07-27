@@ -1,0 +1,248 @@
+URL: https://user.netmera.com/netmera-user-guide/web-tools/web-personalization/create-new-experience/new-experience.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/web-tools/web-personalization/create-new-experience/new-experience.md).
+
+# New Experience
+
+**Web Tools > Experiences > Web Personalization > Publish a New Experience**
+
+{% hint style="danger" %}
+**Warrning**:
+
+When you click **Save** and **Done,** and the changes **directly apply to your web page.**
+{% endhint %}
+
+## Creating a New Experience
+
+After you have completed on your [Setup and Rules](/netmera-user-guide/web-tools/web-personalization/create-new-experience/setup-and-rules.md) for your web personalization experience, you can start creating your experiences with **Add Changes** button in **Rules / Changes** section.&#x20;
+
+<figure><img src="/files/0VFhnkp9Mde2BNzR5rhR" alt=""><figcaption><p>Rules -> Changes</p></figcaption></figure>
+
+From adjusting layout properties and text alignment to altering background images and font styles, Netmera Web Personalization empowers you to craft unique and engaging digital environments.
+
+This guide explores a range of CSS customizations available in Netmera Web Personalization tool, unveiling the methods to make your web pages with captivating visuals and interactions. By harnessing these techniques, you can create truly **personalized** and **dynamic** online experiences that leave a lasting impression on your visitors.
+
+<figure><img src="/files/g12ad6bRrb6Yfa4tKLl5" alt=""><figcaption></figcaption></figure>
+
+Before making any modifications, you need to select the element you wish to modify. Once selected, you can adjust all **CSS settings in the left menu** and keep track of your **changes in the right menu.** Additionally, you can modify **HTML settings by right-clicking** on the element.
+
+## CSS Customizations
+
+<table data-view="cards"><thead><tr><th></th><th data-hidden></th></tr></thead><tbody><tr><td><a data-mention href="#dimension-and-location">#dimension-and-location</a></td><td><a data-mention href="#dimension-and-location">#dimension-and-location</a></td></tr><tr><td><a data-mention href="#background">#background</a></td><td><a data-mention href="#background">#background</a></td></tr><tr><td><a data-mention href="#layout">#layout</a></td><td><a data-mention href="#layout">#layout</a></td></tr><tr><td><a data-mention href="#typography">#typography</a></td><td><a data-mention href="#typography">#typography</a></td></tr><tr><td><a data-mention href="#border">#border</a></td><td><a data-mention href="#border">#border</a></td></tr><tr><td><a data-mention href="#html-menu">#html-menu</a></td><td></td></tr><tr><td><a data-mention href="#publishing-your-experience">#publishing-your-experience</a></td><td><a data-mention href="#publishing-your-experience">#publishing-your-experience</a></td></tr></tbody></table>
+
+### Dimension and Location
+
+In the left menu, you can directly change the text by using the Text Content input. To set the dimensions of elements, use the Dimension setting. For adjusting the location of elements, utilize the Location setting.&#x20;
+
+{% hint style="info" %}
+**Dimension Values:**
+
+Dimension values determine the size of the element, while location values define its position. You should input specific pixel values in these inputs (e.g., 100px), or you can use "auto" to let the system determine the appropriate value.
+{% endhint %}
+
+<figure><img src="/files/TBfiqsxsoEC8TtRBjsUD" alt="" width="360"><figcaption></figcaption></figure>
+
+### Background
+
+In the Background settings, you can customize the background color of your elements, change the background image, and specify how the background image behaves.
+
+{% hint style="info" %}
+**Background Tip:**
+
+If you are having difficulty seeing an existing background image, consider entering a transparent value for the background color.
+{% endhint %}
+
+<figure><img src="/files/h9EUxhnQ0aw8sGOSYQld" alt="" width="370"><figcaption></figcaption></figure>
+
+Background repeat defines how the background image behaves when it doesn't fit the background size or element size. It has the following values:
+
+* **no-repeat:** The background image is displayed only once and is not repeated.
+* **repeat:** The background image is repeated both vertically and horizontally. If the image does not fit, the last image will be clipped. This is the default behavior.
+* **repeat-x:** The background image is repeated only horizontally.
+* **repeat-y:** The background image is repeated only vertically.
+* **space:** The background image is repeated as much as possible without clipping. The first and last images are pinned to either side of the element, and whitespace is distributed evenly between the images.
+* **round:** The background image is repeated and adjusted to fill the space without gaps, even if it needs to be stretched or squished.
+
+<figure><img src="/files/gnHscEkz61wECMghaiFo" alt="" width="375"><figcaption></figcaption></figure>
+
+### Layout
+
+You have the freedom to set your layout properties in the Layout section.
+
+The **float** property determines whether an element should float to the left, right, or not at all. It can be assigned one of the following values:
+
+* **none:** The element does not float and will be displayed exactly where it occurs in the text. This is the default behavior.
+* **left:** The element floats to the left of its container.
+* **right:** The element floats to the right of its container.
+
+<figure><img src="/files/WUwIzEJiUDDWLBNoq781" alt="" width="375"><figcaption></figcaption></figure>
+
+The **vertical-align** property is used to set the vertical alignment of an element. It can take the following values:
+
+* **middle:** The element is placed in the middle of its parent element.
+* **top:** The element is aligned with the top of the tallest element on the same line.
+* **bottom:** The element is aligned with the lowest element on the same line.
+* **baseline:** The element is aligned with the baseline of its parent. This is the default behavior.
+* **sub:** The element is aligned with the subscript baseline of its parent.
+* **super:** The element is aligned with the superscript baseline of its parent.
+* **text-top:** The element is aligned with the top of the parent element's font.
+* **text-bottom:** The element is aligned with the bottom of the parent element's font.
+
+<br>
+
+<figure><img src="/files/rQXMmjnsDKrZpETyEi8V" alt="" width="375"><figcaption></figcaption></figure>
+
+\
+The **overflow** property determines how to handle content that exceeds the specified area of an element. It can be assigned one of the following values:
+
+* **visible:** The overflow is not clipped, and the content renders outside the element's box. This is the default behavior.
+* **hidden:** The overflow is clipped, and any content that extends beyond the specified area will be invisible.
+* **scroll:** The overflow is clipped, and a scrollbar is added to allow users to view the rest of the content that extends beyond the specified area.
+
+<figure><img src="/files/5nqDdnWSt296YPI5VfTI" alt="" width="375"><figcaption></figcaption></figure>
+
+\
+The **opacity** property is used to set the opacity level of an element, which determines its transparency. The opacity level is specified as a value between 0 and 1, where:
+
+* 1: The element is not transparent at all (completely opaque).
+* 0.5: The element is 50% see-through.
+* 0: The element is completely transparent, and thus not visible.
+
+<figure><img src="/files/JbuxC7qbb7v9tVHV8hCS" alt="" width="375"><figcaption></figcaption></figure>
+
+The **z-index** property is used to control the stacking order of elements in a web page. It defines the position of an element along the z-axis, which determines how elements are layered or stacked on top of each other in the three-dimensional space.
+
+An element with a higher **z-index** value will appear in front of elements with lower **z-index** values. If two elements overlap on the screen, the one with a higher **z-index** will be displayed on top of the other.&#x20;
+
+{% hint style="info" %}
+**Z-Index:**
+
+By default, elements have a **z-index** value of **auto**, which means they are stacked based on their position in the HTML source order. However, you can use **z-index** to control the layering of elements and create effects like overlays, dropdowns, and tooltips.
+{% endhint %}
+
+<figure><img src="/files/MpOm5rmsyhnsRqxX8JKr" alt="" width="375"><figcaption></figcaption></figure>
+
+### Typography
+
+The **font-family** property is used to define the font for an element. It can hold multiple font names as a "fallback" system. If the browser does not support the first font, it will try the next font in the list until it finds a font that is supported.
+
+Font names can be of two types:
+
+1. **Family Name:** The name of a specific font family, like "Times New Roman," "Courier New," "Arial," etc.
+2. **Generic Family:** The name of a general font family category, like "serif," "sans-serif," "cursive," "fantasy," or "monospace."
+
+When specifying fonts, it's a good practice to start with the specific font you want and then include one or more generic families at the end. This allows the browser to pick a similar font from the generic family if the specified fonts are not available. This ensures better compatibility and consistent rendering across different devices and browsers.
+
+<figure><img src="/files/icGmhLR38Kg5Kzdd2E2o" alt="" width="375"><figcaption></figcaption></figure>
+
+The **font-size** property is used to define the size of the font for an element. It determines how large or small the text content within the element should be displayed. The size can be specified using pixels (px).
+
+<figure><img src="/files/fd6y1WmwmZxDK2WEc7qI" alt="" width="375"><figcaption></figcaption></figure>
+
+The **font-weight** property is used to control the thickness or boldness of characters in text. It determines how bold or light the font appears. The **font-weight** property accepts various values or keywords to specify different levels of thickness.
+
+* **normal**: The default font weight, which is typically the normal or regular thickness.
+* **bold**: Specifies a bold font weight. The text appears thicker than normal.
+* **lighter**: Specifies a lighter font weight relative to the inherited font weight.
+
+<figure><img src="/files/VX0GKAvHrHxUeB9rkB7s" alt="" width="375"><figcaption></figcaption></figure>
+
+The **text-align** property is used to set the horizontal alignment of text within an element. It determines how the text is positioned within the content box of the element.
+
+The available values for **text-align** are:
+
+* **left**: Aligns the text to the left of the content box.
+* **right**: Aligns the text to the right of the content box.
+* **center**: Centers the text horizontally within the content box.
+* **justify**: Stretches the lines of text so that each line has equal width, creating a straight edge on both the left and right sides. This is often used in newspapers and magazines to achieve a neater appearance.
+
+By applying the **text-align** property to different elements, you can control the alignment of text throughout your webpage.
+
+<figure><img src="/files/Kq56gofUHkHD1AS5cKrj" alt="" width="375"><figcaption></figcaption></figure>
+
+**Text-decoration:** The property that is used to specify the decoration added to text, such as underline, overline, or line-through.
+
+**Line-height**: The **line-height** property determines the height of a line of text. It sets the vertical space between lines within a block of text. A larger **line-height** value will increase the space between lines, making the text more spaced out, while a smaller value will reduce the space between lines, making the text more compact.
+
+**Word-spacing**: The **word-spacing** property is used to adjust the white space between words in a text block. It can increase or decrease the space between words, depending on the specified value.
+
+By using these properties, you can control the appearance and spacing of text elements within your webpage to achieve the desired design and layout.
+
+<figure><img src="/files/UQGk3RbKGaqlK9f1rFJb" alt="" width="375"><figcaption></figcaption></figure>
+
+### Border
+
+By using these CSS properties, you have the flexibility to control the spacing, borders, and corners of elements to create visually appealing and well-structured layouts for your web pages.
+
+**Margin:** The CSS margin properties create space around elements outside of any defined borders.&#x20;
+
+**Padding**: An element's padding is the space between its content and its border. T
+
+**Border-width**: The `border-width` property sets the width of an element's four borders (top, right, bottom, and left). You can adjust each border's width separately using properties like `border-top-width`, `border-right-width`, `border-bottom-width`, and `border-left-width`.
+
+**Border-color**: The `border-color` property sets the color of an element's four borders.&#x20;
+
+**Border-radius**: The `border-radius` property defines the radius of the element's corners, allowing you to create rounded corners.&#x20;
+
+<figure><img src="/files/ZWJDRPDAco3G3NPoeDch" alt="" width="360"><figcaption></figcaption></figure>
+
+The **border-style** property is used to set the style of an element's four borders (top, right, bottom, and left). Each border can have its own style. The available values for **border-style** are:
+
+* **none**: The default value. Specifies no border.
+* **hidden**: Same as "none", except in border conflict resolution for table elements.
+* **dotted**: Specifies a dotted border, with small dots spaced apart.
+* **dashed**: Specifies a dashed border, with short dashes separated by small gaps.
+* **solid**: Specifies a solid border, which is a continuous line.
+* **double**: Specifies a double border, consisting of two solid lines.
+* **groove**: Specifies a 3D grooved border. The effect depends on the **border-color** value.
+* **ridge**: Specifies a 3D ridged border. The effect depends on the **border-color** value.
+* **inset**: Specifies a 3D inset border. The effect depends on the **border-color** value.
+* **outset**: Specifies a 3D outset border. The effect depends on the **border-color** value.
+
+By using different **border-style** values, you can achieve various visual effects for the borders of your elements, allowing for versatile and attractive designs in your web page layout.
+
+<figure><img src="/files/Skrjs2fSB9LakYbLdWYb" alt="" width="375"><figcaption></figcaption></figure>
+
+## HTML Menu
+
+When you right-click on an element, an HTML manipulation menu will appear.
+
+From this menu, you can choose the "**Remove**" option to delete the selected element.
+
+If you want to modify the existing HTML code, the "**Replace**" option enables you to make the necessary changes.
+
+To add new code to the existing code block, you can simply select the "**Append**" option.
+
+The "**Insert**" options provide the flexibility to enter new HTML entries at any desired position.
+
+Furthermore, there's an option called "**Insert JavaScript**" allowing you to add JavaScript code precisely where you need it within the HTML structure.
+
+<figure><img src="/files/nQdq1jJ3IPaPRicjIHn2" alt="" width="375"><figcaption></figcaption></figure>
+
+## Publishing your Experience
+
+When you have finished making all the changes, you can return to the panel by clicking on the "**Save**" button located at the top right corner. Once you click "**Save**," a "**Done**" button will appear. Click on the "Done" button to exit the editing mode and return to the panel. **Your changes will be saved and applied to the content.**
+
+<figure><img src="/files/aN1ihfKJ8TnsVHCZGOQ4" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/web-tools/web-personalization/create-new-experience/new-experience.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,325 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/entry-rules.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/entry-rules.md).
+
+# Entry Rules
+
+Use **Entry Rules** to control when users can enter a journey, which event or schedule starts that entry, and whether the same user can enter again later. After completing this page, you will be able to configure sending hours, choose between **Time-Based** and **Action-based** entry, define event conditions, and set re-entry limits that match your campaign logic.
+
+### Step 1: Configure the Engagement Window
+
+Use **Engagement Window** to define when journey messages are allowed to send. This helps you avoid sending communication during late-night hours, off-business hours, or any other time period that should be excluded.
+
+<div data-with-frame="true"><figure><img src="/files/PiZKuKXFMjj0nT645OFw" alt=""><figcaption></figcaption></figure></div>
+
+#### Step 1.1: Turn on the window and choose the allowed schedule
+
+Enable **Engagement Window** and then define:
+
+* the allowed **Start time**
+* the allowed **End time**
+* the valid days from **Monday** to **Sunday**
+
+Once enabled, the window applies to all supported send steps in the journey unless a step is explicitly configured to ignore it.
+
+For example, if you set the window to **09:00–18:00** on weekdays, the journey can send messages only during those hours on those selected days.
+
+#### Step 1.2: Decide what happens outside the window
+
+Choose how the system handles messages that are triggered outside the configured schedule.
+
+If **Ignore messages sent outside the Engagement Window** is enabled, the message is discarded. It is not queued for later delivery.
+
+If this option is not enabled, the message is held and delivered when the next valid Engagement Window begins.
+
+For example, if the window is **09:00–18:00** and a message is triggered at **20:30**:
+
+* with **Ignore messages sent outside the Engagement Window** enabled, the message is discarded
+* without that option enabled, the message waits until **09:00** on the next valid day
+
+<div data-with-frame="true"><figure><img src="/files/LZU27LzHSfU60kEB7Evk" alt="" width="379"><figcaption></figcaption></figure></div>
+
+{% hint style="info" %}
+This behavior applies across the journey unless a supported send step uses **Ignore Engagement Window**.
+{% endhint %}
+
+#### Step 1.3: Override the window for urgent send steps when needed
+
+Use **Ignore Engagement Window** on a supported send step when that specific communication must be delivered immediately, even if the normal journey window is closed.
+
+This option is available for:
+
+* **Send Mobile Push**
+* **Send Email**
+* **Send SMS**
+
+Learn more in [Build Journey](/netmera-user-guide/omnichannel-engagement/journey-orchestration/build-journey.md#ignoring-the-engagement-window-for-specific-send-steps).
+
+### Step 2: Choose the journey entry type
+
+After setting the Engagement Window, choose how users should enter the journey. The two main models are **Time-Based** and **Action-based**.
+
+* Use **Time-Based** when the journey should start on a schedule.
+* Use **Action-based** when the journey should start after a user triggers an event.
+
+The correct choice depends on whether the journey is driven by calendar timing or by user behavior.
+
+### Step 3: Time-Based entry rules
+
+Use **Time-Based** when the journey should run at specific dates, times, or recurring intervals. This option fits campaigns that are tied to schedules rather than individual user events.
+
+<figure><img src="/files/GcaENP8DcLaVrSbZHpFV" alt=""><figcaption></figcaption></figure>
+
+Common use cases include:
+
+* onboarding or welcome campaigns
+* holiday or promotional campaigns
+* daily, weekly, or monthly recurring communications
+
+For example, a New Year campaign, a weekend promotion, or a monthly newsletter all fit the **Time-Based** model.
+
+#### Step 3.1: Choose how users enter an ongoing scheduled journey
+
+For ongoing journeys, decide whether users should enter as soon as they become eligible or at a scheduled time.
+
+**Enter Users Immediately**
+
+Use **Enter Users Immediately** when users should join as soon as they meet the audience conditions, without waiting for a separate schedule.
+
+For example, if the target audience is a dynamic segment such as new users or churn-risk users, each user enters as soon as they qualify for that segment.
+
+**Enter Users At An Optimal Time**
+
+Use **Enter Users At An Optimal Time** when users should enter on a schedule you define.
+
+This is useful when the audience remains eligible over time, but the journey should begin only at selected moments, such as the last day of each month or every Wednesday.
+
+You can then choose a **Frequency Type**:
+
+* **Once**
+* **Daily**
+* **Weekly**
+* **Monthly**
+
+{% @arcade/embed url="<https://app.arcade.software/share/jebEaMKZ7htjgVI3RBHG>" flowId="jebEaMKZ7htjgVI3RBHG" %}
+
+{% hint style="info" %}
+For example, a New Year campaign can start on January 1 at 00:00 in each user’s local time zone. That setup fits a one-time, calendar-driven journey.
+{% endhint %}
+
+#### Step 3.2: Configure the Once frequency
+
+Use **Once** when the journey should run only one time.
+
+This option fits:
+
+* a one-time welcome communication
+* a holiday campaign such as New Year’s Day
+* a single-date announcement or promotion
+
+A **start date** is required. An **end date** is optional. The schedule can follow your own time zone or the users’ time zones, depending on the configuration available in the UI.
+
+For example, if you want to send a New Year greeting at midnight on January 1, 2025, configure the journey to start once at **00:00** on that date.
+
+<div data-with-frame="true"><figure><img src="/files/JujLuAR1EPyiTzusdIKg" alt="" width="563"><figcaption></figcaption></figure></div>
+
+#### Step 3.3: Configure the Daily frequency
+
+Use **Daily** when the journey should repeat every day or every few days.
+
+The **Frequency** value determines the interval:
+
+* `1` means the journey runs every day
+* `2` means the journey runs every two days
+* higher values extend the interval further
+
+For example, if you want a reminder campaign to run every day during July, select **Daily**, set **Frequency** to `1`, and define the July start and end dates.
+
+<div data-with-frame="true"><figure><img src="/files/YfOGxyyLGukR7tI2Ybr7" alt="" width="563"><figcaption></figcaption></figure></div>
+
+#### Step 3.4: Configure the Weekly frequency
+
+Use **Weekly** when the journey should repeat on selected days of the week.
+
+The **Frequency** value determines how many weeks pass between journey runs:
+
+* `1` means every week
+* `2` means every two weeks
+
+Then choose the specific weekday or weekdays that should trigger the journey.
+
+For example, if you want a weekend campaign throughout July, choose **Weekly**, select **Saturday** and **Sunday**, and keep the frequency at `1`.
+
+<div data-with-frame="true"><figure><img src="/files/GZWZUiGFisRgxc1HFsZi" alt="" width="563"><figcaption></figcaption></figure></div>
+
+#### Step 3.5: Configure the Monthly frequency
+
+Use **Monthly** when the journey should recur on a monthly schedule.
+
+The **Frequency** value controls the interval in months:
+
+* `1` means every month
+* `2` means every two months
+
+This option fits recurring newsletters, monthly discounts, or other campaigns that should repeat on a monthly cadence.
+
+For example, if you run a loyalty campaign once per month, select **Monthly** and set the frequency to `1` so the journey starts every month within the configured date range.
+
+<div data-with-frame="true"><figure><img src="/files/MCa2iFGyovyQqQwGrq8A" alt="" width="563"><figcaption></figcaption></figure></div>
+
+### Step 4: Configure Action-based entry rules
+
+Use **Action-based** when the journey should start only after a user performs a specific tracked action. In this model, the event acts as the trigger, and the user enters the journey only when both the event conditions and audience conditions are satisfied.
+
+<div data-with-frame="true"><figure><img src="/files/ipktHYQvzUbdrdPygzLt" alt="" width="563"><figcaption></figcaption></figure></div>
+
+#### Step 4.1: Select the event that starts the journey
+
+Choose the event that represents the entry trigger.
+
+For example, if the event is **Credit Application**, the journey starts when a user triggers that event and meets the rest of the entry conditions.
+
+{% @arcade/embed url="<https://app.arcade.software/share/yECUcqQ1aCtJjj5pvHCj>" flowId="yECUcqQ1aCtJjj5pvHCj" %}
+
+#### Step 4.2: Add event property conditions when the event alone is too broad
+
+Use **Select Event Property** when not every occurrence of the selected event should start the journey.
+
+Add one or more event property rules to narrow the trigger. The journey starts only when the event occurs and the property conditions are met.
+
+For example, if the selected event is **Credit Application**, you can define:
+
+* **Amount** → **Greater Than** → `10000`
+
+With that configuration, only users who trigger **Credit Application** with an amount greater than `10000` enter the journey.
+
+<div data-with-frame="true"><figure><img src="/files/JdIQIMR5jBW8XKYK1fug" alt="" width="563"><figcaption></figcaption></figure></div>
+
+#### Step 4.3: Add Journey Value when you need event data later in the flow
+
+Use **Add Journey Value** to capture a value from the entry event and reuse it later inside the journey.
+
+This is useful when you want to personalize a message or make a later decision based on the original event payload.
+
+For example, if the event contains a credit amount, you can store that amount as a Journey Value and later use it in a message such as: `You have applied for a credit of 10,000.`
+
+Choose a clear **value name** so it is easy to identify later in personalization settings.
+
+<div data-with-frame="true"><figure><img src="/files/2ZvfOwqM6XyHacNHqXdU" alt="" width="563"><figcaption></figcaption></figure></div>
+
+{% hint style="info" %}
+You can use Journey Values later in the **Build** step while configuring personalized notifications. Learn more in [State > Send Mobile Push](/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components/action.md#send-mobile-push).
+{% endhint %}
+
+#### Step 4.4: Add Correlation when one identifier should link the full journey
+
+Use **Add Correlation** when all actions in the journey should be tied to the same identifier. The correlation attribute becomes the key that groups related events into the same journey instance.
+
+Common examples include:
+
+* **Order ID**
+* **User ID**
+* **Message ID**
+
+To configure it:
+
+1. Enable **Add Correlation**.
+2. Enter the correlation attribute name.
+3. Save the rule so future journey processing uses that identifier.
+
+Once set, the correlation is applied across the journey. Events that share the same value are processed as part of the same linked flow.
+
+For example, if the correlation attribute is **Order ID** and a user places order `12345`, later events related to that order can be associated with the same journey instance instead of being treated as unrelated actions.
+
+{% hint style="info" %}
+The correlation attribute must be selected during journey creation and cannot be changed after the journey starts.
+{% endhint %}
+
+### Step 5: Define eligibility and re-entry behavior
+
+After setting the entry trigger, define how often a user is allowed to enter the journey. This determines whether the same user can enter only once or can re-enter under controlled conditions.
+
+{% @arcade/embed url="<https://app.arcade.software/share/ketwX2pZUI1eHj4OPGOc>" flowId="ketwX2pZUI1eHj4OPGOc" %}
+
+#### Step 5.1: Choose the User Eligibility Type
+
+You can choose between two main entry models:
+
+* **Only One Time**
+* **Multiple Times**
+
+**Only One Time**
+
+Use **Only One Time** when the journey should never repeat for the same user.
+
+For example, if the journey is designed for first-time onboarding, the user enters once and cannot enter again later.
+
+<div data-with-frame="true"><figure><img src="/files/kGBiC5u4HVXOpCDv3ouE" alt="" width="563"><figcaption></figcaption></figure></div>
+
+**Multiple Times**
+
+Use **Multiple Times** when a user should be allowed to re-enter after a waiting period or within a controlled limit.
+
+This option is useful for journeys tied to repeatable behavior, such as recurring applications, repeated purchases, or periodic reminder flows.
+
+#### Step 5.2: Set Lock Duration for re-entry delay
+
+Use **Lock Duration** to control how long the user must wait before re-entering after a previous entry.
+
+For example, if **Lock Duration** is set to **3 days**, a user who enters today cannot re-enter again until the 3-day lock period ends, even if the entry condition happens again during that time.
+
+#### Step 5.3: Set Entry Capping to limit total entries
+
+Use **Entry Capping** to define the maximum number of times a user can enter the journey.
+
+For example, if the cap is set to **3**, the user can enter the journey only three times within the applicable capping period.
+
+#### Step 5.4: Define the Capping Time Period
+
+Use **Capping Time Period** to define when the entry cap resets.
+
+For example, if the journey allows **3 entries within 30 days**, a user who reaches three entries during that 30-day period cannot enter again until the period resets. After the reset, the user can enter again according to the same rules.
+
+<figure><img src="/files/aa24GlYmMSqXX64xeXe8" alt=""><figcaption></figcaption></figure>
+
+### Step 6: Review the full entry logic before moving on
+
+Before you continue, check that the entry configuration matches the behavior you want in production.
+
+Use this checklist:
+
+1. The **Engagement Window** matches the allowed communication hours.
+2. The journey uses the correct entry model: **Time-Based** or **Action-based**.
+3. Any event property filters are narrow enough to be precise, but not so strict that valid users are excluded.
+4. Any Journey Value or correlation setting uses the correct source field.
+5. Eligibility rules match the intended re-entry behavior.
+
+{% hint style="warning" %}
+If the entry rule is too broad, too many users may enter the journey. If it is too narrow, the journey may appear inactive because almost no users qualify.
+{% endhint %}
+
+### What happens next
+
+After you finish **Entry Rules**, continue with the next journey configuration step and review the audience and journey flow before launch. These settings determine not only who can enter, but also when they enter and how often they can return.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/entry-rules.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

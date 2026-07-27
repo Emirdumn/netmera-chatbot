@@ -1,0 +1,167 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push/mobile-web-push-for-ios.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push/mobile-web-push-for-ios.md).
+
+# Mobile Web Push for iOS
+
+Mobile Web Push for iOS lets you send web push notifications to users who add your website to their Home Screen and grant permission from that home screen app.
+
+This flow is available on **iOS and iPadOS 16.4+**.
+
+{% hint style="info" %}
+
+#### Key requirement
+
+iOS web push works only for websites opened as **Home Screen web apps**.
+
+Users must:
+
+1. add your website to the Home Screen,
+2. open it from the Home Screen,
+3. and grant notification permission there.
+   {% endhint %}
+
+<figure><img src="/files/f93ea7wHeNAh8Y4m5gFi" alt="" width="563"><figcaption></figcaption></figure>
+
+### Quick workflow
+
+{% stepper %}
+{% step %}
+
+#### 1) Complete the technical setup
+
+Configure Mobile Web Push for iOS in your web project.
+{% endstep %}
+
+{% step %}
+
+#### 2) Drive users to add the site to Home Screen
+
+iOS push works only after the site is saved as a Home Screen web app.
+{% endstep %}
+
+{% step %}
+
+#### 3) Ask for permission from the Home Screen app
+
+Use your web push opt-in flow, such as **Fancy Box**, to request permission.
+{% endstep %}
+
+{% step %}
+
+#### 4) Send and target the right audience
+
+Create a web push campaign and target mobile Safari subscribers.
+{% endstep %}
+{% endstepper %}
+
+### Before you start
+
+Before using Mobile Web Push for iOS, make sure:
+
+* your web push integration is complete,
+* your site supports the iOS mobile web push setup,
+* and your opt-in flow is ready.
+
+For the technical setup, follow the [**Developer Guide**](https://user.netmera.com/netmera-developer-guide/platforms/web/mobile-web-push-for-ios).
+
+If you use a pre-permission prompt, see [**Fancy Box**](/netmera-user-guide/omnichannel-engagement/web-push/fancy-box.md).
+
+### Step 1: Complete application configuration
+
+Set up your web project for iOS mobile web push first.
+
+This setup happens outside the panel and is required before any user can subscribe.
+
+Use the [**Developer Guide**](https://user.netmera.com/netmera-developer-guide/platforms/web/mobile-web-push-for-ios) for the full implementation steps.
+
+### Step 2: Users add your site to the Home Screen
+
+For users to receive iOS web push notifications, they must first add your site to the Home Screen.
+
+This step is required because iOS web push works only for Home Screen web apps.
+
+#### User flow
+
+1. Open the website on an iOS/iPadOS 16.4+ device.
+2. Tap **Share**.
+3. Select **Add to Home Screen**.
+4. Save the web app to the device Home Screen.
+5. Open the site from the Home Screen icon.
+6. Start the subscription flow, for example with **Fancy Box**.
+7. Let the native permission prompt open from that flow.
+
+<figure><img src="/files/cStESG07VWfYurkxNY4b" alt="" width="375"><figcaption></figcaption></figure>
+
+### Step 3: Grant push permission
+
+After the site is opened from the Home Screen, users must allow notifications.
+
+Typical flow:
+
+1. The user opens the Home Screen web app.
+2. Your site shows a pre-permission step such as **Fancy Box**.
+3. The user taps the subscribe action.
+4. iOS shows the native notification permission prompt.
+5. The user grants permission.
+
+{% hint style="info" %}
+Permission must be requested from the **Home Screen web app**, not from a normal browser tab.
+{% endhint %}
+
+<figure><img src="/files/Bp9lmBAh6k7SPagoDcxe" alt="" width="375"><figcaption></figcaption></figure>
+
+### Step 4: Send a campaign
+
+After users subscribe, you can send a normal **Web Push** campaign from Netmera.
+
+Use the standard campaign flow to create content, choose an audience, schedule the send, and launch the campaign.
+
+For the full campaign flow, see [**Create Web Push**](/netmera-user-guide/omnichannel-engagement/web-push/create-web-push.md).
+
+<figure><img src="/files/6ljfk72WHnEjoIhBOGIU" alt=""><figcaption></figcaption></figure>
+
+### Target iOS mobile web push users
+
+To reach users who subscribed on iOS, filter your audience by browser and device type.
+
+1. Go to **Targeting → People**.
+2. Under **Platform**, select **Safari**.
+3. Under **Device Type**, select **Mobile**.
+4. Review the matching audience.
+5. Save the result as a segment if you want to reuse it later.
+
+This helps you isolate mobile Safari subscribers for future web push campaigns.
+
+<figure><img src="/files/nRcodylkS0zph1TAJP0P" alt="" width="563"><figcaption></figcaption></figure>
+
+<figure><img src="/files/UQOoglswRMYjTssXbYRc" alt="" width="563"><figcaption></figcaption></figure>
+
+### Best practices
+
+* Tell users why they should subscribe before showing the permission prompt.
+* Make the Home Screen step clear in your onboarding or site messaging.
+* Test the full flow on an actual iPhone or iPad.
+* Save iOS Safari audiences as reusable segments.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push/mobile-web-push-for-ios.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

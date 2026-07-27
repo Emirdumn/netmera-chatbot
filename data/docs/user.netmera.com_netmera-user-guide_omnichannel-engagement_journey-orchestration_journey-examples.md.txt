@@ -1,0 +1,43 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-examples.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-examples.md).
+
+# Journey Examples
+
+Journey orchestration is a powerful tool for personalizing user experiences and driving engagement through targeted, behavior-driven actions. By understanding and responding to user actions in real-time, businesses can craft seamless journeys that enhance customer interactions, boost conversions, and strengthen loyalty.
+
+In the next section, you’ll see several practical examples of how businesses can use journey orchestration to engage users effectively. These journeys are designed to respond to user actions and ensure each interaction feels personalized, timely, and relevant.
+
+Let's start with our first example: [Action-Based Engagement Journey](/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-examples/action-based-engagement-journey.md) :tada:
+
+***
+
+For more inspiration, you might also explore our blog posts:
+
+* [Understanding Customer Journeys](https://netmera.com/understanding-customer-journeys/)
+* [Create Personalized and Engaging Customer Journeys with Netmera](https://netmera.com/create-customer-journeys-with-netmera/)
+* [Customer Journeys From First Touch To Loyal Advocate](https://netmera.com/omnichannel-customer-journeys/)
+
+These resources dive deeper into the principles and strategies behind successful journey orchestration, offering actionable insights to help you optimize your customer engagement.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-examples.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

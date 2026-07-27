@@ -1,0 +1,145 @@
+URL: https://user.netmera.com/netmera-user-guide/customer-data/profile-attributes/custom-profile-attributes.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/customer-data/profile-attributes/custom-profile-attributes.md).
+
+# Custom Profile Attributes
+
+Custom Profile Attributes allow you to capture and store specific types of customer information that are not covered by standard fields, such as product preferences, behavioral scores, or other domain-specific data points.
+
+### Profile Attributes Dashboard
+
+The Profile Attributes dashboard is where you manage and review your user data structure. It organizes attributes into two main types:
+
+#### Standard Attributes
+
+These are predefined by Netmera and include essential fields such as:
+
+* `email`
+* `msisdn`
+* `device identifiers`
+
+Standard attributes ensure consistency and interoperability across the platform.
+
+<figure><img src="/files/6hq97KwOSfZMcL9OtCJq" alt=""><figcaption><p>Standart Attributes</p></figcaption></figure>
+
+#### Custom Attributes
+
+You can define attributes tailored to your business, such as:
+
+* Lifetime Value
+* Lead Source
+* Subscription Type
+
+Custom attributes help you personalize your engagement strategies, enhance segmentation, and improve analytics.
+
+<figure><img src="/files/Avwlu7ue56QoYvNJxIAC" alt=""><figcaption></figcaption></figure>
+
+### Reading the Attribute Table
+
+Each attribute listed in the dashboard includes detailed metadata:
+
+<table><thead><tr><th width="214.14251708984375">Field</th><th>Description</th></tr></thead><tbody><tr><td><strong>Code</strong></td><td>A unique key used in API calls and developer integrations.</td></tr><tr><td><strong>Attribute</strong></td><td>The display name shown in the panel (e.g., “City”, “Gender”).</td></tr><tr><td><strong>Description</strong></td><td>A short explanation of the attribute’s purpose.</td></tr><tr><td><strong>Is Personal Info</strong></td><td>Indicates whether the attribute contains personal or sensitive data.</td></tr><tr><td><strong>Calculate Analytics</strong></td><td>Specifies if the attribute contributes to analytics and reports.</td></tr><tr><td><strong>Unit</strong></td><td>Denotes the measurement unit, if applicable (e.g., TL, %, cm).</td></tr><tr><td><strong>Calculated</strong></td><td>Shows whether the value is dynamically computed based on other data.</td></tr></tbody></table>
+
+### Step 1: Access Create Attribute Section Fill in Attribute Details
+
+Creating a custom profile attribute involves defining its key properties and determining how it will be used within your app or campaigns. To create a new custom profile attribute,&#x20;
+
+1. Navigate to: **Developers > Profile Attributes > Create Attribute**
+2. Fill in attribute details:
+
+<table><thead><tr><th width="236.888671875">Field</th><th>Description</th></tr></thead><tbody><tr><td><strong>Profile Attribute Name</strong></td><td>A unique identifier used in your application code (e.g., <code>communicationPreference</code>).</td></tr><tr><td><strong>Label</strong></td><td>A user-friendly label that appears in the control panel and reports.</td></tr><tr><td><strong>Order</strong></td><td>Determines the display order in the attribute list.</td></tr><tr><td><strong>Description</strong></td><td>A brief summary of what the attribute tracks.</td></tr><tr><td><strong>Data Type</strong></td><td>Select the type of data to be stored: <code>String</code>, <code>Number</code>, <code>Date</code>, etc.</td></tr><tr><td><strong>Is Array</strong></td><td>Enable this option if the attribute should store multiple values.</td></tr><tr><td><strong>Is Private Info</strong></td><td>Enable this if the attribute contains sensitive information to ensure privacy compliance.</td></tr></tbody></table>
+
+<figure><img src="/files/PdNZ7xV1a0tlbt9WJaVt" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+**Example:**
+
+Suppose you are creating a custom profile attribute for tracking the customer's preferred communication channel. Here's an example:
+
+* **Name**: `communicationPreference`
+* **Label**: `Communication Preference`
+* **Order**: `2` (for placement within your list of profile attributes)
+* **Description**: `Records the customer's preferred communication channel, such as email, SMS, or app notifications.`
+* **Data Type**: `String` (to capture a single preferred communication channel)
+
+In this scenario, the custom profile attribute "communicationPreference" captures the customer's choice of communication channel for receiving notifications or updates.
+{% endhint %}
+
+### Step 2: Enable Analytics-Based Calculation
+
+**Calculate Analytics** option enables automatic calculation of analytics-based values for a profile attribute. The calculation logic is defined on the analytics/backend layer and is not configured directly in the panel. It is available as a toggle in the Profile Attributes list.
+
+When this option is enabled, the attribute is no longer manually updated. Instead, it is dynamically calculated based on user behavior and event data (such as app opens, purchases, or sessions).
+
+This option allows you to use attributes that are calculated based on user behavior and analytics data such as:&#x20;
+
+* Total number of actions (e.g. total purchases)
+* Last session date
+* Frequency of user behavior (e.g. sessions in last 7 days)
+
+These calculated attributes can then be used for:
+
+* Segmentation
+* Journey targeting
+* Personalization
+
+{% hint style="success" %}
+
+### When to Use Calculate Analytics
+
+Enable **Calculate Analytics** when:
+
+* The attribute should be derived from user activity
+* The value needs to be updated automatically
+* You want to track behavioral metrics instead of static values
+  {% endhint %}
+
+{% hint style="warning" %}
+
+### When Not To Use Calculate Analytics
+
+Do not enable this option if:
+
+* The attribute is manually set (e.g. consent, name, email)
+* The value comes directly from the backend or SDK
+* No calculation logic is required
+  {% endhint %}
+
+<figure><img src="/files/3jhF7Eattt5eu2cxGCS5" alt=""><figcaption><p>Calculate Analytics</p></figcaption></figure>
+
+### Step 3: Save and Generate Code
+
+Once your attribute is configured, click **Save**. This action will:
+
+* Save the custom attribute to your data model.
+* Automatically generate the corresponding code snippet under the **User Class** section.
+
+#### Developer Integration
+
+Developers can use this generated code to integrate the new attribute into your mobile or web application.
+
+> 📘 **For implementation instructions**, visit: [**`Developer Guide`**](https://user.netmera.com/netmera-developer-guide/)
+
+<figure><img src="/files/T7f5LePPDNDx8AjMvgYF" alt="" width="563"><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/customer-data/profile-attributes/custom-profile-attributes.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,37 @@
+URL: https://user.netmera.com/netmera-user-guide/beginners-guide/troubleshooting-and-support.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/beginners-guide/troubleshooting-and-support.md).
+
+# Troubleshooting and Support
+
+### Email
+
+* General inquiries: **<info@netmera.com>**
+* Technical support: **<support@netmera.com>**
+* You may also directly contact your assigned **Customer Success Manager** or **Onboarding Manager**.
+
+### Offices
+
+<table><thead><tr><th width="196.78997802734375">Location</th><th width="222.419677734375">Phone</th><th>Email</th></tr></thead><tbody><tr><td><strong>London, UK</strong></td><td>+44 20 3286 4461</td><td>info@netmera.com</td></tr><tr><td><strong>İstanbul, Türkiye</strong></td><td>+90 850 757 83 21</td><td>info@netmera.com</td></tr><tr><td><strong>Baku, Azerbaijan</strong></td><td>+994 55 207 79 67</td><td>info@netmera.comkripton.az</td></tr><tr><td><strong>Dubai, UAE</strong></td><td>+971 58 573 5294</td><td>info@netmera.com</td></tr><tr><td><strong>Tashkent, Uzbekistan</strong></td><td>+998 99 047 4317</td><td>info@netmera.com / netmera.uz</td></tr><tr><td><strong>Karachi, Pakistan</strong></td><td>+92 213 3383636</td><td>info@netmera.com</td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/beginners-guide/troubleshooting-and-support.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

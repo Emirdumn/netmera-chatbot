@@ -1,0 +1,80 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/behavioural/event-reports/daily-event-count.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/behavioural/event-reports/daily-event-count.md).
+
+# Daily Event Count
+
+**Path:** `Reports > Behavioural > Event Reports > Daily Event Count`
+
+Daily Event Count helps you track one or two events across days and compare how their volume changes over time. It is useful when you want a fast count-based view without moving into a more detailed event analysis.
+
+Use this report when you want to answer questions such as:
+
+* Did an event increase after a campaign launch?
+* Are two events moving together?
+* Has a product action stayed stable over the last week or month?
+
+### Report overview
+
+This report is built for simple trend reading. You choose one main event, optionally add a second event for comparison, then review how both counts change across the selected time range.
+
+It works best when you want a clean time-series view. If you need richer slicing later, you can move to [Event Insight](broken://spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY).
+
+### Configure the report
+
+* **First Event** is the main event you want to count. This can be a sign-up, purchase, push view, or any other tracked action.
+* **Platform** lets you limit the report to a specific platform. Use this when the same event behaves differently on iOS and Android.
+* **Second Event** is optional. Add it when you want to compare two behaviors in the same chart.
+* **Last x days** sets the date range for the comparison.
+
+<figure><img src="/files/2LZdx0TlxC9RO9JzsxQL" alt="" width="375"><figcaption></figcaption></figure>
+
+<figure><img src="/files/zhJewLNlVjq67Z4fX07A" alt="" width="375"><figcaption></figcaption></figure>
+
+<figure><img src="/files/murTDLte0479lneVByQ2" alt=""><figcaption></figcaption></figure>
+
+### Use event attributes for narrower analysis
+
+Event attributes help you focus on a more specific slice of behavior. This is useful when the event name is too broad on its own.
+
+For example, a push-related event may include **Message ID**, while a commerce event may include product, category, or basket-related fields. Available attributes depend on the event type. Standard Netmera events include predefined attributes, while custom events use the attributes defined during setup.
+
+<figure><img src="/files/Z6NSQAXa56DUWOgDwsEN" alt=""><figcaption></figcaption></figure>
+
+To add attributes:
+
+1. Select the first event, and optionally the second event.
+2. Choose the relevant event attribute for each event.
+3. Select the attribute value or values you want to include.
+4. Click **Find** to generate the report.
+5. Use **Export to Excel** when you need the results outside the panel.
+
+<figure><img src="/files/KSrPsxJzfG1D2PtgUFMP" alt=""><figcaption></figcaption></figure>
+
+### Example
+
+Suppose you want to compare users who triggered **View Push** with a specific **Message ID** and then completed **Add to Cart**. In that case, select **View Push** as the first event, narrow it with **Message ID**, add **Add to Cart** as the second event, then choose the relevant attribute values before running the report.
+
+This setup helps you compare related behaviors in a direct, count-based format. When you need dimensions, audience filters, or more flexible breakdowns, continue with [Event Insight](broken://spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/behavioural/event-reports/daily-event-count.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

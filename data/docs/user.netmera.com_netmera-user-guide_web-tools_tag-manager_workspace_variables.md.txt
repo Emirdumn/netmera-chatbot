@@ -1,0 +1,155 @@
+URL: https://user.netmera.com/netmera-user-guide/web-tools/tag-manager/workspace/variables.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/web-tools/tag-manager/workspace/variables.md).
+
+# Variables
+
+Variables define the **dynamic values** that can be used inside your triggers. While tags define what action happens and triggers define when it happens, variables provide the **data** those actions depend on (e.g., page URL, click text, user attributes).
+
+By using variables, you can make your triggers more flexible and context-aware. For example, instead of hardcoding a page path, you can use a variable to capture the actual page URL at runtime.
+
+{% hint style="info" %}
+
+### Variable Lifecycle
+
+1. **Definition** – A variable is created with a name and type.
+2. **Reference** – Tags and triggers call the variable when evaluating conditions or firing actions.
+3. **Resolution** – When the condition is met, the system resolves the variable to its current value (e.g., current URL, clicked element ID, user email).
+   {% endhint %}
+
+### Step 1: Open the Variables Tab
+
+From your **Workspace**, select **Variables** in the left-hand menu.
+
+You will see a list of existing variables with the following details:
+
+* **Name** – the variable’s identifier.
+* **Type** – the data source (e.g., URL, Data Layer Variable, Custom JavaScript).
+* **References** – the triggers or tags where this variable is being used.
+* **Last Edited** – when the variable was last modified.
+* **Actions** – view, edit, or delete the variable.
+
+<figure><img src="/files/GgbVjXrf7GG1aJQzUDcB" alt=""><figcaption></figcaption></figure>
+
+### Step 2: Create a New Variable
+
+1. Click **Create Variable**.
+2. Enter a **Name** for your variable (choose something descriptive, like *Page URL* or *User Email*).
+3. Select a **Type** from the dropdown menu. Options include:
+
+**Utilities**:
+
+* Constant – stores a fixed value.
+* Date Time / Date Time Zone – captures the current time.
+* Engagement – measures user time on site.
+* Local DB – retrieves stored values from local storage.
+* Browser – captures browser properties.
+* Lookup Table – maps one value to another.
+* Random Number – generates a random value.
+
+**Page Variables**:
+
+* 1st Party Cookie – retrieves cookie values.
+* Data Layer Variable – pulls data from the data layer.
+* Custom JavaScript – runs custom code.
+* JavaScript Variable – references global JavaScript values.
+
+**Page Elements**:
+
+* DOM Element – captures attributes/text of an element on the page.
+
+**Navigation**:
+
+* URL – retrieves parts of the current page URL (full URL, path, query, etc.).
+
+**Netmera Specifics**:
+
+* Netmera User – retrieves user attributes managed by Netmera.
+
+<figure><img src="/files/2NMg0E6jTIuXX0HRF4eh" alt=""><figcaption></figcaption></figure>
+
+### Step 3: Save and Reference the Variable
+
+1. Click **Save** to create the variable.
+2. Go to **Triggers** or **Tags** and use this variable in conditions or actions.
+   * Example: Use the **Page Path** variable with the condition *contains /checkout* to fire a purchase event.
+   * Example: Use the **Click Text** variable to fire a trigger only when a button with label *Subscribe* is clicked.
+
+### Using Variables in Triggers
+
+Variables can be applied to **filters** inside triggers, making conditions more dynamic. Instead of setting a fixed value, you can use variables (like Page URL, Click ID, or Event Name) to evaluate the trigger at runtime.
+
+#### Example: Page Path Variable in a Trigger
+
+In this example, the trigger is set up as follows:
+
+* **Type:** Page View
+* **Filter:** Page Path → contains → `/checkout`
+
+This means the trigger will only fire **when the user views a page whose path contains `/checkout`**.
+
+<figure><img src="/files/eVfDYryCEP7vbMEbx4ho" alt=""><figcaption></figcaption></figure>
+
+### How to Import a Built-in Variable
+
+Sometimes, instead of creating a variable from scratch, you can import a predefined **built-in variable**. These cover common use cases such as capturing API responses, referencing Netmera user attributes, or adding debugging utilities.
+
+#### Step 1: Open the Variables Tab
+
+From your **Workspace**, select **Variables** in the left-hand menu.
+
+Click **Import Built-in Variable**. This opens a selection panel.
+
+#### Step 2: Select Built-in Variable Type
+
+In the import panel, you can choose from the following categories:
+
+**API**
+
+* Response Body – captures the body of an API response.
+* API URL – captures the full API endpoint.
+* Referrer URL – retrieves the referring page.
+* API Path – captures the API path segment.
+* Response Status – retrieves the HTTP response code.
+* Request Body – captures the content of the API request.
+
+**Netmera Specifics**
+
+* Netmera User Tags – retrieves user tags from Netmera.
+* Netmera User Segments – retrieves the segment(s) the user belongs to.
+* Netmera User External ID – retrieves the user’s external identifier.
+* Netmera User Gender – retrieves gender from the user profile.
+
+**Utilities**
+
+* Log Message – useful for debugging by printing values during Preview mode.
+
+#### Step 3: Confirm Selection
+
+Check the boxes for the built-in variables you want to import.
+
+Click **Save and Continue**. The selected variables will now appear in your **Variables list** with their type and references.
+
+<figure><img src="/files/uPUtKQ168PpehXeWm7RW" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/web-tools/tag-manager/workspace/variables.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

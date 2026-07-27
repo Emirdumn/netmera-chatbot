@@ -1,0 +1,76 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/test-devices.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/test-devices.md).
+
+# Test Devices
+
+**Path:** `Settings > Administration> Test Devices`
+
+Test Devices lets you manage testers and their associated test entries before going live. Depending on how the tester is registered, an entry may represent a mobile app installation, a browser-based environment, or another channel-specific test record.
+
+### Adding Test Devices for Testing
+
+{% hint style="warning" %}
+
+### Prerequisites
+
+Before inviting a tester, make sure the required app settings are configured:
+
+* For **iOS** test devices, fill in the **iOS URL Scheme** on the **Developers> App Info** page.
+* For **Android** test devices, fill in the **Android Package Name** on the **Developers> App Info** page.
+* For **web** testers, fill in the **Web Site URL** on the **Web Onboarding** page.
+  {% endhint %}
+
+{% @arcade/embed flowId="z5odjv8LXYffgBcdR90E" url="<https://app.arcade.software/share/z5odjv8LXYffgBcdR90E>" %}
+
+### How Test Devices Work
+
+Test devices are added by inviting or selecting testers via external Id. Once the process is completed, the system registers a corresponding entry in the Test Devices list.
+
+For mobile channels, these entries are linked to a specific app installation. For other environments such as web, email, or SMS, entries may represent a browser or contact point instead of a physical device.
+
+<figure><img src="/files/OoCAqHFNgOYanOqWlP7e" alt=""><figcaption></figcaption></figure>
+
+#### Option 1: Inviting Testers via Email
+
+1. Navigate to the left menu of the panel and select **Settings**.
+2. Click **Test Devices** to open the test device management screen.
+3. Click the **Invite Tester** button.
+4. Enter the tester’s email address in the provided field.
+5. Check the email inbox for the invitation link.
+6. Open the invitation link on the target device or environment.
+7. The system automatically registers the tester in the Test Devices list.
+
+<figure><img src="/files/3n0nLNGa5S4Adg9mP7Dc" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Option 2: Adding a Tester with External ID
+
+1. In the **Settings > Test Devices** screen, click **Add Tester**.
+2. Enter the **External ID** in the provided field.
+3. Click **Get Devices**.
+4. The system lists available devices or entries associated with the External ID.
+5. Select the desired entry from the list to add it as a test device with a single click.
+
+<div align="center"><figure><img src="/files/cU4sbDjWuPPD7PQFqYX7" alt="" width="563"><figcaption></figcaption></figure></div>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/test-devices.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

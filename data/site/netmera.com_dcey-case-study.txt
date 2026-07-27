@@ -1,0 +1,448 @@
+URL: https://netmera.com/dcey-case-study/
+
+DCEY Case Study - Netmera - Mobile First Growth Platform
+
+AI did the predicting, and Journeys did the convincing. UPTION's churn fell 16.6%. →
+
+ 
+
+ 
+
+			Skip to content		
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Login
+
+Get a Demo
+
+    Copy .SVG
+  
+
+    Media Kit
+  
+
+    Newsroom
+  
+
+ 
+
+ 
+
+Success Story
+ 
+
+DCEY increases purchase conversion by 84% with behavior-triggered push automation
+ 
+
+84% increase
+ in category-to-purchase conversion rate
+ 
+
+2.7x higher conversion
+ among push-engaged users
+ 
+
+5x higher conversion
+ vs. baseline for push-clickers
+ 
+
+3.36% click-through rate
+ on automated push notifications
+ 
+
+About DCEY
+ 
+
+DCEY
+ is Turkey’s clothing rental platform serving women who want designer occasion wear without the commitment of purchase. Founded in 2010, 
+the company became the first fashion rental business in Turkey to earn B Corp certification. 
+DCEY curates collections from global and local designers for weddings, engagements, and special events. 
+
+The team works to deliver personalized customer experiences across mobile and web, using behavioral data to send relevant messages that match where users are in their journey.
+ 
+
+The challenge
+ 
+
+DCEY’s “Engagement & Wedding Dresses” category attracted consistent traffic. Users browsed the selection, but rental completions weren’t keeping pace with views. Without immediate, relevant follow-up tied directly to browsing behavior, interest signals weren’t converting at the rate their business model required.
+
+The team
+ needed a lifecycle communication system that triggered automatically
+ when users viewed specific categories.
+ 
+
+01
+ 
+
+Triggering messages when interest peaks
+ 
+
+Plenty of users browsed the engagement and wedding dress collection. Far fewer rented. The problem was the lag between browsing and follow-up. DCEY set out to eliminate that delay entirely.
+ 
+
+ 
+
+How DCEY solved it
+ 
+
+The team built an automated push notification that triggered 20 minutes after a user viewed the category. This timing allowed users to browse without interruption while reaching them before interest faded.
+
+The message referenced the specific category they’d viewed and included a time-limited discount code. The entire system ran on behavioral triggers through Netmera’s automation, requiring no manual campaign setup for each user.
+ 
+
+What changed
+ 
+
+Conversion rates from category view to purchase 
+increased by 84%.
+ The automated, behavior-based approach meant every user received a message tailored to their browsing activity. Segmentation worked in the background to ensure relevance.
+ 
+
+									“We had strong category traffic but rental completions needed improvement. Netmera let us respond to browsing within 20 minutes with behavioral push automation, while users were still deciding. Conversion rates increased 84%, and we saw measurable lifts in purchase completion.”								
+
+ 
+
+Eda Franci
+ 
+
+Co-founder, DCEY
+ 
+
+02
+ 
+
+Measuring push impact on revenue
+ 
+
+DCEY wanted to understand the complete path from engagement to rental. Without tracking how push interactions connected to purchases, the team couldn’t quantify the channel’s contribution to revenue.
+ 
+
+How DCEY solved it
+ 
+
+DCEY used Netmera’s
+ funnel analytics
+ to track the journey from push click to completed purchase. The platform segmented users who clicked push notifications and measured their conversion rates separately from general category viewers. This ensured revenue tracking connected each campaign directly to rental transactions. 
+ 
+
+What changed
+ 
+
+Users who clicked push notifications 
+converted at 9.3%.
+ This rate was 2.7x higher than general category viewers and 5x higher than the baseline conversion rate before automation launched. 
+The team could see exactly how much revenue came from push-engaged users, and prove the channel’s business impact.
+ 
+
+ 
+
+“Behavior-based push automation ran itself, freeing our team from manual campaign work. We could focus on analyzing, testing, and optimizing instead. Using the platform’s analytics, we measured how push engagement translated directly into rental revenue.”
+ 
+
+ 
+
+Eda Franci
+ 
+
+Co-founder, DCEY
+ 
+
+The impact
+ 
+
++
+
+0
+
+%
+
+category-to-purchase conversion
+ 
+
+0
+
+X
+
+higher conversion from push clicks
+ 
+
+0
+
+%
+
+push CTR
+ 
+
+0
+
+%
+
+post-click conversıon
+ 
+
+84% increase
+ in category-to-purchase conversion rate
+
+2.7x higher conversion
+ among push-engaged users compared to general category traffic
+
+5x higher conversion
+ for push-clickers vs. baseline rate
+
+3.36% click-through rate
+ on automated push notifications
+
+9.3% conversion rate
+ among users who clicked push
+
+ 
+
+Why behavioral triggers outperform batch campaigns
+ 
+
+Batch campaigns
+ 
+
+Require manual setup for each send
+
+Reach users days after they showed interest
+
+Deliver generic messages to broad audiences
+
+Measure clicks and opens, not conversions
+
+ 
+
+Behavioral triggers
+ 
+
+Fire automatically based on real-time user actions
+
+Respond within minutes of key browsing events
+
+Deliver content tied to specific user behavior
+
+Track the full path from engagement to purchase
+
+The difference comes down to timing and personalization. 
+Behavioral push automation
+ eliminates the lag between when users show interest and when they hear from you. Teams gain visibility into which moments drive real engagement and revenue.
+ 
+
+ 
+
+Your users are showing interest right now. Are you reaching them in time?
+
+Schedule a demo 
+to see how Netmera automates responses based on behaviors while interest is still high.
+ 
+
+ 
+
+Check other stories
+ 
+
+Blog
+Passo Case Study
+Passo increased revenue 9X and CTR 10X with a behavioral funnel that guided users from signup to purchase.
+Read More
+Fal Sepeti Case Study
+Fal Sepeti identified its checkout drop-off window with cohort analysis and closed it with behavior-driven push automation.
+Read More
+Tod Case Study
+Enable Now clicks lifted purchases ~190%. Ask Later users saw ~187% purchase growth.
+Read More
+ 
+
+ 
+
+Subscribe to our newsletter
+ 
+
+ 
+
+Products
+ 
+
+Customer Data Management
+
+Customer Journeys
+
+AI Site Search & Browse
+
+Web Personalization
+
+Testing and Experimentation
+
+Data & Analytics
+
+Tagless Data Capture
+
+Surveys & Feedback​
+
+Funnels
+
+Channels
+ 
+
+Mobile & Web Push
+
+E-Mail
+
+SMS
+
+Whatsapp
+
+Mobile In-App
+
+Web Pop-Ups
+
+Live Activities
+
+Feedback Button
+
+Netmera AI
+
+Industries
+ 
+
+Media and Entertainment
+
+Banking and Finance
+
+Retail and E-commerce
+
+Travel and Hospitality
+
+Telecommunication
+
+Company
+ 
+
+About Us
+
+Careers
+
+Contact Us
+
+Partners
+
+Why Netmera
+
+Newsroom
+
+Information for AI
+
+Resources
+ 
+
+Blog
+
+Glossary
+
+Top Use Cases
+
+Resources
+
+Success Stories
+
+Developer and User Guide
+
+ 
+
+© 2026 — 
+Netmera
+. All Rights Reserved.   |   
+Privacy Policy
+   |   
+Cookie Policy (EU)
+   |   
+GDPR
+   |   
+KVKK
+ 
+
+Linkedin
+
+ 
+
+Youtube
+
+ 
+
+ 
+
+ 
+
+Manage Cookie Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+						Always active					
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+
+Deny
+
+View preferences
+
+Save preferences
+
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent

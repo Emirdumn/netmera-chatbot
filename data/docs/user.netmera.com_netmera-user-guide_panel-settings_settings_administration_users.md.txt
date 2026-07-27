@@ -1,0 +1,94 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/users.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/users.md).
+
+# Users
+
+Users refer to individuals who have access to the Netmera Panel. These users can belong to different roles, each with specific permissions and access levels within the panel.
+
+To access the Users dashboard, go to `Settings>Administration>Users`&#x20;
+
+From this page, you can view existing users, manage their details, and invite new ones.
+
+{% stepper %}
+{% step %}
+
+### Step 1: Open the Users dashboard
+
+Go to **Settings → Administration → Users** in the Netmera Panel.
+
+The Users dashboard opens.
+
+<figure><img src="/files/XQRkKNudkgHadGld3iAL" alt=""><figcaption></figcaption></figure>
+{% endstep %}
+
+{% step %}
+
+### Step 2: Choose what you want to do
+
+From the Users dashboard, you can:
+
+* manage an existing user's details and roles from Actions column
+* click **Invite User** to invite a new user
+
+<figure><img src="/files/8Jxd8HblsCbwj7Te82AW" alt=""><figcaption></figcaption></figure>
+{% endstep %}
+
+{% step %}
+
+### Step 3: Edit an existing user or invite a new user
+
+{% hint style="warning" %}
+**IMPORTANT:** Only **Super Admin** and **App Admin** users can edit or delete users from the **Users** page.
+{% endhint %}
+
+Click the user's email address to open **User Details**.
+
+Click the **Invite User** button to invite a new user.
+{% endstep %}
+{% endstepper %}
+
+### Edit User
+
+1. If you want to assign or remove roles for an existing user, you can use the search function to find the user by name.
+2. Once you locate the user, click on their email address to access the **User Details** page.
+3. Click **Edit** to update the user's profile.
+4. You can configure fields such as name, surname, GSM, external ID, and roles.
+5. Don't forget to save the changes by clicking on the **Save** button.
+
+<figure><img src="/files/iHLXLty69l0VAi7y9RQ3" alt=""><figcaption><p>User Details page without edit permission</p></figcaption></figure>
+
+<figure><img src="/files/RsdONDN8cCl76rx5nxWi" alt=""><figcaption><p>User Details page with edit permission</p></figcaption></figure>
+
+<figure><img src="/files/gmj0uQIXCbVDJKYAS3n8" alt=""><figcaption><p>Configure user details such as Name, Surname, GSM, External ID and Roles</p></figcaption></figure>
+
+### Invite User
+
+1. To invite a new user, click on the **Invite User** button.
+2. Enter the Email address and Role of the new user you want to invite.
+3. Select the [**appropriate role**](/netmera-user-guide/panel-settings/settings/administration/roles-and-permissions.md) for the new user from the available options. Roles define the level of access and permissions the user will have within the panel.
+4. Click on the **Invite User** button to invite the new user.
+
+<figure><img src="/files/wfVzlJnrEAX5Bcib9qD8" alt="" width="563"><figcaption><p>Invite User</p></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/users.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

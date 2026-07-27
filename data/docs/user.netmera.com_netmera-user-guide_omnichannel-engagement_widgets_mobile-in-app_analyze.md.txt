@@ -1,0 +1,121 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/analyze.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/analyze.md).
+
+# Analyze
+
+{% hint style="success" %}
+**Prerequisites for Event Tracking**
+
+To see these events in the panel, you must first create a widget that **triggers** the event. Additionally, an actual user **event** must occur for the event to be recorded and reflected in the panel.
+{% endhint %}
+
+Follow these steps to track the basic events related to your mobile widgets:
+
+1. **Navigate to Event Insight**
+   * Go to Analysis > Event Insight.
+2. **Choose Your Event Type**
+   * Select either Widget Action or Shown Mobile Events based on what you want to track.
+3. **Select the Dimensions**
+   * Choose the dimensions that best fit your analysis needs (e.g., time, user type, device).
+
+{% hint style="warning" %}
+**Requirements:**
+
+* **One image or one button**: Ensure that your widget includes only one image or button.
+* **One link or deeplink**: The image or button should contain only one link or deeplink to track interactions properly.
+  {% endhint %}
+
+<figure><img src="/files/zH5YpalY4yurRn3kwSDG" alt=""><figcaption></figcaption></figure>
+
+### Widget Shown Mobile
+
+This event occurs when a user sees the widget but does not interact with it (no clicks or navigations).
+
+**How is this event triggered?**
+
+* The user may have closed the widget by clicking the **(x)** button.
+* The widget might have been dismissed by the user using a dismiss button that does not contain a link.
+
+<figure><img src="/files/fsi2nv2SBkwku3bUwyGg" alt=""><figcaption></figcaption></figure>
+
+### Widget Action Mobile
+
+This event is triggered when a user sees the widget and interacts with it by clicking on an image or button containing a link or deeplink.
+
+**How is this event triggered?**
+
+Interacting with the widget by clicking on an image or button that contains a link or deeplink. This could include various types of actions, such as:
+
+* Clicking on a image that redirects to the product page.
+* Clicking a button that opens a specific section within the app or website.
+* Tapping a promotional button that takes the user to a special offer or coupon code.
+
+<figure><img src="/files/lzIrzYb64WO8mcgublFT" alt=""><figcaption></figcaption></figure>
+
+## <mark style="color:green;">Standard Spin to Win Events</mark>
+
+{% hint style="success" %}
+**Prerequisites for Event Tracking**
+
+To see these events in the panel, you must first create a widget that **triggers** the event. Additionally, an actual user **event** must occur for the event to be recorded and reflected in the panel.
+{% endhint %}
+
+To track interactions with the **Spin to Win** widget, follow these steps:
+
+1. Go to Analytics > Event Insight
+2. Within the Event Insight dashboard, you'll find a list of events tracked by your system.
+
+* **Spin To Win Shown**: This event tracks when the Spin to Win widget is displayed to the user.
+* **Spin Button Clicked**: Triggered when the user clicks the **Spin** button to start the spin action.
+* **Coupon Code Assigned**: Occurs when the user successfully receives a coupon code after spinning the wheel.
+* **Coupon Code Assigned Failed**: Triggered if the coupon code assignment fails after the spin.
+* **Coupon Code Copied**: Tracks when the user copies the coupon code after receiving it from the Spin to Win interaction.
+
+<figure><img src="/files/iGllFKOgVcS8YHWeWa6B" alt=""><figcaption></figcaption></figure>
+
+## <mark style="color:green;">Custom Events</mark>
+
+For more advanced widgets, you might want to create custom events to track specific interactions. Here’s how to set it up:
+
+#### Step 1: Create a New Custom Event
+
+1. Go to Developers > Events.
+2. Click Create New Event and customize it according to your needs.
+
+#### Step 2: Match Events with Widget Components
+
+1. Once the custom event is created, you need to link it with specific components within your widget (e.g., buttons, images).
+
+For more detailed instructions, you can refer to related documentation [Events](/netmera-user-guide/panel-settings/settings/app-configuration/events.md) and [Assign Click Actions](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create/assign-click-actions.md) or video tutorial below.
+
+{% embed url="<https://youtu.be/7XIZGV0rj1I?si=yIgVUZFspgKh5sA8&t=130>" %}
+
+#### Step 3: Analyze Custom Events
+
+* After setting up your custom events, go to **Analysis** > **Event Insight** to view the results.
+* Select the custom event and choose the dimensions that are relevant to your analysis.
+
+<figure><img src="/files/ewTMIKxR4SJurynKENhl" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/analyze.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

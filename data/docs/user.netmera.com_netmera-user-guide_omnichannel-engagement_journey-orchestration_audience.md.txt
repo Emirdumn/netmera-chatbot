@@ -1,0 +1,125 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/audience.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/audience.md).
+
+# Audience
+
+Use **Audience** to decide which users are allowed to enter the journey after the entry logic and eligibility rules are already defined. After completing this step, you will be able to run the journey for all users or limit it to one or more reusable segments that match the audience you want to target.
+
+### Choose the audience scope
+
+In this step, you choose who the journey applies to. The choice is simple at a high level:
+
+* leave the audience empty to make the journey available to all users
+* select one or more segments to limit entry to a defined audience
+
+This decision matters because the entry rule alone does not determine the final audience. A user must still belong to the selected audience, if an audience filter is applied.
+
+For example, you might build an **Action-based** journey that starts on `Purchase Completed`, but still limit it to a VIP or high-value segment. In that case, users who trigger the event but do not belong to the selected audience do not enter the journey.
+
+{% hint style="info" %}
+If you do not select any segment, the journey applies to all users who satisfy the other journey conditions.
+{% endhint %}
+
+{% @arcade/embed url="<https://app.arcade.software/share/YhVPIwtymIOxVfQFwQNy>" flowId="YhVPIwtymIOxVfQFwQNy" %}
+
+<figure><img src="/files/FwDs3KxqFiSxYT7yj9d9" alt=""><figcaption></figcaption></figure>
+
+#### Use all users
+
+Do not select a segment when the journey should apply to the full eligible user base.
+
+This option is useful when:
+
+* the journey is meant for all users who match the entry rule
+* the audience logic is already fully handled by the entry conditions
+* you do not need an extra segment-based filter
+
+For example, if the journey should start for any user who completes onboarding, and there is no need to narrow that group further, you can leave the audience blank.
+
+{% hint style="info" %}
+Leaving the audience blank does not ignore entry rules or eligibility settings. It only means there is no additional segment filter at the audience step.
+{% endhint %}
+
+#### Select one segment
+
+Choose a segment when the journey should apply only to users who already belong to a reusable audience definition.
+
+This is useful when the target group is based on rules you want to manage outside the journey itself, such as:
+
+* users inactive in the last 30 days
+* users in a loyalty tier
+* users who clicked a previous campaign
+
+For example, if the journey should target cart abandoners only, select a segment that already identifies those users instead of rebuilding that logic inside the journey.
+
+#### Add more segments
+
+Use **Add More Segments** when the journey should reference multiple existing segments.
+
+Then use the **+** button to add each segment you want to include in the audience setup.
+
+This is helpful when your targeting depends on more than one curated audience, or when your team already manages separate segments for different business cases.
+
+For example, you may want one journey to work with a retention-focused audience and a second audience defined by campaign engagement. Adding multiple segments lets you assemble that targeting directly in the journey setup.
+
+{% hint style="info" %}
+\[VERIFY: confirm how multiple selected segments are evaluated in this screen, including whether the logic is always additive or if the UI exposes AND/OR-style behavior between segments.]
+{% endhint %}
+
+#### Create missing segments
+
+Only segments that already exist in **Targeting > Segments** can be selected here. If the audience you need is not available in the dropdown or selection list, create the segment first and then return to the journey.
+
+Use segments when you want the audience logic to stay reusable across:
+
+* journeys
+* campaigns
+* analytics and follow-up targeting
+
+For example, instead of creating separate audience logic for every journey, you can maintain a reusable segment such as `inactive_14d_ios` and apply it wherever you need the same audience.
+
+Learn more in [Segments](/netmera-user-guide/targeting/segments.md).
+
+### Review the audience
+
+Before moving to the next step, confirm how the audience layer interacts with the rest of the journey.
+
+Use this checklist:
+
+1. The selected audience matches the business goal of the journey.
+2. You intentionally chose either all users or a segment-based audience.
+3. The required segments already exist and are up to date.
+4. The audience filter does not conflict with the entry rule.
+
+For example, if the entry rule is broad but the selected segment is very narrow, the journey may receive far fewer users than expected. If the segment is too broad, the journey may include users who are technically eligible but not strategically relevant.
+
+{% hint style="warning" %}
+If the audience is too narrow, the journey may appear inactive because very few users qualify. If the audience is too broad, users may enter the journey even though the content was designed for a more specific group.
+{% endhint %}
+
+### What happens next
+
+After you finish **Audience**, continue with the next journey configuration step and review the final flow before launch. The audience you select here works together with the entry rule and eligibility settings to determine which users can actually enter the journey.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/audience.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

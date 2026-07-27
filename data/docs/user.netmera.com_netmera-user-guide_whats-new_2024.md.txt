@@ -1,0 +1,377 @@
+URL: https://user.netmera.com/netmera-user-guide/whats-new/2024.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/whats-new/2024.md).
+
+# 2024
+
+## December, 2024
+
+This release introduces Live Activities support for real-time updates on Apple surfaces.
+
+### Live Activities
+
+#### Netmera Live Activities
+
+Netmera now supports Apple Live Activities for real-time, glanceable updates.
+
+* Show live updates on the Lock Screen, iPhone StandBy, and Dynamic Island
+* Start, update, and track Live Activity events with Netmera targeting
+* Use Live Activities for scenarios such as sports scores, deliveries, or fitness progress
+
+[Live Activities](https://user.netmera.com/netmera-developer-guide/live-activities/live-activities)
+
+<figure><img src="/files/iBHuYhpm0gr6oLKdoxYH" alt="" width="563"><figcaption></figcaption></figure>
+
+## November, 2024
+
+This release adds a new integration for collecting customer permissions inside operational workflows.
+
+### Integrations
+
+#### VIA Integration
+
+VIA Integration adds a structured flow for collecting customer approvals.
+
+* Collect electronic communication consent
+* Collect explicit consent agreements
+* Collect customer registration contracts inside the same workflow
+
+<figure><img src="/files/UrvLOrIU6k2o1zlYohQ5" alt="" width="563"><figcaption></figcaption></figure>
+
+## October, 2024
+
+This release adds a report for understanding opt-in and opt-out status across messaging channels.
+
+### Reports
+
+#### Channel Reachability Report
+
+Channel Reachability reports user messaging permissions across supported platforms.
+
+* Review who opted in or out of push notifications
+* Compare reachability across multiple platforms
+* Use the report to refine channel strategy by permission status
+
+[Channel Reachability](/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/channel-reachability.md)
+
+<figure><img src="/files/HDVxgd7HbHGypHwt86KA" alt="" width="563"><figcaption></figcaption></figure>
+
+## September, 2024
+
+This release introduces Journey Orchestration for cross-channel customer flows.
+
+### Journey
+
+#### Netmera Journey Orchestration
+
+Journey Orchestration lets you design customer paths based on user behavior and channel logic.
+
+* Build dynamic flows based on user actions
+* Send timely messages across email, push, and in-app channels
+* Coordinate personalized communication from a single journey
+
+[Journey Orchestration](/netmera-user-guide/omnichannel-engagement/journey-orchestration.md)
+
+<figure><img src="/files/lLEeyx0yxffdpq0iAwrH" alt="" width="553"><figcaption></figcaption></figure>
+
+## August, 2024
+
+This release adds AI-assisted message creation for push campaigns.
+
+### AI
+
+#### Netmera AI Text Generator
+
+Netmera AI Text Generator helps build push notification copy from the panel.
+
+* Generate push notification content with AI assistance
+* Create campaign text faster
+* Support engagement and conversion-focused message drafting
+
+[Netmera AI Text Generator](/netmera-user-guide/ai-features/content-optimizer.md)
+
+<figure><img src="/files/w1c2GxakHYw4JSRUJZzu" alt="" width="375"><figcaption></figcaption></figure>
+
+## July, 2024
+
+This release improves retention analysis and adds time-based filtering to Customer Touch views.
+
+### Analytics
+
+#### Retention & Cohort Enhancements
+
+Retention and Cohort screens now provide clearer analysis for user groups over time.
+
+* Identify retention patterns across cohorts
+* Review trends across different user groups
+* Analyze drivers behind engagement and retention more easily
+
+[Retention & Cohort](/netmera-user-guide/reports-and-analytics/analytics/retention-and-cohort.md)
+
+{% embed url="<https://youtu.be/0JVcgroNrSw?si=k42n-ykaSy7VZj8v>" %}
+
+### Customer Data
+
+#### Customer Touch Improvements
+
+Customer Touch screens now include a Time Filter for narrower data review.
+
+* Filter customer activity by time range
+* Compare daily and longer-term interaction periods
+* Review customer behavior with more precision
+
+[Customer Touch](/netmera-user-guide/reports-and-analytics/analytics/revenue-and-engagement/customer-touch.md)
+
+{% embed url="<https://youtu.be/QfhiCUy5n1s?si=dCOmfDVRIS0Eavdm>" %}
+
+## June, 2024
+
+This release updates Firebase messaging support and refreshes onboarding dashboards.
+
+### Mobile Push
+
+#### Migration to HTTP v1
+
+Firebase messaging support now aligns with newer library and device requirements.
+
+* Upgrade to Firebase Messaging Library version `20.3.0`
+* Raise the minimum supported Android version to `5.0`
+* Migrate to the newer Firebase versions to keep notification support current
+
+### Onboarding
+
+#### New Onboarding Dashboards
+
+Onboarding dashboards are now refreshed for newer integration flows.
+
+* Use updated onboarding screens during platform integration
+* Follow a simpler setup experience
+* Align onboarding with current technologies and workflows
+
+## May, 2024
+
+This release expands segmentation, adds Spin to Win event visibility, and introduces a new email provider integration.
+
+### Targeting
+
+#### Segmentation by Last Used Device
+
+Segmentation now supports filtering by the user's last active device.
+
+* Open **Create New Campaign → Who → Advanced → Add Condition**
+* Select **By Last Device Used**
+* Target users based on their most recent device activity
+
+<figure><img src="/files/SxqjlLx4RYkK39FHO4j7" alt="" width="375"><figcaption></figcaption></figure>
+
+### Widgets
+
+#### Standard Spin to Win Events
+
+Spin to Win now emits standard events for analysis and export.
+
+* Track `Spin To Win Shown`
+* Track `Spin Button Clicked`, `Coupon Code Assigned`, `Coupon Code Assigned Failed`, and `Coupon Code Copied`
+* Export these events through Event Insight for deeper analysis
+
+[Send Coupon Codes with SMS and Push Messages](broken://spaces/X6uilbEAw42gqsudlclY/pages/E58KwU7UtP1N7YKYJ5qG)
+
+<figure><img src="/files/gJU9OuDh72LADqNjbx2P" alt="" width="563"><figcaption></figcaption></figure>
+
+### Email
+
+#### Uzman Posta Integration
+
+Netmera now supports Uzman Posta as an email integration option.
+
+* Add a local email service provider to your delivery setup
+* Expand available email integration choices
+* Use the integration from the standard email provider flow
+
+[Email Integrations](/netmera-user-guide/omnichannel-engagement/email/email-onboarding/email-integrations.md)
+
+<figure><img src="/files/Qst0w7lLSKCvo5BlmxVu" alt="" width="563"><figcaption></figcaption></figure>
+
+## April, 2024
+
+This release adds Adjust integration, improves export configuration, and extends widget click actions on Android.
+
+### Integrations
+
+#### Netmera and Adjust
+
+Adjust integration now connects user data flow into Netmera analytics.
+
+* Transfer user data into the Netmera dashboard
+* Expand attribution and analytics visibility
+* Use the integration through the existing developer setup
+
+[Adjust integration guide](https://user.netmera.com/netmera-developer-guide/integrated-modules/adjust-integration)
+
+<figure><img src="/files/dezREUaz0tzuRHFFU8qc" alt="" width="563"><figcaption></figcaption></figure>
+
+### Exports
+
+#### Export Page Enhancements: Vol. 2
+
+The Export page now supports more daily FTP controls and field selection.
+
+* Manually trigger FTP exports daily
+* Add events to export files
+* Add profile attributes and external IDs to reports
+
+[Data Export](/netmera-user-guide/reports-and-analytics/reports/app-and-systems/data-export.md)
+
+<figure><img src="/files/zK8oesiNHUgFBgri5M3Q" alt="" width="563"><figcaption></figcaption></figure>
+
+### Widgets
+
+#### Android Location Permission Request with Widgets
+
+Mobile Blank Widgets can now request Android background location permission.
+
+* Build a widget with allow and deny buttons
+* Set the click action to **Background Location Permission**
+* Redirect users to Android Settings to complete permission setup
+
+[Assign Click Actions](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create/assign-click-actions.md#android-background-location-permission)
+
+<figure><img src="/files/4ULB3rIL8LLiyWHcCfTU" alt="" width="563"><figcaption></figcaption></figure>
+
+## March, 2024
+
+This release improves export operations and refreshes retention analysis screens.
+
+### Exports
+
+#### Enhanced Export Feature
+
+Export configuration now supports more manual control and field selection.
+
+* Manually trigger FTP exports daily
+* Add events to export files
+* Include external IDs in report output
+
+[Data Export](/netmera-user-guide/reports-and-analytics/reports/app-and-systems/data-export.md)
+
+<figure><img src="/files/boyO0UQtaidGnceXslTz" alt="" width="563"><figcaption></figcaption></figure>
+
+### Analytics
+
+#### Improvements on Retention and Cohort Screens
+
+Retention and Cohort views now provide updated visuals and smoother analysis flows.
+
+* Use refreshed screens for retention analysis
+* Review cohorts with improved segmentation support
+* Navigate the retention workflow more easily
+
+[Retention & Cohort](/netmera-user-guide/reports-and-analytics/analytics/retention-and-cohort.md)
+
+<figure><img src="/files/FOuRHJL52CB5kQvCMs9d" alt="" width="563"><figcaption></figcaption></figure>
+
+## February, 2024
+
+This release expands coupon delivery, funnel analysis, push customization, web push actions, and Spin to Win design controls.
+
+### Campaigns
+
+#### Sending Coupon Code Information through SMS and Push Messages
+
+Coupon code delivery now supports SMS and Push messaging flows.
+
+* Send coupon details through SMS
+* Send coupon details through Push notifications
+* Support time-sensitive offer communication across channels
+
+<figure><img src="/files/xEWky3mG4IupRGCX1vzQ" alt="" width="449"><figcaption></figcaption></figure>
+
+### Analytics
+
+#### Improvements of Funnel Analysis
+
+Funnel analysis now supports deeper event and path review.
+
+* Analyze user interactions in more detail
+* Optimize funnels with stronger analytics visibility
+* Review funnel updates in the funnel builder
+
+[Create New Funnel](/netmera-user-guide/reports-and-analytics/analytics/funnel.md)
+
+<figure><img src="/files/ykIvVasIzyLIHKmzvIW3" alt="" width="563"><figcaption></figcaption></figure>
+
+### Mobile Push
+
+#### Different Custom Sounds for Message Variants
+
+Push variants can now use different custom sounds by platform.
+
+* Set custom sounds per notification variant
+* Choose separate sounds for iOS and Android
+* Tailor notification behavior across platforms and languages
+
+<div align="center"><figure><img src="/files/8TYocOFWEvMC7XaFkB7T" alt="" width="563"><figcaption><p>Step 2: What</p></figcaption></figure> <figure><img src="/files/1C1M3TtIQrLR22nggCEH" alt="" width="563"><figcaption><p>Play Sound</p></figcaption></figure></div>
+
+### Web Widgets
+
+#### Get Web Push Permission Action with Design Web Widget
+
+Design Web Widget components can now request web push permission directly.
+
+* Trigger the native browser permission prompt from a widget action
+* Sync granted permission data to the Netmera panel
+* Use the action from the existing click action setup
+
+[Assign Click Actions](/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/assign-click-actions.md)
+
+![](https://user.netmera.com/~gitbook/image?url=https%3A%2F%2F1642824329-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FX6uilbEAw42gqsudlclY%252Fuploads%252FJRXg4VdBcT2gFPlG7auQ%252FScreenshot%25202024-02-21%2520at%252018.50.16.png%3Falt%3Dmedia%26token%3D6c2743af-00f3-4d7e-bff8-6323aa8cd237\&width=768\&dpr=4\&quality=100\&sign=56bf3784aa651851093bbc32f6b35db1a5c58f6377fb633235ac63e7f0744bdb)
+
+### Web Push
+
+#### Personalized Subtext
+
+Web Push submissions now support personalized subtext values.
+
+* Use the new **Personalized Subtext** field in the **What Step**
+* Insert profile attributes into subtext
+* Personalize notification detail beyond the standard subtext field
+
+[Personalized Web Push](/netmera-user-guide/omnichannel-engagement/web-push/create-web-push/personalized-web-push.md#personalized-subtext)
+
+<figure><img src="/files/brOPlQBZFoDCqET5RCtl" alt="" width="563"><figcaption></figcaption></figure>
+
+### Widgets
+
+#### Spin to Win Design Enhancements
+
+Spin to Win design options now include visual improvements across the widget experience.
+
+* Apply updated design controls to Spin to Win
+* Use the refreshed setup within the existing Spin to Win flow
+* Improve the visual presentation of the reward experience
+
+[Spin to Win](/netmera-user-guide/omnichannel-engagement/widgets/spin-to-win.md)
+
+<figure><img src="/files/mtdNIFpR7mOcx6yxVEVL" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/whats-new/2024.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

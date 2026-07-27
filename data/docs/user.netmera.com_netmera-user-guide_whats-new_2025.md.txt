@@ -1,0 +1,584 @@
+URL: https://user.netmera.com/netmera-user-guide/whats-new/2025.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/whats-new/2025.md).
+
+# 2025
+
+## December, 2025
+
+This release expands control across WhatsApp, targeting, widgets, deliverability, permissions, and dashboard reporting.
+
+### WhatsApp
+
+#### Let Users Opt Out of WhatsApp in One Tap
+
+WhatsApp templates now support a built-in unsubscribe action.
+
+* Add an **Unsubscribe button** to WhatsApp message templates
+* Update WhatsApp permission instantly after opt-out
+* Log the opt-out as an event for visibility and compliance tracking
+
+[Let Users Opt Out of WhatsApp in One Tap](/netmera-user-guide/omnichannel-engagement/whatsapp/whatsapp-unsubscribe-button.md)
+
+<figure><img src="/files/EqJRmI3nj2bQf6MNWx53" alt="" width="563"><figcaption></figcaption></figure>
+
+### Targeting
+
+#### Manage Blacklist and Whitelist Status at Scale
+
+Blacklist operations are now available as a dedicated bulk workflow.
+
+* Run uploads from **Targeting → Blacklist Upload**
+* Add users to blacklist or remove them from blacklist in bulk
+* Apply changes across SMS, Email, Push, Web Push, and In-App Widget
+
+[Manage Blacklist and Whitelist Status at Scale](/netmera-user-guide/targeting/blacklist.md)
+
+<figure><img src="/files/L2YT8H4bKZAj0xh0XXdx" alt="" width="563"><figcaption></figcaption></figure>
+
+### Widgets
+
+#### Create Immersive Full-Screen In-App Experiences
+
+Mobile widgets now support a full-screen layout.
+
+* Use full-screen widgets for onboarding flows
+* Build high-impact promotion screens
+* Focus users on a single in-app experience
+
+[Create Immersive Full-Screen In-App Experiences](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create.md#type)
+
+<figure><img src="/files/AOZHDAFdxNXb5jPFVxD9" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Never Show an Empty Reward — Spin to Win Stops Automatically
+
+Spin to Win now reacts automatically when coupon inventory expires.
+
+* Set expired slices to **0%** weight
+* Rebalance the remaining slices automatically
+* Mark the campaign as **Finished** when all slices run out
+
+[Never Show an Empty Reward — Spin to Win Stops Automatically](/netmera-user-guide/omnichannel-engagement/widgets/spin-to-win.md#campaign-auto-deactivation)
+
+#### Prevent Expired Coupons from Disrupting Live Campaigns
+
+Coupon campaigns now close cleanly when all available coupons expire.
+
+* Mark the campaign as **Finished** when all coupons expire
+* Keep the reward experience aligned with valid coupon inventory
+
+[Prevent Expired Coupons from Disrupting Live Campaigns](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app.md)
+
+### Email
+
+#### Debug and Optimize Email Deliverability with Bounce Reasons
+
+Email bounce analysis now exposes more detail in reporting, user records, and segmentation.
+
+* Break down Email Bounce by **Bounce Reason** and **Bounce Detail** in Event Insight
+* Review provider feedback with **Error Code** and **Error Message** in User Details
+* Build bounce-aware segments with bounce attributes
+
+[Debug and Optimize Email Deliverability with Bounce Reasons](broken://spaces/X6uilbEAw42gqsudlclY/pages/MkdMfSclktOIqr16TiPy)
+
+<figure><img src="/files/9CPdIjAZ4a0tbIyvyWLV" alt="" width="563"><figcaption></figcaption></figure>
+
+### SMS
+
+#### See Exactly Why SMS Messages Fail
+
+SMS failures are now easier to investigate at user level.
+
+* Track failed SMS deliveries as a separate panel metric
+* View provider-returned failure details in **User Details**
+* Review errors such as invalid number, insufficient balance, or operator rejection
+
+[See Exactly Why SMS Messages Fail](/netmera-user-guide/reports-and-analytics/reports/delivery/campaigns/sms-reports.md#see-failure-reasons-per-user-user-details-messages)
+
+<figure><img src="/files/iIM9beQtYhSsI8FXe5Tk" alt="" width="563"><figcaption></figcaption></figure>
+
+### Permissions & Dashboard
+
+#### Assign Channel-Specific Roles to Match Your Team Structure
+
+Role management now supports channel-based access control.
+
+* Assign separate roles for **Mobile**, **Web**, **Email**, and **WhatsApp**
+* Limit access by channel ownership
+* Reduce accidental changes across teams
+
+#### Track App Version Adoption with Richer Dashboard Metrics
+
+The Application Version dashboard now exposes clearer adoption metrics.
+
+* View **Device Count** and **User Count**
+* Track **Daily Active Devices** and **Daily Active Users**
+* Export the same metrics for deeper analysis
+
+[Track App Version Adoption with Richer Dashboard Metrics](/netmera-user-guide/reports-and-analytics/reports/app-and-systems/application-version.md)
+
+<figure><img src="/files/MYya3PVFIRGyMPkIOAdz" alt="" width="563"><figcaption></figcaption></figure>
+
+## November, 2025
+
+This release improves send-time optimization for more predictable delivery timing.
+
+### Best Time Delivery
+
+#### Deliver at Best Time for Your Users
+
+Best Time Delivery now calculates send timing with higher reliability.
+
+* Improve timing accuracy using historical engagement patterns
+* Deliver messages more consistently at each user's likely engagement window
+* Increase confidence in automated send-time optimization
+
+[Best Time Delivery](/netmera-user-guide/ai-features/best-time-delivery.md)
+
+<figure><img src="/files/W0tGwMN2xw6eFvPtDzw9" alt="" width="244"><figcaption></figcaption></figure>
+
+## October, 2025
+
+This release adds deferred deep linking across owned channels for end-to-end attribution and routing.
+
+### Deferred Deep Linking
+
+#### Deferred Deep Link: End-to-End Communication Across Your Owned Channels
+
+Deferred Deep Links now support owned channel journeys from click to install and conversion.
+
+* Use deferred deep links across SMS, Email, Push, QR codes, and Web Widgets
+* Preserve campaign context when the app is not installed at click time
+* Route users to the intended in-app destination after install
+* Track attribution across the full owned-channel journey
+
+[Deferred Deep Link: End-to-End Communication Across Your Owned Channels](/netmera-user-guide/smart-linking/deferred-deep-link.md)
+
+<figure><img src="/files/5nqJtINxORGd9xuHpme7" alt="" width="563"><figcaption></figcaption></figure>
+
+## September, 2025
+
+This release adds WhatsApp as a channel, expands widget actions, and gives Email unsubscribe flows more control.
+
+### WhatsApp
+
+#### Power Your WhatsApp Messaging with Netmera
+
+WhatsApp is now available as a Netmera messaging channel.
+
+* Reach users on WhatsApp from the same platform
+* Support real-time one-to-one messaging flows
+* Add WhatsApp to your owned-channel communication mix
+
+[Power Your WhatsApp Messaging with Netmera](/netmera-user-guide/omnichannel-engagement/whatsapp.md)
+
+<figure><img src="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FX6uilbEAw42gqsudlclY%2Fuploads%2FgVYcG26nQpdCoS9H1sxe%2Fimage.png?alt=media&#x26;token=66ab17f1-5e01-4dcd-ad18-16d9008e7a5d" alt="" width="375"><figcaption></figcaption></figure>
+
+### Widgets
+
+#### Countdown on Widgets
+
+Widgets now support countdown timers for time-sensitive campaigns.
+
+* Add countdown timers to widget views
+* Use them for limited-time offers, flash sales, or reminders
+* Combine countdowns with buttons or images in the editor
+
+[Countdown on Widgets](broken://spaces/X6uilbEAw42gqsudlclY/pages/Dvb2p1rDT3LHerbHXfuZ#countdown)
+
+<figure><img src="/files/2Lc5RAA9tONYLHi7SaJ2" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Copy Coupon Button on Widgets
+
+Widgets can now copy coupon codes directly to the user's clipboard.
+
+* Add a copy coupon button to supported widgets
+* Let users copy discount codes in one click
+* Reduce friction in the redemption flow
+
+[Copy Coupon Button on Widgets](broken://spaces/X6uilbEAw42gqsudlclY/pages/Dvb2p1rDT3LHerbHXfuZ#copy-button)
+
+{% columns %}
+{% column %}
+
+#### Hidden Button Preview
+
+<figure><img src="/files/cikoZ653Mw5xwyB23aix" alt="" width="375"><figcaption></figcaption></figure>
+{% endcolumn %}
+
+{% column %}
+
+#### Visible Button Preview
+
+<figure><img src="/files/VsYRsm3OpaJAlTCxjw2B" alt="" width="375"><figcaption></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+### Email
+
+#### Custom Email Unsubscribe Pages
+
+Email unsubscribe flows now support custom hosted pages.
+
+* Build your own unsubscribe page design
+* Control branding, layout, and optional survey content
+* Keep consent tracking and reporting connected to Netmera
+
+[Custom Email Unsubscribe Pages](/netmera-user-guide/omnichannel-engagement/email/email-unsubscribe-page.md#custom-unsubscribe-page)
+
+<figure><img src="/files/CYhiXrWeJOlAJls1hZn2" alt="" width="563"><figcaption></figcaption></figure>
+
+## August, 2025
+
+This release improves SMS testing and gives widget builders more control over close button placement.
+
+### SMS
+
+#### SMS Testing: Add Test Users by External ID
+
+SMS test sends now accept External ID in addition to phone number.
+
+* Add test users with **External ID (ExID)** and mobile number
+* Reduce test setup errors before launch
+* Validate sends against the correct user record
+
+<figure><img src="/files/jRyUdRQWleqN9gL3qQ9n" alt="" width="563"><figcaption></figcaption></figure>
+
+### Widgets
+
+#### Move Your Widget’s Close Button Anywhere
+
+Widget close button placement is now configurable.
+
+* Move the close icon up, down, left, or right
+* Align the close button with your layout and branding
+* Use the same behavior across Web and Mobile
+
+[Move Your Widget’s Close Button Anywhere](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create.md#custom-button-position)
+
+<figure><img src="/files/LxFQ6qQtiNPkmeHISHkZ" alt="" width="563"><figcaption></figcaption></figure>
+
+## July, 2025
+
+This release improves widget interaction behavior and adds more control to export generation.
+
+### Widgets
+
+#### Dismiss Widgets by Clicking Outside
+
+Widgets can now close when users click outside the widget area.
+
+* Enable outside-click dismiss behavior as an optional setting
+* Support the same interaction across Web and Mobile
+* Reduce friction for dismissible widget experiences
+
+[Dismiss Widgets by Clicking Outside](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create.md#widget-closes-when-clicked-outside)
+
+<figure><img src="/files/aOu44EWUyuYBVVGlzlgb" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Email Validation Now in Widgets
+
+Widgets now support stricter email input validation.
+
+* Define a custom error message for invalid email input
+* Show the message immediately when users submit an invalid value
+* Improve data quality at the point of collection
+
+[Email Validation Now in Widgets](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create/assign-click-actions.md#email-validation-in-widgets)
+
+<figure><img src="/files/wi82OvBRdvLNAg3msbqe" alt="" width="563"><figcaption></figcaption></figure>
+
+### Exports
+
+#### Channel-Specific FTP Data Exports
+
+FTP exports now support channel-based filtering.
+
+* Select the specific channels to include in a report
+* Export in `.xlsx` or `.csv` format
+* Generate cleaner files for channel-level analysis
+
+[Channel-Specific FTP Data Exports](/netmera-user-guide/reports-and-analytics/reports/app-and-systems/data-export.md#reports-export-data-types)
+
+<figure><img src="/files/642YAcAsBHx2VEkvf32o" alt="" width="563"><figcaption></figcaption></figure>
+
+## June, 2025
+
+This release adds manual precision control to predictive segments and more export format options.
+
+### Targeting
+
+#### Fine-Tune Precision in Predictive Segments
+
+AI-based segments now let you set precision level manually.
+
+* Open **Targeting → Segments → AI-Based Segment → Edit**
+* Adjust the new **Precision Level** field
+* Save the new value or cancel to keep the current one
+
+[Fine-Tune Precision in Predictive Segments](/netmera-user-guide/targeting/segments/predictive-segments.md#precision-level)
+
+<figure><img src="/files/MmrSQ1s9dtgTLLVvkgZe" alt="" width="563"><figcaption></figcaption></figure>
+
+### Exports
+
+#### More Export Flexibility: File Types & Delimiters
+
+Exports now offer more file formatting options.
+
+* Export data in `.xlsx` or `.csv`
+* Reveal **Delimiter Type** when `.csv` is selected
+* Choose Comma, Pipe, Tilde, Broken Pipe, Caret, or Semicolon
+
+[More Export Flexibility: File Types & Delimiters](/netmera-user-guide/reports-and-analytics/reports/app-and-systems/data-export.md)
+
+<figure><img src="/files/biKMqTnu6K3BIGDPYsKH" alt="" width="563"><figcaption></figcaption></figure>
+
+## May, 2025
+
+This release turns more campaign analytics into reusable audiences and platform-specific actions.
+
+### Journey
+
+#### Export Journey Users
+
+Journey analytics now lets you export user-level audiences directly from metrics.
+
+* Use the new download icon next to Journey analytics metrics
+* Export users in `.csv` or `.xlsx`
+* Reuse exported users for tagging and follow-up campaigns
+
+For example, if a Journey step shows users with a `failed` status, you can export that group, tag it, and target it again in another channel.
+
+[Export Journey Users](/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-analytics.md#entry-count-event-metrics)
+
+<figure><img src="/files/ps0CWaaqFBOoeSchfB1u" alt="" width="563"><figcaption></figcaption></figure>
+
+### Mobile Push
+
+#### Platform-Specific Push Actions
+
+Push click actions can now differ by mobile platform.
+
+* Set separate click actions for iOS and Android via REST API
+* Open the app home screen on one platform and a deep link on another
+* Track delivery and behavior by platform with more precision
+
+For example, a single push can open the home screen on iOS and a product deep link on Android.
+
+[Platform-Specific Push Actions](/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/what.md#push-click-actions)
+
+<figure><img src="/files/FsEHScJkayBw9M7QBVVD" alt="" width="563"><figcaption></figcaption></figure>
+
+### Email
+
+#### Unique Open Rates for Deeper Insights
+
+Email reports now include Unique Open metrics.
+
+* Count how many distinct users opened the email
+* Compare total opens with unique opens for clearer reach analysis
+* Measure campaign engagement with less duplication
+
+<figure><img src="/files/Cf38iDwwForaxBCcZ8Bo" alt="" width="563"><figcaption></figcaption></figure>
+
+## April, 2025
+
+This release improves click tracking detail and makes funnel analysis more precise.
+
+### Analytics
+
+#### Tagless Tracking with Item Selections
+
+Tagless Data Capture now records which specific item a user selected.
+
+* Capture item names automatically on button taps and selections
+* Track user interaction without manual tagging
+* Understand which content users engage with most
+
+[Tagless Tracking with Item Selections](/netmera-user-guide/panel-settings/settings/app-configuration/screen-tracking.md)
+
+<figure><img src="/files/RX5FdQ0Owd9iAtFKCwNB" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Funnels with Precision Targeting: Segmentation & Exclusion
+
+Funnels now support tighter analysis through segmentation and exclusion logic.
+
+* Segment users by behavior and demographics
+* Use **Did Not** filters to exclude performed or skipped events
+* Isolate drop-offs with more precision
+
+[Funnels with Precision Targeting: Segmentation & Exclusion](/netmera-user-guide/reports-and-analytics/analytics/funnel.md#did-not-exlude-events)
+
+<figure><img src="/files/p4rMzbkdK3CH6ZwXdGk6" alt="" width="563"><figcaption></figcaption></figure>
+
+## March, 2025
+
+This release strengthens panel security and adds conversion tracking for email-driven revenue.
+
+### Security
+
+#### Advanced Panel Security
+
+Panel access now supports stronger authentication and access restrictions.
+
+* Enforce a minimum 12-character password
+* Restrict panel access by IP on demand
+* Restrict panel access by domain on demand
+* Enable email OTP for panel login on demand
+
+<figure><img src="/files/IAT4bYScpbXgoTJg8oPK" alt="" width="563"><figcaption></figcaption></figure>
+
+### Email
+
+#### Email Conversion & Revenue Tracking
+
+Email reporting now measures downstream conversion and revenue activity.
+
+* Track sales actions after users arrive from Email
+* Measure app and web conversions in the panel
+* Review email-attributed ROI with clearer reporting
+
+[Email Conversion & Revenue Tracking](/netmera-user-guide/reports-and-analytics/reports/delivery/campaigns/email-reports.md)
+
+<figure><img src="/files/gKyNFowQLsC8Cx9sjEvp" alt="" width="563"><figcaption></figcaption></figure>
+
+## February, 2025
+
+This release expands analytics, push behavior, widget deeplinking, web push reach, and retention reporting.
+
+### Analytics
+
+#### Web Analytics
+
+Web Analytics adds deeper visibility into on-site behavior and engagement.
+
+* Track website interactions in more detail
+* Review engagement metrics and key performance indicators
+* Use the data to improve digital performance analysis
+
+[Web Analytics](/netmera-user-guide/reports-and-analytics/analytics/user-and-audience/web-analytics.md)
+
+<figure><img src="/files/aCLmGZBLrInC99Bnu84R" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Reinstall Reports
+
+Retention reporting now includes reinstall metrics.
+
+* Track when users reinstall the app after uninstalling
+* Identify dates and patterns behind re-engagement
+* Use reinstall data to support retention analysis
+
+<figure><img src="/files/Qrao2gMMz5HKzCtyXehm" alt="" width="563"><figcaption></figcaption></figure>
+
+### Mobile Push
+
+#### Open Widgets with Push Clicks
+
+Push notifications can now open widgets directly.
+
+* Send users from a push click into a related widget
+* Reduce extra navigation steps after engagement
+* Connect push campaigns to in-app experiences more tightly
+
+[Open Widgets with Push Clicks](/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/what.md#push-click-actions)
+
+<figure><img src="/files/XqHtuUrztIFajrtWgFLw" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Notification Grouping
+
+Push notifications now support grouping by category.
+
+* Organize notifications into separate groups
+* Help users review related updates more clearly
+* Reduce notification overload in busy message streams
+
+[Notification Grouping](https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/push-notifications#notification-grouping)
+
+<figure><img src="/files/KDE4EdtLuxee2A5m9eS5" alt="" width="563"><figcaption></figcaption></figure>
+
+### Widgets
+
+#### Custom Widget Button Deeplinks
+
+Widget buttons can now resolve destinations from user data in real time.
+
+* Build personalized widget button destinations
+* Route users to account-specific or transaction-specific pages
+* Adapt deeplinks based on profile attributes
+
+[Custom Widget Button Deeplinks](broken://spaces/X6uilbEAw42gqsudlclY/pages/TxhkD0ki3G9FQCUNG0Oy)
+
+<figure><img src="/files/ruPBXCXO5TiVWyik9Cvq" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Spin to Win Coupon Deeplinks
+
+Spin to Win success screens now support coupon deeplinks.
+
+* Let users open their reward destination directly
+* Shorten the path from reward to redemption
+* Improve post-win experience with a direct next action
+
+[Spin to Win Coupon Deeplinks](/netmera-user-guide/omnichannel-engagement/widgets/spin-to-win.md#step-2-success-screen-deeplinks)
+
+<figure><img src="/files/hy1vQSfc2MfiqGwfLawU" alt="" width="563"><figcaption></figcaption></figure>
+
+### Web Push
+
+#### Mobile Web Push for iOS
+
+Web Push now extends to iOS and iPadOS mobile browsers.
+
+* Reach iOS and iPadOS users with mobile web push
+* Drive users back to your website or platform
+* Expand web push coverage beyond desktop and Android
+
+[Mobile Web Push for iOS](/netmera-user-guide/omnichannel-engagement/web-push/mobile-web-push-for-ios.md)
+
+<figure><img src="/files/W9PNXY6UsFpzgmNQUtXP" alt="" width="563"><figcaption></figcaption></figure>
+
+## January, 2025
+
+This release improves Spin to Win styling and adds stricter display behavior for triggered widgets.
+
+### Widgets
+
+#### Spin to Win Custom Text Colors
+
+Spin Design Editor now supports per-segment text color customization.
+
+* Apply custom text colors to individual wheel segments
+* Align segment styling with brand themes
+* Build more tailored Spin to Win designs
+
+#### Instant Show Option for Widgets
+
+Triggered widgets can now appear immediately when conditions are met.
+
+* Apply instant show behavior to Widgets and In-app Messages triggered by automated messages
+* Show the widget immediately after the trigger condition is met
+* Skip future re-show attempts if the widget cannot display at that moment
+
+[Instant Show Option for Widgets](/netmera-user-guide/messaging-features/automated-messaging.md#instant-show)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/whats-new/2025.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

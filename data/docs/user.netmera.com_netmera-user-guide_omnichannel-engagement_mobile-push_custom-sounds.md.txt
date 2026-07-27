@@ -1,0 +1,43 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/custom-sounds.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/custom-sounds.md).
+
+# Custom Sounds
+
+**Developers > Sounds > Create New Sound**
+
+To upload a sound for your campaign, go to the Developers tab and select Sounds.
+
+1. Navigate to **Developers > Sounds** in your Netmera panel.
+2. Click **Create New Sound**.
+3. Enter a **name** for the sound.
+4. Select the **platform** (Android or iOS) and specify the **file name** of the sound located in your application bundle.
+
+> *Note: The sound file **must also be included in your mobile app** to be uploaded successfully to the Netmera panel. Please see the following Developer Guides on how to implement sounds to your mobile app:* [*iOS Swift*](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/sound-and-vibration)*,* [*iOS Objective-C*](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/sound-and-vibration)*,* [*Android*](https://user.netmera.com/netmera-developer-guide/platforms/android/sound-and-vibration)
+
+5. Enable the **Sound Active** option to ensure it remains available even if the file is removed from the app bundle.
+6. Click **Save** to complete the setup.
+
+<figure><img src="/files/zw2p1KfzUjevBYPN8zap" alt=""><figcaption><p>Create Sound</p></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/custom-sounds.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

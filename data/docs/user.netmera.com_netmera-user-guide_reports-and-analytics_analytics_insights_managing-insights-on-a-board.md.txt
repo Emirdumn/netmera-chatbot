@@ -1,0 +1,117 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights/managing-insights-on-a-board.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights/managing-insights-on-a-board.md).
+
+# Managing Insights on a Board
+
+A board earns its value after the insights are on it. This page covers everything that happens at the board level: how each card is controlled and configured, how cards keep independent date ranges and refresh schedules, how the layout is arranged, and how boards themselves are maintained over time. The recurring theme is independence. Every control described here belongs to one card or one board, so the same insight can behave differently on every board that displays it, and adjusting one card never disturbs its neighbors.
+
+The examples continue on the Finance board from the previous pages, which by now carries two cards: App Open Analytics over a 30-day range and App Updated, View Push over the last 7 days.
+
+<figure><img src="/files/Bea1KouooCarobZoyPNB" alt=""><figcaption></figcaption></figure>
+
+### Anatomy of a Card
+
+Every insight on a board is rendered as a card with a consistent structure. The header row holds the drag handle, the insight name, and the card controls. Below it sits the card's own date range bar, then the metric totals for that range, the color legend, and the chart itself, drawn according to the card's chart type and the granularity selected in its toolbar. Everything visible on the card reflects two inputs: the shared insight definition, which decides what is measured, and the card's own presentation choices, which decide how it is shown here.
+
+### Card Controls
+
+The controls in the card header, from left to right:
+
+#### Drag Handle
+
+The dotted handle before the insight name moves the card. Drag cards to reorder the board so that it reads the way the audience scans it, headline numbers first, supporting detail after. Layout is part of the board, so rearranging affects only this board.
+
+<figure><img src="/files/09cpuQ61wgg2TC40bHwc" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Auto-Refresh
+
+The first dropdown controls automatic re-running of the card's query and is **Off** by default, which suits boards that are opened, read, and closed. Selecting an interval such as **1m** turns the card into a live monitor: the query re-runs on schedule and the chart updates without any interaction. This is the control to reach for while something is in flight, a push send, a release rollout, a campaign launch, when the question changes from what happened to what is happening. Set it per card, and set it deliberately; every refresh runs the query again, so live intervals belong on the cards being actively watched rather than on everything by default. Returning the dropdown to Off ends the schedule.
+
+<figure><img src="/files/TeL9etmLLbwVXtJwNAcI" alt=""><figcaption></figcaption></figure>
+
+#### Refresh
+
+The circular arrow re-runs the card's query once, immediately. It works regardless of the auto-refresh setting and is the everyday way to pull the latest data when a board has been open for a while.
+
+<figure><img src="/files/IouDxDik5Ikn7cfGUsw7" alt=""><figcaption></figcaption></figure>
+
+#### Download
+
+The download icon exports the card's current data, the same export offered in the builder preview, for use in reports and spreadsheets.
+
+<figure><img src="/files/a2f8uNMhTpp0d8QwTjWB" alt=""><figcaption></figcaption></figure>
+
+#### Chart Type
+
+The chart type dropdown lists **Line**, **Bar**, **Pie**, **Number**, and **Table** and re-renders the card in place. Because the choice is per card, one insight can be a KPI number at the top of an executive board and a full line chart on the analytics board next door, both fed by the same definition. The types and when to use each are covered on the Chart Types and Display Settings page.
+
+<figure><img src="/files/6mbOnvl8Zh8SbuQ4KZlC" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/tibloJeRbo3Sj0h088oW" alt=""><figcaption></figcaption></figure>
+
+#### Width
+
+The width dropdown sets how much of the board row the card occupies: **Small**, **Mid**, or **Large**. A Large card spans the full row, which suits long time series that need horizontal room, such as a 30-day chart at fine granularity. Mid cards pair two to a row and are the natural size for side-by-side comparison. Small cards pack more insights into a row and fit KPI numbers that need presence rather than space. Width combines with drag ordering to shape the page: a common pattern is a row of Small number cards on top and Large trend charts below.
+
+<figure><img src="/files/1fYGQEOnhBSa0UGUyuSJ" alt=""><figcaption></figcaption></figure>
+
+#### Edit
+
+The pencil opens the insight in the builder as Edit Insight, prefilled with the saved definition. Edits made there and saved with Save changes update the shared definition, which means every board displaying this insight changes together. The full editing flow, and the recommendation to build a variant instead when only one board should change, are covered on the Building an Insight page.
+
+#### Delete
+
+The delete icon on the card removes this placement: the card leaves this board, and nothing else. The insight remains saved, keeps its place on every other board, and stays available in the Add Insight dialog. This is deliberately different from the delete icon inside the Add Insight dialog, which removes the saved insight itself from the app and with it every card anywhere that displayed it. When the intent is to clean up one board, delete the card; when the intent is to retire a query for good, delete the insight, and only after confirming no board still relies on it.
+
+### The Card's Date Range
+
+Directly under each card header sits the same date range bar known from the builder: presets from **Today** and **Yesterday** through **7D**, **30D**, **3M**, **6M**, and **12M**, plus **Custom** with exact dates. The selection belongs to the card. Changing it re-runs the query over the new period, updates the totals and the chart, and leaves every other card untouched.
+
+Per-card ranges are what let one board mix time horizons honestly. On the Finance board, App Open Analytics watches a 30-day window because usage is a monthly rhythm, while App Updated, View Push watches 7 days because update adoption and push views are questions about this week. Neither card compromises for the other. When comparing two cards against each other, though, set them to the same range first; totals over different windows are not comparable, and it is an easy detail to miss when the ranges sit in each card's own header.
+
+<figure><img src="/files/bSJhji31H7Y86jRIc49r" alt=""><figcaption></figcaption></figure>
+
+### Board-Level Actions
+
+The board header carries the actions that operate on the board as a whole:
+
+<figure><img src="/files/xKTZpuLwRuNDSepyQvhH" alt=""><figcaption></figcaption></figure>
+
+**Pin** keeps the board within quick reach for regular use.
+
+**Add Favorite** marks the board as a favorite so it appears in the Favorites section of the main menu.
+
+**Edit**, the pencil in the header, updates the board's own name and description. Keeping the description current matters more as boards accumulate; it is what tells a teammate whether this board answers their question before they read every card.
+
+**Delete**, the trash icon, removes the board. The insights that were placed on it are unaffected; they remain in the app's insight catalog and on any other boards.
+
+**Add Insight** opens the same build-or-pick dialog described on the Creating a Board and Adding Insights page, so boards grow at any time, not only at creation.
+
+### Keeping Boards Useful Over Time
+
+A few habits keep boards from decaying into clutter. Revisit card ranges when a board's purpose shifts; a launch board built on Today and 7D views reads differently once the launch is history and 30D trends become the question. Turn auto-refresh off when the live phase ends. Retire cards that no one has read in weeks, remembering that removing a card costs nothing since the insight stays saved. And when a board has grown past what one screen communicates, split it by audience rather than by data: a board per reader beats a board per metric.
+
+This page completes the workflow: concepts, board creation, the Insight Builder, visualization, and board management. From here, the fastest way to build fluency is to recreate the Finance example end to end with your own app's events, one board, two insights, and ten minutes.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights/managing-insights-on-a-board.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

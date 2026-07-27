@@ -1,0 +1,67 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/kpis-monthly.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/kpis-monthly.md).
+
+# KPI's Monthly
+
+**Path:** `Reports > Audience & Growth > KPI's Monthly`
+
+KPI's Monthly gives you a compact summary of product health for the month. It helps you connect growth, engagement, retention, and monetization in one dashboard.
+
+Use this report when you want to answer questions such as:
+
+* Are users converting at a healthy rate?
+* Are they staying active after they convert?
+* Is engagement turning into revenue?
+
+### Report overview
+
+KPIs, or Key Performance Indicators, are measurable values used to track performance against business goals. This report is useful for monthly reviews, executive summaries, and recurring business check-ins.
+
+The page works best when you read the numbers together. A single KPI can signal movement, but the combination tells you what kind of movement it is.
+
+<figure><img src="/files/qMJ0d0ZhCn3LFwgWld9F" alt=""><figcaption></figcaption></figure>
+
+### Core KPIs
+
+* **App Conversion Rate %** shows how effectively your platform turns visitors or users into a target action such as sign-up, purchase, or subscription.
+* **ARPU** shows the average financial contribution per user during the month.
+* **30-Day Retention (%)** shows how many users are still active 30 days after their first interaction.
+* **Avg. Session Length (min)** shows how long sessions last on average.
+* **Avg. Usage Frequency** shows how often users return in the period (during the month).
+
+### How to read these KPIs together
+
+This dashboard is most useful when you treat it as one monthly narrative.
+
+For example, high conversion with weak retention often means acquisition is working but long-term value is weak. Strong retention with low ARPU can mean users see value in the product but monetization still has room to improve. Long sessions with low frequency may suggest a different usage habit than short, repeated visits.
+
+<details>
+
+<summary>How to get more value from this report</summary>
+
+Review the dashboard month over month, not only in isolation. Watch for large deviations, compare changes with releases or campaign activity, and adjust your benchmarks as the business evolves.
+
+</details>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/kpis-monthly.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

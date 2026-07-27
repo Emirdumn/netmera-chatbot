@@ -1,0 +1,183 @@
+URL: https://user.netmera.com/netmera-user-guide/smart-linking/deferred-deep-link/create-deferred-deep-link.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/smart-linking/deferred-deep-link/create-deferred-deep-link.md).
+
+# Create Deferred Deep Link
+
+**Path**: `Settings > App Configuration > Deferred Deep Link> Create`
+
+#### Minimum SDK Requirement
+
+To use the **Deferred Deep Link** feature, please update your SDKs to the following minimum versions:
+
+* **Swift SDK:** v4.13.0
+* **Android SDK:** v4.11.0
+
+***
+
+This page allows you to create new deferred deep links that guide users to the correct in-app location even if the app is not yet installed. Each link can contain deep links for iOS, Android, and web, with optional fallback and redirection rules.
+
+<figure><img src="/files/uDmYHnCe5BlyZUf2bq5j" alt=""><figcaption></figcaption></figure>
+
+### Deferred Link Name
+
+Defines the unique identifier for the deep link configuration.&#x20;
+
+Enter a descriptive name for the deferred deep link. Example: `impactfintech-wallet-link`
+
+### Deep Links
+
+Specifies destination URLs for different platforms. These determine where users will land if they already have the app installed.
+
+<figure><img src="/files/qoSIptv7BQ3r3RDq3JLe" alt=""><figcaption></figcaption></figure>
+
+#### iOS Deep Link URL
+
+* Format: Universal Links (HTTPS URLs) or custom `myapp://` schemes.
+* Example (Universal Link): `https://impactfintech.com/wallet`
+* Example (Custom Scheme): `impactfintech://wallet`
+
+{% columns %}
+{% column width="66.66666666666666%" %}
+**Linking Options**
+
+If you use a custom scheme such as `myapp://`, users may encounter a confirmation prompt after clicking the **Download** button on the landing page. Selecting **OK** allows the download to proceed normally.&#x20;
+
+{% endcolumn %}
+
+{% column width="33.33333333333334%" %}
+
+<figure><img src="/files/yN2WgIyk5XNfrZw7gECS" alt="" width="375"><figcaption></figcaption></figure>
+
+{% endcolumn %}
+{% endcolumns %}
+
+* Universal Links, verified by Apple, use secure HTTPS URLs and open the target in-app content directly without additional screens or redirects. To prevent the confirmation prompt, use Universal Links for your Deep Link URLs.&#x20;
+* However, tracking reliability may vary depending on your app configuration and user flow. If maintaining full tracking accuracy is critical, prefer using the custom scheme (`myapp://`) option.
+
+<table><thead><tr><th width="140.4293212890625">Type</th><th width="118.48046875">Format</th><th width="129.559814453125">Example</th><th>Behavior</th><th>Metrics Tracking</th></tr></thead><tbody><tr><td><strong>Universal Link</strong> </td><td>HTTPS URL</td><td><code>https://impactfintech.com/wallet</code></td><td>Verified by Apple. Opens in-app content directly from SMS, email, web, or push notifications without redirects.</td><td>Some download or post-install events may not be captured depending on the app’s Universal Link configuration.</td></tr><tr><td><strong>Custom Scheme</strong></td><td><code>myapp://</code></td><td><code>impactfintech://wallet</code></td><td>May display a confirmation prompt. User must tap <strong>OK</strong> to proceed.</td><td>Ensures full tracking of all click and download events on Netmera’s Listings &#x26; Analytics pages. Recommended when precise attribution is critical.</td></tr></tbody></table>
+
+#### Android Deep Link URL
+
+* Format: Android App Links (HTTPS URLs) or custom `myapp://` schemes.
+* Example (App Link): `https://impactfintech.com/wallet`
+* Example (Custom Scheme): `impactfintech://wallet`
+
+**Android App Links**
+
+Android App Links use HTTPS URLs and automatically open the app for verified domains. They simplify navigation but are **optional**—because Android **does not show** any additional prompts for `myapp://` schemes. Therefore, we suggest using custom schemes for Android links for more precise analytics metrics.
+
+#### Web Page URL
+
+* Defines the web fallback for users opening the link on desktop browsers.
+* Example: `https://impactfintech.com/walletcampaigndetails`
+
+#### Notes
+
+* If the app is installed → users open the target screen directly.
+* If the app is not installed → users are redirected to the app store, then routed to this in-app destination after installation.
+* If opened on desktop → users are sent to the defined **Web Page URL**.
+
+### Fallback URL
+
+Used when no other redirection or deep link condition is met. It ensures users always reach a valid page.
+
+1. Enter a general-purpose fallback URL. Example: `https://impactfintech.com/homepage`
+2. This page should provide information or download options for your app.
+
+{% hint style="info" %}
+
+#### Behavior
+
+1. If no deep link or web URL matches, the fallback URL is used as the final landing destination.
+2. If a Deferred Deep Link is later deleted from the panel, any user clicks associated with that deleted link will automatically follow the **configured fallback scenario**, ensuring the redirection flow remains functional.
+   {% endhint %}
+
+<figure><img src="/files/CpezTsNMgX6B5Y4yon5W" alt=""><figcaption></figcaption></figure>
+
+### Store Redirections
+
+Specifies store-level redirects when users need to install the app.
+
+1. Click **Select platform** to choose:
+   * `Google Play`
+   * `iOS Store`
+2. Paste the corresponding store URL.\
+   Example URLs:
+   * Google Play:\
+     `http://play.google.com/store/apps/details?id=com.impactfintech`
+   * iOS Store:\
+     `https://apps.apple.com/app/impact-fintech`
+3. Click **Add Redirection** to save each.
+
+<figure><img src="/files/SXrnfQQZIvy9DyIH5Yud" alt=""><figcaption></figcaption></figure>
+
+### Deferred Link Domain
+
+Defines the domain from which the deferred link will be generated. This domain determines the base URL used in campaigns and external links.
+
+1. Choose your verified link domain from the dropdown.\
+   Example: `https://impactwallet.nms.ist`
+2. The selected domain will form the root of your generated links.\
+   Example full link: `https://impactwallet.nms.ist/impactfintech-wallet-link`
+
+**Multiple Domains**\
+You can add multiple deferred link domains for your apps. This is useful if your application includes several brands or service categories.
+
+Examples:
+
+* Different brands within the same app: **Food Delivery**, **Groceries**, **Finance**
+* Category-based differentiation: **Cosmetics**, **Electronics**, **Home Appliances**
+
+Each domain can represent a unique brand identity or campaign group, helping you categorize and track links according to their business purpose.
+
+<figure><img src="/files/AUP1rdPPooXHU3yt80qJ" alt=""><figcaption></figcaption></figure>
+
+### Save and Test
+
+1. Review all filled fields for correctness.
+2. Click **Save** to create the deferred deep link.
+3. Copy and test the generated link:
+   * On iOS and Android devices (with and without the app installed)
+   * On desktop browsers (to confirm web and fallback URLs)
+
+#### Verification
+
+* If the app is installed → Deep link opens the correct in-app page.
+* If the app is not installed → Redirects to store → On first open, navigates to the deep link target.
+* On desktop → Redirects to **Web Page URL** or **Fallback URL**.
+
+### Example Configuration Summary
+
+<table><thead><tr><th width="253.083740234375">Field</th><th>Example Value</th></tr></thead><tbody><tr><td>Deferred Link Name</td><td>impactfintech-wallet-link</td></tr><tr><td>iOS Deep Link URL</td><td>https://impactfintech.com/wallet</td></tr><tr><td>Android Deep Link URL</td><td>impactfintech://wallet/wallet</td></tr><tr><td>Web Page URL</td><td>https://impactfintech.com/walletcampaigndetails</td></tr><tr><td>Fallback URL</td><td>https://impactfintech.com/home</td></tr><tr><td>Google Play URL</td><td>http://play.google.com/store/apps/details?id=com.impactfintech</td></tr><tr><td>iOS Store URL</td><td>https://apps.apple.com/app/impact-fintech/id1587648392</td></tr><tr><td>Deferred Link Domain</td><td>https://impactwallet.nms.ist</td></tr></tbody></table>
+
+### Outcome
+
+After setup, your deferred deep link will:
+
+* Detect the user’s platform.
+* Route installed users directly to in-app content.
+* Redirect new users to the store, then preserve their context post-installation.
+* Provide reliable desktop and fallback routing to maintain campaign continuity.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/smart-linking/deferred-deep-link/create-deferred-deep-link.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

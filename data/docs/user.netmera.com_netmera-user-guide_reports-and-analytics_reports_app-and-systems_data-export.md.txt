@@ -1,0 +1,262 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/app-and-systems/data-export.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/app-and-systems/data-export.md).
+
+# Data Export
+
+**Path:** `Reports > App & Systems > Data Export`
+
+Data Export automates scheduled exports from Netmera to your FTP server. It helps you move report and operational data out of the panel on a recurring schedule or through manual runs.
+
+Use this page when you want to answer questions such as:
+
+* Which export type should I use?
+* How should I configure delivery?
+* What limits affect export behavior?
+
+### Report overview
+
+This page is useful when you need recurring report delivery, operational data sharing, or external warehousing. It separates export setup into two parts: what to export and where to send it.
+
+Before setup, review the main behavior limits below. They affect how far back some exports look and when files are delivered.
+
+### Key behaviors and limits
+
+{% hint style="info" %}
+**7-day scan window (Push Reports)**
+
+Push Report exports scan the **last 7 days** to resolve the **push send date**.
+
+If the send is older than 7 days, the export does not look further back.
+{% endhint %}
+
+{% hint style="info" %}
+**Nightly delivery window**
+
+Scheduled exports are delivered nightly between **03:00 and 06:00**.
+{% endhint %}
+
+### What you need
+
+Have these ready before setup:
+
+* FTP **host**, **port**, and **path**.
+* Auth method: **username/password** or **SSH key**.
+* If you connect to a Netmera-hosted server: the **public IP** you will connect from for allowlisting.
+
+### Set up FTP export
+
+{% stepper %}
+{% step %}
+
+#### Create or request an FTP user
+
+Pick one model:
+
+* **Customer-created FTP user:** You host the FTP server. Netmera uploads to your server.
+* **Netmera-created FTP user:** Netmera hosts the FTP user. You connect to Netmera’s server. Connections are restricted to predefined IPs.
+  {% endstep %}
+
+{% step %}
+
+#### Configure Export in the panel
+
+Open: **Netmera Panel → Reports → Export**.
+
+If you don’t see Export, ask your CSM to enable it for your account.
+
+Then configure:
+
+* **Reports** tab: pick the export type and file format.
+* **Settings** tab: set server, credentials, and frequency.
+  {% endstep %}
+
+{% step %}
+
+#### Validate with a manual send
+
+Click **Send** to trigger an export and confirm that the connection and output behave as expected.
+
+Manual sends are limited to **3 times per day**.
+{% endstep %}
+{% endstepper %}
+
+### File naming
+
+{% hint style="info" %}
+Files are delivered with these naming patterns:
+
+* `appkey_PUSH_REPORTS_date`
+* `appkey_msgID_PUSH_REPORTS_date` (when **External ID Breakdown** is enabled)
+  {% endhint %}
+
+{% file src="/files/T3JvYeF2KGuEmj6KyPjq" %}
+Sample Campaign Report
+{% endfile %}
+
+{% file src="/files/BBpy8e6DBJZSaKRvLoCR" %}
+Sample Campaign Report with Ex IDs
+{% endfile %}
+
+{% file src="/files/R2yLiVgYaNqX2GjselF3" %}
+Sample Automated Campaign Report
+{% endfile %}
+
+{% file src="/files/Oqg8NwVPKvxtzr2WlTaj" %}
+Sample Transactional Campaign Report
+{% endfile %}
+
+{% file src="/files/o7K1vm2OYvoa2RYUhGw4" %}
+App Tracking Sample
+{% endfile %}
+
+{% file src="/files/cPpAvKv16WLjKiH4qMs3" %}
+Events Sample
+{% endfile %}
+
+{% file src="/files/jWDjZ1WEhqolDcfUOFRU" %}
+Installation & Permission Sample Data File
+{% endfile %}
+
+{% file src="/files/Jsdne8XqZWInLK3KhD4Y" %}
+Email Permission Sample Data File
+{% endfile %}
+
+{% file src="/files/vskMjYAk8jlGiC1sWtsp" %}
+SMS Permission Sample Data File
+{% endfile %}
+
+{% file src="/files/oQjP66nhUNZYOJTRiXSH" %}
+Mobile Permission Sample Data File
+{% endfile %}
+
+{% file src="/files/hmpVzxLajdJ0o6LGynAe" %}
+Web Permission Sample Data File
+{% endfile %}
+
+### Export dashboard
+
+{% @arcade/embed url="<https://app.arcade.software/share/QqnqYNv3JjE80id3CZb3>" flowId="QqnqYNv3JjE80id3CZb3" %}
+
+### How the dashboard is organized
+
+Work in two tabs:
+
+* **Reports:** what to export and in which format.
+* **Settings:** where to send it and how often.
+
+This split helps keep export setup clear. First decide what data you need, then decide where it goes and how often it should run.
+
+### Reports tab
+
+Use this tab to choose the export type, configure any related options, and run a manual send when needed.
+
+Pick an export type, configure its options, and click **Send** when you want a manual run.
+
+**1. Push Reports**
+
+Campaign performance metrics such as opens, conversions, and engagement.
+
+* **External ID Breakdown:** Adds an extra breakdown by external ID.
+
+<figure><img src="/files/xvlSHV8lG5zFyGV8INpF" alt=""><figcaption></figcaption></figure>
+
+**2. Event Data**
+
+User events with name, timestamp, and parameters.
+
+* You can customize which events (e.g., **Open App**, **Widget Shown**) are exported for analysis.
+
+<figure><img src="/files/vgM15JVFuFPgPEES7p3g" alt=""><figcaption></figcaption></figure>
+
+**3. App Tracking**
+
+Apps installed on users’ devices.
+
+**4. Installation & Permission**
+
+Install details and granted permissions.
+
+* **Monthly** and **Bulk** are available only for **Installation** exports.
+
+**5. Channel Permission**
+
+Provides data on user reachability across multiple communication channels, including **Mobile**, **Web**, **SMS**, and **Email**.
+
+* **Incremental behavior:** First export is **full**. Next exports include **only updated/changed attributes**.
+
+Each export type serves a different purpose. **Push Reports** is useful for campaign reporting, while **Event Data** is better for external analysis or warehousing.
+
+<figure><img src="/files/AnjzbvyvBNnVk1zkuKS4" alt=""><figcaption></figcaption></figure>
+
+### File format
+
+Choose **.xlsx** or **.csv**.
+
+* If you select **.csv**, the **Delimiter Type** option becomes available.
+* Supported delimiters include **Comma**, **Pipe**, **Tilde**, **Broken Pipe**, **Caret**, or **Semicolon**, allowing you to choose the format that best fits your requirements.
+
+Choose the format based on where the file will be used next. `.xlsx` is often easier for manual review, while `.csv` is usually better for ingestion into another system.
+
+<figure><img src="/files/ZCkOTFurDjTW9rMPdhzZ" alt="" width="563"><figcaption></figcaption></figure>
+
+### Settings tab
+
+Use this tab to define the destination, credentials, and frequency.
+
+Open: **Netmera Panel → Reports → Export → Settings**.
+
+1. **Server:** FTP server address.
+2. **Port:** FTP port.
+3. **Path:** Target folder on the FTP server.
+4. **Username & Password:** FTP credentials.
+5. **Export Frequency:** How much data to include per run.
+
+* **Daily:** Users updated in the last 24 hours.
+* **Monthly:** Users updated in the last 30 days.
+* **Bulk:** All users, regardless of update date.
+
+Choose frequency based on the purpose of the export. Daily is better for operational sync, while bulk is better for full refresh or one-time backfill.
+
+{% hint style="warning" %}
+**Monthly and Bulk**
+
+These options apply only to **Installation & Permission** exports.
+{% endhint %}
+
+### SSH key authentication
+
+Open: **Netmera Panel → Reports → Export → Settings**.
+
+Then set **Export Authorization Type → SSH Key**.
+
+Use SSH keys instead of passwords when your FTP server supports it. This is often the more secure and maintainable option.
+
+1. **Select SSH Key** as the authentication type.
+2. **Generate SSH Public Key:** The system creates a secure public key automatically.
+3. **Copy SSH Key:** Click **Copy** to save it to your clipboard.
+4. **Grant FTP Access:** Add the copied SSH key to the FTP server to allow secure connections.
+
+<figure><img src="/files/p8HlyDA2M86W0tkiT6am" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/app-and-systems/data-export.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

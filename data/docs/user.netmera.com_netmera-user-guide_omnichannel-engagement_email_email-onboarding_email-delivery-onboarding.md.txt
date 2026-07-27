@@ -1,0 +1,51 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/email-onboarding/email-delivery-onboarding.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/email-onboarding/email-delivery-onboarding.md).
+
+# Email Delivery Onboarding
+
+The email sending onboarding process is designed to help you transition smoothly into high-volume email sending while protecting your sender reputation and ensuring high deliverability rates. The main goal is to enable bulk email delivery to large datasets without risking the reputation of your sending IP addresses.
+
+#### Key Component: IP Warming
+
+**IP warming** is a gradual process where email volume is increased steadily over time. It starts by sending emails to small, highly engaged segments, then expands to larger audiences. This helps:
+
+* Build a strong sender reputation
+* Gain trust from ISPs and email recipients
+* Improve inbox placement
+
+#### Onboarding Steps
+
+1. **Customized IP Warming Plan**\
+   We create a tailored IP warming strategy based on your sending needs. This plan outlines a step-by-step increase in volume and recipient engagement.
+2. **Audience Segmentation**\
+   You will be guided to segment your audience, starting with your most engaged recipients. This supports positive engagement metrics early on.
+3. **Campaign Optimization**\
+   Throughout onboarding, we monitor email performance metrics and provide insights. Based on results, we may suggest adjustments to:
+   * Sending volume
+   * Targeting strategy
+   * Content quality
+4. **Gradual Scaling**\
+   As your sender reputation improves, we help you increase sending volume and expand your audience reach without harming deliverability.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/email-onboarding/email-delivery-onboarding.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

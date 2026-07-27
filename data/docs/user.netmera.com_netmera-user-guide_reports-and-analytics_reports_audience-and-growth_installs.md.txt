@@ -1,0 +1,69 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/installs.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/installs.md).
+
+# Installs
+
+**Path:** `Reports > Audience & Growth > Installs`
+
+The Installs report helps you read growth and churn together. It shows how many users are coming in, how many are coming back, and how many are leaving during the selected period.
+
+Use this report when you want to answer questions such as:
+
+* Is growth driven by new installs or returning users?
+* Are uninstalls rising with acquisition?
+* Are re-engagement efforts bringing users back?
+
+<figure><img src="/files/QFA2FD6VUp4FB8tQB153" alt=""><figcaption></figcaption></figure>
+
+### Report overview
+
+This page combines three related signals: installs, reinstalls, and uninstalls. Reading them together gives you a much better picture of product momentum than reading any one of them alone.
+
+A high install count can look healthy at first glance, but that view changes if uninstalls rise at the same time. Reinstalls add another layer by showing whether users are willing to return after dropping off.
+
+### Core metrics
+
+* **Installs** shows how many new users installed your app during the selected period. This is your clearest acquisition signal.
+* **Reinstalls** shows how many users removed the app in the past and then installed it again. This helps you measure return behavior and re-engagement.
+* **Uninstalls** shows how many users removed the app from their devices. This is one of the strongest early warnings for retention issues.
+
+High installs often reflect strong acquisition activity, app store visibility, or campaign reach. High reinstalls can point to successful win-back efforts or renewed interest in the product. High uninstalls usually signal a need to review onboarding, product value, technical quality, or message pressure.
+
+{% hint style="info" %}
+On Android, uninstall increases can sometimes reflect inactive device token resets rather than direct user churn.
+
+Netmera receives token data through Firebase Cloud Messaging. When a device stays inactive for **270+ days**, Firebase can invalidate the token. If that user returns later, a new token and installation ID are assigned, which can increase uninstall counts.
+{% endhint %}
+
+### How to read these metrics together
+
+This report becomes most useful when you compare all three values in the same period.
+
+If installs are high and uninstalls stay low, acquisition is translating into healthier growth. If installs and uninstalls rise together, you may be bringing users in but failing to keep them. If reinstalls increase after a re-engagement effort, your win-back strategy is likely working even if new acquisition stays flat.
+
+### How to use this report
+
+Use Installs as an early growth and churn monitor. When you spot unusual movement, the next step is usually to compare the period with onboarding changes, campaign activity, release history, or deeper retention analysis.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/installs.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

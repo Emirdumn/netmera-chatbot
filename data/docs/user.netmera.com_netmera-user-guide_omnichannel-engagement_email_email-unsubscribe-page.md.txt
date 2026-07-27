@@ -1,0 +1,115 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/email-unsubscribe-page.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/email-unsubscribe-page.md).
+
+# Email Unsubscribe Page
+
+Every email campaign needs an unsubscribe option.&#x20;
+
+Netmera supports two setups. You can also support category-based opt-out.
+
+### Option 1: Netmera-hosted unsubscribe page
+
+This is the fastest setup. You only add an unsubscribe link to your email template.
+
+Netmera-hosted unsubscribe page supports two flows:
+
+* Standard unsubscribe flow using global unsubscribe link&#x20;
+* Category-based unsubscribe flow
+
+#### Global unsubscribe link
+
+Use this link to continue with the standard unsubscribe flow.
+
+```
+https://cdn.netmera-web.com/unsubscribe/?appkey=@{appkey}&userid=@{email}&campaignId=@{campaignId}
+```
+
+<figure><img src="/files/USMsYUDJCq2uPlR7jPKC" alt="" width="563"><figcaption><p>Netmera-hosted Unsubscribe Page</p></figcaption></figure>
+
+#### Category-based unsubscribe link
+
+Use this link when users should manage their email preferences by message category.
+
+To open the category-based unsubscribe page, add `category=true` to the unsubscribe URL.
+
+```
+https://cdn.netmera-web.com/unsubscribe/?appkey=@{appkey}&userid=@{email}&campaignId=@{campaignId}&category=true
+```
+
+When `category=true` is included, Netmera opens the category-based unsubscribe page.&#x20;
+
+Users can select one or more categories and unsubscribe only from the selected categories.
+
+Parameters:
+
+* `appkey`: your Netmera application key.
+* `userid`: your user identifier (commonly the email address).
+* `campaignId`: the email campaign ID.
+* `category=true`: opens the category-based unsubscribe page.
+
+#### Example flow
+
+1. Create an email campaign from the panel.
+2. Add the category-based unsubscribe link to a button in the email template.
+3. Send the campaign.
+4. When the user clicks the unsubscribe button in the email, the category-based unsubscribe page opens.
+5. The page displays the message categories configured under **Panel > Settings > Message Categories**.
+6. The user selects one or more message categories.
+7. When the user confirms, the user is unsubscribed from the selected categories.
+8. If the user selects **Unsubscribe from all categories**, the user is unsubscribed from all listed message categories.&#x20;
+
+{% hint style="warning" %}
+Category-based unsubscribe only removes the user from the selected message categories. It does not change the user’s general email opt-in permission. If the user wants to fully opt out from email communication, the general email permission must be managed separately.
+{% endhint %}
+
+<figure><img src="/files/qoxz7HGvT2F0RBJArzOP" alt="" width="563"><figcaption><p>Category-based unsubscribe page</p></figcaption></figure>
+
+### Option 2: Custom unsubscribe page (you host)
+
+Use this when you want full branding control. You still report the opt-out back to Netmera.
+
+#### How it works
+
+1. Put your own unsubscribe URL in the email template.
+2. When the user confirms, call Netmera’s unsubscribe endpoint.
+3. Optionally collect and send an unsubscribe reason.
+
+#### Endpoint
+
+Send a `POST` request when the user unsubscribes:
+
+```
+https://report.netmera.com/reporter/email-unsubscribe/{appKey}/{userId}/{campaignId}/{reason}
+```
+
+* `appKey`: required.
+* `userId`: required. Usually the email address.
+* `campaignId`: required.
+* `reason`: optional. Free text or a short code.
+
+{% hint style="info" %}
+If you send a reason, it also appears in reporting under the email unsubscribe event. This helps you analyze opt-out drivers.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email/email-unsubscribe-page.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

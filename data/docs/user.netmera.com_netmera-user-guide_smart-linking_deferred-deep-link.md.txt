@@ -1,0 +1,114 @@
+URL: https://user.netmera.com/netmera-user-guide/smart-linking/deferred-deep-link.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/smart-linking/deferred-deep-link.md).
+
+# Deferred Deep Link
+
+**Path**: `Settings > App Configuration > Deferred Deep Link`
+
+Deferred Deep Links ensure users reach the intended destination regardless of their device or app state keeping the destination intact across **install**.
+
+* If the user has the app, they land on the target screen.
+* If they don’t, they go to the store and still land on the target screen after first open.
+* If they’re on desktop, they go to a web page (or fallback).
+
+<figure><img src="/files/DJ6s1xe1W7730BBCeH4c" alt=""><figcaption></figcaption></figure>
+
+### What you can configure
+
+<table data-view="cards"><thead><tr><th>What you can configure</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Create the deferred deep link (iOS + Android + web + store + fallback)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/WhjPTxNqAMQY6pOGoRl3">/spaces/X6uilbEAw42gqsudlclY/pages/WhjPTxNqAMQY6pOGoRl3</a></td></tr><tr><td>Create a branded pre-install landing page</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/yyzJV68GyfQc1WTrrs53">/spaces/X6uilbEAw42gqsudlclY/pages/yyzJV68GyfQc1WTrrs53</a></td></tr><tr><td>Analyze link-driven behavior after the click</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY">/spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY</a></td></tr></tbody></table>
+
+{% hint style="info" %}
+Minimum SDK requirement:
+
+* Swift SDK: **v4.13.0+**
+* Android SDK: **v4.11.0+**
+  {% endhint %}
+
+### Quickstart: create a working deferred deep link
+
+{% stepper %}
+{% step %}
+
+#### 1) Choose the in-app destination
+
+Decide the deep link target screen first (product page, checkout, onboarding, etc.).
+{% endstep %}
+
+{% step %}
+
+#### 2) Configure your landing page (optional but recommended)
+
+Set app name, icon, title/subtitle, and store URLs.
+{% endstep %}
+
+{% step %}
+
+#### 3) Create the deferred deep link
+
+Set:
+
+* iOS deep link URL
+* Android deep link URL
+* Web URL (desktop)
+* Store redirections
+* Fallback URL
+  {% endstep %}
+
+{% step %}
+
+#### 4) Use the link in campaigns
+
+Use the same link across SMS, email, web push, QR codes, and ads.
+{% endstep %}
+
+{% step %}
+
+#### 5) Test on 3 scenarios
+
+* iOS / Android with app installed
+* iOS / Android without app installed
+* Desktop browser
+  {% endstep %}
+  {% endstepper %}
+
+### How it works (fast mental model)
+
+* **Installed** → open app target via iOS/Android deep link URL
+* **Not installed** → show landing page → store → first open routes to target
+* **Desktop** → web page URL (or fallback)
+
+### Why teams use it
+
+* Preserve context across install.
+* Reduce “home screen drop” after install.
+* Track click → install → open paths more cleanly.
+* Always have a safe fallback when content is missing or expired.
+
+<figure><img src="/files/b3Xf0i0u1Srf3GT5HKjb" alt=""><figcaption></figcaption></figure>
+
+### Deferred Deep Linking Use Cases by Industry
+
+<table data-header-hidden><thead><tr><th width="135.4332275390625">Industry</th><th width="148.691650390625">Use Case</th><th width="115.21148681640625">Entry Channel</th><th width="177.1282958984375">Deferred Deep Link Scenario</th><th>Outcome</th></tr></thead><tbody><tr><td><strong>Banking &#x26; Fintech</strong></td><td>Link users to bill payment or loan options</td><td>Email</td><td>User clicks an email reminder, installs app, and opens directly to their bill or pre-approved loan application</td><td>Increases on-time payments and improves loan engagement</td></tr><tr><td><strong>Telecom &#x26; Utilities</strong></td><td>Encourage plan upgrades or outage tracking</td><td>Web Pop-up on Mobile Browser / Email</td><td>User taps an in-app prompt or email → installs app → lands directly on upgrade offer or outage notification page</td><td>Drives upsell and improves transparency during service issues</td></tr><tr><td><strong>Media &#x26; Entertainment</strong></td><td>Promote a show or exclusive content drop</td><td>Email</td><td>User clicks an ad/email → installs app → opens directly to the promoted episode, playlist, or livestream</td><td>Higher watch-through and viewer retention</td></tr><tr><td><strong>Retail &#x26; E-commerce</strong></td><td>Promote flash sales or limited-time offers</td><td>SMS / Web Push on Mobile Browser</td><td>User taps a link from a flash sale SMS or push, installs app, and lands directly on the promoted product page</td><td>Boosts urgency-driven purchases and reduces cart abandonment</td></tr><tr><td><strong>Travel &#x26; Hospitality</strong></td><td>Share boarding passes or hotel check-in screens</td><td>QR Code (print)</td><td>User scans QR at airport kiosk → installs app → lands on boarding pass or room key on the app</td><td>Streamlines travel process, lowers reliance on physical documents</td></tr><tr><td><strong>Healthcare</strong></td><td>Book appointments or access medical reports</td><td>SMS</td><td>Patient clicks SMS reminder → installs app → lands directly on appointment scheduling or prescription refill screen</td><td>Reduces missed appointments and increases retention</td></tr><tr><td><strong>Food Delivery</strong></td><td>Promote reorders or new restaurant offers</td><td>Web Push on Mobile Browser</td><td>User clicks a browser push notification → installs app → lands directly on the restaurant’s menu</td><td>Increases repeat orders and supports cross-sell of restaurants</td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/smart-linking/deferred-deep-link.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

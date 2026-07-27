@@ -1,0 +1,208 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel/create-a-funnel.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel/create-a-funnel.md).
+
+# Create a Funnel
+
+Use this page to build a new funnel from scratch. After following these steps, you will be able to define the funnel structure, add steps, refine the audience, configure measurement settings, and save the funnel for analysis.
+
+### Step 1: Open the Create Funnel page
+
+Go to **Analytics > Funnel**.
+
+Click **Create Funnel**.
+
+<figure><img src="/files/ZpvJ8VNY4wGtfYTe3w5S" alt="" width="563"><figcaption><p>Funnel creation page with configuration and visualization panels.</p></figcaption></figure>
+
+The funnel creation page opens.
+
+### Step 2: Configure the basic funnel settings
+
+#### Step 2.1: Select the date range
+
+Choose the period you want to analyze.
+
+You can select **Today**, **Yesterday**, **7D**, **30D**, **3M**, **6M**, or **12M**. You can also define a custom range.
+
+<figure><img src="/files/Hn0KuPt3xbDoF2dkdslL" alt="" width="375"><figcaption><p>Date range selector with preset and custom range options.</p></figcaption></figure>
+
+{% hint style="info" %}
+If events were created recently, wide date ranges may still return no data.
+{% endhint %}
+
+#### Step 2.2: Enter the funnel details
+
+Enter a funnel name. Add a description if you need more context for teammates.
+
+<figure><img src="/files/1oD4pHNCGelUX4WJ5y5y" alt="Fields for the funnel name and optional description." width="563"><figcaption><p>Fields for the funnel name and optional description.</p></figcaption></figure>
+
+#### Step 2.3: Select the funnel structure
+
+Choose how users must complete the funnel.
+
+<div><figure><img src="/files/RH6q1qlpcaSvEIcBg65K" alt="" width="338"><figcaption><p>Funnel structure selector with ordering options.</p></figcaption></figure> <figure><img src="/files/L9VRlw6hyS1M6qOB1lBs" alt="" width="276"><figcaption></figcaption></figure></div>
+
+<table><thead><tr><th width="156.46044921875">Option</th><th>Description</th><th>When to use</th></tr></thead><tbody><tr><td><strong>In this order</strong></td><td>Users complete steps in the selected order. Other events may happen between steps.</td><td>Use for standard journeys such as <strong>Product View > Add to Cart > Purchase</strong>.</td></tr><tr><td><strong>In strict order</strong></td><td>Users complete steps in the selected order with no other events between steps.</td><td>Use for linear flows such as checkout.</td></tr><tr><td><strong>Any order</strong></td><td>Users can complete the selected steps in any order.</td><td>Use when sequence is not important.</td></tr></tbody></table>
+
+{% hint style="info" %}
+For most standard user journeys, **In this order** is the best starting option.
+{% endhint %}
+
+### Step 3: Add and refine funnel steps
+
+#### Step 3.1: Add the funnel steps
+
+Click **+ Add Your First Step**.
+
+Select the events that represent each stage in the journey.
+
+A funnel must include at least two steps before the visualization appears.
+
+For example, a purchase funnel might use **Product Viewed**, **Added to Cart**, **Checkout Started**, and **Purchase Completed**.
+
+<div><figure><img src="/files/Rrr2F1HNOWrm93uRfDO9" alt="" width="339"><figcaption><p>Add the first funnel step from the configuration panel.</p></figcaption></figure> <figure><img src="/files/Dge2SrVcnu5dRebQbnRG" alt="" width="225"><figcaption><p>Select an event to use as a funnel step.</p></figcaption></figure></div>
+
+<figure><img src="/files/wstuqjjaFTp002c8k3AJ" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Step 3.2: Reorder the steps
+
+Drag a step from the handle on the left side.
+
+Move it to the correct position in the journey.
+
+<figure><img src="/files/xdyJTkD1xZSJmXy88vvd" alt="" width="375"><figcaption><p>Drag a funnel step to reorder the journey sequence.</p></figcaption></figure>
+
+#### Step 3.3: Add an event property
+
+Use **Add event attribute** when a step should only count events with a specific property.
+
+Select the attribute, choose an operator, enter the required value, and click **OK**.
+
+<figure><img src="/files/BFiBB64lgV20pIPhWAf7" alt="" width="563"><figcaption><p>Add an event property to narrow a funnel step.</p></figcaption></figure>
+
+#### Step 3.4: Exclude users by event
+
+Use **Exclude Users by Event** to remove users who perform an event that breaks the intended flow.
+
+For example, if the funnel is **Open App → Get Started → Register**, you might exclude **Sign Out**.
+
+<figure><img src="/files/6zJniRbjTD7MuCqn3lRa" alt="" width="375"><figcaption><p>Exclude Users by Event configuration for removing users from the funnel.</p></figcaption></figure>
+
+### Step 4: Apply audience filters
+
+Click **Apply Filter** to open the **Filter Audience** window.
+
+Use filters when you want to analyze a specific user group.
+
+<figure><img src="/files/2xGxrT2LkAWr9rVxuDUF" alt="" width="563"><figcaption><p>Filter Audience window with rule builder, rule description, and target audience count.</p></figcaption></figure>
+
+#### Step 4.1: Add filter rules
+
+1. Click **Add Filter Rule**.
+2. Select a rule type such as **Segment**, **Tag**, **Platform**, **Response**, **App Installation**, **App Version**, or **Operator**.
+3. Select the attribute or condition.
+4. Choose an operator.
+5. Enter or select the value.
+6. If needed, choose **AND** or **OR** between rules.
+
+{% hint style="success" %}
+The **Rule Description** panel summarizes the selected logic. The **Target Audience** section shows how many users match it.
+{% endhint %}
+
+#### Step 4.2: Add a filter group
+
+Click **Add Filter Group** when you need a separate rule group.
+
+Use groups to combine advanced conditions.
+
+For example, you can create a group for **Segment equals New users last 7 days** and **Platform equals iOS**.
+
+<figure><img src="/files/2J3t7BIUfTLwPoBiP9oG" alt="" width="563"><figcaption><p>Filter group configuration for combining multiple audience rules.</p></figcaption></figure>
+
+### Step 5: Configure measurement settings
+
+Choose how the funnel counts users and how long users have to complete it.
+
+#### Step 5.1: Select the counting method
+
+* **Unique Users** counts each user once.
+* **Total Events** counts every matching event occurrence.
+
+<figure><img src="/files/PbxAy5VmKTsmyFQiF9tN" alt="" width="563"><figcaption><p>Measurement settings for counting method and conversion window.</p></figcaption></figure>
+
+#### Step 5.2: Set the conversion window
+
+The conversion window defines the maximum time allowed between the first and final steps.
+
+Choose one of these options.
+
+**Option A: Use a time-based conversion window**
+
+Select **Minutes**, **Hours**, or **Days**.
+
+For example, if you set the conversion window to **7 days**, users must complete the funnel within 7 days after the first step.
+
+The default conversion window is **30 days**.
+
+<figure><img src="/files/iAGEtxmHI1nIBpaiZFfZ" alt=""><figcaption></figcaption></figure>
+
+**Option B: Use a session-based conversion window**
+
+Select **Sessions** when users can complete the funnel across multiple app sessions.
+
+When **Sessions** is selected, the conversion window is calculated from the sessions after the session where Step 1 is triggered.
+
+For example, if the conversion window is set to **3 Sessions**, Step 1 can happen in Session 1. The user is counted as converted if the remaining steps are completed in Sessions 2, 3, or 4. If the user completes the funnel in Session 5 or later, the user is not counted as converted.
+
+<figure><img src="/files/M4LW0D14DMcKLsGFW8rG" alt=""><figcaption><p>Session based conversion window</p></figcaption></figure>
+
+{% hint style="info" %}
+Use a shorter window for fast flows such as payment completion. Use a longer window for journeys that can span several days.
+{% endhint %}
+
+### Step 6: Configure anomaly detection
+
+Use **Anomaly Detection** when you need alerts for unusual changes in funnel performance.
+
+1. Select an **Alert type**.
+2. Select the **Step to monitor**.
+3. Select the **Check Frequency**.
+4. Set the **Sensitivity** percentage.
+5. Enter one or more **Delivery Emails**.
+6. Click **Save**.
+
+<figure><img src="/files/WyEbIaVpGUrvES2E10ee" alt="" width="375"><figcaption><p>Anomaly Detection settings for alert type, monitored step, and check frequency.</p></figcaption></figure>
+
+<figure><img src="/files/FSjTil9YOcGdjLlaPHbs" alt="" width="375"><figcaption><p>Sensitivity and delivery email fields for anomaly alerts.</p></figcaption></figure>
+
+<figure><img src="/files/m8BI5MFcKTSGuRwqprTC" alt="" width="375"><figcaption><p>Saved anomaly detection settings in the funnel configuration.</p></figcaption></figure>
+
+### Step 7: Save the funnel
+
+Click **Save Funnel**.
+
+The funnel is saved and opens with its report view.
+
+Next, continue with [Analyze a Funnel Report](/netmera-user-guide/reports-and-analytics/analytics/funnel/analyze-a-funnel-report.md).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel/create-a-funnel.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

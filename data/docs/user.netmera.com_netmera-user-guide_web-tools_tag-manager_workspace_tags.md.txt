@@ -1,0 +1,186 @@
+URL: https://user.netmera.com/netmera-user-guide/web-tools/tag-manager/workspace/tags.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/web-tools/tag-manager/workspace/tags.md).
+
+# Tags
+
+Tags define the **actions that will take place** on your website or application when certain conditions are met. While triggers specify when something should happen, tags specify what happens (e.g., log an event, update a profile, execute custom code).
+
+{% hint style="info" %}
+
+### Tag Lifecycle
+
+1. **Definition** – A tag is created with a name, type, and optional advanced settings.
+2. **Attachment** – The tag is linked to one or more triggers that define when it should execute.
+3. **Execution** – When the trigger fires, the tag action runs (e.g., log event, update profile, show widget, execute code).
+   {% endhint %}
+
+### Step 1: Open the Tags Tab
+
+From your **Workspace**, select **Tags** in the left-hand menu.
+
+You will see a list of existing tags with the following details:
+
+* **Name** – the tag’s unique identifier.
+* **Type** – the action performed (Event, User, Widget, Custom HTML).
+* **Triggers** – conditions that cause the tag to fire.
+* **Last Edited** – when the tag was last modified.
+* **Actions** – edit, view, or delete options.
+
+<figure><img src="/files/zX8Xh4bbfXtR6N9j0r38" alt=""><figcaption></figcaption></figure>
+
+### Step 2: Create a New Tag
+
+1. Click **Create Tag**.
+2. Enter a **Name** for your tag (choose something descriptive, like *Purchase Event Web* or *User Profile Update*).
+3. Select a **Type** from the dropdown menu. You can choose from:
+   * **Netmera Event** – logs a user action or state.
+   * **Netmera User** – updates or enriches profile attributes.
+   * **Widget** – connects to an existing widget with advanced trigger options.
+   * **Custom HTML** – inserts JavaScript or HTML for custom logic.
+
+<figure><img src="/files/S4JboTkLrLGnC3iZPj1D" alt=""><figcaption></figcaption></figure>
+
+### Tag Types
+
+#### Netmera Event
+
+A **Netmera Event tag** is used to log a specific user action or state into Netmera.
+
+These events appear in the **Netmera Panel** under **Reports** and can be used for:
+
+* Segmentation (e.g., users who completed a purchase in the last 7 days).
+* Journeys (e.g., trigger a follow-up campaign when a form submission occurs).
+* Conversion and funnel analysis (e.g., add-to-cart → purchase rate).
+
+**Example use cases**:
+
+* Fire a `Purchase Event Web` whenever a payment confirmation page loads.
+* Fire a `Screen View` event on every page to track user navigation.
+* Fire a `Form Submission` event when a newsletter subscription form is submitted.
+
+**Best for:** Marketers and product managers who want measurable user interactions without requiring developer changes.
+
+<figure><img src="/files/SmaUb5qXyTuTlrphAzMd" alt=""><figcaption></figcaption></figure>
+
+#### Netmera User
+
+A **Netmera User tag** updates or enriches **user profile attributes**.
+
+* This ensures that anonymous actions can be tied to user information once known.
+* Attributes like `name`, `gender`, `msisdn`, `email`, `birthday`, or custom profile fields can be updated dynamically.
+
+**Example use cases**:
+
+* After login, fire a tag that updates the user’s `userId` and `email`.
+* On a checkout page, capture the `msisdn` (phone number) of the buyer.
+* When a user submits a profile update form, sync the data directly to Netmera.
+
+**Best for:** Maintaining **clean, enriched user profiles** that support personalized targeting, segmentation, and reporting.
+
+<figure><img src="/files/5UkeHVeqHJB2dHE1SPF0" alt=""><figcaption></figcaption></figure>
+
+#### Widget
+
+A **Widget tag** connects with an existing Netmera widget (such as banners, pop-ups, surveys, subscription forms, or promotional flows).
+
+{% hint style="info" %}
+While widgets already include built-in tracking for impressions, clicks, and conversions, a Widget tag is useful when you need to define **more advanced or customized trigger logic**.
+{% endhint %}
+
+**Example use cases:**
+
+* Apply complex conditions to determine when a widget interaction should fire.
+* Combine widget engagement with other rules (e.g., page URL, user profile attributes).
+* Extend scenarios where the standard widget setup does not fully meet requirements.
+
+**Best for**: Businesses that already use widgets for engagement but want to set up **customized or advanced triggers** that cannot be achieved with the standard widget configuration.
+
+<figure><img src="/files/tQYeUpee1zzXWEF7DSE0" alt=""><figcaption></figcaption></figure>
+
+#### Custom HTML
+
+The **Custom HTML Tag** type allows you to insert your own **JavaScript or HTML code** directly into the site via Tag Manager.
+
+**Example use cases**:
+
+* Add a script that modifies the page layout.
+* Show a custom banner or message.
+* Run a JavaScript function when a specific trigger occurs.
+
+**Important considerations**:
+
+* Custom HTML is powerful but should be used carefully to avoid performance, duplication, or security issues. Always test in **Preview** before publishing.
+
+**Best for:** Developers or advanced marketers integrating third-party tracking or building tailored scripts.
+
+<figure><img src="/files/lRLD1tHbLVsmFdCCVKEg" alt=""><figcaption></figcaption></figure>
+
+### Step 3: Configure Advanced Settings (Optional)
+
+1. In the tag editor, expand **Advanced Settings**.
+2. Configure:
+   * **Tag Sequencing** – ensure this tag runs before or after another.
+   * **Tag Firing Priority** – set priority when multiple tags fire simultaneously.
+   * **Tag Firing Option** – choose frequency (once per page, once per load, unlimited).
+   * **Tag Firing Schedule** – restrict firing to certain dates or times.
+
+<figure><img src="/files/ur5U9LiiOtKQWlidSH5G" alt=""><figcaption></figcaption></figure>
+
+#### Example Tags
+
+The following examples illustrate how tags appear in the workspace:
+
+| Name                          | Type          | Attached Triggers | Example Use Case                                |
+| ----------------------------- | ------------- | ----------------- | ----------------------------------------------- |
+| **Web Page View**             | Netmera Event | All Pages         | Fires on every page view for session analytics  |
+| **Screen View**               | Netmera Event | All Pages         | Tracks mobile-like screen navigation events     |
+| **Purchase Event Web**        | Netmera Event | All Pages         | Logs purchase events for revenue reporting      |
+| **Fire Event For Every Page** | Netmera Event | All Pages         | General event collection on all pages           |
+| **Show Custom HTML**          | Custom HTML   | Banner Shown      | Executes a custom script when a banner is shown |
+
+### Step 4: Save and Attach Triggers
+
+Every tag must have at least one trigger assigned. Without a trigger, a tag will never fire. By combining different tag types with trigger logic, you can track user actions, enrich profiles, display widgets, or insert custom code.
+
+{% hint style="info" %}
+
+#### Tag Triggers
+
+* A **Trigger** is attached to one or more tags.
+* When the trigger condition is met, all associated tags are executed.
+* Multiple triggers can be added to the same tag for advanced conditions.
+  {% endhint %}
+
+1. While creating or editing a tag, go to the **Trigger** tab.
+2. Click **Add new Trigger**.
+3. Choose from an existing trigger in the dropdown, or:
+   * **Edit this trigger**: Modify its properties.
+   * **Create new trigger**: Build a completely new condition.
+4. Once selected, the trigger will appear under the tag with its **Type** clearly displayed.
+5. Save your configuration with **Save & Return to Workspace**.
+6. Click **Save & Continue** after defining the tag.
+
+<figure><img src="/files/3h7LoqzlZ31oiPz0s5U0" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/web-tools/tag-manager/workspace/tags.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

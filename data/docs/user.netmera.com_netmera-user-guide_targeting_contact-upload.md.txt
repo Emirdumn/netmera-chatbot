@@ -1,0 +1,314 @@
+URL: https://user.netmera.com/netmera-user-guide/targeting/contact-upload.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/targeting/contact-upload.md).
+
+# Contact Upload
+
+`Targeting > Contact File Upload`
+
+The **Contact File Upload** page enables creating or updating user profile data and managing consent information through a file-based upload. This feature helps prepare audiences for targeting across Netmera channels.
+
+During the upload, you can choose how consent data is handled, whether it remains within Netmera, is pulled from IYS, or is pushed to IYS; based on your consent management strategy. Uploaded data is validated before processing.&#x20;
+
+Once processed, these contacts can be used for segmentation, targeting, and automation across push, email, SMS, web push, and other engagement channels.
+
+#### What Is IYS?
+
+**IYS (İleti Yönetim Sistemi)** is Turkey’s national consent management system for communication permissions for SMS and email.  For more information, see the official IYS website: <https://iys.org.tr>
+
+#### Is Contact File Upload Only for IYS?
+
+No. The Contact File Upload page can be used **with or without IYS integration**.
+
+* When IYS is not used, the page supports uploading and updating user profile data and managing consent information only within Netmera.
+* When IYS integration is enabled, the page supports synchronizing consent data between Netmera and IYS based on the selected upload option: [#pull-consents-from-iys](#pull-consents-from-iys "mention") or [#push-consents-to-iys](#push-consents-to-iys "mention").
+
+IYS-related settings are optional and apply only when consent synchronization with IYS is required.
+
+#### What Can I Use Contact File Upload for Without IYS?
+
+When IYS integration is not used, the Contact File Upload page is used to manage user data **only within Netmera**. No consent data is read from or written to IYS. You can use this page to:
+
+* Create new user profiles
+* Update existing user profile information
+* Upload or refresh profile attributes (such as city, language, loyalty level, or custom attributes)
+* Assign tags for segmentation and targeting
+* Prepare contact lists for campaigns and automation flows
+
+In [#iys-sync-off](#iys-sync-off "mention") mode, the uploaded file is the **source of truth**, and the latest upload always overrides existing Netmera data for matching users. This option is suitable when consent management is handled outside of IYS or when IYS integration is not required.
+
+### Dashboard Overview
+
+The dashboard lists uploaded contact files with detailed processing metadata for each upload.
+
+<figure><img src="/files/Do7JCCdOBpPhWA0Fifqr" alt=""><figcaption></figcaption></figure>
+
+<table><thead><tr><th width="194.21954345703125">Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>List Name</strong></td><td>Name of the uploaded contact list.</td></tr><tr><td><strong>Upload Date</strong></td><td>Date when the contact file was uploaded.</td></tr><tr><td><strong>Process Start Time</strong></td><td>Time when contact processing started.</td></tr><tr><td><strong>Process End Time</strong></td><td>Time when contact processing completed.</td></tr><tr><td><strong>User Count</strong></td><td>Number of users successfully created or updated after processing.</td></tr><tr><td><strong>Total Imported Count</strong></td><td>Total number of records read from the uploaded file.</td></tr><tr><td><strong>Status</strong></td><td>Current state of the upload process (e.g. <em>Waiting for Approval</em>, <em>Finished</em>).</td></tr><tr><td><strong>Upload Action</strong></td><td>Consent handling applied during upload (e.g. <em>IYS Sync Off</em>, <em>Pull Consents from IYS, Push Consents to IYS</em>).</td></tr><tr><td><strong>Actions</strong></td><td>Available actions for the upload (e.g. view for upload details, edit for pending uploads).</td></tr></tbody></table>
+
+### Contact Upload
+
+The **Contact Upload** page allows uploading contact data into Netmera using a file-based import. During upload, you may choose not to update any IYS records, or choose to sync consent behavior with **IYS**, and uploaded data is validated before processing.
+
+#### Page Structure
+
+The Contact Upload page consists of two steps:
+
+1. **Upload**
+2. **Preview**
+
+### Upload Step
+
+In this step, basic upload information and consent behavior are configured, and the contact file is uploaded.
+
+<figure><img src="/files/vjOedest7gzaHWL0L94a" alt=""><figcaption></figcaption></figure>
+
+**List Name**
+
+Defines the name of the contact list created by this upload.
+
+* Maximum length: **50 characters**
+* Required field
+* Appears in the **Contact Upload Dashboard** and related reports
+
+**Tag Name (Optional)**
+
+Adds a tag to all contacts imported in this upload.
+
+* Maximum length: **50 characters**
+* Optional
+* Can be used later as a tag for segmentation or targeting
+
+**File**
+
+Uploads the contact data file.
+
+**Supported formats:** `.csv` , `.txt`
+
+**File rules:**
+
+* Each row must represent a single contact
+* File structure must match the required template
+
+Your file must contain one identifier to be able to match users:&#x20;
+
+* `extID` (External ID)
+* `email`
+* `phonenumber`
+
+{% hint style="info" %}
+
+#### Phone Number Format Requirement
+
+Phone numbers must be provided in **international format** and **start with a plus sign (+)**.
+
+* Correct: `+905XXXXXXXXX`
+* Incorrect: `905XXXXXXXXX`
+
+If a phone number is uploaded **without the + sign**, the system cannot correctly identify the number, and the contact will **not be associated with the user**.
+{% endhint %}
+
+#### Upload Action
+
+Defines how consent information is handled during upload, particularly in relation to **IYS**.
+
+<figure><img src="/files/CPqa5xQ2Op6Z8ilBDF5D" alt=""><figcaption></figcaption></figure>
+
+### IYS Sync Off
+
+No consent synchronization with IYS is performed.
+
+* Uploaded contacts are processed only according to the data in Netmera
+* IYS is neither queried nor updated
+
+Use this option when:
+
+* IYS consent checks are not required for your campaigns
+* Consent management is handled outside of IYS
+* Only Netmera consent data should be updated
+* You want to create or update user profiles in Netmera
+* You want to upload or refresh profile attributes (such as city, language, loyalty level, or custom attributes)
+* You want to assign tags for segmentation and targeting
+* You want to prepare contact lists for campaigns and automation flows without IYS consent checks
+
+{% hint style="info" %}
+
+#### User Create & Update Logic (IYS Sync Off)
+
+During the upload:
+
+**If the user already exists in Netmera**
+
+* The user profile is updated with the uploaded data
+
+**If the user does not exist in Netmera**
+
+* A new user profile is created
+  {% endhint %}
+
+#### Sample File
+
+{% file src="/files/5uYCPT4YJfVnu6iK2l8L" %}
+
+### Pull Consents from IYS
+
+Retrieves the **latest consent status from IYS** and applies it to Netmera.
+
+* The system queries IYS for the users defined in the uploaded file
+* Consent information in Netmera is updated based on IYS data
+* IYS is treated as the source of truth for consent
+
+Use this option when
+
+* IYS is the authoritative system for consent management
+* Netmera consent data must reflect the current status stored in IYS
+
+{% hint style="info" %}
+
+#### User Create & Update Logic (Pull Consents from IYS)
+
+During the upload the system **checks consent status on IYS** using the identifiers in the file,
+
+**If the user already exists in Netmera**
+
+* The user profile is updated with the latest data, consent values are overwritten based on IYS
+
+**If the user does not exist in Netmera**
+
+* A new user profile is created in Netmera, consent values are populated from IYS
+
+No consent data is written back to IYS in this option.
+{% endhint %}
+
+#### Sample File
+
+{% file src="/files/D4uSCRKb3ZQnpT1ee7sw" %}
+
+### Push Consents to IYS
+
+Sends consent information from the uploaded file to **IYS**.
+
+* Consent data in the file is pushed to IYS
+* Consent status is **created or updated** in both IYS and Netmera
+* Requires **valid and complete consent fields** in the upload file
+
+**Use this option when**
+
+* Consent data collected locally must be synchronized to IYS
+* IYS records need to be updated based on uploaded data
+
+{% hint style="info" %}
+
+#### User Create & Update Logic (Push Consents to IYS)
+
+During the upload the system **reads consent data from the uploaded file**
+
+**If the user already exists in Netmera**
+
+* The user profile is updated, consent status is updated in both Netmera and IYS
+
+**If the user does not exist**
+
+* A new user profile is created in Netmera, a new consent record is created in IYS using the uploaded data
+
+In this option, the uploaded file is the **source of truth** for consent.
+{% endhint %}
+
+### Push Consents to IYS – Required File Headers
+
+When **Push Consents to IYS** is selected as the upload action, the upload file must include specific consent-related columns. These fields are required to successfully send consent information to IYS.
+
+Email and SMS consents can be uploaded **in the same file**.
+
+<figure><img src="/files/6t3al7rOo1MD6JsxO23C" alt=""><figcaption></figcaption></figure>
+
+#### Required Headers for Email Consent
+
+The following columns must be included to push **email consent** to IYS:
+
+<table><thead><tr><th width="99.06732177734375">Email</th><th>IYS Email Status</th><th>IYS Email Consent Date</th><th>IYS Email Source</th></tr></thead><tbody><tr><td>Email address of the contact.</td><td>Consent status for email communication. Must be ONAY or RET.</td><td>Date when email consent was obtained.</td><td>Source through which the email consent was collected.</td></tr></tbody></table>
+
+#### Required Headers for SMS Consent
+
+The following columns must be included to push **SMS consent** to IYS:
+
+<table><thead><tr><th width="113.671875">Phone Number</th><th>IYS SMS Status</th><th>IYS SMS Consent Date</th><th>IYS SMS Source</th></tr></thead><tbody><tr><td>Phone number of the contact.</td><td>Consent status for SMS communication. Must be ONAY or RET.</td><td>Date when SMS consent was obtained.</td><td>Source through which the SMS consent was collected.</td></tr></tbody></table>
+
+The **IYS Email Source** and **IYS SMS Source** fields must contain one of the following predefined values:
+
+* `HS_FIZIKSEL_ORTAM`
+* `HS_ISLAK_IMZA`
+* `HS_WEB`
+* `HS_CAGRI_MERKEZI`
+* `HS_SOSYAL_MEDYA`
+* `HS_EPOSTA`
+* `HS_MESAJ`
+* `HS_MOBIL`
+* `HS_EORTAM`
+* `HS_ETKINLIK`
+* `HS_2015`
+* `HS_ATM`
+* `HS_KARAR`
+
+#### Sample File
+
+{% file src="/files/YZQsxhLdC4181XjZgJvG" %}
+
+### Preview Step
+
+After uploading, you’ll be redirected to the **Profile Attributes Mapping** screen. This step ensures that your file’s columns correctly match Netmera’s internal attributes.
+
+#### On this screen
+
+* Each column from your file appears alongside its mapped profile attribute.
+* You can review or change the mapping using the **✏️ Edit** icon.
+* Additional attributes like `surname`, `address`, or `city` may appear depending on your file.
+* The **total number of imported columns** is displayed at the bottom of the page.
+
+<figure><img src="/files/87dQKvu4uUrTmlQUozAu" alt=""><figcaption></figcaption></figure>
+
+### Handling Red Fields (Unmatched Attributes)
+
+If any field appears **in red**, the column header in your file does not match a known profile attribute.
+
+<figure><img src="/files/NG8hm8VLqars5OkcqqXN" alt=""><figcaption></figcaption></figure>
+
+#### To fix
+
+1. Click the **✏️ Edit** icon next to the red field.
+2. Select the appropriate attribute from the dropdown list.
+3. If the attribute does not exist in the list, it must first be **created** under\
+   `Developers > Profile Attributes`.
+4. Once created, repeat the upload or re-map the field.
+
+<figure><img src="/files/o1gNO3wdTGuyBGKMqWOI" alt="" width="563"><figcaption></figcaption></figure>
+
+> If any custom attribute in your file has not been pre-configured in Netmera’s panel (`Developers > Profile Attributes`), it must be created **before** uploading. Otherwise, it will not be imported, and you will receive an error prompt during the upload summary.
+
+### Completing the Upload
+
+After verifying all mappings:
+
+1. Click **Save**.
+2. Wait for the confirmation that the upload has been processed.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/targeting/contact-upload.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

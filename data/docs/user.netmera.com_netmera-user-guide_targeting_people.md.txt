@@ -1,0 +1,183 @@
+URL: https://user.netmera.com/netmera-user-guide/targeting/people.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/targeting/people.md).
+
+# People
+
+People is the user database in Netmera. Use it to find users, build target lists, tag users, and export results.
+
+**Path:** `Targeting > People`
+
+### Search modes
+
+You can search in three ways:
+
+1. **Select People**: quick filtering with predefined fields.
+2. **Advanced**: build rules with condition groups.
+3. **Find Person**: open a single user by identifier.&#x20;
+
+### Option 1: Select People
+
+Select People is the fastest way to build a list. You combine filters and review the resulting users.
+
+<figure><img src="/files/UP8zZGQci5QQGFwYHWsV" alt=""><figcaption></figcaption></figure>
+
+#### Filter categories
+
+**Permissions**
+
+Use these filters to include or exclude users based on opt-in status.
+
+* **Push Permission**: targets users who allowed or blocked push notifications.
+* **Category Permission**: targets users by category-level permissions (when your app uses notification categories).
+* **Location Preferences**: targets users by location permission status (allowed / denied).
+
+**User grouping**
+
+Use these filters to target existing user groups.
+
+* **Tag**: targets users you labeled earlier. Tags are manual or operational groupings.
+* **Segment**: targets users in a segment. Segment membership can change dynamically based on rules and behavior.
+
+**Profile**
+
+Use this to target users by profile attributes.
+
+* **Profile**: filters by attributes like age, gender, membership level, city, or any custom profile attribute.
+
+**Engagement**
+
+Use these filters to target users based on interaction and incentive state.
+
+* **Response**: filters users by whether they interacted with previous messages (or did not).
+* **Promotion**: filters users by whether they have a promotion code/value (or not).
+* **Blacklist**: include or exclude users based on blacklist status (for example, to avoid messaging blocked users).
+
+**Device / technical**
+
+Use these filters when you need technical scoping (platform, version, provider, etc.).
+
+* **Platform**: iOS vs Android.
+* **Device Count**: targets users by how many devices are linked to their profile (useful for multi-device vs single-device users).
+* **Device Type**: phone vs tablet (and other device categories if available).
+* **Device**: device model/manufacturer based targeting.
+* **Operator**: telecom operator based targeting.
+* **App Version**: target or exclude specific app versions.
+* **Operating System**: OS version level targeting (for example iOS 17+).
+* **Android Provider**: provider-level targeting (for example Google vs Huawei).
+* **Installation Source**: acquisition source via Adjust (requires Adjust integration).
+* **App Tracking**: Android-only targeting based on installed apps (App Tracking feature).
+* **App Installation**: targets users by install status or install timing windows.
+
+<figure><img src="/files/ZAfE5QzC1Z10Ac5cjtXH" alt="" width="563"><figcaption></figcaption></figure>
+
+### Option 2: Advanced search
+
+Advanced search lets you build complex rules. You combine conditions and groups with AND/OR logic.
+
+{% hint style="info" %}
+**AND vs OR**
+
+* **OR**: at least one condition in the group must match.
+* **AND**: all conditions in the group must match.
+  {% endhint %}
+
+#### Add Condition
+
+Use **Add Condition** to add a single rule.
+
+<figure><img src="/files/IGT09TIYxXPBtaUFnHJf" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Add Group
+
+Use **Add Group** to nest conditions and build more complex logic.
+
+<figure><img src="/files/aN4mUL8Wzf8PorBfPOn4" alt="" width="563"><figcaption></figcaption></figure>
+
+### Actions on the results (Tagging & Export)
+
+After you build a user list, you typically do one of these actions:
+
+#### Start Tagging
+
+Use **Start Tagging** to create a tag from the result list. You can later message, export, or manage that tag from the Tags dashboard.
+
+{% hint style="info" %}
+See [Tags](/netmera-user-guide/targeting/tags.md) for tag management and messaging flows.
+{% endhint %}
+
+#### Export Selected Users to File
+
+Use Export to download the current list for analysis or external processing.
+
+You can export multiple user identifiers in the same file. This export uses the same behavior described in [Export Module](/netmera-user-guide/targeting/export-users.md).
+
+Key points:
+
+* Identifier selection supports **multi-select** (e.g., External ID + Email + MSISDN).
+* Each selected identifier becomes a **separate column**.
+* Missing values are exported as `null`.
+* Format is `.csv` or `.xlsx` (depending on the screen).
+
+<figure><img src="/files/MAx2224mv5wNVXxcTy6i" alt="" width="375"><figcaption></figcaption></figure>
+
+### Option 3: Find Person
+
+Use Find Person to open a single user quickly. Search by external ID or email.
+
+<figure><img src="/files/Q9zXI3qIrz5ZhU1CgH8Z" alt="" width="563"><figcaption></figcaption></figure>
+
+### User Details
+
+Click a user’s External ID to open User Details. You can review profile, devices, activity, and messaging history.
+
+Available tabs include:
+
+* Profile
+* Devices
+* Events
+* Messages
+* Targeting
+* Device Opt-In
+* User Opt-In
+* Blacklist
+* Privacy
+* Coupon Codes
+
+#### Messages tab
+
+<figure><img src="/files/kBXtOI3UdwaVcYpwJGBH" alt=""><figcaption></figcaption></figure>
+
+The Messages tab shows the user’s message history for a selected date range. It is useful for support, audits, and troubleshooting.
+
+For failed deliveries, you can see details like:
+
+* **Failure reason** (error message)
+* **Error code** (if provided by the SMS provider)
+
+Date range rules:
+
+* Query in **30-day** intervals.
+* Access up to the **last 6 months (180 days)**.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/targeting/people.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

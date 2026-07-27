@@ -1,0 +1,86 @@
+URL: https://user.netmera.com/netmera-user-guide/customer-data/events/netmera-events.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/customer-data/events/netmera-events.md).
+
+# Netmera Events
+
+Netmera provides a comprehensive suite of events that can be tracked within an application to gain insights into user behavior and application performance. These events are categorized into Standard Events, Automated Events, and Custom Events, including Pre-defined Events.
+
+<figure><img src="/files/s3ADZ8O1BTe9PQ1QZe0U" alt=""><figcaption></figcaption></figure>
+
+### Standard Events
+
+#### Automated Events
+
+These events are automatically tracked when the Netmera SDK is integrated into your application. They offer real-time insights into how users engage with your app, from their initial installation to their ongoing interactions. By analyzing these events, you can make data-driven decisions to enhance user satisfaction and app performance.
+
+* **Install (First open) app**: Captures the first time the app is opened after installation.
+* **App opens**: Tracks each time the app is opened.
+* **Time passed inside the application**: Measures the duration of each foreground session.
+* **Push receipts**: Records when a push notification is received (requires configuration from the Dashboard).
+* **Push opens**: Logs when a push notification is opened by the user.
+* **Geofence actions**: Monitors enter/exit actions for geofence regions if they are set up.
+* **Web view actions**: Tracks actions taken inside web views presented by Netmera.
+* **Log event**: Triggered when an error occurs within the application.
+
+#### Pre-defined Events
+
+These are built-in standard events provided by Netmera that can be integrated into your application according to your specific needs. They are designed to help you further track and analyze specific user actions and behaviors within your mobile application.
+
+* **Screen View Event**: Logs when a specific screen is viewed.
+* **Login Event**: Captures user login actions.
+* **Register Event**: Tracks user registration actions.
+* **Search Event**: Records search actions performed by users.
+* **Share Event**: Logs when content is shared from the app.
+* **In-App Purchase Event**: Captures in-app purchase transactions.
+* **Banner Click Event**: Tracks clicks on banners within the app.
+* **Category View Event**: Logs views of specific categories.
+* **Battery Level Event**: Monitors the battery level during app usage.
+* **Product View Event**: Tracks when a product is viewed.
+* **Product Rate Event**: Logs when a product is rated.
+* **Product Comment Event**: Captures comments made on products.
+* **Order Cancel Event**: Records when an order is canceled.
+* **Purchase Event**: Logs completed purchase transactions.
+* **Cart View Event**: Tracks views of the shopping cart.
+* **Add To Cart Event**: Captures when items are added to the cart.
+* **Remove From Cart Event**: Logs when items are removed from the cart.
+* **Add To Wishlist Event**: Tracks when items are added to a wishlist.
+* **Content Comment Event**: Captures comments made on content.
+* **Content Rate Event**: Logs ratings given to content.
+* **Content View Event**: Tracks views of media content.
+
+By leveraging these events, you can gain valuable insights into user interactions and optimize the user experience within your applications.
+
+### Custom Events
+
+If the SDK's default events do not fully meet your needs, you can create custom events in the Netmera Dashboard. Custom events help track user interactions and actions specific to your application.
+
+To create a custom event:
+
+1. Go to **Developers > Events** in the dashboard.
+2. Click **Create New Event**.
+3. Define event attributes, set data types, and specify mandatory parameters as needed
+
+Once you create a custom event, the Netmera Dashboard automatically generates the necessary source files. You can then integrate these files into your project. The next page provides the codes needed to trigger your custom event.&#x20;
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/customer-data/events/netmera-events.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

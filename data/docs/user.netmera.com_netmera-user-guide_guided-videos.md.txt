@@ -1,0 +1,82 @@
+URL: https://user.netmera.com/netmera-user-guide/guided-videos.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/guided-videos.md).
+
+# Guided Videos
+
+### Customer Journey How-To Videos
+
+See how Netmera’s **Customer Journeys** can be applied to real business goals with these quick, focused video guides. Each use case walks you through a journey setup, showing how to target the right users, trigger messages at the right time, and drive measurable results.
+
+**Accelerate Time to Value — Turn New Users into Active Customers**\
+Learn how to welcome new users, guide them through key actions, and help them experience value quickly.
+
+{% embed url="<https://www.youtube.com/watch?v=qCrzReY0iyA>" %}
+
+**Re-Engage Before It’s Too Late — Bring Back Inactive Users**\
+See how to identify inactive segments and win them back with timely, personalized campaigns.
+
+{% embed url="<https://www.youtube.com/watch?v=v0aEZiMjVzs>" %}
+
+**Convert Intent into Revenue — Upsell Ready-to-Act Users**\
+Discover strategies to capture purchase intent and increase revenue with relevant, well-timed offers.
+
+{% embed url="<https://www.youtube.com/watch?v=yfmzADQmCl4>" %}
+
+### Push Deep Links: Navigate to App Instantly
+
+{% embed url="<https://www.youtube.com/watch?t=2s&v=Y2woTUcQ49k>" %}
+
+### Widgets & Spin to Win
+
+{% embed url="<https://youtu.be/7XIZGV0rj1I?si=e3pKKCazB7dkwhrC>" %}
+
+### Tagless Data Capturing
+
+{% embed url="<https://youtu.be/piUgfFaMHo8?si=Kml0IRrfm2yi_fQf>" %}
+
+### Rich Push Notifications
+
+{% embed url="<https://youtu.be/IeTjNWj0p40?si=wV4xM_xU1PQaLXSn>" %}
+
+### Automated Happy Birthday Push
+
+{% embed url="<https://youtu.be/sjDOBzO3gsY?si=EHkuOVdF8YpzgpgY>" %}
+
+### Multi-Language Push
+
+{% embed url="<https://youtu.be/ShmO1nbN0c0?si=g9vIRq5vwlFcLti8>" %}
+
+### Push Notification Images
+
+{% embed url="<https://youtu.be/Bui5Of0HTok?si=oIfLEPTEbeMSR9uz>" %}
+
+### Web Push
+
+{% embed url="<https://youtu.be/6LPii3wYDp0?si=sZdYWy8nTiQs0p9k>" %}
+
+### Deep Links
+
+{% embed url="<https://youtu.be/ROx4zGeEb48?si=s_ou_7XrBN8nPSXj>" %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/guided-videos.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

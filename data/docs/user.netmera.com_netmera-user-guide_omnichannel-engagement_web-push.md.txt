@@ -1,0 +1,136 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push.md).
+
+# Web Push
+
+Web Push is for delivering real-time, targeted messages directly in the browser. Use it to bring users back to your site, highlight promotions, share time-sensitive updates, and engage visitors without requiring an app. Campaigns can be personalized, timed, and measured for impact, with support for rich formats, interactive prompts, and mobile web push on iOS.
+
+<figure><img src="/files/lAn0vpDu6rvdQTIo6JHH" alt="" width="450"><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+Want to send your first Web Push? Start here: [Create a Web Push](/netmera-user-guide/omnichannel-engagement/web-push/create-web-push.md).
+{% endhint %}
+
+### Start here (most-used topics)
+
+<table data-view="cards"><thead><tr><th>What you want to do</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Create and send a Web Push campaign</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/RAfajqZgsiXaq8a4XAYZ">/spaces/X6uilbEAw42gqsudlclY/pages/RAfajqZgsiXaq8a4XAYZ</a></td></tr><tr><td>Personalize message/subtext with profile attributes</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/utMfOfdNsjpB9Icm1Bh4">/spaces/X6uilbEAw42gqsudlclY/pages/utMfOfdNsjpB9Icm1Bh4</a></td></tr><tr><td>Add interactive buttons (Chrome)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/WxyGgVj8kDV2arBwBiTK">/spaces/X6uilbEAw42gqsudlclY/pages/WxyGgVj8kDV2arBwBiTK</a></td></tr><tr><td>Capture opt-ins on your site</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/ob4zptZDziO8QfUTVBYH">/spaces/X6uilbEAw42gqsudlclY/pages/ob4zptZDziO8QfUTVBYH</a></td></tr><tr><td>Send Web Push to iOS (home screen web apps)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/7MTssWpx6brgRle0441e">/spaces/X6uilbEAw42gqsudlclY/pages/7MTssWpx6brgRle0441e</a></td></tr></tbody></table>
+
+### Quickstart: send a Web Push campaign
+
+{% stepper %}
+{% step %}
+
+#### 1) Choose format (Text vs Image)
+
+Use **Text** for speed and clarity.
+
+Use **Image** when visuals matter.
+{% endstep %}
+
+{% step %}
+
+#### 2) Build the campaign
+
+Follow the flow: Setup → What → Who → When → GO.
+{% endstep %}
+
+{% step %}
+
+#### 3) Set targeting and guardrails
+
+Use segments/tags.
+
+Set expiry so time-sensitive pushes don’t arrive late.
+{% endstep %}
+
+{% step %}
+
+#### 4) Test and send
+
+Test on a subscribed browser before you launch.
+{% endstep %}
+
+{% step %}
+
+#### 5) Measure results
+
+Use [Reports](/netmera-user-guide/reports-and-analytics/reports.md) for campaign performance.
+
+Use [Event Insight](broken://spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY) for behavioral follow-through.
+{% endstep %}
+{% endstepper %}
+
+### Web Push features
+
+#### Web Text Push
+
+Best for announcements, reminders, and short promos.
+
+<figure><img src="/files/eR1ZgBijdkSw9gCFxREq" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Web Image Push
+
+Best for promos and product-led messages.
+
+<figure><img src="/files/nIV7dq0grRGGUvkEpBkA" alt="" width="315"><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+Chrome supports banner images and interactive buttons.
+
+iOS Web Push works for **home screen web apps** (iOS/iPadOS 16.4+).
+{% endhint %}
+
+#### Fancy Box (opt-in prompt)
+
+Fancy Box is a customizable prompt for collecting Web Push permissions.
+
+Use it to control timing, messaging, and branding around the browser permission step.
+
+<figure><img src="/files/uI7HPbDHue7fWwQKylDC" alt="" width="563"><figcaption></figcaption></figure>
+
+Key capabilities:
+
+* Enable/disable the prompt (or rely on native browser prompt only)
+* “Show again after” logic for users who dismiss/decline
+* Full UI customization (text, size, colors, fonts)
+
+Full setup: [Fancy Box](/netmera-user-guide/omnichannel-engagement/web-push/fancy-box.md).
+
+#### Mobile Web Push for iOS (iOS/iPadOS 16.4+)
+
+iOS Web Push works for **home screen web apps**.
+
+Users must add your website to their home screen, then opt in.
+
+<figure><img src="/files/f93ea7wHeNAh8Y4m5gFi" alt="" width="563"><figcaption></figcaption></figure>
+
+Key points:
+
+* Requires iOS/iPadOS 16.4+ and Safari home screen web app flow
+* Opt-in happens from the home screen app (not regular Safari tabs)
+* You can target these users by filtering **Safari + Mobile**
+
+Full setup: [Mobile Web Push for iOS](/netmera-user-guide/omnichannel-engagement/web-push/mobile-web-push-for-ios.md).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

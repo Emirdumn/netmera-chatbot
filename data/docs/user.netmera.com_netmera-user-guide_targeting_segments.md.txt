@@ -1,0 +1,113 @@
+URL: https://user.netmera.com/netmera-user-guide/targeting/segments.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/targeting/segments.md).
+
+# Segments
+
+Segments are reusable audience definitions.
+
+They group users by rules (behavior, profile, responses, tags, location, time).
+
+Use segments in campaigns, journeys, and analytics.
+
+<figure><img src="/files/YBI5U5Kcjiyj9zwJy6Fu" alt="" width="563"><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+If you’re building an audience for a campaign or journey, you want a **rule-based segment**.
+{% endhint %}
+
+### Start here (most-used topics)
+
+<table data-view="cards"><thead><tr><th>What you want to do</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Create a segment (standard flow)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/Jbm7RBCqXqgVLhSu7ZUV">/spaces/X6uilbEAw42gqsudlclY/pages/Jbm7RBCqXqgVLhSu7ZUV</a></td></tr><tr><td>View, refresh, pause, export rule-based segments</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/fiNYaUjWA6GJgbw0Q3Vk">/spaces/X6uilbEAw42gqsudlclY/pages/fiNYaUjWA6GJgbw0Q3Vk</a></td></tr><tr><td>Curate “ready to use” segments for the team</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/8ofPgQXHIo9Gd7o0aOhO">/spaces/X6uilbEAw42gqsudlclY/pages/8ofPgQXHIo9Gd7o0aOhO</a></td></tr><tr><td>Import/sync segments via connectors</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/56sfTNaHj3aEsLAp7YwO">/spaces/X6uilbEAw42gqsudlclY/pages/56sfTNaHj3aEsLAp7YwO</a></td></tr><tr><td>Predict who will convert/churn (AI-based)</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/CyEX40XLeDcTb9oMiVb3">/spaces/X6uilbEAw42gqsudlclY/pages/CyEX40XLeDcTb9oMiVb3</a></td></tr><tr><td>Inspect a segment and export users</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/QjgwVoq9CGw8sStjBqw2">/spaces/X6uilbEAw42gqsudlclY/pages/QjgwVoq9CGw8sStjBqw2</a></td></tr></tbody></table>
+
+### Quickstart: build a segment you can target
+
+{% stepper %}
+{% step %}
+
+#### 1) Start with the question you want to answer
+
+Examples:
+
+* “Who added to cart but didn’t purchase?”
+* “Who opened the app 3+ times this week?”
+* “Who did not click my last campaign?”
+  {% endstep %}
+
+{% step %}
+
+#### 2) Choose the segment type
+
+* **Rule-based**: dynamic and rule-driven. Default choice.
+* **Ready to use**: pinned segment for common targeting.
+* **Connector segment**: synced/imported from an external tool.
+  {% endstep %}
+
+{% step %}
+
+#### 3) Define criteria (keep it minimal)
+
+Common criteria building blocks:
+
+* **Behavior / event** (performed / not performed, recency, frequency)
+* **Profile attributes** (tier, language, city)
+* **Response** (received/opened/clicked/not clicked)
+* **Tag** (static labels)
+  {% endstep %}
+
+{% step %}
+
+#### 4) Save and generate
+
+Name it like a query: `cart_abandoners_24h` or `high_value_buyers_30d`.
+{% endstep %}
+
+{% step %}
+
+#### 5) Use it in targeting
+
+Segments are selectable in:
+
+* Campaigns (Who/Targeting)
+* Journeys (Audience)
+* Analytics filters
+  {% endstep %}
+  {% endstepper %}
+
+### Key concepts (fast)
+
+* **Rule-based segment**: recalculated from rules (optionally daily).
+* **Ready to use segment**: pinned and shared for repeat targeting.
+* **Connector segment**: synced in from an external tool.
+* **Predictive segment**: AI-based segment that predicts likelihood of an event.
+* **Tags vs segments**: tags are labels. Segments are rules.
+
+Related: [Tags](/netmera-user-guide/targeting/tags.md).
+
+### Related prerequisites
+
+* Tracking data: [Events](/netmera-user-guide/customer-data/events.md)
+* User traits: [Profile Attributes](/netmera-user-guide/customer-data/profile-attributes.md)
+* Deeper breakdowns: [Event Insight](broken://spaces/X6uilbEAw42gqsudlclY/pages/SIjqBXY2M5vmjY3LGVUY)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/targeting/segments.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

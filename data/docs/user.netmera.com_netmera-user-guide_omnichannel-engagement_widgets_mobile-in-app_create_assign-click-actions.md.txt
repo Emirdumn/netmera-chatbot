@@ -1,0 +1,386 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create/assign-click-actions.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create/assign-click-actions.md).
+
+# Assign Click Actions
+
+Use this page to define what happens when a user clicks a widget element.
+
+This page focuses on behavior. If you are still building the widget layout, start with [Customize Components](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create/customize-components.md). If you need help choosing the right element first, see [Widget Elements Reference](/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create/widget-elements-reference.md).
+
+### Quick workflow
+
+{% stepper %}
+{% step %}
+
+#### Select the interactive element
+
+Click actions can be assigned to **Buttons** and **Images**.
+{% endstep %}
+
+{% step %}
+
+#### Open the click action panel
+
+Click the ⚡ **lightning** icon in the toolbar and choose the action you want.
+{% endstep %}
+
+{% step %}
+
+#### Add conditions if needed
+
+Use **Action Conditions** when the action should run only for a specific value or user choice.
+{% endstep %}
+
+{% step %}
+
+#### Save and test
+
+Preview the widget and test every path before saving.
+{% endstep %}
+{% endstepper %}
+
+<figure><img src="/files/cz2zRDHmXpquoHMSNoSW" alt="" width="375"><figcaption><p>Click Actions</p></figcaption></figure>
+
+### Click action types
+
+#### User Update
+
+Use **User Update** when a click should update profile data or user properties.
+
+This is useful for saving form responses, updating user fields, or writing back preference data.
+
+How to set it up:
+
+1. Select the button or image.
+2. Choose **User Update**.
+3. Pick the field you want to update.
+4. Map the value from a widget component if needed.
+
+<figure><img src="/files/WY9P81I828UqGEAa4ley" alt="" width="375"><figcaption><p>User Update</p></figcaption></figure>
+
+{% hint style="success" %}
+
+#### Matching components with attributes
+
+To access subcategories of the target profile attribute:
+
+* **Windows:** `CTRL + ALT + 7`
+* **Mac:** `FN + Option + 7`
+  {% endhint %}
+
+<figure><img src="/files/C2aFRAegEyQVvAQVI16N" alt="" width="375"><figcaption></figcaption></figure>
+
+**Example**
+
+To update a user’s email through a button:
+
+1. Assign an identifier to the button.
+2. Select **User Update**.
+3. Open the subcategory and choose the update method.
+4. Select **Content** if the value comes from another widget component.
+5. Match the content with the component you want to use, such as `emailattributebutton`.
+
+<figure><img src="/files/aMzV2rc4kU3bOIL2qp16" alt="" width="375"><figcaption></figcaption></figure>
+
+<figure><img src="/files/X7FhVBxoWtP7hUpATqgL" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Redirect to URL
+
+Use **Redirect to URL** when a click should open a web page.
+
+Best for external websites, landing pages, product pages, and campaign detail pages.
+
+How to set it up:
+
+1. Enter the destination URL.
+2. Add a condition if the redirect should run only in a specific case.
+
+<figure><img src="/files/dEojKTCJ2yUIpFbTz4l1" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Go to View
+
+Use **Go to View** to move users to another screen inside the same widget.
+
+This is the main action for multi-step flows such as rating → thank you or form → success.
+
+<figure><img src="/files/RaEjaVpIkbmeM5JwUP90" alt="" width="375"><figcaption></figcaption></figure>
+
+How to set it up:
+
+1. Choose **Go to View**.
+2. Select the target view.
+3. Add **Action Conditions** if the target should depend on user input.
+
+<figure><img src="/files/RVvVBd9tSnJbFQgkBjvt" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Send Data
+
+Use **Send Data** when the click should send form or interaction data to an endpoint.
+
+This is useful for custom data collection and server-side workflows.
+
+How to set it up:
+
+1. Define the data or parameters to send.
+2. Enter the endpoint URL.
+3. Add conditions if the send action should be limited.
+
+<figure><img src="/files/Bt4Hx0EN0wQNqv4FR71y" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Close Widget
+
+Use **Close Widget** when the interaction should simply dismiss the widget.
+
+This works well for actions such as `Dismiss`, `Maybe later`, or `No thanks`.
+
+<figure><img src="/files/6plhxPanek1HPX5PEBNV" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Open Widget
+
+Use **Open Widget** when one widget should launch another widget.
+
+This is useful for chained flows such as summary widget → detailed widget.
+
+How to set it up:
+
+1. Choose **Open Widget**.
+2. Select the target widget.
+3. Make sure the target widget already exists.
+
+<figure><img src="/files/D2wmUojYw8vSk06IZz7h" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Fire Event
+
+Use **Fire Event** when a click should trigger a custom event inside your app or tracking setup.
+
+This is useful when another workflow, report, or integration depends on the interaction.
+
+<figure><img src="/files/Myq977BvGDwqVpFopH9K" alt="" width="375"><figcaption></figcaption></figure>
+
+How to set it up:
+
+1. Create the event first in [Create Custom Events](/netmera-user-guide/panel-settings/settings/app-configuration/events.md).
+2. Assign **Fire Event** to the button or image.
+3. Select the event from the list.
+
+{% hint style="success" %}
+
+#### Matching widget components with events
+
+To access subcategories:
+
+* **Windows:** `CTRL + ALT + 7`
+* **Mac:** `FN + Option + 7`
+  {% endhint %}
+
+<figure><img src="/files/xB5p36oT8jxLWsfxUold" alt="" width="375"><figcaption></figcaption></figure>
+
+**Example**
+
+To fire an event from an image click:
+
+1. Assign an identifier to the image.
+2. Select **Fire Event**.
+3. Open the subcategory and choose the method.
+4. Select **Content** if the mapping comes from a widget component.
+5. Match the event with the right component, such as pairing `LikeEvent` with the image identifier.
+
+<figure><img src="/files/yBiR45QzohSGBiKsHNi4" alt="" width="375"><figcaption></figcaption></figure>
+
+<figure><img src="/files/2xNUbP6VJrj8KYeIxVLQ" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Android Background Location Permission
+
+Use this action when the widget should guide Android users to allow or deny background location access.
+
+<figure><img src="/files/4ULB3rIL8LLiyWHcCfTU" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+Choose **Mobile Blank Widget** in the Widget Gallery to use this feature. This action is only available for mobile widgets.
+{% endhint %}
+
+How to set it up:
+
+1. Add buttons such as **Allow Permission** and **Deny Permission**.
+2. Assign the matching background location action to each button.
+3. After the click, the user is directed to the Android **Settings** screen.
+
+<figure><img src="/files/nvGiiWd2EIJvWf2GqCSP" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Deep Link
+
+Use **Deep Link** when the click should open a specific destination inside the app.
+
+This is useful for product pages, article detail pages, feature screens, or campaign destinations.
+
+<figure><img src="/files/6kYqgbaZ3j9noJV7BOQ1" alt="" width="375"><figcaption></figcaption></figure>
+
+### Validations
+
+Validations help you prevent bad or incomplete input before an action runs. By adding validation rules to form fields, you can ensure that only properly formatted, complete data is submitted — reducing errors and improving data quality across campaigns.
+
+<figure><img src="/files/Cn5xHRxiHUatgXJUWosB" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Validation Types
+
+1. **Text Validation**
+
+Applies string-based rules to text input fields. You can require that the field is not empty, enforce a minimum or maximum character length, or use a regex pattern to match a specific format.
+
+2. **Number Validation**
+
+Applies numeric rules to number input fields. You can require a value within a defined range or validate against percentage constraints. Useful for quantity fields, age inputs, or score-based forms.
+
+3. **Date Validation**
+
+When the input type is set to **Date**, the field displays a `DD/MM/YYYY` placeholder and opens a calendar picker on interaction. The form blocks submission if an invalid date (e.g., `31/02/2025`) or incorrect format (e.g., `2025-12-17`) is entered. Use this type for registration, reservation, or appointment date fields where unstructured text input would otherwise introduce inconsistent data.
+
+4. **Email Validation**
+
+When the input type is set to **Email**, the entered value is automatically checked against standard email format on every keystroke. If the format is invalid, form submission is blocked until the value is corrected. Use this for sign-up forms, contact forms, or any scenario where collecting a malformed email address would break downstream communication flows.
+
+5. **Phone Validation**
+
+When the input type is set to **Phone**, mobile devices automatically switch to a numeric/telephone keyboard when the field is focused. This reduces input errors and speeds up entry for users on mobile. Note: Phone type does not enforce a specific format or pattern — it only changes the keyboard behavior. If format validation is required (e.g., country code, digit count), use the Regex rule in combination.
+
+6. **Password Validation**
+
+When the input type is set to **Password**, the entered characters are masked and not displayed in plain text. Use this for widgets or survey forms that include a password creation or confirmation step. This type does not enforce complexity rules by default — combine it with a Regex rule if minimum length or character requirements are needed.
+
+7. **URL Validation**
+
+When the input type is set to **URL**, the entered value is checked against standard URL format. Submission is blocked if the value does not match a valid URL structure. Use this for fields that collect website addresses, deep links, or any input that must be a properly formed URL.
+
+<figure><img src="/files/T8GMoscCdd1rEeUQoG57" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Validation rules
+
+Validation rules define the specific condition a field value must meet before the form can be submitted. Each rule requires an error message that is shown to the user when the condition is not met.
+
+<figure><img src="/files/FnPchrMkttvOWWcVN3XH" alt="" width="375"><figcaption></figcaption></figure>
+
+<table><thead><tr><th width="154.6861572265625">Rule</th><th>Description</th></tr></thead><tbody><tr><td><strong>Not Empty</strong></td><td>Ensures the field is not left blank. Use for any required field.</td></tr><tr><td><strong>String Length</strong></td><td>Enforces a minimum and/or maximum character count on text input.</td></tr><tr><td><strong>Number</strong></td><td>Validates that the entered value falls within a defined numeric range.</td></tr><tr><td><strong>Percentage</strong></td><td>Validates that the value is a valid percentage (0–100).</td></tr><tr><td><strong>Regex</strong></td><td>Validates the value against a custom regular expression pattern. Use for formats not covered by built-in types, such as national ID numbers, postal codes, or phone number patterns.</td></tr><tr><td><strong>Valid Date</strong></td><td>Ensures the entered date is a real, calendar-valid date. Blocks submission if the value is an impossible date such as <code>31/02/2025</code>.</td></tr><tr><td><strong>Date - Minimum</strong></td><td>Requires the entered date to be on or after a specified date. Use for scenarios where past dates are not acceptable, such as future appointment scheduling.</td></tr><tr><td><strong>Date - Maximum</strong></td><td>Requires the entered date to be on or before a specified date. Use for scenarios where future dates are not acceptable, such as birth date fields.</td></tr><tr><td><strong>Email</strong></td><td>Validates that the entered value matches standard email address format. Blocks submission if the value is missing an <code>@</code> sign or domain.</td></tr></tbody></table>
+
+<figure><img src="/files/wi82OvBRdvLNAg3msbqe" alt="" width="563"><figcaption></figcaption></figure>
+
+{% hint style="warning" %}
+
+#### Important step
+
+Do not forget **Check Form Validations Before Performing This Action**.
+
+This ensures that all validation rules run before the click action is executed.
+{% endhint %}
+
+### Check Form Validations Before Performing This Action
+
+When enabled, the widget checks validations first. If validation passes, the action runs. If validation fails, the action is blocked and the user sees the related error message.
+
+<figure><img src="/files/sb4gLMLt5CUmvwPLZQfj" alt="" width="375"><figcaption></figcaption></figure>
+
+### Manage App
+
+Use **Manage App** when the action should be handled by the app itself. This is commonly needed for app-level deep link behavior.
+
+<figure><img src="/files/UPHiLXQK9CNDS07adi3D" alt="" width="375"><figcaption></figcaption></figure>
+
+### Action Conditions
+
+Use **Action Conditions** to control when a click action should run.
+
+How it works:
+
+1. Choose the identifier to evaluate.
+2. Select the condition.
+3. Enter the expected value.
+4. Run the action only when the condition is matched.
+
+<figure><img src="/files/c3pf4ybhGrekENiaW8T3" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/idi4VdHoSjaqNaDL2WQ5" alt="" width="375"><figcaption></figcaption></figure>
+
+### Example scenario: rating flow
+
+This example creates a simple feedback flow with conditions.
+
+{% hint style="success" %}
+
+#### Goal
+
+Ask for a 5-star rating. Users who rate **4-5** go to a **Thank You** page. Users who rate **1-3** go to a **Feedback** page.
+{% endhint %}
+
+#### Step 1: Add the rating element and identifiers
+
+Design the widget first. Add the rating element and the button users will click after rating.
+
+Then assign a clear identifier to the rating element, such as `rating`.
+
+<figure><img src="/files/mFELx7b4p0RGbjch73Jx" alt="" width="563"><figcaption><p>Identifiers</p></figcaption></figure>
+
+{% hint style="info" %}
+Identifiers are usually shown at the top-right of the selected component. Replace random defaults with clear names before you start action setup.
+{% endhint %}
+
+<figure><img src="/files/6o3XETzuq56Agm6vrBBw" alt="" width="563"><figcaption><p>Identifiers</p></figcaption></figure>
+
+#### Step 2: Create the views
+
+Add the extra views needed for the flow:
+
+* **View 2:** Feedback
+* **View 3:** Thank You
+
+<figure><img src="/files/nAYtGMfMQVbOykisxk3i" alt="" width="563"><figcaption><p>View 2</p></figcaption></figure>
+
+<figure><img src="/files/tT2SE1pJs5GmZEKh9iVT" alt="" width="563"><figcaption><p>View 3</p></figcaption></figure>
+
+#### Step 3: Add conditional actions to the button
+
+Add two **Go to View** actions to the same button.
+
+First action:
+
+* choose **Go to View**
+* select **View 2**
+* add the condition `rating <= 3`
+
+<figure><img src="/files/4RDRvYZrvSUEjVYweHGh" alt="" width="563"><figcaption><p>Action 1</p></figcaption></figure>
+
+Second action:
+
+* click **+ Add Action**
+* choose **Go to View**
+* select **View 3**
+* add the condition `rating >= 4`
+
+<figure><img src="/files/o7Xcay7SdAMjejgS7lQV" alt="" width="563"><figcaption><p>Action 2</p></figcaption></figure>
+
+You can add more actions later if the flow needs data send, redirect, or event trigger steps.
+
+<figure><img src="/files/QZpgnGgVEuAFZNCxhBMK" alt="" width="563"><figcaption><p>Select Action</p></figcaption></figure>
+
+After testing the logic, click **Save Widget and Return**.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/create/assign-click-actions.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

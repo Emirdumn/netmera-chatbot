@@ -1,0 +1,73 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/setup.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/setup.md).
+
+# Setup
+
+The **Setup** step defines the general information and initial configuration of the campaign.
+
+#### Campaign Name
+
+* In the **Campaign Name** field, enter a unique and descriptive name to identify your campaign.
+* This name will appear in dashboards and reports, so choose something relevant and easy to recognize.
+
+#### Campaign Type
+
+* In the **Campaign Type** dropdown, select the type of message you want to send. Available types include:
+  * **Push Notification** (mobile apps)
+  * **Web Push** (web browsers)
+  * **SMS**
+  * **Email**
+
+> **For mobile app messaging**:\
+> Select **Push Notification** to proceed with configuring a push notification campaign for iOS and/or Android devices.
+
+<figure><img src="/files/GzwQopOQ9qJvZ8AGnEp1" alt=""><figcaption></figcaption></figure>
+
+### Types of Mobile Push Notifications
+
+<figure><img src="/files/CjPtwP87CopEnots099K" alt=""><figcaption></figcaption></figure>
+
+### Estimated Reach
+
+Located to the **right of the Campaign Type section**, the **Estimated Reach panel** provides a real-time overview of how many users your campaign can potentially reach.
+
+**Breakdown Includes:**
+
+* **Total Devices**: Combined reach across platforms.
+* **iOS Devices**: Number of iOS users/devices eligible to receive the campaign.
+* **Android Devices**: Number of Android users/devices eligible to receive the campaign.
+
+<figure><img src="/files/mcuSqxfS4bZRvcWhfzCl" alt="" width="276"><figcaption></figcaption></figure>
+
+**Tips for Using Estimated Reach**
+
+* This feature helps you assess your campaign’s **reach and scope** before sending.
+* Use the breakdown to determine if your message needs platform-specific adjustments.
+  * *Example*: If iOS users make up a larger portion of your audience, consider tailoring content or visuals accordingly.
+* By understanding the total estimated audience size, you can better:
+  * Allocate internal or external resources
+  * Align timing with peak engagement hours
+  * Evaluate whether to A/B test for certain segments
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/setup.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

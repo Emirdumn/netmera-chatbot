@@ -1,0 +1,58 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/roles-and-permissions.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/roles-and-permissions.md).
+
+# Roles and Permissions
+
+**Path**: `Settings > Administration> Roles & Permissions`
+
+### Roles
+
+The level of access and permissions for each user role can be customized to suit the organization's needs, ensuring that the right individuals have the appropriate level of control and visibility over the platform's features and data.&#x20;
+
+**Some examples are as following:**
+
+1. **Application Admin (App Admin):** This role has extensive privileges, including approving recommendations, creating and managing campaigns, managing app settings, creating and managing push messages, handling crash reports, and more.
+2. **Developer:** Developers have permissions related to push backends management, creating in-app messages, managing channels, approving catalog push messages, handling app information, setting up A/B testing, managing profile attributes, creating push messages, and more.
+3. **Marketer:** Marketers can see and manage campaigns, create web and email messages, manage geofence settings, conduct A/B testing, access advanced analytics, manage user segments, and more.
+4. **Viewer:** Viewers have read-only access and can see user reports, view recommendations and reports, access catalog push messages, and review app dashboard data.
+5. **Approver (Campaign Approver):** This role focuses on approving campaigns, managing catalog push messages, and providing approval for specific actions.
+6. **Call Center:** This role is summarized as "Call Center," and specific privileges for this role were not provided in the description.
+
+Each role is designed to cater to specific responsibilities and tasks within the Netmera platform, ensuring efficient collaboration among team members while maintaining data security and access control.
+
+### Permissions
+
+Click on Create New Role and follow the steps,
+
+**Role Info:**
+
+* **Role Name:** Enter Role Name
+* **Description:** Enter Role Description
+* **Business Unit:** Select Business Unit
+
+Once you have filled in the required Role Name, Description, Business Unit, and selected the necessary Permissions, click the **Create Role** button to save the new role with the specified settings. The new role will then be available for assignment to users within the Netmera platform, allowing them to perform the designated actions and tasks based on the assigned permissions.
+
+<figure><img src="/files/Mu22rfK5xvTlULIuyqha" alt=""><figcaption><p>Role Info</p></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/roles-and-permissions.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

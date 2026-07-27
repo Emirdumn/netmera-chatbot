@@ -1,0 +1,418 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/widget-elements-reference.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/widget-elements-reference.md).
+
+# Widget Elements Reference
+
+Use this page when you need to choose the right element for your web widget.
+
+If you are building the layout itself, start with [Customize Components](/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/customize-components.md).
+
+If you need button or image behavior, see [Assign Click Actions](/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/assign-click-actions.md).
+
+### Content elements
+
+#### Text
+
+Use **Text** for headlines, descriptions, labels, and short instructions.
+
+**Best for:** campaign copy, helper text, and disclaimer content.\
+**Key options:** font, size, alignment, emphasis, and links.
+
+The **Text** element is the main way to explain the widget to the user. Use it for titles, short descriptions, instructions, disclaimers, or CTA support copy.
+
+**How to use it well:** Keep the headline short. Use a second text block for supporting detail. Fix spacing and alignment before adding too many font styles. Add links only when users really need an extra destination.
+
+<figure><img src="/files/rA7CjHplRMpck4jtwFRg" alt="" width="563"><figcaption><p>Text</p></figcaption></figure>
+
+#### Image
+
+Use **Image** when you want strong visual focus.
+
+**Best for:** hero visuals, campaign banners, and tappable images.\
+**Key options:** upload, replace, alignment, and click action support.
+
+The **Image** element helps you create visual focus inside the widget. Use it when the message needs a product visual, campaign banner, or strong brand asset.
+
+{% hint style="success" %}
+This allows image-based widget designs to be created from the panel without using custom HTML.
+{% endhint %}
+
+**How to use it well:** Use one main image instead of several competing visuals. Keep the image size close to the widget width for a cleaner layout. Add click actions only when the image clearly looks tappable. Preview on mobile to avoid cropped focal points.
+
+{% columns %}
+{% column width="50%" %}
+
+<figure><img src="/files/d8zcpNevHlbwnZEBSQxj" alt="" width="563"><figcaption></figcaption></figure>
+{% endcolumn %}
+
+{% column width="50%" %}
+
+<figure><img src="/files/4rjP6xzgL1nQAnisyJMW" alt="" width="563"><figcaption></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+{% hint style="info" %}
+Keep images under **1 MB** for better performance.
+{% endhint %}
+
+#### GIF
+
+Use **GIF** for lightweight motion.
+
+**Best for:** quick attention grabbers, product highlights, and playful campaign moments.\
+**Key options:** GIF URL, spacing, and position.
+
+Use **GIF** when the widget needs motion but not a full video experience. It works well for quick product highlights, countdown-style urgency, or playful campaign moments.
+
+**How to use it well:** Keep the animation short and easy to understand. Do not place critical information only inside the animation. Leave enough spacing around the GIF so the motion does not overwhelm the layout.
+
+<figure><img src="/files/J14wdebmB6FNkneAwjCA" alt="" width="563"><figcaption><p>GIF</p></figcaption></figure>
+
+#### Video
+
+Use **Video** when motion is part of the message.
+
+**Best for:** demos, trailers, and feature explainers.\
+**Key options:** video URL, size, aspect ratio, autoplay, and controls.
+
+Use **Video** when the message depends on movement, product usage, or storytelling. This is a better fit than GIF when you need a richer demo or branded visual narrative.
+
+**How to use it well:** Use short videos in widgets. Choose the aspect ratio before placing other elements. Avoid autoplay if the video is not essential. Keep the CTA visible below or beside the video.
+
+<figure><img src="/files/6FJDc8hpcmgPWFsI9JGr" alt="" width="563"><figcaption><p>Video</p></figcaption></figure>
+
+#### Story
+
+Use **Story** to show images or videos in sequence.
+
+**Best for:** walkthroughs, feature highlights, and short campaign flows.\
+**Key options:** title, icon, story URLs, and custom duration.
+
+The **Story** element is useful when content needs to be shown step by step inside one widget. It is especially helpful for short walkthroughs, campaign sequences, or feature tours.
+
+**How to use it well:** Keep each story item focused on one message. Use custom duration when users need more reading time. Add a clear title and icon so the story block feels intentional.
+
+<figure><img src="/files/VY2z56WNIrALB2P1geAd" alt=""><figcaption><p>Story</p></figcaption></figure>
+
+### Form elements
+
+#### Input
+
+Use **Input** to collect short-form user data.
+
+**Best for:** email, phone, password, date, and name fields.\
+**Key options:** placeholder, required state, input type, and validation rules.
+
+The **Input** element collects short user data such as email, phone, password, date, or free text. It is usually the core of lead collection, login-like flows, or quick surveys.
+
+**How to use it well:** Choose the correct input type first. Write placeholder text that shows the expected format. Mark the field as required only when necessary. Add validation before attaching submit actions.
+
+Validation behavior depends on the selected input type:
+
+**Date** accepts the `DD/MM/YYYY` format and rejects invalid calendar dates. **Email** checks format and updates validation as the user edits. **Password** masks the entered value. **Phone** opens the numeric keyboard on mobile devices.
+
+If the field is not required, users can leave it empty. If it is required, the widget prevents submission until the field is valid.
+
+<div><figure><img src="/files/75gn7r1Y4XisUH0541bT" alt="" width="563"><figcaption><p>Input</p></figcaption></figure> <figure><img src="/files/OsJbxZlgBKcxhScKpayn" alt="" width="375"><figcaption><p>Input validation field types</p></figcaption></figure></div>
+
+{% hint style="info" %}
+Input types can change both keyboard behavior and validation behavior.
+{% endhint %}
+
+#### Text Area
+
+Use **Text Area** for longer responses.
+
+**Best for:** comments, open feedback, and support requests.\
+**Key options:** placeholder, size, font, and color.
+
+Use **Text Area** when users need to write more than a short answer. This is a good fit for comments, feedback collection, support requests, or open-ended questions.
+
+**How to use it well:** Keep the field wide enough for comfortable typing. Use a placeholder that tells users what kind of answer you expect. Combine it with validation if the response is required.
+
+<figure><img src="/files/BJZlyZLa79M9EGvD9PJn" alt="" width="563"><figcaption><p>Text Area</p></figcaption></figure>
+
+#### Radio Button
+
+Use **Radio Button** when users must choose only one option.
+
+**Best for:** yes/no questions, single-choice surveys, and preference selection.\
+**Key options:** labels, spacing, and identifier-based conditions.
+
+Use **Radio Button** when the user must choose exactly one option. It is best for yes/no questions, single-choice preferences, or survey steps with one valid answer.
+
+**How to use it well:** Keep the number of options small. Write labels that can stand alone without extra explanation. Use identifiers when later actions depend on the selected answer.
+
+<figure><img src="/files/mdnOr0cAiMcP8giMMOQH" alt="" width="563"><figcaption><p>Radio Button</p></figcaption></figure>
+
+#### Checkbox
+
+Use **Checkbox** when users can choose more than one option.
+
+**Best for:** consent choices, feature preferences, and multi-select questions.\
+**Key options:** labels, spacing, and identifier-based conditions.
+
+Use **Checkbox** when users may choose more than one item. It is ideal for consent choices, category interests, or multiple preference selection.
+
+**How to use it well:** Use checkboxes only when multiple answers are valid. Keep label wording consistent. Use conditions when button behavior depends on a checked option.
+
+<figure><img src="/files/Zdt2rYZ7u76rERcN9Jyq" alt="" width="563"><figcaption><p>Checkbox</p></figcaption></figure>
+
+#### Select Box
+
+Use **Select Box** to keep long option lists compact.
+
+**Best for:** country selection, category selection, and compact form inputs.\
+**Key options:** label/value pairs, dropdown style, and tracking values.
+
+Use **Select Box** when you want to save space and still offer multiple options. It works well for longer lists such as category, country, or branch selection.
+
+**How to use it well:** Keep the visible label user-friendly. Keep tracked values consistent for reporting. Avoid using a select box when only two or three options exist.
+
+<figure><img src="/files/7ywD4cUnsUjN6litpQ3u" alt="" width="563"><figcaption><p>Select Box</p></figcaption></figure>
+
+#### Button Group
+
+Use **Button Group** for a visually stronger single-choice selection.
+
+**Best for:** quick options, yes/no/maybe flows, and compact survey steps.\
+**Key options:** layout, spacing, text, and icons.
+
+Use **Button Group** when users need a quick single-choice interaction with stronger visual emphasis than radio buttons. It works well for compact steps and mobile-first flows.
+
+**How to use it well:** Keep option count low. Make button labels short. Use spacing to prevent accidental taps.
+
+<figure><img src="/files/fm9Veb1D0YKABftaxKzO" alt="" width="563"><figcaption><p>Button Group</p></figcaption></figure>
+
+### Action elements
+
+#### Button
+
+Use **Button** to trigger an action.
+
+**Best for:** submit, close, redirect, and go-to-view actions.\
+**Key options:** text, color, size, icon, and template.
+
+The **Button** element triggers the next action in the flow. It can submit, close, redirect, move to another view, or trigger a click action.
+
+**How to use it well:** Use one clear primary button per view. Write action-based labels such as `Submit`, `Continue`, or `See Offer`. Keep button colors consistent across the widget. Configure identifiers before assigning actions.
+
+<figure><img src="/files/dqcmz2ffWiHZrNaTv8qk" alt="" width="563"><figcaption><p>Button Editor</p></figcaption></figure>
+
+<figure><img src="/files/DstS8VVUb7514x0JixXd" alt="" width="563"><figcaption><p>Button Templates</p></figcaption></figure>
+
+{% hint style="info" %}
+Buttons and images are the main elements that support click actions.
+{% endhint %}
+
+#### Copy Button
+
+Use **Copy Button** when you want users to reveal and copy a coupon code.
+
+**Best for:** coupon campaigns, promo code widgets, and unlock-and-copy flows.\
+**Key options:** visible or hidden mode, reveal text, copied message, color, border radius, and coupon list selection.
+
+Coupon lists are managed in [Coupon Code Lists](/netmera-user-guide/panel-settings/settings/messaging-and-content/coupon-code-lists.md).
+
+Use **Copy Button** when the widget needs to reveal and copy a coupon code in one action. It is especially useful for discount campaigns and unlock-style promotions.
+
+**How to use it well:** Choose **Visible** if the code should be seen immediately. Choose **Hidden** if you want a reveal interaction first. Set a clear reveal text such as `Reveal Code`. Customize the success message so users know the code was copied.
+
+Coupon codes can have an expiry date and time. Expired coupons are not shown to end users. If all connected coupons expire, the related campaign is treated as finished.
+
+{% columns %}
+{% column %}
+
+#### Hidden Button Preview
+
+<figure><img src="/files/cikoZ653Mw5xwyB23aix" alt="" width="375"><figcaption></figcaption></figure>
+{% endcolumn %}
+
+{% column %}
+
+#### Visible Button Preview
+
+<figure><img src="/files/VsYRsm3OpaJAlTCxjw2B" alt="" width="375"><figcaption></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
+<figure><img src="/files/FOAP0pNVIBAmWP4imV8F" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/SWVDbyqdjrGCewMcQ9ly" alt=""><figcaption></figcaption></figure>
+
+#### Countdown
+
+Use **Countdown** to create urgency around a deadline.
+
+**Best for:** flash sales, limited offers, and launch countdowns.\
+**Key options:** target date, finish text, labels, under-5-minutes mode, and colors.
+
+Use **Countdown** when urgency is part of the message. It works well for flash sales, expiring offers, launch reminders, or time-based reward flows.
+
+**How to use it well:** Set the target date first. Customize labels if the widget language requires it. Write a clear finish message for the post-deadline state. Preview both the active and finished states before saving.
+
+<figure><img src="/files/2Lc5RAA9tONYLHi7SaJ2" alt="" width="375"><figcaption></figcaption></figure>
+
+<figure><img src="/files/IGW9PLCuUMVhwrobPQNN" alt=""><figcaption></figcaption></figure>
+
+### Feedback elements
+
+#### Rating
+
+Use **Rating** for fast star-based feedback.
+
+**Best for:** satisfaction prompts, quick review widgets, and simple sentiment checks.\
+**Key options:** star count, appearance, and scale range.
+
+Use **Rating** for quick star-based feedback. It works well when you want a low-friction response and do not want users to type.
+
+**How to use it well:** Pair it with a short question. Use it as the first step in a multi-view feedback flow. Connect lower and higher scores to different next actions when needed.
+
+<figure><img src="/files/HIPasAwhjfqUZYf8kDvR" alt="" width="563"><figcaption><p>Rating</p></figcaption></figure>
+
+#### Score Rating
+
+Use **Score Rating** for numeric feedback.
+
+**Best for:** NPS-style scoring, service ratings, and post-flow surveys.\
+**Key options:** min rate, max rate, default value, and click animation.
+
+Use **Score Rating** when feedback should be numeric. This works well for NPS-style scoring or post-service evaluation flows.
+
+**How to use it well:** Set the min and max values before styling. Choose a sensible default only if preselection makes sense for the use case. Use click animation only when it supports the tone of the widget.
+
+{% hint style="info" %}
+
+#### Score Rating Color Settings
+
+Use **Rating Configuration** and **Hover Effects** to customize how score options appear in selected and hover states.
+
+You can configure separate background, text, and border colors to keep rating options readable and aligned with your widget design. Changes are reflected in the preview in real time.
+{% endhint %}
+
+<div><figure><img src="/files/HomJ9HrTCalgP5pf5m3Z" alt="" width="375"><figcaption><p>Score Rating selected state color settings</p></figcaption></figure> <figure><img src="/files/P6zwDKbAIuS8HXgkuLNl" alt="" width="375"><figcaption><p>Score Rating hover effects</p></figcaption></figure></div>
+
+<figure><img src="/files/MUaioo35ZQlURoFw2v87" alt=""><figcaption><p>Score Rating</p></figcaption></figure>
+
+#### Slider Feedback
+
+Use **Slider Feedback** when feedback should feel continuous.
+
+**Best for:** sentiment measurement, intensity scales, and preference scoring.\
+**Key options:** slider appearance, text, spacing, and layout.
+
+Use **Slider Feedback** when you want users to express intensity on a continuous scale. It is a good fit for satisfaction, likelihood, or preference measurement.
+
+**How to use it well:** Pair the slider with a clear question. Make the start and end meaning obvious. Leave enough space around the slider for mobile use.
+
+<figure><img src="/files/hgBQY72tzTQaqP0ELE1J" alt="" width="563"><figcaption><p>Slider Feedback</p></figcaption></figure>
+
+#### Emoji Feedback
+
+Use **Emoji Feedback** for a lighter feedback experience.
+
+**Best for:** casual surveys, smiley-based sentiment, and mobile-first feedback prompts.\
+**Key options:** emoji set, size, spacing, and optional left/right labels.
+
+Use **Emoji Feedback** when the experience should feel lighter and more casual than a standard rating input. It works especially well in mobile-first survey widgets.
+
+**How to use it well:** Use labels when the emotional scale may be unclear. Keep the number of emojis manageable. Use it for fast sentiment capture before asking for detailed feedback.
+
+<figure><img src="/files/KlcDDBHby2PSi7B5dFgb" alt="" width="375"><figcaption></figcaption></figure>
+
+<figure><img src="/files/KtZfx1bpbSASDd7X1Ft3" alt=""><figcaption></figcaption></figure>
+
+#### Q\&A
+
+Use **Q\&A** when the widget needs question-and-answer style interaction.
+
+**Best for:** support flows, interactive FAQ, and guided help.\
+**Key options:** layout, text formatting, and answer structure.
+
+Use **Q\&A** when the widget should feel more conversational. This can support guided help, support-like interactions, or structured FAQ experiences.
+
+**How to use it well:** Keep each question short. Use layout and text styling to separate question from answer. Do not overload one widget with too many Q\&A blocks.
+
+<figure><img src="/files/B5XnmHxq7FfCJ8aiRDyR" alt="" width="563"><figcaption><p>Q&#x26;A</p></figcaption></figure>
+
+### Promo and gamification elements
+
+#### Spin to Win
+
+Use **Spin to Win** for prize or coupon-based campaigns.
+
+**Best for:** gamified promotions, reward campaigns, and coupon distribution.\
+**Key options:** slice names, result text, coupon code per slice, link per slice, gravity distribution, and out-of-coupon message.
+
+The **Spin to Win** element adds a gamified reward experience to the widget. It is useful for campaigns where surprise, engagement, and coupon distribution matter.
+
+**How to use it well:** Give each slice a clear name. Define the win result text for each outcome. Assign coupon codes when a reward should be redeemable. Use gravity carefully so the outcome distribution matches the campaign goal.
+
+Total gravity across slices must equal **100%**. If gravity is not defined, the system distributes it equally. If a slice runs out of coupons, the out-of-coupon message is shown.
+
+{% hint style="warning" %}
+Users can spin the wheel **once per day**.
+{% endhint %}
+
+**Expiry logic:** When one slice expires, that slice becomes inactive and the remaining slice weights are re-normalized. The scenario is marked as finished only when all slices are expired.
+
+<figure><img src="/files/gmqHSiHY0DpNfvOLy4eD" alt="" width="188"><figcaption></figcaption></figure>
+
+<figure><img src="/files/n8YsecE55FckUyj5VFQ0" alt=""><figcaption><p>Spin to Win settings</p></figcaption></figure>
+
+<figure><img src="/files/PodgzDL332Rf4HCGswaa" alt=""><figcaption><p>Success screen design</p></figcaption></figure>
+
+<figure><img src="/files/R0k3i7cufeF8XqKP5OHj" alt=""><figcaption></figcaption></figure>
+
+### How to choose the right element
+
+Need content? Choose **Text**, **Image**, **GIF**, **Video**, or **Story**. Need input? Choose **Input**, **Text Area**, **Radio**, **Checkbox**, **Select Box**, or **Button Group**. Need action? Choose **Button**, **Copy Button**, or **Countdown**. Need feedback? Choose **Rating**, **Score Rating**, **Slider Feedback**, **Emoji Feedback**, or **Q\&A**. Need promotion? Choose **Spin to Win**.
+
+### Best practices
+
+Keep each widget focused on one goal. Use fewer elements when possible. Give interactive elements clear labels. Add identifiers before setting actions. Preview on both mobile and desktop before saving.
+
+### Common build patterns
+
+#### Lead collection widget
+
+Use **Text**, **Input**, and **Button**. Optionally add **Image** and **Checkbox** for consent.
+
+#### Product promotion widget
+
+Use **Image**, **Text**, **Button**, and **Countdown**.
+
+#### Feedback widget
+
+Use **Text**, **Rating** or **Emoji Feedback**, **Text Area**, and **Button**.
+
+#### Coupon widget
+
+Use **Text**, **Copy Button**, and **Countdown**.
+
+#### Gamified campaign widget
+
+Use **Spin to Win**, **Text**, **Button**, and **Copy Button**.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/widget-elements-reference.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

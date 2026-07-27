@@ -1,0 +1,67 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push.md).
+
+# Create Mobile Push
+
+{% hint style="info" %}
+
+#### Quick path
+
+**Messages** → **Campaigns** → **Create New Campaign**
+
+1. Set the campaign name and push type in [**Setup**](/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/setup.md).
+2. Add content and click actions in [**What**](/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/what.md).
+3. Define the audience in [**Who**](/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/who.md).
+4. Set timing, expiry, and delivery speed in [**When**](/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/when.md).
+5. Review, test, and send in [**GO**](/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/go.md).
+   {% endhint %}
+
+Create Mobile Push is the guided flow for building a push campaign from start to send.
+
+Use it to:
+
+* create one-time campaigns,
+* target specific users or broad audiences,
+* schedule delivery now or later,
+* and test the message before launch.
+
+{% @arcade/embed url="<https://app.arcade.software/share/QAeYHw1QhqvvqBZysphE>" flowId="QAeYHw1QhqvvqBZysphE" %}
+
+### Before you start
+
+Before creating a campaign, make sure:
+
+* your mobile push channel is already configured,
+* the audience data you need already exists,
+* and you know the campaign goal before choosing the format.
+
+{% hint style="info" %}
+If you plan to personalize the push, prepare the required [**Profile Attributes**](/netmera-user-guide/customer-data/profile-attributes.md) first.
+{% endhint %}
+
+### Campaign flow
+
+<table data-view="cards"><thead><tr><th>Step</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Setup — choose the campaign name and push type</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/eRqzsjpyCv5viXCZqfuV">/spaces/X6uilbEAw42gqsudlclY/pages/eRqzsjpyCv5viXCZqfuV</a></td></tr><tr><td>What — define title, message, media, personalization, and click action</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/Px3Q5pt1HFelWwc5bcwv">/spaces/X6uilbEAw42gqsudlclY/pages/Px3Q5pt1HFelWwc5bcwv</a></td></tr><tr><td>Who — select the audience and delivery limits</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/83awPx5KCjljwHYbreky">/spaces/X6uilbEAw42gqsudlclY/pages/83awPx5KCjljwHYbreky</a></td></tr><tr><td>When — decide when and how fast the push is sent</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/uGwoWeEeAw0e6eq2oLTT">/spaces/X6uilbEAw42gqsudlclY/pages/uGwoWeEeAw0e6eq2oLTT</a></td></tr><tr><td>GO — review the setup, send a test, and launch</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/qKQdVF8CtvjjK4J1CCuj">/spaces/X6uilbEAw42gqsudlclY/pages/qKQdVF8CtvjjK4J1CCuj</a></td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

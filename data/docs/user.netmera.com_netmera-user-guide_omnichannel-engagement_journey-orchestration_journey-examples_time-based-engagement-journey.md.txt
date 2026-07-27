@@ -1,0 +1,328 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-examples/time-based-engagement-journey.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-examples/time-based-engagement-journey.md).
+
+# Time-Based Engagement Journey
+
+The **Time-Based Engagement Journey** is designed to engage users based on a scheduled date, time, or recurring frequency. This approach allows businesses to deliver personalized messages at predictable intervals, such as weekly highlights, reminders, seasonal campaigns, or recurring updates.
+
+Below is an example of how this journey works and how it can be adapted to send personalized weekly highlights across different use cases.
+
+<details>
+
+<summary>Possible Use Cases <span data-gb-custom-inline data-tag="emoji" data-code="2728">✨</span></summary>
+
+1. **Personalized Weekly Highlights:**\
+   Users receive a weekly recap or personalized content recommendations based on their interests and recent activity. The journey runs on a predictable schedule, such as every Monday morning, and helps keep users engaged with relevant updates, offers, or content.
+2. **Birthday Campaigns:**\
+   Users receive a special birthday message, discount, gift, or loyalty reward on their birthday. The journey can be scheduled to run daily and target users whose birthday matches the current date.
+3. **Monthly Offers or Newsletters:**\
+   Users receive recurring monthly promotions, product updates, newsletters, or campaign announcements. This type of journey is useful for brands that want to maintain regular communication with their audience.
+4. **Seasonal or Holiday Campaigns:**\
+   Users are targeted during specific periods such as New Year’s Day, Black Friday, Mother’s Day, Ramadan, summer campaigns, or back-to-school season. The journey starts and ends within a defined date range.
+5. **Subscription Renewal Reminder:**\
+   Users receive reminders before their subscription, membership, insurance policy, or service package expires. The journey can send messages a few days before the renewal date and follow up if the user has not renewed.
+
+</details>
+
+### Navigation for Time-based engagement journey
+
+{% stepper %}
+{% step %}
+
+#### Set up journey details and conversion event
+
+Define the journey name, description, and the conversion goal you want to track.
+{% endstep %}
+
+{% step %}
+
+#### Configure the engagement window
+
+Set the days and hours when messages can be delivered, and decide whether time-sensitive messages can be sent outside the engagement window.
+{% endstep %}
+
+{% step %}
+
+#### Configure time-based entry rules
+
+Choose the schedule, frequency, and timezone behavior for journey entry.
+{% endstep %}
+
+{% step %}
+
+#### Configure the eligibility options
+
+Control how often users can re-enter the journey. \
+Use **Lock Duration** to define how long users must wait before re-entering, and\
+**Entry Capping** to limit the maximum number of entries.
+{% endstep %}
+
+{% step %}
+
+#### Select the entry audience
+
+Choose which users are eligible to enter the journey. Select a segment to target specific users that can engage better with the message you're sending. If no segment is selected, all users are included.
+{% endstep %}
+
+{% step %}
+
+#### Build the journey flow
+
+Add the event checks, branches, messages, and exit paths for the weekly highlights experience.
+{% endstep %}
+
+{% step %}
+
+#### Review and launch
+
+Verify the setup, then save the journey as a draft or launch it.
+{% endstep %}
+{% endstepper %}
+
+### Example Journey Flow
+
+In this example, users enter the journey on a weekly schedule. The journey first checks whether users engaged with the previous weekly recap.
+
+If users engaged with the previous recap, they continue through the main flow and receive personalized weekly highlights through channels such as email, push, and in-app messages. They can then be guided to recommended content or offers based on their recent activity and interests.
+
+If users did not engage with the previous recap, they can be routed to a different branch. For example, the journey can send a lighter reminder, update the user profile, or mark the weekly recap as not engaged.
+
+The journey repeats according to the selected weekly schedule and helps keep users engaged with relevant content or offers at a predictable time.
+
+Next, let’s explore how to set up this journey step by step.
+
+<div data-with-frame="true"><figure><img src="/files/Y9OAHvwXts0EXlKFYksQ" alt=""><figcaption></figcaption></figure></div>
+
+### Step 1: Set Up Journey Details and Conversion Event
+
+Enter a descriptive name for your journey. This helps you identify the journey later.
+
+Provide a brief description that explains the purpose or goal of the journey.
+
+Next, define the conversion event for this journey. Since this example focuses on encouraging users to open the app, select **Open App** as the conversion event.
+
+To configure the conversion event:
+
+1. From the **Conversion Event** dropdown, select **Open App**.
+2. Enable **Select Conversion Event Property**.
+3. Select the event property you want to use for conversion tracking.
+
+For this example, select **UTM Campaign** as the property, choose **Equals** as the operator, and enter **weekly\_highlights** as the value.
+
+Set a conversion period to define how long users will be counted toward the conversion event after exiting the journey. For this example, set the conversion period to **7 days**.
+
+<figure><img src="/files/60lkwR35qClPRdo3gJQO" alt=""><figcaption></figcaption></figure>
+
+### Step 2: Configure the Engagement Window
+
+In the Entry Rules step, enable **Engagement Window** to define when journey messages can be sent.
+
+For this example, the journey sends weekly highlights to users. Since these messages are not time-critical, it is better to deliver them during regular engagement hours.
+
+Set the allowed sending time between **09:00** and **18:00**, and select weekdays from **Monday to Friday**.
+
+Keep **Ignore messages sent outside Engagement Window** disabled. If a message is triggered outside the selected time range, it will be held and delivered when the Engagement Window becomes active.
+
+<figure><img src="/files/vAHZroKCdLYyD1n3FIox" alt=""><figcaption></figcaption></figure>
+
+### Step 3: Configure Time-Based Entry Rules
+
+Next, choose how users should enter the journey.
+
+For this example, select **Enter users at an optimal time**. Since the journey is designed to send personalized highlights on a weekly schedule, users should enter the journey at a planned time instead of entering immediately when they become eligible.
+
+This allows you to control when the weekly highlights journey starts and ensures that users receive the communication at a consistent time each week.
+
+Set the **Frequency Type** to **Weekly**.
+
+For this example, set the frequency to **1** and select **Monday** as the day of the week. This allows the journey to run once every week and send personalized highlights at a consistent time.
+
+Keep **Use User’s Timezone** enabled if you want each user to receive the message according to their local time.
+
+<figure><img src="/files/HQ2AYZcH9BCo7vJhXThG" alt=""><figcaption></figcaption></figure>
+
+### Step 4: Configure Eligibility Options
+
+In the Eligibility Options section, define how often users can enter the journey.
+
+For this example, select **Multiple Times**. Since the journey sends weekly highlights, users should be able to enter the journey again in future weeks.
+
+Set a **Lock Duration** to prevent users from entering the same journey too frequently. For example, you can set the lock duration to **7 days** so that each user can enter the journey once per week.
+
+You can leave **Entry Capping** empty unless you want to limit the total number of times a user can enter this journey.
+
+<figure><img src="/files/cdJMJr9ziPiEmAbWnw7Z" alt=""><figcaption></figcaption></figure>
+
+### Step 5: Select the Entry Audience
+
+In the Audience step, select the users who are eligible to enter the journey.
+
+For this example, select **Active user for 7 days**. This allows you to target users who have recently interacted with your app and are more likely to engage with weekly personalized highlights.
+
+To target all users, skip this step and do not select a segment.&#x20;
+
+<div align="left"><figure><img src="/files/CuDM9qS65ctOQQOZh2vG" alt="" width="563"><figcaption></figcaption></figure></div>
+
+### Step 6: Build the Journey Flow
+
+#### Journey Starting Point
+
+As you have selected **Time-Based** on the **Entry Rules** step, the journey begins according to the defined schedule rather than a specific user action. This allows you to engage users at planned intervals and deliver messages at a consistent time.
+
+**Trigger Type: Time-Based**\
+The journey is initiated based on the scheduled time settings configured in Entry Rules. This makes it suitable for recurring campaigns such as weekly highlights, reminders, or recurring updates.
+
+**Eligibility Type: Multiple**\
+Users can enter the journey multiple times according to the defined schedule. This is useful for recurring journeys that are designed to re-engage users on a regular basis.
+
+**Audience: Active user for 7 days**\
+The journey targets users who have been active within the last 7 days. This helps ensure that the weekly highlights are delivered to users who are more likely to engage with the content.
+
+**Schedule: Beginning on 25/06/2026 at 13:25**\
+The journey starts at the scheduled date and time defined in the Entry Rules step. This allows the journey to run in a planned and predictable way.
+
+<figure><img src="/files/J47GZRk5CK42q6WWzgYA" alt=""><figcaption></figcaption></figure>
+
+#### Next Step: Event Check – Previous Weekly Recap
+
+After users enter the journey based on the **Time-Based** trigger, the system checks whether they engaged with the **Previous Weekly Recap** event.
+
+This decision point creates two communication paths:
+
+**On Performed: Users Who Engaged with the Previous Weekly Recap**\
+For users who have already shown interest in the previous weekly recap, send an email about the next personalized weekly highlights.
+
+Example:\
+\&#xNAN;**“Your weekly highlights are ready.”**
+
+**On Timed Out: Users Who Did Not Engage with the Previous Weekly Recap**\
+For users who did not interact with the previous recap within the expected time, send a follow-up message with a lighter reminder or a different content angle.
+
+Example:\
+\&#xNAN;**“We picked a few things you might like.”**
+
+<figure><img src="/files/j7mqJguBY8PE4lHzc2Nm" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Follow-Up Engagements
+
+After the previous recap engagement check, continue each path with the appropriate follow-up messages.
+
+**On Performed Path**\
+Users who engaged with the previous weekly recap continue through the main flow. In this example, they receive:
+
+* An email with the next weekly highlights
+* A push notification with personalized recommendations
+* An in-app message that guides them to explore weekly content
+
+Example messages:
+
+* **“Your weekly highlights are ready.”**
+* **“Your recommendations are here.”**
+* **“Explore your weekly content.”**
+
+**On Timed Out Path**\
+Users who did not engage with the previous recap receive a lighter re-engagement message. You can also update their profile to use this information in future segmentation or campaigns.
+
+Example message:
+
+* **“We picked a few things you might like.”**
+
+Example profile update:
+
+* **“Weekly recap not engaged.”**
+
+<figure><img src="/files/RjF4MdrkP9d4nzSeyZl3" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Additional Decision Point: Recommendation Clicked
+
+After users receive the weekly highlights and recommendations, the journey checks whether they clicked the recommendation.
+
+**On Performed**
+
+If the user clicks the recommendation, they continue to the **On\_Performed** path and can receive additional personalized content.
+
+**Example**
+
+An in-app message can display content such as:
+
+**“Based on what you viewed, here are more suggestions for you.”**
+
+**On Timed Out**
+
+If the user does not click the recommendation, they continue to the **On\_Timed\_Out** path. In this example, the profile is updated to indicate that the weekly recap was not engaged with.
+
+#### Exit Points from the Journey
+
+An **Exit Point** marks where a user’s journey ends. In this example, the journey can end in two ways:
+
+**Completion of the Expected Action**\
+The journey can end when users complete the expected engagement action, such as interacting with the weekly recap or clicking a recommendation.
+
+{% hint style="info" %}
+If a user engages with the weekly recap and clicks a recommendation, the journey can be considered successful and no further follow-up is needed.
+{% endhint %}
+
+**End of Follow-Up Attempts**\
+The journey can also end when users do not engage after the follow-up messages are completed.
+
+{% hint style="info" %}
+If a user receives the weekly recap, follow-up push, or in-app message but still does not interact, the journey ends after the final step. The user profile can be updated to reflect that the weekly recap was not engaged with.
+{% endhint %}
+
+{% hint style="success" %}
+Any path with no additional steps becomes an exit point. This prevents the journey from continuing indefinitely and helps you analyze where users drop off.
+{% endhint %}
+
+### Step 7: Review and Launch&#x20;
+
+Before launching the journey, review the main configuration areas:
+
+* **Setup:** Journey name, description, conversion event, and conversion filters
+* **Entry Rules:** Time-based entry logic, schedule, frequency, and engagement window
+* **Audience:** Selected segments or all-user targeting
+* **Build:** Journey steps, event checks, branches, messages, and exit paths
+
+If the journey setup is still changing, save it as a draft and return later.
+
+**Launch Options**
+
+**Save & Launch**\
+Use **Save & Launch** when the journey is ready to go live. This saves your latest changes and activates the journey.
+
+**Save**\
+Use **Save** when you want to keep the current setup as a draft. This is useful if the journey still needs review, testing, or approval.
+
+**Navigation Behavior**
+
+**Back**\
+Use **Back** to return to the previous step. Your existing work in the Build step remains available while you continue editing.
+
+**Back to Journey List**\
+Use **Back to Journey List** to leave the journey creation flow and return to the journey listing page. If you leave without saving, your latest changes are not kept.
+
+{% hint style="success" %}
+You can now launch your journey and start engaging users on a planned schedule with personalized weekly highlights or recurring updates.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-examples/time-based-engagement-journey.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

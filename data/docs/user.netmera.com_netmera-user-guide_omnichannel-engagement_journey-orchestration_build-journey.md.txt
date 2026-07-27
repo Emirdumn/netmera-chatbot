@@ -1,0 +1,190 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/build-journey.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/build-journey.md).
+
+# Build Journey
+
+Use **Build Journey** to create the actual journey flow after you finish **Setup**, **Entry Rules**, and **Audience**. After completing this step, you will be able to read the build canvas, add and edit steps, understand the journey status area, and decide when a specific send step should bypass the Engagement Window.
+
+{% @arcade/embed url="<https://app.arcade.software/share/Mp7sH69w6m5Lp54qg6k3>" flowId="Mp7sH69w6m5Lp54qg6k3" %}
+
+### Build canvas
+
+The **Build** screen is the visual workspace for the journey. This is where you arrange the sequence of actions, review how each step connects, and shape the user path from entry to exit.
+
+Use this screen when you want to:
+
+* add a new step
+* edit an existing step
+* review the current flow before launch
+* understand where a send, delay, branch, or update happens
+
+The **Journey Flow** area shows the full structure of the journey as a connected path. Each step appears in sequence, so you can see what happens first, what happens next, and where the flow branches or continues.
+
+This view helps you confirm that the journey logic matches the real user experience. It is especially useful when the journey contains several delays, decision points, or channel actions.
+
+For example, a journey may begin with an entry trigger, continue to a delay step, then send a push notification, and later split into different paths based on user behavior. The flow view helps you read that sequence without opening every step first.
+
+### Add Step
+
+Use **Add Step** at the bottom of the journey flow when you want to expand the journey.
+
+Each new step adds a new action, condition, or transition to the journey. The exact step types depend on the journey components available in your workspace.
+
+<figure><img src="/files/wY6kGwKl21Zl5qHLFTTm" alt="" width="414"><figcaption></figcaption></figure>
+
+For example, after a user enters the journey, you may add:
+
+* a **Delay** step to wait before sending a message
+* a send step such as **Send Mobile Push**
+* a branch step to route users by behavior or profile
+
+{% hint style="info" %}
+Add steps in the same order users experience them. This makes the flow easier to review and troubleshoot later.
+{% endhint %}
+
+### Step container
+
+Each step appears inside a step container on the build canvas. Select the container to open that step and configure its settings.
+
+The step container shows where the step sits in the overall flow. Opening it lets you define the behavior of that step, such as the message content, timing rule, event condition, or follow-up action.
+
+<figure><img src="/files/KJlmyTg2SOUiDa6AWivB" alt="" width="251"><figcaption></figcaption></figure>
+
+For example, if the selected step is a send step, you may configure the delivery settings and content. If the selected step is a condition or branch step, you may define the logic that decides which path the user follows next.
+
+### Journey name and status
+
+At the top of the screen, the journey header shows the current journey name, its status, and the last saved time. Use this area as a quick confirmation that you are editing the correct journey and that you understand its current lifecycle state.
+
+Typical statuses can include:
+
+* **Draft**
+* **Stopped**
+* **Active**
+
+<figure><img src="/files/px3NNpyegfqVV5eRYm11" alt=""><figcaption></figcaption></figure>
+
+For example, if you open a journey expecting to make pre-launch changes but the header shows **Active**, review the journey carefully before changing live behavior.
+
+### Ignore Engagement Window
+
+Use **Ignore Engagement Window** when one specific message must be sent immediately, even if the journey is currently outside the allowed Engagement Window.
+
+This option is available on these supported send steps:
+
+* **Send Mobile Push**
+* **Send Email**
+* **Send SMS**
+
+Use this only when the timing of that individual message matters more than the normal delivery window.
+
+To enable it, open a supported send step, find **Ignore Engagement Window**, enable it, and save the journey.
+
+<figure><img src="/files/0TanqssjSeF0iXZtUM6H" alt=""><figcaption></figcaption></figure>
+
+When this option is enabled, only that step bypasses the Engagement Window. The rest of the journey still follows the normal Engagement Window behavior.
+
+#### How it behaves
+
+When **Ignore Engagement Window** is off, a message triggered outside the allowed hours follows the normal journey rule for Engagement Window handling.
+
+When **Ignore Engagement Window** is on, that supported send step sends immediately, even outside the allowed hours.
+
+For example, if the Engagement Window is **08:00–22:00** and the send step is triggered at **23:30**:
+
+* with **Ignore Engagement Window** enabled, the message is sent at **23:30**
+* without it enabled, the message waits for the next active Engagement Window
+
+#### When to use it
+
+Use this option for time-sensitive messages that lose value if they are delayed.
+
+For example, an abandoned cart reminder may still work well when delivered the next morning. A price-drop alert at **02:00** may lose relevance if it waits until **08:00**. In that case, bypassing the Engagement Window on that single step may produce the intended behavior.
+
+<details>
+
+<summary>Example scenario</summary>
+
+An e-commerce journey uses an Engagement Window between **08:00** and **22:00**.
+
+If a user abandons their cart at **23:30**, the standard reminder can wait until the next active window.
+
+If the same journey later detects a price drop at **02:00**, delaying that alert until **08:00** may reduce urgency or make the content outdated.
+
+For that send step, enable **Ignore Engagement Window** so the price-drop message is sent immediately.
+
+</details>
+
+### Engagement Window options
+
+The journey includes two related settings that affect off-hours behavior, but they do different things.
+
+| Option                                             | Where you set it                           | What it does                                                     |
+| -------------------------------------------------- | ------------------------------------------ | ---------------------------------------------------------------- |
+| **Ignore messages sent outside Engagement Window** | **Entry Rules**                            | Discards messages triggered outside the allowed time range       |
+| **Ignore Engagement Window**                       | Specific supported send steps in **Build** | Sends that step immediately, even outside the allowed time range |
+
+This difference is important because one option prevents delivery, while the other forces immediate delivery for a specific step.
+
+### Custom Parameters for Journey Messages
+
+You can define key-value custom parameters for **Send In-App**, **Send Widget**, and **Send Mobile Push** steps in Journey Builder.
+
+Custom parameters allow you to pass additional data with the message payload. The application can use these parameters to decide how or where the message should be handled, such as displaying an in-app message on a specific screen or passing a custom deeplink parameter with a push notification.
+
+When the journey step is triggered, the parameters are delivered to the Netmera SDK inside the `prms` object.
+
+<figure><img src="/files/vArLX16AfJZnafMyWl4f" alt=""><figcaption></figcaption></figure>
+
+#### How to Use Custom Parameters
+
+1. In Journey Builder, open a **Send In-App**, **Send Widget**, or **Send Mobile Push** step.
+2. Go to the **Custom Parameters** section.
+3. Enter a key and value pair.
+4. Add additional parameters if needed.
+5. Save the step.
+
+{% hint style="warning" %}
+Empty keys and duplicate keys are not allowed.
+{% endhint %}
+
+#### When to Use Custom Parameters
+
+Use custom parameters when the application needs extra context about how to handle a journey message.
+
+Common use cases include:
+
+* Opening a specific screen after a push notification is clicked
+* Passing a deeplink or content ID with a mobile push
+* Displaying an in-app message only in a specific app context
+* Sending campaign-specific metadata to the application layer
+* Controlling where a widget appears in the app, such as on the home screen, product detail page, or recommendation area
+
+<figure><img src="/files/xGa5EOzbV2muKvueuQoi" alt="" width="376"><figcaption></figcaption></figure>
+
+### What happens next
+
+After you finish **Build**, review the flow one more time and then continue to [Launch](/netmera-user-guide/omnichannel-engagement/journey-orchestration/launch.md) to save the journey as a draft or activate it.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/build-journey.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

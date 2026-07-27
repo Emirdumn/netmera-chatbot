@@ -1,0 +1,132 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/message-categories.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/message-categories.md).
+
+# Message Categories
+
+Message Categories let you tag every campaign with a **purpose** (example: promotions, order tracking, security).
+
+Use categories for:
+
+* **Purpose-based consent** (granular opt-in / opt-out per purpose)
+* **Campaign hygiene** (every message has a clear intent)
+
+For the full model (channel permission + purpose permission), see [Granular User Consent Management](/netmera-user-guide/customer-data/granular-consent-management.md).
+
+{% hint style="info" %}
+Create categories once under [Settings > Message Categories](/netmera-user-guide/panel-settings/settings/messaging-and-content/message-categories.md). Then select a category while building each campaign.
+{% endhint %}
+
+### Create a message category
+
+{% stepper %}
+{% step %}
+
+#### Open Message Categories
+
+Go to **Settings > Message Categories**.
+{% endstep %}
+
+{% step %}
+
+#### Create and save
+
+1. Click **Create**.
+2. Fill in **Category ID** and **Category Name**.
+3. Click **Save**.
+   {% endstep %}
+   {% endstepper %}
+
+<figure><img src="/files/LHhfvrp6Ygho5L1xMysb" alt=""><figcaption><p>Create a category in Settings</p></figcaption></figure>
+
+#### Field definitions
+
+**Category ID**
+
+Stable key used in reporting and exports. Treat it like an immutable identifier.
+
+**Category Name**
+
+Human-readable name shown in the panel. You can adjust naming later without breaking analysis (as long as the ID stays stable).
+
+#### Best practices for Category ID
+
+* Keep it **short** and **stable** (example: `promo`).
+* Use a **purpose**, not a channel. Categories are cross-channel.
+* Prefer lowercase and avoid spaces (example: `order_tracking`).
+* Don’t change IDs after launch. Create a new category instead.
+
+<figure><img src="/files/JWXJgSHbJKuJAAbdtX0F" alt=""><figcaption><p>Category ID and Name</p></figcaption></figure>
+
+### Assign a category to a campaign
+
+{% stepper %}
+{% step %}
+
+#### Go to the content step
+
+While creating a campaign, open **Step 2: What** (or the channel’s equivalent “Content” step).
+{% endstep %}
+
+{% step %}
+
+#### Select the category
+
+Pick the category that matches the campaign’s purpose.
+{% endstep %}
+{% endstepper %}
+
+<figure><img src="/files/naNOAsERfxQRneX5fTgm" alt=""><figcaption><p>Select a category in the campaign flow</p></figcaption></figure>
+
+#### More examples (different channels)
+
+<figure><img src="/files/m6NrjVMOxJJdYnQ7gJsZ" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/hpNT1rsf3ZrzD71qghfJ" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/0PiRp01RPDCNPICMEYyY" alt=""><figcaption></figcaption></figure>
+
+{% hint style="warning" %}
+If you don’t assign a category, you can’t reliably analyze campaigns by purpose. If you use purpose-based consent, Netmera can’t enforce it without a category.
+{% endhint %}
+
+### Reporting by message category
+
+#### Channel Reachability (opt-in / opt-out by category)
+
+Use this to validate how many users are reachable **per purpose**.
+
+* [Channel Reachability](/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/channel-reachability.md)
+
+<figure><img src="/files/50ewav97nJnNO2oaT3CM" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/4svcVA9XUayVdUEN1DBD" alt=""><figcaption><p>Opt-in and opt-out users by message category</p></figcaption></figure>
+
+### Related pages
+
+* [Granular User Consent Management](/netmera-user-guide/customer-data/granular-consent-management.md)
+* [Message Categories (Settings)](/netmera-user-guide/panel-settings/settings/messaging-and-content/message-categories.md)
+* [Message Labels](/netmera-user-guide/panel-settings/settings/messaging-and-content/message-labels.md)
+* [Channel Reachability](/netmera-user-guide/reports-and-analytics/reports/audience-and-growth/channel-reachability.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/message-categories.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

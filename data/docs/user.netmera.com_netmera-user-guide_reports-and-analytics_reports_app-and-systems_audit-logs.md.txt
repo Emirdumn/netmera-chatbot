@@ -1,0 +1,68 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/app-and-systems/audit-logs.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/app-and-systems/audit-logs.md).
+
+# Audit Logs
+
+**Path:** `Reports > App & Systems > Audit Logs`
+
+Audit Logs records actions and changes inside the Netmera panel. It helps you understand who did what, when it happened, and which part of the system was involved.
+
+Use this report when you want to answer questions such as:
+
+* Who changed a configuration or campaign?
+* When did a specific action happen?
+* Which user or IP was involved?
+
+{% hint style="info" %}
+Audit Logs is especially useful for troubleshooting, security review, governance, and operational follow-up.
+{% endhint %}
+
+### Report overview
+
+This report gives you traceability across panel activity. That includes access history, content changes, configuration updates, and other operational actions.
+
+The main filters help you narrow the log quickly:
+
+* **User Action** filters by the type of activity, such as login, creation, update, or feature access.
+* **Log Date** places the activity in the right timeline.
+
+<figure><img src="/files/29913Vp55GJp5cJnqIOf" alt=""><figcaption></figcaption></figure>
+
+### What you see in the results
+
+The results table includes the key fields needed for investigation:
+
+* **Date** shows when the action happened.
+* **User Action** shows what type of action took place.
+* **Description** adds more detail about the change or access.
+* **User Name** identifies the person who performed the action.
+* **User IP** helps with access tracking and security review.
+
+<figure><img src="/files/6IYfq04NrReKBLagzhxT" alt=""><figcaption></figcaption></figure>
+
+### How to use this report
+
+Use Audit Logs when something needs explanation. It is especially useful for checking an unexpected configuration change, confirming the origin of an edit, or reviewing access history for governance and security follow-up.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/app-and-systems/audit-logs.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

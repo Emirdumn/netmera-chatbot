@@ -1,0 +1,257 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/customize-components.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/customize-components.md).
+
+# Customize Components
+
+Use this page to build the layout and visual structure of your web widget.
+
+This page covers the builder basics. For the full element catalog, see [Widget Elements Reference](/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/widget-elements-reference.md). For button and image behavior, see [Assign Click Actions](/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/assign-click-actions.md).
+
+### Quick workflow
+
+{% stepper %}
+{% step %}
+
+#### Set the base style
+
+Start with the widget view settings.
+
+Set:
+
+* width
+* border radius
+* background color
+* border width
+* border color
+  {% endstep %}
+
+{% step %}
+
+#### Add the elements you need
+
+Drag elements into the canvas from the left panel.
+
+Keep the structure simple at first. Add only what the widget really needs.
+{% endstep %}
+
+{% step %}
+
+#### Customize the selected element
+
+Use the right panel to adjust styling and settings.
+
+Typical changes include text, spacing, colors, borders, and positioning.
+{% endstep %}
+
+{% step %}
+
+#### Add views for multi-step flows
+
+Use **Add View** when the widget needs more than one screen.
+
+This is useful for flows like form → thank you, or rating → feedback.
+{% endstep %}
+
+{% step %}
+
+#### Add identifiers and actions
+
+Give key elements clear identifiers before you configure actions.
+
+Then assign actions to buttons or images if needed.
+{% endstep %}
+{% endstepper %}
+
+### Understand the editor
+
+The builder has four main areas:
+
+* **Left panel:** available elements
+* **Canvas:** the widget preview and layout area
+* **Right panel:** styling and settings for the selected element
+* **More menu:** move, duplicate, or open advanced HTML settings
+
+<figure><img src="/files/MZBFJknKg72UaN5WqdvR" alt="" width="563"><figcaption><p>Widget builder</p></figcaption></figure>
+
+### View settings
+
+Before adding content, define the main style of the widget.
+
+Use **View Settings** to control:
+
+* width
+* border radius
+* background color
+* border width
+* border color
+
+These settings affect the overall container, not just a single element.
+
+<figure><img src="/files/iBfUGruJCgOAjUdka8ra" alt="" width="563"><figcaption><p>View Settings</p></figcaption></figure>
+
+#### Use the right width
+
+In web widgets, the same view settings are applied across mobile, tablet, and desktop previews. Incorrect width values can distort the layout on smaller screens.
+
+For a stable layout, set the widget width to **250 px**.
+
+<figure><img src="/files/7WTnHJmaBvPiPorA6Kwo" alt=""><figcaption></figcaption></figure>
+
+### Widget Background Image
+
+The Widget/HTML Builder supports adding text directly to uploaded images.
+
+Upload an image as an asset, place text on top of it, and customize basic styling options such as position, color, font size, and alignment.
+
+<figure><img src="/files/Jocu3ZxCNU3ZATyJ5DWt" alt="" width="563"><figcaption><p>Add text directly to uploaded images</p></figcaption></figure>
+
+### Add and manage elements
+
+You can add elements in two ways:
+
+* drag and drop from the left panel
+* use the **+** button and place the element to the left or right
+
+Start with the essentials. Then refine the design.
+
+Common element groups:
+
+* content: text, image, GIF, video
+* form: input, text area, checkbox, radio button, select box
+* action: button, copy button, countdown
+* feedback: rating, emoji feedback, slider feedback
+
+For the full list and best use cases, see [Widget Elements Reference](/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/widget-elements-reference.md).
+
+### Edit a selected element
+
+When you select an element, the right panel shows its available settings.
+
+Common controls include:
+
+* spacing
+* border
+* corners
+* text
+* shadow
+* display
+* position
+* effects
+
+<figure><img src="/files/83uDwke4FBRcQX5dWVP0" alt="" width="563"><figcaption><p>Element settings</p></figcaption></figure>
+
+### Use the more menu
+
+Click the three-dot menu on an element when you need quick layout actions.
+
+Available actions:
+
+* **Move Up**
+* **Move Down**
+* **Duplicate**
+* **HTML**
+
+Use **HTML** only when the visual editor is not enough for the layout you want.
+
+<figure><img src="/files/70bJ7d4qqqffXC3aw7Q2" alt="Configuring HTML settings" width="563"><figcaption><p>More menu</p></figcaption></figure>
+
+<figure><img src="/files/MrNhTWkzR8fncTtfwYsR" alt="" width="563"><figcaption><p>HTML settings</p></figcaption></figure>
+
+### Work with multiple views
+
+Use **Add View** to build multi-step widgets.
+
+Examples:
+
+* form → success screen
+* rating → feedback form
+* offer → coupon reveal
+
+Keep each view focused on one step.
+
+<figure><img src="/files/Fat1EvNLgTt9qxQM6wkX" alt="" width="563"><figcaption><p>Add View</p></figcaption></figure>
+
+### Identifiers
+
+Each element has an identifier code.
+
+Identifiers are important for:
+
+* tracking
+* click actions
+* action conditions
+* analysis
+
+Use short and clear names instead of random defaults.
+
+Good examples:
+
+* `submit_button`
+* `email_input`
+* `rating_score`
+* `hero_image`
+
+{% hint style="info" %}
+Set identifiers before you configure actions. This makes the setup much easier to manage later.
+{% endhint %}
+
+### Actions and validations
+
+This page focuses on layout and structure.
+
+Use separate setup pages for behavior:
+
+* [Assign Click Actions](/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/assign-click-actions.md) for button and image actions
+* [Widget Elements Reference](/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/widget-elements-reference.md) for element-specific guidance
+
+In practice:
+
+* use this page to build the widget
+* use identifiers to prepare logic
+* add actions after the structure is ready
+
+### Best practices
+
+{% hint style="success" %}
+
+#### Keep widgets readable
+
+* Start with one goal per widget.
+* Use fewer elements when possible.
+* Keep text short.
+* Use consistent spacing.
+* Preview on both mobile and desktop.
+* Create extra views only when the flow needs them.
+  {% endhint %}
+
+### What to do next
+
+After you finish the layout:
+
+1. review identifiers
+2. assign click actions to buttons or images
+3. preview each view
+4. save the widget
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/create/customize-components.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

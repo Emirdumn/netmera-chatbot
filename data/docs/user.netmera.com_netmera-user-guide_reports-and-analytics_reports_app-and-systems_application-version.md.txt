@@ -1,0 +1,72 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/app-and-systems/application-version.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/app-and-systems/application-version.md).
+
+# Application Version
+
+**Path:** `Reports > App & Systems > Application Version`
+
+Application Version shows how users and devices are distributed across app versions. It also adds activity metrics, so you can understand not only which versions are installed, but which versions are actually in use.
+
+Use this report when you want to answer questions such as:
+
+* Is the latest release being adopted?
+* Are older versions still heavily active?
+* Is installation spread matching actual usage?
+
+### Report overview
+
+This report is especially useful after a release. It helps you track rollout progress, adoption gaps, and the active footprint of older versions across both iOS and Android.
+
+At the top of the page, you can quickly identify the most common version on each platform:
+
+* **Top iOS Version** shows the most frequently used version on iOS devices.
+* **Top Android Version** shows the most frequently used version on Android devices.
+
+<figure><img src="/files/1Dhgd7Tb9X2N9dVVO39M" alt="" width="563"><figcaption></figcaption></figure>
+
+### Core metrics
+
+* **Percentage (%)** shows the share of users who have a specific app version installed. This value appears on the dashboard.
+* **Device Count** shows how many devices have that version installed.
+* **User Count** shows how many unique users have that version on at least one device.
+* **Daily Active Devices** shows how many devices running that version opened the app on the previous day.
+* **Daily Active Users** shows how many unique users opened the app on the previous day using at least one device running that version.
+
+Together, these metrics show whether a version is merely installed or actively used. A version can have a large installed base but low daily activity, which may point to dormant users or incomplete migration to the latest release.
+
+<figure><img src="/files/vWtS0cyrEPI9x0DklKDD" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+**User Count** is calculated on a unique user basis. If a user has multiple devices and at least one runs the selected version, that user is counted once.
+{% endhint %}
+
+### Version details page
+
+When you click a specific version, the detail page opens with the same counting logic as the main dashboard. This keeps the numbers consistent while giving you a closer look at one release.
+
+Use the detail page when one version needs investigation. For example, you may want to confirm whether an old release still has too many active users or whether a new version is being adopted as expected.
+
+<figure><img src="/files/iOIQHuc18Z061lrIlyTJ" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/app-and-systems/application-version.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

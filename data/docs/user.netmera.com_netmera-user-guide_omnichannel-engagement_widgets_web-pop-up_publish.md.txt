@@ -1,0 +1,241 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/publish.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/publish.md).
+
+# Publish
+
+{% hint style="info" %}
+**Quick Steps Guidelines**
+
+&#x20;**Web Tools > Widget > Publish Widget**
+
+1. Choose your widget and name it on **Setup**.
+2. Decide on your [#triggers](#triggers "mention") and [#filters](#filters "mention") and [#advanced-show-settings](#advanced-show-settings "mention") for your widget on **Rules**.
+3. Define your widget's location on your web page on page **Design**.
+4. After checking all the information, Preview or Launch your widget on **GO**!
+   {% endhint %}
+
+{% @arcade/embed flowId="cZ9R6yEXsEmLZVGfLOoq" url="<https://app.arcade.software/share/cZ9R6yEXsEmLZVGfLOoq>" %}
+
+## Step 1: Setup
+
+In this step, you will select the specific widget you want to publish from your available options. You can choose from the widgets you have created or pre-designed templates. Once you have selected the widget, give it a meaningful name that helps you identify and manage it within your web tools. This name can be based on the purpose of the widget or any other relevant criteria.
+
+<figure><img src="/files/IGwA6B32lW1jkqxWH00p" alt=""><figcaption><p>Setup</p></figcaption></figure>
+
+## Step 2: Rules
+
+**Triggers and filters** determine when and under what conditions your widget will be displayed to your website visitors. In this step, you will configure the rules that govern when the widget should appear. Triggers can be based on user actions, such as scrolling, clicking, or time spent on the page. Filters allow you to target specific segments of your audience based on criteria like location, device type, or referral source.
+
+<figure><img src="/files/TJOMNyUjPbHBXMiz4yDE" alt=""><figcaption><p>Exit Intent Trigger</p></figcaption></figure>
+
+{% hint style="info" %}
+**Example:**
+
+You might set the trigger for the widget to appear when a visitor spends a certain amount of time on your website and filters it to target visitors from specific geographic regions.
+{% endhint %}
+
+<figure><img src="/files/dvdAMFbTOqmE1oQBLX10" alt=""><figcaption><p>Rules</p></figcaption></figure>
+
+### Triggers and Filters
+
+{% tabs %}
+{% tab title="Triggers" %}
+Triggers define when to show Web App Widget on page. **You may add more than one trigger and create a specific group of trigger for your widgets.** Here are the different trigger options available for Web App Widgets:
+
+1. **Scroll**: The scroll trigger allows you to control **when the web app widget is displayed based on the user's scrolling behavior.** You can specify a scroll ratio, such as 50% or 75%, and when the user scrolls beyond that ratio on the page, the widget will be triggered and shown. This trigger is particularly useful when you want to engage users who have shown a certain level of interest or engagement with your content.
+
+<figure><img src="/files/gbHQRdZHBtu9jZ7JStXX" alt="" width="347"><figcaption></figcaption></figure>
+
+2. **Click Selector**: The click selector trigger gives you the ability to display the web app widget **when a specific element on the page is clicked by the user**. You can identify the element using its CSS selector, which allows for precise targeting. For example, you can set a trigger for when a **"Buy Now"** button or a specific image is clicked. This trigger is effective for capturing user intent and offering relevant information or assistance at the moment of interaction.
+
+{% hint style="warning" %}
+**Selector**: It defines clicked element's class name and works with contain operator. If you want to select with ID you can start '#' and with class you can start '.'
+{% endhint %}
+
+<figure><img src="/files/onL4z0jx9bCoBMvfPpfe" alt="" width="375"><figcaption></figcaption></figure>
+
+3. **Page View**: The page view trigger enables you to show the web app widget **when the user visits a particular page or a set of pages**. This trigger is useful for delivering contextual information or promotions based on the specific content the user is viewing. For example, you can display a widget offering a discount on **related products** when a user visits a product detail page. It allows you to provide targeted messaging based on the user's browsing context.
+
+<figure><img src="/files/ASVj60gqRjqzY5LpIpXK" alt="" width="375"><figcaption></figcaption></figure>
+
+4. **Exit Intent**: The exit intent trigger is **designed to capture the user's intention to leave the web page.** It detects when the user's cursor moves towards the browser's close button or when they navigate to another tab. By triggering the web app widget at this critical moment, you have an opportunity to offer incentives, additional information, or personalized recommendations to encourage the user to stay or complete an action before leaving.
+
+<figure><img src="/files/K0nI5MtskcahE2ZVopyZ" alt="" width="375"><figcaption></figcaption></figure>
+
+<figure><img src="/files/YiUdz9sL7i0cnzxCNV5w" alt=""><figcaption><p>Exit Intend Widget</p></figcaption></figure>
+
+5. **Widget Shown**: The widget shown trigger allows you to **display the web app widget after a specific widget**, chosen from the available widgets, has already been shown to the user. This trigger is useful for creating **sequential or follow-up interactions**. For instance, you can present a survey or feedback widget after the user has interacted with a support widget. It enables you to guide users through a predefined flow and provide a seamless user experience.
+
+<figure><img src="/files/3G0POuVrGwSFKMGEgEXA" alt="" width="375"><figcaption></figcaption></figure>
+
+6. **Netmera Event**: The Netmera event trigger offers a **versatile way to display the web app widget based on specific events tracked by Netmera.** You can define the event name, attributes, operators, and values to trigger the widget when the desired event occurs. This trigger can be used to engage users based on their **interactions, preferences, or custom-defined events.** For example, you can trigger a widget to offer personalized recommendations based on a user's purchase history or trigger a widget when a specific action is performed within the app.
+
+<figure><img src="/files/MytpRJJXJZdPmF70Iydv" alt="" width="356"><figcaption></figcaption></figure>
+
+By leveraging these trigger options, you can tailor the display of your web app widget to specific user behaviors, interactions, or events. This level of customization and contextual targeting enhances the user experience, increases engagement, and maximizes the impact of your web app widgets.
+{% endtab %}
+
+{% tab title="Filters" %}
+Filters allow you to refine and limit the users to whom the widget will be shown. **You may add more than one filter and create a specific target group for your widgets.** Here are the different filter options available for Web App Widgets:
+
+1. **Time spent on site**: The time spent on site filter enables you to target users based on the duration they have spent on your website. You can set a minimum time threshold in **seconds**, ensuring that the widget is displayed to users who have spent a specific amount of time on your site. This filter is useful for engaging users who have shown a certain level of interest or engagement with your content.
+
+<figure><img src="/files/GaSiAsxcHAUr4eKvIE5Q" alt="" width="375"><figcaption></figcaption></figure>
+
+2. **Source URL**: The source URL filter allows you to target users based on **the source from which they arrived at your website.** You can specify the medium, source, and campaign parameters to define the exact source URLs that should trigger the widget. This filter is helpful when you want to provide specific messaging or offers to users coming from different marketing channels or campaigns.
+
+<figure><img src="/files/FlSRamUEGsntSpfw8HlU" alt="" width="375"><figcaption></figcaption></figure>
+
+3. **Browser**: The browser filter enables you to target users based on the web browser they are using. You can select specific browsers such as **Chrome, Safari, Firefox, Edge, Opera, or other browsers.** This filter is beneficial when you want to customize the widget experience based on browser compatibility or specific browser-related features.
+
+<figure><img src="/files/a6kc16gX4yzAct1LLmTY" alt="" width="349"><figcaption></figcaption></figure>
+
+4. **Device Type**: The device type filter allows you to target users based on the type of device they are using, as **desktop, mobile, or tablet**. By selecting the desired device type, you can ensure that the widget is displayed optimally on the user's device, providing a seamless and tailored experience.
+
+<figure><img src="/files/o9QdgC7zuEFOksJxG2C5" alt="" width="351"><figcaption></figcaption></figure>
+
+5. **Operating System**: The operating system filter enables you to target users based on the operating system of their device. You can choose from options like **Windows, MacOS, iOS, Android, or others.** This filter is valuable when you want to provide OS-specific instructions, promotions, or features through the widget.
+
+<figure><img src="/files/eEY88YEeKYEYHWh5uPD5" alt="" width="352"><figcaption></figcaption></figure>
+
+6. **Cookie**: The cookie filter allows you to target users based on **specific cookie values**. You can define the cookie name and value to display the widget to users **who have a matching cookie set on their devices.** This filter is useful for personalized targeting and ensuring that the widget is shown to users with specific attributes or preferences.
+
+<figure><img src="/files/OHoeVArv01aZlsqOXRju" alt="" width="375"><figcaption></figcaption></figure>
+
+7. **Screen Width**: The screen width filter allows you to target users based on the width of their device's screen. You can set a **minimum and maximum screen width value**, ensuring that the widget is displayed optimally on devices within the specified range. This filter is beneficial for delivering a responsive and user-friendly widget experience across different screen sizes.
+
+<figure><img src="/files/rRnVSJVTH0aHi6zI3HIf" alt="" width="375"><figcaption></figcaption></figure>
+
+8. **Location**: The location filter enables you to **target users based on their geographic location.** You can specify the desired location or a range of locations, ensuring that the widget is shown only to users from those specific regions. This filter is valuable when you want to provide location-specific offers, promotions, or localized content through the widget.
+
+<figure><img src="/files/DtwqdASLvfw2gjmJDiI0" alt="" width="357"><figcaption></figcaption></figure>
+
+9. **Segment**: The segment filter allows you to target users who belong to specific segments defined within your Netmera account. You can select the desired segment(s) to ensure that the widget is shown to users who meet the defined segmentation criteria. This filter is useful for delivering personalized messaging or offers based on user attributes, behaviors, or preferences.
+
+<figure><img src="/files/NdqmKOqkEGSJGm9NpZqx" alt="" width="375"><figcaption></figcaption></figure>
+
+10. **Tag**: The tag filter enables you to target users based **on the presence or absence of specific tags assigned to them within your Netmera account.** You can select the desired tag(s) and define whether the widget should be shown to users who have the tag(s) or do not have the tag(s). This filter is helpful for targeting users with specific attributes or interests.
+
+<figure><img src="/files/I1YnZXL4rprQeLdpl3w8" alt="" width="375"><figcaption></figcaption></figure>
+
+By utilizing these filter options, you can precisely define the audience for your Web App Widget, ensuring that it is displayed to the most relevant users based on their behaviors, preferences, location, and other. **You may add more than one filter and create a specific target group for your widgets.**
+{% endtab %}
+{% endtabs %}
+
+### Advanced Show Settings
+
+Advanced Show Settings provide you with enhanced control over the display timing and duration of your Web App Widget, allowing for a more tailored and effective user experience. With these settings, you can customize when and how your personalization appears to users.
+
+1. **Show Instantly:** This option enables your personalization to be displayed **immediately** when the webpage loads. It ensures that users see the widget without any delay, maximizing visibility and interaction.
+2. **Show Later:** This feature allows you to introduce the personalization after a specific time delay, enhancing the user experience by providing them with an opportunity to explore the webpage before encountering the customized content. You have the flexibility to determine when the Web App Widget should **disappear** from the user's screen. By setting a **hide** delay of, for instance, 20 seconds, the widget will automatically disappear after being displayed for 20 seconds. This feature can be useful in scenarios where you want to provide a brief and targeted message without causing any disruption to the user's browsing experience.
+
+<figure><img src="/files/8F1r8EGwlLVclbYFiTSb" alt=""><figcaption></figcaption></figure>
+
+3. **Schedule:** The Schedule option enables you to **set a specific start and end date** for the display of your personalization. This is particularly useful when you want to run campaigns or promotions for a limited period. By defining the start and end dates, you can ensure that the widget is only displayed during the desired timeframe.
+4. **Enable custom tag firing scheduled:** If you want to schedule the display of your personalization based on custom tags, this option allows you to do so. You can define specific tags and associate them with start and end dates. The widget will be triggered according to the presence of these tags and the scheduled timeframe.
+5. **Start/End:** With the start/end date settings, you can define the date and time when the personalization should begin and end appearing to users. This ensures that your campaign or message is launched and stopped at the correct time.
+
+<figure><img src="/files/CJ3prjyGIk2sa0sNkBnp" alt=""><figcaption><p>Advanced Show Settings</p></figcaption></figure>
+
+### Eligibility Type: Multiple Scenario with an Example
+
+<figure><img src="/files/4MsaAvhzU6GPT8urofgy" alt=""><figcaption><p>Example</p></figcaption></figure>
+
+**Lock Duration**
+
+After the widget is displayed to a user, there is a **cool-down period** (lock duration) during which the widget will not be shown to the same user again. This prevents overexposure in a short timeframe.
+
+* In the example, **once the widget is shown to a user**, it will not be shown again to the same user for at least **1 week**.
+* If a user sees the widget on January 1st, they cannot see it again until **January 8th or later.**
+
+#### **Show Limit**
+
+The widget has a maximum number of times it can be shown to a user. Once this limit is reached, the widget will no longer appear to the same user, even if other conditions allow it.
+
+* In the example, the widget can be shown **only 2 times in total** to the same user.
+* This is the **absolute limit**, regardless of the time interval.
+
+#### **Limit Time Period**
+
+The maximum display limit applies within a specific time window. If the user reaches the display limit within this period, the widget will not be shown again until the time period resets.
+
+* In the example, the maximum of **2 shows** is constrained to a **2-month period**.
+* If a user has already seen the widget **2 times within a 2-month window**, it will no longer be shown, even if the lock duration has passed.
+
+#### How These Rules Work Together
+
+The rules are combined in the following way:
+
+1. A user can see the widget **at most twice** within a **2-month period (limit time period).**
+2. After each time the widget is shown, there is a **1-week lock period (lock duration)** before it can be shown again.
+3. Once the user has seen the widget **2 times in total (show limit)**, they will no longer see it until the 2-month time frame resets.
+
+#### Real-World Scenario
+
+{% stepper %}
+{% step %}
+**A user first sees the widget on January 1st.**
+
+After this, the widget is locked for 1 week and cannot appear again until January 8th.
+{% endstep %}
+
+{% step %}
+**The user sees the widget again on January 15th.**
+
+This is their second and final allowed view within the 2-month period.
+{% endstep %}
+
+{% step %}
+**After January 15th, the widget will not be shown again until March 1st.**
+
+&#x20;The widget will be eligible to be shown when the 2-month time frame (from January 1st) resets.
+{% endstep %}
+{% endstepper %}
+
+## Step 3: Design
+
+In this step, you will determine where exactly on your web page the widget should be displayed. You can choose from various placement options, such as top bar, bottom bar, sidebar, or as a center element. The placement will depend on your website layout and the visibility you want to give to the widget.
+
+{% hint style="info" %}
+**Tip**:\
+If you want to draw immediate attention to the discount offer, you might choose to display the widget as a center placement.&#x20;
+{% endhint %}
+
+<figure><img src="/files/KuofDeczRnYDP7B01H9Y" alt=""><figcaption><p>SDesign</p></figcaption></figure>
+
+## Step 4: Go
+
+After checking all the information, **Preview** or **Launch** your widget on GO!: Before making your widget live on your website, it's essential to review all the settings and configurations you have made. Double-check the triggers, filters, and placement to ensure they align with your intended goals. You can preview the widget to see how it will appear to your website visitors and make any necessary adjustments. Once you are satisfied with the setup, you can click on the "Launch" button to make the widget active on your website.
+
+<figure><img src="/files/wZtKMLdFbOAPGKp413jP" alt=""><figcaption><p>Go</p></figcaption></figure>
+
+{% hint style="info" %}
+**Tip:**
+
+After previewing the widget, if you notice that the positioning is covering some important content on your website you can go back to the design step and choose a different placement option or adjust the widget's dimensions to avoid obstructing essential information.
+{% endhint %}
+
+Publishing your widget through these steps allows you to customize its appearance, triggers, and filters to deliver a personalized and targeted experience to your website visitors. It helps you engage with your audience, promote special offers, collect feedback, and achieve various marketing and conversion goals.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/web-pop-up/publish.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

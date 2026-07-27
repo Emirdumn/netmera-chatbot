@@ -1,0 +1,126 @@
+URL: https://user.netmera.com/netmera-user-guide/targeting/tags.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/targeting/tags.md).
+
+# Tags
+
+### Basics of Tags
+
+In Netmera, tagging your audience means labeling or categorizing users based on shared characteristics or interests.
+
+Tags help you create more personalized and targeted communication. For example, you can tag users who are interested in a specific product and send them relevant updates or offers. This makes it easier to tailor your messages to different audience groups.
+
+<figure><img src="/files/HE2KxVHuHFPgQ6AQaItO" alt="" width="375"><figcaption></figcaption></figure>
+
+### Tags Dashboard
+
+**Targeting > Tags**
+
+1. To review your tags and their details, go to **Targeting** and select **Tags**.
+2. In the **Tags Dashboard**, you will find a list of your created tags. Each tag includes:
+   * **User Count**: This indicates the number of users associated with the tag.
+   * **Created Date**: This shows when the tag was initially created.
+   * **Updated Date**: This displays the last date when the tag was modified.
+   * **Tag Status**: The status indicates whether the tag is ready or not.
+3. Under each tag, you will see an **Actions** button. Here are the available actions:
+   * **Delete**: Use this option to remove the tag if it's no longer needed or relevant.
+   * **Send Message to Tag**: If you want to send a message or campaign to users associated with a specific tag, this action enables you to do so.
+   * **Export**: This action allows you to export user data associated with the tag. You can select the format in which you want to export the data, such as **\*.csv or \*.xlsx.**
+
+<figure><img src="/files/aPwsxZ5B8fIdygx3C1c1" alt=""><figcaption></figcaption></figure>
+
+The **Tags Dashboard** gives you a central place to review and manage the tags you create for your omnichannel customer engagement strategy.
+
+### Upload a New Tag
+
+**Targeting -> Tags -> Upload & Tag Users**
+
+To upload your user list, go to **Targeting > Tags**. Select **Upload & Tag Users**, then provide a name for the tag that will be assigned to your list. Choose the **.csv** or **.txt** file you want to upload, and make sure each line contains a single user identifier.
+
+{% hint style="info" %}
+**Example:**
+
+For example, you want to target a specific group of customers who have made a purchase in the past six months. For this, you navigate to the targeting tab and choose Tags. Then, you select **Upload & Tag Users a**nd upload a list of customer IDs in a **.csv** file. Later, you can assign a **name** to the tag, such as **"Recent Purchasers"** and apply it to a marketing campaign targeted to that specific audience.
+{% endhint %}
+
+<figure><img src="/files/T3m1xZcxh3d23kL6gOpS" alt="" width="563"><figcaption><p>Upload User List</p></figcaption></figure>
+
+### How to Tag an Audience in Netmera Panel
+
+#### Step 1: Navigate to Campaign Reports
+
+To tag an audience in the Netmera panel, first navigate to **Campaign Reports**. This step gives you access to the campaign data you need for tagging.
+
+1. Go to the **Campaign Reports** section in the Netmera panel.
+2. Click your target campaign and scroll down to the **Performance** section.
+3. Open **Campaign Reports** to access your campaign data and reports.
+
+<figure><img src="/files/k8liP6tktda1bqt7Ijlr" alt=""><figcaption></figcaption></figure>
+
+#### Step 2: Click the 🔁 button
+
+In this step, use the **🔁** button to manage user selection based on specific criteria.
+
+1. In **Campaign Reports**, select the campaign for which you want to tag your audience.
+2. Click the **🔁** button to start the tagging process.
+3. You may see a summary such as **"You selected users who received the message..."**
+
+<figure><img src="/files/gqSItCqrkchG0av8G95O" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Step 3: Choose your Action
+
+After selecting the users who received the **Netmera** message, choose the action you want to take.
+
+**Start Tagging**
+
+If you want to apply tags to the users who received the message, select **Start Tagging**. This lets you categorize these users for future engagement or analysis.
+
+* Enter a name for your tag and continue by clicking **Start Tagging**.
+
+After tagging your audience, you will be directed to the **Tags** dashboard. There, you can find the created tag with details such as user count, created date, updated date, and status. In the **Actions** button, you can find **Delete**, **Send Message to Tag**, and **Export**.
+
+<figure><img src="/files/Inxe5J8E3BBlONbMHZ0S" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="/files/8d4MYtP9zkjiXn8VQdgR" alt="" width="184"><figcaption></figcaption></figure>
+
+**Create New Campaign**
+
+If you want to create a new campaign for users who **received** or **clicked** your message, choose **Create New Campaign**. This lets you set up a follow-up campaign for this audience.
+
+<figure><img src="/files/qJBFLIKilbvrQzM8VALl" alt=""><figcaption></figcaption></figure>
+
+**Export**
+
+If you need to export the list of users who received the **Netmera** message for external use or analysis, select **Export**. This allows you to export the selected users' information, including:
+
+**Export Information: External ID, Email, MSISDN,** and **Mobile Advertiser ID.**
+
+**Export Format:** \*.csv or \*.xlsx format depending on your needs.
+
+Select the action that matches your goal for engaging with this audience.
+
+***
+
+These are the main details about **Tags**. Tags provide a structured way to categorize your audience based on shared interests, behaviors, or attributes. To continue, see the next article on **Segments**.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/targeting/tags.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,209 @@
+URL: https://user.netmera.com/netmera-user-guide/ai-features/connect-netmera-to-claude.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/ai-features/connect-netmera-to-claude.md).
+
+# Connect Netmera to Claude
+
+Connect Claude to Netmera and turn campaign questions into faster answers.
+
+Instead of switching between reports, segments, and dashboards, you can ask Claude for the insight you need and get a readable answer back quickly.
+
+### What marketers can do with it
+
+Once connected, Claude can help you:
+
+* review campaign performance without building each report manually,
+* compare channels, audiences, and conversion trends faster,
+* inspect user activity, events, and message history,
+* and prepare summaries your team can share or act on.
+
+Common marketing prompts:
+
+* “Analyze push campaign performance for the last 30 days.”
+* “Compare email and SMS engagement for last week.”
+* “Show campaigns with the highest click-through rate this month.”
+* “Summarize last week's engagement metrics for my team.”
+* “Create a dashboard for active campaigns.”
+
+### How Claude connects to Netmera
+
+Netmera MCP connects Claude to your Netmera app through a secure MCP connection.
+
+That lets Claude retrieve permitted data, compare results, and generate readable summaries from your Netmera workspace.
+
+#### Supported Platforms
+
+This setup works for both:
+
+* Claude Desktop
+* Claude.ai web application
+
+### Integration Steps
+
+{% stepper %}
+{% step %}
+
+#### Step 1: Click Customize From the Sidebar
+
+In Claude Desktop or Claude.ai, click Customize from the sidebar.
+
+<figure><img src="/files/wkPEbYUwyNHPbdKeE1Up" alt="" width="268"><figcaption><p>Click Customize from the sidebar</p></figcaption></figure>
+
+**Alternative Path: Open the Settings Menu**
+
+In Claude Desktop or Claude.ai, click your profile name located in the bottom-right corner. From the opened menu, select **Settings**.
+
+<div align="center"><figure><img src="/files/raEWow8LlFgXLKcK1vZ5" alt="" width="269"><figcaption><p>Click your profile name and select Settings from the opened menu</p></figcaption></figure></div>
+{% endstep %}
+
+{% step %}
+
+#### Step 2: Click Connectors from the Opened Tab
+
+<figure><img src="/files/SaxsfQ0i2QZEmCoCvMlM" alt="" width="285"><figcaption><p>Click Connectors from the opened tab</p></figcaption></figure>
+
+**Alternative Path: Go to the Connectors Page**
+
+In the Settings screen, click the **Connectors** tab.
+
+{% hint style="info" %}
+Alternative path: **Settings > Connectors > Customize**
+{% endhint %}
+
+<div align="center"><figure><img src="/files/7WoC7XIJSdqbVHKdpRgE" alt="" width="222"><figcaption><p>Select Connectors from Settings Page<br>in the desktop application</p></figcaption></figure></div>
+
+**Alternative Path: Switch to Customize Mode**
+
+On the Connectors page, click the **Customize** link.
+
+This step works the same way for both the desktop and web applications.
+
+<figure><img src="/files/EiAl3TwlbCvqd4yooaOa" alt="" width="563"><figcaption><p>Click the Customize link on the Connectors page in the desktop application</p></figcaption></figure>
+{% endstep %}
+
+{% step %}
+
+#### Step 3: Add a Custom Connector
+
+After clicking Customize, click the **+** button located next to the **Connectors** title.
+
+From the opened menu, select **Add custom connector**.
+
+<figure><img src="/files/aASYgHnBsoEurOcq8mT6" alt=""><figcaption><p>Click the + button located next to the Connectors title and select Add custom connector from the open menu</p></figcaption></figure>
+{% endstep %}
+
+{% step %}
+
+#### Step 4: Enter the Netmera MCP Details
+
+<figure><img src="/files/pZIhnduyDwwLmqK7Eq7O" alt="" width="339"><figcaption><p>Enter the Name and Remote MCP Server URL</p></figcaption></figure>
+
+In the opened modal, enter the following information:
+
+#### Name
+
+```
+Netmera MCP
+```
+
+You may also use a different name if preferred.
+
+#### Remote MCP Server URL
+
+```
+https://ai.netmera.com/ai/mcp
+```
+
+{% hint style="warning" %}
+Enter the URL exactly as shown above. Make sure it starts with https\://
+{% endhint %}
+{% endstep %}
+
+{% step %}
+
+#### Step 5: Authenticate with the Netmera Panel
+
+After clicking **Connect**, the Netmera panel login page will open.
+
+Log in using your Netmera account credentials.
+
+<figure><img src="/files/laoG64b4GLBGlKU81LBX" alt="" width="563"><figcaption><p>Click Connect, the Netmera panel login page will open</p></figcaption></figure>
+
+<figure><img src="/files/FH0SQukyTve2uC4iPO3N" alt="" width="563"><figcaption><p>Log in using your Netmera account credentials</p></figcaption></figure>
+{% endstep %}
+
+{% step %}
+
+#### Step 6: Select an App Key
+
+After logging in, the App Key selection screen will appear.
+
+Select the App Key for the application you want to access.
+{% endstep %}
+
+{% step %}
+
+#### Step 7: Verify Your Email
+
+Enter the 6-digit verification code sent to the email address associated with your Claude account.
+
+Then click **Verify**.
+
+<figure><img src="/files/URatdiUaMUP7jz2A1slL" alt="" width="442"><figcaption><p>Verify your email account with verification code</p></figcaption></figure>
+{% endstep %}
+{% endstepper %}
+
+#### Setup Complete
+
+You can now use Netmera MCP directly from Claude.
+
+Claude can help you analyze Netmera data, generate reports, inspect campaign performance, and retrieve insights using natural language.
+
+### Frequently Asked Questions
+
+#### What should I do if the connection is disconnected?
+
+Go to:
+
+**Settings → Connectors → Netmera MCP**
+
+Then select **Reconnect**.
+
+#### What if I need access to multiple App Keys?
+
+You can reconnect using a different App Key whenever needed. Re-authentication may be required.
+
+#### Security Notes
+
+* Your Netmera account credentials are only shared with the Netmera panel authentication flow.
+* Claude can only access the App Key you selected during authentication.
+* You can remove the connection at any time from the Settings menu.
+
+{% hint style="success" %}
+
+### You are ready
+
+You can now use Claude and Netmera together through MCP integration.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/ai-features/connect-netmera-to-claude.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

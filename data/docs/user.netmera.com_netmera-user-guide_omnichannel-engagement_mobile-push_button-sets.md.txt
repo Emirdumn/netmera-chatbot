@@ -1,0 +1,84 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/button-sets.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/button-sets.md).
+
+# Button Sets
+
+{% hint style="info" %}
+**Quick Steps Guideline**
+
+Go to your Netmera Panel and click:
+
+**Settings >** **Button Sets >** **Create New Button Set**
+
+1. Go to the **Settings** section of Netmera. Click on **Button Sets** and then click **Create New Button Set**.
+2. Choose a name for your button set from the **Button Set Name** field.
+3. Enter an entry for your button in the **Button Text** field.
+4. Customize your Button according to your needs.
+5. Click on the **Add Button** button.
+   {% endhint %}
+
+{% @arcade/embed flowId="qDIkAkmn73itL79e4GJn" url="<https://app.arcade.software/share/qDIkAkmn73itL79e4GJn>" %}
+
+{% hint style="info" %}
+**Applying Destructive and Run application in features on iOS :**
+
+You can define the text displayed on the button, select an icon to appear on it (*Android only*), or display the button in red using the **Destructive** option (*iOS only*).\
+On iOS, you can also require users to unlock their device before opening the app with the button, decide whether the app opens in the **foreground** or **background** when clicked, and enable users to enter text through the **Button Behavior** option.
+{% endhint %}
+
+### Create New Button
+
+There are some additional features that you can use when creating buttons:
+
+{% hint style="warning" %}
+**Important Note**
+
+After you have created your button sets and clicked on **Create New Button**, for the final step you need to click on **Publish to Devices.** When you click on "Publish to Devices" it sends a silent push to your customers' devices for the button sets update.&#x20;
+{% endhint %}
+
+<table><thead><tr><th width="187.04638671875">Field</th><th width="384.3829345703125">Description</th><th>Platform </th></tr></thead><tbody><tr><td><strong>Button name</strong></td><td>This is the text that will be displayed on the button. </td><td>Android &#x26; iOS</td></tr><tr><td><strong>Button Icon</strong> </td><td>Allows you to select an icon to appear on the button</td><td>Android only</td></tr><tr><td><strong>Destructive</strong></td><td>Displays the button in red to indicate a destructive or critical action.</td><td>iOS only</td></tr><tr><td><strong>Authorization mode</strong> </td><td>Requires users to unlock their device before opening the app when they click the button.</td><td>iOS only</td></tr><tr><td><strong>Run application in</strong></td><td>Determines whether the app opens in the foreground or background when the button is clicked.</td><td>iOS only</td></tr><tr><td><strong>Button behaviour</strong></td><td>Allows the user to enter text by clicking the button.</td><td>iOS only</td></tr></tbody></table>
+
+If you want to remove a button from your button set, you can use the "**Remove Button from Button Set**" option.
+
+<figure><img src="/files/4YiVP1BG8bS31351RdKP" alt=""><figcaption><p>Button Sets</p></figcaption></figure>
+
+### Click Action
+
+After saving your button set, go to the What step while creating your notification. You will see that your previously created button sets are available for selection. Once selected, you can define the Click Action for each button. When creating a button in Netmera, you can choose from several actions depending on how you want the button to behave.&#x20;
+
+<table><thead><tr><th width="234.34454345703125">Action</th><th>Description</th></tr></thead><tbody><tr><td><strong>Open App Home Screen</strong> </td><td>Opens your app’s home screen when the button is clicked.</td></tr><tr><td><strong>Show Web Page</strong></td><td>Navigates the user to a specified URL.</td></tr><tr><td><strong>Go to Deep Link</strong> </td><td>Opens a specific location or content within the app via a deep link.</td></tr><tr><td><strong>Show Custom Page</strong></td><td>Opens a custom page created within the app</td></tr><tr><td><strong>Nothing</strong></td><td>No action occurs when the button is clicked</td></tr><tr><td><strong>Web Hook for Button Action</strong></td><td>Integrates the button with an external service using a webhook. Clicking the button triggers the webhook and executes the associated action.</td></tr><tr><td><strong>Set User Attribute or Tag</strong></td><td>Assigns a tag or attribute to the user when they click the button. This can later be used for targeting or segmentation. </td></tr></tbody></table>
+
+{% hint style="info" %}
+**Utilizing Show Custom Page and Set User Attribute or Tag features:**
+
+You can use the **Show Custom Page** option to create a custom page within your app that highlights sale items in a specific category.\
+When users click the button, they are directed to this page where they can browse the featured products.
+
+Additionally, the **Set User Attribute or Tag** option can be used to assign a tag to users when they click the button, indicating their interest in that particular product category.\
+This data can later be leveraged for targeted marketing and audience segmentation.
+{% endhint %}
+
+<figure><img src="/files/EV9hvfYJ5qeyCB7Xumub" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/button-sets.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

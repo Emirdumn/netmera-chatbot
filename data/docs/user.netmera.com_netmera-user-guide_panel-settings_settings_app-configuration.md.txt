@@ -1,0 +1,35 @@
+URL: https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration.md).
+
+# App Configuration
+
+Use **App Configuration** to manage how your app tracks behavior, handles links, delivers supporting experiences, and shares data with external systems.
+
+<figure><img src="/files/mni4H4JMsnGT4sHeolI5" alt=""><figcaption></figcaption></figure>
+
+### What you can configure
+
+<table data-view="cards"><thead><tr><th>What you can configure</th><th data-card-target data-type="content-ref">Open</th></tr></thead><tbody><tr><td>Create custom events, define attributes, and generate event code. Import event definitions between apps when needed.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/IUuxxgNFME45UjCE9CET">/spaces/X6uilbEAw42gqsudlclY/pages/IUuxxgNFME45UjCE9CET</a></td></tr><tr><td>Create push notification buttons and define tap actions. Configure labels, icons, and platform-specific behavior before publishing.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/in0WbxT23UGyabCsI3bk">/spaces/X6uilbEAw42gqsudlclY/pages/in0WbxT23UGyabCsI3bk</a></td></tr><tr><td>Create deferred links that route users to the right in-app destination after install. Support landing pages and review link performance.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/yTSuHsQjsxWQ6kN6DuEO">/spaces/X6uilbEAw42gqsudlclY/pages/yTSuHsQjsxWQ6kN6DuEO</a></td></tr><tr><td>Create and manage the landing pages users see before entering the app. Publish updates so the latest content becomes available.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/dIlmW4hzKoV51fYEZUqN">/spaces/X6uilbEAw42gqsudlclY/pages/dIlmW4hzKoV51fYEZUqN</a></td></tr><tr><td>Track Android app interactions through the SDK. Analyze app usage and support engagement workflows.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/9TP79Jv7dnUEkGziJzv4">/spaces/X6uilbEAw42gqsudlclY/pages/9TP79Jv7dnUEkGziJzv4</a></td></tr><tr><td>Capture screen views and user actions without manual tagging. Map flows, publish them, and use the results for analytics.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/612pXs97yAF9lfB6JF95">/spaces/X6uilbEAw42gqsudlclY/pages/612pXs97yAF9lfB6JF95</a></td></tr><tr><td>Send Netmera event data to external systems in real time. Trigger workflows or enrich external reporting as events occur.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/zZ1AWgZGknWctr31x4bI">/spaces/X6uilbEAw42gqsudlclY/pages/zZ1AWgZGknWctr31x4bI</a></td></tr><tr><td>Configure real-time analytics and report update intervals. Align reporting frequency with your monitoring needs.</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/DurNAPXAeXHdXU9OexhG">/spaces/X6uilbEAw42gqsudlclY/pages/DurNAPXAeXHdXU9OexhG</a></td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

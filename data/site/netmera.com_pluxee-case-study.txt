@@ -1,0 +1,415 @@
+URL: https://netmera.com/pluxee-case-study/
+
+Pluxee Case Study - Netmera - Mobile First Growth Platform
+
+AI did the predicting, and Journeys did the convincing. UPTION's churn fell 16.6%. →
+
+ 
+
+ 
+
+			Skip to content		
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Login
+
+Get a Demo
+
+    Copy .SVG
+  
+
+    Media Kit
+  
+
+    Newsroom
+  
+
+ 
+
+ 
+
+Success Story
+ 
+
+Pluxee accelerates lead generation with tailored web engagement elements
+ 
+
+Pop-up lead-to-MQL: 3.7%
+ 
+
+Netmera share of monthly target: 3%
+ 
+
+Custom, on-brand designs
+ 
+
+About Pluxee
+ 
+
+Pluxee
+ provides employee benefits and corporate rewards solutions to businesses. With buying decisions increasingly happening online, the company prioritizes engaging potential customers during their research phase and guides them toward partnerships.
+ 
+
+The challenge
+ 
+
+Pluxee’s website attracted substantial traffic. The team needed to instantly capture lead information and start sales conversations. The solution had to launch without manual effort, require zero developer time, and stay true to Pluxee’s brand identity.
+ 
+
+01
+ 
+
+Capturing qualified leads from anonymous traffic
+ 
+
+Companies visited Pluxee’s website to research employee benefits, and the team aimed to identify them to reach with personalized offers. This would create a more dynamic way to turn interest into meaningful outreach.
+ 
+
+How Pluxee solved it
+ 
+
+Their team worked with Netmera to design a custom web widget and banner that appeared strategically during
+ the user journey.
+ 
+
+ 
+
+These web personalization tools collected essential information in two steps: first gathering name, email, phone, and company details, then displaying a confirmation message. 
+“We’ve started working on the most suitable offer for you. We’ll get in touch soon.”
+Their team built, launched, and iterated on the entire experience independently, without waiting for developer availability.
+ 
+
+What changed
+ 
+
+Over three months, survey responses 
+converted at 3.7% into qualified leads,
+ providing a reliable flow for Pluxee’s sales pipeline. Each lead included complete contact information for immediate, personalized outreach.
+ 
+
+02
+ 
+
+Building a custom experience that feels authentic
+ 
+
+Pluxee set a high bar for a web experience that felt authentic and aligned with their brand. They chose an approach that supported deeper customization.
+ 
+
+How Pluxee solved it
+ 
+
+Pluxee requested a fully customized widget and banner design tailored to their specific needs. Netmera’s team created a bespoke solution that matched Pluxee’s brand identity, user experience requirements, and 
+data collection
+ goals.
+ 
+
+ 
+
+What changed
+ 
+
+“We knew our website traffic had potential, and we needed a more tailored approach to capture it
+. 
+ Working with Netmera’s team to design a custom web pop-up as well as a banner that matched our brand changed how visitors engaged with us. The forms collected information while feeling like a natural conversation.”
+ 
+
+ 
+
+Muhammed Yüksel
+ 
+
+Senior Digital Marketing Specialist
+ 
+
+Netmera’s engagement drove 
+3% of the monthly lead target
+, as users responded to an experience that felt personal and trustworthy. Each company shared complete information, reflecting the high level of personalization Pluxee offers.
+ 
+
+03
+ 
+
+Consolidating engagement without adding complexity
+ 
+
+Pluxee already relied on Netmera for email, transactional messages and campaigns across their mobile app. When the web lead capture need emerged, adding another vendor would have meant new contracts, separate dashboards, and fragmented customer data.
+ 
+
+How Pluxee solved it
+ 
+
+Pluxee expanded their existing Netmera implementation to include web engagement tools. The same platform managing their app messaging and email campaigns now powered their website lead capture. This kept all customer touchpoints unified under one system, with consistent data flowing into a single view.
+ 
+
+What changed
+ 
+
+Their team controlled web pop-ups, mobile notifications, and email from one interface. They avoided vendor sprawl, maintained data continuity across channels, and launched the web experience without delays or additional tool onboarding.
+ 
+
+The impact: Registration, redemption, and retention
+ 
+
+0
+
+%
+
+netmera share of monthly target
+ 
+
+0
+
+%
+
+pop-up lead-to-mql
+ 
+
+ 
+
+No coding, no IT
+ 
+
+ 
+
+Web, email, in-app messages
+ 
+
+Survey respondents converted to qualified leads 
+at around 3.7 percent.
+Netmera contributed roughly
+ 3 percent of the overall monthly lead target.
+Sustainable sales pipeline 
+with complete contact information for immediate outreach.
+Zero developer dependency 
+for launching and managing web engagement.
+One platform 
+for mobile, email, and web. 
+ 
+
+“Visitors fill out the pop-up in seconds, and we have everything we need to make the call. Plus, we didn’t need to add another tool since Netmera already handled our app and email.”
+ 
+
+ 
+
+Muhammed Yüksel
+ 
+
+Senior Digital Marketing Specialist
+ 
+
+ 
+
+ 
+
+Schedule a demo
+ to see how companies capture qualified leads from anonymous visitors without adding complexity.
+ 
+
+Check other stories
+ 
+
+Blog
+Tod Case Study
+Enable Now clicks lifted purchases ~190%. Ask Later users saw ~187% purchase growth.
+Read More
+Avis Case Study
+Avis Türkiye raised login conversion 350% and 28-day retention 5X with automated pushes and personalized app experiences.
+Read More
+DenizBank Super Limit Case Study
+DenizBank increased Super Limit applications from 34K to 357K and drove 7X loan disbursements with targeted in-app pop-ups.
+Read More
+ 
+
+ 
+
+Subscribe to our newsletter
+ 
+
+ 
+
+Products
+ 
+
+Customer Data Management
+
+Customer Journeys
+
+AI Site Search & Browse
+
+Web Personalization
+
+Testing and Experimentation
+
+Data & Analytics
+
+Tagless Data Capture
+
+Surveys & Feedback​
+
+Funnels
+
+Channels
+ 
+
+Mobile & Web Push
+
+E-Mail
+
+SMS
+
+Whatsapp
+
+Mobile In-App
+
+Web Pop-Ups
+
+Live Activities
+
+Feedback Button
+
+Netmera AI
+
+Industries
+ 
+
+Media and Entertainment
+
+Banking and Finance
+
+Retail and E-commerce
+
+Travel and Hospitality
+
+Telecommunication
+
+Company
+ 
+
+About Us
+
+Careers
+
+Contact Us
+
+Partners
+
+Why Netmera
+
+Newsroom
+
+Information for AI
+
+Resources
+ 
+
+Blog
+
+Glossary
+
+Top Use Cases
+
+Resources
+
+Success Stories
+
+Developer and User Guide
+
+ 
+
+© 2026 — 
+Netmera
+. All Rights Reserved.   |   
+Privacy Policy
+   |   
+Cookie Policy (EU)
+   |   
+GDPR
+   |   
+KVKK
+ 
+
+Linkedin
+
+ 
+
+Youtube
+
+ 
+
+ 
+
+ 
+
+Manage Cookie Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+						Always active					
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+
+Deny
+
+View preferences
+
+Save preferences
+
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent

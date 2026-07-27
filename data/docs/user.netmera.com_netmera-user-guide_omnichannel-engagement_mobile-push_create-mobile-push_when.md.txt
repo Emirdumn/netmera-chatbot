@@ -1,0 +1,86 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/when.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/when.md).
+
+# When
+
+{% @arcade/embed flowId="pvdJYktd0CJpN7JUwT6y" url="<https://app.arcade.software/share/pvdJYktd0CJpN7JUwT6y>" %}
+
+### Start Sending Messages
+
+Schedule your campaign to be sent immediately, at a specific time, or at the best time for each user.
+
+#### Now
+
+Sends your campaign instantly to all selected users.
+
+<figure><img src="/files/y6iBjmWPQAUGRvmnR63R" alt="" width="563"><figcaption><p>Step 4: When</p></figcaption></figure>
+
+#### On a specific time
+
+Schedule your campaign for a chosen date and hour. You can also enable Send based on user’s time zone to ensure each user receives it at the same local time.
+
+{% hint style="warning" %}
+**Send Based on User's Time Zone Configuration Details:**
+
+If on a specific time option is not selected, messages will be sent according to the system’s default time (**GMT+3**). You can use this for global launches or synchronized announcements that should reach all users simultaneously.
+{% endhint %}
+
+<figure><img src="/files/vjE6DSw97DMCn220kean" alt="" width="563"><figcaption><p>Send on a specific time</p></figcaption></figure>
+
+#### Send on best time for each user between
+
+Automatically delivers notifications at each user’s optimal engagement time based on their past activity. This lets the system automatically determine the **optimal delivery hour** for each user, based on their historical in-app activity. This option helps maximize engagement by sending notifications when users are statistically most active.
+
+> <mark style="color:$info;">For more details about how this feature works, see the</mark> [Best Time Delivery](/netmera-user-guide/ai-features/best-time-delivery.md) <mark style="color:$info;">section.</mark>
+
+<figure><img src="/files/NsnInVL12SOhf9SPI1Lj" alt="" width="563"><figcaption><p>Send on best time</p></figcaption></figure>
+
+### Delivery Speed
+
+Delivery Speed setting controls **how quickly your campaign is delivered** to your target audience. You can choose to send your push notification to **all users at once** or **in smaller packages** at defined time intervals. Using packages helps prevent server overload and ensures a smoother delivery experience,  especially for large audiences.
+
+{% hint style="info" %}
+**Example**
+
+Sending the notification to your entire user base simultaneously might cause heavy traffic or even server crashes. To prevent this, you can use the **Delivery Speed** tab to set a **package size** and **time interval** between batches — for example, sending the notification to 10,000 users every 10 minutes. This gradual rollout ensures stable performance while still reaching your full audience in a controlled and efficient way.
+{% endhint %}
+
+<figure><img src="/files/hKZdNZu6z78eSWMtKuKS" alt="" width="563"><figcaption><p>Delivery speed</p></figcaption></figure>
+
+#### Message expiry when not reached to client
+
+Set an expiration time for a push notification to control how long it stays valid for **delivery**. This is useful for time-sensitive campaigns where the message loses its relevance after a certain point. For instance, if you are using a **packaged delivery**, you can use this option to prevent messages from being delivered after a specific date and time.
+
+{% hint style="warning" %}
+Keep in mind that this setting applies to delivery only. It **won't remove a notification** that has already reached the user and appears in their notification center.
+{% endhint %}
+
+**Options**
+
+* **Never** — The message stays valid for delivery using the default period.
+* **Until a specific time** — The message can be delivered only until the selected date and time. After that time, any remaining undelivered messages expire and are no longer delivered.
+
+<figure><img src="/files/ozwzSd8R8JTGc6gg9X9d" alt="" width="563"><figcaption><p>Message expire time</p></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/when.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,114 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights/chart-types-and-display-settings.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights/chart-types-and-display-settings.md).
+
+# Chart Types and Display Settings
+
+Once an insight has data, the question shifts from what to measure to how to look at it. Insight Boards separates these cleanly: everything on this page is presentation. Chart types, time granularity, axis scale, and line style change how a result set is drawn, never what it contains, and they can be adjusted freely without touching the saved insight definition. The same controls appear in two places, the preview toolbar in the Insight Builder and the header of every board card, so the skills on this page apply both while building an insight and while living with it on a board.
+
+Throughout the page, the running example is the App Open Analytics insight from the previous pages: two event-count metrics, Open App and Install(First Open) App, over a 30-day range, totaling 950 opens and 13 first opens.
+
+### The Visualization Toolbar
+
+In the builder preview, the toolbar sits under the chart. From left to right it offers the chart type icons, the granularity presets, a clear control, the elapsed query time, the download icon, and the settings gear. On a board card, the chart type moves up into the card header as a dropdown, while granularity and settings remain with the chart. Wherever the control lives, its effect is the same, and on board cards every choice is per card: two cards showing the same insight can be drawn completely differently.
+
+### Chart Types
+
+Five types are available, and each is the right answer to a different question about the same numbers.
+
+#### Line
+
+The line chart is the default and plots each metric as a time series, one point per time bucket, connected and filled. It is the type to reach for when the question is about change: trends, spikes, dips, and rhythm. In the example, the daily line makes the weekly usage cycle immediately visible, with recurring peaks such as 17 Jun and 22 Jun rising above 100 opens while quiet days sit near single digits, and it shows at a glance that installs hold flat and low across the entire month.
+
+<figure><img src="/files/xPDUDyUm3SSBL6gxu6vK" alt=""><figcaption></figcaption></figure>
+
+#### Bar
+
+The bar chart draws the same buckets as vertical bars. Lines emphasize continuity; bars emphasize the buckets themselves, which makes day-against-day comparison easier and gives sparse data honest gaps instead of implying a curve through them. It is often the better choice for ranges with few buckets or for data where each interval is meaningfully separate, such as per-week totals.
+
+<figure><img src="/files/YTiUpHzhX8JMCbyMVzQk" alt=""><figcaption></figcaption></figure>
+
+#### Pie
+
+The pie view answers a share question rather than a trend question: of the period's total, how much did each time bucket contribute? Each interval in the range becomes a slice, with a chip legend listing the buckets and their colors, and hovering a slice shows the exact value in a tooltip, for example Count · Open App: 56 on 08 Jun. Pie is at its best over ranges with a modest number of buckets, where a handful of dominant slices tells the story; over long ranges at fine granularity the slices multiply and the view loses its point, which is a signal to coarsen the granularity or switch back to a time series.
+
+<figure><img src="/files/WGjjPTviiCnzu9tEKnM9" alt=""><figcaption></figcaption></figure>
+
+#### Number
+
+The number view removes the time dimension entirely and shows one large figure per metric, colored to match the metric, 950 in the Open App blue and 13 in the install green. This is the KPI view: it is the right type when the total is the message and the trend is somebody else's question, which makes it a natural fit for executive boards and for headline cards placed above detailed charts. Because the underlying insight is unchanged, a number card can be flipped back to a line at any time when the trend suddenly matters.
+
+<figure><img src="/files/W3IQ2Hspx1P8XIGasG1I" alt=""><figcaption></figcaption></figure>
+
+#### Table
+
+The table view lists the underlying values in rows, one per time bucket, with a column per metric. It trades the immediacy of a chart for precision and is the view to use when exact values need to be read, compared, or checked bucket by bucket. It also pairs naturally with the download action when the destination of the numbers is a spreadsheet or a report.
+
+<figure><img src="/files/vycusJVNA84E1WWSFHXu" alt=""><figcaption></figcaption></figure>
+
+### Time Granularity
+
+The granularity presets, **15m**, **30m**, **1h**, **4h**, **1d**, **1w**, and **1mo**, set the size of each time bucket that the chart draws. Granularity interacts with the date range: options that would produce an unreasonable number of buckets for the selected range are disabled. Over a 30-day range, 4h and coarser are selectable while minute-level buckets are grayed out; shrink the range to a day and the fine options open up.
+
+The choice is a trade between detail and readability. The daily view of the example averages each day into one point, which is ideal for spotting the monthly rhythm. Switching the same range to 4h multiplies the points sixfold and exposes what daily buckets hide: intraday structure, such as evening peaks and overnight troughs, and the true height of short-lived spikes. A burst of opens concentrated in a single evening reaches over 60 in one 4-hour bucket, while the daily view spreads it across the whole day. The cost is noise; finer buckets make the chart busier and small fluctuations more prominent.
+
+<figure><img src="/files/fT9l8gufmI2FgknC7dti" alt=""><figcaption></figcaption></figure>
+
+A practical rule: analyze at the granularity of the decision. Operational monitoring during a send wants hours or minutes; weekly reviews want days; quarterly views want weeks or months. When a spike appears at a coarse granularity, drilling one level finer is the fastest way to locate exactly when it happened.
+
+### Chart Settings
+
+The gear icon at the right end of the toolbar opens the display settings popover with two controls.
+
+#### Scale: Linear or Log
+
+**Scale** switches the vertical axis between **Linear** and **Log**. On a linear axis, equal distances mean equal amounts, which is the honest default for a single series or for series of similar size. It breaks down when metrics differ by orders of magnitude, exactly the situation in the running example: opens in the tens and hundreds against installs in single digits. On a linear axis the install series flattens into an unreadable line along zero. On a logarithmic axis, where equal distances mean equal ratios, both series occupy readable space, the axis stepping 0.1, 1, 10, and their relative movements can finally be compared.
+
+Log scale is the tool for exactly this case. Keep in mind that it changes how the chart reads: vertical gaps now express ratios rather than differences, so a series doubling looks the same whether it doubles from 1 to 2 or from 100 to 200. Use it when small and large series must share a chart, and return to linear when they do not.
+
+#### Line: Smooth, Straight, or Step
+
+**Line** controls how points are connected on line charts. **Smooth** draws curved interpolation, which reads pleasantly for dense, continuous data but can imply values between points that were never measured. **Straight** connects points directly and is the sober default for analytical reading. **Step** holds each value flat until the next bucket, which is the accurate rendering for quantities that change discretely and stay constant between changes.
+
+<figure><img src="/files/00DkOEWVw5IHa8D9Jb2U" alt=""><figcaption></figcaption></figure>
+
+### Downloading Chart Data
+
+The download icon next to the query time exports the data behind the current view. Use it to hand exact numbers to a report, continue analysis in a spreadsheet, or archive a snapshot of a period. The export reflects the insight's results; the chart type is only how those results were being drawn at the time.
+
+<figure><img src="/files/IlRYNzI98530wZehAPVe" alt=""><figcaption></figcaption></figure>
+
+### Choosing a View: A Short Decision Guide
+
+The five types and their settings cover distinct questions, and moving between them costs nothing:
+
+* Is it changing? Line, at the granularity of the decision.
+* How do individual periods compare? Bar.
+* Which periods contributed the most? Pie, at a coarse enough granularity to keep slices meaningful.
+* What is the total? Number.
+* What are the exact values? Table, with download for anything leaving Netmera.
+* Are a small series and a large series sharing a chart? Log scale.
+
+The next page moves from a single chart to the board as a whole: arranging cards, sizing them, setting per-card date ranges and refresh behavior, and managing boards over time.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/insights/chart-types-and-display-settings.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

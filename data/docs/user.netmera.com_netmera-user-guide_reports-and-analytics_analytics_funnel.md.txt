@@ -1,0 +1,45 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel.md).
+
+# Funnel
+
+**Path:** Analytics > Funnel
+
+Use this section to create funnels, review saved configurations, analyze conversion drop-off, and troubleshoot common issues. Choose the page that matches the task you want to complete.
+
+<figure><img src="/files/87CqIT8HpNSCQmlorxTy" alt=""><figcaption></figcaption></figure>
+
+<table data-view="cards"><thead><tr><th>Title</th><th data-card-target data-type="content-ref">Target</th></tr></thead><tbody><tr><td>Funnel Dashboard</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/nOtamRxm8isjHFUuE2vo">/spaces/X6uilbEAw42gqsudlclY/pages/nOtamRxm8isjHFUuE2vo</a></td></tr><tr><td>Create a Funnel</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/0WUKfuje7l8iV0jnZjgQ">/spaces/X6uilbEAw42gqsudlclY/pages/0WUKfuje7l8iV0jnZjgQ</a></td></tr><tr><td>Analyze a Funnel Report</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/dbAUj3PWqvECXNppuUT2">/spaces/X6uilbEAw42gqsudlclY/pages/dbAUj3PWqvECXNppuUT2</a></td></tr><tr><td>Troubleshoot Funnel Issues</td><td><a href="/spaces/X6uilbEAw42gqsudlclY/pages/S9XjJDgWQBt9MLBm0FhG">/spaces/X6uilbEAw42gqsudlclY/pages/S9XjJDgWQBt9MLBm0FhG</a></td></tr></tbody></table>
+
+### Recommended order
+
+Use these pages in this sequence when you are building a new funnel:
+
+1. Start with [Funnel Dashboard](/netmera-user-guide/reports-and-analytics/analytics/funnel/funnel-dashboard.md).
+2. Continue with [Create a Funnel](/netmera-user-guide/reports-and-analytics/analytics/funnel/create-a-funnel.md).
+3. Finish with [Analyze a Funnel Report](/netmera-user-guide/reports-and-analytics/analytics/funnel/analyze-a-funnel-report.md).
+
+If something does not behave as expected, use [Troubleshoot Funnel Issues](/netmera-user-guide/reports-and-analytics/analytics/funnel/troubleshoot-funnel-issues.md).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,198 @@
+URL: https://user.netmera.com/netmera-user-guide/messaging-features/ftp-push-and-imports.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/messaging-features/ftp-push-and-imports.md).
+
+# FTP Push and Imports
+
+Send push notifications and update user data on Netmera by dropping files on FTP.
+
+Use this when you want a simple, automated integration without API calls.
+
+### Before you start
+
+You need these in place:
+
+* FTP access enabled for your app by Netmera.
+* FTP credentials acquired.
+* If IP allowlisting is used, share your **public egress IP** with Netmera.
+
+If your goal is **report exports**, use the separate [Data Export](/netmera-user-guide/reports-and-analytics/reports/app-and-systems/data-export.md) module.
+
+### Send push notifications via FTP
+
+{% stepper %}
+{% step %}
+
+#### Enable FTP Push and get credentials
+
+Work with Netmera or your DevOps teams to access FTP features and get the FTP host, port, path, and credentials.
+{% endstep %}
+
+{% step %}
+
+#### Prepare the CSV file
+
+Create a **UTF-8** encoded CSV file. Use **semicolon (`;`)** as delimiter.
+
+Columns must be in this order:
+
+* `ExternalID`
+* `Text`
+* `Deeplink`
+
+Format per row:
+
+`ExternalID;Text;Deeplink`
+{% endstep %}
+
+{% step %}
+
+#### Upload the file to FTP
+
+Upload the CSV to the directory provided by DevOps.
+
+Netmera processes the file and sends the notifications.
+{% endstep %}
+{% endstepper %}
+
+{% hint style="warning" %}
+**Warning: FTP Push Notifications with Inbox Inclusion**
+
+All push notifications sent via FTP include the **Inbox** option by default. If your application does not have an Inbox feature, this will not affect you. However, if your application does have the Inbox feature, **notifications sent via FTP** **will also appear in the Inbox.**
+{% endhint %}
+
+{% hint style="info" %}
+**CSV rules**
+
+* Use **one push per line**.
+* Keep `;` out of the **Text** value.
+* Keep filenames unique (add timestamp).
+  {% endhint %}
+
+{% hint style="info" %}
+**Example rows**
+
+```
+12345;Welcome! Check out what’s new.;https://example.com/welcome
+67890;Exclusive offers for you.;https://example.com/offers
+```
+
+{% endhint %}
+
+{% hint style="info" %}
+**Line breaks in push text**
+
+Use `\n` to break lines inside the `Text` field.
+
+```
+Welcome!\nEnjoy exploring our latest features.
+```
+
+When displayed, it will appear as:
+
+```
+Welcome!  
+Enjoy exploring our latest features.
+```
+
+{% endhint %}
+
+{% file src="/files/AOHsLBtKvez7yUQEGgKN" %}
+Importing FTP Push
+{% endfile %}
+
+### Import profile attributes via FTP
+
+Use this to update existing users’ attributes in bulk.
+
+#### 1) Create attributes in the panel
+
+Attribute names in the file must match the profile attributes in the panel.
+
+See [Profile Attributes](/netmera-user-guide/customer-data/profile-attributes.md).
+
+#### 2) Create the `Profile` folder on FTP
+
+Ask DevOps to create a `Profile` folder under your FTP path.
+
+#### 3) Prepare the `.txt` file
+
+The import file must be a plain text file (`.txt`) where each row represents a single user record. The `~` character is used as the delimiter throughout the file.
+
+Required order:
+
+* `extID` (required)
+* `email` (optional)
+* `deviceToken` (optional)
+* `msisdn` (optional)
+* one or more profile attributes to update
+
+Example:
+
+```
+Exid~~~email~deviceToken~msisdn~profileattribute
+ExtId1~~~email1~deviceToken1~+905XXXXXXXXX~membershipTier1
+ExtId2~~~email2~deviceToken2~+905XXXXXXXXX~membershipTier2
+ExtId3~~~email3~deviceToken3~+905XXXXXXXXX~membershipTier3
+```
+
+#### 4) Upload to the `Profile` folder
+
+Upload the file with a unique filename (add date-time).
+
+Notes:
+
+* Attribute names in the file must match profile attributes in the panel.
+* Create missing attributes before uploading.
+* Use `+` (E.164) for `msisdn`. Example: `+905XXXXXXXXX`.
+
+{% hint style="info" %}
+**How to confirm processing**
+
+When the file is processed successfully, it will disappear from the folder, indicating completion.
+{% endhint %}
+
+{% hint style="info" %}
+**Additional Recommendations:**
+
+* **For large data uploads** (e.g., updating attributes for over 300,000 profiles), split the data into smaller files and upload them individually.
+* Ensure **unique** **filenames** for each file.
+* We recommend uploading files **during** **business hours** as nighttime processing jobs may interfere.
+  {% endhint %}
+
+{% file src="/files/qnM3OEvvZvoKWmYE5MCE" %}
+Importing FTP Profile Attribute
+{% endfile %}
+
+### Troubleshooting
+
+If a file is not processed:
+
+* Check delimiter and column order.
+* Check file encoding (**UTF-8**).
+* For profile imports, confirm attribute names exist and match exactly.
+* Keep filenames unique. Avoid uploading the same name twice.
+
+If you still see issues, share the file name and timestamp with support.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/messaging-features/ftp-push-and-imports.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

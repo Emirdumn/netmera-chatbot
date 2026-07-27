@@ -1,0 +1,90 @@
+URL: https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel/analyze-a-funnel-report.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel/analyze-a-funnel-report.md).
+
+# Analyze a Funnel Report
+
+Use this page to review funnel results after you save a funnel. After following these steps, you will be able to interpret the visualization, inspect event metrics, review drop-off, and take actions such as tagging or exporting users.
+
+### Step 1: Open the funnel report
+
+Open a saved funnel from the Funnel Dashboard.
+
+The report shows how users progressed through the selected steps and where they dropped off.
+
+<figure><img src="/files/uQyvO5JV1g6V31ezrxtJ" alt="" width="563"><figcaption><p>Funnel report with conversion, event metrics, and drop-off details.</p></figcaption></figure>
+
+### Step 2: Review the funnel visualization
+
+Start with the funnel visualization.
+
+It shows the total conversion rate, the number of users who reached each step, and the drop-off between steps.
+
+Hover over a step or drop-off area to view more detail.
+
+For example, if **332 users** complete the first step and **51 users** reach the second step, the report shows a **15.4%** total conversion rate and an **84.6%** drop-off between those steps.
+
+### Step 3: Review event metrics and drop-off
+
+Check the supporting report sections below the visualization.
+
+* **Event Metrics** shows the event count for each step.
+* Platform columns break that count down by **iOS**, **Android**, **Web**, and **Other**.
+* **Dropped-off Users by Step** shows where users leave the funnel and how large the drop-off is.
+
+Use this view to identify weak transitions in the journey.
+
+<figure><img src="/files/254HAoqUWvjcgwkwUuie" alt=""><figcaption></figcaption></figure>
+
+### Step 4: Tag or export users from the report
+
+Use the action menu next to a report value when you want to move from analysis to action.
+
+#### Step 4.1: Tag users
+
+1. Click the action icon next to a number in the report.
+2. Enter a new tag name.
+3. Click **Start Tagging**.
+
+#### Step 4.2: Export users
+
+1. Select the identifiers, profile attributes, and device information to include.
+2. Choose the file type.
+3. Click **Export**.
+
+<figure><img src="/files/l1NVA4sp58az89JpbNu5" alt="" width="563"><figcaption><p>Tag and export actions available from the funnel report.</p></figcaption></figure>
+
+### Step 5: Review export considerations
+
+Use export output when you need the most precise offline analysis.
+
+Exported values can differ slightly from on-screen values because of display optimization.
+
+Also note the following behavior:
+
+* Deleted users do not appear in exports.
+* Exports based on identifiers depend on current user availability.
+
+After you review the report, you can return to the saved funnel later to compare results across different date ranges, steps, or audiences.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/funnel/analyze-a-funnel-report.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

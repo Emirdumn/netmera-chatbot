@@ -1,0 +1,249 @@
+URL: https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/who.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-user-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/who.md).
+
+# Who
+
+The **Who** step defines who receives your mobile push campaign. You can choose **Send All**, **Select Users**, **Advanced**, or **Distribution List**.
+
+{% @arcade/embed url="<https://app.arcade.software/share/LnJYyiAdYC5HP7Rt0Dx7>" flowId="LnJYyiAdYC5HP7Rt0Dx7" %}
+
+After you choose an audience, **Selection Criteria** shows your estimated reach:
+
+* **Users** — unique people in the audience
+* **Devices** — reachable devices for those users
+* **Android / iOS** — platform breakdown of reachable devices
+
+<figure><img src="/files/VyetSef7ef9mYfPDY4MK" alt=""><figcaption><p>Step 3: Who</p></figcaption></figure>
+
+{% hint style="info" %}
+A single user can have multiple devices. Delivery estimates usually match the **device** count, not the **user** count.
+{% endhint %}
+
+### Ignore User Message Limits
+
+This option sends the push even if a user has reached their message limit.
+
+Use it only for urgent or time-sensitive messages. Overuse can increase opt-outs and reduce engagement.
+
+{% hint style="info" %}
+**Example:**
+
+Use this for urgent service alerts, outage notices, or severe weather warnings that must reach users immediately.
+{% endhint %}
+
+### Limit Target Users
+
+This option sets a maximum audience size for the campaign.
+
+Once the limit is reached, delivery stops even if more users match the rules. Use it to control reach, protect inventory, or run smaller tests.
+
+{% hint style="info" %}
+**Example:**
+
+Use this for limited-stock campaigns or staged rollouts before a full send.
+{% endhint %}
+
+<figure><img src="/files/dANC5HGTuMN2njLAmTuN" alt="" width="462"><figcaption><p>Limit target users</p></figcaption></figure>
+
+### Define target audience
+
+<figure><img src="/files/hZjIUUZiSPMFu3nVghY4" alt=""><figcaption><p>Target Audience</p></figcaption></figure>
+
+{% hint style="info" %}
+**Example:**
+
+To target cart abandoners, build an audience from users who added items but did not purchase.
+
+Then send a [**personalized mobile push**](/netmera-user-guide/omnichannel-engagement/mobile-push/personalized-mobile-push.md) with a reminder, product suggestions, or a time-bound offer.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Send All" %}
+Use **Send All** when you want to reach every eligible mobile push user for this app.
+
+This is useful for broad announcements, major launches, or urgent updates. Netmera still respects device availability and delivery eligibility.
+{% endtab %}
+
+{% tab title="Select Users" %}
+Use **Select Users** to build an audience with standard filters such as tags, segments, profile data, behavior, location, and device details.
+
+Most filters depend on data you already manage in Netmera. Start with:
+
+* [**Tags**](/netmera-user-guide/targeting/tags.md)
+* [**Segments**](/netmera-user-guide/targeting/segments.md)
+* [**Profile Attributes**](/netmera-user-guide/customer-data/profile-attributes.md)
+* [**File Transfers**](/netmera-user-guide/targeting/file-transfers.md)
+
+#### Audience lists
+
+**Tag**
+
+Use **tags** to target users who share a known trait or behavior.
+
+Choose:
+
+* **Has:** Users who have a specific tag.
+* **Has not:** Users who do not have a specific tag.
+
+<figure><img src="/files/F3CeDuu2ENJzmNHWSAjg" alt=""><figcaption></figcaption></figure>
+
+You can combine multiple tags with **AND** or **OR**:
+
+* **Tag A AND Tag B →** Users who have both tags.
+* **Tag A OR Tag B →** Users who have either tag.
+
+<figure><img src="/files/WRX6B47ZKqjuUfgqlDqE" alt=""><figcaption></figcaption></figure>
+
+**Segment**
+
+Use **segments** for dynamic audiences that update automatically as user data changes.
+
+Choose **In** to include a segment or **Not in** to exclude it.
+
+<figure><img src="/files/jGyic5u8jlLTxNIKH4PL" alt=""><figcaption></figcaption></figure>
+
+#### Profile and behavior
+
+**Profile**
+
+Use **profile filters** when you want to match stored user attributes.
+
+Common examples:
+
+* `Gender = Female`
+* `Age between 25 and 34`
+* `Subscription Type = Premium`
+
+This is useful for personalized promotions and lifecycle messaging.
+
+<figure><img src="/files/CWX39gMqnztdUMLfx2SY" alt=""><figcaption></figcaption></figure>
+
+**Response**
+
+Use **response filters** to target users based on earlier push engagement.
+
+You can include users who clicked, opened, or ignored a previous message. You can also limit the filter to a date range.
+
+<figure><img src="/files/ULKncpyfOieBjt9y75MW" alt=""><figcaption></figcaption></figure>
+
+**Promotion**
+
+Use this filter to target users who have an assigned promotion value.
+
+This works well for coupon reminders or offer redemption campaigns.
+
+#### Location and permissions
+
+**Location**
+
+Use **location** to target users in a city, region, country, or radius around coordinates.
+
+This is useful for local promotions, store openings, and geo-targeted reminders.
+
+**Location Preferences**
+
+Use this filter to target users by location permission status.
+
+Available values:
+
+* **Always:** Users who have permanently granted location access.
+* **While Using:** Users who allow location access only when using the app.
+* **Denied:** Users who explicitly denied location access.
+* **Restricted:** Users whose access is limited by system or parental settings.
+* **Not Determined:** Users who haven’t set their location permission yet.
+
+<figure><img src="/files/wcF8c3EXqUGLR15ERj7m" alt=""><figcaption></figcaption></figure>
+
+#### Device and platform
+
+Use device filters when campaign content depends on hardware, platform, or app state.
+
+* **Last Used Device** — target users by the most recent device they used.
+* **Device** — filter by device type or model.
+* **Operator** — target users on a specific telecom provider.
+* **App Version** — include or exclude specific app versions.
+* **Operating System** — target users on iOS or Android.
+* **Android Provider** — target Android users by provider, such as Google or Huawei.
+
+#### Acquisition and installation
+
+**Installation Source**
+
+Use this when your app is integrated with Adjust.
+
+It lets you target users by the campaign or source that drove the install.
+
+**By App Tracking (Android Only)**
+
+Use this to target Android users by tracked app behavior.
+
+This is useful for behavioral audiences based on usage intensity or specific in-app actions.
+
+**By App Installation**
+
+Use this to target users by installation status:
+
+* **Has App Install:** Users who currently have your app installed.
+* **Has Not App Install:** Users who do not have the app installed.
+  {% endtab %}
+
+{% tab title="Advanced" %}
+Use **Advanced** when you need nested logic and more precise audience rules.
+
+Build the audience with **Conditions** and **Groups**. Then combine them with logical operators.
+
+Available operators:
+
+* **AND:** Includes only users who meet *all* selected conditions or groups.
+* **OR:** Includes users who meet *any* of the selected conditions or groups.
+
+This works well for audiences such as:
+
+* users who viewed a product and did not purchase
+* users in a premium segment and on app version `5.2+`
+* users in Istanbul or Ankara who ignored the last promotion
+
+<figure><img src="/files/Mg28xuzISohrLY6nCGe2" alt=""><figcaption><p>Advanced Option</p></figcaption></figure>
+
+The right panel updates as you build the logic. Use it to review the audience before sending.
+
+<figure><img src="/files/HzaJsXDQ6HmoZPGlY31j" alt=""><figcaption><p>Advanced</p></figcaption></figure>
+{% endtab %}
+
+{% tab title="Distribution List" %}
+Use **Distribution List** when you already have a fixed list of users to target.
+
+This is useful for VIP audiences, event attendees, pilot groups, or recovery campaigns.
+
+Create the list first in [**File Transfers**](/netmera-user-guide/targeting/file-transfers.md). Then select that list in this step.
+
+{% hint style="info" %}
+Upload the file as `.txt` or `.csv` with one user identifier per line.
+{% endhint %}
+
+Unlike segments, a distribution list does not update automatically. It stays fixed until you upload a new version.
+{% endtab %}
+{% endtabs %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/who.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
