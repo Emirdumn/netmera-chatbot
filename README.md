@@ -132,6 +132,14 @@ OPENROUTER_MODEL=openai/gpt-4o-mini
 GEMINI_API_KEY=...               # LLM_PROVIDER=gemini ise gerekli
 GEMINI_MODEL=gemini-3.6-flash
 LOG_TOOL_CALLS=true
+STAFF_DEMO_PASSWORD=...          # personel paneli ic girisi; güçlü ve benzersiz olmalı
+```
+
+`STAFF_DEMO_PASSWORD` için varsayılan yoktur. Boş bırakılırsa ya da zayıf/placeholder
+bir değer verilirse uygulama başlangıçta durur. Güçlü bir değer üretmek için:
+
+```bash
+python -c "import secrets; print(secrets.token_urlsafe(32))"
 ```
 
 > **Neden OpenRouter varsayılan?** Gemini ücretsiz tier'da `gemini-3.6-flash`
@@ -176,6 +184,13 @@ python tests/test_flows.py            # slot yönetimi: bilinen alan tekrar soru
 python tests/test_react_loop.py       # bağlama bağlı takip sorusu doğru sorguya çevriliyor mu
 python tests/retrieval_benchmark.py   # 30 soru, isabet@5 ve ortalama benzerlik
 python tests/demo_scenarios.py        # 6 uçtan uca senaryo + FAZ 14 regresyon testi (asıl bug senaryosu)
+```
+
+Personel paneli iç giriş şifresini değiştirdikten sonra mevcut SQLite staff hash'lerini
+yenilemek için:
+
+```bash
+python scripts/rotate_staff_passwords.py
 ```
 
 ### Demo senaryoları ve sunum akışı

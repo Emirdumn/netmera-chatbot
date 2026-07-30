@@ -8,6 +8,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / ".env")
 
+
+def _required_env(name: str, *, min_length: int | None = None) -> str:
+    value = os.environ.get(name, "").strip()
+    if not value:
+        raise RuntimeError(f"{name} must be set in the environment or .env file.")
+    if min_length is not None and len(value) < min_length:
+        raise RuntimeError(f"{name} must be at least {min_length} characters long.")
+    lowered = value.lower()
+    if any(marker in lowered for marker in ("change-me", "changeme", "replace-me", "example")):
+        raise RuntimeError(f"{name} must be changed from the placeholder value.")
+    return value
+
 # LLM
 LLM_PROVIDER = os.environ.get("LLM_PROVIDER", "gemini")  # gemini | openrouter
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
@@ -31,9 +43,10 @@ MAX_FAILED_ATTEMPTS = 2
 REDIS_URL = os.environ.get("REDIS_URL", "redis://redis:6379/0")
 QA_CACHE_TTL_SECONDS = int(os.environ.get("QA_CACHE_TTL_SECONDS", str(3 * 24 * 3600)))  # 3 gun
 
-# Personel paneli girisi — tum personel tek bir demo sifresini paylasir
-# (agent_console zaten nginx Basic Auth arkasinda, bu ikinci/ic bir kapi).
-STAFF_DEMO_PASSWORD = os.environ.get("STAFF_DEMO_PASSWORD", "netmera2026")
+# Personel paneli girisi — nginx Basic Auth arkasindaki ikinci/ic kapi.
+# Guvenlik nedeniyle varsayilan yoktur; canliya cikmadan .env icinde güçlü
+# bir deger verilmezse uygulama acik ve erken bir hatayla durur.
+STAFF_DEMO_PASSWORD = _required_env("STAFF_DEMO_PASSWORD", min_length=16)
 
 # Yol sabitleri
 DATA_DIR = BASE_DIR / "data"

@@ -52,18 +52,26 @@ LLM_PROVIDER=openrouter
 OPENROUTER_API_KEY=sk-or-...
 OPENROUTER_MODEL=openai/gpt-4o-mini
 LOG_TOOL_CALLS=true
+STAFF_DEMO_PASSWORD=<python -c "import secrets; print(secrets.token_urlsafe(32))" ile üret>
 ```
+
+`STAFF_DEMO_PASSWORD` için kodda varsayılan yoktur. Boş, çok kısa veya placeholder
+değerle uygulama açılmaz.
 
 ## 5. Personel paneli şifresini oluştur (HTTP Basic Auth)
 
 ```bash
 sudo apt-get install -y apache2-utils
-htpasswd -c nginx/.htpasswd personel
+htpasswd -B -c nginx/.htpasswd personel
 # şifreyi soracak — güçlü bir şifre gir
 ```
 
 `nginx/.htpasswd` **asla git'e girmez** (`.gitignore`'da) — her sunucuda
 ayrıca oluşturulmalı.
+
+> Personel panelinde iki kapı vardır: önce nginx Basic Auth, sonra uygulamanın
+> kendi personel seçimi + `STAFF_DEMO_PASSWORD` kontrolü. Bu iki parolayı ayrı
+> tutmak daha güvenlidir.
 
 ## 6. Chroma/veri indeksi güncel mi kontrol et
 
@@ -139,6 +147,30 @@ docker compose restart nginx   # customer_app/agent_console yeniden
                                  # bunu proxy_pass icin baslangicta cache'ler,
                                  # restart etmezse 502 verebilir.
 ```
+
+## Acil parola rotasyonu
+
+Public repoya veya ekrana bir parola sızdıysa iki kapıyı da döndür:
+
+```bash
+cd netmera
+git pull
+
+# 1) .env icindeki STAFF_DEMO_PASSWORD degerini yeni, güçlü bir degerle değiştir
+nano .env
+
+# 2) nginx Basic Auth parolasini yeniden üret
+htpasswd -B -c nginx/.htpasswd personel
+
+# 3) yeni kod/env ile servisleri yeniden oluştur
+docker compose build
+docker compose up -d --force-recreate customer_app agent_console nginx
+
+# 4) SQLite'taki mevcut personel hash'lerini yeni STAFF_DEMO_PASSWORD'a döndür
+docker compose exec customer_app python scripts/rotate_staff_passwords.py
+```
+
+Script parola veya hash yazdırmaz; yalnızca kaç personel kaydının güncellendiğini söyler.
 
 ## Sorun giderme
 

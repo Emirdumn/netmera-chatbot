@@ -2,14 +2,50 @@
 import hashlib
 import hmac
 import json
+import secrets
 
 from config.departments import DEPARTMENTS
 from config.settings import STAFF_DEMO_PASSWORD
 from storage.db import create_schema, get_connection
 
 
-def _hash_password(staff_id, password):
-    return hashlib.sha256(f"{staff_id}:{password}".encode()).hexdigest()
+STAFF_HASH_SCHEME = "pbkdf2_sha256"
+STAFF_HASH_ITERATIONS = 210_000
+
+
+def _staff_password_material(staff_id, password):
+    return f"{staff_id}:{password}".encode()
+
+
+def _legacy_hash_staff_password(staff_id, password):
+    return hashlib.sha256(_staff_password_material(staff_id, password)).hexdigest()
+
+
+def hash_staff_password(staff_id, password):
+    salt = secrets.token_hex(16)
+    digest = hashlib.pbkdf2_hmac(
+        "sha256",
+        _staff_password_material(staff_id, password),
+        salt.encode(),
+        STAFF_HASH_ITERATIONS,
+    ).hex()
+    return f"{STAFF_HASH_SCHEME}${STAFF_HASH_ITERATIONS}${salt}${digest}"
+
+
+def _verify_staff_password_hash(staff_id, password, stored_hash):
+    if stored_hash.startswith(f"{STAFF_HASH_SCHEME}$"):
+        try:
+            _, iterations, salt, expected = stored_hash.split("$", 3)
+            digest = hashlib.pbkdf2_hmac(
+                "sha256",
+                _staff_password_material(staff_id, password),
+                salt.encode(),
+                int(iterations),
+            ).hex()
+        except (TypeError, ValueError):
+            return False
+        return hmac.compare_digest(expected, digest)
+    return hmac.compare_digest(stored_hash, _legacy_hash_staff_password(staff_id, password))
 
 
 def _seed_staff():
@@ -35,7 +71,7 @@ def _backfill_staff_passwords():
     for row in rows:
         conn.execute(
             "UPDATE staff SET password_hash = ? WHERE id = ?",
-            (_hash_password(row["id"], STAFF_DEMO_PASSWORD), row["id"]),
+            (hash_staff_password(row["id"], STAFF_DEMO_PASSWORD), row["id"]),
         )
     conn.commit()
 
@@ -214,7 +250,7 @@ def verify_staff_password(staff_id, password):
     row = conn.execute("SELECT password_hash FROM staff WHERE id = ?", (staff_id,)).fetchone()
     if not row or not row["password_hash"]:
         return False
-    return hmac.compare_digest(row["password_hash"], _hash_password(staff_id, password))
+    return _verify_staff_password_hash(staff_id, password, row["password_hash"])
 
 
 def get_handoff(handoff_id):
