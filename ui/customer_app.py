@@ -1,10 +1,11 @@
-"""Müşteri sohbeti (:8501).
+"""Müşteri sohbeti (:8501) — YALNIZCA render/form/polling.
 
-Mesaj gecmisi tek gercek kaynak olarak SQLite'tan (storage/repository.py)
-render edilir — bu sayede agent_console'un yazdigi insan cevaplari da ayni
-ekranda gorunur. Bot yalnizca session durumu 'bot' iken LangGraph grafini
-calistirir; devir sirasinda (waiting_human/with_human) musterinin yazdigi
-mesajlar dogrudan DB'ye yazilir, personel paneli devralir.
+Tum is mantigi `app_services/chat_service.py` icinde: graph calistirma,
+interrupt yonetimi (iletisim formu, "bot ile devam et") ve mesaj persist
+etme. Bu dosya ne graph'i ne de storage/repository'yi dogrudan bilir.
+
+Mesaj gecmisi tek gercek kaynak olarak SQLite'tan gelir — bu sayede
+agent_console'un yazdigi insan cevaplari da ayni ekranda gorunur.
 
 Not: Streamlit her rerun'da tum sayfayi sifirdan cizer (eklemeli degil), bu
 yuzden gecmis mesajlar her seferinde DB'den baştan render edilir — "zaten
@@ -22,10 +23,8 @@ if __name__ == "__main__" and not __package__:
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import streamlit as st
-from langgraph.types import Command
 
-from graph.workflow import build_graph
-from storage import repository as repo
+from app_services import chat_service
 
 st.set_page_config(page_title="Netmera Yardım", page_icon="💬")
 
@@ -48,21 +47,9 @@ FIELD_LABELS = {
 POLL_SECONDS = 2
 
 
-@st.cache_resource
-def get_graph():
-    repo.init_db()
-    return build_graph()
-
-
-def _extract_text(message):
-    if isinstance(message, dict):
-        return message.get("content", "")
-    return getattr(message, "content", str(message))
-
-
 def _init_session():
     if "session_id" not in st.session_state:
-        st.session_state.session_id = repo.create_session("tr")
+        st.session_state.session_id = chat_service.create_session("tr")
 
 
 def _render_message(msg):
@@ -102,7 +89,7 @@ def _render_sources(sources):
 def _render_sidebar(session_id, messages):
     with st.sidebar:
         st.subheader("📋 Müşteri Notu")
-        notes = repo.get_notes(session_id)
+        notes = chat_service.get_notes(session_id)
         profile = notes.get("profile") or {}
         case_notes = notes.get("case_notes") or {}
         merged = {**profile, **case_notes}
@@ -141,48 +128,26 @@ def _render_sidebar(session_id, messages):
             st.progress(flow["filled"] / flow["total"] if flow["total"] else 0)
 
 
-graph = get_graph()
 _init_session()
 session_id = st.session_state.session_id
-thread_config = {"configurable": {"thread_id": f"session-{session_id}"}}
 
 st.title("💬 Netmera Yardım Masası")
 
-messages = repo.get_messages(session_id)
-_render_sidebar(session_id, messages)
+# Ekrani cizmek icin gereken her sey tek cagrida gelir; bu dosya artik
+# ne graph'i ne de DB'yi dogrudan bilir.
+conversation = chat_service.load_conversation(session_id)
 
-for msg in messages:
+_render_sidebar(session_id, conversation.messages)
+
+for msg in conversation.messages:
     _render_message(msg)
 
-snapshot = graph.get_state(thread_config)
-pending_reason = snapshot.interrupts[0].value.get("reason") if snapshot.interrupts else None
-needs_contact_form = pending_reason == "need_contact_info"
-
-session = repo.get_session(session_id)
-is_waiting = bool(session) and session["status"] in ("waiting_human", "with_human")
-
-if needs_contact_form or is_waiting:
+if conversation.needs_contact_form or conversation.is_waiting:
     if st.button("🤖 Bot ile devam etmek istiyorum"):
-        # Bekleyen interrupt'lari (varsa) bos degerle drain et; donus
-        # degerlerini KULLANMA/PERSIST ETME — human_wait_node bos resume'da
-        # zaten mesaj eklemiyor (bkz. graph/nodes.py), contact_form_node'un
-        # bos profil guncellemesi merge_dict tarafindan atlaniyor.
-        drain_snapshot = graph.get_state(thread_config)
-        while drain_snapshot.interrupts:
-            reason = drain_snapshot.interrupts[0].value.get("reason")
-            if reason == "need_contact_info":
-                graph.invoke(Command(resume={"name": "", "email": ""}), config=thread_config)
-            elif reason == "waiting_for_human":
-                graph.invoke(Command(resume=""), config=thread_config)
-            else:
-                break
-            drain_snapshot = graph.get_state(thread_config)
-        # Sadece session durumu geri cevrilir — bekleyen talep (varsa)
-        # ACIK KALIR, personel isterse yine yanitlayabilir.
-        repo.resume_bot_mode(session_id)
+        chat_service.resume_bot(session_id)
         st.rerun()
 
-if needs_contact_form:
+if conversation.needs_contact_form:
     # escalation_node zaten calisip talebi olusturdu (bu yuzden is_waiting
     # burada da True olabilir) — bu ekran sadece ad/e-posta toplayip
     # profili zenginlestirir, doldurulmasi beklenen bir insan yaniti
@@ -194,63 +159,20 @@ if needs_contact_form:
         submitted = st.form_submit_button("Gönder")
     if submitted:
         if name_input.strip() and "@" in email_input:
-            graph.invoke(
-                Command(resume={"name": name_input.strip(), "email": email_input.strip()}),
-                config=thread_config,
-            )
-            # contact_form_node/human_wait_node yeni bir mesaj eklemez —
-            # escalation_node'un mesaji ilk invoke'ta zaten persist edildi,
-            # burada tekrar yazmiyoruz (aksi halde mesaj ikiye katlanir).
+            chat_service.submit_contact(session_id, name_input, email_input)
             st.rerun()
         else:
             st.error("Lütfen adınızı ve geçerli bir e-posta adresi girin.")
 else:
-    if is_waiting:
+    if conversation.is_waiting:
         st.info("⏳ Bir temsilciye aktarılıyorsunuz, birazdan bağlanacak...")
 
     user_input = st.chat_input("Mesajınızı yazın...")
 
     if user_input:
-        repo.add_message(session_id, "user", user_input)
+        chat_service.send_message(session_id, user_input)
+        st.rerun()
 
-        if is_waiting:
-            # Bot devrede degil, mesaj sadece personel konsoluna dusuyor.
-            st.rerun()
-        else:
-            result = graph.invoke(
-                {"messages": [{"role": "user", "content": user_input}], "session_id": session_id},
-                config=thread_config,
-            )
-            orchestrator_info = {
-                "action": result.get("orchestrator_action"),
-                "target_agent": result.get("intent"),
-                "reasoning": result.get("orchestrator_reasoning"),
-                "is_answer": result.get("orchestrator_is_answer"),
-                "topic_changed": result.get("orchestrator_topic_changed"),
-            }
-
-            if "__interrupt__" in result:
-                # escalation_node cevabi (ör. "Sizi ... ekibimize aktariyorum")
-                # zaten result["messages"][-1] icinde, DB'ye yazip goster.
-                answer_msg = result["messages"][-1] if result.get("messages") else None
-                if answer_msg:
-                    text = _extract_text(answer_msg)
-                    repo.add_message(
-                        session_id, "assistant", text, "escalation_agent",
-                        orchestrator=orchestrator_info,
-                    )
-            else:
-                answer_msg = result["messages"][-1]
-                text = _extract_text(answer_msg)
-                agent_name = result.get("agent_name", "")
-                repo.add_message(
-                    session_id, "assistant", text, agent_name,
-                    tool_calls=result.get("tool_calls"), sources=result.get("sources"),
-                    orchestrator=orchestrator_info, flow_status=result.get("flow_state"),
-                )
-
-            st.rerun()
-
-    if is_waiting:
+    if conversation.is_waiting:
         time.sleep(POLL_SECONDS)
         st.rerun()
