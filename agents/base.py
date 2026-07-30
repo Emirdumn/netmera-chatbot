@@ -11,7 +11,8 @@ import json
 
 from pydantic import BaseModel
 
-from config.settings import CONFIDENCE_THRESHOLD, MAX_TOOL_ITERATIONS, TOP_K
+from cache.qa_cache import cache_get, cache_set
+from config.settings import CONFIDENCE_THRESHOLD, MAX_TOOL_ITERATIONS, QA_CACHE_TTL_SECONDS, TOP_K
 from llm.client import get_llm
 from tools.rag_search_tool import rag_search
 
@@ -104,13 +105,25 @@ class BaseAgent:
         best_similarity = result.data[0]["similarity"]
         return context, result.sources, best_similarity
 
+    def _answer_cache_key(self, query, language):
+        normalized = " ".join(query.strip().lower().split())
+        return f"answer:{self.department}:{self.search_source}:{language}:{normalized}"
+
     def answer(self, state):
         trace = []
-        query = ""
+        language = state.get("language", "tr")
+        query = self._build_query(state, previous_query="")
+
+        cache_key = self._answer_cache_key(query, language)
+        cached = cache_get(cache_key)
+        if cached:
+            return AgentResponse.model_validate_json(cached)
+
         context, sources, best_similarity = "", [], 0.0
 
         for iteration in range(1, MAX_TOOL_ITERATIONS + 1):
-            query = self._build_query(state, previous_query=query)
+            if iteration > 1:
+                query = self._build_query(state, previous_query=query)
             context, sources, best_similarity = self._search_context(query)
             trace.append({
                 "iteration": iteration,
@@ -132,7 +145,7 @@ class BaseAgent:
         )
         structured_llm = self.llm.with_structured_output(_LLMAnswer)
         llm_answer = structured_llm.invoke(prompt)
-        return AgentResponse(
+        response = AgentResponse(
             answer=llm_answer.answer,
             can_answer=llm_answer.can_answer,
             confidence=best_similarity,
@@ -140,6 +153,9 @@ class BaseAgent:
             needs_human=llm_answer.needs_human,
             reasoning_trace=trace,
         )
+        if response.can_answer and not response.needs_human:
+            cache_set(cache_key, response.model_dump_json(), QA_CACHE_TTL_SECONDS)
+        return response
 
     def run(self, state):
         raise NotImplementedError

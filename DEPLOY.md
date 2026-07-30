@@ -74,6 +74,14 @@ güncellendiyse deploy öncesi lokalde yeniden indeksleyip commit'le:
 python -m data_pipeline.indexer
 ```
 
+Reindex sonrası (opsiyonel ama önerilir): Redis soru-cevap cache'i eski
+dokümana göre üretilmiş yanıtları tutmaya devam edebilir (TTL 3 gün, kendi
+kendine düşer ama hemen temizlemek istersen):
+
+```bash
+docker compose exec redis redis-cli FLUSHALL
+```
+
 ## 7. Ayağa kaldır
 
 ```bash

@@ -22,6 +22,7 @@ if __name__ == "__main__" and not __package__:
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import streamlit as st
+from langgraph.types import Command
 
 from graph.workflow import build_graph
 from storage import repository as repo
@@ -153,55 +154,82 @@ _render_sidebar(session_id, messages)
 for msg in messages:
     _render_message(msg)
 
+snapshot = graph.get_state(thread_config)
+pending_reason = snapshot.interrupts[0].value.get("reason") if snapshot.interrupts else None
+needs_contact_form = pending_reason == "need_contact_info"
+
 session = repo.get_session(session_id)
 is_waiting = bool(session) and session["status"] in ("waiting_human", "with_human")
 
-if is_waiting:
-    st.info("⏳ Bir temsilciye aktarılıyorsunuz, birazdan bağlanacak...")
+if needs_contact_form:
+    # escalation_node zaten calisip talebi olusturdu (bu yuzden is_waiting
+    # burada da True olabilir) — bu ekran sadece ad/e-posta toplayip
+    # profili zenginlestirir, doldurulmasi beklenen bir insan yaniti
+    # olmadigi icin normal chat_input/polling donguleri devre disi kalir.
+    st.info("Sizi ilgili ekibimize aktarabilmemiz için birkaç bilgiye ihtiyacımız var.")
+    with st.form("contact_form"):
+        name_input = st.text_input("Ad Soyad")
+        email_input = st.text_input("E-posta")
+        submitted = st.form_submit_button("Gönder")
+    if submitted:
+        if name_input.strip() and "@" in email_input:
+            graph.invoke(
+                Command(resume={"name": name_input.strip(), "email": email_input.strip()}),
+                config=thread_config,
+            )
+            # contact_form_node/human_wait_node yeni bir mesaj eklemez —
+            # escalation_node'un mesaji ilk invoke'ta zaten persist edildi,
+            # burada tekrar yazmiyoruz (aksi halde mesaj ikiye katlanir).
+            st.rerun()
+        else:
+            st.error("Lütfen adınızı ve geçerli bir e-posta adresi girin.")
+else:
+    if is_waiting:
+        st.info("⏳ Bir temsilciye aktarılıyorsunuz, birazdan bağlanacak...")
 
-user_input = st.chat_input("Mesajınızı yazın...")
+    user_input = st.chat_input("Mesajınızı yazın...")
 
-if user_input:
-    repo.add_message(session_id, "user", user_input)
+    if user_input:
+        repo.add_message(session_id, "user", user_input)
+
+        if is_waiting:
+            # Bot devrede degil, mesaj sadece personel konsoluna dusuyor.
+            st.rerun()
+        else:
+            result = graph.invoke(
+                {"messages": [{"role": "user", "content": user_input}], "session_id": session_id},
+                config=thread_config,
+            )
+            orchestrator_info = {
+                "action": result.get("orchestrator_action"),
+                "target_agent": result.get("intent"),
+                "reasoning": result.get("orchestrator_reasoning"),
+                "is_answer": result.get("orchestrator_is_answer"),
+                "topic_changed": result.get("orchestrator_topic_changed"),
+            }
+
+            if "__interrupt__" in result:
+                # escalation_node cevabi (ör. "Sizi ... ekibimize aktariyorum")
+                # zaten result["messages"][-1] icinde, DB'ye yazip goster.
+                answer_msg = result["messages"][-1] if result.get("messages") else None
+                if answer_msg:
+                    text = _extract_text(answer_msg)
+                    repo.add_message(
+                        session_id, "assistant", text, "escalation_agent",
+                        orchestrator=orchestrator_info,
+                    )
+            else:
+                answer_msg = result["messages"][-1]
+                text = _extract_text(answer_msg)
+                agent_name = result.get("agent_name", "")
+                repo.add_message(
+                    session_id, "assistant", text, agent_name,
+                    tool_calls=result.get("tool_calls"), sources=result.get("sources"),
+                    orchestrator=orchestrator_info, flow_status=result.get("flow_state"),
+                )
+
+            st.rerun()
 
     if is_waiting:
-        # Bot devrede degil, mesaj sadece personel konsoluna dusuyor.
+        time.sleep(POLL_SECONDS)
         st.rerun()
-    else:
-        result = graph.invoke(
-            {"messages": [{"role": "user", "content": user_input}], "session_id": session_id},
-            config=thread_config,
-        )
-        orchestrator_info = {
-            "action": result.get("orchestrator_action"),
-            "target_agent": result.get("intent"),
-            "reasoning": result.get("orchestrator_reasoning"),
-            "is_answer": result.get("orchestrator_is_answer"),
-            "topic_changed": result.get("orchestrator_topic_changed"),
-        }
-
-        if "__interrupt__" in result:
-            # escalation_node cevabi (ör. "Sizi ... ekibimize aktariyorum")
-            # zaten result["messages"][-1] icinde, DB'ye yazip goster.
-            answer_msg = result["messages"][-1] if result.get("messages") else None
-            if answer_msg:
-                text = _extract_text(answer_msg)
-                repo.add_message(
-                    session_id, "assistant", text, "escalation_agent",
-                    orchestrator=orchestrator_info,
-                )
-        else:
-            answer_msg = result["messages"][-1]
-            text = _extract_text(answer_msg)
-            agent_name = result.get("agent_name", "")
-            repo.add_message(
-                session_id, "assistant", text, agent_name,
-                tool_calls=result.get("tool_calls"), sources=result.get("sources"),
-                orchestrator=orchestrator_info, flow_status=result.get("flow_state"),
-            )
-
-        st.rerun()
-
-if is_waiting:
-    time.sleep(POLL_SECONDS)
-    st.rerun()

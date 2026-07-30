@@ -84,7 +84,7 @@ if "active_handoff_id" not in st.session_state:
 
 if st.session_state.active_handoff_id is None:
     st.subheader("Bekleyen Devirler")
-    pending = repo.list_pending_handoffs()
+    pending = repo.list_pending_handoffs(department)
     if not pending:
         st.caption("Bekleyen talep yok.")
     for h in pending:
@@ -96,9 +96,11 @@ if st.session_state.active_handoff_id is None:
             )
             st.write(h["summary"])
             if st.button("Devral", key=f"claim-{h['id']}", disabled=not staff_name):
-                repo.claim_handoff(h["id"], staff_name)
-                st.session_state.active_handoff_id = h["id"]
-                st.rerun()
+                if repo.claim_handoff(h["id"], staff_name, department):
+                    st.session_state.active_handoff_id = h["id"]
+                    st.rerun()
+                else:
+                    st.error("Bu talep başka bir departmana ait, devralınamadı.")
 
     time.sleep(2)
     st.rerun()

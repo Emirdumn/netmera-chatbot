@@ -149,6 +149,35 @@ def escalation_node(state):
     }
 
 
+def contact_form_node(state):
+    """FAZ 15 — devir HER ZAMAN escalation_node'da zaten olusturulmus olur
+    (musteri formu terk etse bile talep personel panelinde gorunur); bu
+    dugum sadece ad/e-posta zaten bilinmiyorsa bunlari sorup profili
+    zenginlestirir."""
+    profile = state.get("customer_profile") or {}
+    if profile.get("person_name") and profile.get("email"):
+        return {}
+
+    contact = interrupt({
+        "reason": "need_contact_info",
+        "message": (
+            "Sizi ilgili ekibimize aktarabilmemiz için ad soyad ve "
+            "e-posta adresinizi alabilir miyiz?"
+        ),
+    })
+    profile_update = {
+        "person_name": (contact or {}).get("name", ""),
+        "email": (contact or {}).get("email", ""),
+    }
+
+    session_id = state.get("session_id")
+    if session_id:
+        merged_profile = merge_dict(profile, profile_update)
+        repo.upsert_notes(session_id, merged_profile, state.get("case_notes") or {})
+
+    return {"customer_profile": profile_update}
+
+
 def human_wait_node(state):
     human_reply = interrupt({
         "reason": "waiting_for_human",

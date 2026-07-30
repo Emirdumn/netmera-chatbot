@@ -1,4 +1,13 @@
 services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
   customer_app:
     build: .
     command: >
@@ -8,6 +17,8 @@ services:
     volumes:
       - netmera_storage:/app/storage
     env_file: .env
+    depends_on:
+      - redis
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]

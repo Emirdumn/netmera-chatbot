@@ -84,16 +84,29 @@ def create_handoff(session_id, department, reason, summary, urgency):
     return cur.lastrowid
 
 
-def list_pending_handoffs():
+def list_pending_handoffs(department=None):
     conn = get_connection()
-    rows = conn.execute(
-        "SELECT * FROM handoffs WHERE status = 'pending' ORDER BY created_at"
-    ).fetchall()
+    if department:
+        rows = conn.execute(
+            "SELECT * FROM handoffs WHERE status = 'pending' AND department = ? ORDER BY created_at",
+            (department,),
+        ).fetchall()
+    else:
+        rows = conn.execute(
+            "SELECT * FROM handoffs WHERE status = 'pending' ORDER BY created_at"
+        ).fetchall()
     return [dict(row) for row in rows]
 
 
-def claim_handoff(handoff_id, staff_name):
+def claim_handoff(handoff_id, staff_name, department=None):
+    """department verilirse, handoff'un gercek departmani eslesmiyorsa
+    reddedilir (savunma amacli — kuyruk zaten departmana gore filtrelendigi
+    icin normal kullanimda tetiklenmez, sadece yaris durumlarina karsi)."""
     conn = get_connection()
+    if department:
+        row = conn.execute("SELECT department FROM handoffs WHERE id = ?", (handoff_id,)).fetchone()
+        if not row or row["department"] != department:
+            return False
     conn.execute(
         """UPDATE handoffs SET status = 'claimed', assigned_to = ?, claimed_at = datetime('now')
            WHERE id = ?""",
@@ -103,6 +116,7 @@ def claim_handoff(handoff_id, staff_name):
     if row:
         conn.execute("UPDATE sessions SET status = 'with_human' WHERE id = ?", (row["session_id"],))
     conn.commit()
+    return True
 
 
 def post_human_reply(session_id, staff_name, content):

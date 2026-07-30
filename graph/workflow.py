@@ -1,5 +1,5 @@
 """Grafı kurar: memory -> orchestrator -> uzman agent (veya clarify/escalate)
--> (gerekirse) escalation -> human_wait.
+-> (gerekirse) escalation -> contact_form (ad/e-posta eksikse sorar) -> human_wait.
 
 Checkpointer olarak SqliteSaver kullanılır, thread_id = session_id — bu sayede
 human_wait_node'daki interrupt() sonrası Command(resume=...) ile aynı oturumdan
@@ -13,6 +13,7 @@ from langgraph.graph import END, START, StateGraph
 from config.settings import CHECKPOINT_DB_PATH
 from graph.nodes import (
     clarify_node,
+    contact_form_node,
     escalation_node,
     general_node,
     human_wait_node,
@@ -67,6 +68,7 @@ def build_graph(checkpointer=None):
     graph.add_node("technical_node", technical_node)
     graph.add_node("general_node", general_node)
     graph.add_node("escalation_node", escalation_node)
+    graph.add_node("contact_form_node", contact_form_node)
     graph.add_node("human_wait_node", human_wait_node)
 
     graph.add_edge(START, "memory_node")
@@ -88,7 +90,8 @@ def build_graph(checkpointer=None):
             node_name, _should_escalate, {"escalation_node": "escalation_node", END: END}
         )
     graph.add_edge("clarify_node", END)
-    graph.add_edge("escalation_node", "human_wait_node")
+    graph.add_edge("escalation_node", "contact_form_node")
+    graph.add_edge("contact_form_node", "human_wait_node")
     graph.add_edge("human_wait_node", END)
 
     return graph.compile(checkpointer=checkpointer or _default_checkpointer())

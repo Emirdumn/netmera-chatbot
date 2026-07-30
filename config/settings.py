@@ -27,6 +27,10 @@ MAX_TOOL_ITERATIONS = 4  # FAZ 12 — ReAct dongusu: en fazla kac kez sorgu yeni
 # Escalation
 MAX_FAILED_ATTEMPTS = 2
 
+# Cache (FAZ 15 — soru-cevap hizlandirma)
+REDIS_URL = os.environ.get("REDIS_URL", "redis://redis:6379/0")
+QA_CACHE_TTL_SECONDS = int(os.environ.get("QA_CACHE_TTL_SECONDS", str(3 * 24 * 3600)))  # 3 gun
+
 # Yol sabitleri
 DATA_DIR = BASE_DIR / "data"
 USER_GUIDE_DIR = DATA_DIR / "user_guide"

@@ -14,7 +14,8 @@ import chromadb
 import numpy as np
 from sentence_transformers import CrossEncoder, SentenceTransformer
 
-from config.settings import CHROMA_COLLECTION, CHROMA_DIR, EMBED_MODEL, TOP_K
+from cache.qa_cache import cache_get, cache_set
+from config.settings import CHROMA_COLLECTION, CHROMA_DIR, EMBED_MODEL, QA_CACHE_TTL_SECONDS, TOP_K
 from tools.base import ToolResult, netmera_tool
 
 RERANK_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
@@ -159,6 +160,11 @@ def _rerank(query, candidates, top_k):
     return [c for c, _ in scored[:top_k]]
 
 
+def _rag_cache_key(query, source, top_k):
+    normalized = " ".join(query.strip().lower().split())
+    return f"rag:{source}:{top_k}:{normalized}"
+
+
 @netmera_tool
 def rag_search(
     query: str,
@@ -169,6 +175,11 @@ def rag_search(
     cross-encoder ile en iyi top_k sonucu seçer. `source` ile kaynağı
     daraltır: user_guide (panel/kullanım), dev_guide (SDK/API), website
     (genel/pazarlama)."""
+    cache_key = _rag_cache_key(query, source, top_k)
+    cached = cache_get(cache_key)
+    if cached:
+        return ToolResult.model_validate_json(cached)
+
     candidates = _hybrid_candidates(query, source)
     if not candidates:
         return ToolResult(ok=False, data=[], summary="Sonuc bulunamadi", sources=[])
@@ -187,9 +198,11 @@ def rag_search(
         for doc_id, doc, meta, cosine in reranked
     ]
 
-    return ToolResult(
+    result = ToolResult(
         ok=True,
         data=chunks,
         summary=f"en iyi benzerlik: {chunks[0]['similarity']}",
         sources=[c["url"] for c in chunks],
     )
+    cache_set(cache_key, result.model_dump_json(), QA_CACHE_TTL_SECONDS)
+    return result
