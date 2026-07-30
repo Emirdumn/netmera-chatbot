@@ -94,14 +94,18 @@ def get_messages(session_id):
     return messages
 
 
-def create_handoff(session_id, department, reason, summary, urgency):
+def create_handoff(session_id, department, reason, summary, urgency, pause_session=True):
+    """pause_session=False: musteri canli bir insan yaniti BEKLEMIYOR (ör.
+    satis lead'i — asenkron takip icin panele dusuyor ama musteri botla
+    normal sohbete devam edebilir)."""
     conn = get_connection()
     cur = conn.execute(
         """INSERT INTO handoffs (session_id, department, reason, summary, urgency)
            VALUES (?, ?, ?, ?, ?)""",
         (session_id, department, reason, summary, urgency),
     )
-    conn.execute("UPDATE sessions SET status = 'waiting_human' WHERE id = ?", (session_id,))
+    if pause_session:
+        conn.execute("UPDATE sessions SET status = 'waiting_human' WHERE id = ?", (session_id,))
     conn.commit()
     return cur.lastrowid
 
@@ -123,19 +127,24 @@ def list_pending_handoffs(department=None):
 def claim_handoff(handoff_id, staff_name, department=None):
     """department verilirse, handoff'un gercek departmani eslesmiyorsa
     reddedilir (savunma amacli — kuyruk zaten departmana gore filtrelendigi
-    icin normal kullanimda tetiklenmez, sadece yaris durumlarina karsi)."""
+    icin normal kullanimda tetiklenmez, sadece yaris durumlarina karsi).
+    reason='sales_lead' olan kayitlar musterinin canli bekledigi bir devir
+    DEGIL (asenkron takip) — bu yuzden claim edilince musterinin oturumu
+    'with_human'a cekilmez, botla sohbetine kesintisiz devam eder."""
     conn = get_connection()
-    if department:
-        row = conn.execute("SELECT department FROM handoffs WHERE id = ?", (handoff_id,)).fetchone()
-        if not row or row["department"] != department:
-            return False
+    row = conn.execute(
+        "SELECT department, reason, session_id FROM handoffs WHERE id = ?", (handoff_id,)
+    ).fetchone()
+    if not row:
+        return False
+    if department and row["department"] != department:
+        return False
     conn.execute(
         """UPDATE handoffs SET status = 'claimed', assigned_to = ?, claimed_at = datetime('now')
            WHERE id = ?""",
         (staff_name, handoff_id),
     )
-    row = conn.execute("SELECT session_id FROM handoffs WHERE id = ?", (handoff_id,)).fetchone()
-    if row:
+    if row["reason"] != "sales_lead":
         conn.execute("UPDATE sessions SET status = 'with_human' WHERE id = ?", (row["session_id"],))
     conn.commit()
     return True

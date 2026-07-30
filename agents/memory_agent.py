@@ -16,7 +16,7 @@ agentisin. Asagidaki alanlari SADECE mesajda ACIKCA belirtilmisse doldur.
 Emin olmadigin, tahmin ettigin veya mesajda gecmeyen HER alani None (liste
 alanlari icin bos liste) birak — ASLA uydurma veya varsayma.
 
-Mesaj: "{message}\""""
+{pending_context}Mesaj: "{message}\""""
 
 
 class ExtractedFacts(BaseModel):
@@ -64,5 +64,15 @@ class MemoryAgent:
     def __init__(self):
         self.structured_llm = get_llm(temperature=0).with_structured_output(ExtractedFacts)
 
-    def extract(self, message: str) -> ExtractedFacts:
-        return self.structured_llm.invoke(SYSTEM_PROMPT.format(message=message))
+    def extract(self, message: str, pending_question: str = "") -> ExtractedFacts:
+        # Botun bir onceki turda sordugu soru verilirse, musterinin cumle
+        # icine gomulu/dolayli cevabini (ör. "uygulamamiz bir X uygulamasi"
+        # -> app_name) dogru alana baglayabilir — sadece izole mesaja
+        # bakildiginda bu baglam kaybolup alan bos birakilabiliyordu.
+        pending_context = (
+            f'Botun bu mesajdan hemen once sordugu soru: "{pending_question}"\n'
+            if pending_question else ""
+        )
+        return self.structured_llm.invoke(
+            SYSTEM_PROMPT.format(pending_context=pending_context, message=message)
+        )

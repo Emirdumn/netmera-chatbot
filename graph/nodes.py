@@ -42,7 +42,9 @@ def memory_node(state):
     """FAZ 9 — her turda calisir: son mesajdan yapisal bilgi cikarir,
     customer_profile/case_notes'a merge eder, session_notes'a yazar (personel
     devraldiginda sifirdan baslamasin diye)."""
-    facts = _memory.extract(_extract_last_user_text(state)).model_dump()
+    facts = _memory.extract(
+        _extract_last_user_text(state), state.get("pending_question", ""),
+    ).model_dump()
     profile_update = {k: facts.get(k) for k in PROFILE_FIELDS}
     case_update = {k: facts.get(k) for k in CASE_FIELDS}
 

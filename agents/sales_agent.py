@@ -11,6 +11,7 @@ sanıp devir açmaz (bkz. PLAN_ORCHESTRATOR.md, kök neden #5).
 """
 from agents.base import BaseAgent
 from flows.sales_lead import sales_lead_flow
+from storage import repository as repo
 
 SYSTEM_PROMPT = """Sen Netmera satis asistanisin. SADECE sana verilen baglam
 icindeki bilgilere dayanarak paket/ozellik/demo sorularini cevapla. Cevabi
@@ -37,7 +38,7 @@ class SalesAgent(BaseAgent):
         slot_names = [s.name for s in sales_lead_flow.slots]
         return any(profile.get(name) for name in slot_names)
 
-    def _lead_flow_response(self, profile, case_notes, language):
+    def _lead_flow_response(self, profile, case_notes, language, session_id):
         missing = sales_lead_flow.missing_slots(profile, case_notes)
         total = len(sales_lead_flow.slots)
         filled = total - len(missing)
@@ -52,6 +53,19 @@ class SalesAgent(BaseAgent):
                     "app_type": profile.get("app_name") or "",
                     "estimated_users": profile.get("user_scale") or "",
                 })
+            # Lead tamamlandi — gercekten satis ekibinin panelde gorecegi
+            # bir kayit olustur. pause_session=False: musteri canli bir
+            # insan yaniti beklemiyor, botla sohbete devam edebilir.
+            if session_id:
+                summary = (
+                    f"Satis lead'i — {profile.get('person_name', '')} "
+                    f"({profile.get('company', '')}), e-posta: {profile.get('email', '')}, "
+                    f"uygulama: {profile.get('app_name', '')}, "
+                    f"tahmini kullanici: {profile.get('user_scale', '')}"
+                )
+                repo.create_handoff(
+                    session_id, "sales", "sales_lead", summary, "low", pause_session=False,
+                )
             answer = LEAD_COMPLETE_MESSAGE
         else:
             ask_now = missing[:2]  # ayni anda en fazla 2 eksik slot sor
@@ -75,7 +89,7 @@ class SalesAgent(BaseAgent):
         language = state.get("language", "tr")
 
         if is_price_question or self._lead_in_progress(profile):
-            return self._lead_flow_response(profile, case_notes, language)
+            return self._lead_flow_response(profile, case_notes, language, state.get("session_id"))
 
         response = self.answer(state)
         return {
