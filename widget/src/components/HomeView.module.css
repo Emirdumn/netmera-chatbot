@@ -1,0 +1,123 @@
+.view {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.greeting {
+  font: var(--nm-type-greeting) var(--nm-font-family);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.subtitle {
+  font: var(--nm-type-body) var(--nm-font-family);
+  color: var(--nm-color-text-muted);
+  margin: -12px 0 0;
+}
+
+.card {
+  width: 100%;
+  max-width: var(--nm-size-card-width);
+  border-radius: var(--nm-radius-card);
+  background: var(--nm-color-surface);
+  border: 1px solid var(--nm-color-border);
+  box-shadow: var(--nm-shadow-card);
+  padding: 14px 16px;
+  text-align: left;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 120ms ease;
+}
+
+.card:hover {
+  border-color: var(--nm-color-brand);
+}
+
+.cardLabel {
+  font: var(--nm-type-meta) var(--nm-font-family);
+  color: var(--nm-color-text-muted);
+}
+
+.cardTitle {
+  font: var(--nm-type-card-title) var(--nm-font-family);
+  margin: 0;
+}
+
+.cardPreview {
+  font: var(--nm-type-secondary) var(--nm-font-family);
+  color: var(--nm-color-text-muted);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.onlineDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--nm-radius-pill);
+  background: var(--nm-color-online);
+  flex: none;
+}
+
+.badge {
+  min-width: var(--nm-size-badge);
+  height: var(--nm-size-badge);
+  padding: 0 5px;
+  border-radius: var(--nm-radius-pill);
+  background: var(--nm-color-danger);
+  color: var(--nm-color-brand-contrast);
+  font: var(--nm-type-badge) var(--nm-font-family);
+  display: grid;
+  place-items: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.primary {
+  width: 100%;
+  max-width: var(--nm-size-card-width);
+  padding: 12px 18px;
+  border-radius: var(--nm-radius-pill);
+  background: var(--nm-color-brand);
+  color: var(--nm-color-brand-contrast);
+  font: var(--nm-type-card-title) var(--nm-font-family);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.searchButton {
+  width: 100%;
+  max-width: var(--nm-size-card-width);
+  padding: 11px 14px;
+  border-radius: var(--nm-radius-field);
+  border: 1px solid var(--nm-color-border);
+  background: var(--nm-color-surface-alt);
+  color: var(--nm-color-text-muted);
+  font: var(--nm-type-secondary) var(--nm-font-family);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+}
+
+.searchButton:hover {
+  border-color: var(--nm-color-brand);
+}

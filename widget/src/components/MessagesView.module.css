@@ -1,0 +1,132 @@
+.view {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  width: 100%;
+  padding: 14px 20px;
+  text-align: left;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--nm-color-border-subtle);
+  transition: background-color 120ms ease;
+}
+
+.item:hover {
+  background: var(--nm-color-surface-alt);
+}
+
+.avatar {
+  flex: none;
+  width: var(--nm-size-avatar-large);
+  height: var(--nm-size-avatar-large);
+  border-radius: var(--nm-radius-pill);
+  background: var(--nm-color-brand);
+  color: var(--nm-color-brand-contrast);
+  display: grid;
+  place-items: center;
+  font: var(--nm-type-card-title) var(--nm-font-family);
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.topRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.name {
+  font: var(--nm-type-card-title) var(--nm-font-family);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.time {
+  font: var(--nm-type-meta) var(--nm-font-family);
+  color: var(--nm-color-text-muted);
+  flex: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.preview {
+  font: var(--nm-type-secondary) var(--nm-font-family);
+  color: var(--nm-color-text-muted);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.badge {
+  flex: none;
+  min-width: var(--nm-size-badge);
+  height: var(--nm-size-badge);
+  padding: 0 5px;
+  border-radius: var(--nm-radius-pill);
+  background: var(--nm-color-danger);
+  color: var(--nm-color-brand-contrast);
+  font: var(--nm-type-badge) var(--nm-font-family);
+  display: grid;
+  place-items: center;
+  align-self: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.waitingPill {
+  align-self: flex-start;
+  padding: 2px 9px;
+  border-radius: var(--nm-radius-pill);
+  background: var(--nm-color-surface-alt);
+  color: var(--nm-color-text-muted);
+  font: var(--nm-type-badge) var(--nm-font-family);
+}
+
+.empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.emptyText {
+  font: var(--nm-type-secondary) var(--nm-font-family);
+  color: var(--nm-color-text-muted);
+  margin: 0;
+}
+
+.emptyAction {
+  padding: 10px 18px;
+  border-radius: var(--nm-radius-pill);
+  background: var(--nm-color-brand);
+  color: var(--nm-color-brand-contrast);
+  font: var(--nm-type-card-title) var(--nm-font-family);
+}

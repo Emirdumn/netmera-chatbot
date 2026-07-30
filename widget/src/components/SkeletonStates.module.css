@@ -1,0 +1,57 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+.line,
+.block,
+.bubble {
+  background: linear-gradient(
+    90deg,
+    var(--nm-color-surface-alt) 25%,
+    var(--nm-color-border) 37%,
+    var(--nm-color-surface-alt) 63%
+  );
+  background-size: 400% 100%;
+  animation: nmShimmer 1400ms ease-in-out infinite;
+}
+
+.line {
+  height: 12px;
+  border-radius: var(--nm-radius-pill);
+}
+
+.short {
+  width: 45%;
+}
+
+.medium {
+  width: 70%;
+}
+
+.block {
+  height: 72px;
+  border-radius: var(--nm-radius-card);
+}
+
+.bubble {
+  height: 48px;
+  width: var(--nm-size-bubble-max-width);
+  border-radius: var(--nm-radius-bubble);
+}
+
+.bubbleOut {
+  align-self: flex-end;
+  width: 55%;
+}
+
+@keyframes nmShimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

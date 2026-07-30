@@ -1,0 +1,135 @@
+/* Tasarim tokenlari — kaynak: .claude/tasks/docs/support-widget.spec.md
+ *
+ * Bu dosyadaki HER deger spec'ten birebir alinmistir. Elle deger yazmayin;
+ * bir olcu/renk degisecekse once spec guncellensin, sonra burasi.
+ *
+ * Tokenlar :root'a DEGIL .nm-root'a bagli — widget bir dis siteye gomulecegi
+ * icin o sitenin custom property'leriyle carpismamali.
+ */
+
+.nm-root {
+  /* color */
+  --nm-color-brand: #5d1049;
+  --nm-color-brand-contrast: #fafafa;
+  --nm-color-text: #14161a;
+  --nm-color-text-muted: #6c6f74;
+  --nm-color-surface: #ffffff;
+  --nm-color-surface-alt: #f5f5f5;
+  --nm-color-border: #e5e5e5;
+  --nm-color-border-subtle: rgba(9, 14, 21, 0.1);
+  --nm-color-danger: #df2020;
+  --nm-color-online: #22c55e;
+
+  /* radius */
+  --nm-radius-launcher: 50%;
+  --nm-radius-panel: 24px;
+  --nm-radius-bubble: 20px;
+  --nm-radius-card: 12px;
+  --nm-radius-composer: 16px;
+  --nm-radius-field: 8px;
+  --nm-radius-icon-button: 10px;
+  --nm-radius-pill: 999px;
+
+  /* shadow */
+  --nm-shadow-panel: 0 5px 40px rgba(9, 14, 21, 0.16);
+  --nm-shadow-card: 0 4px 28px rgba(9, 14, 21, 0.06);
+  --nm-shadow-nav: 0 0 25px rgba(9, 14, 21, 0.06);
+
+  /* size */
+  --nm-size-launcher: 48px;
+  --nm-size-launcher-icon: 24px;
+  --nm-size-panel-width: 400px;
+  --nm-size-panel-max-height: calc(100vh - 104px);
+  --nm-size-panel-offset-right: 20px;
+  --nm-size-panel-offset-bottom: 84px;
+  --nm-size-launcher-offset: 20px;
+  --nm-size-header: 64px;
+  --nm-size-tab-bar: 81px;
+  --nm-size-bubble-max-width: 78%;
+  --nm-size-composer-min-height: 144px;
+  --nm-size-card-width: 360px;
+  --nm-size-avatar: 32px;
+  --nm-size-avatar-large: 40px;
+  --nm-size-icon-button: 38px;
+  --nm-size-badge: 16px;
+
+  /* type */
+  --nm-font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --nm-type-greeting: 600 28px/34px;
+  --nm-type-title: 600 16px/22px;
+  --nm-type-card-title: 600 14px/20px;
+  --nm-type-body: 400 15px/22px;
+  --nm-type-secondary: 400 14px/21px;
+  --nm-type-meta: 400 13px/18px;
+  --nm-type-badge: 700 11px/16px;
+
+  /* motion */
+  --nm-motion-panel-open: 300ms cubic-bezier(0.33, 0, 0, 1);
+  --nm-motion-panel-resize: 200ms;
+  --nm-motion-view-slide: 250ms;
+  --nm-motion-view-slide-offset: 8px;
+  --nm-motion-launcher-icon-transform: 160ms linear;
+  --nm-motion-launcher-icon-opacity: 80ms;
+  --nm-motion-typing-dots: 1200ms;
+
+  /* z-index */
+  --nm-z-launcher: 2147483000;
+  --nm-z-panel: 2147483002;
+}
+
+/* Gomuldugu sitenin stillerinin widget'a sizmasini engelleyen dar kapsamli
+ * reset. `all: initial` yerine hedefli davraniyoruz: `all: initial` custom
+ * property'leri de sifirlar ve yukaridaki tokenlari cocuklara ulasmaz kilar. */
+.nm-root,
+.nm-root *,
+.nm-root *::before,
+.nm-root *::after {
+  box-sizing: border-box;
+}
+
+.nm-root {
+  font-family: var(--nm-font-family);
+  color: var(--nm-color-text);
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+  direction: ltr;
+}
+
+/* DIKKAT — iki tarafin da :where() icinde olmasi kasitli.
+ *
+ * `.nm-root button` yazsaydik ozgullugu (0,1,1) olur, bilesenlerin CSS Module
+ * sinifini (0,1,0) ezerdi: butun butonlarin arka plani ve padding'i kaybolurdu.
+ * Sadece `:where(button)` yazmak da yetmez — o zaman (0,1,0) ile esitlenir ve
+ * kazanani KAYNAK SIRASI belirler; tokens.css sonra yuklenirse yine ezer.
+ *
+ * `:where(.nm-root) :where(button)` toplam (0,0,0) uretir. Boylece bu kurallar
+ * gercek bir "varsayilan" olur: import sirasi ne olursa olsun her bilesen
+ * sinifi uzerine yazabilir. */
+:where(.nm-root) :where(button) {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+:where(.nm-root) :where(input, textarea) {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Klavye kullanicisi icin gorunur odak — fare tiklamasinda gosterilmez. */
+.nm-root :focus-visible {
+  outline: 2px solid var(--nm-color-brand);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nm-root,
+  .nm-root * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

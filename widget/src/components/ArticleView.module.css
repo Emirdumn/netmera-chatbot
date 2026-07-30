@@ -1,0 +1,38 @@
+.view {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  font: var(--nm-type-title) var(--nm-font-family);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.paragraph {
+  font: var(--nm-type-body) var(--nm-font-family);
+  margin: 0;
+  /* Okunabilir satir uzunlugu */
+  max-width: 62ch;
+  overflow-wrap: anywhere;
+}
+
+.sourceLink {
+  margin-top: 4px;
+  font: var(--nm-type-meta) var(--nm-font-family);
+  color: var(--nm-color-brand);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  overflow-wrap: anywhere;
+}
+
+.sourceLink:hover {
+  text-decoration: underline;
+}

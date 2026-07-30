@@ -1,0 +1,59 @@
+.launcher {
+  position: fixed;
+  right: var(--nm-size-launcher-offset);
+  bottom: var(--nm-size-launcher-offset);
+  z-index: var(--nm-z-launcher);
+
+  width: var(--nm-size-launcher);
+  height: var(--nm-size-launcher);
+  border-radius: var(--nm-radius-launcher);
+
+  background: var(--nm-color-brand);
+  color: var(--nm-color-brand-contrast);
+  box-shadow: var(--nm-shadow-panel);
+
+  display: grid;
+  place-items: center;
+}
+
+/* Iki ikon ust uste duruyor; acilip kapanirken biri donerek kaybolur,
+ * digeri donerek gelir. Spec: 160ms linear transform / 80ms opacity. */
+.iconLayer {
+  grid-area: 1 / 1;
+  width: var(--nm-size-launcher-icon);
+  height: var(--nm-size-launcher-icon);
+  display: grid;
+  place-items: center;
+  transition:
+    transform var(--nm-motion-launcher-icon-transform),
+    opacity var(--nm-motion-launcher-icon-opacity) linear;
+}
+
+.iconEnter {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.iconExit {
+  opacity: 0;
+  transform: rotate(-45deg) scale(0.7);
+}
+
+.badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+
+  min-width: var(--nm-size-badge);
+  height: var(--nm-size-badge);
+  padding: 0 4px;
+  border-radius: var(--nm-radius-pill);
+
+  background: var(--nm-color-danger);
+  color: var(--nm-color-brand-contrast);
+  font: var(--nm-type-badge) var(--nm-font-family);
+
+  display: grid;
+  place-items: center;
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,53 @@
+.view {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchWrap {
+  flex: none;
+  padding: 16px 20px 12px;
+  position: sticky;
+  top: 0;
+  background: var(--nm-color-surface);
+  z-index: 1;
+}
+
+.searchField {
+  width: 100%;
+  border: 1px solid var(--nm-color-border);
+  border-radius: var(--nm-radius-field);
+  padding: 10px 12px 10px 36px;
+  font: var(--nm-type-secondary) var(--nm-font-family);
+  background: var(--nm-color-surface-alt);
+  transition: border-color 120ms ease;
+}
+
+.searchField:focus {
+  border-color: var(--nm-color-brand);
+  background: var(--nm-color-surface);
+  outline: none;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--nm-color-text-muted);
+  pointer-events: none;
+}
+
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.sectionLabel {
+  font: var(--nm-type-meta) var(--nm-font-family);
+  color: var(--nm-color-text-muted);
+  padding: 4px 20px 8px;
+}

@@ -1,0 +1,110 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #14161a;
+  background: #fafafa;
+}
+
+.sidebar {
+  width: 280px;
+  flex: none;
+  border-right: 1px solid #e5e5e5;
+  background: #ffffff;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.brand {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.brandNote {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #6c6f74;
+  margin: 0;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.groupLabel {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6c6f74;
+  margin: 8px 0 2px;
+}
+
+.scenario {
+  text-align: left;
+  border: 1px solid transparent;
+  background: none;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 13.5px;
+  cursor: pointer;
+  color: #14161a;
+}
+
+.scenario:hover {
+  background: #f5f5f5;
+}
+
+.scenarioActive {
+  border-color: #5d1049;
+  background: #f5f5f5;
+  font-weight: 600;
+}
+
+.stage {
+  flex: 1;
+  min-width: 0;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stageTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.stageNote {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6c6f74;
+  margin: 0;
+  max-width: 62ch;
+}
+
+.hint {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  background: #ffffff;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #6c6f74;
+  max-width: 62ch;
+}
+
+.hint code {
+  font-family: ui-monospace, Menlo, monospace;
+  background: #f5f5f5;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
