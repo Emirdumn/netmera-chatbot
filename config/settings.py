@@ -38,5 +38,10 @@ DEV_GUIDE_DIR = DATA_DIR / "dev_guide"
 WEBSITE_DIR = DATA_DIR / "website"
 CHROMA_DIR = BASE_DIR / "chroma_db"
 CHROMA_COLLECTION = "netmera"
-DB_PATH = BASE_DIR / "storage" / "helpdesk.db"
-CHECKPOINT_DB_PATH = BASE_DIR / "storage" / "checkpoints.db"
+# Calisma-zamani DB dosyalari kasitli olarak storage/data/ alt dizininde:
+# docker-compose.yml bu klasoru AYRI bir volume olarak baglıyor, boylece
+# storage/*.py KAYNAK KODU (repository.py, db.py) volume tarafindan
+# gizlenmiyor/eskimiyor — storage/'un tamamini mount etmek bu dosyalarin
+# her image guncellemesinde container icinde eski kalmasina yol aciyordu.
+DB_PATH = BASE_DIR / "storage" / "data" / "helpdesk.db"
+CHECKPOINT_DB_PATH = BASE_DIR / "storage" / "data" / "checkpoints.db"

@@ -15,7 +15,7 @@ services:
       --server.port=8501 --server.address=0.0.0.0
       --server.headless=true
     volumes:
-      - netmera_storage:/app/storage
+      - netmera_storage:/app/storage/data
     env_file: .env
     depends_on:
       - redis
@@ -33,7 +33,7 @@ services:
       --server.port=8502 --server.address=0.0.0.0
       --server.headless=true
     volumes:
-      - netmera_storage:/app/storage
+      - netmera_storage:/app/storage/data
     env_file: .env
     restart: unless-stopped
     healthcheck:

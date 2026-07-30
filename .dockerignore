@@ -10,8 +10,7 @@ __pycache__/
 KEYLER
 streamlit.log
 streamlit.pid
-storage/*.db
-storage/*.db-*
+storage/data/
 v1_legacy/
 PLAN_MULTI_AGENT.md
 PLAN_ORCHESTRATOR.md

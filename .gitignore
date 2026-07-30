@@ -8,6 +8,9 @@ KEYLER
 .agents/
 .env
 *.db
+*.db-shm
+*.db-wal
+storage/data/
 streamlit.log
 streamlit.pid
 nginx/.htpasswd

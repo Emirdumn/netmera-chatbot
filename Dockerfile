@@ -15,7 +15,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# storage/ kalici volume olarak mount edilecek (bkz. docker-compose.yml)
-VOLUME ["/app/storage"]
+# storage/data/ kalici volume olarak mount edilecek (bkz. docker-compose.yml)
+# — SADECE bu alt dizin, storage/'un tamami DEGIL: aksi halde
+# storage/*.py kaynak kodu volume tarafindan gizlenip her image
+# guncellemesinde eski kalirdi (bu bug canli sistemde yasandi ve duzeltildi).
+VOLUME ["/app/storage/data"]
 
 EXPOSE 8501 8502
