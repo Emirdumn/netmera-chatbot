@@ -161,6 +161,27 @@ needs_contact_form = pending_reason == "need_contact_info"
 session = repo.get_session(session_id)
 is_waiting = bool(session) and session["status"] in ("waiting_human", "with_human")
 
+if needs_contact_form or is_waiting:
+    if st.button("🤖 Bot ile devam etmek istiyorum"):
+        # Bekleyen interrupt'lari (varsa) bos degerle drain et; donus
+        # degerlerini KULLANMA/PERSIST ETME — human_wait_node bos resume'da
+        # zaten mesaj eklemiyor (bkz. graph/nodes.py), contact_form_node'un
+        # bos profil guncellemesi merge_dict tarafindan atlaniyor.
+        drain_snapshot = graph.get_state(thread_config)
+        while drain_snapshot.interrupts:
+            reason = drain_snapshot.interrupts[0].value.get("reason")
+            if reason == "need_contact_info":
+                graph.invoke(Command(resume={"name": "", "email": ""}), config=thread_config)
+            elif reason == "waiting_for_human":
+                graph.invoke(Command(resume=""), config=thread_config)
+            else:
+                break
+            drain_snapshot = graph.get_state(thread_config)
+        # Sadece session durumu geri cevrilir — bekleyen talep (varsa)
+        # ACIK KALIR, personel isterse yine yanitlayabilir.
+        repo.resume_bot_mode(session_id)
+        st.rerun()
+
 if needs_contact_form:
     # escalation_node zaten calisip talebi olusturdu (bu yuzden is_waiting
     # burada da True olabilir) — bu ekran sadece ad/e-posta toplayip

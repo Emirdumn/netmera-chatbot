@@ -184,6 +184,12 @@ def human_wait_node(state):
         "escalation_summary": state.get("escalation_summary", ""),
         "department": state.get("escalation_department", state.get("department")),
     })
+    if not human_reply:
+        # Musteri "bot ile devam et" ile bu interrupt'i bos deger vererek
+        # drain etti — state'e kalici bos "assistant: " mesaji EKLEME,
+        # yoksa bu thread'in geri kalaninda her _format_history cagrisinda
+        # bir baglam slotunu bosuna isgal eder.
+        return {}
     # LangChain mesaj rolu olarak sadece standart rolleri kabul ediyor;
     # personelin yaniti musteri tarafindan "assistant" gibi gorunur.
     # SQLite mesaj tablosunda ayrimi 'human_agent' rolu + agent_name koruyor.

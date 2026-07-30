@@ -62,22 +62,50 @@ graph = get_graph()
 
 st.title("🧑‍💼 Netmera Personel Paneli")
 
+if "staff_id" not in st.session_state:
+    st.session_state.staff_id = None
+
 with st.sidebar:
     st.header("Kimlik")
-    department = st.selectbox(
-        "Departman", list(DEPARTMENTS.keys()),
-        format_func=lambda d: DEPARTMENTS[d]["name"],
-    )
-    staff_list = repo.list_staff(department)
-    staff_names = [s["name"] for s in staff_list]
-    staff_name = st.selectbox("Personel", staff_names) if staff_names else None
-
-    if staff_name:
-        current = next(s for s in staff_list if s["name"] == staff_name)
-        online = st.toggle("Çevrimiçi ol", value=bool(current["is_online"]))
-        if online != bool(current["is_online"]):
-            repo.set_staff_online(current["id"], online)
+    if st.session_state.staff_id is None:
+        all_staff = repo.list_all_staff()
+        options = list(range(len(all_staff)))
+        staff_label = lambda i: (
+            f"{all_staff[i]['name']} ({DEPARTMENTS.get(all_staff[i]['department'], {}).get('name', all_staff[i]['department'])})"
+        )
+        selected_idx = st.selectbox("Personel", options, format_func=staff_label) if options else None
+        password = st.text_input("Şifre", type="password")
+        if st.button("Giriş yap"):
+            if selected_idx is None:
+                st.error("Personel listesi boş.")
+            elif repo.verify_staff_password(all_staff[selected_idx]["id"], password):
+                candidate = all_staff[selected_idx]
+                st.session_state.staff_id = candidate["id"]
+                st.session_state.staff_name = candidate["name"]
+                st.session_state.department = candidate["department"]
+                repo.set_staff_online(candidate["id"], True)
+                st.rerun()
+            else:
+                st.error("Yanlış şifre.")
+    else:
+        st.markdown(f"👤 **{st.session_state.staff_name}** — {DEPARTMENTS[st.session_state.department]['name']}")
+        online = st.toggle("Çevrimiçi ol", value=True, key="online_toggle")
+        repo.set_staff_online(st.session_state.staff_id, online)
+        if st.button("Çıkış yap"):
+            repo.set_staff_online(st.session_state.staff_id, False)
+            st.session_state.staff_id = None
+            st.session_state.staff_name = None
+            st.session_state.department = None
+            st.session_state.active_handoff_id = None
+            st.session_state.pop("online_toggle", None)
             st.rerun()
+
+if st.session_state.staff_id is None:
+    st.info("Devam etmek için lütfen giriş yapın.")
+    st.stop()
+
+department = st.session_state.department
+staff_name = st.session_state.staff_name
 
 if "active_handoff_id" not in st.session_state:
     st.session_state.active_handoff_id = None
@@ -133,9 +161,18 @@ else:
         reply_text = st.text_area("Yanıtınız")
         submitted = st.form_submit_button("Gönder")
         if submitted and reply_text.strip():
-            is_first_reply = not any(m["role"] == "human_agent" for m in messages)
             repo.post_human_reply(session_id, staff_name, reply_text.strip())
-            if is_first_reply:
+            # is_first_reply sezgiseli yerine gercek interrupt durumuna
+            # bak: musteri "bot ile devam et" ile thread'i cotan drain
+            # etmis olabilir (bkz. ui/customer_app.py), o durumda burada
+            # resume denemek anlamsiz (LangGraph'ta sessizce no-op olur,
+            # ama gereksiz).
+            snapshot = graph.get_state(thread_config)
+            should_resume = (
+                bool(snapshot.interrupts)
+                and snapshot.interrupts[0].value.get("reason") == "waiting_for_human"
+            )
+            if should_resume:
                 graph.invoke(Command(resume=reply_text.strip()), config=thread_config)
             st.rerun()
 

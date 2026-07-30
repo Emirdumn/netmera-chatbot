@@ -1,8 +1,15 @@
 """Okuma/yazma fonksiyonları — customer_app ve agent_console bu modül üzerinden konuşur."""
+import hashlib
+import hmac
 import json
 
 from config.departments import DEPARTMENTS
+from config.settings import STAFF_DEMO_PASSWORD
 from storage.db import create_schema, get_connection
+
+
+def _hash_password(staff_id, password):
+    return hashlib.sha256(f"{staff_id}:{password}".encode()).hexdigest()
 
 
 def _seed_staff():
@@ -19,9 +26,24 @@ def _seed_staff():
     conn.commit()
 
 
+def _backfill_staff_passwords():
+    """password_hash bos olan (yeni kolon eklendiginde mevcut satirlar,
+    ya da yeni seed edilen satirlar) her personele paylasilan demo sifreyi
+    atar. Zaten dolu satirlara dokunmaz, tekrar calisirsa no-op."""
+    conn = get_connection()
+    rows = conn.execute("SELECT id FROM staff WHERE password_hash IS NULL").fetchall()
+    for row in rows:
+        conn.execute(
+            "UPDATE staff SET password_hash = ? WHERE id = ?",
+            (_hash_password(row["id"], STAFF_DEMO_PASSWORD), row["id"]),
+        )
+    conn.commit()
+
+
 def init_db():
     create_schema()
     _seed_staff()
+    _backfill_staff_passwords()
 
 
 def create_session(language):
@@ -132,6 +154,15 @@ def close_handoff(handoff_id):
     conn.commit()
 
 
+def resume_bot_mode(session_id):
+    """Musteri escalation beklerken 'bot ile devam et' dedi — SADECE
+    session durumunu geri cevirir, handoff'a DOKUNMAZ (talep acik kalir,
+    personel isterse yine yanitlayabilir)."""
+    conn = get_connection()
+    conn.execute("UPDATE sessions SET status = 'bot' WHERE id = ?", (session_id,))
+    conn.commit()
+
+
 def log_tool_call(session_id, tool_name, args, summary):
     conn = get_connection()
     conn.execute(
@@ -161,6 +192,20 @@ def list_staff(department):
         "SELECT * FROM staff WHERE department = ? ORDER BY name", (department,)
     ).fetchall()
     return [dict(row) for row in rows]
+
+
+def list_all_staff():
+    conn = get_connection()
+    rows = conn.execute("SELECT * FROM staff ORDER BY department, name").fetchall()
+    return [dict(row) for row in rows]
+
+
+def verify_staff_password(staff_id, password):
+    conn = get_connection()
+    row = conn.execute("SELECT password_hash FROM staff WHERE id = ?", (staff_id,)).fetchone()
+    if not row or not row["password_hash"]:
+        return False
+    return hmac.compare_digest(row["password_hash"], _hash_password(staff_id, password))
 
 
 def get_handoff(handoff_id):

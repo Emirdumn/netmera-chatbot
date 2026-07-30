@@ -76,7 +76,16 @@ def get_connection():
     return _connection
 
 
+def _migrate_staff_password_column(conn):
+    """staff tablosu ilk surumde password_hash icermiyordu; CREATE TABLE IF
+    NOT EXISTS zaten dolu tabloya kolon eklemez, bu yuzden ayrica gerekli."""
+    cols = {row["name"] for row in conn.execute("PRAGMA table_info(staff)")}
+    if "password_hash" not in cols:
+        conn.execute("ALTER TABLE staff ADD COLUMN password_hash TEXT")
+
+
 def create_schema():
     conn = get_connection()
     conn.executescript(SCHEMA)
+    _migrate_staff_password_column(conn)
     conn.commit()

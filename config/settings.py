@@ -31,6 +31,10 @@ MAX_FAILED_ATTEMPTS = 2
 REDIS_URL = os.environ.get("REDIS_URL", "redis://redis:6379/0")
 QA_CACHE_TTL_SECONDS = int(os.environ.get("QA_CACHE_TTL_SECONDS", str(3 * 24 * 3600)))  # 3 gun
 
+# Personel paneli girisi — tum personel tek bir demo sifresini paylasir
+# (agent_console zaten nginx Basic Auth arkasinda, bu ikinci/ic bir kapi).
+STAFF_DEMO_PASSWORD = os.environ.get("STAFF_DEMO_PASSWORD", "netmera2026")
+
 # Yol sabitleri
 DATA_DIR = BASE_DIR / "data"
 USER_GUIDE_DIR = DATA_DIR / "user_guide"
