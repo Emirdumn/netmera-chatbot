@@ -1,0 +1,109 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/react-native/sdk-integration/custom-fcm-implementation.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/react-native/sdk-integration/custom-fcm-implementation.md).
+
+# Custom FCM Implementation
+
+If you have custom Firebase Cloud Messaging integration, please see usage below.
+
+### iOS Integration
+
+Add the following lines to your `AppDelegate.swift` file:
+
+<pre class="language-swift"><code class="lang-swift">@main
+@objc class AppDelegate: RCTAppDelegate, UNUserNotificationCenterDelegate {
+
+    override func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+
+        // Add it if you are using Firebase.
+<strong>        UNUserNotificationCenter.current().delegate = self
+</strong>        // Call before RNNetmera.initNetmera()
+<strong>        FirebaseApp.configure()
+</strong>        ...
+
+        return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+
+    // Add it if you are using Firebase.
+<strong>    @available(iOS 10.0, *)
+</strong><strong>    override func userNotificationCenter(
+</strong><strong>        _ center: UNUserNotificationCenter,
+</strong><strong>        willPresent notification: UNNotification,
+</strong><strong>        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+</strong><strong>    ) {
+</strong><strong>        if #available(iOS 14, *) {
+</strong><strong>            completionHandler([.banner, .list, .badge, .sound])
+</strong><strong>        } else {
+</strong><strong>            completionHandler([.alert, .badge, .sound])
+</strong><strong>        }
+</strong><strong>    }
+</strong>
+    // Add it if you are using Firebase.
+<strong>    func userNotificationCenter(
+</strong><strong>        _ center: UNUserNotificationCenter,
+</strong><strong>        didReceive response: UNNotificationResponse,
+</strong><strong>        withCompletionHandler completionHandler: @escaping () -> Void
+</strong><strong>    ) {
+</strong><strong>        completionHandler()
+</strong><strong>    }
+</strong>    ...
+}
+</code></pre>
+
+### Android Integration
+
+Add the following line to your `AndroidManifest.xml` file inside the `application` tag to remove Netmera's default FCM service:
+
+```xml
+<service
+    android:name="com.netmera.nmfcm.NMFirebaseService"
+    tools:node="remove" />
+```
+
+### React Native Methods
+
+After adding Firebase message handler methods according to the official [Firebase documentation](https://rnfirebase.io/messaging/usage#message-handlers), update them as follows:
+
+<pre class="language-typescript"><code class="lang-typescript">messaging()
+   .getToken()
+   .then(pushToken => {
+<strong>       Netmera.onNetmeraNewToken(pushToken)
+</strong>});
+
+messaging().onMessage(async remoteMessage => {
+<strong>   if (Netmera.isNetmeraRemoteMessage(remoteMessage.data)) {
+</strong><strong>       Netmera.onNetmeraFirebasePushMessageReceived(remoteMessage.from, remoteMessage.data)
+</strong><strong>   }
+</strong>});
+
+messaging().setBackgroundMessageHandler(async remoteMessage => {
+<strong>    if (Netmera.isNetmeraRemoteMessage(remoteMessage.data)) {
+</strong><strong>        Netmera.onNetmeraFirebasePushMessageReceived(remoteMessage.from, remoteMessage.data)
+</strong><strong>    }
+</strong>});
+</code></pre>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/react-native/sdk-integration/custom-fcm-implementation.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

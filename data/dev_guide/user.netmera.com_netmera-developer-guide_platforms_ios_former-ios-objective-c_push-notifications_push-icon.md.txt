@@ -1,0 +1,104 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/push-icon.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/push-icon.md).
+
+# Push Icon
+
+By default, iOS displays the app icon in push notifications. However, you can personalize the notifications with custom icons to better align with your branding and messaging. Below are the steps to set up and manage custom push icons.
+
+{% hint style="warning" %}
+
+#### Requirements
+
+* **Minimum SDK Version**: Your application must be running SDK Version 3.19.0 or later.
+* **Media Push Integration**: Media push integration must also be implemented. Please see our documentation for more details on [Media Push](/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/media-push.md).
+  {% endhint %}
+
+### Default Push Icon
+
+When creating a new campaign, if the "Custom Push Icon" option is turned off or not configured.
+
+* The system checks the icon name specified in **Developer > App Info > iOS Push Style > Default Notification Icon**.
+* If an icon name is provided in this field, push notifications will use the default icon.
+
+### iOS Push Notifications with Custom Icons
+
+In iOS, push notifications are displayed with your app icon by default. If you update your app icon via **Xcode > Assets > App Icon**, the push notification icon will automatically reflect this update.
+
+### Using Custom Icons for Push Notifications
+
+To send push notifications with a custom icon instead of the default app icon, follow these steps:
+
+* **App Icon**: Appears as a **small icon** (**Netmera Icon**) in the bottom-right corner of the notification.
+* **Custom Icon**: Serves as the primary, **larger icon** (**Impact Icon**) in the notification.
+
+This feature enables personalized notifications while maintaining brand recognition with the app icon.
+
+<figure><img src="/files/1skXV4K6fD9mITijsa17" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 1: Update iOS SDK Version
+
+Ensure that your iOS SDK is updated to the latest version (SDK 3.19.0 or later) to access new features and maintain compatibility.
+
+### Step 2: Add Communication Notification Capability
+
+Integrate the **Communication Notification** capability into your project. This enables the custom push functionality for your app.
+
+<figure><img src="/files/tjv8Gwu2R4lrrOPXhHKN" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 3: Configure `Info.plist`
+
+Add `NSUserActivityTypes` with `InSendMessageIntent` as **item 0** to the Info.plist of the main project.
+
+<figure><img src="/files/fXvWt3jGIJEd6BRPoqbO" alt=""><figcaption></figcaption></figure>
+
+### Step 4: Include Visuals in Service Extension
+
+Add your custom icon image to the **Service Extension** section of your project to ensure that the icon is used and displayed properly in the notification.
+
+<figure><img src="/files/ho3aajGQgiA9Jha2wALZ" alt="" width="449"><figcaption></figcaption></figure>
+
+### Step 5: Push Icon Configuration
+
+1. Navigate to **Netmera Panel > Developer > App Info > iOS Push Style** and enter the name of your custom push icon in the **Default Notification Icon** field.
+2. When entering the custom icon file name, include the full file name along with its extension (e.g., `icon.png`).
+
+<figure><img src="/files/vxzjkPf539JqFAI7lvLD" alt=""><figcaption></figcaption></figure>
+
+### Creating a Push with Custom Push Icon
+
+1. **In the "What" Step** of the campaign setup, enable the **Custom Push Icon** option.
+2. **Select Custom Icon**: Choose your desired custom icon.
+
+{% hint style="info" %}
+
+#### **When Custom Push Icon Is Turned Off:**
+
+If the **Custom Push Icon** option is disabled, the system will use the default notification icon specified in **Developer > App Info > iOS Push Style** (if provided).
+{% endhint %}
+
+<figure><img src="/files/NZmeCDiMEDdH84qLRYqP" alt="" width="563"><figcaption></figcaption></figure>
+
+<figure><img src="/files/Qepo4tedFo6iFKBiREi1" alt="" width="563"><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/push-icon.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

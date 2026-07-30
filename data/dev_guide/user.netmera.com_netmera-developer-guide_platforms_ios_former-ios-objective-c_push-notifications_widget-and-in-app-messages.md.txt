@@ -1,0 +1,121 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/widget-and-in-app-messages.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/widget-and-in-app-messages.md).
+
+# Widget and In-App Messages
+
+### Pop-up and In-App Message Presentation Behavior
+
+All push notifications in Netmera work automatically—no additional coding is required. However, you can **customize** pop-up presentations and **listen to push callbacks**.
+
+By default, when a popup notification or in-app message is received:
+
+* If the app is in the **foreground**, the SDK displays pop-up notifications and in-app messages **immediately**.
+* If the app is in the **background**, the SDK shows them **when the app returns to the foreground.**
+
+### Receiving Popups and In-App Messages in the Background
+
+To receive popups or in-app messages when the application is in the background, you need to enable **Remote Notifications** under **Background Modes** in **Capabilities**.
+
+<figure><img src="/files/R1WN3nHGa338kbs2pMoe" alt=""><figcaption></figcaption></figure>
+
+### Pop-up Presentation Logic
+
+If a pop-up is received when pop-up presentation is disabled by your code, SDK will store it, and present whenever pop-up presentation is re-enabled. If multiple pop-up notifications are received during that period, SDK stores the most recent notification, and present only that one.
+
+### Enable / Disable Immediate Presentations
+
+To prevent immediate pop-up presentation (e.g., during video playback, gaming, or checkout), use:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+// Call this method to disable immediate popup presentation
+Netmera.setEnabledPopupPresentation(false)
+
+// Call this method to re-enable immediate popup presentation
+Netmera.setEnabledPopupPresentation(true)
+```
+
+{% endtab %}
+
+{% tab title="Objective -C" %}
+
+```objectivec
+// Call this method to disable immediate popup presentation
+[Netmera setEnabledPopupPresentation:false];
+
+// Call this method to re-enable immediate popup presentation
+[Netmera setEnabledPopupPresentation:true];
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Devices in Low Battery Mode
+
+Devices **cannot** receive popups or in-app messages while the application is closed or killed if the device is in **low battery mode**, as this mode disables background application refresh.
+
+### Troubleshooting Pop-up and In-App Message Issues
+
+If you are facing issues with receiving pop-ups or in-app messages, follow the troubleshooting steps below:
+
+**1. Increase Session Expiry Duration**
+
+Increase the session expiration interval to give the app more time to display pop-ups:
+
+1. Navigate to **Developer > App Info** in your dashboard.
+2. Under **App Config**, increase the **Session Expire Interval** by 1.
+3. Click **Apply** to save the changes and retry the pop-up.
+
+**2. Check for Conflicting Code Settings**
+
+Ensure that no part of your code is setting values to **false** that may interfere with pop-up functionality.
+
+**3. Verify Delegate Method Placement**
+
+The `UNUserNotificationCenter` delegate method must be placed at the **top** of the `didFinishLaunchingWithOptions` function to ensure proper notification handling:
+
+```swift
+// Ensure this line is at the top of didFinishLaunchingWithOptions
+if #available(iOS 10.0, *) {
+    UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+} else {
+    // Fallback for earlier iOS versions
+}
+```
+
+**4. Ensure Proper Initialization with Third-Party Tools**
+
+If you're integrating third-party tools, ensure that **Netmera is initialized** at the beginning of your project to avoid conflicts.
+
+**5. Handling Multiple Pop-ups**
+
+Displaying multiple pop-ups at once can cause loading issues. Ensure that your app logic accounts for displaying one pop-up at a time to avoid this problem.
+
+**6. Device Storage Limitations**
+
+Pop-ups may not display correctly if the device's storage is near full. Ensure that your device has enough available storage for proper notification delivery.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/widget-and-in-app-messages.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,138 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/web/mobile-web-push-for-ios.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/web/mobile-web-push-for-ios.md).
+
+# Mobile Web Push for iOS
+
+Web Push notifications are a powerful tool for engaging users and driving traffic to a website or platform. With the introduction of iOS and iPadOS 16.4+, marketers can now leverage web push notifications on these devices. This allows for a wider reach and enhanced user engagement through web apps added to a user's home screen.
+
+{% hint style="success" %}
+Before implementing Mobile Web Push for iOS, ensure that the **Web SDK Setup** is completed.
+{% endhint %}
+
+<figure><img src="/files/f93ea7wHeNAh8Y4m5gFi" alt=""><figcaption></figcaption></figure>
+
+### Step 1: Web Application Manifest File
+
+To make your website installable with its own icon and full-screen immersive experience, you must include a **Web Application Manifest** file. This JSON file defines how the website appears when added to a user’s home screen.
+
+#### Requirements for `manifest.json`:
+
+* The file must be included in your project.
+* The `display` property should be set to `standalone`.
+* In some projects, `manifest.json` is automatically generated; if not, it must be manually added.
+* If a different value is set for `display`, update it to `standalone`.
+
+**Example `manifest.json`**
+
+```json
+{
+  "short_name": "Netmera App",
+  "name": "Create Netmera App Sample",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
+```
+
+<figure><img src="/files/hdz4kp1yk4rJrdMkYllz" alt=""><figcaption></figcaption></figure>
+
+### Testing Configuration
+
+To test your website’s web push capabilities:
+
+1. Open your website in Safari on an iOS/iPadOS 16.4+ device.
+2. Click the **Share** button.
+3. Select **Add to Home Screen**.
+4. Once added, open the app from the home screen to verify that the permission prompt is enabled.
+
+### Step 2: Users Add Your Website to Their Home Screens
+
+For users to receive web push notifications, they must first add your website to their home screens.
+
+#### User Steps:
+
+1. Open the website on an iOS/iPadOS 16.4+ device.
+2. Click the **Share** button.
+3. Select **Add to Home Screen**.
+4. Save the app on the device home screen.
+5. Open the app from the home screen.
+6. Subscribe to notifications via the **Fancy Box**.
+7. The native permission prompt should appear when the subscribe button is clicked.
+
+<figure><img src="/files/cStESG07VWfYurkxNY4b" alt="" width="375"><figcaption></figcaption></figure>
+
+### Step 3: Granting Push Permission
+
+Once the website is added to the home screen:
+
+1. Users open the app from the home screen.
+2. The website triggers a **Fancy Box** requesting push notification permissions.
+3. Users must grant permission to receive web push notifications.
+
+<figure><img src="/files/Bp9lmBAh6k7SPagoDcxe" alt="" width="375"><figcaption></figcaption></figure>
+
+### Step 4: Sending a Web Push Notification for iOS
+
+Once users have granted push permissions, notifications can be sent using the **Netmera Panel**.
+
+#### Steps to Send a Notification:
+
+1. Navigate to the **Netmera Panel**.
+2. Select **Create New Campaign > Web > Safari** to configure and send notifications to iOS users.
+
+<figure><img src="/files/6ljfk72WHnEjoIhBOGIU" alt=""><figcaption></figcaption></figure>
+
+## How to Segment Mobile Web Push Opt-in Users?
+
+You can target users who have opted in for **Mobile Web Push** on iOS by following these steps:
+
+1. **Go to Targeting:** Navigate to **Targeting > People** in your dashboard.
+2. **Filter by Platform:** Under **Platform**, select **Safari**.
+3. **Select Device Type:** Choose **Device Type > Mobile** to filter mobile users.
+
+<figure><img src="/files/nRcodylkS0zph1TAJP0P" alt="" width="563"><figcaption></figcaption></figure>
+
+4. **Target Users Found:** Once the list is generated, save it as a segment to use in your future campaigns.
+
+<figure><img src="/files/UQOoglswRMYjTssXbYRc" alt="" width="563"><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/web/mobile-web-push-for-ios.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

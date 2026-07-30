@@ -1,0 +1,189 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/carousel-slider-and-thumbnail-push.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/carousel-slider-and-thumbnail-push.md).
+
+# Carousel, Slider and Thumbnail Push
+
+{% hint style="danger" %}
+**Warning:**
+
+You should build your application with **Xcode 8 or higher** to use iOS10 media push on your application.&#x20;
+{% endhint %}
+
+## Step 1: Create New Target
+
+1. **Ensure** Xcode 8 or higher is installed.
+2. **In Xcode**: Navigate to **File > New > Target**.
+
+<figure><img src="/files/2EW8gnPtc8ZZmDrA8tv9" alt="" width="563"><figcaption></figcaption></figure>
+
+3. Select **Notification Content Extension**.
+
+<figure><img src="/files/0f9LU3VfxQTrfzcpP7yH" alt="" width="563"><figcaption></figcaption></figure>
+
+4. A new class named **NotificationViewController** will be created. **Extend** it from `NetmeraNotificationContentExtension`.
+
+<figure><img src="/files/MuCaIEdHAnTpNDj7u8Ls" alt="" width="259"><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+**Switching Back to Debugging**
+
+If you accidentally "Activate", you can return to debugging your app using Xcode, which is located alongside the play button.
+{% endhint %}
+
+## Step 2: Add your Project to Pod File
+
+1. **Remove** the Objective-C Bridging Header file.
+2. Add `NetmeraNotificationContentExtension` in the NotificationContent.swift file.
+3. In your **Podfile**, add:
+
+```ruby
+target 'your_content_extension_target_name' do
+  pod "Netmera/NotificationContentExtension"
+end
+```
+
+4. **Run `pod update`** to apply the changes.
+
+{% hint style="danger" %}
+**Warning**: Run `pod update` after editing the Podfile.
+{% endhint %}
+
+## Step 3: Add Code to Notification Content Extension Class
+
+1. The new **NotificationViewController** class should extend `NetmeraNotificationContentExtension`
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```
+class NotificationViewController: NetmeraNotificationContentExtension {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any required interface initialization here.
+    }
+}
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```java
+#import <UIKit/UIKit.h>
+#import <NetmeraNotificationContentExtension/NetmeraNotificationContentExtension.h>
+
+@interface NotificationViewController : NetmeraNotificationContentExtension
+
+@end
+```
+
+```
+#import "NotificationViewController.h"
+#import <UserNotifications/UserNotifications.h>
+#import <UserNotificationsUI/UserNotificationsUI.h>
+
+@interface NotificationViewController ()
+
+@end
+
+@implementation NotificationViewController
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  // If you want to change the background color, uncomment the next line
+  // self.view.backgroundColor = [UIColor whiteColor];
+}
+
+@end
+```
+
+{% endtab %}
+{% endtabs %}
+
+## Step 4: Info.plist Configuration
+
+1. Make sure the **info.plist** file under the content extension looks like this.
+
+<figure><img src="/files/PFKt4y378X5AWiLkNidD" alt=""><figcaption></figcaption></figure>
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>AppGroupName</key> <string>your group name</string>
+
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+    <key>NSExtension</key>
+    <dict>
+        <key>NSExtensionAttributes</key>
+        <dict>
+            <key>UNNotificationExtensionCategory</key>
+            <array>
+                <string>NetmeraGeneral</string>
+                <string>NetmeraCarousel</string>
+            </array>
+            <key>UNNotificationExtensionInitialContentSizeRatio</key>
+            <integer>1</integer>
+        </dict>
+        <key>NSExtensionMainStoryboard</key>
+        <string>MainInterface</string>
+        <key>NSExtensionPointIdentifier</key>
+        <string>com.apple.usernotifications.content-extension</string>
+    </dict>
+</dict>
+</plist>
+```
+
+2. Delete **Label** in `MainInterface`
+3. If you want to add slide action to Carousel property, `UserInteractionEnabled` must be set **`YES`**.
+
+<figure><img src="/files/X60doOzvxzwREwlTsRdV" alt=""><figcaption></figcaption></figure>
+
+4. Enable App Groups for both your application and the NotificationContent extension in the Capabilities settings of your project. Then add "**group.com.yourcompany.carousel**" to your app groups.
+5. Specify the app group name in the app delegate method where you set the **`Netmera.start()`** method. Use the following codes as examples:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+Netmera.setAppGroupName = "group.com.yourcompany.carousel"
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+[Netmera setAppGroupName:@"group.com.yourcompany.carousel"];
+```
+
+{% endtab %}
+{% endtabs %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/carousel-slider-and-thumbnail-push.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

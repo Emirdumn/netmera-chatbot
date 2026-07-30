@@ -1,0 +1,92 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/email-providers/setrow.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/email-providers/setrow.md).
+
+# Setrow
+
+SetRow is an email sending platform specialized in providing transactional email services, primarily utilizing template-based delivery. In the Netmera platform, it is configured as a high-priority email connector.
+
+### Overview
+
+<table><thead><tr><th width="229.1766357421875">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>SetRow</td></tr><tr><td><strong>Category</strong></td><td>Email Providers</td></tr><tr><td><strong>Provider</strong></td><td>SetRow <code>(</code><a href="http://www.setrowsend.com"><code>http://www.setrowsend.com</code></a>)</td></tr><tr><td><strong>Primary Function</strong></td><td>Transactional and marketing email delivery using templates.</td></tr><tr><td><strong>Netmera Adapter Class</strong></td><td>SetRowMailAdapterImpl</td></tr><tr><td><strong>Data Flow</strong></td><td><strong>Outbound</strong> (Netmera > SetRow)</td></tr><tr><td><strong>Priority Ranking</strong></td><td><strong>Highest Priority</strong> (Rank 1 for email, subject to service permission).</td></tr></tbody></table>
+
+SetRow is integrated through the SetRowMailAdapterImpl class and is prioritized first among email connectors, followed by Amazon SES and Uzman Posta, provided the necessary **Service Permission** (ServiceDef.SERVICE\_NAME\_SETROW\_MAIL\_SERVICE) is granted to the application.
+
+<figure><img src="/files/Fd1qUAyAU3Bk9XGo2nPm" alt=""><figcaption></figcaption></figure>
+
+### Use Cases and Benefits
+
+1. **Transactional Email Sending:** SetRow is predominantly used for sending critical, transactional emails such as order confirmations, password resets, and user authentication notifications.
+2. **Template-Based Delivery:** Emails must be created as **templates** within the SetRow panel first. Netmera sends the request using the unique transcode of the SetRow template along with personalized data, allowing the platform to rely on SetRow's infrastructure for rendering and delivery.
+3. **High Deliverability and Priority:** Due to its Rank 1 priority, if SetRow is configured and active with the correct service permission, all compatible email traffic will be routed through it first, ensuring fast and reliable message delivery.
+4. **Integration with Netmera Messages:** Users can select the SetRow template when creating an email message in the Netmera panel (Messages > Create Message > Email), ensuring the email sending process uses the SetRow API.
+
+### Data Flow
+
+The data flow is strictly **Outbound** from Netmera to the SetRow API.
+
+1. **Message Creation:** An email message is created in Netmera, specifying the SetRow template transcode and personalization parameters (messageParams).
+2. **Adapter Selection:** The MailSenderServiceImpl checks active email connectors. If the application has permission to use SetRow Mail Server Service, the SetRowMailAdapterImpl is selected as the top priority.
+3. **Template Synchronization:** When the email message is saved, the SetRow template is automatically synchronized or updated on the SetRow platform via the SetRow service layer (SetRowService).
+4. **API Submission:** The adapter uses the configured apiKey to authenticate and submits the transactional request to the SetRow API, including the template transcode and user data.
+
+$$\text{Netmera Mail Sender} \xrightarrow\[\text{SetRowMailAdapterImpl}]{\text{Template Transcode + API Key}} \text{SetRow API}$$&#x20;
+
+### Configuration Reference
+
+<figure><img src="/files/tXTNhQyNk6Mn3ANtLzpQ" alt="" width="233"><figcaption></figcaption></figure>
+
+The configuration for SetRow is minimal, relying on a single API key for authentication.
+
+<table><thead><tr><th width="124.154052734375">Parameter</th><th width="133.5340576171875">Type</th><th width="182.162841796875">Description</th><th>Provider Context</th></tr></thead><tbody><tr><td><strong>apiKey</strong></td><td>String</td><td>The unique API key provided by SetRow.</td><td>Used for API authentication when submitting transactional email requests.</td></tr></tbody></table>
+
+### Setup Instructions
+
+The setup requires obtaining the API key from the SetRow platform and performing a connection test within Netmera.
+
+#### Step 1: SetRow Prerequisites
+
+1. Establish an account with SetRow.
+2. Log into the SetRow panel and retrieve your **API Key**.
+3. Create and manage your email templates, noting their specific **Transcodes**.
+
+#### Step 2: Configure in Netmera
+
+1. Navigate to the Netmera Control Panel and select the **Connectors** section.
+2. Choose the **SetRow** connector.
+3. Enter the obtained **API Key**.
+4. **Crucially, utilize the "Test Connection" feature** provided in the SetRow connector configuration page to verify the connection.
+5. Click **Save Configuration**.
+
+**Verification:** A successful connection test confirms that Netmera can authenticate with SetRow. Subsequent verification involves creating a test email in Netmera using a SetRow template transcode and confirming successful delivery.
+
+### Usage Notes & Considerations
+
+1. **Service Permission Requirement:** SetRow is the highest-priority email connector, but it is contingent upon the application possessing the specific service permission (ServiceDef.SERVICE\_NAME\_SETROW\_MAIL\_SERVICE). If this permission is not configured for the application, the system will fall back to the next connector (Amazon SES).
+2. **Template Dependency:** The integration is designed around SetRow's template structure. All email content must correspond to a pre-defined and managed template (identified by its transcode) on the SetRow platform. It may not support direct HTML injection for mass campaigns as easily as raw API senders.
+3. **Limited Test Connection:** The documentation notes that test connection functionality is specifically available only for Amazon Storage and **SetRow**, implying a higher dependency on this verification step compared to other connectors.
+4. **Authentication Reliance:** The entire email flow depends on the single apiKey. If this key is compromised, rotated on the SetRow side, or expires, the connector will fail immediately, requiring a manual update in Netmera.
+
+The SetRow integration operates like a secure vault for your email templates: Netmera provides the security key (API Key) and the instruction code (Template Transcode), ensuring that highly sensitive transactional messages are dispatched directly and reliably by the specialized SetRow infrastructure.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/email-providers/setrow.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

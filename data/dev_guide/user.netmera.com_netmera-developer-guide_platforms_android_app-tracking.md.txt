@@ -1,0 +1,58 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/android/app-tracking.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/android/app-tracking.md).
+
+# App Tracking
+
+Netmera’s App Tracking feature requires the `QUERY_ALL_PACKAGES` permission for Android 11 (API level 30) and above. This permission is essential for tracking other installed apps on the device.
+
+### Step 1: Declare the Permission in Your Manifest
+
+To enable App Tracking on Android devices, the `QUERY_ALL_PACKAGES` permission must be included in the app’s manifest. This is a requirement of the Android operating system to allow applications to query information about other installed apps on the device
+
+* Add the `QUERY_ALL_PACKAGES` permission to your app’s manifest.
+* This permission is required to allow the app to access information about other installed apps.
+
+### Step 2: Justify the Permission for Google Play Submission
+
+When submitting your app to the **Google Play Store**, you must:
+
+* Provide a clear justification for using the **QUERY\_ALL\_PACKAGES** permission.
+* Explain that the permission is required for analytics purposes (or other relevant functionality).
+
+{% hint style="success" %}
+**Example Justification**
+
+"This app requests the QUERY\_ALL\_PACKAGES permission to enable analytics features, allowing us to track app performance and gain insights for user experience improvements."
+{% endhint %}
+
+### Step 3: Ensure Compliance with Google Play Policies
+
+* Your justification must comply with **Google Play policies** and should align with your app’s actual use of the permission.
+* Be honest about why the permission is needed—ensure your description matches the app’s functionality.
+
+For more information, refer to:
+
+* [Google Play Support documentation](https://support.google.com/googleplay/android-developer/answer/10158779?hl=en) on `QUERY_ALL_PACKAGES`.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/android/app-tracking.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

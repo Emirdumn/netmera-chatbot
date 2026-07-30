@@ -1,0 +1,407 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/android/push-notifications/push-callbacks.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/android/push-notifications/push-callbacks.md).
+
+# Push Callbacks
+
+### Initializing Netmera SDK with Callbacks
+
+When initializing Netmera, you can register different types of callbacks:
+
+1. In-App Message Callbacks (`.nmInAppMessageActionCallbacks()`)
+2. Push Action Callbacks (`.nmPushActionCallbacks()`)
+3. Web Widget Callbacks (`.nmWebWidgetCallbacks()`)
+4. Push Presentation Callbacks (`.nmPushPresentationCallbacks()`)
+
+### Step 1: Initialize Netmera SDK with Callbacks
+
+During the initialization of Netmera, specify which callbacks your app should handle and include the callback lines during the initialization step ([SDK Integration](/netmera-developer-guide/platforms/android/sdk-integration.md#initialize-netmera)).
+
+* `.nmInAppMessageActionCallbacks()`
+* `.nmPushActionCallbacks()`
+* `.nmWebWidgetCallbacks()`
+* `.nmPushPresentationCallbacks()`
+
+```kotlin
+override fun onCreate() {
+    super.onCreate()
+
+    val configBuilder = NetmeraConfiguration.Builder()
+        .apiKey(apiKey)
+        .firebaseSenderId(PropertiesUtil.gcmSenderId)
+        .huaweiSenderId(PropertiesUtil.hmsSenderId) // For Huawei services
+        .logging(true) // Enables Netmera logs in Logcat
+        .nmPushActionCallbacks(NGPushActionCallbacks()) // Push Action Callback
+        .nmInAppMessageActionCallbacks(NGInAppMessageActionCallbacks()) // In-App Message Callback
+        .nmWebWidgetCallbacks(NGWebWidgetCallbacks()) // Web Widget Callback
+        .nmPushPresentationCallbacks(NMPushPresentationCallbacks()) // In-App Presentation Callback 
+    Netmera.init(configBuilder.build(this))
+}
+```
+
+### Step 2: Implement a Receiver Class
+
+* Extend `NetmeraPushBroadcastReceiver` and override the necessary callback methods. Avoid using `Toast` messages in the production environment.
+
+### Push Action Calllback
+
+{% tabs %}
+{% tab title="Kotlin" %}
+
+```kotlin
+inner class NGPushActionCallbacks : NMPushActionCallbacks {
+
+    fun onPushRegister(
+        context: Context?, 
+        gcmSenderId: String?, 
+        pushToken: String?
+    ) {
+        Log.v("sample", "onPushRegister")
+        // Example: PushRegisterIdlingResource.registeredToPush();
+        // Example: EventBus.getDefault().postSticky(GCMRegistrationEvent(pushToken));
+    }
+
+    fun onPushReceive(
+        context: Context?,
+        bundle: Bundle?,
+        netmeraPushObject: NetmeraPushObject?
+    ) {
+        Log.v("sample", "onPushReceive")
+        EventBus.getDefault().post(PushReceivedEvent(netmeraPushObject))
+    }
+
+    fun onPushOpen(
+        context: Context?,
+        bundle: Bundle?,
+        netmeraPushObject: NetmeraPushObject?
+    ) {
+        Log.v("sample", "onPushOpen")
+    }
+
+    fun onPushDismiss(
+        context: Context?,
+        bundle: Bundle?,
+        netmeraPushObject: NetmeraPushObject?
+    ) {
+        Log.v("sample", "onPushDismiss")
+    }
+
+    fun onPushButtonClicked(
+        context: Context?,
+        bundle: Bundle?,
+        netmeraPushObject: NetmeraPushObject?
+    ) {
+        Log.v("sample", "onPushButtonClicked")
+    }
+
+    // ==> For Netmera SDK versions 3.9.1 and above
+    fun onCarouselObjectSelected(
+        context: Context?,
+        bundle: Bundle?,
+        netmeraPushObject: NetmeraPushObject?,
+        selectedIndex: Int,
+        netmeraCarouselObject: NetmeraCarouselObject?
+    ) {
+        Log.v("sample", "onCarouselObjectSelected")
+    }
+}
+```
+
+{% endtab %}
+
+{% tab title="Java" %}
+
+```java
+public class NGPushActionCallbacks implements NMPushActionCallbacks {
+
+    @Override
+    public void onPushRegister(Context context, String gcmSenderId, String pushToken) {
+        Log.v("sample", "onPushRegister");
+        // Example: PushRegisterIdlingResource.registeredToPush();
+        // Example: EventBus.getDefault().postSticky(new GCMRegistrationEvent(pushToken));
+    }
+
+    @Override
+    public void onPushReceive(
+        Context context,
+        Bundle bundle,
+        NetmeraPushObject netmeraPushObject
+    ) {
+        Log.v("sample", "onPushReceive");
+        // Example: EventBus.getDefault().post(new PushReceivedEvent(netmeraPushObject));
+    }
+
+    @Override
+    public void onPushOpen(
+        Context context,
+        Bundle bundle,
+        NetmeraPushObject netmeraPushObject
+    ) {
+        Log.v("sample", "onPushOpen");
+    }
+
+    @Override
+    public void onPushDismiss(
+        Context context,
+        Bundle bundle,
+        NetmeraPushObject netmeraPushObject
+    ) {
+        Log.v("sample", "onPushDismiss");
+    }
+
+    @Override
+    public void onPushButtonClicked(
+        Context context,
+        Bundle bundle,
+        NetmeraPushObject netmeraPushObject
+    ) {
+        Log.v("sample", "onPushButtonClicked");
+    }
+
+    @Override // ==> For Netmera SDK versions 3.9.1 and above
+    public void onCarouselObjectSelected(
+        Context context,
+        Bundle bundle,
+        NetmeraPushObject netmeraPushObject,
+        int selectedIndex,
+        NetmeraCarouselObject netmeraCarouselObject
+    ) {
+        Log.v("sample", "onCarouselObjectSelected");
+    }
+}
+```
+
+{% endtab %}
+{% endtabs %}
+
+### In-App Action Calllback
+
+* To trigger an in-app callback, select the **banner** **style** in the Netmera control panel.
+* The **pop-up** style **will not** trigger the callback.
+
+{% tabs %}
+{% tab title="Kotlin" %}
+
+```kotlin
+inner class NGInAppMessageActionCallbacks : NMInAppMessageActionCallbacks {
+    private val TAG = "sample"
+
+    fun onInAppMessageShown(context: Context?, inAppMessage: NetmeraInAppMessage) {
+        Toast.makeText(
+            context,
+            "onInAppMessageShown triggered :: " + inAppMessage.getId(),
+            Toast.LENGTH_SHORT
+        ).show()
+        Log.i(TAG, "onInAppMessageShown triggered :: " + inAppMessage.getId())
+    }
+
+    fun onInAppMessageOpen(context: Context?, inAppMessage: NetmeraInAppMessage) {
+        Toast.makeText(
+            context,
+            "onInAppMessageOpen triggered :: " + inAppMessage.getId(),
+            Toast.LENGTH_SHORT
+        ).show()
+        Log.i(TAG, "onInAppMessageOpen triggered :: " + inAppMessage.getId())
+    }
+
+    fun onInAppMessageDismissed(context: Context?, inAppMessage: NetmeraInAppMessage) {
+        Toast.makeText(
+            context,
+            "onInAppMessageDismissed triggered :: " + inAppMessage.getId(),
+            Toast.LENGTH_SHORT
+        ).show()
+        Log.i(TAG, "onInAppMessageDismissed triggered :: " + inAppMessage.getId())
+    }
+}
+```
+
+{% endtab %}
+
+{% tab title="Java" %}
+
+```java
+public class NGInAppMessageActionCallbacks implements NMInAppMessageActionCallbacks {
+
+    private final String TAG = "sample";
+
+    @Override
+    public void onInAppMessageShown(Context context, NetmeraInAppMessage inAppMessage) {
+        Toast.makeText(
+            context,
+            "onInAppMessageShown triggered :: " + inAppMessage.getId(),
+            Toast.LENGTH_SHORT
+        ).show();
+        Log.i(TAG, "onInAppMessageShown triggered :: " + inAppMessage.getId());
+    }
+
+    @Override
+    public void onInAppMessageOpen(Context context, NetmeraInAppMessage inAppMessage) {
+        Toast.makeText(
+            context,
+            "onInAppMessageOpen triggered :: " + inAppMessage.getId(),
+            Toast.LENGTH_SHORT
+        ).show();
+        Log.i(TAG, "onInAppMessageOpen triggered :: " + inAppMessage.getId());
+    }
+
+    @Override
+    public void onInAppMessageDismissed(Context context, NetmeraInAppMessage inAppMessage) {
+        Toast.makeText(
+            context,
+            "onInAppMessageDismissed triggered :: " + inAppMessage.getId(),
+            Toast.LENGTH_SHORT
+        ).show();
+        Log.i(TAG, "onInAppMessageDismissed triggered :: " + inAppMessage.getId());
+    }
+}
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Widget Callback Methods <a href="#widget-callback-methods" id="widget-callback-methods"></a>
+
+* Implement the `NMWebWidgetCallbacks` interface and override the `onDeeplinkTriggered()` and `onOpenUrlTriggered()` methods.
+
+{% hint style="info" %}
+**Netmera Panel Settings:**
+
+* **Select "Widget" Style**: Ensure the widget is set to "Widget" style in the Netmera panel to trigger the callback.
+* **Choosing "Manage App"**: If the action should be handled within the app, select **"Manage App"** when assigning an action in "Create New Widget." Without this, the SDK will handle it, but the callback won't trigger.
+  {% endhint %}
+
+<figure><img src="/files/uq8ehYeBUX5MMuLcdZxa" alt=""><figcaption><p>Manage App Chosen</p></figcaption></figure>
+
+{% tabs %}
+{% tab title="Kotlin" %}
+
+```kotlin
+inner class NGWebWidgetCallbacks : NMWebWidgetCallbacks {
+
+    override fun onDeeplinkTriggered(deeplink: String) {
+        Log.i("NetmeraApp", "Deeplink was triggered and should be handled by app. :: $deeplink")
+    }
+
+    override fun onOpenUrlTriggered(url: String) {
+        Log.i("NetmeraApp", "OpenUrl was triggered and should be handled by app. :: $url")
+    }
+
+    override fun onWebWidgetShown(url: String) {
+        Log.i("NetmeraApp", "WebWidget shown :: $url")
+    }
+
+    override fun onWebWidgetDismiss(url: String) {
+        Log.i("NetmeraApp", "WebWidget dismiss :: $url")
+    }
+}
+```
+
+{% endtab %}
+
+{% tab title="Java" %}
+
+```java
+public class NGWebWidgetCallbacks implements NMWebWidgetCallbacks {
+
+    @Override
+    public void onDeeplinkTriggered(String deeplink) {
+        Log.i("NetmeraApp", "Deeplink was triggered and should be handled by app. :: " + deeplink);
+    }
+
+    @Override
+    public void onOpenUrlTriggered(String url) {
+        Log.i("NetmeraApp", "OpenUrl was triggered and should be handled by app. :: " + url);
+    }
+
+    @Override
+    public void onWebWidgetShown(String url) {
+        Log.i("NetmeraApp", "WebWidget shown :: " + url);
+    }
+
+    @Override
+    public void onWebWidgetDismiss(String url) {
+        Log.i("NetmeraApp", "WebWidget dismiss :: " + url);
+    }
+}
+```
+
+{% endtab %}
+{% endtabs %}
+
+## Push Presentation Callbacks
+
+Netmera SDK allows you to intercept and manage how web content is presented to the user. By using the `NMPushPresentationCallbacks`, you can decide whether to use Netmera's default WebView or launch your own custom UI.
+
+### Configuration
+
+The callbacks are registered during the Netmera initialization process within the `NetmeraConfiguration.Builder`.
+
+### Example Implementation
+
+In the following example, we check a local preference to decide whether to launch a custom `WebViewPopupActivity` or let the SDK handle the presentation.
+
+```kotlin
+// Inside your Application class onCreate()
+val config = NetmeraConfiguration.Builder()
+    // ... other configurations (API Key, etc.)
+    .nmPushPresentationCallbacks(object : NMPushPresentationCallbacks {
+        /**
+         * Called when the SDK would present a web view for the given push, 
+         * so the app can present it instead.
+         *
+         * @param push The push that triggered the web view presentation.
+         * @return `true` if the app has presented (or will present) the web view; 
+         * `false` to let the SDK use its default presentation.
+         */
+        override fun presentWebView(push: NetmeraBasePush): Boolean {
+            // If you want to use your custom activity based on a condition:
+            if (shouldShowCustomUI) {
+                val intent = Intent(this@NGApplication, WebViewPopupActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    // You can pass the push object or its URL to your activity
+                    putExtra("push_data", push) 
+                }
+                startActivity(intent)
+                return true // SDK will skip its default presentation
+            }
+            
+            return false // SDK will proceed with its default WebView
+        }
+
+        /**
+         * Called when the currently displayed web view (or widget) requests to be closed—for example,
+         * the user taps a close button or the page triggers a close action.
+         *
+         * Implement this to dismiss your custom web view UI (e.g. finish the activity or close the
+         * dialog that hosts the WebView).
+         */
+        override fun closeWebView(push: NetmeraBasePush) {
+            // Logic to finish your custom activity or hide your custom dialog
+            WebViewPopupActivity.finishCurrent()
+        }
+
+    })
+    .build(this)
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/android/push-notifications/push-callbacks.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

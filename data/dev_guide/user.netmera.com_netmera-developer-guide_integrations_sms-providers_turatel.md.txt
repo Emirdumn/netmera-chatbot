@@ -1,0 +1,95 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/turatel.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/turatel.md).
+
+# Turatel
+
+The Turatel Connector integrates Netmera with Turatel, a supported SMS gateway provider primarily focused on the Turkish market. It is configured as an SMS delivery channel within the Netmera platform, enabling reliable transmission of both marketing and transactional SMS messages.
+
+### Overview
+
+<table><thead><tr><th width="216.20318603515625">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>Turatel</td></tr><tr><td><strong>Category</strong></td><td>SMS Providers</td></tr><tr><td><strong>Provider Location</strong></td><td>Turkey</td></tr><tr><td><strong>Primary Function</strong></td><td>Outbound transmission of SMS messages</td></tr><tr><td><strong>Data Flow</strong></td><td>Outbound (Netmera > FigenSoft)</td></tr><tr><td><strong>Priority Ranking</strong></td><td>High (Rank 3, after Message Center and Mobildev)</td></tr></tbody></table>
+
+<figure><img src="/files/tjvoALUd1VBwCYXO0tlU" alt=""><figcaption></figcaption></figure>
+
+### Use Cases and Benefits
+
+The Turatel Connector allows Netmera users to deliver SMS messages through Turatel directly from the platform. It supports both campaign-based and service-oriented messaging scenarios while keeping provider configuration and sender definitions centrally managed.
+
+* **Transactional and service messaging**\
+  Use Turatel for service-related SMS communication such as account notifications, reminders, alerts, and other operational messages.
+* **Marketing and campaign messaging**\
+  Use Turatel to send promotional SMS campaigns, announcements, and audience-based communication created in Netmera.
+* **Sender-based message management**\
+  Sender headers defined during setup can be reused during campaign creation, helping teams manage SMS delivery settings more consistently.
+* **Panel-based provider setup**\
+  The integration can be installed and managed directly from the Netmera panel, making provider activation and configuration easier for platform users.
+
+### Configuration Reference
+
+<figure><img src="/files/qR5M58bQ3pKKrrNVajsZ" alt="" width="375"><figcaption></figcaption></figure>
+
+<table><thead><tr><th width="156.438720703125">Parameter</th><th width="187.3460693359375">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>User Code</strong></td><td>Number</td><td>User code assigned by Turatel. Only numeric values are accepted.</td></tr><tr><td><strong>Account ID</strong></td><td>Number</td><td>Account identifier for the Turatel account. Only numeric values are accepted.</td></tr><tr><td><strong>Username</strong></td><td>Text</td><td>Username for the Turatel API account.</td></tr><tr><td><strong>Password</strong></td><td>Password</td><td>Password for the Turatel API account. The field is masked by default.</td></tr><tr><td><strong>Sender List</strong></td><td>Multi-value Text</td><td>List of sender headers available for SMS delivery. Multiple senders can be added. Each value can contain up to 11 characters.</td></tr></tbody></table>
+
+### Data Flow
+
+The Turatel integration is used for outbound SMS delivery initiated from Netmera. Once the connector is installed and configured, Netmera sends SMS delivery requests to Turatel using the account credentials defined during setup.
+
+Sender values added in the **Sender List** are then made available in the **SMS Header** field during SMS campaign creation. This allows users to select from predefined sender headers when creating SMS messages.
+
+The final targeting behavior depends on the selected SMS sending type in Netmera:
+
+* For **Notification** messages, targeting can still be performed even if the recipient has opted out of SMS permissions.
+* For **Campaign** messages, only recipients with SMS opt-in status can be targeted.
+
+### Setup Instructions
+
+#### Prerequsities
+
+This guided setup helps you connect your Turatel account to Netmera. Once the integration is completed, you can send SMS campaigns through Turatel within the Netmera platform.
+
+Before you begin, make sure you have the following:
+
+* Access to your Turatel account dashboard
+* The required account credentials
+* Configured sender information in Turatel, if applicable
+
+This integration only needs to be configured once. To ensure successful communication between Netmera and Turatel, make sure that the credentials entered during setup are valid and up to date.
+
+#### Steps
+
+1. Go to **Panel > Integrations**.
+2. Under the **SMS Providers** category, locate the **Turatel** connector.
+3. Click **Install**. An information page opens first, summarizing the prerequisites for the Turatel account.
+4. On the guidance page, click **Install** again to open the configuration form.
+5. Enter the required information:
+   * **User Code** (numeric)
+   * **Account ID** (numeric)
+   * **Username**
+   * **Password** (masked by default and can be revealed using the eye icon)
+   * **Sender List** (multiple sender values can be added)
+6. Save the configuration. Once all required fields are completed, the integration becomes active.
+
+<figure><img src="/files/ZmpKuhxhf2rnAxSu378e" alt="" width="375"><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/turatel.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

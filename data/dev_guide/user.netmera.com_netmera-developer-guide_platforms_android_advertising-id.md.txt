@@ -1,0 +1,99 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/android/advertising-id.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/android/advertising-id.md).
+
+# Advertising ID
+
+### Netmera Ad\_ID Integration for Android
+
+The Netmera Android SDK provides the ability to retrieve the **Ad\_ID** (Advertising Identifier) for users. This device identifier allows for targeted actions that help you better understand and engage with your users, although it is not used for displaying advertisements. Instead, the Ad\_ID is a key variable for tracking user interactions and behavior.
+
+{% hint style="success" %}
+**Ad\_ID Usage**
+
+* The **Ad\_ID** is a unique identifier tied to each user's device.
+* It is not used for advertisements within your app but for tracking user activity and enabling more personalized communication and campaigns.
+  {% endhint %}
+
+### Ad\_ID Permission
+
+When targeting Android 13 or above:
+
+* Add the following line to your `AndroidManifest.xml`:
+
+```xml
+<uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+```
+
+{% hint style="warning" %}
+**Targeting Android 13 and Above:**&#x20;
+
+This permission is required for accessing ad tracking information on Android 13 devices. For more details, refer to the [Google documentation.](https://support.google.com/googleplay/android-developer/answer/6048248)
+{% endhint %}
+
+### Android Ad\_ID Details for Android 12 and Above
+
+1. `isLimitAdTrackingEnabled()` Method
+
+The `isLimitAdTrackingEnabled()` method, located in the `AdvertisingIdClient.Info` class, checks whether the user has opted to limit the use of their advertising ID.
+
+2. When `isLimitAdTrackingEnabled()` Returns True
+
+If the method returns `true`, it means the user has chosen to limit the use of their advertising identifier (`adid`) for personalized ads.
+
+3. Return Value: `00000000-0000-0000-0000-000000000000`
+
+When Limit Ad Tracking is enabled, the API will return a string of zeros (`00000000-0000-0000-0000-000000000000`), acting as a pseudo-identifier to indicate limited ad tracking.
+
+### User Details and Ad\_ID in Netmera Panel
+
+You can view the Ad\_ID and its permission status under **Settings > User** in the Netmera Panel. The Ad\_ID and whether the user has granted permission to track are visible in the last two columns.
+
+{% hint style="info" %}
+**Troubleshooting Ad\_ID Panel Visibility**
+
+If you cannot find the **Ad\_ID** options in the panel or encounter any issues, please reach out to the **Netmera Success Team** for assistance.
+{% endhint %}
+
+<figure><img src="/files/iLj273JLhdnIadpsxqeN" alt="" width="563"><figcaption></figcaption></figure>
+
+### Filtering Users Based on Ad\_ID Permission
+
+You can filter users based on their Ad\_ID permission status within the **Targeting > People** section of the Netmera Panel. This enables you to create campaigns tailored specifically to users who have either granted or denied permission for ad tracking.
+
+<figure><img src="/files/x2xoWRVLMg3MKEprQpBu" alt="" width="284"><figcaption></figcaption></figure>
+
+### Exporting Users Based on Ad\_ID Permission
+
+* After filtering your audience in the **"Targeting > People"** section, use the **‘Find’** button to list users fitting your criteria.
+* Click on **‘Target Users Found’** to export the filtered user list for further analysis or campaign targeting.
+
+<figure><img src="/files/f6vLqh78wIc3Ez6avO9A" alt="" width="375"><figcaption></figcaption></figure>
+
+### Targeting Based on Ad\_ID Permission
+
+When creating a campaign in the **Netmera Panel**, specifically on **Step 3: Who**, you can select the **‘By Advertising ID’** option. This allows you to target users based on their Ad\_ID, providing a more personalized and effective strategy for user engagement.
+
+<figure><img src="/files/7qJVaSqyyk9KEbQUsV7J" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/android/advertising-id.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

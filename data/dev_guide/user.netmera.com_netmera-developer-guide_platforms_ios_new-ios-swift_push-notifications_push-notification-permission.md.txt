@@ -1,0 +1,195 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/push-notification-permission.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/push-notification-permission.md).
+
+# Push Notification Permission
+
+This page explains how to request iOS push notification permission, enable the required Xcode capability, and control Netmera push delivery state in your app.
+
+## System Permissions
+
+#### Step 1: Add the notification dependency
+
+Choose the dependency manager you use in your project.
+
+**Swift Package Manager**
+
+In Xcode, go to **File → Add Package Dependencies** and enter the Netmera iOS SDK repository URL. Then select `NetmeraNotification` from the available package products and add it to your app target.
+
+**CocoaPods**
+
+Add the following line to your app target in the `Podfile`.
+
+```ruby
+pod "NetmeraNotification"
+```
+
+Then run:
+
+```bash
+pod install
+```
+
+#### Step 2: Request notification permission
+
+To send push notifications, request authorization from the user.
+
+```swift
+Netmera.requestPushNotificationAuthorization(for: [.alert, .badge, .sound])
+```
+
+{% hint style="success" %}
+Call this method at the right point in your app flow. Use onboarding or a pre-permission screen when you need context before the system prompt appears.
+{% endhint %}
+
+{% hint style="info" %}
+**Mandatory for Interactive Push Buttons**
+
+If your app uses interactive push notifications, calling the authorization method is required. Without it, the SDK cannot register or handle notification actions correctly.
+{% endhint %}
+
+#### Handling the authorization callback
+
+You can use a completion handler to check whether the user granted permission and handle errors.
+
+```swift
+Netmera.requestPushNotificationAuthorization(
+    for: [.alert, .badge, .sound]
+) { granted, error in
+    if let error = error {
+        print("Authorization request failed: \(error)")
+        return
+    }
+
+    if granted {
+        print("Push notification permission granted")
+    } else {
+        print("Push notification permission denied")
+    }
+}
+```
+
+#### Checking System Notification Permission
+
+Use `checkNotificationPermission` to query the iOS system-level authorization status.
+
+```swift
+Netmera.checkNotificationPermission { permissionType in
+    switch permissionType {
+    case .granted:
+        print("System permission granted")
+    case .denied:
+        print("System permission denied by user")
+    case .blocked:
+        print("System permission blocked")
+    case .notDetermined:
+        print("Permission not yet requested")
+    }
+}
+```
+
+`NetmeraPushPermissionType` returns one of the following values:
+
+<table><thead><tr><th width="181.2442626953125">Value</th><th>Meaning</th></tr></thead><tbody><tr><td><code>.granted</code></td><td>User has granted notification permission</td></tr><tr><td><code>.denied</code></td><td>User has denied the permission prompt</td></tr><tr><td><code>.blocked</code></td><td>Notifications are blocked at the system level</td></tr><tr><td><code>.notDetermined</code></td><td>Authorization has not been requested yet</td></tr></tbody></table>
+
+#### Step 3: Enable Push Notifications in Xcode
+
+Enable the push capability in your Xcode project.
+
+* Open your Xcode project.
+* Go to **Signing & Capabilities**.
+* Under **Capability**, select **Push Notifications**.
+
+<figure><img src="/files/URDysKzFqOmAscnoVIRC" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Step 4: Implement `UNUserNotificationCenterDelegate`
+
+In your `AppDelegate`, set the notification center delegate in `didFinishLaunchingWithOptions`.
+
+```swift
+UNUserNotificationCenter.current().delegate = self
+```
+
+Then add the delegate methods that handle foreground presentation and user interaction.
+
+```swift
+func userNotificationCenter(
+    _ center: UNUserNotificationCenter,
+    willPresent notification: UNNotification,
+    withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+) {
+    if #available(iOS 14.0, *) {
+        completionHandler([.banner, .list, .badge, .sound])
+    } else {
+        completionHandler([.alert, .badge, .sound])
+    }
+}
+
+func userNotificationCenter(
+    _ center: UNUserNotificationCenter,
+    didReceive response: UNNotificationResponse,
+    withCompletionHandler completionHandler: @escaping () -> Void
+) {
+    completionHandler()
+}
+```
+
+## Push Opt-In Status
+
+Netmera iOS SDK also lets you control whether the device can receive Netmera push notifications.
+
+`checkNotificationPermission` and `isReceivingPushNotificationsEnabled` check different things:
+
+* `checkNotificationPermission` checks the iOS system permission.
+* `isReceivingPushNotificationsEnabled` checks the Netmera opt-in state.
+* `Netmera.setReceivingPushNotificationsEnabled(true)` enables Netmera push delivery.
+* `Netmera.setReceivingPushNotificationsEnabled(false)` disables Netmera push delivery.
+
+```swift
+Netmera.setReceivingPushNotificationsEnabled(true)
+Netmera.setReceivingPushNotificationsEnabled(false)
+```
+
+{% hint style="warning" %}
+Push delivery depends on both system permission and Netmera push status. If either one is disabled, the device will not receive Netmera push notifications.
+{% endhint %}
+
+#### Checking push notification status
+
+Use the following method to check whether the device can currently receive Netmera push notifications.
+
+```swift
+Netmera.isReceivingPushNotificationsEnabled { [weak self] isEnabled in
+    DispatchQueue.main.async {
+        self?.pushSwitch.isOn = isEnabled
+    }
+}
+```
+
+The method returns a boolean value.
+
+* `true` means push notifications are enabled for the device in Netmera.
+* `false` means push notifications are blocked or disabled.
+* You can reflect this value directly in the UI, such as a `UISwitch`.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/push-notification-permission.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

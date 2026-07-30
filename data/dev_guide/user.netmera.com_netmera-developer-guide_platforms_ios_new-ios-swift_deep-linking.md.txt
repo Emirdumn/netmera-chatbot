@@ -1,0 +1,90 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/deep-linking.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/deep-linking.md).
+
+# Deep Linking
+
+### Deep Linking
+
+To redirect users to a specific page or view in your app via push notifications with custom action buttons, you can use deep links. Follow these steps to set up deep linking in your app:
+
+1. **Set Up a URL Scheme**\
+   In your Xcode project, define a custom URL scheme (`your_deeplink_scheme://`).
+2. **Configure Info.plist**
+   * Open your **Info.plist** file.
+   * Add a new key: `URL types`**.**  Xcode will create an array with a dictionary called `Item 0`.
+   * Inside `Item 0`, add:
+     * `URL identifier` > Set it to your custom scheme.
+     * `URL Schemes` >This creates an array.
+     * `Item 0` inside `URL Schemes` > Set it to your custom scheme.
+3. **Handle the Deep Link**
+
+Implement the following method in your `AppDelegate.swift` to handle deep links:
+
+```swift
+func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+    print("openUrl: \(url)")
+    return true
+}
+```
+
+### Universal Links
+
+To handle universal links from Netmera push actions (e.g., `https://your_domain/scheme?query`):
+
+1. **Set Netmera Push Delegate**
+
+In `didFinishLaunchingWithOptions`, add:
+
+```swift
+Netmera.setPushDelegate(self)
+```
+
+Ensure that your `AppDelegate` conforms to the `NetmeraPushDelegate` protocol.
+
+2. **Implement Universal Link Handlers**
+
+Add the following methods to handle universal links:
+
+* `shouldOpen`: Checks if the URL should be handled. Return `true` to process it.
+* `open`: Executes when the URL is triggered by a Netmera push action.
+
+```swift
+  /// Returns who will open the given URL in a push context (e.g. link from web view content).
+  /// Return `.appHandles` only if you implement `openURL(_:for:)`; otherwise return `.sdkHandles`.
+  func urlOpeningDecision(for url: URL, push: NetmeraBasePush) -> PushDelegateDecision {
+    if url.host == "your_domain" || UserDefaults.standard.bool(forKey: NotificationDelegateSetting.deeplinkHandling.rawValue) {
+      return .appHandles
+    }
+    return .sdkHandles
+  }
+
+  /// Called when the delegate has indicated it will open the URL. Open the URL in your preferred way (e.g. in-app browser or deeplink).
+  func openURL(_ url: URL, for push: NetmeraBasePush) {
+    print("openURL \(url)")
+    showAlertInIndependentWindow(title: "App handling link", message: url.absoluteString)
+  }
+}
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/deep-linking.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

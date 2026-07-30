@@ -1,0 +1,170 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/media-push.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/media-push.md).
+
+# Media Push
+
+### Step 1: Create New Target&#x20;
+
+1. Ensure you are using **Xcode 8** or a higher version.
+2. In Xcode, navigate to **File > New > Target**.
+
+<figure><img src="/files/2EW8gnPtc8ZZmDrA8tv9" alt="" width="563"><figcaption></figcaption></figure>
+
+3. Select **Notification Service Extension** from the available options and create the new target.
+
+<figure><img src="/files/dnl4MZF5JKv9PxY5IbuF" alt="" width="563"><figcaption></figcaption></figure>
+
+<figure><img src="/files/gFkHAjUDBLzhjxsSICdp" alt="" width="260"><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+**Switching Back to Debugging**
+
+If you accidentally click on "Activate", you can return to debugging your app using Xcode, which is located next to the the play button.
+{% endhint %}
+
+### Step 2: Update Pod File
+
+1. **Remove** the Objective-C Bridging Header from your project.
+2. Add the following to your Podfile to link the `Netmera.framework` to the Notification Content Extension.
+3. Run `pod update` to install the dependency.
+
+```ruby
+target 'your_service_extension_target_name' do
+  pod "Netmera/NotificationServiceExtension"
+end
+```
+
+{% hint style="danger" %}
+**Warning:**
+
+After adding the previous line to your Podfile, **`pod update`** is used.
+{% endhint %}
+
+### Step 3: Add Code to the Notification Service Extension Class
+
+1. Create a new class `NotificationService` that extends `NetmeraNotificationServiceExtension`.
+2. Your `NotificationService` class should look like the following:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+class NotificationService : NetmeraNotificationServiceExtension {
+
+    override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (_ contentToDeliver: UNNotificationContent) -> Void) {
+        super.didReceive(request, withContentHandler: contentHandler)
+    }
+
+    override func serviceExtensionTimeWillExpire() {
+        super.serviceExtensionTimeWillExpire()
+    }
+
+}
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+#import <NetmeraNotificationServiceExtension/NetmeraNotificationServiceExtension.h>
+
+
+@interface NotificationService : NetmeraNotificationServiceExtension
+
+@end
+```
+
+```notificationservice
+#import "NotificationService.h"
+
+@implementation NotificationService
+
+- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent *contentToDeliver))contentHandler {
+    [super didReceiveNotificationRequest:request withContentHandler:contentHandler];
+}
+
+- (void)serviceExtensionTimeWillExpire {
+    [super serviceExtensionTimeWillExpire];
+}
+
+@end
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Step 4: Info.plist Configuration
+
+1. Click Info.plist under **NotificationService Extension**
+2. Add **App Transport Security Settings**
+3. Under App Transport Security Settings add Allow Arbitrary Loads and set it to **YES.**
+
+{% hint style="warning" %}
+**Allow Arbitrary Loads / Yes allows all HTTP loads:**
+
+`NSAllowsArbitraryLoads` allows all HTTP loads. This value should be set to `true` only if an image URL in HTTP format is being used in push notifications. Otherwise, it is not necessary and might be set as FALSE.
+{% endhint %}
+
+<figure><img src="/files/nzHvVEunWJmXpn0gKqtj" alt=""><figcaption></figcaption></figure>
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+    <key>NSExtension</key>
+    <dict>
+        <key>NSExtensionPointIdentifier</key>
+        <string>com.apple.usernotifications.service</string>
+        <key>NSExtensionPrincipalClass</key>
+        <string>$(PRODUCT_MODULE_NAME).NotificationService</string>
+    </dict>
+</dict>
+</plist>
+```
+
+### Troubleshooting
+
+#### Check Service Extension Target Settings
+
+* Ensure the **minimum deployment version** of your service extension matches or is lower than the device’s iOS version.
+
+<figure><img src="/files/ptj1h1MVSBKJrbbxsqoi" alt=""><figcaption></figcaption></figure>
+
+#### Ensure 'Copy only when installing' is Unchecked
+
+* In **Xcode**, go to **Build Phases** and expand **Embed App Extensions**. Ensure that **Copy only when installing** is **unchecked** for your main target.
+
+1. Select your main target.
+2. Go to "Build Phases."
+3. Expand "Embed App Extensions."
+4. Ensure that "Copy only when installing" is NOT checked. If it is checked, please uncheck it.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/media-push.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,64 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/react-native/sdk-integration/android-push-icon.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/react-native/sdk-integration/android-push-icon.md).
+
+# Android Push Icon
+
+### Step 1: Create the Icon
+
+* Design your icon according to the standards provided in [this link](https://developer.android.com/studio/write/create-app-icons#create-notification).
+* Ensure the icon meets the required specifications for visibility and quality.
+
+### Step 2: Upload the Icon
+
+* Go to the **Developer > App Info** page in your app's settings.
+* Enter the file name of the icon in the designated field.
+* Add the icon file to your project.
+
+<figure><img src="/files/7KinvkYgJ3bRZ1dbperd" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 3: Enable Custom Push Icon
+
+* When setting up a push notification campaign, navigate to the **"What"** step.
+* Turn on the **"Custom Push Icon"** option.
+* Select the custom icon you uploaded from the **Developer > App Info** settings.
+
+{% hint style="info" %}
+**If the Custom Push Icon option is turned off:**
+
+If the **"Custom Push Icon"** option is turned off, the system will use the **default notification icon** for your push notifications.
+{% endhint %}
+
+<figure><img src="/files/T8v0PRoWYEPRnqBSMGYz" alt="" width="563"><figcaption></figcaption></figure>
+
+### Using White or Shadow Icons
+
+A white or shadow icon is required when the default icon is not visible on certain Android devices or backgrounds.
+
+**How to Implement:**
+
+* Design a white or shadow version of your icon.
+* Upload this icon specifically for Android in the **Developer > App Info** settings.
+* Ensure the icon is selected when sending push notifications to guarantee proper visibility.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/react-native/sdk-integration/android-push-icon.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

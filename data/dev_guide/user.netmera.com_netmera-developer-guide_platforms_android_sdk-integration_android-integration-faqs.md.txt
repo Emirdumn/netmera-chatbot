@@ -1,0 +1,222 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/android-integration-faqs.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/android-integration-faqs.md).
+
+# Android Integration FAQs
+
+### Q1: Build.gradle file error
+
+**I encountered an error while adding Netmera dependencies to the build.gradle file.**
+
+Error Message:
+
+`Problem occurred evaluating root project. Build was configured to prefer settings repositories over project repositories but repository 'Google' was added by build file 'build.gradle’`
+
+* Navigate to `settings.gradle` and remove the `dependencyResolutionManagement` block.
+* For more information, you may refer to this [Stack Overflow answer](https://stackoverflow.com/a/69197871).
+
+### **Q2: U**nresolved reference to version catalog
+
+**While editing the gradle file in the Android SDK, I encountered the error "Unresolved reference to version catalog" after adding the necessary entries to the project gradle.**
+
+To resolve this issue, you can add the following two lines under the `plugins` section in your `libs.versions.toml` file:
+
+```toml
+google-services = { id = "com.google.gms.google-services", version = "4.3.8" }
+#noinspection GradlePluginVersion
+android-library = { id = "com.android.library", version = "1.9.0" }
+```
+
+After making these changes, the project should recognize the references, and the error should be resolved.
+
+### Q3: Netmera init error
+
+**I'm getting an error when initializing the Netmera SDK in the onCreate() method.**
+
+**Error Message:**
+
+```sql
+No method 'init' found
+```
+
+* Ensure that you have correctly imported the Netmera SDK in your project.
+* Double-check the initialization code and make sure it matches the provided example.
+
+### Q4: Requesting push notification permissions
+
+**How do I request push notification permissions using the Netmera SDK?**
+
+* Use the `requestNotificationPermissions(activity: Activity?)` method to trigger the necessary methods to send a request for permissions to the system.
+
+```kotlin
+Netmera.requestNotificationPermissions(this)
+```
+
+```java
+Netmera.requestNotificationPermissions(this);
+```
+
+### Q5: Checking if push notifications are enabled&#x20;
+
+**How can I check if push notifications are enabled for my application?**
+
+* Use the `areNotificationsEnabled(): Boolean` method to check the notification status.
+
+```kotlin
+val isEnabled = Netmera.areNotificationsEnabled()
+```
+
+```java
+boolean isEnabled = Netmera.areNotificationsEnabled();
+```
+
+### Q6: FCM issues
+
+**I'm encountering issues with Firebase Cloud Messaging alongside Netmera.**
+
+* Make sure to call `onNetmeraPushMessageReceived(remoteMessage)` in your Firebase Messaging Service class when using Netmera alongside FCM.
+* Update the FCM token by calling `onNetmeraNewToken(token)` in the `onNewToken()` method.
+
+```kotlin
+override fun onMessageReceived(remoteMessage: RemoteMessage) {
+    if (Netmera.isNetmeraRemoteMessage(remoteMessage)) {
+        Netmera.onNetmeraPushMessageReceived(remoteMessage)
+    } else {
+        // other operations
+    }
+}
+
+override fun onNewToken(token: String) {
+    Netmera.onNetmeraNewToken(token)
+}
+```
+
+```java
+@Override
+public void onMessageReceived(RemoteMessage remoteMessage) {
+    if (Netmera.isNetmeraRemoteMessage(remoteMessage)) {
+        Netmera.onNetmeraPushMessageReceived(remoteMessage);
+    } else {
+        // other operations
+    }
+}
+
+@Override
+public void onNewToken(String token) {
+    Netmera.onNetmeraNewToken(token);
+}
+```
+
+### Q7: HTTP v1 API
+
+**Can I receive push notifications from the HTTP v1 API with my old token that I used to receive pushes with Legacy?**
+
+Yes, you can still receive push notifications from the HTTP v1 API with the same token that you used to receive notifications with the Legacy API. However, as long as your token is valid and properly formatted, you should be able to use it to receive notifications with the HTTP v1 API.
+
+### Q8: `SenderId` mismatch
+
+**What should I do if I receive a SenderId mismatch error when sending push notifications?**
+
+If you encounter a SenderId mismatch error, it indicates that your Sender ID is not mapped to the registration token you are targeting during the push notification sending process. Here are the possible reasons and solutions:
+
+* **Wrong registration token used in the request:**
+
+  Check if the registration token you're using was generated from the correct Project ID (Project Settings > General tab > Your project section) or Sender ID (Project Settings > Cloud Messaging tab > Project credentials section).
+* **Wrong credential used to authorize the request:**
+
+  Verify if the Server key you’re using matches the one found in the Firebase console (Project Settings > Cloud Messaging tab > Project credentials section).
+* **Use the Instance ID API to verify the mapping:**
+
+  It's recommended to use the Instance ID API to confirm the correct mapping of your Sender ID or auth key to your registration tokens.
+
+### Q9: `com.google.android.gms.permission.AD_ID` alert
+
+**What should I do if I encounter the com.google.android.gms.permission.AD\_ID alert during my application's App Store submission?**
+
+If you encounter the com.google.android.gms.permission.AD\_ID alert during your application's App Store submission, follow these steps:
+
+* After proceeding with 'yes' to the alert, select the 'analytics' option on the subsequent page.
+* After this selection, there is no need for any additional additions to the manifest; merging the manifest is sufficient.
+
+### Q10: Excluding Netmera Android SDK files from auto-backup if your app supports backup
+
+**How can I exclude Netmera Android SDK files from auto-backup in my app?**
+
+Put the following rules into the corresponding files:
+
+**/res/xml/backup\_rules.xml**
+
+```xml
+<?xml version="1.0" encoding="utf-8"?><!--
+Sample backup rules file; uncomment and customize as necessary.
+See https://developer.android.com/guide/topics/data/autobackup
+for details.
+Note: This file is ignored for devices older that API 31
+See https://developer.android.com/about/versions/12/backup-restore
+-->
+<full-backup-content>
+<exclude
+domain="sharedpref"
+path="53yotuierh_34_ds_dfjk.xml" />
+<exclude
+domain="database"
+path="nm_req" />
+</full-backup-content>
+```
+
+**/res/xml/data\_extraction\_rules.xml**
+
+```xml
+<?xml version="1.0" encoding="utf-8"?><!--
+Sample data extraction rules file; uncomment and customize as necessary.
+See https://developer.android.com/about/versions/12/backup-restore#xml-changes
+for details.
+-->
+<data-extraction-rules>
+<cloud-backup>
+<exclude
+domain="sharedpref"
+path="53yotuierh_34_ds_dfjk.xml" />
+<exclude
+domain="database"
+path="nm_req" />
+</cloud-backup>
+<device-transfer>
+<exclude
+domain="sharedpref"
+path="53yotuierh_34_ds_dfjk.xml" />
+<exclude
+domain="database"
+path="nm_req" />
+</device-transfer>
+</data-extraction-rules>
+```
+
+In manifest application tag:
+
+```xml
+android:fullBackupContent="@xml/backup_rules"
+android:dataExtractionRules="@xml/data_extraction_rules"
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/android-integration-faqs.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,431 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/iys-integration.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/iys-integration.md).
+
+# IYS Integration
+
+IYS is a critical system introduced in Turkey to help businesses manage consumer preferences regarding commercial electronic messages (e.g., emails, SMS). It ensures compliance with data protection regulations and provides consumers the ability to opt-in or opt-out of receiving commercial communications.
+
+## IYS & Netmera Integration Flow
+
+<figure><img src="/files/MLTR8RbUFfkvHZ7cltGD" alt=""><figcaption></figcaption></figure>
+
+## Netmera & IYS Integration
+
+Once you’ve completed your IYS setup, you’ll be able to manage the following scenarios within Netmera:
+
+* **Initial IYS User Load**: All users will be synchronized with IYS using the initial load feature. This process begins on the night the setup is completed and continues in batches until all users are fully synchronized.
+* **REST API Synchronization**: User data sent via REST API will be updated in IYS in real-time, keeping everything aligned across systems.
+* **Email Uploads**: You can upload your user lists directly into Netmera, which will then synchronize the data with IYS.
+* **SDK Synchronization**: User data coming through the SDK will be automatically synchronized with IYS in real-time.
+* **Permission Updates**: Any permission changes made within Netmera will automatically synchronize with IYS in real-time, ensuring your user preferences are always up to date.
+* **Nightly Synchronization**: Any permission changes made on IYS will be reviewed and synchronized with the system nightly, ensuring consistent and accurate data.
+
+This integration ensures seamless synchronization between Netmera and IYS, helping you efficiently manage user communication preferences while ensuring full legal compliance.
+
+### [IYS Configuration](#steps-to-integrate-iys-to-your-netmera-panel) and[ Importing Email and SMS Data](#step-2-importing-email-and-sms-data-into-netmera-panel) (Step 1&2) Diagram
+
+<figure><img src="/files/VrfilHYWShFZKIIX4cdZ" alt=""><figcaption></figcaption></figure>
+
+## Step 1: IYS Panel Configuration <a href="#steps-to-integrate-iys-to-your-netmera-panel" id="steps-to-integrate-iys-to-your-netmera-panel"></a>
+
+To integrate IYS with your Netmera account, follow the steps outlined below:
+
+1. **Access the Connectors Page:** Navigate to the **Panel > Connectors.**
+2. **Choose Data Security / İleti Yönetim Sistemi:** From the available connectors, choose "Data Security" > "İleti Yönetim Sistemi" and click the "Install" button to initiate the integration process.
+3. **Configure IYS:** In the provided spaces, input your "**Brand Code**" and "**IYS Code**".
+4. **Access the IYS Panel**: Log in to your **IYS Panel** and verify that the integration setup is successfully completed.
+5. **Review and Confirm Configuration**: Ensure that all configurations are correct by cross-checking with the provided **IYS Panel** settings.
+
+For a detailed guide on each configuration step, please refer to the **User Guide** for [**IYS Panel documentation**.](https://user.netmera.com/netmera-user-guide/customer-data/iys-integration) These resources provide step-by-step instructions for configuring both the Netmera and IYS panels correctly.
+
+{% embed url="<https://user.netmera.com/netmera-user-guide/customer-data/iys-integration>" %}
+
+## Step 2: Importing Email and SMS Data into Netmera Panel
+
+To match the data received from IYS with your users in Netmera, you must first ensure that email and SMS data for the users has been processed. There are three ways to import this data into Netmera:
+
+### Option 1: Importing Through SDK Transfer
+
+You can import the email and SMS data of your users through the **Update User Methods** for iOS or Android, either via your mobile application or website. For detailed information on how to set this up, please refer to our guide here [Broken mention](broken://pages/GS59aH4RRE5atwlWYVKD).&#x20;
+
+### Option 2: REST API Transfer
+
+You can also import email and SMS data using the [Notifications](/netmera-developer-guide/api-documentation/rest-api/notifications.md#add-or-update-emails) and [Notifications](/netmera-developer-guide/api-documentation/rest-api/notifications.md#add-or-update-msisdn-phone-number) methods via REST API. Here’s how:&#x20;
+
+#### Add Emails
+
+To upload or update a list of emails in Netmera, use the **addEmail** method. Here’s an example of how to do it:
+
+```bash
+curl --location --request POST 'https://restapi.netmera.com/rest/3.0/addEmail' \
+--header 'X-netmera-api-key: your_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "emailList": [
+    "example1@netmera.com", "example2@gmail.com", "example3@gmail.com"
+  ]
+}'
+```
+
+{% hint style="info" %}
+**addEmail Method Reminders**:
+
+* If the email already exists (for example, linked to an ExtID or previously added), a new user will not be created.
+* New users are only created if the email doesn’t already exist in the system. However, these users won’t have an installation ID, and the ID will not be visible when searching by email or user ID in the **People** section.
+* Users created with the **addEmail** service can be viewed in the dashboard, but if the same email is later added via the SDK, the initial user will be replaced by the SDK data. The SDK data is considered the "master" data for targeting.
+
+Note: You can use this service to upload email lists without any maximum upload limit within the KB limit.
+{% endhint %}
+
+#### **Add MSISDN (Phone Number) for SMS**
+
+To add users with specified MSISDNs (phone numbers) to the Netmera platform, use the **addMsisdn** method. Make sure to include the country code when adding phone numbers.
+
+{% hint style="warning" %}
+**Mandatory to include the country codes:**
+
+When using this service, it is mandatory to include the country code in the phone numbers, i.e., the phone numbers should be in the format of "+90xxxxxxxx".
+{% endhint %}
+
+```bash
+curl --location --request POST 'https://restapi.netmera.com/rest/3.0/addMsisdn' \
+--header 'X-netmera-api-key: your_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "msisdnList": [
+    "+90xxxxxxxx"
+  ]
+}'
+```
+
+### Option 3: File Transfer with Email Upload in Netmera Panel
+
+Another option is to upload your email lists directly via the **Netmera Panel**. You can manually upload a file containing your user emails and synchronize them with the system.
+
+{% embed url="<https://user.netmera.com/netmera-user-guide/targeting/file-transfers#email-uploads>" %}
+
+{% hint style="success" %}
+**Synchronization Details:**
+
+After performing these imports, the users will be queried from IYS nightly, and their updated status will be reflected in the Netmera panel. This synchronization will occur on a nightly basis to ensure that the data is always up-to-date.
+{% endhint %}
+
+## Step 3: Updating User Permissions in IYS
+
+<figure><img src="/files/UNVuJpPKoD8zQvMNwJ9E" alt="" width="563"><figcaption></figcaption></figure>
+
+The following methods allow you to update user permissions and ensure that changes are reflected in the IYS system. These actions are critical for managing opt-ins and opt-outs for SMS and Email communications.
+
+### Option 1: Updating User Permissions via REST API (enableMail/disableMail, enableSms/disableSms)
+
+You can update the user’s SMS or email permission status on IYS using the `enableMail`, `disableMail`, `enableSms`, and `disableSms` services via REST API.
+
+{% tabs %}
+{% tab title="enableMail" %}
+To enable email subscriptions for a user, use the **enableMail** service:
+
+```bash
+curl --location --request POST 'https://restapi.netmera.com/rest/3.0/enableMail' \
+--header 'X-netmera-api-key: your_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "extIds": [
+    "your_xid"
+  ]
+}'
+```
+
+{% endtab %}
+
+{% tab title="disableMail" %}
+To disable email subscriptions for a user, use the **disableMail** service:
+
+```bash
+curl --location --request POST 'https://restapi.netmera.com/rest/3.0/disableMail' \
+--header 'X-netmera-api-key: your_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "extIds": [
+    "your_xid"
+  ]
+}'
+```
+
+{% endtab %}
+
+{% tab title="enableSMS" %}
+To enable SMS subscriptions for a user, use the **enableSMS** service:
+
+```bash
+curl --location --request POST 'https://restapi.netmera.com/rest/3.0/enableSMS' \
+--header 'X-netmera-api-key: your_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "extIds": [
+    "your_xid"
+  ]
+}'
+```
+
+{% endtab %}
+
+{% tab title="disableSMS" %}
+To disable SMS subscriptions for a user, use the **disableSMS** service:
+
+```bash
+curl --location --request POST 'https://restapi.netmera.com/rest/3.0/disableSMS' \
+--header 'X-netmera-api-key: your_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "extIds": [
+    "your_xid"
+  ]
+}'
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Option 2: Updating Permissions via Panel
+
+If a user changes their preference in the **Netmera Panel** (under **Targeting > User Detail**), the **Opt-out/Opt-in** button updates the user's permission status, and these changes are automatically reflected in IYS.
+
+<figure><img src="/files/M1szoHiDVOwwbvaPOuLe" alt="" width="563"><figcaption></figcaption></figure>
+
+### Option 3: Updating Preferences via Mobile SDK
+
+Users can also change their preferences within the mobile application, and the updated status will be sent to IYS through the SDK.
+
+1. **iOS SDK**
+
+To check if a user has allowed email subscriptions and to update their preferences, use the following methods:
+
+* **Check Subscription Status**:
+
+```swift
+Netmera.isAllowedEmailSubscription()
+```
+
+* **Set Subscription Preference**:
+
+```swift
+Netmera.setAllowedEmailSubscription(true)  // Grant email subscription
+Netmera.setAllowedEmailSubscription(false) // Revoke email subscription
+```
+
+{% embed url="<https://user.netmera.com/netmera-developer-guide/netmera-sdk-integration/sdk-setup/mobile-setup/former-ios-sdk-integration#email-subscription-preferences-optional>" %}
+
+2. **Android SDK**
+
+After Netmera SDK version 3.9.18, you can easily manage email permissions for your users by using the following methods:
+
+{% tabs %}
+{% tab title="Kotlin" %}
+
+```kotlin
+fun setEmailPermission(isAllowed: Boolean) 
+```
+
+{% endtab %}
+
+{% tab title="Java" %}
+
+```java
+public static void setEmailPermission(boolean isAllowed);
+```
+
+{% endtab %}
+{% endtabs %}
+
+**Set Email Permission**
+
+To set the email permission, use the following method depending on whether email subscriptions are allowed or revoked.
+
+* **Grant Email Permission**:\
+  If you want to allow email subscriptions, use the following code:
+
+{% tabs %}
+{% tab title="Kotlin" %}
+
+```kotlin
+Netmera.setEmailPermission(true)
+```
+
+{% endtab %}
+
+{% tab title="Java" %}
+
+```java
+Netmera.setEmailPermission(true);
+```
+
+{% endtab %}
+{% endtabs %}
+
+* **Revoke Email Permission**:\
+  If you want to revoke email subscriptions, use the following code:
+
+{% tabs %}
+{% tab title="Kotlin" %}
+
+```kotlin
+Netmera.setEmailPermission(false)
+```
+
+{% endtab %}
+
+{% tab title="Java" %}
+
+```java
+Netmera.setEmailPermission(false);
+```
+
+{% endtab %}
+{% endtabs %}
+
+{% embed url="<https://user.netmera.com/netmera-developer-guide/netmera-sdk-integration/sdk-setup/mobile-setup/android-sdk-integration#optional-email-preferences>" %}
+
+### Option 4: Users Unsubscribing via Email
+
+When a user unsubscribes from email communications, the system automatically updates the user's subscription status in **IYS**.
+
+**Email Unsubscribe Button:**
+
+The **Unsubscribe** button, typically found at the bottom of the email, enables users to directly unsubscribe from email communications. This action is immediately reflected in the IYS system. Below you might see an example of an 'Unsubscribe' button from Netmera emails.
+
+<figure><img src="/files/ekFyFpS3JyBwF61Sv5gF" alt="" width="563"><figcaption></figcaption></figure>
+
+## Permission Management Timelines
+
+Changes made to permissions in **Netmera** are immediately transmitted to **IYS** and processed in real-time. All the changes in the examples above will be reflected to your users instantly. However, if a user makes any permission changes directly in the **IYS** panel, this information will be updated in **Netmera** on a nightly basis.
+
+## <mark style="color:green;">**FAQs**</mark>
+
+<details>
+
+<summary>What happens when a business integrates with IYS for the first time?</summary>
+
+1. When the IYS integration is completed, the business performs an initial sync to update the permission statuses of all users in IYS.
+2. This sync queries IYS for the current permission status of each user and updates Netmera accordingly.
+3. IYS permission changes are then processed nightly to ensure that any updates made in IYS are reflected in Netmera.
+
+</details>
+
+<details>
+
+<summary>What should you do when a new user registers?</summary>
+
+1. When a user registers on the Netmera platform, their email or phone details are sent to Netmera via the appropriate API endpoint.
+2. Netmera queries IYS to retrieve the current permission status for the added contact details (email or phone).
+3. The permission status is then updated in the Netmera panel to reflect the IYS status.
+
+**Which API endpoints should you use?**
+
+* **/addMsisdn** (for phone number)
+* **/addEmail** (for email)
+* **updateUser** (for updating user contact information)
+
+</details>
+
+<details>
+
+<summary>What if a user wants to opt out of communications?</summary>
+
+1. If the user requests permission cancellation (via SMS or email), Netmera communicates the permission update to IYS, indicating that the user has opted out.
+2. The user’s opt-in status is updated in the Netmera panel.
+
+**Which API endpoints should you use?**
+
+* **/disableSms** (to revoke SMS permission)
+* **/disableMail** (to revoke email permission)
+
+</details>
+
+<details>
+
+<summary>How does Netmera ensure user permissions are up-to-date?</summary>
+
+1. Netmera automatically queries IYS during the night to retrieve any permission changes made during the day.
+2. The system updates the permission statuses in Netmera.
+3. These updates are reflected in the Netmera panel under **User Detail** > **User Opt-In**
+
+</details>
+
+<details>
+
+<summary>What happens when a user updates their email or phone number?</summary>
+
+1. If a user adds or updates their phone number or email address, Netmera syncs the new information with IYS.
+2. Netmera queries IYS for the permission status of the new contact information.
+3. The updated contact details and permission status are reflected in the business panel.
+
+**Which API endpoints should you use?**
+
+* **/addMsisdn** (for new phone number)
+* **/addEmail** (for new email address)
+* **updateUser** (for updating user contact information)
+
+</details>
+
+<details>
+
+<summary>How can you update a user’s permission status directly from the Netmera panel?</summary>
+
+1. To update a user’s permission status (opt-in or opt-out) in real-time, simply change it in the Netmera panel under **Targeting** > **User Detail** > **Opt-In**.
+2. Netmera immediately communicates the updated permission status to IYS.
+3. The updated permission status is reflected in IYS and returned to Netmera for consistency.
+
+</details>
+
+<details>
+
+<summary>How can you bulk update the permission statuses for a group of users?</summary>
+
+1. The business queries IYS for permission changes in bulk, ensuring that the statuses are synchronized across the platform.
+2. Netmera receives these bulk updates from IYS and applies them to the user records in the panel.
+3. The updated statuses are immediately reflected in the Netmera panel, allowing businesses to efficiently manage large groups of users.
+
+</details>
+
+<details>
+
+<summary>What if a user unsubscribes from emails using the unsubscribe link?</summary>
+
+1. When a user clicks the unsubscribe link in an email, the request is processed by Netmera.
+2. Netmera communicates the unsubscribe request to IYS, which updates the user’s email permission status.
+3. The unsubscribe action is reflected in both Netmera and IYS, ensuring that no further marketing emails are sent to the user.
+
+</details>
+
+<details>
+
+<summary>How can you update a user’s email subscription preference using the SDK?</summary>
+
+1. When a user changes their email subscription preference within the mobile app, the Netmera SDK captures this change.
+2. The SDK sends the updated subscription status to Netmera, which then forwards the change to IYS.
+3. The updated permission status is reflected in the Netmera panel, and the user’s preference is updated in IYS.
+
+</details>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/iys-integration.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

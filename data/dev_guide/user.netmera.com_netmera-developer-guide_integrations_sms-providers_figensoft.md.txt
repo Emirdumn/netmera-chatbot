@@ -1,0 +1,79 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/figensoft.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/figensoft.md).
+
+# Figensoft
+
+The FigenSoft Connector integrates the Netmera platform with the FigenSoft SMS gateway service, a provider primarily recognized in the Turkish market for its support of the IYS (İleti Yönetim Sistemi) compliance requirements.
+
+### Overview
+
+<table><thead><tr><th width="218.7889404296875">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>FigenSoft</td></tr><tr><td><strong>Category</strong></td><td>SMS Providers</td></tr><tr><td><strong>Provider Location</strong></td><td>Turkey</td></tr><tr><td><strong>Primary Function</strong></td><td>Outbound SMS delivery</td></tr><tr><td><strong>Data Flow</strong></td><td><strong>Outbound</strong> (Netmera > FigenSoft)</td></tr><tr><td><strong>Priority Ranking</strong></td><td>High (Rank 3, after Message Center and Mobildev)</td></tr></tbody></table>
+
+FigenSoft is a high-priority SMS connector, notable because it supports configurations specific to the Turkish legal framework, allowing different credentials or API behaviors based on whether the message is a Campaign or a Notification.
+
+<figure><img src="/files/Zc2AVkitiEaLDOVwmg9T" alt=""><figcaption></figcaption></figure>
+
+### Use Cases and Benefits
+
+1. **IYS Compliance:** The most crucial use case is facilitating SMS delivery that complies with the Turkish IYS (Commercial Electronic Message Management System) regulations.
+2. **IYS Message Type Support:** FigenSoft supports the selection of the IYS message type (**`NOTIFICATION`** or **`CAMPAIGN`**). When an SMS campaign specifies the `CAMPAIGN` type, the FigenSoft connector ensures that IYS consent checks are performed on the provider's side before sending the message, adhering to legal requirements.
+3. **Prioritized SMS Routing:** As the third-highest priority connector, FigenSoft acts as a reliable channel when the top-ranked providers (Message Center and Mobildev) are unavailable.
+
+### Data Flow
+
+The data flow is **Outbound**, involving Netmera submitting the message payload to the FigenSoft API.
+
+1. **Message Creation:** A marketer creates an SMS message in Netmera, specifying the IYS Message Type (e.g., `CAMPAIGN` or `NOTIFICATION`).
+2. **Adapter Selection:** The Netmera messaging service checks providers based on priority. If FigenSoft is selected, the system attempts to find the appropriate FigenSoft configuration matching the IYS message type specified in the SMS content.
+3. **API Submission (Conditional):**
+   * The connector uses the specific configuration (`username`, `password`, `sender list`) corresponding to the message's IYS type.
+   * If the message is tagged as `CAMPAIGN`, the FigenSoft API is expected to handle the necessary IYS consent verification for the recipient's phone number before delivery.
+4. **Delivery:** The message is relayed through the FigenSoft gateway.
+
+### Configuration Reference
+
+<div><figure><img src="/files/JFTGkZk5l9USvm1qXlCG" alt="" width="256"><figcaption></figcaption></figure> <figure><img src="/files/lvz3NlYPdloKxJlwmxpE" alt="" width="242"><figcaption></figcaption></figure></div>
+
+The FigenSoft connector is unique as it can be configured based on the specific IYS message type, requiring multiple credentials to manage different messaging categories.
+
+<table data-header-hidden><thead><tr><th width="210.24188232421875"></th><th width="140.87310791015625"></th><th></th></tr></thead><tbody><tr><td><strong>Parameter</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr><tr><td><strong>username</strong></td><td>String</td><td>FigenSoft API username.</td></tr><tr><td><strong>password</strong></td><td>String</td><td>FigenSoft API password.</td></tr><tr><td><strong>smsIysMessageType</strong></td><td>String</td><td>The IYS message category this configuration serves (<strong><code>NOTIFICATION</code></strong> or <strong><code>CAMPAIGN</code></strong>).</td></tr><tr><td><strong>senderList</strong></td><td>List</td><td>List of approved Sender IDs.</td></tr><tr><td><strong>customApiActive</strong></td><td>Boolean</td><td>Flag to enable the use of a custom API URL.</td></tr><tr><td><strong>customApiUrl</strong></td><td>String</td><td>Custom API endpoint URL (if <code>customApiActive</code> is true).</td></tr></tbody></table>
+
+### Setup Instructions
+
+Setting up the FigenSoft integration involves obtaining IYS-related credentials from the provider and configuring matching entries in Netmera.
+
+1. **Prerequisites:** Establish an account with FigenSoft and complete the IYS integration setup on their platform, ensuring you have approved Sender IDs and API credentials for both Notification and Campaign message types (if managing both).
+2. **Configure in Netmera:** Navigate to the Netmera Connectors section and select FigenSoft.
+3. **Input Credentials:** Input the required credentials (username, password, sender list). Crucially, define the `smsIysMessageType` (`NOTIFICATION` or `CAMPAIGN`) for this specific configuration entry.
+4. **Custom API (Optional):** If a non-standard API is required, set `customApiActive` to true and provide the customApiUrl.
+5. **Save:** Save the configuration. Repeat the process if you require a separate configuration for the other IYS message type.
+
+### Usage Notes & Considerations
+
+1. **IYS Type Dependence:** The integration relies heavily on identifying the correct IYS message type (`NOTIFICATION` or `CAMPAIGN`). If an SMS message specifies an IYS type for which no corresponding FigenSoft configuration exists, the message may fail to send via this connector.
+2. **Priority Sequencing:** As Rank 3, FigenSoft will be bypassed entirely if the higher-priority Message Center or Mobildev connectors are active and successfully processing SMS traffic.
+3. **Turkish Compliance Focus:** The core benefit and complexity revolve around Turkish regulatory compliance. Clients operating outside of the necessity for IYS checking might prefer a simpler, higher-throughput global provider like Infobip or Twilio (though they rank lower).
+4. **Credential Management:** Any changes to the username or password on the FigenSoft side must be manually reflected in the Netmera configuration to prevent immediate delivery failures.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/figensoft.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

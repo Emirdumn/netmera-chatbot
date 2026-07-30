@@ -1,0 +1,203 @@
+URL: https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/inbox-feature.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/inbox-feature.md).
+
+# Inbox Feature
+
+Netmera’s REST Inbox API allows you to fetch, display, and manage push notifications stored on the server. It supports pagination, filtering by status or time range, and updating message states (e.g., read, deleted).&#x20;
+
+### Parameters in the Request Body
+
+<table><thead><tr><th width="186.55908203125">Parameter</th><th width="242.59881591796875">Description</th><th width="145.74755859375">Required</th><th>Type</th></tr></thead><tbody><tr><td><code>extId</code></td><td>The unique external ID of the user.</td><td>Yes</td><td><code>String</code></td></tr><tr><td><code>status</code></td><td>Filters the messages based on read status.</td><td>Yes</td><td><code>Integer</code><br>Accepted values:<br>1 = Read<br>2 = Unread<br>3 = Read &#x26; Unread<br>4 = Deleted<br>7 = All</td></tr><tr><td><code>numberOfNotification</code></td><td>Defines the number of messages to return per page. Defaults to 20 if not provided.</td><td>No</td><td><code>Integer</code></td></tr><tr><td><code>prms.index</code></td><td>Used for pagination. Represents the <code>pushInstanceId</code> of the last message received in the previous response.</td><td>No</td><td><code>Long</code></td></tr><tr><td><code>startDate</code></td><td>Filters messages starting from this date. Epoch timestamp in milliseconds.</td><td>No</td><td><code>Long</code></td></tr><tr><td><code>endDate</code></td><td>Filters messages until this date. Epoch timestamp in milliseconds.</td><td>No</td><td><code>Long</code></td></tr><tr><td><code>category</code></td><td>Filters messages by categories.</td><td>No</td><td><code>Array&#x3C;Integer></code></td></tr><tr><td><code>piids</code></td><td>Used in <code>/statusChange</code> to define the messages whose statuses will be updated.</td><td>Yes (for <code>/statusChange</code>)</td><td><code>Array&#x3C;Integer></code></td></tr></tbody></table>
+
+### Inbox Retrieval
+
+**Endpoint**
+
+```json
+POST /rest/3.0/inbox/getAllInbox
+```
+
+**Sample Request**
+
+```json
+curl -X POST https://restapi.netmera.com/rest/3.0/inbox/getAllInbox \
+  -H "X-netmera-api-key: your_rest_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "extId": "your_extId",
+    "status": 2,
+    "startDate": 1681635178000,
+    "endDate": 1684227178000,
+    "numberOfNotification": 3
+}'
+```
+
+**Sample Response**
+
+```json
+{
+  "msgs": [
+    {
+      "msgId": 25965,
+      "pushInstanceId": 3101819,
+      "title": "test",
+      "message": "Test",
+      "status": "UNREAD",
+      "sts": 1681635178000,
+      "subText": "test"
+    }
+  ],
+  "cnts": {
+    "2": 1
+  },
+  "prms": {
+    "index": 3101819
+  }
+}
+```
+
+### Using Pagination (via `prms.index`)
+
+Pagination allows you to retrieve messages in batches. After the first call, the response returns a `prms.index` value – which is the `pushInstanceId` of the last message in that batch. To fetch the **next page**, you must pass this index value in the next request.
+
+#### Pagination Flow Example
+
+**Page 1 – Request**
+
+```json
+{
+  "extId": "externalid",
+  "status": 7,
+  "startDate": 1738405578000,
+  "endDate": 1740997578000,
+  "numberOfNotification": 3
+}
+```
+
+**Page 1 – Response**
+
+```json
+{
+  "msgs": [
+    { "msgId": 12941, "pushInstanceId": 10758003, "title": "msgtitle", ... },
+    { "msgId": 12939, "pushInstanceId": 10758002, "title": "msgtitle", ... },
+    { "msgId": 12941, "pushInstanceId": 10742004, "title": "msgtitle", ... }
+  ],
+  "cnts": { "1": 2, "2": 3, "4": 0 },
+  "prms": { "index": 10742004 }
+}
+```
+
+The `prms.index` value (`10742004`) will be used in the second request to fetch the next page.
+
+**Page 2 – Request**
+
+```json
+{
+  "extId": "externalid",
+  "status": 7,
+  "startDate": 1738405578000,
+  "endDate": 1740997578000,
+  "numberOfNotification": 3,
+  "prms": {
+    "index": 10742004
+  }
+}
+```
+
+**Page 2 – Response**
+
+```json
+{
+  "msgs": [
+    { "msgId": 12942, "pushInstanceId": 10734004, "title": "msgtitle", ... },
+    { "msgId": 12941, "pushInstanceId": 10734003, "title": "msgtitle", ... }
+  ],
+  "cnts": { "1": 2 }
+}
+```
+
+### Retrieve a Single Inbox Message
+
+Retrieves a single inbox message by using the push instance ID, user ID, and external ID.
+
+**Endpoint**
+
+```
+GET /rest/3.0/inbox/get?piid={pushInstanceId}&uid={userId}&externalId={externalId}
+```
+
+**Query Parameters**
+
+<table><thead><tr><th width="141.8487548828125">Parameter</th><th width="127.8729248046875">Type</th><th width="122.900634765625">Required</th><th>Description</th></tr></thead><tbody><tr><td><code>piid</code></td><td>Long</td><td>Yes</td><td>Push instance ID of the inbox message.</td></tr><tr><td><code>uid</code></td><td>String</td><td>Yes</td><td>Netmera user ID.</td></tr><tr><td><code>externalId</code></td><td>String</td><td>Yes</td><td>External ID of the user.</td></tr></tbody></table>
+
+**Sample Request**
+
+```json
+curl -X GET 'https://restapi.netmera.com/rest/3.0/inbox/get?piid=12345678&uid=sampleUserId&externalId=sampleExternalId' \
+-H 'X-netmera-api-key: your_rest_api_key' \
+-H 'Content-Type: application/json'
+```
+
+**Sample Response**
+
+```json
+{
+  "msgId": 12345,
+  "extID": "sampleExternalId",
+  "pushInstanceId": 12345678,
+  "title": "Sample inbox title",
+  "message": "Sample inbox message",
+  "deeplink": null,
+  "androidMediaUrl": null,
+  "iosMediaUrl": null,
+  "androidThumbnail": null,
+  "personalizedMsg": null,
+  "personalizedTitle": null,
+  "subText": null
+}
+```
+
+### Change Message Status
+
+**Endpoint**
+
+```
+POST /rest/3.0/inbox/statusChange
+```
+
+**Sample Request**
+
+```json
+curl -X POST 'https://restapi.netmera.com/rest/3.0/inbox/statusChange' \
+-H 'X-netmera-api-key: your_rest_api_key' \
+-H 'Content-Type: application/json' \
+-d '{
+  "extId": "your_extId",
+  "piids": [2584151],
+  "st": 4
+}'
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/inbox-feature.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,48 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/flutter.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/flutter.md).
+
+# Flutter
+
+- [SDK Integration](https://user.netmera.com/netmera-developer-guide/platforms/flutter/sdk-integration.md)
+- [Custom FCM Implementation](https://user.netmera.com/netmera-developer-guide/platforms/flutter/sdk-integration/custom-fcm-implementation.md)
+- [Custom HMS Implementation](https://user.netmera.com/netmera-developer-guide/platforms/flutter/sdk-integration/custom-hms-implementation.md)
+- [Android Push Icon](https://user.netmera.com/netmera-developer-guide/platforms/flutter/sdk-integration/android-push-icon.md)
+- [Push Notifications](https://user.netmera.com/netmera-developer-guide/platforms/flutter/push-notifications.md)
+- [Push Notification Permissions](https://user.netmera.com/netmera-developer-guide/platforms/flutter/push-notifications/push-notification-permissions.md)
+- [iOS Media Push](https://user.netmera.com/netmera-developer-guide/platforms/flutter/push-notifications/ios-media-push.md)
+- [Widget and In-App Messages](https://user.netmera.com/netmera-developer-guide/platforms/flutter/push-notifications/widget-and-in-app-messages.md)
+- [User & Attributes](https://user.netmera.com/netmera-developer-guide/platforms/flutter/user-and-attributes.md)
+- [Events](https://user.netmera.com/netmera-developer-guide/platforms/flutter/events.md)
+- [Push Inbox](https://user.netmera.com/netmera-developer-guide/platforms/flutter/push-inbox.md)
+- [Geofence & Location](https://user.netmera.com/netmera-developer-guide/platforms/flutter/geofence-and-location.md)
+- [Deep Linking](https://user.netmera.com/netmera-developer-guide/platforms/flutter/deep-linking.md)
+- [Custom Deep Links](https://user.netmera.com/netmera-developer-guide/platforms/flutter/deep-linking/custom-deep-links.md)
+- [Sound & Vibration](https://user.netmera.com/netmera-developer-guide/platforms/flutter/sound-and-vibration.md)
+- [Data Transfer](https://user.netmera.com/netmera-developer-guide/platforms/flutter/data-transfer.md)
+- [SSL Pinning](https://user.netmera.com/netmera-developer-guide/platforms/flutter/ssl-pinning.md)
+- [Advertising ID](https://user.netmera.com/netmera-developer-guide/platforms/flutter/advertising-id.md)
+- [Changelog](https://user.netmera.com/netmera-developer-guide/platforms/flutter/changelog.md)
+- [Migration to 3.x](https://user.netmera.com/netmera-developer-guide/platforms/flutter/migration-to-3.x.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/flutter.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

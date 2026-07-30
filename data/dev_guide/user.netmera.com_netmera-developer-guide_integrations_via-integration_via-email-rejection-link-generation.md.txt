@@ -1,0 +1,174 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/via-integration/via-email-rejection-link-generation.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/via-integration/via-email-rejection-link-generation.md).
+
+# VIA Email Rejection Link Generation
+
+This method allows service providers to generate unique rejection links for email addresses that are approved in the IYS (Electronic Commercial Message Management System). Service providers can include these links in their emails to offer recipients the option to opt out. A maximum of 100 `REJECT` links can be created simultaneously for recipients whose permission status is `APPROVED` in IYS.
+
+{% hint style="warning" %}
+Important notes
+
+1. The request must include the recipient's email address (`recipient`) and recipient type (`recipientType`).
+2. If the request is successful, the response will contain a generated rejection link (URL) along with the recipient's email address.
+   {% endhint %}
+
+#### **Successful Rejection Process:**
+
+* If the recipient's (`recipient`) permission status is `APPROVED`, it is updated to `REJECT` upon execution.
+
+**Note:** The generated email links can be embedded within customer emails. Users can click on these links to opt out of receiving email notifications. Once a rejection is made, it is reflected in IYS. Netmera monitors and updates user permissions nightly based on IYS task results.
+
+### Request body parameters
+
+```bash
+curl --location 'https://restapi.netmera.com/via/generate-reject-mail-link' \
+--header 'X-netmera-api-key: your_rest_apikey' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "recipients": [
+    {
+      "recipient": "String",
+      "recipientType": "String"
+    }
+  ]
+}'
+```
+
+* `recipient` — email address to unsubscribe. Required.
+* `recipientType` — accepted values are `BIREYSEL` and `TACIR`. Required.
+
+**Response Body (HTTP Code: 200)**
+
+```json
+[
+  {
+    "url": "String", // Generated rejection link
+    "recipient": "String", // Corresponding email address
+    "code": "String", // Error code (if applicable) [Optional]
+    "message": "String" // Error message (if applicable) [Optional]
+  }
+]
+```
+
+### Error responses
+
+**HTTP Code: 400**
+
+```json
+{
+  "errors": [
+    {
+      "message": "String", // Description of the error
+      "code": "String", // Error code
+      "value": "String", // Incorrect value sent in the request
+      "location": ["String"] // Fields in the request that contain errors
+    }
+  ]
+}
+```
+
+**HTTP Code: 500**
+
+```json
+{
+  "message": "Error while parsing the data."
+}
+```
+
+### Example successful request
+
+```json
+curl --location 'https://restapi.netmera.com/via/generate-reject-mail-link' \
+--header 'X-netmera-api-key: your_rest_apikey' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "recipients": [
+        {
+            "recipient": "..x@gmail.com",
+            "recipientType": "BIREYSEL"
+        },
+        {
+            "recipient": "..y@gmail.com",
+            "recipientType": "BIREYSEL"
+        }
+    ]
+}'
+```
+
+**Example Successful Response (HTTP Code: 200)**
+
+```json
+[
+    {
+        "url": "generated_rejection_link",
+        "recipient": "..x@gmail.com"
+    },
+    {
+        "recipient": "..y@gmail.com",
+        "code": "H568",
+        "message": "Sadece ONAY durumunda olan izinler için link üretilmelidir."
+    }
+]
+```
+
+### Example failed request
+
+**Case:** An invalid `recipientType` value is sent.
+
+```json
+curl --location 'https://restapi.netmera.com/via/generate-reject-mail-link' \
+--header 'X-netmera-api-key: your_rest_apikey' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "recipients": [
+        {
+            "recipient": "x@gmail.com",
+            "recipientType": "test"
+        },
+        {
+            "recipient": "y@gmail.com",
+            "recipientType": "BIREYSEL"
+        }
+    ]
+}'
+```
+
+**Example Error Response (HTTP Code: 400)**
+
+```json
+{
+    "errors": [
+        {
+            "message": "Alıcı tipi (recipientType) için uygun değerler: BIREYSEL, TACIR",
+            "code": "H116",
+            "value": "test",
+            "location": [
+                "recipientType"
+            ]
+        }
+    ]
+}
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/via-integration/via-email-rejection-link-generation.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,640 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/via-integration/otp-consent-requests.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/via-integration/otp-consent-requests.md).
+
+# OTP Consent Requests
+
+This page covers the VIA OTP consent flow for ETK and KVK requests. It explains the flow, the required request fields, and valid and invalid request examples for SMS and email OTP scenarios.
+
+<figure><img src="/files/0kAzOBPW5Nedr4vS0ayy" alt=""><figcaption></figcaption></figure>
+
+For the full version, see the board [here](https://miro.com/app/board/uXjVLp-u5qA=/?share_link_id=530031837291).
+
+{% stepper %}
+{% step %}
+
+#### Prepare the OTP consent form
+
+Create an OTP consent form using your IYS Panel. Once the form is ready, submit it to IYS for approval.
+{% endstep %}
+
+{% step %}
+
+#### Obtain IYS Approval
+
+After IYS approves the form, it will be ready for use in API calls. The form ID provided by IYS will serve as the `formId` value in your requests.
+{% endstep %}
+
+{% step %}
+
+#### Send the Consent Form to the User
+
+Send an email or SMS to the user containing the OTP code. Use the API endpoint `https://restapi.netmera.com/via/consent` to share the code with the user.
+{% endstep %}
+
+{% step %}
+
+#### Confirm API is used to submit the OTP
+
+The user enters the OTP code they received. Use the API endpoint `https://restapi.netmera.com/via/confirm` to submit the OTP.
+{% endstep %}
+
+{% step %}
+
+#### Confirmation Information Sent to the User
+
+The user will receive a confirmation via email or SMS, detailing the permissions they selected and the status of their submission.
+{% endstep %}
+
+{% step %}
+
+#### Consent Data Saved in Netmera
+
+Netmera automatically saves the user’s permissions in the Netmera Panel. Synchronization occurs every 10 minutes to ensure the latest user preferences are reflected.
+{% endstep %}
+{% endstepper %}
+
+### Consent requests with OTP
+
+{% stepper %}
+{% step %}
+
+#### Start the Consent Process
+
+The process for obtaining ETK and/or KVKK begins by using the consent method. A consent request is sent to the recipient, which includes:
+
+* "Aydınlatma Metni" and "Onay Metni"
+* **One-time password (OTP)** for verification.
+* A `requestId`, which serves as a reference ID for the operation.
+  {% endstep %}
+
+{% step %}
+
+#### Recipient's Response
+
+The recipient grants consent by responding with the OTP to the service provider. This confirms their approval for ETK and/or KVKK.
+{% endstep %}
+
+{% step %}
+
+#### Verification
+
+The `confirm` method is used to verify the OTP by submitting the recipient's OTP and the associated `requestId`.
+{% endstep %}
+
+{% step %}
+
+#### Consent Finalization
+
+If the provided OTP matches the one sent to the recipient:
+
+* **ETK consent** is recorded on behalf of the brand(s).
+* **KVKK consent** is recorded on behalf of the service provider.
+  {% endstep %}
+
+{% step %}
+
+#### Netmera Consent Update
+
+After the consent is successfully validated, the recipient's **ETK approval**, including EMAIL/SMS notification preferences, is saved in the Netmera system.
+{% endstep %}
+{% endstepper %}
+
+### ETK consent parameters
+
+<table><thead><tr><th width="215">Parameter</th><th width="118">Type</th><th width="312">Description</th><th>Required</th></tr></thead><tbody><tr><td><code>consentTypes</code></td><td>Array of Objects</td><td>Includes the consent type details.</td><td>Yes</td></tr><tr><td><code>title</code></td><td>String</td><td>Type of consent (e.g., <code>ETK</code>).</td><td>Yes</td></tr><tr><td><code>types</code></td><td>Array of Strings</td><td><p>Specifies the communication channel(s) through which the approval is requested.<code>["ARAMA"]</code> for phone calls</p><p><code>["MESAJ"]</code> for messages</p><p><code>["ARAMA", "MESAJ"]</code> for both</p><p><code>["EPOSTA"]</code> for email</p></td><td>Yes</td></tr><tr><td><code>recipientType</code></td><td>String</td><td>Type of recipient (<code>BIREYSEL</code> or <code>TACIR</code>).</td><td>Yes</td></tr><tr><td><code>formId</code></td><td>String</td><td>ID of the form sent to the recipient.</td><td>Yes</td></tr><tr><td><code>recipient</code></td><td>String</td><td>Recipient's phone number or email address.</td><td>Yes</td></tr><tr><td><code>verificationType</code></td><td>String</td><td>Specifies the approval method (SMS or email OTP). For SMS, it is <code>SMS_OTP</code>, and for email, it is <code>EPOSTA_OTP</code>.</td><td>Yes</td></tr><tr><td><code>referenceID</code></td><td>String</td><td>This identifier is used to create or update user records in the Netmera system.</td><td>Yes</td></tr></tbody></table>
+
+### Sample ETK requests
+
+{% hint style="info" %}
+**Notes:**
+
+* Replace `your_rest_api_key` with your actual REST API key.
+* Ensure `formId` corresponds to a valid form ID from the **IYS Web** VIA Management portal.
+* Modify `recipient` with the actual recipient’s **email** or **phone number** based on your use case.
+  {% endhint %}
+
+#### ETK request via SMS OTP
+
+```json
+curl --location 'https://restapi.netmera.com/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "consentTypes": [
+    {
+      "title": "ETK",
+      "types": [
+        "MESAJ",
+        "ARAMA"
+      ],
+      "recipientType": "BIREYSEL"
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "+90536.......",
+  "verificationType": "SMS_OTP",
+  "referenceId": "user1234"
+}'
+```
+
+**Successful Response (HTTP 200)**
+
+```json
+{
+    "requestId": "requestid"
+}
+```
+
+#### ETK request via email OTP
+
+```json
+curl --location 'https://restapi.netmera.com/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "consentTypes": [
+    {
+      "title": "ETK",
+      "types": [
+        "EMAIL"
+      ],
+      "recipientType": "BIREYSEL"
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "....@gmail.com",
+  "verificationType": "EPOSTA_OTP",
+  "referenceId": "user1234"
+}'
+```
+
+**Successful Response (HTTP 200)**
+
+```json
+{
+    "requestId": "requestid"
+}
+```
+
+### Invalid ETK requests
+
+In case of a failed request, the response will include the following fields:
+
+* **`message` (String):** The error message that describes the issue with the request.
+* **`code` (String):** The error code from the IYS system indicating the specific issue.
+* **`value` (String)** (*This field may return the invalid value depending on the type of error, or it may be omitted*): The invalid value that caused the error.
+
+#### Invalid ETK SMS OTP request
+
+**Case:** `formId` does not match the expected type for the given `verificationType`.
+
+```json
+curl --location 'https://restapi.netmera.com/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+    "consentTypes": [
+    {
+      "title": "ETK",
+      "types": [
+        "MESAJ"
+      ],
+      "recipientType": "BIREYSEL"
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "+90536...",
+  "verificationType": "SMS_OTP",
+  "referenceId": "user1234"
+}'
+```
+
+**Error Response (HTTP 400)**
+
+```json
+{
+    "message": "The provided verification type (verificationType) does not match the form type. Form type: SHORTURL",
+    "code": "H1065"
+}
+```
+
+#### Invalid ETK email OTP request
+
+**Case:** `recipientType` is missing in the request body.
+
+```json
+curl --location 'https://restapi.netmera.com/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+	 "consentTypes": [
+    {
+      "title": "ETK",
+      "types": [
+        "EPOSTA"
+      ]
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "...@gmail.com",
+  "verificationType": "EPOSTA_OTP",
+  "referenceId": "user1234"
+}'
+```
+
+**Error Response (HTTP 400)**
+
+```json
+{
+    "message": "JSON verisinde eksik alanlar: recipientType",
+    "code": "H1090"
+}
+```
+
+### KVK parameters
+
+<table><thead><tr><th width="198">Field Name</th><th width="159">Type</th><th width="128">Requirement</th><th>Description</th></tr></thead><tbody><tr><td><code>consentTypes</code></td><td>Array of Objects</td><td>Yes</td><td>Contains details about the type of consent requested.</td></tr><tr><td><code>title</code></td><td>String</td><td>Yes</td><td>Type of form sent to the recipient. For KVK consent, this field must be set as <code>"KVK"</code>.</td></tr><tr><td><code>types</code></td><td>Array of Strings</td><td>Yes</td><td>Consent types for KVK. Possible values: <code>"AYDINLATMA_METNI"</code>, <code>"ACIK_RIZA_METNI"</code>, <code>"YURTDISI_AKTARIM"</code>.</td></tr><tr><td><code>formId</code></td><td>String</td><td>Yes</td><td>ID of the form sent to the recipient. The corresponding consent form will be sent to the recipient based on this ID. Obtainable via the <a href="https://hs.iys.org.tr/">İYS Web</a>.</td></tr><tr><td><code>verificationType</code></td><td>String</td><td>Yes</td><td>The method for obtaining consent. <code>"SMS_OTP"</code> for SMS and <code>"EPOSTA_OTP"</code> for email OTP.</td></tr><tr><td><code>recipient</code></td><td>String</td><td>Yes</td><td>Contact information of the recipient. Either a <strong>phone number</strong> or <strong>email address</strong> where the consent request will be sent.</td></tr><tr><td><code>personData</code></td><td>Object</td><td>Required for KVK</td><td>Contains recipient details if KVK consent requires personal information.</td></tr><tr><td><code>name</code></td><td>String</td><td>Required for KVK</td><td>Recipient's full name.</td></tr><tr><td><code>recipientIdNumber</code></td><td>String</td><td>Required for KVK</td><td>Recipient's Turkish ID number.</td></tr><tr><td><code>address</code></td><td>String</td><td>Required for KVK</td><td>Recipient's address information.</td></tr></tbody></table>
+
+### Sample KVK requests
+
+#### KVK request via SMS OTP
+
+```json
+curl --location 'https://restapi.netmera.com/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "consentTypes": [
+    {
+      "title": "KVK",
+      "types": [
+        "ACIK_RIZA_METNI",
+        "YURTDISI_AKTARIM"
+      ],
+      "personData": {
+        "name": "name",
+        "recipientIdNumber": "134........",
+        "address": "address"
+      }
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "+90536.......",
+  "verificationType": "SMS_OTP",
+  "referenceId": "user1234"
+}'
+```
+
+**Successful Response (HTTP 200)**
+
+```json
+{
+    "requestId": "requestid"
+}
+```
+
+#### KVK request via email OTP
+
+```json
+curl --location 'https://restapi.netmera.com/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "consentTypes": [
+    {
+      "title": "KVK",
+      "types": [
+        "ACIK_RIZA_METNI",
+        "YURTDISI_AKTARIM"
+      ],
+      "personData": {
+        "name": "name",
+        "recipientIdNumber": "134........",
+        "address": "address"
+      }
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "....@gmail.com",
+  "verificationType": "EPOSTA_OTP",
+  "referenceId": "user1234"
+}'
+```
+
+**Successful Response (HTTP 200):**
+
+```json
+{
+    "requestId": "requestid"
+}
+```
+
+### Invalid KVK requests
+
+In case of a failed request, the response will include the following fields:
+
+* **`message` (String):** The error message that describes the issue with the request.
+* **`code` (String):** The error code from the IYS system indicating the specific issue.
+* **`value` (String)** (*This field may return the invalid value depending on the type of error, or it may be omitted*): The invalid value that caused the error.
+
+#### Invalid KVK SMS OTP request
+
+**Case:** The `recipientIdNumber` field contains an improperly formatted ID number.
+
+```json
+curl --location 'https://restapi.netmera.com/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+ "consentTypes": [
+    {
+      "title": "KVK",
+      "types": [
+        "ACIK_RIZA_METNI",
+        "YURTDISI_AKTARIM"
+      ],
+      "personData": {
+        "name": "name",
+        "recipientIdNumber": "134........",
+        "address": "address"
+      }
+    }
+  ],
+  "formId": "cab8467e-6e58-43d0-abec-2aafc047255d",
+  "recipient": "+90536.......",
+  "verificationType": "SMS_OTP",
+  "referenceId": "user1234"
+}'
+```
+
+**Error Response (HTTP 400)**
+
+```json
+{
+    "message": "Girdiğiniz TC kimlik numarası: '134........' formata uygun değildir.",
+    "code": "H1096"
+}
+```
+
+#### Invalid KVK email OTP request
+
+**Case:** The `title` field contains an unexpected value.
+
+```json
+curl --location 'https://restapi.netmera.com/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "consentTypes": [
+    {
+      "title": "X",
+      "types": [
+        "ACIK_RIZA_METNI",
+        "YURTDISI_AKTARIM"
+      ],
+      "personData": {
+        "name": "name",
+        "recipientIdNumber": "134........",
+        "address": "address"
+      }
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "....@gmail.com",
+  "verificationType": "EPOSTA_OTP",
+  "referenceId": "user1234"
+}'
+```
+
+**Error Response (HTTP 400)**
+
+```json
+{
+    "message": "title alanı için gereken değerler: [ETK, KVK, ISG, FATURA, SADAKAT, DIJITAL_FATURA] olmalıdır.",
+    "code": "H1013",
+    "value": "[X]"
+}
+```
+
+### Combined ETK and KVK requests
+
+**For ETK approval**: The request must include the following fields:
+
+1. Verification Method (`verificationType`)
+2. Recipient's Communication Address (`recipient`)
+3. Communication Channel (`types`)
+4. Recipient Type (`recipientType`)
+5. Approval Type (`title`)
+6. Form ID (`formId`) (The ID of the approval form to be sent to the recipient)
+
+**For KVK approval**: The request must include the following fields:
+
+1. Verification Method (`verificationType`)
+2. Recipient's Communication Address (`recipient`)
+3. Recipient's Full Name (`name`)
+4. Recipient's National ID Number (`recipientIdNumber`)
+5. Recipient's Address Information (`address`)
+6. Approval Type (`title`)
+7. Form ID (`formId`) (The ID of the approval form to be sent to the recipient)
+
+#### ETK and KVK SMS OTP request
+
+```json
+curl --location 'https://restapi.netmera.com/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "consentTypes": [
+	  {
+      "title": "ETK",
+      "types": [
+        "MESAJ",
+        "ARAMA"
+      ],
+      "recipientType": "BIREYSEL"
+    },
+    {
+      "title": "KVK",
+      "types": [
+        "ACIK_RIZA_METNI",
+        "YURTDISI_AKTARIM"
+      ],
+      "personData": {
+        "name": "name",
+        "recipientIdNumber": "134........",
+        "address": "address"
+      }
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "+90536.......",
+  "verificationType": "SMS_OTP",
+  "referenceId": "user1234"
+}'
+```
+
+**Successful Response (HTTP 200)**
+
+```json
+{
+    "requestId": "requestid"
+}
+```
+
+#### ETK and KVK email OTP request
+
+```json
+curl --location 'https://restapi.netmera.com/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "consentTypes": [
+	  {
+      "title": "ETK",
+      "types": [
+        "EMAIL"
+      ],
+      "recipientType": "BIREYSEL"
+    },
+    {
+      "title": "KVK",
+      "types": [
+        "ACIK_RIZA_METNI",
+        "YURTDISI_AKTARIM"
+      ],
+      "personData": {
+        "name": "name",
+        "recipientIdNumber": "134........",
+        "address": "address"
+      }
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "...@gmail.com",
+  "verificationType": "EPOSTA_OTP",
+  "referenceId": "user1234"
+}'
+```
+
+**Successful Response (HTTP Code: 200)**
+
+```json
+{
+    "requestId": "requestid"
+}
+```
+
+### Invalid combined requests
+
+In case of a failed request, the response will include the following fields:
+
+* **`message` (String):** The error message that describes the issue with the request.
+* **`code` (String):** The error code from the IYS system indicating the specific issue.
+* **`value` (String)** (*This field may return the invalid value depending on the type of error, or it may be omitted*): The invalid value that caused the error.
+
+#### Invalid ETK and KVK SMS OTP request
+
+**Case:** `personData` field is missing.
+
+```json
+curl --location 'https://restapi.netmera.com/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "consentTypes": [
+	  {
+      "title": "ETK",
+      "types": [
+        "MESAJ",
+        "ARAMA"
+      ],
+      "recipientType": "BIREYSEL"
+    },
+    {
+      "title": "KVK",
+      "types": [
+        "ACIK_RIZA_METNI",
+        "YURTDISI_AKTARIM"
+      ]
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "+90536.......",
+  "verificationType": "SMS_OTP",
+  "referenceId": "user1234"
+}'
+```
+
+**Error Response (HTTP 400)**
+
+```json
+{
+    "message": "JSON verisinde eksik alanlar: personData",
+    "code": "H1090"
+}
+```
+
+#### Invalid ETK and KVK email OTP request
+
+**Case:** `types` field is missing.
+
+```json
+curl --location 'https://restapi.netmera.com/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "consentTypes": [
+	  {
+      "title": "ETK",
+      "types": [
+        "EMAIL"
+      ],
+      "recipientType": "BIREYSEL"
+    },
+    {
+      "title": "KVK",
+      "personData": {
+        "name": "name",
+        "recipientIdNumber": "134........",
+        "address": "address"
+      }
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "...@gmail.com",
+  "verificationType": "EPOSTA_OTP",
+  "referenceId": "user1234"
+}'
+```
+
+**Error Response (HTTP 400):**
+
+```json
+{
+    "message": "types alanı boş veya null olmamalıdır.",
+    "code": "H1057"
+}
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/via-integration/otp-consent-requests.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

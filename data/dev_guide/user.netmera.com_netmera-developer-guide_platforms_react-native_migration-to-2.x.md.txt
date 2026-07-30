@@ -1,0 +1,484 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/react-native/migration-to-2.x.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/react-native/migration-to-2.x.md).
+
+# Migration to 2.x
+
+Netmera React Native SDK **2.x.x** aligns the iOS layer with the **Swift-based Netmera SDK** and includes Dart API updates. The Objective-C–based iOS SDK is scheduled to become *legacy* as of October 2026; React Native apps should move the native layer to the new flow.
+
+{% hint style="info" %}
+**Notation:** Lines prefixed with `-` are removed or show the old form; lines prefixed with `+` are added or show the new form. For larger blocks, the line before the block uses **Remove** / **Add** / **Replace**.
+{% endhint %}
+
+## 1) Installation and project setup
+
+### 1.1 package.json
+
+**Replace**
+
+{% code fullWidth="false" %}
+
+```json
+- "react-native-netmera": "1.x.x"
+```
+
+{% endcode %}
+
+```json
++ "react-native-netmera": "2.x.x"
+```
+
+### 1.2 iOS configuration file
+
+For compatibility with the Swift Netmera SDK, use `**Netmera-Config.plist**` (or equivalent), target membership, and extension setup as described in the Netmera iOS documentation (main app and Notification Extension targets where applicable).
+
+{% code fullWidth="false" %}
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>sdk_params</key>
+        <dict>
+            <key>app_group_name</key>
+            <string>group.com.example.app</string>
+            <key>api_key</key>
+            <string>your_sdk_api_key</string>
+        </dict>
+    </dict>
+</plist>
+```
+
+{% endcode %}
+
+{% hint style="warning" %}
+**Important: Target Membership**
+
+Make sure **`Netmera-Config.plist`** is added to the correct **Target Membership** in Xcode.
+
+It must be included in:
+
+* **Main App Target**
+* **Notification Service Extension** (if used)
+* **Notification Content Extension** (if used)
+
+<img src="/files/awvCiVpqLQUjgW7mfQnY" alt="" data-size="original">
+{% endhint %}
+
+{% hint style="info" %}
+If you have multiple environment check [Configuring Multiple Environments](/netmera-developer-guide/platforms/react-native/sdk-integration.md#configuring-multiple-environments) guide.
+{% endhint %}
+
+## 2) iOS
+
+### 2.1 Podfile
+
+**Replace** (Media Push / extension pod names and versions)
+
+```ruby
+- pod "Netmera", "3.x.x-WithoutDependency"
+- pod "Netmera/NotificationServiceExtension", "3.x.x-WithoutDependency"
+- pod "Netmera/NotificationContentExtension", "3.x.x-WithoutDependency"
+```
+
+```ruby
++ pod 'NetmeraNotificationServiceExtension', "4.x.x"
++ pod "NetmeraNotificationContentExtension", "4.x.x"
+```
+
+**Add** — `post_install` block for Swinject distribution setting
+
+```ruby
+post_install do |installer|
+    ...
+    # Add
+    installer.pods_project.targets.each do |target|
+      if target.name.include?('Swinject')
+        target.build_configurations.each do |config|
+          config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+        end
+      end
+    end
+    # Add
+end
+```
+
+{% hint style="warning" %}
+If you are using [the New Architecture](https://reactnative.dev/architecture/landing-page) or using Firebase as [static frameworks](https://rnfirebase.io/#altering-cocoapods-to-use-frameworks), add the following lines right before the `post_install` block.
+
+```ruby
+  pre_install do |installer|
+    installer.pod_targets.each do |pod|
+      if pod.name.start_with?('Netmera') || pod.name.include?('Swinject')
+        def pod.build_type
+          Pod::BuildType.dynamic_framework
+        end
+      end
+    end
+  end
+```
+
+{% endhint %}
+
+Then run `pod install`.
+
+### 2.2 AppDelegate.swift
+
+**Add** — imports
+
+```swift
+- import Netmera
+```
+
+```swift
++ import NetmeraNotification
+```
+
+**Replace** — class declaration (`NetmeraPushDelegate` moves to a separate extension)
+
+```swift
+- class AppDelegate: RCTAppDelegate, UNUserNotificationCenterDelegate, NetmeraPushDelegate {
+```
+
+```swift
++ class AppDelegate: RCTAppDelegate, UNUserNotificationCenterDelegate {
+```
+
+**Remove**
+
+```swift
+- RNNetmera.logging(true)
+- RNNetmera.initNetmera("YOUR_API_KEY")
+- Netmera.setBaseURL("YOUR_BASE_URL")
+- RNNetmera.setPushDelegate(self)
+- Netmera.setAppGroupName("group.YOUR_APP_GROUP")
+```
+
+{% hint style="warning" %}
+**Note:** If your media push setup requires an App Group, configure it in `Netmera-Config.plist` or wherever the Swift SDK expects it; in this example the `setAppGroupName` call is removed.
+{% endhint %}
+
+**Add**
+
+```swift
++ RNNetmera.initNetmera()
+
+// if you use onWidgetUrlTriggered
++ Netmera.setPushDelegate(self)
+```
+
+**Add** — in `didFinishLaunching` (if you use **Firebase**, keep the delegate line; if not, you may remove the `UNUserNotificationCenter` line)
+
+```swift
++ UNUserNotificationCenter.current().delegate = self
+```
+
+{% hint style="warning" %}
+If you are using Firebase call configure method before `RNNetmera.initNetmera()`
+
+```swift
+// Call before RNNetmera.initNetmera()
++ FirebaseApp.configure()
+```
+
+{% endhint %}
+
+**Remove** — manual push event forwarding via `RNNetmeraRCTEventEmitter`. The SDK now handles push events automatically; these methods are no longer required.
+
+```swift
+- override func application(_ application: UIApplication,
+-     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+-   RNNetmeraRCTEventEmitter.onPushRegister(["pushToken": deviceToken])
+- }
+
+- func userNotificationCenter(_ center: UNUserNotificationCenter,
+-     didReceive response: UNNotificationResponse,
+-     withCompletionHandler completionHandler: @escaping () -> Void) {
+-   let userInfo = response.notification.request.content.userInfo
+-   if response.actionIdentifier == UNNotificationDismissActionIdentifier {
+-     RNNetmeraRCTEventEmitter.onPushDismiss(["userInfo": userInfo])
+-   } else if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+-     RNNetmeraRCTEventEmitter.onPushOpen(["userInfo": userInfo])
+-   }
+-   completionHandler()
+- }
+
+- func userNotificationCenter(_ center: UNUserNotificationCenter,
+-     willPresent notification: UNNotification,
+-     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+-   completionHandler([UNNotificationPresentationOptions.alert])
+-   RNNetmeraRCTEventEmitter.onPushReceive(["userInfo": notification.request.content.userInfo])
+- }
+```
+
+**Add** — if you use **Firebase**, add the new `willPresent` and `didReceive` (presentation options; no `handleWork`)&#x20;
+
+```swift
++ func userNotificationCenter(
++   _ center: UNUserNotificationCenter,
++   willPresent notification: UNNotification,
++   withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
++ ) {
++   if #available(iOS 14, *) {
++     completionHandler([.banner, .list, .badge, .sound])
++   } else {
++     completionHandler([.alert, .badge, .sound])
++   }
++ }
++
++ func userNotificationCenter(
++   _ center: UNUserNotificationCenter,
++   didReceive response: UNNotificationResponse,
++   withCompletionHandler completionHandler: @escaping () -> Void
++ ) {
++   completionHandler()
++ }
+```
+
+**Replace** — `NetmeraPushDelegate` (widget URL callback). Move the conformance to a separate extension and update the method signatures.
+
+```swift
+- func shouldHandleOpen(_ url: URL!, for object: NetmeraPushObject!) -> Bool {
+-   return false
+- }
+- func handleOpen(_ url: URL!, for object: NetmeraPushObject!) {
+-   RNNetmeraRCTEventEmitter.handleOpen(url, for: object)
+- }
+
+
+```
+
+```swift
++ extension AppDelegate: NetmeraPushDelegate {
++   func urlOpeningDecision(for url: URL, push: NetmeraBasePush) -> PushDelegateDecision {
++     return .sdkHandles
++   }
++   func openURL(_ url: URL, for push: NetmeraBasePush) {
++     RNNetmeraRCTEventEmitter.openURL(url, forPushObject: push)
++   }
++ }
+```
+
+### 2.3 Media Push
+
+Update the following files as shown:
+
+**`NotificationService.swift`**
+
+```swift
+import UserNotifications
+import NetmeraNotificationServiceExtension
+
+class NotificationService: NotificationServiceExtension {
+  override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
+    super.didReceive(request, withContentHandler: contentHandler)
+  }
+
+  override func serviceExtensionTimeWillExpire() {
+    super.serviceExtensionTimeWillExpire()
+  }
+}
+```
+
+**`NotificationViewController.swift`**
+
+```swift
+import UserNotifications
+import UserNotificationsUI
+import NetmeraNotificationContentExtension
+
+class NotificationViewController: NotificationContentExtension {
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+
+  override func didReceive(_ notification: UNNotification) {
+    super.didReceive(notification)
+  }
+}
+```
+
+> **Note:** Enable the **App Groups** capability on your Notification Service Extension target if required by your setup.
+
+<figure><img src="/files/rQk1sOs3G512h6gAVvzS" alt=""><figcaption></figcaption></figure>
+
+#### Notification Service Extension Configuration&#x20;
+
+You must update the NSExtensionPrincipalClass value in your Service Extension's `Info.plist` file:
+
+Ensure your `NSExtensionPrincipalClass` is updated from `NotificationService` to **`$(PRODUCT_MODULE_NAME).NotificationService`**.
+
+> Note: Please double-check your configuration against our [Media Push Guide - Step 6](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/media-push#step-6-receiving-http-media-contents) to ensure media content and push notifications are handled correctly during the transition.
+
+## 3) React Native
+
+### 3.1 Push lifecycle callbacks — registration
+
+**Replace** — in `index.js`
+
+```js
+- Netmera.initBroadcastReceiver(
++ Netmera.setPushLifecycleCallbacks(
+    onPushRegister,
+    onPushReceive,
+    onPushOpen,
+    onPushDismiss,
+    onPushButtonClicked,
+    onCarouselObjectSelected
+  );
+```
+
+### 3.2 Push lifecycle callbacks — typed signatures
+
+Edit `NetmeraPushHeadlessTask.ts` and update all callback signatures.
+
+**Replace**
+
+```js
+- export const onPushRegister = async (message) => {
+-   console.log('onPushRegister: ', message);
+- };
+- export const onPushReceive = async (message) => {
+-   console.log('onPushReceive: ', message);
+- };
+- export const onPushOpen = async (message) => {
+-   console.log('onPushOpen: ', message);
+- };
+- export const onPushDismiss = async (message) => {
+-   console.log('onPushDismiss: ', message);
+- };
+- export const onPushButtonClicked = async (message) => {
+-   console.log('onPushButtonClicked: ', message);
+- };
+- export const onCarouselObjectSelected = async (message) => {
+-   console.log('onCarouselObjectSelected: ', message);
+- };
+```
+
+```ts
++ import type {
++   NetmeraPushObject,
++   NetmeraInteractiveAction,
++   NetmeraCarouselObject,
++ } from 'react-native-netmera';
++
++ export const onPushRegister = async (data: { pushToken: string }) => {
++   console.log('onPushRegister: ', data);
++ };
++ export const onPushReceive = async (push: NetmeraPushObject) => {
++   console.log('onPushReceive: ', push);
++ };
++ export const onPushOpen = async (push: NetmeraPushObject) => {
++   console.log('onPushOpen: ', push);
++ };
++ export const onPushDismiss = async (push: NetmeraPushObject) => {
++   console.log('onPushDismiss: ', push);
++ };
++ export const onPushButtonClicked = async (
++   push: NetmeraPushObject,
++   action?: NetmeraInteractiveAction
++ ) => {
++   console.log('onPushButtonClicked: ', push, action);
++ };
++ export const onCarouselObjectSelected = async (
++   push: NetmeraPushObject,
++   carouselItem?: NetmeraCarouselObject
++ ) => {
++   console.log('onCarouselObjectSelected: ', push, carouselItem);
++ };
+```
+
+### 3.3 User identification
+
+**Replace** — use `identifyUser` and `updateUserProfile` instead of `updateUser`
+
+```typescript
+const user = new NetmeraUser();
+user.userId = userId;
+user.email = email;
+user.msisdn = msisdn;
+user.wpNumber = wpNumber;
+
+// With callback
+Netmera.identifyUser(user, (success, error) => {
+  if (success) {
+    console.log('User identified successfully');
+  } else {
+    console.error(error?.message);
+  }
+});
+
+// Without callback
+Netmera.identifyUser(user);
+```
+
+### 3.4 User profile attributes
+
+Name, surname, gender, date of birth, and segments are now managed through `updateUserProfile`. Each attribute supports `set` / `unset`; collection attributes also support `add` / `remove`.
+
+```typescript
+import { Netmera, NetmeraUserProfile, Gender } from 'react-native-netmera';
+
+const profile = new NetmeraUserProfile();
+profile.name.set('John');
+profile.surname.set('Doe');
+profile.gender.set(Gender.MALE);
+profile.externalSegments.set(['segment1', 'segment2']);
+
+// With callback
+Netmera.updateUserProfile(profile, (success, error) => {
+  if (success) {
+    console.log('Profile updated');
+  } else {
+    console.error(error?.message);
+  }
+});
+
+// Without callback
+Netmera.updateUserProfile(profile);
+```
+
+For more detail, see the official Netmera / package [documentation](/netmera-developer-guide/platforms/react-native/user-and-attributes.md) for your SDK version.
+
+### 3.5 Replace NetmeraPushInbox&#x20;
+
+`NetmeraPushInbox` model has been removed. Please use `NetmeraPushObject` model instead in `fetchInbox` and `fetchNextPage`.
+
+## 4) Removed methods
+
+* `Netmera.initBroadcastReceiver`
+* `Netmera.updateUser`
+* `Netmera.updateUserAsync`
+* `Netmera.areNotificationsEnabled`
+* `Netmera.handleLastMessage`
+* `Netmera.setApiKey`
+* `Netmera.setBaseUrl`
+* `Netmera.skipAppConfigAndSetBaseUrl`
+* `Netmera.turnOffSendingEventAndUserUpdate`
+
+## 5) Function Mapping
+
+<table><thead><tr><th width="277.27569580078125">1.x and below</th><th width="330.261474609375">2.x and above</th><th>Description</th></tr></thead><tbody><tr><td><code>Netmera.initBroadcastReceiver</code></td><td><code>Netmera.setPushLifecycleCallbacks</code></td><td>Register push lifecycle callbacks</td></tr><tr><td><code>Netmera.updateUser</code> and <code>Netmera.updateUserAsync</code></td><td><code>Netmera.identifyUser</code> and <code>Netmera.updateUserProfile</code></td><td>User identification and profile updates</td></tr><tr><td><code>Netmera.setBaseUrl</code> and <code>Netmera.skipAppConfigAndSetBaseUrl</code></td><td>Please use <code>Netmera-Config.plist</code> and <code>RNNetmeraConfiguration</code></td><td>Change base url at runtime</td></tr><tr><td><code>Netmera.setApiKey</code></td><td>Please use <code>Netmera-Config.plist</code> and <code>RNNetmeraConfiguration</code></td><td>Change API key at runtime</td></tr><tr><td><code>Netmera.setAppGroupName</code></td><td>Please use <code>Netmera-Config.plist</code> and Define in <code>Signing &#x26; Capabilities</code></td><td>iOS Rich Media Push</td></tr><tr><td><code>Netmera.turnOffSendingEventAndUserUpdate</code></td><td><code>Netmera.startDataTransfer</code> and <code>Netmera.stopDataTransfer</code></td><td>Data transfer management</td></tr><tr><td><code>Netmera.areNotificationsEnabled</code></td><td><code>Netmera.checkNotificationPermission</code></td><td>Notification permission status</td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/react-native/migration-to-2.x.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

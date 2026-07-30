@@ -1,0 +1,89 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/android/ssl-pinning.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/android/ssl-pinning.md).
+
+# SSL Pinning
+
+**SSL Pinning** ensures secure communication by allowing only trusted SSL certificates, which is critical for apps handling sensitive user data. To use this feature, integrate **Android SDK v3.15.0** or above.
+
+### Configuring SSL Pinning
+
+* Specify the trusted SSL certificate hash in `NetmeraConfiguration.Builder` using the `sslPinKeys` method.
+
+### Single SSL Pin
+
+Use this code to pin a single SSL certificate:
+
+```java
+NetmeraConfiguration.Builder configBuilder = new NetmeraConfiguration.Builder();
+
+configBuilder
+    .baseUrl(baseUrl)
+    .apiKey(apiKey)
+    .huaweiSenderId(PropertiesUtil.huaweiSenderId)
+    .firebaseSenderId(PropertiesUtil.gcmSenderId)
+    .logging(true)
+    // Set SSL pin keys
+    .sslPinKeys(
+        // Replace with the correct sha256 hash
+        "sha256/T9g7qeNuY3SHc4tWSlqoHwWb+0Y8whUYn0uuAB3CzHM="
+    );
+```
+
+### Multiple SSL Pins
+
+Use this code to pin multiple SSL certificates for environments where multiple certificates are trusted (e.g., during certificate transitions or backups):
+
+```java
+List<String> sslPinKeys = Arrays.asList(
+    // Replace with correct sha256 hashes
+    "sha256/A1C7RK0nAsHviju64ImO48VgSY5FdOMxv9GJh0uMXJQ=",
+    "sha256/8Rw90Ej3Ttt8RRkrg+WYDS9n7IS03bk5bjP/UXPtaY8=",
+    "sha256/Ko8tivDrEjiY90yGasP6ZpBU4jwXvHqVvQI0GS3GNdA="
+);
+
+NetmeraConfiguration.Builder configBuilder = new NetmeraConfiguration.Builder();
+
+configBuilder
+    .baseUrl(baseUrl)
+    .apiKey(apiKey)
+    .huaweiSenderId(PropertiesUtil.huaweiSenderId)
+    .firebaseSenderId(PropertiesUtil.gcmSenderId)
+    .logging(true)
+    // Set SSL pin keys
+    .sslPinKeys(sslPinKeys);
+```
+
+### Handling SSL Pinning Errors
+
+If the server's SSL certificate doesn't match the pinned keys, the app will log an error and terminate the connection.
+
+#### Error Log for Invalid SSL Pins
+
+<figure><img src="https://user.netmera.com/~gitbook/image?url=https%3A%2F%2F2578508252-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F0bOAscrXzPSujyzq8DEz%252Fuploads%252Ff9MsEg6zMNq6MoDcLiDp%252Fimage.png%3Falt%3Dmedia%26token%3D3969214e-05f3-4f7c-810c-4fee73712f8d&#x26;width=768&#x26;dpr=4&#x26;quality=100&#x26;sign=d6f272c7&#x26;sv=2" alt=""><figcaption></figcaption></figure>
+
+#### If Improper SSL Pinning Is Configured
+
+<figure><img src="https://user.netmera.com/~gitbook/image?url=https%3A%2F%2F2578508252-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F0bOAscrXzPSujyzq8DEz%252Fuploads%252FBCQEqBIjHRI37Zo7eGWl%252Fimage.png%3Falt%3Dmedia%26token%3Dd6ab567d-8659-4503-8307-7b704c847c99&#x26;width=768&#x26;dpr=4&#x26;quality=100&#x26;sign=ea20b904&#x26;sv=2" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/android/ssl-pinning.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

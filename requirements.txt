@@ -1,9 +1,16 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
 torch
-streamlit
+langgraph
+langgraph-checkpoint-sqlite
+langchain-google-genai
+langchain-openai
 chromadb
 sentence-transformers
-google-genai
+streamlit
 requests
 beautifulsoup4
 lxml
+python-dotenv
+pydantic
+grandalf
+rank_bm25

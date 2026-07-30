@@ -1,0 +1,560 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/live-activities.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/live-activities.md).
+
+# Live Activities
+
+Live Activities enable apps to display dynamic, real-time updates directly on glanceable areas like the Lock Screen, iPhone StandBy, Dynamic Island, and Apple Watch’s Smart Stack, allowing users to monitor ongoing events, activities, or tasks without constantly reopening the app.
+
+Ideal for tracking short-to-medium-length tasks, Live Activities present prioritized, real-time information such as live sports scores, delivery updates, fitness metrics, and other contextual, time-sensitive experiences, while also offering interactive options for user control. For best practices, ensure a concise layout suited to all display locations, avoid sensitive information, and refrain from using Live Activities for advertising, preserving them as a tool for useful, timely updates.
+
+<figure><img src="/files/6skoN2jyPNA7Oh1Gevfv" alt=""><figcaption></figcaption></figure>
+
+## Netmera and Live Activities
+
+To facilitate this feature, Netmera has integrated additional functionalities into the existing message delivery framework specifically designed for Live Activity.
+
+### Prerequisites and Setup :warning:
+
+* Ensure your **Swift SDK** version is at least **4.2.0**
+* Starting with **iOS 17.2**, you can remotely initiate Live Activities via Netmera.
+* A **`.p8 push certificate`** is required to enable Live Activity updates.  Refer to the guide below for instructions on generating an Apple **`.p8`** push certificate.
+
+{% embed url="<https://www.youtube.com/watch?t=91s&v=dv-5gmaGsAA>" %}
+
+### Apple Materials
+
+* [Starting and updating Live Activities with ActivityKit push notifications](https://developer.apple.com/documentation/activitykit/starting-and-updating-live-activities-with-activitykit-push-notifications)
+* [Displaying live data with Live Activities](https://developer.apple.com/documentation/activitykit/displaying-live-data-with-live-activities)
+* [Human Interface Guidelines for Live Activities](https://developer.apple.com/design/human-interface-guidelines/live-activities)
+
+This guide outlines the steps to initiate, update, and end Live Activity with Netmera’s API, enabling dynamic notifications on iOS devices. Below are the essential setup instructions, endpoint examples, and details on how to manage the lifecycle of a Live Acxtivity.
+
+<figure><img src="/files/LSN1ZLNovrsQKSgAIoAF" alt="" width="563"><figcaption></figcaption></figure>
+
+## Netmera Live Activity Sample
+
+You can find a sample project below, which you may use as a reference for your implementation.
+
+{% embed url="<https://github.com/Netmera/Netmera-LiveActivity-Sample>" %}
+
+## Step 1: Define the Live Activity Structure
+
+### 1.1 Configure `Info.plist` for Live Activity Support
+
+Ensure the following keys are added to your app’s `Info.plist`
+
+```xml
+<key>NSSupportsLiveActivities</key>
+<true/>
+<key>NSSupportsLiveActivitiesFrequentUpdates</key>
+<true/>
+```
+
+### 1.2 Implement `ActivityAttributes`
+
+Each Live Activity must define its own custom `ActivityAttributes` struct. For Netmera compatibility, it must conform to `NetmeraLiveActivityAttributes`.
+
+* `netmeraGroupId` is **required** and must be **unique per activity**. It allows Netmera to group and update the same activity across multiple users with a single request.
+* `ActivityAttributes` defines both static and dynamic properties.
+* `ContentState` holds the dynamic fields that can be updated.
+
+**Example:**
+
+```swift
+import Foundation
+import ActivityKit
+import NetmeraLiveActivity
+
+struct MatchScoreAttributes: ActivityAttributes, NetmeraLiveActivityAttributes {
+
+    var netmeraGroupId: String?
+    
+    var homeTeamName: String
+    var awayTeamName: String
+    var homeTeamLogo: String
+    var awayTeamLogo: String
+    
+    public static var activityIdentifier: String = "MatchScoreAttributes"
+    
+    public struct ContentState: Codable, Hashable {
+        var homeTeamScore: Int
+        var awayTeamScore: Int
+        var matchStatus: String
+       
+    }
+}
+```
+
+{% hint style="warning" %}
+**Target Membership Requirement**
+
+* The file defining the `ActivityAttributes` struct (e.g., `MatchScoreAttributes`) **must** be included in both the **main app target** (e.g., `NetmeraLiveActivitySample`) and the **widget extension target** (e.g., `NetmeraLiveActivitySampleWidget`).
+* In Xcode, select the file and verify under the **File Inspector** (right-hand panel) that both targets are checked in the **Target Membership** section.
+* Failing to configure this correctly will result in the widget extension being unable to access the `ActivityAttributes` struct, causing a build error.
+  {% endhint %}
+
+<figure><img src="/files/Pjj3XWwakWgGEqzd8eW7" alt=""><figcaption><p>Target Membership Configurations</p></figcaption></figure>
+
+## Step 2: Start a Live Activity
+
+You can start an activity remotely or locally:
+
+* **Remote:** You **must** call the `Netmera.register(forType:name:)` method **early in your app’s lifecycle**, before the push-to-start token is generated, then start an activity using the `/rest/3.0/sendBulkNotification` endpoint.
+* **Local:** Create an instance of your Live Activity, then use the `Netmera.observeActivity`  method to let Netmera manage token and state updates of your activity.<br>
+
+{% tabs %}
+{% tab title="Remote" %}
+{% hint style="warning" %}
+To use remote Live Activity registration, iOS **17.2 or later** is required.
+{% endhint %}
+
+### 2.1. Register Activity Type
+
+To enable Live Activity tracking in **iOS 17.2 and later**, you must register the Live Activity type with Netmera. This allows Netmera to track and associate push tokens for the specified activity type.
+
+**Registration Method**
+
+Use the `Netmera.register(forType:name:)` method to register your Live Activity type.
+
+You can call this method:
+
+* Inside `application(_:didFinishLaunchingWithOptions:)` in your `AppDelegate`, **or**
+* At an appropriate point in your app’s lifecycle **before showing the Live Activity.**
+
+> **Example use case**:\
+> When a user adds a team to favorites, you can register the related activity type in advance to prepare for future updates.
+
+**Example:**
+
+```swift
+if #available(iOS 17.2, *) {
+    Netmera.register(forType: Activity<MatchScoreAttributes>.self, name: "MatchScoreAttributes")
+}
+```
+
+Once registered, Netmera begins listening for push tokens linked to this activity type.
+
+### 2.2. Start a Live Activity Remotely via Netmera REST API
+
+You can trigger a Live Activity remotely on iOS devices using Netmera’s REST API. The example below demonstrates starting a Live Activity for tracking a football match score.
+
+### 2.2.1  Bulk Live Activity
+
+To send a Live Activity to multiple users, the **`sendBulkNotification`** endpoint is used.
+
+Bulk delivery can be performed by:
+
+* sending the Live Activity to **all eligible users** using the `sendToAll` option, or
+* targeting **specific user groups** defined by **segments** or **user tags**.
+
+When `sendToAll` is set to `true`, the Live Activity is delivered to all eligible users on the specified platform.
+
+When segments or tags are used, the Live Activity is delivered only to users who match the defined targeting criteria.
+
+```json
+curl --location 'https://restapi.netmera.com/rest/3.0/sendBulkNotification' \
+  --header 'X-netmera-api-key: your_rest_api_key' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    {
+    "message": {
+        "title": "Live Activity Start",
+        "text": "Here your live activity",
+        "platforms": [
+            "IOS"
+        ],
+        "contentState": {
+            "homeTeamScore": 0,
+            "awayTeamScore": 0,
+            "matchStatus": "1st Half"
+        },
+        "liveActAttr": {
+            "leagueName": "Premier League",
+            "homeTeamName": "Arsenal",
+            "awayTeamName": "Liverpool",
+            "matchStartTime": "18.30"
+        },
+        "liveActAttrType": "MatchLiveScoreWidgetAttributes",
+        "groupId": "ars-liv-2025",
+        "liveActEndDate": "2026-01-28T15:35:37Z"
+    },
+    "type": "LIVE_ACTIVITY",
+    "target": {
+        "sendToAll": true
+    }
+}'
+```
+
+### Key Parameters for Bulk Live Activity
+
+<table><thead><tr><th width="222.21875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>sendToAll</code></td><td><strong>Optional.</strong> Set to <code>true</code> to broadcast the activity to all users. You can replace this with custom targeting if needed.</td></tr><tr><td>target (bulk configuration)</td><td><strong>Optional</strong>. Defines bulk targeting rules (e.g., segment-based or tag-based) within the <code>target</code> object.</td></tr></tbody></table>
+
+### 2.2.2  Transactional Live Activity
+
+**A Transactional Live Activity** is a Live Activity that is sent to a single, specific user and reflects real-time updates based on that user’s state or actions.\
+It is delivered by targeting the user with the **`extId`** parameter, ensuring the Live Activity is displayed only on the intended user’s device.
+
+#### Step 1: Create the Live Activity definition (`/createNotificationDefinition`)
+
+This step creates a **Live Activity notification definition** template. Netmera returns a `notificationKey`, which is a unique identifier for this definition. You will use this `notificationKey` when sending the Live Activity.
+
+```json
+curl --location 'https://restapi.netmera.com/rest/3.0/createNotificationDefinition' \
+  --request POST \
+  --header 'X-netmera-api-key: your_rest_api_key' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "title": "Live Activity Start",
+  "message": "Here your live activity",
+  "platforms": [
+    "IOS"
+  ],
+  "contentState": {
+    "homeTeamScore": 2,
+    "awayTeamScore": 3,
+    "matchStatus": "2nd Half"
+  },
+  "liveActAttr": {
+    "leagueName": "Premier League",
+    "homeTeamName": "Aston Willa",
+    "awayTeamName": "Chelsea",
+    "matchStartTime": "21.40"
+  },
+  "liveActAttrType": "MatchScoreAttributes"
+}'
+  
+
+```
+
+**Note:** Creating a definition does not send a Live Activity to users. It only generates the reusable definition and its `notificationKey`.
+
+#### Step 2: Send Transactional Live Activity (`/sendNotification`)
+
+This step sends the Live Activity to a **single, specific user**. \
+To send a **transactional** Live Activity, you provide:
+
+* the `notificationKey` returned from `/createNotificationDefinition`
+* the target user identifier via `target.extId`
+
+This ensures the Live Activity is delivered only to the intended user’s device.
+
+```json
+curl --location 'https://restapi.netmera.com/rest/3.0/sendNotification' \
+  --request POST \
+  --header 'X-Netmera-Api-Key:your_rest_api_key ' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "notificationKey": "9401",
+  "message": {
+    "groupId": "aw-ch-2025"
+  },
+  "target": {
+    "extId": "your_external_id"
+  }
+}'
+```
+
+{% hint style="info" %}
+Previously, the `groupId` for transactional Live Activities was provided in the `createNotificationDefinition` request.
+
+With the updated flow, the `createNotificationDefinition` request is used **only to define the notification content**. The `groupId` is now provided at **delivery** **time** in the `sendNotification` request, under the `message` object.
+
+This change does not affect the overall Live Activity lifecycle or behavior; it only changes where the `groupId` parameter is supplied.
+{% endhint %}
+
+### &#x20;Transactional Delivery Parameters
+
+<table><thead><tr><th width="175.1844482421875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>notificationKey</code></td><td><strong>Required.</strong> The notification definition ID returned by <code>/createNotificationDefinition</code>.</td></tr><tr><td><kbd>target.extId</kbd></td><td><strong>Required.</strong> External user identifier used to deliver the Live Activity to a single user.</td></tr></tbody></table>
+
+### Live Activity Required Request Parameters&#x20;
+
+The following parameters are required for both transactional and bulk Live Activity requests.
+
+<table><thead><tr><th width="159.1798095703125">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>type</code></td><td><strong>Required.</strong> Must be <code>"LIVE_ACTIVITY"</code> to activate the Live Activity feature.</td></tr><tr><td><code>contentState</code></td><td><strong>Required.</strong> Contains dynamic values that can be updated throughout the activity (e.g. score, match status).</td></tr><tr><td><code>liveActAttr</code></td><td><strong>Required.</strong> Contains static metadata used in the widget. All fields are required.</td></tr><tr><td><code>liveActAttrType</code></td><td><strong>Required.</strong> Must match the name of your <code>ActivityAttributes</code> Swift class/struct.</td></tr><tr><td><code>groupId</code></td><td><strong>Required.</strong> A unique ID used to group and identify the Live Activity instance during its lifecycle.</td></tr></tbody></table>
+
+{% hint style="info" %}
+
+#### Required Fields
+
+All fields in the `liveActAttr` object are **mandatory**:
+
+* `leagueName`
+* `homeTeamName`
+* `awayTeamName`
+* `matchStartTime`&#x20;
+
+If **any** of these fields (e.g., `awayTeamName`) are missing, the request will fail, and the Live Activity will not be shown.
+{% endhint %}
+
+### liveActAttr Object Fields
+
+<table><thead><tr><th width="162.4315185546875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>leagueName</code></td><td><strong>Required.</strong> Name of the league displayed in the Live Activity.</td></tr><tr><td><code>homeTeamName</code></td><td><strong>Required.</strong> Name of the home team displayed in the widget.</td></tr><tr><td><code>awayTeamName</code></td><td><strong>Required.</strong> Name of the away team displayed in the widget.</td></tr><tr><td><code>matchStartTime</code></td><td><strong>Required.</strong> Match start time displayed in the Live Activity.</td></tr></tbody></table>
+
+### Live Activity Start - Optional Parameters
+
+<table><thead><tr><th width="161.719482421875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>liveActEndDate</code></td><td><strong>Optional.</strong> Specifies the planned end time of the Live Activity. This parameter is used as a TTL replacement for iOS Live Activities and determines when the activity should be automatically ended. Must be provided in ISO 8601 UTC format.</td></tr></tbody></table>
+
+{% hint style="warning" %}
+`liveActEndDate` must be a future date. Past dates are not supported.
+{% endhint %}
+{% endtab %}
+
+{% tab title="Local" %}
+You can use Apple’s `ActivityKit` framework to create a Live Activity instance locally on the device. The Netmera SDK manages the push token generated by `ActivityKit`, enabling you to update Live Activities via the Netmera API. Netmera sends this push token to the Apple Push Notification service (APNs) on the backend.
+
+**Steps to Start a Live Activity Locally**
+
+1. Create an instance of your Live Activity using Apple’s `ActivityKit` APIs.
+2. Set the `pushType` parameter to `.token` to generate a push token.
+3. Pass the previously defined `ActivityAttributes` and `ContentState` when creating the activity.
+4. Register the Live Activity with Netmera by calling: \
+   (This registration step is required only for Live Activities started locally)
+
+```swift
+Netmera.observeActivity(matchActivity)
+```
+
+**Example: `LiveActivityManager` Class**
+
+Below is an example implementation of a manager class that starts a Live Activity for a match score.
+
+```swift
+import NetmeraCore
+import NetmeraLiveActivity
+import ActivityKit
+
+class LiveActivityManager {
+
+    func startMatchActivity() {
+        let attributes = MatchScoreAttributes(
+            netmeraGroupId: "ars-liv-2025",
+            homeTeamName: "Arsenal",
+            awayTeamName: "Liverpool",
+            homeTeamLogo: "arsenal_logo",
+            awayTeamLogo: "liverpool_logo"
+        )
+        
+        let contentState = MatchScoreAttributes.ContentState(
+            homeTeamScore: 0,
+            awayTeamScore: 0,
+            matchStatus: "1st half"
+        )
+        
+        matchActivity = try Activity.request(
+            attributes: attributes,
+            content: .init(state: contentState, staleDate: nil),
+            pushType: .token // Important: Use `.token` to enable Netmera to manage push-based updates
+        )
+        
+        if let matchActivity {
+            Netmera.observeActivity(matchActivity)
+        }
+    }
+}
+```
+
+{% hint style="info" %}
+**Important Notes**
+
+* The Live Activity widget will display the initial `ContentState` provided during creation.
+* Netmera’s backend uses the associated push token to send updates to this Live Activity through the Apple Push Notification service.
+  {% endhint %}
+  {% endtab %}
+  {% endtabs %}
+
+## Step 3: Resume Activity Tracking
+
+To ensure Netmera continues tracking Live Activities when the app is reopened:
+
+* If the app is terminated, its connection with the Live Activity is lost.
+* To resume tracking token updates or activity state changes, the existing Live Activity must be observed again when the app is relaunched.
+* This should be handled inside the `application(_:didFinishLaunchingWithOptions:)` method of your AppDelegate.
+* Doing so ensures that both locally and remotely started activities are properly re-observed on app launch.
+
+Use the following method:
+
+```swift
+Netmera.resumeObservingActivities(ofType: Activity<MatchScoreAttributes>.self)
+```
+
+**Example:**
+
+```swift
+import UIKit
+import ActivityKit
+import NetmeraLiveActivity
+
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+        Netmera.initialize()
+        ...
+        
+        if #available(iOS 16.1, *) {
+            Netmera.resumeObservingActivities(ofType: Activity<MatchScoreAttributes>.self)
+        }
+        return true
+    }
+}
+```
+
+## Step 4: Update a Live Activity via Netmera REST API
+
+You can update the content of an ongoing Live Activity by sending a REST API request to Netmera:
+
+```json
+curl --location 'https://restapi.netmera.com/rest/3.0/update-live-activity' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+    "groupId": "ars-liv-2025",
+    "action": "UPDATE",
+    "contentState": {
+        "homeTeamScore": 1,
+        "awayTeamScore": 0,
+        "matchStatus": "2nd Half"
+    },
+    "staleDate": "2026-01-11T09:21:37Z",
+    "priority": 10
+}'
+```
+
+### Live Activity Update - Optional Parameters
+
+| Parameter   | Description                                                                                                                                                                      |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `staleDate` | **Optional.** Defines when a Live Activity is considered outdated due to missing updates, allowing the system and app to indicate that the information may no longer be current. |
+
+## Step 5: End a Live Activity via Netmera's REST API
+
+To stop a Live Activity, send an `END` action request via Netmera REST API:
+
+```json
+curl --location 'https://restapi.netmera.com/rest/3.0/update-live-activity' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+    "groupId": "ars-liv-2025",
+    "action": "END",
+    "dismissalDate": "2026-01-11T09:21:37Z",
+    "priority": 10
+}'
+```
+
+### Live Activity End - Optional Parameters
+
+| Parameter       | Description                                                                                                  |
+| --------------- | ------------------------------------------------------------------------------------------------------------ |
+| `dismissalDate` | **Optional.** Specifies the exact time when a finished Live Activity should be removed from the Lock Screen. |
+
+{% hint style="danger" %}
+Lifecycle-related parameters are supported in specific Live Activity operations only.
+
+* `staleDate` is supported only by the update-live-activity service and is used to mark the Live Activity content as outdated.
+* `dismissalDate` is supported only by the end-live-activity service and defines when the Live Activity should be completely removed from the user interface.
+
+These parameters are optional and must be provided in ISO 8601 string format using the UTC time zone. They are not valid in Live Activity start or creation requests.
+{% endhint %}
+
+## Unregistering a Live Activity
+
+You can stop tracking a specific Live Activity in your app by calling:
+
+```swift
+Netmera.unregister(name: matchActivity)
+```
+
+**Important Notes:**
+
+* The `name` parameter must exactly match the identifier used during registration with `Netmera.register(...)`.
+* If the names do not match exactly, the unregistration will not take effect.
+* **Example use case:** When a user removes a football match from their favorites and no longer wants updates on the lock screen or widget, call the unregister method.
+
+You can stop tracking a specific Live Activity using the `Netmera.unregister(name:)` method.
+
+### Debugging Tip
+
+If you encounter the error:
+
+```
+[LiveActivityManagerImpl.swift] 
+Cannot observe activity, missing required attribute: netmeraGroupId
+```
+
+It indicates that the `netmeraGroupId` attribute is missing. Ensure it is correctly provided in your `ActivityAttributes` structure.
+
+## Live Activity Analytics
+
+Netmera tracks three system events for Live Activities. These events help you debug the Live Activity lifecycle and analyse adoption and performance from the panel.
+
+You can see all of these events under:
+
+* **Analytics → Event Insight** (left navigation), or
+* **Targeting → User Details → Events** tab for a specific user.
+
+#### Event Overview
+
+<table><thead><tr><th width="225.07958984375">Event Name</th><th width="149.9833984375">Event Code</th><th>Trigger</th></tr></thead><tbody><tr><td><strong>LiveActivityStartToken</strong></td><td><code>n:lst</code></td><td>A Live Activity is ready to start and the OS generates a Live Activity start token.</td></tr><tr><td><strong>LiveActivityUpdateToken</strong></td><td><code>n:lut</code></td><td>An active Live Activity’s push token changes (e.g., refresh/rotation by the OS).</td></tr><tr><td><strong>LiveActivityClose</strong></td><td><code>n:lac</code></td><td>The user closes the Live Activity or it is automatically ended by the system/app.</td></tr></tbody></table>
+
+#### 1. LiveActivityStartToken (`n:lst`)
+
+**Description**\
+This event is fired when a Live Activity is about to be started and the system creates a **start token** for that activity.
+
+#### 2. LiveActivityUpdateToken (`n:lut`)
+
+**Description**\
+This event is fired when an **existing Live Activity’s push token changes**.&#x20;
+
+#### 3. LiveActivityClose (`n:lac`)
+
+**Description**\
+This event is fired when a Live Activity is **closed** by the user or **automatically ended** by the system or app (e.g., after a timeout, or when the scenario completes).
+
+### Viewing Live Activity Events in the Panel
+
+#### Event Insight
+
+1. Go to **Analytics → Event Insight** from the left menu.
+2. In the **Event** filter, search by code:
+   * `n:lst` for **LiveActivityStartToken**
+   * `n:lut` for **LiveActivityUpdateToken**
+   * `n:lac` for **LiveActivityClose**
+
+### Live Activity Events on User Details
+
+Live Activity lifecycle events can be monitored from the **Events** tab on the user details.
+
+<figure><img src="/files/4LgXMn55bX23eS2ACPbS" alt=""><figcaption></figcaption></figure>
+
+1. Go to **Targeting > People** and open a specific user profile.
+2. Switch to the **Events** tab.
+3. Filter or search within the event list for:
+   * `LiveActivityStartToken`, `LiveActivityUpdateToken`, or `LiveActivityClose`
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/live-activities.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

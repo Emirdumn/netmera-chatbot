@@ -1,0 +1,39 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/delegate-methods.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/delegate-methods.md).
+
+# Delegate Methods
+
+### Default Handling of Remote Notifications
+
+Netmera automatically handles all `UIApplicationDelegate` methods related to remote notifications. You don’t need to implement these methods in your **App Delegate** unless your app has special use cases that require custom logic.
+
+### Custom Implementation (If Needed)
+
+If your app needs custom handling for remote notification delegate methods, you can implement them in your `UIApplicationDelegate`. You can then add your specific logic inside those methods. For more details on the delegate methods related to push notifications, check the:  [**UI Application Delegate Protocol Reference**](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/index.html#//apple_ref/doc/uid/TP40006786-CH3-SW17)**.**
+
+### Accessing Notification Data
+
+To retrieve the remote notification payload, use the `[Netmera recentPushObject]` or `Netmera.recentPushObject()` method. This method returns a `NetmeraPushObject` instance, which contains the notification data. You can call this method within your `UIApplicationDelegate` methods to access the data of the received notification.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/delegate-methods.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

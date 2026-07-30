@@ -1,0 +1,252 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-inbox.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-inbox.md).
+
+# Push Inbox
+
+Netmera Inbox allows you to access and manage previously sent push notifications in an inbox-style interface. You cannot instantiate NetmeraInbox directly; instead, you must obtain an instance through the SDK and use it to interact with push notifications.
+
+### Install Netmera Notification Inbox
+
+Integrate the `NetmeraNotificationInbox`, add it to your `Podfile` if you are using CocoaPods.
+
+```ruby
+pod 'NetmeraNotificationInbox'
+```
+
+Install the dependency and proceed with integration.
+
+### Import Statements
+
+Before using Inbox and Notification features, make sure to add the following imports at the top of your Swift file:
+
+```swift
+import NetmeraNotification
+import NetmeraNotificationInbox
+```
+
+This ensures that all related classes and methods are available for handling push notifications and inbox operations.
+
+### Filter and Fetch Notification
+
+Create a `NetmeraInboxFilter` instance to specify which push notifications to fetch. You can filter by:
+
+* **Status**: Read, Unread, or Deleted.
+* **Categories**: Filter by specific categories.
+* **Expired Notifications**: Include or exclude expired notifications.
+* **Page Size**: Number of notifications to fetch per request.
+
+#### Define Inbox Manager
+
+```swift
+var inboxManager: NetmeraInboxManager?
+```
+
+#### Create a Filter
+
+Define the properties to filter notifications, such as status, categories, and page size.
+
+```swift
+let filter = NetmeraInboxFilter(status: status,
+                                pageSize: 10,
+                                shouldIncludeExpiredObjects: true,
+                                categories: ["category_names"]) // Optional
+```
+
+#### Initialize Inbox Manager
+
+```swift
+self.inboxManager = Netmera.inboxManager(with: filter)
+```
+
+#### Fetch the First Page
+
+Request the list of matching push notifications.
+
+```swift
+inboxManager?.inbox(callback: { result in
+	// Handle the result
+})
+```
+
+#### Sample Code
+
+```swift
+// Step 1: Define the inbox manager
+var inboxManager: NetmeraInboxManager?
+
+// Step 2: Create a filter for fetching inbox notifications
+let filter = NetmeraInboxFilter(
+    status: status,                        // Notification status: .unread, .read, or .deleted
+    pageSize: 10,                          // Number of notifications to retrieve per page
+    shouldIncludeExpiredObjects: true,     // Include expired notifications
+    categories: ["category_names"]         // (Optional) Filter by specific categories
+)
+
+// Step 3: Fetch Inbox
+inboxManager?.inbox(callback: { result in
+    switch result {
+    case .success:
+        // Display inbox UI with inboxManager?.objects
+    case .failure(let error):
+        // Handle error
+    }
+})
+```
+
+### Update Notification Status
+
+Push notifications can have three statuses:
+
+* **Unread**
+* **Read**
+* **Deleted**
+
+You can update the status of notifications to allow users to mark messages as read, unread, or deleted.
+
+**Examples:**
+
+Update the status of a **single** notification:
+
+```swift
+inboxManager?.updateStatus(status, for: [object]) { result in
+    // Handle status update
+}
+```
+
+Update the status of **all** notifications:
+
+```swift
+inboxManager?.updateStatusForAllPushObjects(status) { result in
+    // Handle status update
+}
+```
+
+### Fetch More Pages
+
+If there are more notifications than the defined page size, fetch the next page:
+
+```swift
+inboxManager?.nextPage(callback: { result in
+	// Handle the next page
+})
+```
+
+All fetched notifications are stored in `inbox.objects`, and `hasNextPage` checks if more pages are available.
+
+### Incremental Fetching
+
+The `NetmeraInbox` instance returned from `-fetchInboxUsingFilter:completion:` keeps the list of fetched notifications in `inbox.objects`. As you fetch more pages, new notifications are added to this list.
+
+For example, if you set a page size of 10 and fetch 3 pages, `inbox.objects` will contain all 30 notifications from the 3 pages. This allows you to display the entire list of notifications in a table or collection view.
+
+{% hint style="info" %}
+**Error Handling**
+
+If the operation fails, the **completion block** will be triggered with an error describing the failure. If there are no more pages to fetch, the method will immediately call the completion block with an appropriate error.
+{% endhint %}
+
+### Checking if All Pages are Fetched
+
+You can check if there are more pages to fetch by using the **`hasNextPage`** property of the `NetmeraInbox` instance. If it returns **`false`**, it means all pages have been fetched.
+
+### Push Notification Counts
+
+To get the total count of notifications based on status:
+
+```swift
+self.inboxManager?.count(for: NetmeraInboxStatus.read)
+```
+
+This method provides the count of notifications in the specified status.
+
+### Handling Push Objects
+
+You can access the title, body, and subtitle of a push notification using the `alert` property on `NetmeraInboxPush`.
+
+```swift
+let push: NetmeraInboxPush = inboxManager.objects[indexPath.row]
+
+let title = push.alert?.title
+let body = push.alert?.body
+let subtitle = push.alert?.subtitle
+```
+
+If the push includes a media attachment:
+
+```swift
+if let mediaURLString = push.payload?.mediaAttachmentURL,
+   let url = URL(string: mediaURLString) {
+    // Load and display the image
+}
+```
+
+If you need direct access to the deep link URL:
+
+```swift
+if let deeplinkAction = push.payload?.action as? NetmeraDeeplinkAction {
+    let url = deeplinkAction.deeplinkURL
+}
+```
+
+### Manage Push Notification Categories
+
+Starting from SDK v4.9.0, Netmera provides methods to manage push notification category preferences programmatically.
+
+These APIs allow you to enable or disable specific categories for each user (e.g., enabling "campaign" notifications while disabling "information" messages).
+
+* **Fetch User Category Preferences**
+
+```swift
+
+Netmera.getUserCategoryPreferenceList { result in
+    switch result {
+    case .success(let preferences):
+        // Handle the list of NetmeraUserCategoryPreference
+        print(preferences)
+    case .failure(let error):
+        // Handle the error
+        print("Error: \(error)")
+    }
+}
+```
+
+* **Set User Category Preference**
+
+```swift
+Netmera.setUserCategoryPreference(
+    categoryId: 123,
+    categoryEnabled: true
+) { result in
+    switch result {
+    case .success(let isSuccess):
+        print("Update success: \(isSuccess)")
+    case .failure(let error):
+        print("Error: \(error)")
+    }
+}
+```
+
+These methods align with category management behavior available in the Objective-C SDK and provide more granular control over user-level push opt-ins.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-inbox.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

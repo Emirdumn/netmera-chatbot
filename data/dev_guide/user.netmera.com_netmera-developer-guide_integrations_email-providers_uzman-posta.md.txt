@@ -1,0 +1,80 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/email-providers/uzman-posta.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/email-providers/uzman-posta.md).
+
+# Uzman Posta
+
+The Uzman Posta connector integrates the Netmera platform with the Turkish email sending service, positioning it as a key email delivery channel, particularly serving as a fallback option for both marketing campaigns and internal system notifications.
+
+### Overview
+
+<table><thead><tr><th width="221.31500244140625">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>Uzman Posta</td></tr><tr><td><strong>Category</strong></td><td>Email Providers / Email Sending Service (Turkey)</td></tr><tr><td><strong>Primary Function</strong></td><td>Outbound email delivery for system and campaign emails.</td></tr><tr><td><strong>Netmera Adapter Class</strong></td><td>UzmanPostaMailAdapterImpl (for campaigns)</td></tr><tr><td><strong>Fallback Mechanism</strong></td><td>Utilized by the NetmeraMailSender class for internal system emails.</td></tr><tr><td><strong>Data Flow</strong></td><td><strong>Outbound</strong> (<code>Netmera > Uzman Posta</code>)</td></tr><tr><td><strong>Priority Ranking</strong></td><td><strong>Low Priority (Rank 4/Fallback)</strong>, following SetRow, Amazon SES, and Postal.</td></tr></tbody></table>
+
+The Uzman Posta integration is defined as a robust email service, specifically designed to ensure high deliverability within the Turkish market. Its most critical role in the Netmera architecture is acting as the **primary fallback provider** for email traffic.
+
+### Use Cases and Benefits
+
+1. **Campaign Email Delivery:** Uzman Posta is available as an option for sending standard bulk marketing campaigns created via the Netmera Control Panel. This occurs primarily when higher-priority email connectors (such as SetRow or Amazon SES) are either **inactive or unconfigured**.
+2. **System Email Fallback (Internal Mail):** It provides a reliable channel for Netmera's internal communications. System-generated emails—including password resets, verification links, notification alerts, and report emails—are routed through Uzman Posta if other preferred system mail services (like Local Mail or specialized external services) are not utilized or fail.
+3. **Reliability in the Turkish Market:** As a provider focused on Turkey, Uzman Posta ensures **optimized delivery rates** for email recipients in this region.
+4. **Guaranteed Delivery Channel:** Because of its role as a fallback, configuring Uzman Posta ensures that Netmera has a reliable, operational channel for critical email transmission, minimizing the risk of communication failures.
+
+### Data Flow
+
+The data flow is purely **Outbound**, involving API communication from Netmera's mail services to the Uzman Posta API.
+
+1. **Message Request:** An email is triggered (either a campaign or an internal system alert).
+2. **Provider Selection:**
+   * **For Campaign Emails:** The MailSenderServiceImpl checks email providers in priority order (SetRow $\rightarrow$ Amazon SES $\rightarrow$ Postal). If none are active, the system falls back to Uzman Posta.
+   * **For System Emails:** The NetmeraMailSender class checks the appropriate configuration settings and uses Uzman Posta if other primary system mail services are not available.
+3. **API Call:** The dedicated adapter (UzmanPostaMailAdapterImpl) uses the configured **API Key** to authenticate and submit the email payload to the specified **Request URL** (API endpoint).
+
+$$\text{Netmera Mail Sender} \xrightarrow{\text{UzmanPostaMailAdapterImpl}} \text{Uzman Posta API endpoint}$$
+
+### Configuration Reference
+
+<figure><img src="/files/7T13XDZ3SzmctofNAKc3" alt=""><figcaption></figcaption></figure>
+
+Configuration requires obtaining two essential parameters from the Uzman Posta service panel.
+
+<table><thead><tr><th width="136.8642578125">Parameter</th><th width="116.15411376953125">Type</th><th>Description</th><th>Provider Context</th></tr></thead><tbody><tr><td><strong>apiKey</strong></td><td>String</td><td>The unique API key assigned to the Netmera account by Uzman Posta.</td><td>Used for <strong>API authentication</strong> during message submission.</td></tr><tr><td><strong>requestUrl</strong></td><td>String</td><td>The specific API endpoint URL provided by Uzman Posta.</td><td>Defines the <strong>destination endpoint</strong> for all email sending requests.</td></tr></tbody></table>
+
+### Setup Instructions
+
+The setup process requires coordination with the vendor and inputting the credentials into the Netmera Control Panel.
+
+1. **Prerequisites:** Contact Uzman Posta, complete the account setup process, and obtain your designated API Key and API Request URL.
+2. **Access Netmera Connectors:** Navigate to the Netmera Control Panel, select the **Connectors** (or **Integrations**) section.
+3. **Configure Uzman Posta:** Select the **Uzman Posta** connector.
+4. **Input Data:** Enter the **API Key** and the **Request URL** into the configuration form.
+5. **Save:** Click **Save Configuration**.
+
+After saving, the connector is immediately registered within the MailSenderServiceImpl and NetmeraMailSender as a viable, low-priority email channel.
+
+### Usage Notes & Considerations
+
+1. **Priority Dependence:** Uzman Posta has a **low priority** for campaign emails. Messages will only be routed through it if all higher-ranked connectors (SetRow, Amazon SES, Postal) are **not configured or are inactive**. If you intend to use Uzman Posta as the default campaign provider, the higher-priority services must be unconfigured.
+2. **Dual Role:** Its function as a fallback provider for internal system emails is independent of its function as a campaign connector. A configuration error, however, could impact both transactional and marketing communications relying on it.
+3. **Credential Failure:** The integration relies entirely on the correctness and validity of the apiKey and requestUrl. If these are incorrect or change on the vendor side, all email routing attempts via this connector will fail until the Netmera configuration is manually updated.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/email-providers/uzman-posta.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

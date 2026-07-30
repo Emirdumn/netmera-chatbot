@@ -1,0 +1,48 @@
+services:
+  customer_app:
+    build: .
+    command: >
+      streamlit run ui/customer_app.py
+      --server.port=8501 --server.address=0.0.0.0
+      --server.headless=true
+    volumes:
+      - netmera_storage:/app/storage
+    env_file: .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  agent_console:
+    build: .
+    command: >
+      streamlit run ui/agent_console.py
+      --server.port=8502 --server.address=0.0.0.0
+      --server.headless=true
+    volumes:
+      - netmera_storage:/app/storage
+    env_file: .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8502/_stcore/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  nginx:
+    image: nginx:1.27-alpine
+    depends_on:
+      - customer_app
+      - agent_console
+    ports:
+      - "80:80"
+      - "8082:8082"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/.htpasswd:/etc/nginx/.htpasswd:ro
+    restart: unless-stopped
+
+volumes:
+  netmera_storage:

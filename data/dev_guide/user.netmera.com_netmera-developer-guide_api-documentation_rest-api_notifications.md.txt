@@ -1,0 +1,2896 @@
+URL: https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/notifications.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/notifications.md).
+
+# Notifications
+
+&#x20;**Managing Devices and Notifications with Netmera Rest API**
+
+Welcome to the REST API documentation for managing devices and notifications in our system. This section provides comprehensive information on how to seamlessly register, unregister devices, send notifications, and retrieve essential device and notification details through our REST API.
+
+<table data-view="cards"><thead><tr><th></th></tr></thead><tbody><tr><td><a data-mention href="#send-notification-basic">#send-notification-basic</a></td></tr><tr><td><a data-mention href="#web-push-send-bulk-notification">#web-push-send-bulk-notification</a></td></tr><tr><td><a data-mention href="#bulk-notifications-with-features">#bulk-notifications-with-features</a></td></tr><tr><td><a data-mention href="#send-transactional-notification">#send-transactional-notification</a></td></tr><tr><td><a data-mention href="#transactional-notification">#transactional-notification</a></td></tr><tr><td><a data-mention href="#push-stats">#push-stats</a></td></tr><tr><td><a data-mention href="#get-push-result">#get-push-result</a></td></tr><tr><td><a data-mention href="#create-geofence">#create-geofence</a></td></tr><tr><td><a data-mention href="#e-mail">#e-mail</a></td></tr><tr><td><a data-mention href="#sms">#sms</a></td></tr><tr><td><a data-mention href="/pages/5ieViaB1k7ld1NFn2oxn">/pages/5ieViaB1k7ld1NFn2oxn</a></td></tr></tbody></table>
+
+## Mobile Bulk Notification <a href="#send-notification-basic" id="send-notification-basic"></a>
+
+### Send Bulk Notification <a href="#send-bulk-notification" id="send-bulk-notification"></a>
+
+Following request is the minimal required parameters to send push notification.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+  "message": {
+    "title": "Push Notification Title",
+    "platforms": ["IOS", "ANDROID"],
+    "text": "This is the push notification text!"
+  },
+  "target": {
+    "sendToAll": true
+  }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+* **title (Required):**
+  * The campaign's name, aiding in the identification of notifications on the panel.
+* **platforms (Required):**
+  * Specifies the platforms for push notification delivery.
+* **text (Required):**
+  * The message content of the push notification displayed to the user.
+* **target (Required):**
+  * The designated recipients for the push notification. If the `sendToAll` value is set to true, the notification will be dispatched to all users selected for the specified platform. For more intricate targeting options, refer to the advanced targeting section below.
+
+</details>
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message": {
+        "title": "New Product Launch",
+        "platforms": ["IOS", "ANDROID"],
+        "text": "Exciting news! Our latest product is now available.",
+        "ios": {
+            "title": "Check it Out!"
+        },
+        "android": {
+            "title": "Discover Now!"
+        }
+    },
+    "target": {
+        "sendToAll": true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+* **title (Inside Message Block):**
+  * Provides the campaign name within the panel for organizational purposes.
+* **title (Inside iOS and Android Blocks):**
+  * Returns the title specifically for the push notification on iOS and Android platforms. This allows customization of the notification title on different operating systems.
+
+</details>
+
+### Carousel Push <a href="#send-bulk-notification-carousel-push" id="send-bulk-notification-carousel-push"></a>
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+  "platforms": ["ANDROID", "IOS"],
+  "text": "Explore our Products",
+  "message": "Check out our latest offerings!",
+  "title": "Product Showcase",
+  "click": {
+    "url": "https://www.example.com/products"
+  },
+  "ios": {
+    "title": "Discover on iOS",
+    "carousel": [
+      {
+        "title": "Featured Product",
+        "content": "Explore our flagship item.",
+        "itemImageUrl": "https://example.com/images/product1.jpg",
+        "clickAction": {
+          "action": "DEEP_LINK",
+          "url": "https://www.example.com/products/featured",
+          "deeplinkType": "URL",
+          "deepLinkUrl": "https://example.com/deeplink/featured"
+        }
+      },
+      {
+        "title": "New Arrival",
+        "content": "Check out the latest addition to our collection.",
+        "itemImageUrl": "https://example.com/images/newarrival.jpg"
+      }
+    ]
+  },
+  "android": {
+    "title": "Discover on Android",
+    "carousel": [
+      {
+        "title": "Special Offer",
+        "content": "Do not miss out on our exclusive discount.",
+        "itemImageUrl": "https://example.com/images/specialoffer.jpg"
+      },
+      {
+        "title": "Top Picks",
+        "content": "Explore our curated selection of top products.",
+        "itemImageUrl": "https://example.com/images/toppicks.jpg",
+        "clickAction": {
+          "action": "DEEP_LINK",
+          "url": "https://www.example.com/products/toppicks",
+          "deeplinkType": "URL",
+          "deepLinkUrl": "https://example.com/deeplink/toppicks"
+        }
+      }
+    ]
+  }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+
+```
+
+### Slider Push
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+  "platforms": ["ANDROID", "IOS"],
+  "text": "Exciting News!",
+  "message": "Check out the latest updates.",
+  "title": "New Features Alert",
+  "click": {
+    "deeplink": "https://www.example.com"
+  },
+  "ios": {
+    "title": "iOS Version",
+    "slider": [
+      {
+        "itemImageUrl": "https://example.com/ios_image1.png",
+        "clickAction": {
+          "url": "https://www.example.com"
+        }
+      },
+      {
+        "itemImageUrl": "https://example.com/ios_image2.png"
+      }
+    ]
+  },
+  "android": {
+    "title": "Android Update",
+    "slider": [
+      {
+        "itemImageUrl": "https://example.com/android_image1.png",
+        "clickAction": {
+          "url": "https://www.example.com"
+        }
+      },
+      {
+        "itemImageUrl": "https://example.com/android_image2.png"
+      }
+    ]
+  }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+* **Given:**
+  * Creation of a push to be sent via the Send bulk notification service via Postman
+
+**When:**
+
+* Label information is added to the message.
+* **Then:**
+  * The push notification is sent.
+* **And:**
+  * Confirmation is observed as the label field appears in the push report generated on the panel.
+
+</details>
+
+### Multilanguage
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message": {
+        "title": "New Update Available",
+        "platforms": ["IOS", "ANDROID"],
+        "text": "Explore exciting features in the latest update!",
+        "customJson": {
+            "key1": "value1"
+        },
+        "click": {
+            "deeplink": "https://www.netmera.com"
+        }
+    },
+    "languages": {
+        "English": {
+            "title": "New Features",
+            "text": "Discover what is new in this update.",
+            "click": {
+                "deeplink": "https://www.netmera.com"
+            }
+        },
+        "Turkish": {
+            "title": "Yeni Özellikler",
+            "text": "Bu güncellemede neler yeni öğrenin.",
+            "click": {
+                "deeplink": "https://www.netmera.com"
+            }
+        }
+    },
+    "target": {
+        "sendToAll": true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+### Custom Button
+
+{% hint style="danger" %}
+**Warning:**
+
+* It is crucial to create buttons initially in the panel under Settings > Button Sets.
+* Note that the "Button Name" is not mandatory.
+
+For platform-specific deliveries, kindly specify separately for the desired browsers, including Android, iOS. This ensures accurate and tailored delivery based on the user's browser environment.
+{% endhint %}
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message": { 
+        "title": "New Offer Alert",
+        "platforms": ["ANDROID"],
+        "text": "Exciting deals await you!",
+        "buttonSet": {
+            "id" : 1,  // id: $buttonSetId
+            "Yes" : "https://netmera.com/yes-feedback",  // $buttonSetName: $actionurl
+            "No" : "https://netmera.com/no-feedback" // $buttonSetName: $actionurl
+        }
+    },
+    "target": {
+        "sendToAll": true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+### Android Live Push Update
+
+<figure><img src="/files/73dSPN0U689uJ4qLvokw" alt=""><figcaption></figcaption></figure>
+
+An Android Live Push Update refers to the process of dynamically updating or modifying a push notification that has already been sent to users' Android devices. Unlike traditional push notifications that are static and cannot be changed once sent, a live push update allows developers to make real-time adjustments to the content or context of a notification even after it has been delivered to users.
+
+1. First send a push notification to your users using the provided sample code:
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+  "message": {
+    "title": "Push Notification Title",
+    "platforms": ["ANDROID"],
+    "text": "This is the push notification text!"
+  },
+  "target": {
+    "sendToAll": true
+  }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+2. &#x20;Once the notification is sent,  save the **`NotificationKey`** shown in the response.
+
+```
+"NotificationKey: 1000"
+```
+
+3. To modify the notification, add `"refID": "NotificationKeyValue"` inside `"customJson": {`. This change allows for different notification scenarios.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+  "message": {
+    "title": "Push Notification Title",
+    "platforms": ["ANDROID"],
+    "text": "This is the push notification text!",
+     "customJson": {
+      "refID": "1000"
+    }
+  },
+  "target": {
+    "sendToAll": true
+  }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+**Android Live Push Update with Sound**
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+  "message": {
+    "title": "Push Notification Title",
+    "platforms": ["ANDROID"],
+    "text": "This is the push notification text!",
+    "android": {
+        "sound": "default"
+    },
+     "customJson": {
+      "refID": "notification_id"
+    }
+  },
+  "target": {
+    "sendToAll": true
+  }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+### Notification Grouping
+
+Notification grouping allows push notifications from the same platform to be organized within the notification center. Using the **thread-id** parameter, notifications related to a specific category or event can be grouped together. This ensures a cleaner, more user-friendly experience by preventing notification clutter.
+
+**Supported Platforms:** iOS, Android
+
+* By assigning the same `thread-id` to related notifications (e.g., `"matchUpdates"`), the notifications can be grouped together in the notification center. Users can expand the notification to see all updates within that group.
+* The `sendBulkNotification` and `createNotificationDefinition` services support the `thread-id` parameter for grouping notifications.
+
+<figure><img src="/files/KBllF5LGutdC4k9otyms" alt="" width="563"><figcaption></figcaption></figure>
+
+#### API Request Example
+
+Use the following API request to send a grouped push notification:
+
+```json
+curl --location --request POST 'https://restapi.netmera.com/rest/3.0/sendBulkNotification' \
+--header 'X-netmera-api-key: YOUR_API_KEY' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "message": {
+    "title": "Match Update",
+    "platforms": ["ANDROID", "IOS"],
+    "text": "Goal! Your team has scored.",
+    "threadId": "matchUpdates"
+  },
+  "target": {
+    "sendToAll": true
+  }
+}
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+| Parameter   | Type    | Description                     |
+| ----------- | ------- | ------------------------------- |
+| `title`     | String  | Notification title              |
+| `platforms` | Array   | Target platforms (iOS, Android) |
+| `text`      | String  | Notification content            |
+| `threadId`  | String  | ID used to group notifications  |
+| `sendToAll` | Boolean | Whether to send to all users    |
+
+</details>
+
+## Web Bulk Notification <a href="#web-push-send-bulk-notification" id="web-push-send-bulk-notification"></a>
+
+### Send Bulk Web Notification <a href="#web-push-send-bulk-notification" id="web-push-send-bulk-notification"></a>
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message": {
+        "title": "Important Update",
+        "personalizedTitle": "@{titleHere}",
+        // If platforms contains Chrome or Firefox then iconUrl must exist
+        "platforms": ["CHROME", "MACOS", "FIREFOX"],
+        "text": "Please review the latest changes.",
+        "wpChromeImage": "<image-url>",
+        "interactionRequired": true,
+        "click": {
+            "url": "https://www.netmera.com"
+        },
+        "iconUrl": "<icon-url>"
+    },
+    "target": {
+        "sendToAll": true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+* **title (Required):**
+
+The name of the campaign, aiding in the identification of notifications on the panel.
+
+* **text (Required):**
+
+The push notification message displayed to the user.
+
+* **wpChromeImage:**
+
+For Windows Chrome and Firefox users, this parameter specifies the URL of the image to be displayed in the notification. The URL must begin with "https."
+
+* **iconUrl:**
+
+Required if the platforms include Chrome or Firefox. Specifies the URL for the icon associated with the notification.
+
+* **interactionRequired:**
+
+A boolean indicating whether the notification should persist until the user interacts with it, either by clicking or dismissing. The default value is false.
+
+* **personalizedTitle**
+
+This field is provided and the corresponding profile attribute exists for the user, the Web push notification's title is set to the value of `personalizedTitle`. If the attribute is not set on the user, the notification will not be sent.
+
+</details>
+
+### Custom Button
+
+{% hint style="danger" %}
+**Warning:**
+
+* It is crucial to create buttons initially in the panel under Settings > Button Sets.
+* Note that the "Button Name" is not mandatory.
+
+For platform-specific deliveries, kindly specify separately for the desired browsers, including FIREFOX, EDGE, MACOS, and CHROME. This ensures accurate and tailored delivery based on the user's browser environment.
+{% endhint %}
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message": {
+        "title": "New Features Announcement",
+        "platforms": ["CHROME"],
+        "text": "Exciting updates just for you!",
+        "iconUrl": "https://netmera.com/img/cropped_logo.png",
+        "buttonSet": { 
+            "id" : 1,  // id: $buttonSetId
+            "Yes" : "https://netmera.com/yes-feedback",  // $buttonSetName: $actionurl
+            "No" : "https://netmera.com/no-feedback" // $buttonSetName: $actionurl
+        }
+    },
+    "target": {
+        "sendToAll": true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+## Bulk Notifications with Features
+
+### Bulk to Tag
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Sports Update",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Get the latest sports news and updates!"
+    },
+    "target" : {
+        "tag" : "Sport"
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+### Bulk to Multiple Tags
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Updates for You",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Check out the latest updates tailored for your interests!"
+    },
+    "target" : {
+        "tag" : ["Sport", "Casual"]
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+Users with any of the given tags will receive notification.
+
+#### This is similar to:
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Personalized Updates",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Stay tuned for personalized updates tailored just for you!"
+    },
+    "target" : {
+        "tag" : {"$or" : ["Sport", "Casual"]}
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+If you use $and instead of $or, users with all of the given tags will receive notification.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Exclusive Sports & Casual Updates",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Explore the latest updates in sports and casual topics just for you!"
+    },
+    "target" : {
+        "tag" : {"$and" : ["Sport", "Casual"]}
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+Submitting notifications using the "or" logic of the attribute value in transactional pushes.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Special Announcement",
+        "platforms" : ["ANDROID"],
+        "text" : "Check out our latest special announcement just for you!"
+    },
+    "target" : {
+        "profile" : {
+            "$or": {
+                "att1" : ["val1", "val2", "val3"],
+                "att2" : ["val4"]
+            },
+            "name": {
+                "$exists" : true
+            }
+        }
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+If you use $not, users who don't have any of the given tags will receive notification.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "General Updates",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Explore the latest updates and news tailored for you!"
+    },
+    "target" : {
+        "tag" : {"$not" : ["Sport", "Casual"]}
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+### Bulk to Segment
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Exclusive Offer",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "As a valued frequent user, enjoy an exclusive offer just for you!"
+    },
+    "target" : {
+        "segment" : "frequent_users"
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+### Bulk to Multiple Segments
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Special Announcement",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Exciting news for you! Check it out now."
+    },
+    "target" : {
+        "segment" : ["frequent_users", "churn"]
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+Users with any of the given segments will receive notification.
+
+This is similar to:
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Special Announcement",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Exciting news for frequent you!"
+    },
+    "target" : {
+        "segment" : {"$or" : ["frequent_users", "churn"]}
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+If you use $and instead of $or, users with all of the given segments will receive notification
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Important Update",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Please be aware of this critical update."
+    },
+    "target" : {
+        "segment" : {"$and" : ["frequent_users", "churn"]}
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+If you use $not, users who don't have any of the given segments will receive notification.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Latest News",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Stay updated with the latest news and announcements."
+    },
+    "target" : {
+        "segment" : {"$not" : ["frequent_users", "churn"]}
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+### Bulk to Profile Attribute
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Special Offer",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Hello John! Check out our exclusive special offer just for you."
+    },
+    "target" : {
+        "profile" : {
+            "language" : ["English", "Turkish"],
+            "name" : "John"
+        }
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+With the request above, you can send notification to Female users who set language as English or Turkish. You can set one or more profile attribute. Notification will be sent to users who satisfy **all** attributes.
+
+### Targeting Array-Type Profile Attributes&#x20;
+
+#### Target users by a single array value
+
+Use a single value when you want to target users whose array profile attribute contains a specific value.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+  "message": {
+    "title": "Push Notification Title",
+    "platforms": ["IOS", "ANDROID"],
+    "text": "This is the push notification text!"
+  },
+  "target": {
+    "profile": {
+      "arrayTest": "extSegment4"
+    }
+  }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+&#x20;In this example, the notification is sent to users whose `arrayTest` profile attribute contains `extSegment4`.
+
+#### Target users by multiple array values
+
+Use an array of values when you want to target users whose array profile attribute contains any of the specified values.&#x20;
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+  "message": {
+    "title": "Push Notification Title",
+    "platforms": ["IOS", "ANDROID"],
+    "text": "This is the push notification text!"
+  },
+  "target": {
+    "profile": {
+      "arrayTest": ["extSegment4", "extSegment5"],
+      "kvkkTest": true
+    }
+  }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+In this example, the notification is sent to users whose `arrayTest` profile attribute contains either `extSegment4` or `extSegment5`.
+
+&#x20;The notification is sent to users who meet both conditions:
+
+* `arrayTest` contains either `extSegment4` or `extSegment5`.
+* `kvkkTest` is `true`.
+
+{% hint style="info" %}
+When multiple attributes are defined in the same `target.profile` object, the conditions are evaluated with **AND** logic.
+{% endhint %}
+
+{% hint style="warning" %}
+
+#### **Important notes**
+
+* You can check profile attribute codes from **Netmera Panel > Developers > Profile Attributes > Code**.
+* The `target` object cannot be empty.
+* If you want to send a notification to all users, use `sendToAll: true`.
+  {% endhint %}
+
+### Bulk Personalized Push
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Special Offer",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Hello, [Name] [Surname]! Check out our exclusive special offer.",
+        "personalizedMessage" : "@{name}, @{surname}"
+    },
+    "target" : {
+        "sendToAll" : true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+With the request above, you can send personalized notification to users who have profile attributes which placeholders exists in **personalizedMessage** field. For example, a user has name attribute equals Susan and surname as Smith. She will receive that message as "Susan, Smith". If a user does not have any of name or surname attribute, they will receive the default message as "push text!!".
+
+### Bulk to Specific Location
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Special Offer in Your Area",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Hello! Discover exclusive deals near you.",
+    },
+    "target" : {
+        "location" : {
+            "latitude" : 42.892,
+            "longitude" : 21.355,
+            "radius" : 50
+        }
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+If you include location under the target, the following details are required:
+
+* **latitude (Required):**
+  * The latitude of the center point.
+* **longitude (Required):**
+  * The longitude of the center point.
+* **radius (Required):**
+  * The radius value, in kilometers, from the center to search for users. This parameter determines the geographical area for targeting users based on their location.
+
+</details>
+
+### Bulk with Category <a href="#send-notification-with-category" id="send-notification-with-category"></a>
+
+When sending a notification with categories, keep in mind the following:
+
+* **Category Definition:**
+  * Categories should be pre-defined in the panel. Ensure you create categories under the Settings/Message Categories menu.
+* **Category Inclusion:**
+  * You can set a single or multiple categories for your notification.
+
+{% hint style="danger" %}
+**Note:** Make sure to define categories in the panel before attempting to use them in your notification. Categories provide a way to organize and classify your notifications for more targeted delivery.
+{% endhint %}
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Special Announcement",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Exciting news! Check out the latest updates.",
+        "categories" : "announcements"
+    },
+    "target" : {
+        "sendToAll" : true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Special Announcement",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Exciting news! Check out the latest updates.",
+        "categories" : ["announcements", "promotions"]
+    },
+    "target" : {
+        "sendToAll" : true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+### Bulk with Sound & Vibration <a href="#send-notification-with-sound-vibration" id="send-notification-with-sound-vibration"></a>
+
+When sending a notification with sound and vibration, consider the following steps:
+
+* **Sound Definition:**
+  * Sounds must be pre-defined in the panel. Define your sounds under Developers/Sounds menu.
+* **Platform-specific Sound Setting:**
+  * Set sounds for each platform accordingly. This ensures that the appropriate sound is played based on the user's device platform.
+
+{% hint style="danger" %}
+**Note:** Ensure that the sounds are defined in the panel under **Developers/Sounds** before attempting to use them in your notification. This allows for a customized and platform-specific audio experience for users.
+{% endhint %}
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Special Announcement",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Exciting news! Check out the latest updates.",
+        "android" : {
+            "vibration" : true,
+            "sound" : "android_sound",
+            "bigText" : "Important details here",
+            "thumbnailUrl" : "https://example.com/android_thumbnail.jpg"
+        },
+        "ios" : {
+            "sound" : "ios_sound",
+            "thumbnailUrl" : "https://example.com/ios_thumbnail.jpg"
+        }
+    },
+    "target" : {
+        "sendToAll" : true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+* **sound (Optional):**
+  * The name of the sound, as defined in the panel. Sounds should be added by platform. Include this parameter to specify the sound associated with the notification.
+* **vibration (Optional - Android Only):**
+  * For Android, this parameter determines whether to enable or disable vibration when a device receives a push notification. Include this parameter if you want to control the vibration behavior on Android devices.
+
+</details>
+
+### Bulk with Badge <a href="#send-notification-with-badge" id="send-notification-with-badge"></a>
+
+{% hint style="danger" %}
+**Badge only for iOS:**
+
+* Badges are enabled only for **iOS**. This means that the badge functionality is applicable and recognized on iOS devices.
+  {% endhint %}
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Special Alert",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Urgent notification! Take immediate action.",
+        "ios" : {
+            "badge" : true
+        }
+    },
+    "target" : {
+        "sendToAll" : true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+### Bulk with Badge Count
+
+```json
+https://user.netmera.com/netmera-developer-guide/rest-api/rest-api-notifications
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "notificationKey": "15107",
+    "message": {
+        "params": {
+            "_nm_badge_count" : 5
+        }
+    },
+    "target": {
+        "extId": "your_xid"
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendNotification
+```
+
+### Bulk with Deeplink <a href="#send-notification-with-deeplink" id="send-notification-with-deeplink"></a>
+
+* **Deeplinks:**
+  * You can add a deeplink to your notification, enabling you to redirect users to a specific view or content after they click on the notification.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Special Offer",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Check out our exclusive offer!",
+        "customJson" : {
+            "key1" : "value1"
+        },
+        "click" : {
+            "deeplink" : "https://www.google.com"
+        }
+    },
+    "target" : {
+        "sendToAll" : true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+### Bulk with URL <a href="#send-notification-with-url" id="send-notification-with-url"></a>
+
+* **URL Inclusion:**
+  * Add a URL to your notification, allowing you to open a landing page in a default web view after users click on the notification.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Special Offer",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "Check out our exclusive offer!",
+        "customJson" : {
+            "key1" : "value1"
+        },
+        "click" : {
+            "url" : "https://www.google.com"
+        }
+    },
+    "target" : {
+        "sendToAll" : true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+### Bulk with "Do Nothing" Option <a href="#send-notification-with-do-nothing-option" id="send-notification-with-do-nothing-option"></a>
+
+By including the "Do Nothing" option in your notification, you can override the automatic click handling mechanism, specifically on Android. With this option:
+
+* **Custom Click Handling (Android Only):**
+  * No automatic click handling mechanism will be applied. Instead, you need to implement a custom click handler for Android.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Special Notification",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "This is a notification with a custom action",
+        "customJson" : {
+            "key1" : "value1"
+        },
+        "click" : {
+            "doNothing" : true
+        }
+    },
+    "target" : {
+        "sendToAll" : true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+### Bulk with Rich Media <a href="#send-notification-with-rich-media" id="send-notification-with-rich-media"></a>
+
+To send a notification with rich media content, utilize the following request, which allows inclusion of title, subtitle, and different types of media based on the platform:
+
+* **Title and Subtitle:**
+  * Include title and subtitle in your notification.
+* **Rich Media:**
+  * For Android, include an image. For iOS, include an image, sound, or video.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Special Notification",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "This is a notification with media content",
+        "ios": {
+            "mediaUrl": "https://media.example.com/ios_image.jpg",
+            "title": "iOS Title",
+            "subtitle": "iOS Subtitle",
+            "thumbnailUrl" : "https://media.example.com/ios_thumbnail.jpg"
+        },
+        "android": {
+            "mediaUrl": "https://media.example.com/android_image.jpg",
+            "title": "Android Title",
+            "subtitle": "Android Subtitle",
+            "bigText" : "Big Text for Android",
+            "thumbnailUrl" : "https://media.example.com/android_thumbnail.jpg"
+        }
+    },
+    "target" : {
+        "sendToAll" : true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+### Bulk with Custom Parameters <a href="#send-notification-with-custom-parameters" id="send-notification-with-custom-parameters"></a>
+
+To customize your notification further, consider adding custom parameters with the following request. These parameters can then be utilized on the device when the push notification is received.
+
+* **Custom Parameters:**
+  * Include additional custom parameters to enhance the information or actions associated with the notification.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Special Notification",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "This is a notification with custom JSON data",
+        "customJson" : {
+            "key" : "value"
+        }
+    },
+    "target" : {
+        "sendToAll" : true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+### Bulk with Scheduled Notification <a href="#send-scheduled-notification" id="send-scheduled-notification"></a>
+
+To schedule a notification for a future date, use the following "schedule" configuration in your request. This allows you to specify the date and time when the message should be delivered in the future.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Scheduled Push",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "This is a scheduled push notification"
+    },
+    "target" : {
+        "sendToAll" : true
+    },
+    "schedule": {
+        "startTime": "2024-02-01T15:30:00",
+        "localTimezone": false
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+### Bulk in Packages <a href="#send-notification-in-packages" id="send-notification-in-packages"></a>
+
+To send messages in chunks or packages, utilize the following "speed" configuration in your request. This allows you to control the rate at which notifications are sent.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "message" : {
+        "title" : "Push title",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "This is a bulk push notification with speed control"
+    },
+    "target" : {
+        "sendToAll" : true
+    },
+    "speed": {
+        "intervalMins": 5,
+        "packageSize": 10000
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+#### Other parameters <a href="#other-parameters" id="other-parameters"></a>
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "extRef" : "1h63af",
+    "message" : {
+        "title" : "Push title",
+        "platforms" : ["IOS", "ANDROID"],
+        "text" : "This is a bulk push notification with extended options",
+        "limit" : 100000,
+        "android" : {
+            "limit" : 20000
+        },
+        "ios" : {
+            "limit" : 80000
+        },
+        "ttl" : "15d",
+        "inbox" : true,
+        "doNotNotify" : false
+    },
+    "target" : {
+        "sendToAll" : true
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+* **extRef (Optional):**
+  * External reference of the push notification. This is an identifier of the notification in your system. You can assign any id to a notification and query by that id later on.
+* **limit (Optional):**
+  * The maximum number of users to whom the notification will be sent. If you have, for example, 1 million users and set the limit as 100,000, the notification will be sent to 100,000 users selected randomly. Additionally, as shown in the example, limits can be set by platform.
+* **ttl (Optional):**
+  * Time to live value of the notification. If any target device does not receive the notification within the given period, it will never be received. Example usage: 15d means 15 days, 20h means 20 hours, and 30m means 30 minutes.
+* **inbox (Optional):**
+  * A boolean value that determines whether to display the push notification in the inbox or not.
+* **doNotNotify (Optional):**
+  * A boolean value that determines whether to show the push notification on the notification center or not.
+
+</details>
+
+### Set Profile Attribute or Tag with Button Set
+
+{% hint style="info" %}
+**Integration Requirements:**
+
+For the successful execution of this feature, the **button click action must be set as "Open App".** The set attribute or tag operation will be triggered after the push open event within the application module.
+{% endhint %}
+
+#### Sample request for the `setProfileAttribute` feature in the `sendBulkNotification`
+
+```json
+--location 'https://restapi.netmera.com/rest/3.0/sendBulkNotification' \
+--header 'X-netmera-api-key: your-rest-api-key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "message": {
+    "title": "New Offer Alert",
+    "platforms": [
+      "ANDROID"
+    ],
+    "text": "Exciting deals await you!",
+    "buttonSet": {
+      "id": 4, //your button id
+      "setAttrOrTag": {
+        "Real Madrid": { //your first button name
+          "setOnClick": "PROFILE_ATTR",
+          "attrName": "Favorite Team",
+          "attrValue": "Real Madrid"
+        },
+        "Barcelona": { //your second button name
+          "setOnClick": "PROFILE_ATTR", 
+          "attrName": "Favorite Team",
+          "attrValue": "Barcelona"
+        }
+      }
+    }
+  },
+  "target": {
+    "sendToAll": true
+  }
+}'
+```
+
+**Sample request for the `setProfileAttribute` feature in the `createNotificationDefinition`**
+
+```json
+--location 'https://restapi.netmera.com/rest/3.0/createNotificationDefinition' \
+--header 'X-netmera-api-key: your-rest-api-key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "title": "Important Survey",
+  "message": "We would love to hear your feedback!",
+  "inbox": false,
+  "platforms": ["IOS", "ANDROID"],
+  "click": {
+    "deeplink": "https://www.netmera.com"
+  },
+  "buttonSet": {
+    "id": 4,
+    "setAttrOrTag": {
+      "Real Madrid": {
+        "setOnClick": "PROFILE_ATTR",
+        "attrName": "Favorite Team",
+        "attrValue": "Real Madrid"
+      },
+      "Barcelona": {
+        "setOnClick": "PROFILE_ATTR",
+        "attrName": "Favorite Team",
+        "attrValue": "Barcelona"
+      }
+    }
+  }
+}'
+```
+
+**Sample request for the `setTag` feature in the `sendBulkNotification`**
+
+```json
+url --location 'https://restapi.netmera.com/rest/3.0/sendBulkNotification' \
+--header 'X-netmera-api-key: your-rest-api-key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "message": {
+    "title": "New Offer Alert",
+    "platforms": [
+      "ANDROID"
+    ],
+    "text": "Exciting deals await you!",
+    "buttonSet": {
+      "id": 4,
+      "setAttrOrTag": {
+        "Real Madrid": {
+          "setOnClick": "Favorite Team",
+          "tagName" : "Real Madrid Fans"
+        },
+        "Barcelona": {
+          "setOnClick": "Favorite Team",
+          "tagName" : "Barcelona Fans"
+        }
+      }
+    }
+  },
+  "target": {
+    "sendToAll": true
+  }
+}'
+```
+
+**Sample request for the `setTag` feature in the `createNotificationDefinition`**
+
+```json
+--location 'https://restapi.netmera.com/rest/3.0/createNotificationDefinition' \
+--header 'X-netmera-api-key: your-rest-api-key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "title": "Important Survey",
+  "message": "We would love to hear your feedback!",
+  "inbox": false,
+  "platforms": ["IOS", "ANDROID"],
+  "click": {
+    "deeplink": "https://www.netmera.com"
+  },
+  "buttonSet": {
+    "id": 4,
+    "setAttrOrTag": {
+      "Real Madrid": {
+          "setOnClick": "Favorite Team",
+          "tagName" : "Real Madrid Fans"
+        },
+        "Barcelona": {
+          "setOnClick": "Favorite Team",
+          "tagName" : "Barcelona Fans"
+      }
+    }
+  }
+}'
+```
+
+### Platform-Specific Click Actions in Bulk Notifications
+
+Netmera provides the flexibility to define **platform-specific message content and click actions** when sending bulk push notifications. This allows you to tailor the user experience for different platforms such as **iOS** and **Android** within a single API request.
+
+#### Example Request
+
+```bash
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+  "message": {
+    "title": "New Feature!",
+    "text": "Discover platform-specific experience",
+    "platforms": ["IOS", "ANDROID"],
+    "click": {
+      "url": "https://www.example.com/default"
+    },
+    "ios": {
+      "title": "iOS Special",
+      "click": {
+        "url": "https://www.example.com/ios"
+      }
+    },
+    "android": {
+      "title": "Android Special",
+      "click": {
+        "deeplink": "https://www.example.com/android"
+      }
+    }
+  },
+  "target": {
+    "sendToAll": true
+  }
+}' \
+https://restapi.netmera.com/rest/3.0/sendBulkNotification
+```
+
+#### Explanation
+
+* `platforms`: Defines the platforms to which the notification will be sent.
+* `click`: Provides a **default click action** for platforms where platform-specific values are not defined.
+* `ios`, `android`: Platform-specific overrides. You can define custom `title`, `text`, and `click` objects under these keys.
+
+#### Supported Click Actions
+
+You can customize the click behavior per platform using the following action formats:
+
+**1. Open a URL**
+
+```json
+"click": {
+  "url": "https://www.example.com"
+}
+```
+
+* Opens a web page in the device's default browser.
+* Supported on both iOS and Android.
+
+**2. Open a Deeplink**
+
+```json
+"click": {
+  "deeplink": "myapp://path/to/content"
+}
+```
+
+* Launches your app via a registered deeplink URI.
+* Ensure the deeplink is configured correctly in the app.
+* Supported on both iOS and Android.
+
+**3. Do Nothing&#x20;*****(Android only)***
+
+```json
+"click": {
+  "doNothing": true
+}
+```
+
+* No action will be triggered when the user taps the notification.
+* Supported **only on Android**.
+
+## Transactional Notification <a href="#send-transactional-notification" id="send-transactional-notification"></a>
+
+Transactional notifications refer to pre-configured messages from the panel that can be specifically sent to individual users.
+
+{% hint style="danger" %}
+**Maximum 1000 Unique External IDs or Device Tokens in a Single REST API Request:**&#x20;
+
+When initiating a request, it's crucial to note that a maximum of 1000 unique external IDs or Device Tokens can be included in a single REST API Request. This limitation ensures the efficiency and proper handling of requests. If there are more than 1000 different external IDs or Device Tokens, it is necessary to distribute them across multiple requests. This approach is designed to uphold the performance and reliability of the API.
+{% endhint %}
+
+{% hint style="danger" %}
+**Custom Parameter Overwrite Risk:**&#x20;
+
+If a custom parameter is provided in the request and differs from the parameter existing in the panel, it will overwrite the pre-existing parameter. This emphasizes the importance of alignment between the provided custom parameters and those configured in the panel to avoid unintended parameter overwrites.
+{% endhint %}
+
+#### Single Request:
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "notificationKey": "106",
+    "message": {
+        "params": {
+            "name": "John Doe"
+        }
+    },
+    "target": {
+        "extId": "user_id_in_your_system"
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendNotification
+```
+
+#### Single Request with Device Token:
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "notificationKey": "106",
+    "message": {
+        "params": {
+            "name": "John Doe"
+        }
+    },
+    "target": {
+        "deviceToken": "APAaxpo02......12pxa"
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendNotification
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+* **notificationKey (Required):**
+  * This is the key identifier for the specific notification intended for a user. The notification key is created and can be obtained from the panel.
+* **target (Required):**
+  * Specifies the target user to whom the notification should be sent. For transactional notifications, this can be the external ID (extId), an identifier in your system previously associated with a specific user.
+* **message.params (Optional):**
+  * Custom parameters for tailoring a notification to a specific user. In the case of transactional messages, the text can be customized for individual users. For instance, if you want to send a personalized message like "Hello John" or "Hello Mary," you can configure your message as "Hello @{name}" and include the "name" parameter in your transactional notification request. This allows dynamic content based on user-specific information.
+
+</details>
+
+#### In chunks (for different notifications or parameters):
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '[
+    {
+        "notificationKey": "106",
+        "message": {
+            "params": {
+                "name": "John Doe"
+            }
+        },
+        "target" : {
+            "extId": "user_id_in_your_system_1"
+        }
+    },
+    {
+        "notificationKey": "107",
+        "message": {
+            "params": {
+                "price": 25
+            }
+        },
+        "target": {
+            "extId": "user_id_in_your_system_2"
+        }
+    }
+]' \
+https://restapi.netmera.com/rest/3.0/sendNotification
+```
+
+#### In chunks with device token (for different notifications or parameters):
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '[
+    {
+        "notificationKey": "106",
+        "message": {
+            "params": {
+                "name": "John Doe"
+            }
+        },
+        "target" : {
+            "deviceToken": "APAaxpo02......12pxa"
+        }
+    },
+    {
+        "notificationKey": "107",
+        "message": {
+            "params": {
+                "price": 25
+            }
+        },
+        "target": {
+            "deviceToken": "APAaxpo02......21kde"
+        }
+    }
+]' \
+https://restapi.netmera.com/rest/3.0/sendNotification
+```
+
+#### In chunks (for the same notification and parameters):
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "notificationKey": "106",
+    "message": {
+        "params": {
+            "name": "John Doe"
+        }
+    },
+    "target": {
+        "extId": ["user_id_in_your_system_1", "user_id_in_your_system_2"]
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendNotification
+```
+
+#### In chunks with device token (for the same notification and parameters):
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "notificationKey": "106",
+    "message": {
+        "params": {
+            "name": "John Doe"
+        }
+    },
+    "target": {
+        "deviceToken": ["APAaxpo02......21kde", "APAaxpo02......32coa"]
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendNotification
+```
+
+### Notification Definition <a href="#create-transactional-notification-definition" id="create-transactional-notification-definition"></a>
+
+A transactional notification definition can be created either through the Netmera Panel or via a specific request.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "title": "New Campaign",
+    "message": "Exciting updates await you!",
+    "personalizedMessage": "Explore now: @{message}",
+    "inbox": false,
+    "platforms": ["IOS", "ANDROID"],
+    "categories": [1,"category"], //could be string or integer
+    "click": {
+        "deeplink": "https://www.google.com"
+    },
+    "ios": {
+        "mediaUrl": "ios_media_url_here",
+        "title": "New Feature Alert",
+        "subtitle": "Discover what is new",
+        "sound": "ios_sound",
+        "thumbnailUrl" : "<ios-thumbnail-url>"
+    },
+    "android": {
+        "mediaUrl": "android_media_url_here",
+        "title": "New Feature Alert",
+        "subtitle": "Discover what is new",
+        "sound": "android_sound",
+        "vibration": true,
+        "bigText" : "Explore the latest features",
+        "thumbnailUrl" : "<android-thumbnail-url>"
+    },
+    "hook" : {
+        "name": "hook_name",
+        "params": {
+            "key1" : "val1",
+            "key2" : "val2"
+        }
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/createNotificationDefinition
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+* **Title (Inside Message Block):**
+  * When located within the message block, this parameter provides the campaign name within the panel, aiding in organizational identification.
+* **Title (Inside iOS and Android Blocks):**
+  * When placed inside the iOS and Android blocks, this parameter returns the title specifically for the push notification on the respective platforms. This allows customization of the notification title based on the user's device environment.
+* **Categories:** You may use the category id (shown on Settings > Message Categories on Netmera Panel) or the category name.&#x20;
+
+</details>
+
+### Personalized Message & Subtext
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "title": "New Announcement",
+    "message": "Discover our latest updates!",
+    "personalizedMessage": "Explore now: @{message}",
+    "personalizedSubText": "personalized subtext here : {@email} ",
+    "inbox": false,
+    "labels" : "Apple",
+    "platforms": ["IOS", "ANDROID"],
+    "click": {
+        "deeplink": "https://www.netmera.com"
+    },
+    "ios": {
+        "mediaUrl": "ios_media_url_here",
+        "title": "Exciting News",
+        "subtitle": "Stay informed",
+        "sound": "ios_sound",
+        "thumbnailUrl" : "<ios-thumbnail-url>"
+    },
+    "android": {
+        "mediaUrl": "android_media_url_here",
+        "title": "Exciting News",
+        "subtitle": "Stay informed",
+        "sound": "android_sound",
+        "vibration": true,
+        "bigText" : "Explore the latest announcement",
+        "thumbnailUrl" : "<android-thumbnail-url>"
+    },
+    "hook" : {
+        "name": "hook_name",
+        "params": {
+            "key1" : "val1",
+            "key2" : "val2"
+        }
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/createNotificationDefinition
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+* **title (Required):**
+  * Specifies the name of the campaign.
+* **message (Required):**
+  * The default push notification message. If no personalized message is used, this message will be sent to users.
+* **inbox (Optional):**
+  * A boolean value determining whether to display the push notification in the inbox.
+* **platforms (Required):**
+  * Indicates the platforms capable of receiving this notification.
+* **personalizedMessage (Optional):**
+  * If a user-specific message is to be sent, utilize the @{xxxx} placeholder. Placeholders can be profile attributes or sent via a transactional message call.
+* **click (Optional):**
+  * Specifies the default push click action. This action can be overridden by a transactional message call.
+* **ios (Optional):**
+  * Contains optional parameters specific to iOS.
+* **android (Optional):**
+  * Holds optional parameters specific to Android.
+* **hook (Optional):**
+  * Includes optional hook parameters. If no hook is to be attached, exclude the hook block from the request.
+
+</details>
+
+<details>
+
+<summary>Parameters</summary>
+
+**Given:** A push notification is created for users utilizing the "Create New Notification" service.
+
+**When:** Label information is added to the message.
+
+**Then:** The push notification is sent.
+
+**And:** Confirmation is observed as the label field appears in the push report generated on the panel.
+
+</details>
+
+#### Sample Response:
+
+```json
+{
+    "notificationKey": 96
+}
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+The notificationKey serves as the identifier for your message definition. This unique key is used when making a transactional message call, connecting the message to its predefined definition. Ensure to utilize this specific notificationKey to maintain coherence between your message definitions and transactional messages.
+
+</details>
+
+### Button Sets <a href="#create-transactional-notification-definition-carousel-push" id="create-transactional-notification-definition-carousel-push"></a>
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "title": "Important Survey",
+    "message": "We would love to hear your feedback!",
+    "inbox": false,
+    "platforms": ["IOS", "ANDROID"],
+    "click": {
+        "deeplink": "https://www.netmera.com"
+    },
+    "buttonSet": {
+        "id" : 1,
+        "Yes" : "https://netmera.com/yes-feedback",
+        "No" : "https://netmera.com/no-feedback"
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/createNotificationDefinition
+```
+
+### Carousel Push <a href="#create-transactional-notification-definition-carousel-push" id="create-transactional-notification-definition-carousel-push"></a>
+
+```json
+curl --location 'https://restapi.netmera.com/rest/3.0/createNotificationDefinition' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "platforms": [
+    "ANDROID",
+    "IOS"
+  ],
+  "text": "Explore our Products",
+  "message": "Check out our amazing image slider!",
+  "title": "Product Showcase",
+  "click": {
+    "url": "https://www.example.com/products"
+  },
+  "ios": {
+    "title": "Discover on iOS",
+        "carousel": [
+      {
+        "title": "Featured Product",
+        "content": "Explore our flagship item.",
+        "itemImageUrl": "https://example.com/images/product1.jpg",
+        "clickAction": {
+          "action": "DEEP_LINK",
+          "url": "https://www.example.com/products/featured",
+          "deeplinkType": "URL",
+          "deepLinkUrl": "https://example.com/deeplink/featured"
+        }
+      },
+      {
+        "title": "New Arrival",
+        "content": "Check out the latest addition to our collection.",
+        "itemImageUrl": "https://example.com/images/newarrival.jpg"
+      }
+    ]
+  },
+  "android": {
+    "title": "Discover on Android",
+   "carousel": [
+      {
+        "title": "Special Offer",
+        "content": "Do not miss out on our exclusive discount.",
+        "itemImageUrl": "https://example.com/images/specialoffer.jpg"
+      },
+      {
+        "title": "Top Picks",
+        "content": "Explore our curated selection of top products.",
+        "itemImageUrl": "https://example.com/images/toppicks.jpg",
+        "clickAction": {
+          "action": "DEEP_LINK",
+          "url": "https://www.example.com/products/toppicks",
+          "deeplinkType": "URL",
+          "deepLinkUrl": "https://example.com/deeplink/toppicks"
+        }
+      }
+    ]
+  }
+}'
+```
+
+### Slider Push
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+  "message": {
+    "platforms": [
+      "ANDROID",
+      "IOS"
+    ],
+    "text": "Exciting announcement! New features are now available.",
+    "message": "Check out the latest updates.",
+    "title": "New Features Alert",
+    "click": {
+      "deeplink": "https://www.netmera.com"
+    },
+    "ios": {
+      "title": "Discover on iOS",
+      "slider": [
+        {
+          "itemImageUrl": "https://example.com/ios-image1.png",
+          "clickAction": {
+            "url": "https://www.netmera.com"
+          }
+        },
+        {
+          "itemImageUrl": "https://example.com/ios-image2.png"
+        }
+      ]
+    },
+    "android": {
+      "title": "Explore on Android",
+      "slider": [
+        {
+          "itemImageUrl": "https://example.com/android-image1.png",
+          "clickAction": {
+            "url": "https://www.netmera.com"
+          }
+        },
+        {
+          "itemImageUrl": "https://example.com/android-image2.png"
+        }
+      ]
+    }
+  }
+}' \
+https://restapi.netmera.com/rest/3.0/createNotificationDefinition
+```
+
+## Transactional Notifications with Features <a href="#transactional-notification" id="transactional-notification"></a>
+
+### Transactional with Deeplink <a href="#send-transactional-notification-with-deeplink" id="send-transactional-notification-with-deeplink"></a>
+
+Add a deeplink to your transactional notification, allowing you to redirect users to a specific view or content upon clicking the notification.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "notificationKey": "3",
+    "target": {
+        "extId": "user123"
+    },
+    "message": {
+        "params": {
+
+        },
+        "click" : {
+            "deeplink" : "https://www.google.com"
+        }
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendNotification
+```
+
+### Transactional with URL <a href="#send-transactional-notification-with-url" id="send-transactional-notification-with-url"></a>
+
+Add a URL to your transactional notification, enabling the opening of a landing page in a default web view after users click on the notification. This allows you to direct users to specific web content or external pages related to the transactional notification.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "notificationKey": "3",
+    "target": {
+        "extId": "user123"
+    },
+    "message": {
+        "params": {
+
+        },
+        "click" : {
+            "url" : "https://www.netmera.com"
+        }
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendNotification
+```
+
+### Transactional with Rich Media <a href="#send-transactional-notification-with-rich-media" id="send-transactional-notification-with-rich-media"></a>
+
+To send a transactional notification with rich media content, utilize the following request, allowing the inclusion of title, subtitle, and different types of media based on the platform:
+
+* **Title and Subtitle:**
+  * Include title and subtitle in your transactional notification.
+* **Rich Media:**
+  * For Android, include an image. For iOS, include an image, sound, or video.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "notificationKey": "3",
+    "target": {
+        "extId": "user123"
+    },
+    "message": {
+        "params": {
+
+        },
+        "ios": {
+            "mediaUrl": "https://example.com/media-ios.mp4",
+            "title": "iOS Title",
+            "subtitle": "iOS Subtitle",
+            "thumbnailUrl" : "https://example.com/thumbnail-ios.png"
+        },
+        "android": {
+            "mediaUrl": "https://example.com/media-android.mp4",
+            "title": "Android Title",
+            "subtitle": "Android Subtitle",
+            "bigText" : "Android Big Text",
+            "thumbnailUrl" : "https://example.com/thumbnail-android.png"
+        }
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendNotification
+```
+
+### Transactional with Sound & Vibration <a href="#send-transactional-notification-with-sound-vibration" id="send-transactional-notification-with-sound-vibration"></a>
+
+When sending a transactional notification with sound and vibration, follow these steps:
+
+* **Sound Definition:**
+  * Define sounds in the panel under Developers/Sounds menu.
+* **Platform-specific Sound Setting:**
+  * Set sounds for each platform accordingly. This ensures that the appropriate sound is played based on the user's device platform.
+
+{% hint style="info" %}
+**Note:** Ensure that the sounds are defined in the panel under Developers/Sounds before attempting to use them in your transactional notification. This allows for a customized and platform-specific audio experience for users.
+{% endhint %}
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "notificationKey": "3",
+    "target": {
+        "extId": "user123"
+    },
+    "message": {
+        "params": {
+
+        },
+        "ios": {
+            "sound" : "custom_ios_sound"
+        },
+        "android": {
+            "vibration" : true,
+            "sound" : "custom_android_sound"
+        }
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendNotification
+```
+
+### Transactional with Custom Parameters <a href="#send-transactional-notification-with-custom-parameters" id="send-transactional-notification-with-custom-parameters"></a>
+
+To customize your transactional notification further, consider adding custom parameters with the following request. These parameters can then be utilized on the device when the push notification is received.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "notificationKey": "4",
+    "target": {
+        "extId": "user456"
+    },
+    "message": {
+        "params": {
+
+        },
+        "customJson" : {
+            "key" : "custom_value"
+        }
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendNotification
+```
+
+### Other parameters <a href="#other-parameters-1" id="other-parameters-1"></a>
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "notificationKey": "4",
+    "target": {
+        "extId": "user456"
+    },
+    "message": {
+        "params": {
+
+        },
+        "ttl": "15d",
+        "inbox": true,
+        "doNotNotify": false
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendNotification
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+* **ttl (Optional):**
+  * Time to live value of the notification. If any target device does not receive the notification within the given period, it will not be received. Example usage: 15d means 15 days, 20h means 20 hours, and 30m means 30 minutes.
+* **inbox (Optional):**
+  * A boolean value that determines whether to display the push notification in the inbox or not.
+* **doNotNotify (Optional):**
+  * A boolean value that determines whether to show the push notification on the notification center or not.
+
+</details>
+
+### Transactional to Last Device <a href="#send-transactional-notification-with-url" id="send-transactional-notification-with-url"></a>
+
+You may utilize the `last device` field optionally when sending push notifications to target the last devices of the users.
+
+* **"lastActiveDevice": true** → Sending to Last Active Device
+* **"lastActiveDevice": false** → Sending to All Devices
+
+```json
+curl --location 'https://restapi.netmera.com/rest/3.0/sendNotification' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+    "notificationKey": "2071",
+    "lastActiveDevice": true,
+    "message": {
+        "params": {
+            "name": "John"
+        }
+    },
+    "target": {
+        "extId": "123123123"
+    }
+}'
+
+```
+
+### Transactional with Profile Attributes <a href="#send-transactional-notification-with-url" id="send-transactional-notification-with-url"></a>
+
+```json
+curl --location 'https://restapi.netmera.com/rest/3.0/sendNotification' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "notificationKey": "1000",
+    "target": {
+        "pa": { 
+            "pb": "Smith"
+        }
+    }
+}'
+```
+
+In the command, **`pa`** is a placeholder for the type of profile attribute you're targeting, and **`pb`** is the **specific code** for the surname attribute. Essentially, you're sending the notification with id number 1000 to users whose surname matches with "Smith." Instead of code "pb", you may use other profile attribute codes as specified in the **Developers > Profile Attributes > Code** section.
+
+### Adding Multiple Profile Attributes
+
+```json
+curl --location 'https://restapi.netmera.com/rest/3.0/sendNotification' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "notificationKey": "1000",
+    "target": {
+        "pa": {
+            "pb": ["Smith", "Johnson"]
+        }
+    }
+}'
+
+```
+
+In this command:
+
+* `"pb": ["Smith", "Johnson"]`: Indicates that the notification will be sent to users whose surname matches "Smith" **or** "`Johnson`". You can add more values within the array to target additional profile attribute values.
+
+{% hint style="info" %}
+**Logical Operators**:
+
+Conditions within the same attribute (e.g., `"pb": ["Smith", "Johnson"]`) are connected by `OR`. This means the notification will be sent to users whose surname matches either "Smith" or "Johnson".
+{% endhint %}
+
+### Targeting Array-Type Profile Attributes
+
+### Updating Button Set Names with Transactional Push
+
+{% hint style="info" %}
+**Integration Updates:**
+
+In the `sendNotification` and `createNotificationDefinition` APIs, the field called `buttonNames` can be used to facilitate the renaming of buttons. When providing new button names corresponding to the old ones, users will receive notifications with these new names. If the `buttonNames`field is not included in the request, notifications will be sent with the old button names.
+{% endhint %}
+
+{% hint style="warning" %}
+**Needs Service Extension Integration for iOS:**
+
+If you wish to use this feature with iOS devices you need to complete Service Extention Integration for iOS. You may see [Media Push](/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/media-push.md) on how to complete this integration for Swift SDK and [Media Push](/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/media-push.md) for former iOS SDK.
+{% endhint %}
+
+**Sample request for `createNotificationDefinition`**
+
+```json
+curl --location --request POST 'https://restapi.netmera.com/rest/3.0/createNotificationDefinition' \
+--header 'X-netmera-api-key: your-rest-api-key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "title": "Important Survey",
+  "message": "We would like to get a feedback",
+  "inbox": false,
+  "platforms": [
+    "ANDROID"
+  ],
+  "click": {
+    "deeplink": "https://www.netmera.com"
+  },
+  "buttonSet": {
+    "id": 1, //your button id (visible on Settings > Button Sets)
+    "buttonNames": {
+      "button1": "15 GB-10 USD", //"old button name" : "new button name"
+      "button2": "15 GB-15 USD"
+    },
+    "15 GB-10 USD": "https://www.google.com", //"new button name" : "url"
+    "15 GB-15 USD": "https://www.youtube.com"
+     }
+  }
+}'
+```
+
+**Sample request for `sendNotification`**
+
+<pre class="language-json"><code class="lang-json"><strong>curl--location --request POST 'https://restapi.netmera.com/rest/3.0/sendNotification' \
+</strong>--header 'X-netmera-api-key: your-rest-api-key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "notificationKey": "1000",
+  "target": {
+    "extId": ["exid", "exid22"]
+  },
+  "message": {
+    "buttonSet": {
+      "id": 1,
+      "buttonNames": {
+        "button1": "15 GB-10 USD",
+        "button2": "15 GB-15 USD"
+      },
+      "15 GB-10 USD": "https://www.google.com",
+      "15 GB-15 USD": "https://www.youtube.com"
+    }
+  }
+}'
+</code></pre>
+
+### Create Web Transactional Push
+
+To create a Web Transactional Push notification using the curl command, you can structure your command as follows:
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "title": "New Announcement",
+    "personalizedTitle": "@{titleHere}",
+    "message": "Discover our latest updates!",
+    "personalizedMessage": "Explore now: @{message}",
+    "platforms": ["CHROME","SAFARI","EDGE","YANDEX","FIREFOX","OPERA"],
+    "click": {
+        "deeplink": "https://www.netmera.com"
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/createNotificationDefinition
+```
+
+### Web Transactional Push
+
+To send a Web Transactional Push notification using the curl command, you can structure your command as follows:
+
+```json
+curl --location 'https://restapi.netmera.com/rest/3.0/sendNotification' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+    "notificationKey": "2071",
+    "target": {
+        "extId": "YOUR USER IDENTIFIER"
+    },
+    "message": {
+        "params": {
+        }
+    }
+}'
+```
+
+### Web Transactional Push with Deeplink
+
+To send a Web Transactional Push notification with Deeplink using the curl command, you can structure your command as follows:
+
+```json
+curl --location 'https://restapi.netmera.com/rest/3.0/sendNotification' \ 
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+"notificationKey": "1408",
+
+"target": {
+    "extId": "exidname"
+},
+ "message": {
+    "params": {},
+    "click": {
+        "deeplink": "https://www.netmera.com?id=5&name=@{exid}&cat=webpush"
+    }
+   
+    }
+}'
+```
+
+{% hint style="danger" %}
+**@{parameters} must be valid for users:**
+
+When using parameters like @{extID} in deeplinks, it's important to ensure that these parameters correspond to actual user data. If these parameters don't exist for users, even if the users match the specified targets, the notification delivery won't be successful. In simpler terms, make sure the parameters you use in deeplinks are valid and available in the user data to avoid issues with sending notifications. You may see the documentation on [Deep Linking](/netmera-developer-guide/platforms/web/deep-linking.md#create-new-deeplink).
+{% endhint %}
+
+## Push Stats <a href="#push-stats" id="push-stats"></a>
+
+### By Notification Key <a href="#get-push-stats-by-notification-key" id="get-push-stats-by-notification-key"></a>
+
+With the following request, you can reach the stats of a notification.
+
+```json
+curl -X GET \
+-H "X-netmera-api-key: your_rest_api_key" \
+-G \
+--data-urlencode notificationKey=234 \
+'https://restapi.netmera.com/rest/3.0/getPushStats'
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+* **notificationKey (Required):**
+  * This is the notification key associated with a particular message for which you want to retrieve statistics. It is a required parameter and plays a crucial role in identifying the specific message for which you seek statistical information.
+
+</details>
+
+#### Sample response:
+
+```json
+{
+    "notificationKey": 234,
+    "status": "FINISHED",
+    "startDate": 1504790916883,
+    "endDate": 1504790916917,
+    "stats": [
+        {
+            "platform": "IOS",
+            "sent": 100,
+            "failed": 5,
+            "clicked": 35
+        },
+        {
+            "platform": "ANDROID",
+            "sent": 300,
+            "failed": 25,
+            "clicked": 98
+        },
+        {
+            "platform": "WP",
+            "sent": 30,
+            "failed": 1,
+            "clicked": 23
+        }
+    ]
+}
+```
+
+### By Date Range <a href="#get-push-stats-by-date-range" id="get-push-stats-by-date-range"></a>
+
+With the following request, you can reach the stats of a notification.
+
+```json
+curl -X GET \
+-H "X-netmera-api-key: your_rest_api_key" \
+-G \
+--data-urlencode start=1501132423424 \
+--data-urlencode end=150122342432 \
+'https://restapi.netmera.com/rest/3.0/getPushStats'
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+* **start (Required):**
+  * The start date, specified in milliseconds, is a required parameter. It determines the beginning of the time range for which you want to retrieve data.
+* **end (Required):**
+  * The end date, also specified in milliseconds, is a required parameter. It marks the conclusion of the time range for which you want to obtain data.
+
+</details>
+
+#### Sample response:
+
+```json
+{
+    "messages": [
+        {
+            "status": "FINISHED",
+            "stats": [
+                {
+                    "platform": "IOS",
+                    "sent": 6,
+                    "failed": 0,
+                    "clicked": 0
+                },
+                {
+                    "platform": "ANDROID",
+                    "sent": 0,
+                    "failed": 0,
+                    "clicked": 0
+                }
+            ],
+            "startDate": 1504790916883,
+            "endDate": 1504790916917,
+            "notificationKey": 749
+        },
+        {
+            "status": "SENDING",
+            "stats": [
+                {
+                    "platform": "IOS",
+                    "sent": 1,
+                    "failed": 0,
+                    "clicked": 1
+                },
+                {
+                    "platform": "ANDROID",
+                    "sent": 0,
+                    "failed": 0,
+                    "clicked": 0
+                }
+            ],
+            "startDate": 1504790402907,
+            "endDate": 1504790402909,
+            "notificationKey": 748
+        }
+    ]
+}
+```
+
+## Get Push Result <a href="#get-push-result" id="get-push-result"></a>
+
+To retrieve users' push results (success or failure), use the following request. If start and end dates are not specified, the results for the last 2 weeks will be returned.
+
+```json
+curl -X GET \
+-H "X-netmera-api-key: your_rest_api_key" \
+-G \
+--data-urlencode max=10 \
+--data-urlencode notificationKey=106 \
+--data-urlencode extId=B4A92950-B0FD-43E6-B312-C3EE088890BD \
+--data-urlencode start=1557892331000 \
+--data-urlencode end=1557892431000 \
+--data-urlencode token=cKuWDH0ZOw4:APA91bEduwC4_FWB5i-isvsSbNO5Dglxg7Wstd8dOI8k8MgP-M2IryebG0PRctVzJ5vkkhDLh3QDEorv6-CfYvvO-rmCMjoUOI_unL3kvQOfi9op_JBzBzwNXGGzwfMLpVSAdYi6xNwn \
+'https://restapi.netmera.com/rest/3.0/getPushResult'
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+* **start (Optional):**
+  * Start date in milliseconds. If provided, it sets the beginning of the time range for retrieving results.
+* **end (Optional):**
+  * End date in milliseconds. If provided, it marks the conclusion of the time range for retrieving results.
+* **notificationKey (Optional):**
+  * Notification ID on the panel. If specified, it filters results based on the given notification.
+* **extId (Optional):**
+  * External ID for obtaining message results of a specific user. If provided, it narrows down the results to the specified user.
+* **token (Optional):**
+  * Device token for acquiring message results of a specific device. If included, it restricts the results to the specified device.
+
+</details>
+
+#### Sample response:
+
+```json
+{
+    "nextPage": "https://restapi.netmera.com/rest/3.0/getPushResult?offset=hJbolUuHucJ9dd&max=10",
+    "list": [
+        {
+            "platform": "IOS",
+            "status": "FAILED",
+            "errorCode": "8",
+            "installationId": "C2Ii2ztdEaok0",
+            "errorMsg": "INVALID_TOKEN",
+            "timeStamp": 1557819194426,
+            "msgTitle": "Awesome Title",
+            "msgText": "How is it going, Jon?"
+        },
+        {
+            "platform": "ANDROID",
+            "status": "SUCCESS",
+            "installationId": "U7IwgcM8phSmv",
+            "extId": "B4A92950-B0FD-43E6-B312-C3EE088890BD",
+            "timeStamp": 1557819194426,
+            "msgTitle": "Awesome Title",
+            "msgText": "How is it going, Jon?"
+        }
+        // ... Additional entries
+    ]
+}
+
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+* **notificationKey (Required):**
+  * Notification key of a message to obtain users' responses. This is a required parameter that identifies the specific message for which you want to retrieve user responses.
+* **max (Optional):**
+  * The default value is 10. This parameter determines the maximum number of result info to fetch per page. It is optional, and if not specified, the default value of 10 will be used.
+
+</details>
+
+* **Next Page Retrieval:**
+* To fetch the next page of results, you need to send a request to the nextPage value. This mechanism enables the retrieval of additional information beyond the initial page.
+
+```json
+curl -X GET \
+-H "X-netmera-api-key: your_rest_api_key" \
+'https://restapi.netmera.com/rest/3.0/getPushResult?offset=hJbolUuHucJ9dd&max=10'
+```
+
+{% hint style="info" %}
+**SMS and Email Notification Key Details:**
+
+When you provide the notification key for  SMS and email notifications made before, it returns the success and failure details for each individual email or SMS sent.
+{% endhint %}
+
+**Example for Email:**
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "target": {
+        "email": "target_email@example.com"
+    },
+    "platforms": [
+        "EMAIL"
+    ],
+    "title": "Your Account is Created",
+    "message": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html><head></head><body esd-custom-display-conditions=\"[]\"><p class=\"esd-text\">HELLO<br>SPACE<br></p></body></html>",
+    "from": "info@netmera.com",
+    "senderName": "Netmera",
+    "subject": "Your Account is Created"
+}' \
+https://restapi.netmera.com/rest/3.0/sendEmailAndSms
+```
+
+#### Example for SMS:
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "target": {
+        "msisdn": "target_msisdn"
+    },
+    "platforms": [
+        "SMS"
+    ],
+    "title": "Account Notification",
+    "message": "Your recent account activity: message",
+    "smsHeader": "NETMERA"
+}' \
+https://restapi.netmera.com/rest/3.0/sendEmailAndSms
+```
+
+### Send Notification to Custom Target <a href="#send-notification-to-custom-target" id="send-notification-to-custom-target"></a>
+
+To send a notification to a specific group of people, whether categorized by tags, segments, location, or profile attributes, follow these guidelines:
+
+* **Target Specification:**
+  * You must define a specific target (tag, segment, location, or profile attribute) for the notification.
+* **Note:**
+  * Leaving the target empty is not allowed. If you intend to send a notification to all users, set the `sendToAll` attribute to true. This attribute ensures the notification is broadcasted to all users.
+
+## Geofence <a href="#create-geofence" id="create-geofence"></a>
+
+Geofences can be established via the Rest API.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+  "title": "Sample Geofence",
+  "latitude": 38.43225,
+  "longitude": 40.212421,
+  "radius": 5,
+  "unit": "KM",
+  "groups": [
+    "Sample Group"
+  ]
+}' \
+https://restapi.netmera.com/rest/3.0/geofence/add
+```
+
+<details>
+
+<summary>Parameters</summary>
+
+* **title (Required):**
+  * Geofence name at Dashboard.
+* **latitude (Required):**
+  * Latitude of the center point.
+* **longitude (Required):**
+  * Longitude of the center point.
+* **radius (Required):**
+  * Radius value in kilometers from the center to search for users. The unit can be KM, Miles, or Meters. The default value is KM.
+
+</details>
+
+## Email <a href="#e-mail" id="e-mail"></a>
+
+Use the notification key created from the panel to work with email functionality.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "notificationKey": "12",
+    "target": {
+        "email": "YOUR USER IDENTIFIER"
+    },
+    "message": {
+        "params": {}
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendNotification
+```
+
+### Send Email with Attachment
+
+You may add more than one attachment. However, the email size and the total size of attachments **should not exceed 10 MB.**
+
+{% hint style="info" %}
+**Supported file types:**
+
+"image/png", "video/x-msvideo", "video/mp4", "video/mpeg", "video/mpeg2", "video/x-mpeg", "image/gif", "image/jpeg", "image/x-png", "image/x-citrix-png", "image/x-citrix-jpeg", "text/plain", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.ms-excel", "text/csv", "xlsx", "xls", "csv", "txt", "pdf", "jpg", "jpeg", "png", "gif", "mpeg", "mpeg-2", "mp4", "avi".
+{% endhint %}
+
+```bash
+curl --location 'https://netmera.com/rest/3.0/sendEmailWithAttachment' \
+--header 'X-netmera-api-key: your_api_key' \
+--form 'mailAttachment=@"/path/to/file"' \
+--form 'to="example@netmera.com"' \
+--form 'notificationKey="1000"'
+```
+
+Please ensure that you adhere to the specified requirements and supported file types when using the `sendEmailWithAttachment` method.
+
+### Add or Update Emails
+
+You can utilize the `addEmail` method to upload or update a list of emails to Netmera.
+
+```bash
+curl --location --request POST 'https://restapi.netmera.com/rest/3.0/addEmail' \
+--header 'X-netmera-api-key: your_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "emailList": [
+    "example1@netmera.com", "example2@gmail.com", "example3@gmail.com"
+  ]
+}'
+```
+
+{% hint style="info" %}
+
+#### addEmail Method Reminders:
+
+* If the email already exists with the `addEmail` service (e.g., in a user with an ExtID or a user previously added with this service), a new user will not be created.
+* If a user is added using the `addEmail` service, a new user will only be created in the dashboard if no user with this email already exists. These users will not have an installation ID, so the installation ID will not be visible when searching by email or user ID in the People section.
+* Users created with the `addEmail` service can be viewed in the dashboard. However, if a new user is created from the SDK using the same email, the initially created user with `addEmail` will be deleted. The information from the SDK is considered master, and targeting is done on the SDK user.
+* You can use this service only to upload email lists. Upload can be done within the KB limit without a maximum limit.
+  {% endhint %}
+
+### Creating a Template for Sending Email
+
+Follow the example provided below to create a template for sending an email to a user.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "target": {
+        "email": "target_email"
+    },
+    "platforms": [
+        "EMAIL"
+    ],
+    "title": "AccountCreationNotification",
+    "message": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html><head></head><body esd-custom-display-conditions=\"[]\"><p class=\"esd-text\">Hello,<br>This is a test email.</p></body></html>",
+    "from": "info@netmera.com",
+    "senderName": "Netmera",
+    "subject": "Account Creation Notification"
+}' \
+https://restapi.netmera.com/rest/3.0/sendEmailAndSms
+```
+
+### Trigger an Existing Email Template via API
+
+You can trigger a previously created email template through the API by referencing its template ID. This is useful when email content is managed by an external system — such as a CRM — that passes send-time values directly to Netmera instead of manually updating the template in the panel for each campaign.
+
+Dynamic values such as subject line, content body, date, or file URLs are passed as custom parameters at the time of the API call.
+
+**Capabilities**
+
+<table><thead><tr><th width="304.973388671875">Capability</th><th>Description</th></tr></thead><tbody><tr><td>Bulk email delivery</td><td>Send emails to a target audience group instead of a single user</td></tr><tr><td>Template ID-based sending</td><td>Trigger a template created in the Netmera panel by referencing its ID</td></tr><tr><td>Campaign-level custom parameters</td><td>Pass dynamic values as key-value pairs that map to placeholders defined in the template</td></tr><tr><td>Attachment support</td><td>Include file attachments in the email delivery when required</td></tr></tbody></table>
+
+**How It Works**
+
+Each email template created in the Netmera panel can contain placeholders such as `{DATE}`, `{TITLE}`, `{CONTENT}`, or `{PDF_URL}`. When triggering the template via API, provide matching keys in the `customParams` field. Netmera replaces each placeholder with the corresponding value at send time.
+
+**Request Parameters**
+
+<table><thead><tr><th width="191.71588134765625">Parameter</th><th width="138.83746337890625">Type</th><th width="122.42889404296875">Required</th><th>Description</th></tr></thead><tbody><tr><td><code>emailTemplateId</code></td><td>integer</td><td>Yes</td><td>The ID of the email template to trigger</td></tr><tr><td><code>subject</code></td><td>string</td><td>Yes</td><td>The email subject line for this send request</td></tr><tr><td><code>customParams</code></td><td>object</td><td>No</td><td>Key-value pairs that map to placeholders defined in the template</td></tr><tr><td><code>sendToAll</code></td><td>boolean</td><td>Yes</td><td>Set to <code>true</code> to send to all users</td></tr></tbody></table>
+
+**Example Request**
+
+```bash
+curl --location 'https://restapi.netmera.com/rest/3.0/sendBulkEmail' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "emailTemplateId": 5,
+  "subject": "Daily Bulletin - May 15",
+  "customParams": {
+    "DATE": "16.05.2026",
+    "TITLE": "Market Summary",
+    "CONTENT": "BIST 100 increased today.",
+    "PDF_URL": "https://cdn.example.com/report.pdf"
+  },
+  "sendToAll": true
+}'
+```
+
+**Notes**
+
+* For example, if the template includes placeholders such as `{DATE}`, `{TITLE}`, `{CONTENT}`, or `{PDF_URL}`, the API request must provide matching keys in `customParams`.
+* If a placeholder exists in the template but no matching key is provided in `customParams`, that placeholder will render as empty in the delivered email.
+* The email template must be created in the Netmera panel before triggering it via API.
+
+## SMS <a href="#sms" id="sms"></a>
+
+You can work with sms with the notification key you create from the panel.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "notificationKey": "3964",
+    "target": {
+        "extId": "YOUR USER IDENTIFIER"
+    },
+    "message": {
+        "params": {}
+    }
+}' \
+https://restapi.netmera.com/rest/3.0/sendNotification
+```
+
+### Add or Update MSISDN (Phone Number)
+
+The `addMsisdn` method is used to add users with the specified MSISDNs (phone numbers) to the Netmera platform.&#x20;
+
+{% hint style="warning" %}
+**Mandatory to include the country codes:**
+
+When using this service, it is mandatory to include the country code in the phone numbers, i.e., the phone numbers should be in the format of "+90xxxxxxxx".
+{% endhint %}
+
+```bash
+curl --location --request POST 'https://restapi.netmera.com/rest/3.0/addMsisdn' \
+--header 'X-netmera-api-key: your_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "msisdnList": [
+    "+90xxxxxxxx"
+  ]
+}'
+```
+
+{% hint style="info" %}
+**AddMsisdn Method Reminders:**
+
+* If the MSISDN already exists with the service (e.g., in a user with an ExtID or a user previously added with this service), a new user will not be created.
+* If a user is added using these services, a new user will only be created in the dashboard if no user with this information already exists. These users will not have an installation ID, so the installation ID will not be visible when searching by user ID in the People section.
+* Users created with these services can be viewed in the dashboard. However, if a new user is created from the SDK using the same MSISDN, the initially created user will be deleted. The information from the SDK is considered primary, and targeting is done on the SDK user.
+* You can use this service only to upload msisdn lists. Upload can be done within the KB limit without a maximum limit.&#x20;
+  {% endhint %}
+
+### Creating a Template for Sending SMS to a User
+
+Follow the example provided below to create a template for sending an SMS to a user.
+
+```json
+curl -X POST \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "target": {
+        "msisdn": "target_msisdn"
+    },
+    "platforms": [
+        "SMS"
+    ],
+    "title": "SMS Title",
+    "message": "Hello, this is your SMS message.",
+    "smsHeader": "NETMERA",
+    "smsIysMessageType": // "N" For Notification "C" for Campaign,
+    "smsIysRecipientType": // "B" For Personal "T" For Trader
+}' \
+https://restapi.netmera.com/rest/3.0/sendEmailAndSms
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/notifications.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

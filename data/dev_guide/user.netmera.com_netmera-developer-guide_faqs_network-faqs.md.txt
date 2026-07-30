@@ -1,0 +1,48 @@
+URL: https://user.netmera.com/netmera-developer-guide/faqs/network-faqs.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/faqs/network-faqs.md).
+
+# Network FAQs
+
+**Do I need to whitelist any domains or IPs to use Netmera?**
+
+Not necessarily. Whitelisting is only required in environments with strict firewall, proxy, or outbound traffic restrictions. If your infrastructure has open or permissive network policies, no action is needed.
+
+**What services require whitelisting?**
+
+Whitelisting may be needed to support the following:
+
+* API communication
+* Push notification delivery
+* CDN content delivery
+* Other Netmera-related inbound and outbound connections
+
+**Where can I find the current list of domains and IP ranges to whitelist?**
+
+Since IP addresses and service endpoints may change over time, the most up-to-date whitelist information should be requested directly from Netmera. Contact your Netmera representative or support team to obtain the current list.
+
+**How do I know if whitelisting is causing an issue in my environment?**
+
+If your organization enforces strict network controls and Netmera services are not functioning as expected such as push notifications not being delivered, API calls failing, or content not loading -a missing whitelist entry is a likely cause. Reach out to Netmera support with your network configuration details for assistance.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/faqs/network-faqs.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

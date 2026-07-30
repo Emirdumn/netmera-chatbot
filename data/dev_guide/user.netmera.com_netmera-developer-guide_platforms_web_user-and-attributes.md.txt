@@ -1,0 +1,122 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/web/user-and-attributes.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/web/user-and-attributes.md).
+
+# User & Attributes
+
+### Managing User Data
+
+The `NetmeraUser` class allows you to send structured information about your application's users to Netmera. The ideal time to update user attributes is **right after the user logs into your application.**
+
+{% hint style="warning" %}
+**User ID Management**
+
+For optimal performance and data integrity:
+
+* **Update user information at login**: It’s crucial to update the user information as soon as the user logs in.
+* **Unique userId**: Ensure that each user has a unique `userId`. Assigning the same `userId` to multiple users leads to data inconsistencies and is not recommended.
+  {% endhint %}
+
+### Integrating User Identification
+
+If our app assigns unique IDs, you can link these with Netmera accounts. Use the following code to integrate user identification:
+
+```javascript
+user.setCustomId('<your unique user id here>');
+```
+
+{% hint style="info" %}
+This assigns a unique user ID to the Netmera user. To target this user, go to the **Netmera Panel**:
+
+* Navigate to **Targeting > People > Find Person**.
+* Enter the unique user ID to find and target this specific user.
+  {% endhint %}
+
+### Setting Attributes <a href="#setting-attributes" id="setting-attributes"></a>
+
+Running this script when the user logs in to ensure the user is correctly identified. You can set profile attributes like this:
+
+```javascript
+<script>
+    var netmera = netmera || [];
+
+    netmera.push(function (api) {
+        var user = api.getUser();
+
+        user.setName('John');
+        user.setSurName('Smith');
+        user.setEmail('john.smit@example.com');
+        user.setGsmNo('+905471234567');
+        user.setCustomId('<your unique user id here>');
+        
+        user.addProfileAttr('attrName', 'attrValue'); // Note that 'attrName' MUST be defined on the Netmera panel!
+        
+        user.save()
+            .then(function () {
+                console.log('User saved');
+            })
+            .catch(function (err) {
+                console.log('User save failed. err=' + err);
+            });
+    });
+</script>
+```
+
+### Creating Custom Profile Attributes&#x20;
+
+#### Step 1: Navigate to the Developers section
+
+Custom profile attributes must be created and configured in the Netmera Panel before they can be used in the application.&#x20;
+
+* Go to **Panel** > **Developers > Profile Attributes > Create New Attribute.**
+
+#### Step 2: Fill in Attribute Details
+
+Define the following information:
+
+* **Name**: The unique identifier for the attribute.
+* **Label**: A user-friendly name for the attribute.
+* **Description**: A brief description of the attribute.
+* **Data Type**: Choose the appropriate data type for the attribute.
+* **Is Array**: Define whether the attribute can hold multiple values.
+
+#### Step 3: Save the Attribute
+
+After clicking **Save**, the custom attribute will be available for assignment to your users.
+
+#### Step 4: Generated Code for Custom Attributes
+
+Once the attribute is defined in the Netmera Panel, the generated code can be found at the bottom of the **Profile Attribute** page, under the **Generate Code** section. This code must be added to your Netmera Panel under **Profile Attributes > User Class**.
+
+{% hint style="info" %}
+**Private Information Considerations**
+
+Under the **KVKK** law, the sharing of private user data is prohibited. To ensure compliance:
+
+* **Private Information Flag**: When defining profile attributes or events, the **Private Information** feature must be selected to ensure that these attributes are not sent to the backend by the Netmera SDK.
+* **SDK Enforcement**: The SDK checks for the **Private Information** flag during the `(Netmera.update(user))` call. If the flag is set, the request will not be sent to the backend.
+  {% endhint %}
+
+<figure><img src="/files/QoRtHFanKtmtxa35m4Po" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/web/user-and-attributes.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

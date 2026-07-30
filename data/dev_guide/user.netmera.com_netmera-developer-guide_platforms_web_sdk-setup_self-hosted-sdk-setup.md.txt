@@ -1,0 +1,85 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/web/sdk-setup/self-hosted-sdk-setup.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/web/sdk-setup/self-hosted-sdk-setup.md).
+
+# Self-Hosted SDK Setup
+
+### Step 1: Access the Netmera Panel
+
+1. Navigate to **Netmera Panel**.
+2. Go to **Developers** > **Netmera Onboarding** > **Web**.
+
+<figure><img src="/files/JDcdPfcdcjSMvVa5Vkym" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 2: SDK Integration
+
+In this step, you’ll set up the SDK with the essential configurations for integrating with Netmera. Follow these instructions carefully.
+
+1. **Site URL**: Enter the URL of the website where the integration will be performed.
+2. **API Key**: This key determines which Netmera Panel will receive data from your site.
+   * Find your Web API Key in **Developer > App Info**.
+3. **Integration Code**: Copy the code you see on the Netmera Panel and add it to the head section of every page on your website to complete the integration.&#x20;
+
+```html
+<script>var netmera = netmera || []</script>
+<script src="CDN_GENERATED_ON_PANEL" async></script>
+```
+
+{% hint style="info" %}
+**On-prem Integration Only:**
+
+If you are completing an on-prem integration, instead of using the code snippet from the panel, use the custom code snippet below with your own CDN host. **Add this code to the head section of every page on your website** to complete the integration.
+
+<pre class="language-html"><code class="lang-html"><strong>&#x3C;script>
+</strong>  var netmera = netmera || [];
+  netmera.apiKey = 'YOUR_API_KEY';
+&#x3C;/script>
+&#x3C;script src="REPLACE_NM_CDN_HOST" async>&#x3C;/script>
+</code></pre>
+
+* **YOUR\_API\_KEY**: Replace this placeholder with your actual API Key.
+* **REPLACE\_NM\_CDN\_HOST**: Replace this with your own CDN host information.
+  {% endhint %}
+
+<figure><img src="/files/UIJgD0hOEpHjGgZMT4Rw" alt="" width="563"><figcaption></figcaption></figure>
+
+### Integration Files
+
+* Do not download the integration files directly from the panel.
+* Instead, refer to the documentation provided at the [**Integration File.**](https://s3.eu-west-1.amazonaws.com/ntm.netmera-web.com/wsdk-onprem/websdk-basic-4.4.6.zip)
+
+### Important Command Modification
+
+To modify the commands listed in the `README`, you need to add the following command:
+
+```plaintext
+REPLACE_NM_WEB_TOOLS_ENABLED
+```
+
+{% hint style="info" %}
+**Note**:
+
+When this command is added, your Netmera CDN-powered widgets, personalization features, etc., will not function. It is essential for the you to implement this command.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/web/sdk-setup/self-hosted-sdk-setup.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

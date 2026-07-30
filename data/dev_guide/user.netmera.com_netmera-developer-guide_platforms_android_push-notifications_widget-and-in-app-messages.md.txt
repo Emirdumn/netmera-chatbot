@@ -1,0 +1,136 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/android/push-notifications/widget-and-in-app-messages.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/android/push-notifications/widget-and-in-app-messages.md).
+
+# Widget and In-App Messages
+
+### Pop-up and In-App Message Presentation Behavior
+
+All push notifications in Netmera work automatically—no additional coding is required. However, you can customize pop-up presentations and listen to push callbacks.
+
+By default, when a popup notification or in-app message is received:
+
+* If the app is in the foreground, the SDK displays pop-up notifications and in-app messages **immediately**.
+* If the app is in the background, the SDK shows them **when the app returns to the foreground.**
+
+### Enable / Disable Immediate Presentations
+
+To prevent immediate pop-up presentation (e.g., during video playback, gaming, or checkout), use:
+
+```java
+Netmera.disablePopupPresentation();
+```
+
+To **re-enable** pop-ups, use:
+
+```java
+Netmera.enablePopupPresentation();
+```
+
+{% hint style="warning" %}
+
+### Where to call this method
+
+Call this method only from `MainActivity`. Do not call it from `Splash` or the `App` class.
+{% endhint %}
+
+### Customizing Styles Using `themes.xml`
+
+You can customize the appearance of in-app messages using the attributes defined in the `themes.xml` file.
+
+```xml
+<!-- Custom in-app message style -->
+<style name="NetmeraInAppMessageStyle">
+    
+    <!-- In-app message view width in ratio -->
+    <item name="inAppMessageWidth">@integer/netmera_default_vertical_width</item>
+    
+    <!-- In-app message view height in ratio -->
+    <item name="inAppMessageHeight">@integer/netmera_default_vertical_height</item>
+    
+    <!-- In-app message view weight in ratio -->
+    <item name="inAppMessageWeight">@integer/netmera_default_vertical_weight</item>
+    
+    <!-- In-app message view background color -->
+    <item name="inAppMessageBackground">@drawable/netmera_bg_in_app_message</item>
+    
+    <!-- In-app message cancel button image -->
+    <item name="inAppMessageCancelButtonDrawable">@drawable/netmera_ic_action_cancel</item>
+    
+    <!-- In-app message title size -->
+    <item name="android:textSize">@dimen/netmera_text_default_size</item>
+    
+    <!-- In-app message title color -->
+    <item name="android:textColor">@color/primary_text_light</item>
+    
+    <!-- In-app message text size -->
+    <item name="inAppMessageTextSize">@dimen/netmera_text_default_size</item>
+    
+    <!-- In-app message text color -->
+    <item name="inAppMessageTextColor">@color/primary_text_light</item>
+    
+    <!-- In-app message font -->
+    <item name="android:fontFamily">@font/custom_font</item>
+    
+</style>
+```
+
+### Storing Disabled Pop-ups
+
+If pop-ups are disabled, the SDK stores the latest notification and presents it when pop-ups are re-enabled. Older notifications are not stored.
+
+### Troubleshooting
+
+If you experience issues with pop-ups or in-app messages, please review the cases below:<br>
+
+1. **Call `enablePopupPresentation()` on a Home Screen**
+
+{% hint style="warning" %}
+Make sure `enablePopupPresentation()` is called on a screen where the user is expected to stay, such as your app's main or home screen. Do not call it during app initialization or on a splash or intro screen that immediately transitions to another screen.
+{% endhint %}
+
+* If this method is called during app initialization or on a screen that immediately transitions to another screen, the pop-up may be triggered in the background, appear beneath the next screen, or fail to display at all.
+
+2. **Increase Session Duration**
+
+* Go to **Developer > App Info > App Config**.
+* Increase **Session Expire Interval** by 1.
+* Click **Apply** and retry.
+
+3. **Review Code for False Values**
+
+Make sure no other part of your code disables pop-ups.
+
+4. **Check Third-Party Integrations**
+
+Ensure Netmera is initialized at the top of your project.
+
+5. **Check Multiple Pop-Ups**
+
+If too many pop-ups trigger at once, they may not load correctly.
+
+6. **Consider Low Device Storage**
+
+If storage is nearly full, pop-ups may fail to display.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/android/push-notifications/widget-and-in-app-messages.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

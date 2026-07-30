@@ -1,0 +1,87 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/unity/sound-and-vibration.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/unity/sound-and-vibration.md).
+
+# Sound & Vibration
+
+### Sending a Push Notification with Vibration for iOS
+
+When sending a push notification on iOS with any sound selected, the device will vibrate if the vibration feature is enabled in the device settings.
+
+{% hint style="info" %}
+It's important to note that there is no option within the push notification itself to enable vibration. If vibration is disabled at the device level, the push notification will not trigger vibration.
+{% endhint %}
+
+### Sending a Push Notification with Vibration for Android <a href="#sending-a-push-notification-with-vibration" id="sending-a-push-notification-with-vibration"></a>
+
+To enable vibration in your Android application, add the following permission to your `AndroidManifest.xml` file as a direct child of the `<manifest>` element:
+
+```java
+<uses-permission android:name="android.permission.VIBRATE" />
+```
+
+Afterward, ensure that vibration is enabled in the "What" tab while creating a campaign.
+
+### Adding Custom Sound to Your Project
+
+You have the option to customize push notification sounds for different messages. Here's how to do it:
+
+#### Step 1: Add Sound Files
+
+**iOS**
+
+1. Add your sound files to the "**Library/Sounds**" directory within your project.
+2. Ensure these files are added at the iOS target level or the application level.
+
+**Android**
+
+1. Include your sound files in the **"res/raw"** directory within your Android project.
+
+{% hint style="danger" %}
+**Sound File Formats:**
+
+* File extensions for sound files must be one of the following:**`.wav`,** or **`.caf`.**
+* Custom sounds should not exceed a maximum length of 30 seconds.
+  {% endhint %}
+
+#### Step 2: Web Panel Configuration
+
+After adding the sound file to your project, follow these steps in the web panel:
+
+1. Navigate to **Developers > Sound > Create New Sound**.
+2. While creating the sound, use the file extensions in the "Sound FileName" field. When referencing files, include the file extension for iOS and use only the filename (without the extension) for Android.
+3. Select the desired sound name from the drop-down menu. All items in the menu are sound files whose extensions match the supported push sound extensions (`.aiff, .wav, .caf)`
+
+{% hint style="warning" %}
+**Why Does My Notification Play Default Sound?**
+
+**Exceeding the Limit:** If any sound file exceeds the 30-second limit, the default sound of your phone will play instead of your custom sound.
+
+**Sound File Location:** Ensure that the sound file is included in your main bundle; otherwise, the default phone sound will be played when receiving push notifications.
+{% endhint %}
+
+### Sending Push Notifications with Sound
+
+To send push notifications with sound, enable the "Play Sound" option on the "What" tab when creating a new push. If you choose "Default," the device's default sound will play, provided that sound is enabled in the device settings.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/unity/sound-and-vibration.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

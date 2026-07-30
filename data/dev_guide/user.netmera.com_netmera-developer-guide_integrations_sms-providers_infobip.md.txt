@@ -1,0 +1,94 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/infobip.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/infobip.md).
+
+# Infobip
+
+The Infobip Integration within the Netmera platform is a specialized **SMS Provider Connector** designed to enable high-volume, reliable outbound SMS messaging globally. It leverages Infobip’s communication platform capabilities to serve as a vital messaging channel in Netmera’s omnichannel delivery system.
+
+Here is a detailed explanation of the Netmera/Infobip integration, structured according to the requested documentation fields:
+
+### Overview
+
+<table><thead><tr><th width="218.81439208984375">Attribute </th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>Infobip</td></tr><tr><td><strong>Category</strong></td><td>SMS Providers / SMS Sending Service</td></tr><tr><td><strong>Primary Function</strong></td><td>Sending SMS messages using a global communication platform.</td></tr><tr><td><strong>Data Flow</strong></td><td><strong>Outbound</strong> (Netmera > Infobip)</td></tr><tr><td><strong>Netmera Component</strong></td><td><code>SmsInfobipAdapterImpl</code> class</td></tr><tr><td><strong>Priority</strong></td><td>Medium (Used after higher-priority regional providers like Message Center and Mobildev)</td></tr></tbody></table>
+
+<figure><img src="/files/6kBWElJNuaBpYi1y2iqK" alt=""><figcaption></figcaption></figure>
+
+The Infobip connector is integrated via the SmsInfobipAdapterImpl class within the Netmera messaging module, allowing the platform to route SMS messages to the Infobip API based on predefined provider priority settings.
+
+### Use Cases and Benefits
+
+The primary benefit of the Infobip integration is providing a robust, global channel for SMS delivery, essential for a variety of marketing and transactional needs:
+
+* **Campaign SMS Delivery:** Used for sending mass marketing campaigns created via the Netmera Control Panel (under `Messages > Create Message > SMS`).
+* **Transactional Messaging:** Supports the delivery of critical, time-sensitive transactional SMS, such as One-Time Passwords (OTPs), order confirmations, or account alerts.
+* **Workflow Integration:** Infobip can be designated as the SMS provider for automated multi-channel workflows where the "Send SMS" action is required.
+* **Redundancy and Failover:** It provides redundancy. If higher-priority SMS connectors (such as local Turkish providers like Message Center or Mobildev) are unavailable or inactive, Infobip is utilized as an available channel, ensuring continued message delivery.
+
+### Data Flow
+
+The data flow is exclusively **Outbound**, meaning Netmera sends messages to the external Infobip platform for relaying to the mobile network.
+
+1. **Message Initiation:** A message (campaign or transactional) is triggered within Netmera.
+2. **Adapter Selection:** Netmera's core messaging service (SmsSenderServiceImpl) checks the configured SMS providers based on a set priority list. Infobip is ranked below top Turkish providers.
+3. **API Call:** If Infobip is selected, the SmsInfobipAdapterImpl generates an authenticated REST API request, containing the message content, the recipient's phone number (msisdn), and the configured Sender ID (from).
+4. **Transmission:** The request is sent securely to the Infobip API, which then handles the final delivery of the SMS to the target mobile operator.
+
+The following flow illustrates the high-level SMS delivery path when Infobip is selected as the active SMS provider:&#x20;
+
+$$\text{Netmera Messaging Service} \xrightarrow{\text{SmsInfobipAdapterImpl}} \text{Infobip API} \rightarrow \text{Mobile Networks}$$
+
+### Configuration Reference
+
+<figure><img src="/files/InkkV48SrYQEPPrWEeYH" alt="" width="232"><figcaption></figcaption></figure>
+
+The integration requires minimal, standard API credentials provided by the Infobip platform for authentication and message routing.
+
+<table><thead><tr><th width="129.75909423828125">Parameter</th><th>Description</th><th>Provider Context</th></tr></thead><tbody><tr><td><strong>apiKey</strong></td><td>The Infobip API key, used as the authorization key in API requests for authentication.</td><td>Obtained from the Infobip Dashboard's "API Keys" section.</td></tr><tr><td><strong>from</strong></td><td>The approved sender number or Sender ID (Alphanumeric/Numeric) that the messages will be sent from.</td><td>Must be defined and approved within the Infobip platform.</td></tr></tbody></table>
+
+### Setup Instructions
+
+The setup process involves obtaining the necessary credentials from Infobip and configuring the connector within the Netmera control panel.
+
+1. **Infobip Account Preparation:** Sign up and verify your account on the Infobip platform. Obtain your dedicated **API Key** and register/get approval for the desired **`Sender ID`** (from).
+2. **Access Netmera Connectors:** Navigate to the Netmera Control Panel and select the **Connectors** (or **Integrations**) section.
+3. **Configure Infobip:** Select the **Infobip** connector from the list of SMS providers.
+4. **Input Credentials:** Enter the **API Key** and the approved **from** (`Sender ID`) into the required fields.
+5. **Save Configuration:** Click the **Save Configuration** button.
+
+Once saved, the connector becomes active and is managed by Netmera’s SmsSenderServiceImpl, ready to be utilized for SMS delivery based on its priority ranking.
+
+### Usage Notes & Considerations
+
+Based on the nature of SMS connectors and the hierarchy within Netmera:
+
+* **Priority Dependence:** Infobip is not the primary SMS delivery service within the platform unless specifically configured as such or if higher-priority providers (like Message Center, Mobildev, FigenSoft) are inactive or not configured. Messages will fall back to Infobip only when higher-priority options are unavailable.
+* **Credential Failure:** The system relies entirely on the API Key (`apiKey`). If the key expires, is revoked, or is incorrect, all attempts to send SMS via this adapter will fail, necessitating a manual update in the Netmera configuration.
+
+{% hint style="info" %}
+**Data Integrity (Phone Numbers):**
+
+While not explicitly a limitation of Infobip, successful global SMS delivery often depends on ensuring all recipient phone numbers are provided in the **correct international format** (e.g., +CountryCodeNumber), a critical best practice for any global SMS gateway integration.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/infobip.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,125 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/marketing-platforms/adjust.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/marketing-platforms/adjust.md).
+
+# Adjust
+
+The Adjust Integration connects Netmera with the Adjust mobile measurement partner (MMP) platform. This connection allows Netmera to receive crucial attribution data and user events determined by Adjust, enabling marketers to perform precise segmentation and targeting based on user acquisition sources and campaign performance.
+
+### Overview
+
+<table><thead><tr><th width="226.085205078125">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>Adjust</td></tr><tr><td><strong>Category</strong></td><td>Marketing Platforms / Mobile Attribution and Analytics</td></tr><tr><td><strong>Primary Function</strong></td><td>Inbound synchronization of mobile attribution data and event payloads.</td></tr><tr><td><strong>Data Flow</strong></td><td><strong>Inbound</strong> (Adjust > Netmera)</td></tr><tr><td><strong>Netmera Component</strong></td><td>Dedicated API Controller (<code>AdjustController</code>) for receiving webhooks/callbacks.</td></tr><tr><td><strong>Status</strong></td><td>Active</td></tr></tbody></table>
+
+The existence of a specific `AdjustController` confirms that Netmera maintains a dedicated API endpoint structure designed to securely listen for and process data sent from the Adjust attribution platform.
+
+### Use Cases and Benefits
+
+1. **Attribution-Based Segmentation:** The most critical use case is leveraging Adjust's attribution data (e.g., campaign name, ad creative, network) to create highly granular segments in Netmera. This allows for tailored welcome journeys or re-engagement campaigns based on *how* a user was acquired.
+2. **Profile Enrichment:** Adjust data is used to enrich Netmera's `installation` and `user` records, updating attributes related to the installation source (`RestSetSourceCmd`). Netmera’s own SDK supports updating attribution tracking information via the `/3.0/device/updateTrackInfo` endpoint, demonstrating internal architecture support for this data.
+3. **Cross-Platform Measurement:** By integrating attribution data, marketers can accurately measure the ROI of messaging campaigns (Push, Email, SMS) by linking user engagement back to the original advertising campaign tracked by Adjust.
+4. **Real-Time Event Synchronization:** Key in-app events tracked by Adjust can be forwarded to Netmera as custom events (`NmSdkEvent`), feeding Netmera’s Automation Engine and Real-Time Analytics (RTA) module.
+
+### Data Flow
+
+The Adjust integration is primarily **Inbound**, meaning Netmera is a receiver of data.
+
+| Flow Direction                 | Data Transferred                                                         | Mechanism                                                                                        |
+| ------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| **Inbound** (Adjust > Netmera) | Post-install data, device IDs, campaign metadata, in-app event payloads. | Adjust sends server-to-server (S2S) callbacks/webhooks to Netmera's dedicated REST API endpoint. |
+
+The data reception is managed by the specific controller: `AdjustController` (located in the `api-rest` module). This mechanism allows Netmera to process high volumes of attribution data independently of standard SDK traffic.
+
+### Setup Instructions
+
+<figure><img src="/files/KN0zVp8XepvM9iozB3UE" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+**Installation Source Tracking Requirement**
+
+To retrieve the installation source information for customers with Adjust integration, the `ad_id` integration must be implemented on the SDK.
+{% endhint %}
+
+### Basic Setup
+
+To initiate Adjust’s integration with Netmera, adhere to the following steps:
+
+1. Locate your app and navigate to your app options caret (^).
+2. Choose **Partner Setup > ADD PARTNERS.**
+3. Click the add **(+)** icon adjacent to Netmera.
+4. Input your [NetmeraWebAPIKey](#what-is-your-netmera-web-api-key). Please see [#enabling-data-sharing](#enabling-data-sharing "mention") to see how to setup.
+5. Save your settings.
+
+Netmera will receive callbacks for the following activities:
+
+* install
+
+### Locating Your Netmera Web API Key
+
+Each application integrated with Netmera is assigned a unique Web API Key. This key is required for authenticating requests made to the Netmera Web API.
+
+To access your Web API Key:
+
+1. Log in to the **Netmera Panel**.
+2. Navigate to **Developers** in the left-hand menu.
+3. Click on **API**.
+4. Select the **Web API Key** (third tab) and copy.
+
+### What is Your Netmera Web API Key?
+
+Each application has a unique Netmera API Key.&#x20;
+
+To obtain your Web API Key nagivate to:
+
+* **Netmera Panel > Developers > API > Web API Key**
+
+<figure><img src="/files/9HGtq6nw0owhz5kwhUHz" alt=""><figcaption></figcaption></figure>
+
+### Enabling Data Sharing
+
+When setting up data sharing between Adjust and Netmera, the number of entry fields you’ll encounter may vary based on your app configuration in Adjust:
+
+* **Multiplatform Apps:** You’ll see one entry field.
+* **Separate Android and iOS Apps:** You’ll see two entry fields.
+
+To complete the setup, enter the same **Web** **API Key** in each field, regardless of whether there is one or two.
+
+<figure><img src="/files/Mp5kk2WUzwGc0et6RbWd" alt="" width="374"><figcaption></figcaption></figure>
+
+### List of Parameters Forwarded to Netmera
+
+You may tailor the data transmitted to Netmera from Adjust by customizing your setup. Netmera necessitates Adjust to transmit the following parameters (data points) with your callbacks.
+
+<table><thead><tr><th width="217.0625">Parameters</th><th>Information</th></tr></thead><tbody><tr><td><code>{gps_adid}</code></td><td>Google Play Store advertising ID</td></tr><tr><td><code>{idfa}</code></td><td>ID for advertisers (iOS only)</td></tr><tr><td><code>{idfv}</code></td><td>Uppercase iOS ID for vendors</td></tr><tr><td><code>{activity_kind}</code></td><td>Type of user activity</td></tr><tr><td><code>{adgroup_name}</code></td><td>Adgroup name, as taken from the tracker</td></tr><tr><td><code>{campaign_name}</code></td><td>Campaign name, as taken from the tracker</td></tr><tr><td><code>{created_at}</code></td><td>Activity timestamp</td></tr><tr><td><code>{installed_at}</code></td><td>Install (i.e., first app open) timestamp</td></tr></tbody></table>
+
+### Accessing Data on Netmera Panel
+
+After this integration, you may see the transferred data in the following spaces on Netmera Panel:
+
+* Targeting > People > Find Users > By Installation Source (explained in [User Guide](https://user.netmera.com/netmera-user-guide/targeting/people#option-1-select-people))
+* Messages > Campaigns  > Create New Campaign > Step 3: Who > By Installation Source (explained in [User Guide](https://user.netmera.com/netmera-user-guide/messages/mobile-push/creating-a-mobile-push/define-the-audience-who))
+
+#### Adjust Documentation
+
+For more information, please refer to the [Adjust Documentation](https://help.adjust.com/en/partner-setup/netmera).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/marketing-platforms/adjust.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

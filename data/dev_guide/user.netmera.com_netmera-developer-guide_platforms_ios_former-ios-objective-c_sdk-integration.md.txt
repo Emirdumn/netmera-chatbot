@@ -1,0 +1,325 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/sdk-integration.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/sdk-integration.md).
+
+# SDK Integration
+
+{% hint style="info" %}
+
+#### Important Information
+
+We strongly recommend you to integrate with our new Swift SDK by referring to the guide on [SDK Integration](/netmera-developer-guide/platforms/ios/new-ios-swift/sdk-integration.md) for incorporating Netmera into your projects. The previous iOS SDK integration method, which you can find here, is being phased out and will not be supported in the long term. Transitioning to the new SDK will ensure that you have access to the latest features, improvements, and technical support.&#x20;
+{% endhint %}
+
+### Onboarding Checklist
+
+Please find the Onboarding Checklist for iOS and Android below. Follow the titles in the checklist to ensure you have completed each essential step in your onboarding process with Netmera.
+
+{% file src="/files/p2Ag81QcahQy6LCBbnsl" %}
+
+### Video Guide: Netmera iOS Integration Guide
+
+{% embed url="<https://www.veed.io/view/89de9c71-ecc3-4238-bc41-1f44ffafc783?panel=share>" %}
+
+## Step 1: Create an Apple Push Notification Certificate
+
+We send push notifications using APNS (Apple Push Notification Service). Therefore, you need to obtain an Apple Push Notification Certificate from[ **www.developer.apple.com** ](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns)using your account. Once you have the certificate, you should export it using Keychain Access and add it to the iOS page in the panel's left menu under **Developer > Push Backends > iOS**.
+
+#### Creating an APNS .p8 Certificate (Recommended)
+
+{% hint style="info" %}
+**Using the APNS `.p8` certificate is highly recommended for the following reasons:**
+
+The .p8 certificate is essential for features like **Live Activities**. \
+Unlike .p12 certificates, one .p8 can handle push notifications for **multiple apps**, streamlining multiple projects. \
+It doesn't need yearly renewal, reducing admin tasks compared to .p12. \
+The .p8 is easy to generate from the Apple Developer Portal and only needs a one-time download.
+{% endhint %}
+
+{% embed url="<https://youtu.be/dv-5gmaGsAA?si=A4V085fUEWMpTzXi>" %}
+
+#### Creating an APNS .p12 Certificate
+
+{% embed url="<https://youtu.be/R8tva2tpFyU?si=9JPg1b9Rqt6b0ldl>" %}
+
+{% hint style="info" %}
+**Important Notes on Bundle ID**
+
+Make sure to add the certificate generated with the bundle ID of your project to the panel, and set the bundle ID of your project in the panel as well. **The bundle ID of your project, the bundle ID of the certificate, and the bundle ID set in the panel should all match.**
+{% endhint %}
+
+{% hint style="info" %}
+**If you have problems sending push notifications when you build from Xcode**
+
+Check the certificate type on the Developer > Backend Transfer > iOS page in the menu on the left.  If you downloaded the app from the store or are testing it via TestFlight, the certificate type must be **"prod".** If you are compiling from Xcode, the certificate type must be selected as **"dev".**
+{% endhint %}
+
+## Step 2: Integrate SDK into Your Project <a href="#integrate-sdk-into-your-project" id="integrate-sdk-into-your-project"></a>
+
+The preferred method for integrating Netmera into your project is through [**CocoaPods**](http://cocoapods.org/). CocoaPods simplifies dependency management, making the integration process more efficient. However, if you prefer not to use CocoaPods, manual integration is also an option.
+
+### Integration with CocoaPods <a href="#cocoapods" id="cocoapods"></a>
+
+1. Open your project's `Podfile`. Add the following line to include the Netmera SDK:
+
+```ruby
+pod 'Netmera'
+```
+
+For projects without AdId support, use the following:
+
+```ruby
+pod 'Netmera/NetmeraWithoutAdId'
+```
+
+### iOS SDK Manual Integration (optional)
+
+If you choose not to use CocoaPods, you can manually integrate Netmera into your project. Follow the instructions below to complete this process.
+
+<details>
+
+<summary>Manual Integration Steps</summary>
+
+For manual integration of Netmera, please follow these steps:
+
+1. Access the Netmera SDK by downloading the framework.zip file from this link: [Download Netmera SDK](https://github.com/Netmera/netmera-ios/releases/tag/3.14.10-WithoutDependency)
+2. Add Netmera to your project by selecting the plus sign (+) in the 'Framework, Libraries, and Embedded Content' field within your project's target. Choose the following files:
+   * Netmera.xcframework
+   * NetmeraAdId.xcframework
+   * NetmeraCore.xcframework
+
+![](https://lh6.googleusercontent.com/Ti20yV2CN_zOA4C5M0ruc-EnTROOjOgECLDhHs4riIetSxVL1FABOS6FEAucABzwjoBbLrKxgjI3zj6E1SwDVIPEGB-7WZrRYmoEyzGqO0FpYh6EUsBPdvEhdHmBwmggMUDogQ4VC0qhIUJWh6Mezg)
+
+3. Once you've added the frameworks, initialize Netmera by following the steps outlined in our documentation: [SDK Integration](/netmera-developer-guide/platforms/ios/former-ios-objective-c/sdk-integration.md)
+4. For information on Receiver Methods, enabling/disabling Popups and In-App Messages, Media Push, Carousel/Slider, and Thumbnail Push, please refer to this link: [Push Notifications](/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications.md)
+5. Keep in mind that you'll need to create a service extension for Media Push and a content extension for Carousel/Slider and Thumbnail Push.
+6. After creating the service extension and content extension, add the relevant frameworks as shown in the provided images.
+
+Ensure that the general settings of your project's targets match the configurations depicted in the images.
+
+![](https://lh5.googleusercontent.com/wJX-ItU5dJEWDmW7RWHNWNB0ifjqLbrOhtc_HN6aqP6xy6Ysy8KkbmUWbbsX2yuLecvzDIICH9cNIkXFc-39QT0Owjng5FcEELCOLHafIZ2QWI6ycpyIx3r9uwmBIGgMSLPQ5cjm2UQ7IgAprzCihg)![](https://lh5.googleusercontent.com/1tuo0mm094XTrJu9fwhx8A0GHnOMuDKw3KYW0a0QMdnLwoJvwLdrA1Z4muA30UBskNseMoOTd1sFB1LPtmj2jcv6_1kkX1J4UtmZDhS8_QrmYG2jwBZN2kBFAGoIbXNPpp4yur1HuUPEJj3dWX-_ag)![](https://lh5.googleusercontent.com/seJLSIhfM6y86TQRPNgQBgLVLRppxSZLnrDXDe_YwCpZew7_Z_r8_v4yB_ObOHxj3fVY63sm69CO7RBhlpMsAnzQrVJsVB4loM58AcSNKNwvtjN6AnoYzbdw-19mP-QRacLaS11XNtDs9IlhNv3-jA)
+
+This manual integration process will help you successfully incorporate Netmera into your iOS project.
+
+</details>
+
+## Step 3: Setup Netmera <a href="#setup-netmera" id="setup-netmera"></a>
+
+1. Add the following code to your `AppDelegate` class.
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+import UIKit
+
+// Import Netmera framework
+import Netmera
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    var window: UIWindow?
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        // Start the Netmera instance
+        // This must be called before -application:didFinishLaunchingWithOptions: method returns
+        Netmera.start()
+
+        // For On-premise setup, use this line:
+        // Netmera.setBaseURL("YOUR PANEL DOMAIN URL")
+
+        // Set API Key (this can be called later)
+        Netmera.setAPIKey("YOUR_CLIENT_API_KEY")
+        
+        // Set the desired log level
+        Netmera.setLogLevel(NetmeraLogLevel.debug)
+
+        return true
+    }
+}
+```
+
+{% hint style="info" %}
+
+#### **`Netmera.setLogLevel(NetmeraLogLevel.debug)`**
+
+This method controls the level of logging for Netmera and is optional based on your requirements. There are three log levels to choose from:
+
+* **debug**: Logs detailed information for debugging purposes. Ideal for tracking the flow of events in your app.
+* **error**: Displays only error logs, helping you focus on issues and errors.
+* **none**: Disables logging for Netmera, providing a clean output without any Netmera-specific logs.
+
+You can select the appropriate log level according to your development needs. This method is optional and should be used based on whether you want to monitor Netmera's logs.
+{% endhint %}
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+#import "AppDelegate.h"
+
+// Import Netmera framework
+#import <Netmera/Netmera.h>
+
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application
+  didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+  // Start the Netmera instance
+  // This must be called before -application:didFinishLaunchingWithOptions: method returns
+  [Netmera start];
+
+  // For On-premise setup, use this line:
+  // [Netmera setBaseURL:@"YOUR PANEL DOMAIN URL"];
+
+  // Set API Key (this can be called later)
+  [Netmera setAPIKey:@"YOUR_SDK_API_KEY"];
+
+  // Set the desired log level
+  [Netmera setLogLevel:(NetmeraLogLevelDebug)];
+
+  return YES;
+}
+
+@end
+```
+
+{% hint style="info" %}
+**`Netmera.setLogLevel(NetmeraLogLevel.debug)`**
+
+This method controls the level of logging for Netmera and is optional based on your requirements. There are three log levels to choose from:
+
+* **debug**: Logs detailed information for debugging purposes. Ideal for tracking the flow of events in your app.
+* **error**: Displays only error logs, helping you focus on issues and errors.
+* **none**: Disables logging for Netmera, providing a clean output without any Netmera-specific logs.
+
+You can select the appropriate log level according to your development needs. This method is optional and should be used based on whether you want to monitor Netmera's logs.
+{% endhint %}
+{% endtab %}
+{% endtabs %}
+
+{% hint style="warning" %}
+**Important Notes:**
+
+* Make sure to obtain the API key from the relevant panel. To get the `YOUR_SDK_API_KEY`, navigate to **Developers > API > SDK API Key** in your web panel.
+* If you're working with an **on-premise** installation, ensure you call the `Netmera.setBaseURL("YOUR PANEL DOMAIN URL")` method before setting the API key.
+  {% endhint %}
+
+## Step 4: Push Notification Authorization <a href="#request-push-notification-authorization" id="request-push-notification-authorization"></a>
+
+### Requesting Notification Authorization
+
+To request push notification authorization from the user, call the following methods:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+// Request authorization for the needed notification types
+Netmera.requestPushNotificationAuthorization(forTypes: [.alert, .badge, .sound]) 
+```
+
+{% hint style="info" %}
+
+#### **Important Notes**
+
+1. Calling this method will immediately trigger the push notification permission dialog to appear to the user.
+2. Make sure to call this method **after** informing the user about how your application will use push notifications.
+3. If push permission has already been requested from Apple or another push provider, you should call this method within that request. Otherwise, interactive push buttons will not be handled by the Netmera SDK.
+   {% endhint %}
+   {% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+// Request authorization for the needed notification types
+[Netmera requestPushNotificationAuthorizationForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound];
+```
+
+{% hint style="info" %}
+
+#### **Important Notes**
+
+1. Calling this method will immediately trigger the push notification permission dialog to appear to the user.
+2. Make sure to call this method **after** informing the user about how your application will use push notifications.
+3. If push permission has already been requested from Apple or another push provider, you should call this method within that request. Otherwise, interactive push buttons will not be handled by the Netmera SDK.
+   {% endhint %}
+   {% endtab %}
+   {% endtabs %}
+
+### Checking Notification Authorization Status
+
+You can use the `isEnabled` method to determine if the user has granted permission for notifications. This will help you assess whether the push notification functionality is available.
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+Netmera.isEnabledReceivingPushNotifications()
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+[Netmera isEnabledReceivingPushNotifications];
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Managing Push Notifications
+
+The Netmera iOS SDK allows developers to control push notification delivery from within the app, based on user preferences.
+
+```objectivec
+// Enables receiving Netmera push notifications
+Netmera.setEnabledReceivingPushNotifications(true)
+// Disables receiving Netmera push notifications
+Netmera.setEnabledReceivingPushNotifications(false)
+```
+
+## Step 5: Configure Xcode Push Notifications Settings <a href="#enable-push-notifications" id="enable-push-notifications"></a>
+
+1. Open your project in **Xcode**.
+2. Navigate to **Signing & Capabilities**.
+3. Under **Capabilities**, add **Push Notifications** to your app.
+
+This enables the necessary configurations for push notifications in your application.
+
+<figure><img src="/files/SxSIRxHddfPJ3JyvkIgd" alt=""><figcaption></figcaption></figure>
+
+## iOS SDK Integration Complete <a href="#sdk-integration-complete" id="sdk-integration-complete"></a>
+
+iOS SDK integration has been successfully completed, and your devices are now ready to receive the following types of push notifications sent via the Netmera Dashboard:
+
+* **Standard Push Notifications**
+* **Interactive Push Notifications**
+* **Widgets**
+* **Push Notifications with Deeplinks**
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/sdk-integration.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

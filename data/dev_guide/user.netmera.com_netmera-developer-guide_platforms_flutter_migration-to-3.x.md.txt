@@ -1,0 +1,377 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/flutter/migration-to-3.x.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/flutter/migration-to-3.x.md).
+
+# Migration to 3.x
+
+Netmera Flutter SDK **3.x.x** aligns the iOS layer with the **Swift-based Netmera SDK** and includes Dart API updates. The Objective-C–based iOS SDK is scheduled to become *legacy* as of October 2026; Flutter apps should move the native layer to the new flow.
+
+{% hint style="info" %}
+**Notation:** Lines prefixed with `-` are removed or show the old form; lines prefixed with `+` are added or show the new form. For larger blocks, the line before the block uses **Remove** / **Add** / **Replace**.
+{% endhint %}
+
+### 1) Installation and project setup
+
+#### 1.1 pubspec.yaml
+
+**Replace**
+
+{% code fullWidth="false" %}
+
+```yaml
+- netmera_flutter_sdk: 2.x.x
+```
+
+{% endcode %}
+
+```yaml
++ netmera_flutter_sdk: ^3.x.x
+```
+
+#### 1.2 iOS configuration file
+
+For compatibility with the Swift Netmera SDK, use `**Netmera-Config.plist**` (or equivalent), target membership, and extension setup as described in the Netmera iOS documentation (main app and Notification Extension targets where applicable).
+
+{% code fullWidth="false" %}
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>sdk_params</key>
+        <dict>
+            <key>app_group_name</key>
+            <string>group.com.netmera.flutter</string>
+            <key>api_key</key>
+            <string>your_api_key</string>
+        </dict>
+    </dict>
+</plist>
+```
+
+{% endcode %}
+
+{% hint style="warning" %}
+**Important: Target Membership**
+
+Make sure **`Netmera-Config.plist`** is added to the correct **Target Membership** in Xcode.
+
+It must be included in:
+
+* **Main App Target**
+* **Notification Service Extension** (if used)
+* **Notification Content Extension** (if used)
+
+<img src="/files/atbW89smb2ZlfcPSrpub" alt="" data-size="original">
+{% endhint %}
+
+### 2) iOS
+
+#### 2.1 SPM (Recommended after v3.2.0)
+
+1. Remove Netmera pods from your Podfile and run pod install.
+2. Select your project in Xcode → the `Runner` project (not a target) → **Package Dependencies** tab → add `https://github.com/Netmera/swift-sdk` at version `4.x.x` if it isn't already added as a dependency.&#x20;
+3. In the **Choose Package Products** step, set **Add to Target** to `Runner` for both `NetmeraNotificationServiceExtension` and `NetmeraNotificationContentExtension`.
+
+<figure><img src="/files/IihoihscrOdJ6VloQPTK" alt=""><figcaption></figcaption></figure>
+
+#### 2.2 Podfile&#x20;
+
+**Replace** (Media Push / extension pod names and versions)
+
+<pre class="language-ruby"><code class="lang-ruby"><strong>- pod "Netmera", "3.x.x"
+</strong>- pod "Netmera/NotificationServiceExtension", "3.x.x"
+- pod "Netmera/NotificationContentExtension", "3.x.x"
+</code></pre>
+
+```ruby
++ pod 'NetmeraNotificationServiceExtension', "4.x.x"
++ pod "NetmeraNotificationContentExtension", "4.x.x"
+```
+
+**Add** — inside `post_install`, after `flutter_additional_ios_build_settings(target)` (Swinject distribution setting):
+
+```ruby
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+# Add
+    target.build_configurations.each do |config|
+      if target.name.include?('Swinject')
+        target.build_configurations.each do |config|
+          config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+        end
+      end
+    end
+# Add
+  end
+end
+```
+
+Then run `pod install`.
+
+#### 2.2 AppDelegate.swift
+
+**Add** — imports
+
+```swift
+  import UIKit
+  import Flutter
++ import netmera_flutter_sdk
++ import NetmeraCore
++ import NetmeraNotification
+```
+
+**Replace** — class declaration (`NetmeraPushDelegate` moves to a separate extension)
+
+```swift
+- @objc class AppDelegate: FlutterAppDelegate, NetmeraPushDelegate {
+```
+
+```swift
++ @objc class AppDelegate: FlutterAppDelegate {
+```
+
+**Remove** — manual bridge when opening a push from a force-quit app via `launchOptions`
+
+```swift
+- let notification = launchOptions?[.remoteNotification]
+- if notification != nil {
+-     FNetmeraService.handleWork(ON_PUSH_RECEIVE, dict:["userInfo" : notification])
+- }
+```
+
+**Remove**
+
+```swift
+- FNetmera.logging(true)
+- FNetmera.initNetmera("")
+- Netmera.setBaseURL("")
+- Netmera.setAppGroupName("")
+
+// If you do not use onWidgetUrlTriggered
+- FNetmera.setPushDelegate(self)
+```
+
+**Note:** If your media push setup requires an App Group, configure it in `Netmera-Config.plist` or wherever the Swift SDK expects it; in this example the `setAppGroupName` call is removed.
+
+**Add** — in `didFinishLaunching` (if you use **Firebase**, keep the delegate line; if not, you may remove the `UNUserNotificationCenter` line)
+
+```swift
++ UNUserNotificationCenter.current().delegate = self
+```
+
+**Remove** — push token and remote notification bridge handlers
+
+```swift
+- override func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+-     FNetmeraService.handleWork(ON_PUSH_REGISTER, dict: ["pushToken": deviceToken])
+- }
+```
+
+**Remove** — tap / dismiss handling that calls `FNetmeraService.handleWork` (`didReceive response`)
+
+```swift
+- @available(iOS 10.0, *)
+- override func userNotificationCenter(_ center: UNUserNotificationCenter,
+-                                      didReceive response: UNNotificationResponse,
+-                                      withCompletionHandler completionHandler: @escaping () -> Void) {
+-     ...
+-     FNetmeraService.handleWork(ON_PUSH_DISMISS, ...)
+-     FNetmeraService.handleWork(ON_PUSH_OPEN, ...)
+-     completionHandler()
+- }
+```
+
+**Remove** — legacy `willPresent` (only `.alert` + `handleWork`)
+
+```swift
+- @available(iOS 10.0, *)
+- override func userNotificationCenter(..., willPresent notification: UNNotification, ...) {
+-     completionHandler([UNNotificationPresentationOptions.alert])
+-     if UIApplication.shared.applicationState == .active {
+-         FNetmeraService.handleWork(ON_PUSH_RECEIVE, ...)
+-     } else {
+-         FNetmeraService.handleWork(ON_PUSH_RECEIVE_BACKGROUND, ...)
+-     }
+- }
+```
+
+**Add** — if you use **Firebase**, add the new `willPresent` (presentation options; no `handleWork`)
+
+```swift
++ @available(iOS 10.0, *)
++ override func userNotificationCenter(
++   _ center: UNUserNotificationCenter,
++   willPresent notification: UNNotification,
++   withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
++ ) {
++     if #available(iOS 14, *) {
++       completionHandler([.banner, .list, .badge, .sound])
++     } else {
++       completionHandler([.alert, .badge, .sound])
++     }
++ }
+```
+
+**Add** — if you use `onWidgetUrlTriggered`
+
+```swift
++ extension AppDelegate: NetmeraPushDelegate {
++     func urlOpeningDecision(for url: URL, push: NetmeraBasePush) -> PushDelegateDecision {
++         return .sdkHandles
++     }
++     func openURL(_ url: URL, for push: NetmeraBasePush) {
++         FNetmera.openURL(url: url, forPushObject: push)
++     }
++ }
+```
+
+#### 2.3 Runner-Bridging-Header.h
+
+Objective-C headers are no longer required for the Swift bridge.
+
+**Remove**
+
+```objc
+- #import "FNetmera.h"
+- #import "FNetmeraService.h"
+- #import "NetmeraFlutterSdkPlugin.h"
+```
+
+#### 2.4 Media Push
+
+Update the following files as shown.
+
+**`NotificationService.swift`**
+
+```swift
+import UserNotifications
+import NetmeraNotificationServiceExtension
+
+class NotificationService: NotificationServiceExtension {
+  override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
+    super.didReceive(request, withContentHandler: contentHandler)
+  }
+
+  override func serviceExtensionTimeWillExpire() {
+    super.serviceExtensionTimeWillExpire()
+  }
+}
+```
+
+**`NotificationViewController.swift`**
+
+```swift
+import UserNotifications
+import UserNotificationsUI
+import NetmeraNotificationContentExtension
+
+class NotificationViewController: NotificationContentExtension {
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+
+  override func didReceive(_ notification: UNNotification) {
+    super.didReceive(notification)
+  }
+}
+```
+
+> **Note:** Enable the **App Groups** capability on your Notification Service Extension target if required by your setup.
+
+![](/files/gtneVpr8CL1JnNkztzEv)
+
+#### Notification Service Extension Configuration&#x20;
+
+You must update the NSExtensionPrincipalClass value in your Service Extension's `Info.plist` file:
+
+Ensure your `NSExtensionPrincipalClass` is updated from `NotificationService` to **`$(PRODUCT_MODULE_NAME).NotificationService`**.
+
+> Note: Please double-check your configuration against our [Media Push Guide - Step 6](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/media-push#step-6-receiving-http-media-contents) to ensure media content and push notifications are handled correctly during the transition.
+
+### 3) Dart
+
+#### 3.1 User identification
+
+**Replace** — use `identifyUser` and `updateUserProfile` instead of `updateUser`
+
+```dart
+NetmeraUser user = new NetmeraUser();
+user.setUserId("...");
+user.setEmail("...");
+user.setMsisdn("...");
+user.setWhatsAppNumber("...");
+
+Netmera.identifyUser(user);
+
+// or
+
+Netmera.identifyUser(user,
+  onSuccess: () {
+    ...
+  },
+  onFailure: (error) {
+    ...
+  });    
+```
+
+```dart
+NetmeraUserProfile profile = new NetmeraUserProfile();
+profile.name.set("...");
+profile.surname.set("...");
+profile.dateOfBirth.set(DateTime(2000, 1, 1).millisecondsSinceEpoch);
+profile.gender.set(Gender.notSpecified);
+
+Netmera.updateUserProfile(profile);
+
+// or
+
+Netmera.updateUserProfile(profile,
+  onSuccess: () {
+    ...
+  },
+  onFailure: (error) {
+    ...
+  });
+```
+
+For more detail, see the official Netmera / package documentation for your SDK version.
+
+### 4) Removed methods
+
+* `Netmera.updateUser`
+* `Netmera.updateUserAsync`
+* `Netmera.setApiKey`
+* `Netmera.setBaseUrl`
+* `Netmera.skipAppConfigAndSetBaseUrl`
+* `Netmera.handleLastMessage`
+
+**iOS native:** `FNetmera.initNetmera`
+
+### 5) Function Mapping
+
+<table><thead><tr><th width="235.67572021484375">2.x and below</th><th width="262.261474609375">3.x and above</th><th>Description</th></tr></thead><tbody><tr><td><code>Netmera.updateUser</code> and <code>Netmera.updateUserAsync</code></td><td><code>Netmera.identifyUser</code> and <code>Netmera.updateUserProfile</code></td><td>User identification and profile updates</td></tr><tr><td><code>Netmera.setBaseUrl</code> and <code>Netmera.skipAppConfigAndSetBaseUrl</code></td><td>Please use <code>Netmera-Config.plist</code> and <code>FNetmeraConfiguration</code></td><td>Change base url at runtime</td></tr><tr><td><code>Netmera.setApiKey</code></td><td>Please use <code>Netmera-Config.plist</code> and <code>FNetmeraConfiguration</code></td><td>Change API key at runtime</td></tr><tr><td><code>Netmera.setAppGroupName</code></td><td>Please use <code>Netmera-Config.plist</code> and Define in <code>Signing &#x26; Capabilities</code></td><td>iOS Rich Media Push</td></tr><tr><td><code>Netmera.turnOffSendingEventAndUserUpdate</code></td><td><code>Netmera.startDataTransfer</code> and <code>Netmera.stopDataTransfer</code></td><td>Data transfer management</td></tr><tr><td><code>Netmera.areNotificationsEnabled</code></td><td><code>Netmera.checkNotificationPermission</code></td><td>Notification permission status</td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/flutter/migration-to-3.x.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

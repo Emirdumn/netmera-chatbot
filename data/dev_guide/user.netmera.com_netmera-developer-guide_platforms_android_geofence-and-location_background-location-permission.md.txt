@@ -1,0 +1,119 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/android/geofence-and-location/background-location-permission.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/android/geofence-and-location/background-location-permission.md).
+
+# Background Location Permission
+
+### Background Location Access for Android 10+
+
+Android 10 and later introduce stricter privacy controls, limiting background location access. This guide explains required permissions, Google’s changes, and how Netmera helps request background location access.
+
+{% hint style="warning" %}
+
+#### **Required Permission: ACCESS\_BACKGROUND\_LOCATION**
+
+To access location in the background, your application must request the `ACCESS_BACKGROUND_LOCATION` permission.
+{% endhint %}
+
+### Google’s Privacy Changes
+
+* **Privacy Enhancements**: Apps can’t request background location permission directly. Users initially see only “Allow only while using the app” or “Deny.”
+* **User Control**: To enable background location, users must manually update settings:\
+  **Settings > Apps > \[Your App] > Permissions > Location > Allow always**
+
+### How Netmera Helps
+
+Netmera provides tools to request background location access smoothly.
+
+#### Background Location Permission Event
+
+**What It Does**: Triggers when the app requests `ACCESS_BACKGROUND_LOCATION`.\
+**How It Works**: This event can start an automation guiding users to enable background location.
+
+### Setting Up a Background Location Permission Widget
+
+This feature enables Netmera customers to display a widget that informs users about background location permissions. Here’s how to set it up:
+
+### Step 1: Create a Mobile Widget
+
+Use the panel to create a widget that informs users about the need for background location access. Further information can be found on our User Documentation about how to create [**Widgets**](https://user.netmera.com/netmera-user-guide/mobile-widget/mobile-widget-in-app) and [**Adding Click Actions**](https://user.netmera.com/netmera-user-guide/mobile-widget/mobile-widget-in-app/create-new-mobile-widget/click-actions#android-background-location-permission)[**.**](https://user.netmera.com/netmera-user-guide/messages/automated-push-scenarios#handle-special-user-action)
+
+1. **Design Your Widget**
+2. **Configure Button Actions**
+
+Set up two button actions:
+
+* **Allow Permission** button: Directs users to **Settings > Location** so they can enable **“Allow always”**.
+* **Deny Permission** button: Provides the option to decline.
+
+<figure><img src="/files/hMNpnp621bny1LaFl9IZ" alt=""><figcaption></figcaption></figure>
+
+### Step 2: Configure the Permission Event
+
+* Add `ACCESS_BACKGROUND_LOCATION` to your app’s code.
+* This triggers the event, launching automation.
+
+### Step 3: Automate a Push Notification
+
+* Send a notification when the event triggers.
+* Use **Handle Special Action** to prompt users.
+
+Further information can be found on our User Documentation about Automation Scenarios and [**Handle Special Action**](https://user.netmera.com/netmera-user-guide/messages/automated-push-scenarios#handle-special-user-action).
+
+<figure><img src="/files/b7vtcfPUREUcwv7ADH1M" alt=""><figcaption></figcaption></figure>
+
+### Example Scenario for Automation Setup
+
+1. **Automation Setup:**
+   * Begin by setting up the automation in Create New Automation section.
+   * Select the **Handle Special Action** tab during the automation configuration.
+2. **Event Selection:**
+   * In the **Event** section, choose the **Background Location Permission** event. This event is triggered when the background location permission is requested by the SDK.
+3. **Occurrence Selection:**
+   * Under **Occurrence**, select **1**. This ensures that the event is triggered once, upon the first request for background location permission.
+4. **User Limit:**
+
+   * When the **Background Location Permission** is requested, the SDK will trigger the **Background Location Permission event**.
+   * It’s important to set a **limit** for how often the widget (asking for permission) is shown to the user. This will prevent showing the widget too frequently and ensure the user experience remains positive.
+
+   **Example of widget frequency limit**: Set the widget to appear no more than **once per week** or based on other suitable time intervals to avoid overuse.
+
+<figure><img src="/files/2oR4qjIeuXfcHJkYxEx5" alt=""><figcaption></figcaption></figure>
+
+### Step 4: Users Updating Settings
+
+When users tap the **Update Setting** button, the SDK redirects them to the device's settings to enable location access.
+
+{% hint style="success" %}
+**Background Location Permission** **Event Trigger Conditions**
+
+The event will trigger when **all of the following** are true:
+
+* The device is running Android 10 or above,
+* The app includes background location permission in the manifest,
+* The app already has foreground location permission.
+
+If both foreground and background permissions are granted, this event will not trigger.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/android/geofence-and-location/background-location-permission.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

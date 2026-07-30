@@ -1,0 +1,194 @@
+URL: https://user.netmera.com/netmera-developer-guide/faqs/push-notifications-faqs.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/faqs/push-notifications-faqs.md).
+
+# Push Notifications FAQs
+
+## Common Errors
+
+### Error: BadDeviceToken
+
+This error occurs when the device token is incorrect or does not match the environment the application is running in.
+
+1. Navigate to `Developers > Push Backends > Certificate Type`.
+2. Ensure the certificate type is set to `Prod` for applications downloaded from the Store or cloud. It is crucial to keep the certificate type as `Prod` in the production environment. Changing it will prevent your customers from receiving push notifications until the certificate type is set back to `Prod`.
+3. The `Dev` certificate type should be selected for applications built and run from a cable (i.e., direct builds from development machines). This is necessary for developers to receive push notifications during testing phases, as they typically use cable-connected builds for push tests.
+
+### Error: TopicDisallowed
+
+The app identifier (bundle ID) used for sending the push notification may not match the one registered with APNs. Please verify the bundle ID value set in the panel and ensure it is correctly configured. To resolve it, go to the panel, navigate to **Developers > Push Backends > iOS**, and verify the accuracy of the **Topic (Bundle ID)** value.
+
+### Error: DeviceTokenNotForTopic
+
+This indicates a mismatch or issue with the application's certificate, often related to the Bundle ID.
+
+1. Verify the Bundle ID of the application to ensure it matches across all platforms.
+2. If there is a discrepancy, the certificate may need to be renewed. The certificate's Bundle ID value must match the application's Bundle ID value and the configuration within the panel.
+
+### Error: APNSTokenInvalid
+
+This error is usually encountered when attempting to send push notifications to an iOS emulator.
+
+iOS emulators do not support receiving push notifications. Ensure that you are testing push notifications on a physical iOS device rather than an emulator.
+
+### Error: Device is Unregistered
+
+This error occurs when push notifications are attempted to be sent to a device that has disabled push notification permissions.
+
+Check the device's settings to ensure that push notification permissions are enabled for the application in question.
+
+### Error: Sender Id Mismatch (Unknown Error)
+
+This error arises when the Sender ID configured in the Netmera panel does not match the Sender ID set in the Firebase console and within the Netmera initialization method in the application.
+
+1. Verify that the Sender ID configured in the Netmera panel matches the Sender ID obtained from the Firebase console.
+2. Check the Netmera initialization method within the application to ensure that the correct Sender ID is set.
+3. Confirm that the `google-services.json` file used in the application is retrieved from the same Firebase Console account where the Sender ID is configured.
+
+### Error: Java Socket Error
+
+The Java Socket Error indicates an issue with establishing a network connection via sockets in a Java application. Certificate renewal is necessary to address Java Socket Errors.
+
+## iOS Handling Push Notification Issues
+
+#### In didFinishLaunchingWithOptions
+
+In scenarios where push notifications do not reflect when clicked on iOS devices, to ensure push notifications are handled correctly on iOS devices, the following method may be implemented within the didFinishLaunchingWithOptions method. It should be placed at the top of didFinishLaunchingWithOptions.
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+//in didFinishLaunchingWithOptions
+
+if #available(iOS 10.0, *) {
+UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+  } else {
+    // Fallback on earlier versions
+  }
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+//in didFinishLaunchingWithOptions
+
+[UNUserNotificationCenter currentNotificationCenter].delegate = self;
+```
+
+{% endtab %}
+{% endtabs %}
+
+## iOS Widget and In App Messages Troubleshooting
+
+If you are experiencing difficulties in receiving popups, please follow these troubleshooting steps:
+
+1. **Increase Session Duration**
+
+* Go to Netmera panel.
+* Navigate to `Developer > App Info` and find the `App Config` section.
+* Increase the value in the 'Session Expire Interval' field by 1.
+* Click 'Apply' to save the changes.
+* Retry displaying the popup.
+
+2. **Check for Other False Settings**
+
+Examine your project to ensure that no other parts of your code are setting values to 'false' that might affect popup functionality.
+
+2. **Verify Method Placement**
+
+Confirm that the method is placed at the top of the '**`didFinishLaunchingWithOptions`**' function within your code.
+
+```swift
+if #available(iOS 10.0, *) {
+    UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+} else {
+    // Fallback on earlier versions
+}
+```
+
+4. **Check for Third-Party Tool Integration**
+
+Ensure that Netmera is initialized at the top of your project if any third-party tools are integrated.
+
+5. **Multiple Concurrent Popups**
+
+If multiple popups are set to display simultaneously, it may lead to issues with popup loading.
+
+5. **Low Device Storage**
+
+Note that if the device's storage is nearly full, popups may not load correctly.
+
+## iOS Media Push Troubleshooting
+
+**Service extension target settings**
+
+In the service extension target settings, if the minimum deployment version is set higher than the device's version, it may result in the inability to retrieve images. You may check the following location to see it in XCode.
+
+<figure><img src="/files/ptj1h1MVSBKJrbbxsqoi" alt=""><figcaption></figcaption></figure>
+
+**"Copy only when installing"**
+
+Check if "Copy only when installing" is turned off for your main target. To do this:
+
+1. Select your main target.
+2. Go to "Build Phases."
+3. Expand "Embed App Extensions."
+4. Ensure that "Copy only when installing" is NOT checked. If it is checked, please uncheck it.
+
+## Android Widget and In App Messages Troubleshooting
+
+If you are experiencing difficulties in receiving popups, please follow these troubleshooting steps:
+
+**Increase Session Duration:**
+
+1. Go to Netmera panel.
+2. Navigate to `Developer > App Info` and find the `App Config` section.
+3. Increase the value in the 'Session Expire Interval' field by 1.
+4. Click 'Apply' to save the changes.
+5. Retry displaying the popup.
+
+**Check for Other False Settings:**&#x20;
+
+Examine your project to ensure that no other parts of your code are setting values to 'false' that might affect popup functionality.
+
+**Check for Third-Party Tool Integration:**
+
+Ensure that Netmera is initialized at the top of your project if any third-party tools are integrated.
+
+**Multiple Concurrent Popups:**
+
+If multiple popups are set to display simultaneously, it may lead to issues with popup loading.
+
+**Low Device Storage:**
+
+Note that if the device's storage is nearly full, popups may not load correctly.
+
+## Additional Tips
+
+* Always double-check your environment settings (Development vs. Production) when encountering issues with push notifications.
+* Ensure that your application's push notification service (e.g., APNS for iOS) is correctly configured and that the certificates are up to date.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/faqs/push-notifications-faqs.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

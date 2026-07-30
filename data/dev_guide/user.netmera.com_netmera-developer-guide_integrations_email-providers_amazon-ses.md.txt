@@ -1,0 +1,97 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/email-providers/amazon-ses.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/email-providers/amazon-ses.md).
+
+# Amazon SES
+
+The Amazon SES (Simple Email Service) connector integrates the Netmera platform with Amazon Web Services' scalable and reliable email sending infrastructure. This integration allows Netmera clients to send high-volume marketing campaigns and crucial transactional emails using the AWS cloud.
+
+### Overview
+
+<table><thead><tr><th width="232.42578125">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>Amazon SES</td></tr><tr><td><strong>Category</strong></td><td>Email Providers / Cloud Services</td></tr><tr><td><strong>Provider</strong></td><td>Amazon Web Services (AWS)</td></tr><tr><td><strong>Primary Function</strong></td><td>Cloud-based transactional and marketing email delivery</td></tr><tr><td><strong>Netmera Component</strong></td><td>AwsMailAdapterImpl and AwsSesServiceImpl</td></tr><tr><td><strong>Data Flow</strong></td><td><strong>Outbound</strong> (Netmera > Amazon SES)</td></tr><tr><td><strong>Priority Ranking</strong></td><td>Rank 2 (Prioritized after SetRow, if service permission is granted)</td></tr></tbody></table>
+
+<figure><img src="/files/fmeChYjSb1C9P7Ma3R9J" alt=""><figcaption></figcaption></figure>
+
+The integration leverages dedicated Java classes (AwsMailAdapterImpl and AwsSesServiceImpl) to communicate with the SES API, routing email requests efficiently to the chosen AWS region.
+
+### Use Cases and Benefits
+
+1. **High-Volume Email Campaigns:** Utilizing Amazon's infrastructure for bulk sending marketing emails created through the Netmera Control Panel (`Messages > Create Message > Email`).
+2. **Transactional Email Support:** Sending crucial system emails, such as password resets, verification links (nm.mail.verification.url), notifications, and API-triggered transactional messages, is reliably handled by SES.
+3. **Attachment Handling:** The integration supports including file attachments in emails. For this functionality, files are first uploaded to a **Cloud Storage Connector** (like Amazon S3 or Azure Storage) and then included in the SES message payload.
+4. **Scalability and Deliverability:** Netmera utilizes SES to benefit from AWS's high deliverability rates and massive scalability, which are essential for clients managing large customer bases.
+5. **Event Tracking:** Configuration Set Name parameter allows leveraging advanced SES features like event tracking (sends, opens, clicks, bounces) and reputation metrics, managed within the AWS environment.
+
+### Data Flow
+
+The Amazon SES integration has an **Outbound** data flow, managed by the Mail Adapter service layer in Netmera.
+
+1. **Request Initiation:** An email sending command (e.g., campaign or transactional) is issued within Netmera.
+2. **Provider Selection:** The MailSenderServiceImpl checks active email connectors. If the client has permission to use AWS Mail Server Service and SES is configured, it is selected (ranking generally second, after SetRow).
+3. **API Call:** The AwsMailAdapterImpl securely authenticates using the configured AWS credentials and constructs the necessary API request, submitting the email content (including HTML and attachment URLs) to the designated SES endpoint.
+4. **Delivery:** AWS SES handles the final transmission of the email to the recipient's mail server.
+
+$$\text{Netmera Mail Sender} \xrightarrow\[\text{AwsMailAdapterImpl}]{\text{SES API Call}} \text{Amazon SES} \rightarrow \text{Recipient Mailbox}$$
+
+### Configuration Reference
+
+<figure><img src="/files/2PXvzjScjfccfrfQYMKn" alt="" width="232"><figcaption></figcaption></figure>
+
+The configuration requires standard AWS IAM credentials tied to a user with SES sending permissions.
+
+<table><thead><tr><th>Parameter</th><th width="136.7972412109375">Type</th><th>Description</th><th>AWS Context</th></tr></thead><tbody><tr><td><strong>region</strong></td><td>String</td><td>The AWS region where your SES service is configured (e.g., "eu-west-1").</td><td>Determines the API endpoint location.</td></tr><tr><td><strong>accessKey</strong></td><td>String</td><td>Your AWS IAM user's Access Key ID.</td><td>Used for programmatic API authentication.</td></tr><tr><td><strong>secretKey</strong></td><td>String</td><td>Your AWS IAM user's Secret Access Key.</td><td>Used for secure API authentication.</td></tr><tr><td><strong>configurationSetName</strong></td><td>String</td><td>The name of a Configuration Set created in SES.</td><td>Optional; used for reputation monitoring and event publishing.</td></tr></tbody></table>
+
+### Setup Instructions
+
+The setup process requires specific actions within the AWS Console before configuring Netmera.
+
+#### Step 1: AWS Prerequisites
+
+1. Create an AWS account and navigate to the IAM (Identity and Access Management) service.
+2. Create a dedicated IAM user with "Programmatic access" enabled and attach a policy granting permission to send emails via SES (e.g., AmazonSESFullAccess).
+3. **Obtain and save the Access Key ID and Secret Access Key** (the secret key is shown only once).
+4. Navigate to the SES Console and **verify the email address(es) or domain(s)** you plan to use for sending.
+5. If the account is new, it will be in **Sandbox mode**. You must apply to AWS Support for production access to increase daily sending quotas and remove restrictions on recipient addresses.
+
+#### Step 2: Configure in Netmera
+
+1. Access the Netmera Control Panel and go to the **Connectors** section.
+2. Select the **Amazon SES** connector.
+3. Input the **Region**, **Access Key**, **Secret Key**, and optionally, the **Configuration Set Name**.
+4. Click **Save Configuration**.
+
+### Usage Notes & Considerations
+
+1. **Sandbox Restrictions:** Newly configured SES accounts are severely limited by AWS, restricting sending only to verified addresses. Production access must be secured through AWS support to begin large-scale sending.
+2. **Rate and Quota Limits:** AWS imposes initial daily sending quotas and maximum send rates. High-volume senders must regularly monitor these limits within the AWS Console and request increases directly from AWS if necessary.
+3. **Credential Dependency:** If the IAM user credentials (accessKey, secretKey) are changed or revoked in the AWS Console, the Netmera connector will fail immediately, requiring manual update in the Netmera configuration.
+4. **Priority Sequencing:** Amazon SES is prioritized below the **SetRow** connector. If SetRow is active and configured with the necessary service permission, email traffic will be routed through SetRow first, bypassing SES. You must manage the priority settings (via service permissions) if you intend to use SES as the primary channel.
+5. **Attachment Storage:** Attachments must be hosted externally before sending. Netmera relies on the proper configuration of an **AWS S3** (Amazon Storage) or **Azure Storage** connector to handle the media file uploads referenced in the email.
+
+{% hint style="info" %}
+**Analogy:** If your messaging system is a fleet of delivery trucks, Amazon SES acts as leasing a large, optimized fleet of cargo planes from AWS.&#x20;
+
+It offers unparalleled capacity and speed (scalability and deliverability), but you **must** first clear the security checkpoints (Sandbox mode and production request) and ensure your keys (Access/Secret Keys) are always correct to dispatch the messages.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/email-providers/amazon-ses.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

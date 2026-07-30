@@ -1,0 +1,122 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/web/deep-linking.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/web/deep-linking.md).
+
+# Deep Linking
+
+### Adding Deep Links in REST API
+
+After creating a web transactional push from the panel, you can customize the desired Deeplink using the sample code in the API & Config step (in Postman). Here's an example:
+
+```json
+curl --location 'https://restapi.netmera.com/rest/3.0/sendNotification' \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+-d '{
+    "notificationKey": "1000",
+    "target": {
+        "extId": "exidn"
+    },
+    "message": {
+        "params": {},
+        "click": {
+            "deeplink": "https://www.netmera.com?id=5&name=@{exId}&cat=webpush"
+        }
+    }
+}'
+```
+
+{% hint style="warning" %}
+
+* **Ensure Deeplink Parameters Match User Data**\
+  Parameters like `@{extId}` must match the user’s profile data. If not, the notification delivery will fail. Double-check that parameters used in the Deeplink exist in the user data.
+* **Add Deeplink in "Click" Node**\
+  Set the Deeplink directly in the **click** **node** as `deeplink`. Parameters like `@{parameter}` should be replaced with actual profile attributes.
+  {% endhint %}
+
+### Adding Deep Links on Netmera Panel
+
+{% hint style="info" %}
+**Creating a Web Transactional Push:**
+
+To learn how to create a Web Transactional Push on the Netmera Panel, please refer to our [**User Guide**](https://user.netmera.com/netmera-user-guide/) for step-by-step instructions and detailed information.
+{% endhint %}
+
+#### Step 1: Create a New Deeplink
+
+* Log into the Netmera Panel.
+* Go to **Developers** > **Deeplinks**.
+* Click **Create New Deeplink**.
+
+<figure><img src="/files/b9iWJy8TS0zk2mbfYckO" alt=""><figcaption></figcaption></figure>
+
+#### Step 2: Provide Deeplink Details
+
+* **Deeplink Name:** Enter a unique name for the deeplink.
+* **Deeplink URL:** Enter the destination URL for the deeplink. You can use parameters in the URL path or query string.
+
+Use `{param}` when the value should be entered manually. When this format is used, a value field appears below the URL field.
+
+**Example**:
+
+`https://www.example.com/campaign/{campaignId}`
+
+<figure><img src="/files/Xm2tBzosHaYQErbLbrnl" alt="" width="563"><figcaption></figcaption></figure>
+
+Use `@{param}` when the value should be resolved automatically from the user profile. No manual value field appears for this format.
+
+**Example:**
+
+`https://www.example.com/profile/@{age}`
+
+<figure><img src="/files/aEaE7GO5ZjFjELeAYs8g" alt="" width="563"><figcaption></figcaption></figure>
+
+You can also use parameters in the query string.
+
+Example:
+
+`https://www.example.com?age=@{age}`
+
+<figure><img src="/files/1uUYmwc4TQY9yqFkCBC8" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Step 3: Define Deeplink Parameters
+
+If the URL includes `{param}`, enter its value in the Deeplink Parameters section. This value is used for all users who receive the deeplink.
+
+Example:
+
+`https://www.example.com/{city}`
+
+If `{city}` is defined as `London`, the deeplink resolves as:
+
+`https://www.example.com/London`
+
+<figure><img src="/files/7RB2LeHskk8b9PstgrAR" alt="" width="563"><figcaption></figcaption></figure>
+
+Parameters in the `@{parameter}` format are resolved automatically from the user's profile attributes. No manual value is required for these parameters.
+
+Once saved, you can use parameters like `{city}` in the Deeplink URL. For example, if `{city}` is set as **London**, users will receive `https://www.netmera.com/london`.
+
+<figure><img src="/files/QAqIIe9PkCZyuAUn1I0h" alt=""><figcaption></figcaption></figure>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/web/deep-linking.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

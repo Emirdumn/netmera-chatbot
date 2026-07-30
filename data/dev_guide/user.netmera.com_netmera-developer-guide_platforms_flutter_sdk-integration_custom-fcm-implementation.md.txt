@@ -1,0 +1,131 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/flutter/sdk-integration/custom-fcm-implementation.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/flutter/sdk-integration/custom-fcm-implementation.md).
+
+# Custom FCM Implementation
+
+If you have custom Firebase Cloud Messaging integration, please see usage below.
+
+### iOS Integration
+
+Add the following lines to your `AppDelegate.swift` file:
+
+<pre class="language-swift"><code class="lang-swift">@main
+@objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate {
+
+    override func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+        
+        // Add it if you are using Firebase.
+<strong>        UNUserNotificationCenter.current().delegate = self
+</strong>        
+        ...
+
+        return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    // Add it if you are using Firebase.
+<strong>    @available(iOS 10.0, *)
+</strong><strong>    override func userNotificationCenter(
+</strong><strong>      _ center: UNUserNotificationCenter,
+</strong><strong>      willPresent notification: UNNotification,
+</strong><strong>      withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+</strong><strong>    ) {
+</strong><strong>        if #available(iOS 14, *) {
+</strong><strong>          completionHandler([.banner, .list, .badge, .sound])
+</strong><strong>        } else {
+</strong><strong>          completionHandler([.alert, .badge, .sound])
+</strong><strong>        }
+</strong><strong>    }
+</strong>    ...
+}
+</code></pre>
+
+### Android Integration
+
+Add the following line to your `AndroidManifest.xml` file inside the `application` tag to remove Netmera's default FCM service:
+
+```xml
+<service
+    android:name="com.netmera.nmfcm.NMFirebaseService"
+    tools:node="remove" />
+```
+
+### Dart Methods
+
+Update `FirebaseMessaging` methods like below:
+
+<pre class="language-dart"><code class="lang-dart">@pragma('vm:entry-point')
+Future&#x3C;void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+
+<strong>  if (Netmera.isNetmeraRemoteMessage(message.data)) {
+</strong><strong>      Netmera.onNetmeraFirebasePushMessageReceived(message.from, message.data);
+</strong><strong>  } else {
+</strong><strong>    // handle non netmera messages
+</strong><strong>  }
+</strong>}
+
+Future&#x3C;void> initFirebase() async {
+  FirebaseMessaging.instance.getToken().then((value) {
+    print("Custom push token: " + value!);
+<strong>    Netmera.onNetmeraNewToken(value);
+</strong>  });
+
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+<strong>    if (Netmera.isNetmeraRemoteMessage(message.data)) {
+</strong><strong>      Netmera.onNetmeraFirebasePushMessageReceived(message.from, message.data);
+</strong><strong>    } else {
+</strong><strong>      // handle non netmera messages
+</strong><strong>    }
+</strong>  });
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  initFirebase();
+  runApp(const MyApp());
+}
+</code></pre>
+
+### Handling Background Messages in Release Mode
+
+If you're building your Flutter project with the `flutter run --release` command and need to handle background messages:
+
+* Add the `@pragma('vm:entry-point')` annotation to the `_firebaseMessagingBackgroundHandler` method.&#x20;
+
+This ensures that the method is correctly recognized as an entry point when building the project in release mode, which is crucial for handling background messages. By adding this annotation, you ensure that Flutter will properly recognize and invoke the background handler during release builds.
+
+Here’s how to modify your code:
+
+```dart
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage remoteMessage) async {
+// handle message here
+}
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/flutter/sdk-integration/custom-fcm-implementation.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

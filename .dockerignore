@@ -1,0 +1,17 @@
+venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+.git/
+.vscode/
+.agents/
+.streamlit/secrets.toml
+.env
+KEYLER
+streamlit.log
+streamlit.pid
+storage/*.db
+storage/*.db-*
+v1_legacy/
+PLAN_MULTI_AGENT.md
+PLAN_ORCHESTRATOR.md

@@ -1,0 +1,240 @@
+URL: https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/favorite-count-and-social-proof.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/favorite-count-and-social-proof.md).
+
+# Favorite Count & Social Proof
+
+The Favorite Count API is a REST service that returns the number of unique users whose profiles contain a specific value within a User Profile Attribute.
+
+It enables customers to calculate popularity and adoption metrics based on user-defined profile data, without exporting user lists or building custom aggregation pipelines.
+
+This API is commonly used for:
+
+* Social proof indicators (popularity, interest level, adoption)
+* Entity-based popularity metrics
+* Favorites, preferences, interests, or affinity counts
+* Content, product, category, or brand popularity use cases
+
+### Use Cases
+
+#### 1. Entity Popularity Display
+
+Displaying how many users have favorited or selected a specific entity on a detail page, such as:
+
+* An athlete, team, or sports entity
+* A product or brand
+* A content item (article, video, creator)
+* A category or interest
+
+Example UI copy:
+
+* “Favorited by X users”
+
+#### 2. Interest & Preference Insights
+
+Understanding how many users have selected a specific value in their profile, such as:
+
+* Favorite team, brand, or category
+* Preferred content type
+* Interest or hobby
+* Subscription preference
+
+This information can be used for analytics, segmentation previews, or in-app messaging.
+
+### Data Model
+
+The API operates on User Profile Attributes configured in Netmera.
+
+Profile attributes may store values as single values or arrays, depending on the attribute definition.
+
+#### Example Profile Attributes
+
+| Attribute Name            | Type                  | Description                      |
+| ------------------------- | --------------------- | -------------------------------- |
+| `favoriteFootballPlayers` | String Array          | IDs of favorited players         |
+| `soccerFavoriteTeam`      | String / String Array | Favorited team ID(s)             |
+| `favoriteBrands`          | String Array          | IDs of favorited brands          |
+| `userInterests`           | String Array          | Interest or category identifiers |
+
+Attribute values can be single or multi-valued.
+
+The API handles both types transparently.
+
+### API Endpoint
+
+#### Endpoint
+
+`POST /rest/3.0/targeting/count`
+
+#### Headers
+
+<table><thead><tr><th width="236.785400390625">Header</th><th width="181.97076416015625">Required</th><th>Description</th></tr></thead><tbody><tr><td><code>Content-Type</code></td><td>Yes</td><td>application/json</td></tr><tr><td><code>X-Netmera-Api-Key</code></td><td>Yes</td><td>REST API key</td></tr></tbody></table>
+
+### Request Body
+
+#### General Structure
+
+```json
+{
+  "target": { ... }
+}
+```
+
+The `target` object defines the filtering rules used to select users whose profiles match the given conditions.
+
+This structure follows Netmera’s standard targeting format, allowing flexible filtering based on profile attributes and operators.
+
+### Targeting with Profile Attributes
+
+You can query profile attributes using single values, multiple values, or operators.
+
+#### Example – Single Attribute Value
+
+```json
+{
+  "target": {
+    "profile": {
+      "favoriteFootballPlayers": ["352481"]
+    }
+  }
+}
+```
+
+Returns the number of users who have this value in the specified profile attribute.
+
+#### Example – Single-Value Attribute
+
+```json
+{
+  "target": {
+    "profile": {
+      "soccerFavoriteTeam": "2212"
+    }
+  }
+}
+```
+
+Returns the number of users who selected this value.
+
+#### Example – Multiple Values
+
+```json
+{
+  "target": {
+    "profile": {
+      "favoriteFootballPlayers": ["15", "23"]
+    }
+  }
+}
+```
+
+Returns the number of users who match at least one of the provided values.
+
+### Targeting Operators
+
+Profile attribute targeting supports common operators for advanced filtering.
+
+#### Example – Exists Operator
+
+```json
+{
+  "target": {
+    "profile": {
+      "name": {
+        "$exists": false
+      }
+    }
+  }
+}
+```
+
+Returns the number of users whose profile does not contain the specified attribute.
+
+### Response
+
+#### Success Response
+
+```json
+{
+  "count": 184523
+}
+```
+
+#### Response Fields
+
+| Field | Type    | Description                                      |
+| ----- | ------- | ------------------------------------------------ |
+| count | Integer | Total number of unique users matching the target |
+
+The response always returns a distinct user count.
+
+### Data Freshness & Caching
+
+The API is designed for near-real-time usage.
+
+Data freshness characteristics:
+
+* Maximum delay: 2–3 hours
+* Cache duration is dynamically optimized based on system load
+
+Due to high user volume (millions of profiles), counts are computed using aggregation and caching mechanisms.
+
+Real-time guarantees are not provided, but data freshness is sufficient for social proof and popularity scenarios.
+
+### Performance Considerations
+
+Profile-attribute-based count operations can be computationally expensive.
+
+Recommended best practices:
+
+* Query multiple values in a single request when possible
+* Avoid excessive polling for the same entity
+* Apply client-side caching for frequently displayed counts
+
+### Error Handling
+
+#### Common Error Responses
+
+* `400` Invalid targeting query
+* `401` Missing or invalid API key
+* `403` Unauthorized access
+* `500` Internal server error
+
+### Notes & Limitations
+
+* Only User Profile Attribute–based targeting is supported.
+* Attributes must be defined and active in the Netmera panel.
+* The API returns counts only; user lists are not exposed.
+* Counts match the Netmera panel when targeting is identical.
+* The returned count reflects users matching the targeting rules at query time; the message delivery audience may vary slightly due to delivery-time conditions applied during sending.
+
+### Summary
+
+With the Favorite Count API, customers can:
+
+* Calculate popularity and adoption metrics
+* Power social proof experiences in their applications
+* Leverage existing profile data without additional data pipelines
+* Perform scalable, attribute-based count queries at high user volumes
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/favorite-count-and-social-proof.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

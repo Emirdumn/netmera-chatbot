@@ -1,0 +1,87 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/jet-sms.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/jet-sms.md).
+
+# Jet SMS
+
+The Jet SMS Connector integrates the Netmera platform with the Turkish SMS service provider, Jet SMS. It functions as a standard outbound SMS gateway, prioritized for delivering SMS campaigns and transactional messages primarily within the Turkish market.
+
+The Jet SMS connector is one of several SMS providers integrated into Netmera's `SmsSenderServiceImpl`, handling the final transmission of text messages to the user via the Jet SMS API.
+
+### Overview
+
+<table><thead><tr><th width="210.33807373046875">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>Jet SMS</td></tr><tr><td><strong>Category</strong></td><td>SMS Providers</td></tr><tr><td><strong>Provider Location</strong></td><td>Turkey (<a href="https://www.jetsms.com.tr"><code>https://www.jetsms.com.tr</code></a>)</td></tr><tr><td><strong>Primary Function</strong></td><td>Outbound transmission of SMS messages</td></tr><tr><td><strong>Netmera Component</strong></td><td><code>SmsJetSMSAdapterImpl</code> class</td></tr><tr><td><strong>Data Flow</strong></td><td><strong>Outbound</strong> (Netmera > Jet SMS)</td></tr><tr><td><strong>Priority</strong></td><td>Low (Used after Message Center, Mobildev, FigenSoft, Infobip, and SMSC)</td></tr></tbody></table>
+
+<figure><img src="/files/FnHjPNWMmqfr4MgF9Iwv" alt=""><figcaption></figcaption></figure>
+
+### Use Cases and Benefits
+
+The integration with Jet SMS allows Netmera clients to utilize the provider's specific advantages, such as strong support for the Turkish market, for various messaging needs:
+
+1. **Standard SMS Campaigns:** Delivering bulk marketing and promotional SMS messages created via the Netmera Control Panel.
+2. **Transactional SMS:** Sending time-sensitive messages (e.g., OTPs, alerts) via API calls (`POST /3.0/sendNotification`) or automated workflows.
+3. **Local Market Access:** Clients targeting users in Turkey can leverage Jet SMS, which offers specialized support for Turkish characters and reliable delivery rates in the region.
+
+### Data Flow
+
+The data flow is **Outbound**, adhering to the general pattern for all SMS connectors.
+
+1. **Message Request:** Netmera generates an SMS message request (e.g., from a bulk campaign or a transactional API call).
+2. **Provider Selection:** The SmsSenderServiceImpl checks active SMS connectors according to their predefined priority order. Jet SMS is one of the lower-priority options (ranked 6th out of 7 major SMS adapters documented).
+3. **Adapter Execution:** If selected, the `SmsJetSMSAdapterImpl` takes the message payload (`recipient phone number`, `content`, `sender ID`).
+4. **API Submission:** The adapter uses the configured credentials (username/password) to authenticate and send the SMS request to the Jet SMS API.<br>
+
+$$\text{Netmera Messaging Module} \xrightarrow\[\text{SmsJetSMSAdapterImpl}]{\text{API Request}} \text{Jet SMS Platform}$$
+
+### Configuration Reference
+
+<figure><img src="/files/kRlFwheMlxpWyfhH04RD" alt="" width="239"><figcaption></figcaption></figure>
+
+Configuration requires obtaining specific credentials from the Jet SMS service panel and listing the pre-approved sender IDs.
+
+<table><thead><tr><th width="149.3077392578125">Parameter</th><th width="121.94000244140625">Type</th><th>Description</th><th></th></tr></thead><tbody><tr><td><strong>username</strong></td><td>String</td><td>The Jet SMS account username required for API access.</td><td>Used for API authentication.</td></tr><tr><td><strong>password</strong></td><td>String</td><td>The password corresponding to the username.</td><td>Used for API authentication.</td></tr><tr><td><strong>senderList</strong></td><td>List</td><td>A list of approved sender titles or alphanumeric sender IDs.</td><td>Determines the name/number displayed as the sender to the recipient.</td></tr></tbody></table>
+
+### Setup Instructions
+
+The setup follows the standard procedure for integrating an SMS service connector in the Netmera Control Panel.
+
+1. **Prerequisites:** Register an account on the Jet SMS platform and ensure your Sender IDs are approved.
+2. **Obtain Credentials:** Log into your Jet SMS panel and note down the API **Username** and **Password** from the API settings section. Identify the approved **Sender Titles** you wish to use.
+3. **Configure in Netmera:**
+   * Navigate to the Netmera Control Panel and go to the **Connectors** (or **Integrations**) section.
+   * Select the **Jet SMS** connector.
+   * Input the **Username**, **Password**, and the list of approved **Sender Titles** (`senderList`).
+4. **Save:** Click the **Save Configuration** button.
+
+### Usage Notes & Considerations
+
+Since Jet SMS is integrated as a standard SMS provider:
+
+* **Priority and Failover:** Its low priority means that if higher-ranked providers (Message Center, Mobildev, FigenSoft, Infobip, SMSC) are active, SMS messages will be routed through them first. To force delivery via Jet SMS, higher-priority connectors must be disabled or inactive.
+* **Credential Management:** If the username or password is changed on the Jet SMS platform, the connector will immediately fail until the credentials are updated manually in the Netmera panel.
+
+{% hint style="info" %}
+**International Format:** While the primary focus is the Turkish market, phone numbers sent to any SMS provider, including Jet SMS, must be in the correct **international format** (e.g., +90...) as specified by Netmera's user management API (msisdn field) and best practices.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/jet-sms.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

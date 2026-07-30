@@ -1,0 +1,305 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/flutter/push-inbox.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/flutter/push-inbox.md).
+
+# Push Inbox
+
+### Push Inbox Overview
+
+`NetmeraInbox` allows you to access and manage previously sent push notifications in an inbox-style interface. You cannot instantiate `NetmeraInbox` directly; instead, you must obtain an instance through the SDK and use it to interact with push notifications.
+
+### Filtering Notifications
+
+Create a `NetmeraInboxFilter` instance to specify which push notifications to fetch. You can filter by:
+
+* **Status**: Read, Unread, or Deleted.
+* **Categories**: Filter by specific categories.
+* **Expired Notifications**: Include or exclude expired notifications. &#x20;
+* **Page Size**: Number of notifications to fetch per request.
+
+### Netmera Inbox Examples
+
+```dart
+String _currentStatus = Netmera.PUSH_OBJECT_STATUS_ALL.toString();
+String _count = "0";
+List<NetmeraPushInbox> _pushInboxList = List.empty(growable: true);
+
+List<DropdownMenuItem<String>> getInboxList() {
+  List<DropdownMenuItem<String>> items = List.empty(growable: true);
+  items.add(DropdownMenuItem(value: Netmera.PUSH_OBJECT_STATUS_ALL.toString(), child: const Text("ALL")));
+  items.add(DropdownMenuItem(value: Netmera.PUSH_OBJECT_STATUS_READ.toString(), child: const Text("READ")));
+  items.add(DropdownMenuItem(value: Netmera.PUSH_OBJECT_STATUS_UNREAD.toString(), child: const Text("UNREAD")));
+  items.add(DropdownMenuItem(value: Netmera.PUSH_OBJECT_STATUS_DELETED.toString(), child: const Text("DELETED")));
+  return items;
+}
+
+onInboxStatusChanged(String status) {
+  setState(() {
+    _currentStatus = status;
+  });
+}
+
+String getStatusText(int status) {
+  switch (status) {
+    case Netmera.PUSH_OBJECT_STATUS_ALL:
+      return "ALL";
+    case Netmera.PUSH_OBJECT_STATUS_READ:
+      return "READ";
+    case Netmera.PUSH_OBJECT_STATUS_UNREAD:
+      return "UNREAD";
+    case Netmera.PUSH_OBJECT_STATUS_DELETED:
+      return "DELETED";
+  }
+  return "";
+}
+
+fillInboxList(list) {
+  setState(() {
+    _pushInboxList = list;
+  });
+}
+
+// Click Functions
+emptyAction() {}
+
+getInboxFilter() {
+  NetmeraInboxFilter inboxFilter = NetmeraInboxFilter();
+  inboxFilter.setPageSize(2);
+  inboxFilter.setStatus(int.parse(_currentStatus));
+  inboxFilter.setIncludeExpiredObjects(true);
+  inboxFilter.setCategories(null);
+  return inboxFilter;
+}
+
+fetchInbox() async {
+  Netmera.fetchInbox(getInboxFilter()).then((list) {
+    fillInboxList(list);
+  }).catchError((error) {
+    debugPrint(error);
+  });
+}
+
+fetchNextPage() async {
+  Netmera.fetchNextPage().then((list) {
+    fillInboxList(list);
+  }).catchError((error) {
+    debugPrint(error);
+  });
+}
+
+countForStatus() async {
+  Netmera.countForStatus(int.parse(_currentStatus)).then((val) {
+    setState(() {
+      if (val != -1) {
+        _count = val.toString();
+      }
+    });
+  });
+}
+
+// Use this method to trigger the action associated with a push message in the inbox
+handlePushObject() async {
+  if (_pushInboxList.isNotEmpty) {
+    Netmera.handlePushObject(_pushInboxList[0].getPushId()!);
+  }
+}
+
+handleInteractiveAction() async {
+  if (_pushInboxList.isNotEmpty) {
+    for (var element in _pushInboxList) {
+      if (element.getInteractiveActions() != null && element.getInteractiveActions()!.isNotEmpty) {
+        Netmera.handleInteractiveAction(element.getInteractiveActions()![0]);
+        return;
+      }
+    }
+  }
+}
+
+inboxUpdateStatus() {
+  List<String> selectedPushList = List.empty(growable: true);
+  if (_pushInboxList.length > 1) {
+    selectedPushList.add(_pushInboxList[0].getPushId()!);
+    selectedPushList.add(_pushInboxList[1].getPushId()!);
+  }
+  int status = Netmera.PUSH_OBJECT_STATUS_UNREAD;
+  Netmera.inboxUpdateStatus(selectedPushList, status).then((netmeraError) {
+    if (netmeraError != null) {
+      debugPrint(netmeraError);
+    }
+  }).catchError((error) {
+    debugPrint(error);
+  });
+}
+
+updateAll() async {
+  if (_pushInboxList.isNotEmpty) {
+    var updateStatus = int.parse(_currentStatus);
+    if (updateStatus == Netmera.PUSH_OBJECT_STATUS_ALL) {
+      debugPrint("Please select different status than all!!");
+      return;
+    }
+
+    Netmera.updateAll(updateStatus).then((netmeraError) {
+      fetchInbox();
+    }).catchError((error) {
+      debugPrint(error);
+    });
+  }
+}
+
+inboxCountForStatus() async {
+  NMInboxStatusCountFilter filter = NMInboxStatusCountFilter();
+  filter.setStatus(int.parse(_currentStatus));
+  filter.setIncludeExpired(true);
+  Netmera.getInboxCountForStatus(filter).then((map) {
+    String countStatusText = "ALL: " +
+        map[Netmera.PUSH_OBJECT_STATUS_ALL.toString()].toString() +
+        ", " +
+        "READ: " +
+        map[Netmera.PUSH_OBJECT_STATUS_READ.toString()].toString() +
+        ", " +
+        "UNREAD: " +
+        map[Netmera.PUSH_OBJECT_STATUS_UNREAD.toString()].toString() +
+        ", " +
+        "DELETED: " +
+        map[Netmera.PUSH_OBJECT_STATUS_DELETED.toString()].toString();
+    setState(() {
+      _count = countStatusText;
+    });
+  }).catchError((error) {
+    debugPrint(error);
+  });
+}
+
+```
+
+### Netmera Inbox Category Examples
+
+```dart
+String _currentStatus = Netmera.PUSH_OBJECT_STATUS_ALL.toString();
+List<dynamic> _categoryList = List.empty(growable: true);
+
+List<DropdownMenuItem<String>> getCategoryStatusList() {
+  List<DropdownMenuItem<String>> items = List.empty(growable: true);
+  items.add(DropdownMenuItem(value: Netmera.PUSH_OBJECT_STATUS_ALL.toString(), child: const Text("ALL")));
+  items.add(DropdownMenuItem(value: Netmera.PUSH_OBJECT_STATUS_READ.toString(), child: const Text("READ")));
+  items.add(DropdownMenuItem(value: Netmera.PUSH_OBJECT_STATUS_UNREAD.toString(), child: const Text("UNREAD")));
+  items.add(DropdownMenuItem(value: Netmera.PUSH_OBJECT_STATUS_DELETED.toString(), child: const Text("DELETED")));
+  return items;
+}
+
+onCategoryStatusChanged(String status) {
+  setState(() {
+    _currentStatus = status;
+  });
+}
+
+String getStatusText(int status) {
+  switch (status) {
+    case Netmera.PUSH_OBJECT_STATUS_ALL:
+      return "ALL";
+    case Netmera.PUSH_OBJECT_STATUS_READ:
+      return "READ";
+    case Netmera.PUSH_OBJECT_STATUS_UNREAD:
+      return "UNREAD";
+    case Netmera.PUSH_OBJECT_STATUS_DELETED:
+      return "DELETED";
+  }
+  return "";
+}
+
+// Click Functions
+emptyAction() {}
+
+getCategoryFilter() {
+  NetmeraCategoryFilter categoryFilter = NetmeraCategoryFilter();
+  categoryFilter.setPageSize(2);
+  categoryFilter.setStatus(int.parse(_currentStatus));
+  categoryFilter.setIncludeExpiredObjects(true);
+  return categoryFilter;
+}
+
+fetchCategory() async {
+  Netmera.fetchCategory(getCategoryFilter()).then((list) {
+    fillCategoryList(list);
+  }).catchError((error) {
+    debugPrint(error);
+  });
+}
+
+fetchNextCategoryPage() async {
+  Netmera.fetchNextCategory().then((list) {
+    fillCategoryList(list);
+  }).catchError((error) {
+    debugPrint(error);
+  });
+}
+
+fillCategoryList(list) {
+  setState(() {
+    _categoryList = list;
+  });
+}
+
+handleLastMessage() async {
+  if (_categoryList.isNotEmpty) {
+    Netmera.handleLastMessage(_categoryList[0]);
+  }
+}
+
+updateStatusCategories() async {
+  if (_categoryList.isNotEmpty) {
+    List<String> selectedCategories = List.empty(growable: true);
+    if (_categoryList.length == 1) {
+      selectedCategories.add(_categoryList[0].getCategoryName()!);
+    } else if (_categoryList.length > 1) {
+      selectedCategories.add(_categoryList[0].getCategoryName()!);
+      selectedCategories.add(_categoryList[1].getCategoryName()!);
+    }
+
+    Netmera.updateStatusByCategories(Netmera.PUSH_OBJECT_STATUS_READ, selectedCategories).then((netmeraError) {
+      fetchCategory();
+    }).catchError((error) {
+      debugPrint(error);
+    });
+  }
+}
+
+getUserCategoryPreferenceList() async {
+  Netmera.getUserCategoryPreferenceList().then((list) {
+    fillCategoryList(list);
+  }).catchError((error) {
+    debugPrint(error);
+  });
+}
+
+setUserCategoryPreference(NetmeraCategoryPreference item) async {
+  Netmera.setUserCategoryPreference(item.getCategoryId()!, !item.getOptInStatus()!).then((value) {
+    debugPrint("Successfully set user category preference list");
+  }).catchError((error) {
+    debugPrint(error);
+  });
+}
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/flutter/push-inbox.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

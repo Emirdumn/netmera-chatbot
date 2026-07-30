@@ -1,0 +1,481 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/flutter/changelog.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/flutter/changelog.md).
+
+# Changelog
+
+Latest version details may also be found here: [Netmera Flutter SDK page on pub.dev](https://pub.dev/packages/netmera_flutter_sdk).
+
+## v3.2.0
+
+**July 24, 2026**
+
+⭐ **Improvements**
+
+* Add Swift Package Manager (SPM) support for the iOS plugin, as an alternative to CocoaPods (CocoaPods integration is still fully supported)
+
+## v3.1.0
+
+**June 1, 2026**
+
+⭐ **Improvements**
+
+* Increased the minimum supported Dart version to **2.17.0** and Flutter version to **3.0.0**.
+* Improved push callback data mapping across Android, iOS, and Dart.
+* Upgraded the Netmera Android SDK version to **4.15.2**.
+* Upgraded the Netmera iOS SDK version to **4.19.1**.
+
+## v3.0.0
+
+**April 17, 2026**
+
+⭐ **Improvements**
+
+* Implement **Netmera Swift SDK**
+* Move initialize method inside the plugin and simplify iOS integration
+* Convert iOS plugin codes to **Swift**
+* Convert Android plugin codes to **Kotlin**
+
+:rocket: **Features**
+
+* Add `identifyUser` method
+* Add `updateUserProfile` method
+* Add `sendGenericEvent` method
+* Add `dismissAllPresentations` method
+* Add `getWhatsAppPermission` and `setWhatsAppPermission` methods
+* Add callback to `requestPushNotificationAuthorization` method
+
+:wastebasket: **Deprecation**
+
+* Remove `updateUser` and `updateUserAsync` methods
+* Remove `setBaseUrl` method
+* Remove `setApiKey` method
+* Remove `setAppGroupName` method
+* Remove `skipAppConfigAndSetBaseUrl` method
+* Remove `turnOffSendingEventAndUserUpdate` method
+* Remove `areNotificationsEnabled` method
+* Remove `handleLastMessage` method
+
+{% hint style="success" %}
+If you are upgrading from previous versions, please refer to our [Migration Guide](/netmera-developer-guide/platforms/flutter/migration-to-3.x.md) for detailed transition steps.
+{% endhint %}
+
+## v2.9.2
+
+**February 16, 2025**
+
+⭐ **Improvements**
+
+* Updated Netmera Android SDK version to **4.13.1.**
+* Updated Netmera iOS SDK version to **3.27.6.**
+
+## v2.9.0
+
+**October 1, 2025**
+
+⭐ **Improvements**
+
+* Updated Netmera Android SDK `nmcore` version to **4.9.1**.
+
+{% hint style="info" %}
+Netmera SDK is now fully compatible with **16 KB memory page sizes**.
+{% endhint %}
+
+## v2.8.0
+
+**August 4, 2025**
+
+⭐ **Improvements**
+
+* Updated Netmera Android SDK `nmcore` to version **4.6.1**
+* Updated Netmera iOS SDK to version **3.27.0**
+
+## v2.7.0
+
+**July 21, 2025**
+
+⭐ **Improvements**
+
+* Integrated Android SDK **nmcore v4.6.0**
+* Integrated Android SDK **nmfcm v4.5.0**
+* Integrated Android SDK **nmhms v4.5.0**
+* Integrated **iOS** **SDK v3.26.0**
+
+## v2.6.0
+
+**June 19, 2025**
+
+:rocket: **Features**
+
+* `updateUserAsync()` method is added.
+
+## v2.5.4
+
+**May 16, 2025**
+
+**🛠️ Bugfixes**
+
+* **Resolved Push Delivery Issue for Custom Firebase Setups**\
+  Fixed a problem where push notifications could not be received by customers using a custom Firebase integration.
+* **Prevented Duplicate Requests on Initial Launch (Android)**\
+  Resolved an issue where API requests were being triggered multiple times during the initial launch of the application on Android. This issue has been fixed with **nmcore SDK version 4.3.2**.
+
+## v2.5.3
+
+**April 28, 2025**
+
+⭐ **Improvements**
+
+* Upgraded Android SDK **nmcore** to version **4.3.0.**
+* Upgraded Android SDK **nmfcm** to version **4.0.2.**
+* Upgraded Android SDK **nmhms** to version **4.0.1.**
+
+**🛠️ Bugfixes**
+
+* A fix has been developed to address the `ensureInitializationComplete` crash.&#x20;
+
+## v2.5.2
+
+**April 10, 2025**
+
+⭐ **Improvements**
+
+* **`DateTime` Event Attribute Improvement**
+
+Improved handling of `DateTime`-type event attributes: these are now automatically converted to timestamps for consistency and better platform compatibility.
+
+## v2.5.1
+
+**April 2, 2025**
+
+⭐ **Improvements**
+
+* Upgraded **Netmera iOS SDK** to version **3.25.0**.
+* Upgraded **Netmera Android SDK** to version **4.0.10**.
+* Made compatible with **Flutter 3.29.x** versions.
+
+## v2.5.0
+
+**February 3, 2025**
+
+⭐ **Improvements**
+
+* Upgraded **iOS SDK** to version **3.24.9**.
+* Upgraded **Android SDK** to version **4.0.7**.
+
+:rocket: **Features**
+
+* Implemented **SSL pinning** for enhanced security.
+* Added `checkNotificationPermission` method to verify notification permissions programmatically.
+
+## v2.4.6
+
+**December 23, 2024**
+
+⭐ **Improvements**
+
+* **iOS SDK** upgraded from 3.23.16 to **3.24.1**
+* **Android nmcore** updated from 3.14.4 to **3.15.3**
+* **Android nmfcm** & **Android nmhms** updated to **3.12.1**
+
+## v2.4.5
+
+**November 18, 2024**
+
+⭐ **Improvements**
+
+* **iOS Push Callback Update:**
+
+Updated iOS push callbacks to prevent them from triggering on push notifications from other providers.
+
+## v2.4.4
+
+**October 24, 2024**
+
+⭐ **Improvements**
+
+* Updated Android SDK to version 3.14.4.
+* Updated iOS SDK to version 3.23.16.
+
+**🛠️ Bugfixes**
+
+* Resolved an issue where the category list passed as a parameter to the `getInboxCountForStatus` method was not being sent to the backend.
+
+## v2.4.3
+
+**August 6, 2024**
+
+* The iOS SDK version within the Flutter package has been updated to 3.23.12.
+
+## v2.4.2
+
+**July 30, 2024**
+
+⭐ **Improvements**
+
+* **iOS SDK:** Upgraded to version 3.23.11.
+* **Android SDK:** Upgraded nmcore to version 3.14.2.
+
+**Integration Changes:**
+
+* **Podfile Update:** Ensure that the Netmera pods in your Podfile are updated to version 3.23.11.
+
+## v2.4.1
+
+**June 25, 2024**
+
+⭐ **Improvements**
+
+* **Upgraded Netmera iOS SDK:** Updated to version 3.23.6
+* **Upgraded Netmera Android SDK:** Updated to version 3.14.0
+
+**Attention: Critical Update for Android Users** :warning:
+
+* **Fixed Android Gradle 8+ Release Build Issue:** If you are using Android Gradle 8 or above, it is essential to upgrade to at least Flutter SDK 2.4.1 to resolve this issue and ensure seamless builds.
+
+## v2.4.0
+
+**February 26, 2024**
+
+* Added iOS 3.22.0 package.
+
+⭐ **Improvements**
+
+* Integrated Android Core and FCM versions 3.12.0, which support the transition to FCM HTTP v1.
+* Raised the Flutter SDK's minimum Android SDK version to 21 for improved compatibility and performance.
+
+**🛠️ Bugfixes**
+
+* Addressed an issue where building with Android Gradle 8 was causing problems.
+
+## v2.3.7
+
+**January 24, 2024**
+
+⭐ **Improvements**
+
+* Integration of widget callback.
+
+## v2.3.6
+
+**January 9, 2024**
+
+Android Core 3.11.4 was added to this version. To integrate the latest versions, update your dependencies as follows:
+
+```gradle
+implementation 'com.netmera:nmcore:3.11.4'
+implementation 'com.netmera:nmfcm:3.11.0'
+implementation 'com.netmera:nmhms:3.11.0'
+```
+
+**🛠️ Bugfixes**
+
+* In the user update callback, the response was sometimes returned as null. This has been addressed, and error responses will now provide more detailed information.
+
+## v2.3.5
+
+**December 11, 2023**
+
+* Upgraded Android Core SDK version to 3.11.3. and Android FCM version to 3.11.0.
+
+**🛠️ Bugfixes**
+
+* Resolved an issue with Android synchronous user updates.
+
+## v2.3.4
+
+**December 5, 2023**
+
+* Added Android core 3.11.1 and HMS 3.11.0 packages.
+* Added iOS 3.21.0 package.
+
+⭐ **Improvements**
+
+* User update callbacks are now included in the Flutter SDK.
+
+<details>
+
+<summary>User Update Method Details</summary>
+
+**Example Usage in Dart Code:**
+
+```dart
+// User update sync
+Netmera.updateUser(user).then((value) {
+  print('User updated');
+}).catchError((error) {
+  print('User update failed: $error');
+});
+```
+
+</details>
+
+## v2.3.2
+
+**October 31, 2023**
+
+* Android 3.10.4 and iOS 3.18.0 versions have been added.
+
+:rocket: **Features**
+
+* The `fetchCoupon` feature has been integrated into Flutter SDK.
+
+**🛠️ Bugfixes**
+
+* The Android `baseUrl` crash issue has been resolved.
+
+## v2.3.1
+
+**September 20, 2023**
+
+⭐ **Improvements**
+
+* Android core and FCM 3.10.2 versions have been integrated into the Flutter SDK.
+* The Target API level of the Android module has been raised to 33.
+* The **`'startDataTransfer'`** and **`'stopDataTransfer'`** methods have been added to the plugin.
+
+## v2.3.0
+
+⭐ **Improvements**
+
+Flutter version 2.3.0, which includes Android 3.10.1 and iOS 3.16.0 versions, has been released.
+
+## v2.2.0
+
+⭐ **Improvements**
+
+* Push action callbacks were moved in foreground thread.
+
+<details>
+
+<summary>Callback Details</summary>
+
+It appears that you have callback methods in your application, where the developer can provide their own custom methods to be executed. These callback methods allow you to receive specific information or perform certain actions requested from Netmera. For example, you can receive push payloads through these callbacks.
+
+In Flutter, there is a problem where callbacks cannot run in the background as the application kills the cross-compiled code to preserve resources. To avoid this issue, you can utilize the "isolate" feature to run the existing callback methods in a separate thread. However, it's important to note that since these callbacks are running in a background thread, they cannot perform long-running tasks or have persistent operations. Once the task in the thread is completed, the thread terminates. This behavior is due to the nature of different threads operating independently. The methods have been moved to the foreground.
+
+</details>
+
+* onPushReceiveBackground callback was created for background messages.
+
+> Only the `onPushReceiverBackground` handling process is performed in the background.
+
+**🛠️ Bugfixes**
+
+* Flutter iOS event channel issue was fixed.
+* Push action callbacks context issue was fixed.
+
+#### 🔗 **INTEGRATION**
+
+#### iOS
+
+* The section below from the AppDelegate should be removed.
+
+```swift
+func registerPlugins(registry: FlutterPluginRegistry) {
+    GeneratedPluginRegistrant.register(with: registry)
+};
+```
+
+* The following line should be removed from the AppDelegate → didFinishLaunchingWithOptions method.
+
+```swift
+NetmeraFlutterSdkPlugin.setPluginRegistrantCallback(registerPlugins)
+```
+
+* The inside of the AppDelegate → didReceiveRemoteNotification method should be changed as follows.
+
+```swift
+~~FNetmeraService.handleWork(ON_PUSH_RECEIVE, dict:["userInfo" : userInfo])~~
+
+if UIApplication.shared.applicationState == .active {
+    FNetmeraService.handleWork(ON_PUSH_RECEIVE, dict:["userInfo" : userInfo])
+} else {
+    FNetmeraService.handleWork(ON_PUSH_RECEIVE_BACKGROUND, dict:["userInfo" : userInfo])
+}
+```
+
+#### Android
+
+* There is no change in Android integration.
+
+#### Dart
+
+* The `NetmeraPushBroadcastReceiver().initialize()` method in the main.dart file can now be called anywhere.
+* In order for background messages to be processed, the following method must be added first, outside the `main` ve `MyApp` blocks.
+
+```dart
+@pragma('vm:entry-point')
+void _onPushReceiveBackgroundHandler(Map<dynamic, dynamic> bundle) async {
+  print("onPushReceiveBackground: $bundle");
+}
+```
+
+* Then this function should be given to *`onPushReceiveBackground`* in `main` before the `runApp` method as follows.
+
+```dart
+NetmeraPushBroadcastReceiver.onPushReceiveBackground(_onPushReceiveBackgroundHandler);
+```
+
+For more detailed information, you can see the example usage in the example project. <https://github.com/Netmera/Netmera-Flutter-Example/tree/master>
+
+## v2.1.15
+
+:rocket: **Features**
+
+* Netmera Android SDK version was upgraded to 3.9.14.
+
+**🛠️ Bugfixes**
+
+* Decryption failed issue was fixed. (VF crash fixed.)
+
+## v2.1.14
+
+:rocket: **Features**
+
+* Android core SDK version 3.9.12 and FCM version 3.9.4 have been added to the Flutter SDK.
+* Android 13 notification permission methods have been added to the Flutter SDK and integrated with the existing iOS methods. The `areNotificationsEnabled` and `requestPushNotificationAuthorization` methods can now be used for both iOS and Android devices.
+
+<details>
+
+<summary>Push Notification Permissions</summary>
+
+If you don't request notification permission at runtime, you can request it by calling the `requestPushNotificationAuthorization()` method. Note: Notification runtime permissions are required on Android 13 (API 33) or higher. Therefore, before calling the method, make sure your project targets an API of 33 and above.
+
+```jsx
+Netmera.requestPushNotificationAuthorization();
+```
+
+You can call the `areNotificationsEnabled()` method if you need to know the status of permissions.
+
+```jsx
+Netmera.areNotificationsEnabled().then((enabled) {
+      // Use the enabled status of permission as boolean
+ });
+```
+
+Usage details of `areNotificationsEnabled` and `requestPushNotificationAuthorization` methods have been added to the Readme file.
+
+</details>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/flutter/changelog.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

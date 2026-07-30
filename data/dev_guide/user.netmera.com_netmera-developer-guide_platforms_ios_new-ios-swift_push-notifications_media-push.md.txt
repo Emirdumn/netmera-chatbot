@@ -1,0 +1,165 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/media-push.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/media-push.md).
+
+# Media Push
+
+### Step 1: Create a New Notification Service Extension
+
+To create a new Notification Service Extension to your application:
+
+1. On **Xcode** click **File > New > Target**. Choose `Notification Service Extension`
+2. Choose `Notification Service Extension`
+3. A new class named `NotificationService` will be created. It should be extended from `NotificationServiceExtension` class.
+
+Your `NotificationService` class should look like the following:
+
+```swift
+import UserNotifications
+import NetmeraNotificationServiceExtension
+
+class NotificationService: NotificationServiceExtension {
+  override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
+    super.didReceive(request, withContentHandler: contentHandler)
+  }
+
+  override func serviceExtensionTimeWillExpire() {
+    super.serviceExtensionTimeWillExpire()
+  }
+}
+```
+
+### Optional: Integrating Notification Service Extension Using CocoaPods
+
+If you're using a **Podfile** for dependency management, follow these steps along with the rest of the steps from 1 to 5:
+
+* Add `NetmeraNotificationServiceExtension` in your Podfile:
+* Install it to your extension target.
+
+```ruby
+pod 'NetmeraNotificationServiceExtension'
+```
+
+**Note:** If you're not using CocoaPods, you can skip this step.
+
+### Step 2: Add App Group Capability
+
+You need to add the App Groups capability to both your main app target and your Service Extension target via the Signing & Capabilities section.
+
+1. Open your project in Xcode.
+2. Go to the Signing & Capabilities tab.
+3. Select App Groups from the list.
+
+<figure><img src="/files/5ahR3mbVz6zH0vMMLhwE" alt="" width="563"><figcaption></figcaption></figure>
+
+4. Add or select an existing App Group (e.g., `group.example.app`).
+5. Repeat steps 2–6 for your **Service Extension target**.
+
+<figure><img src="/files/OjEWOjzNY76ji5IZJvkH" alt="" width="563"><figcaption></figcaption></figure>
+
+<figure><img src="/files/PWSFjXpf2BDaO2L5p4sK" alt="" width="563"><figcaption></figcaption></figure>
+
+6. Add the App Group name under the appropriate key (e.g., `NetmeraAppGroup`) to match the App Group you added in Xcode.
+7. Open the `Netmera-Config.plist` file in your project.
+
+### Step 3: Add Your `AppGroupName`
+
+1. Add your `AppGroupName` in your Netmera-Config.plist.
+
+```html
+<key>sdk_params</key>
+<dict>
+    <key>app_group_name</key> // Add this line in Config.plist
+    <string>{YourAppGroupName}</string> // Add this line in Config.plist
+    <key>use_ui_scene</key>
+    <false/>
+    <key>api_key</key>
+    <string>{API_KEY}</string>
+    <key>custom_events</key>
+    <array>
+        <string>{YourCustomEvent}</string>
+    </array>
+</dict>
+```
+
+If you don't have a `Netmera-Config.plist` see the step here [/pages/5d9FesEwfJr1x5zQGP3U#id-1.-configure-with-netmera-plist](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/pages/5d9FesEwfJr1x5zQGP3U#id-1.-configure-with-netmera-plist "mention").
+
+### Step 4: Select Targets in Target Membership
+
+1. Select **all three targets** in the Target Membership section on the right.
+
+<figure><img src="/files/8gMukxC3esVq9UOivbqM" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 5: Select Main Project & Service Extension
+
+1. Go to **Notification Service > Target Membership**.
+2. Select both the main project and the service extension.
+
+<figure><img src="/files/7ETSjFwxAuZH1ygHHLaW" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 6: Receiving Http Media Contents
+
+#### Sample Service Extention Info.plist
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+    <key>NSExtension</key>
+    <dict>
+        <key>NSExtensionPointIdentifier</key>
+        <string>com.apple.usernotifications.service</string>
+        <key>NSExtensionPrincipalClass</key>
+        <string>$(PRODUCT_MODULE_NAME).NotificationService</string>
+    </dict>
+</dict>
+</plist>
+```
+
+If you want to allow your application to receive http media contents:
+
+1. Click `Info.plist` under **Notification Service Extension,**
+2. Add **App Transport Security Settings,**
+3. &#x20;Add **Allow Arbitrary Loads** under App Transport Security Settings and set it to **YES.**
+
+### **Troubleshooting**
+
+If push notifications do not display correctly:
+
+1. Go to **Build Settings > Runpath Search Paths** in the extension target. Ensure the following paths are added:
+
+```plaintext
+@executable_path/../../Frameworks  
+@executable_path/Frameworks  
+@loader_path/Frameworks
+```
+
+2. Remove the **default label** in **MainInterface**.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/media-push.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

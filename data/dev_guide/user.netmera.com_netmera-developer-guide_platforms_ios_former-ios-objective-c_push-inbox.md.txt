@@ -1,0 +1,331 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-inbox.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-inbox.md).
+
+# Push Inbox
+
+### Push Inbox Overview
+
+NetmeraInbox allows you to access and manage previously sent push notifications in an inbox-style interface. You cannot instantiate NetmeraInbox directly; instead, you must obtain an instance through the SDK and use it to interact with push notifications.
+
+### Filter and Fetch Notification
+
+Create a `NetmeraInboxFilter` instance to specify which push notifications to fetch. You can filter by:
+
+* **Status**: Read, Unread, or Deleted.
+* **Categories**: Filter by specific categories.
+* **Expired Notifications**: Include or exclude expired notifications. &#x20;
+* **Page Size**: Number of notifications to fetch per request.
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+let filter = NetmeraInboxFilter()
+// Default value is NetmeraInboxStatusRead | NetmeraInboxStatusUnread
+filter.status = NetmeraInboxStatus.all
+// Default value is NSUIntegerMax
+filter.pageSize = 20
+// Default value is nil
+filter.categories = ["category_1", "category_2"]
+// Default value is NO
+filter.shouldIncludeExpiredObjects = true
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+NetmeraInboxFilter *filter = [[NetmeraInboxFilter alloc] init];
+
+// Default value is NetmeraInboxStatusRead | NetmeraInboxStatusUnread
+filter.status = NetmeraInboxStatusAll;
+
+// Default value is NSUIntegerMax
+filter.pageSize = 20;
+
+// Default value is nil
+filter.categories = @[@"category_1", @"category_2"];
+
+// Default value is NO
+filter.shouldIncludeExpiredObjects = YES;
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Fetch the First Page
+
+Request the list of push notifications matching the filter:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+Netmera.fetchInbox(using: filter, completion: {(_ inbox: NetmeraInbox, _ error: Error?) -> Void in
+            if error != nil {
+                print("Error : \(String(describing: error?.localizedDescription))")
+            }
+            // Store returned inbox object for future operations
+            var localInbox: NetmeraInbox?  // local inbox definition global variable
+            localInbox = inbox
+        })
+```
+
+If fetch operations succeeds, method will call given block with an `inbox` object which contains the first chunk of push notifications matching with given filter, and a `nil` `error`. Otherwise, block is called with a `nil` `inbox` parameter and an `error` object containing details about the reasons of failure.
+
+Now you can present the list of push objects inside your application. You get the list using `inbox.objects` property, which is an array of `NetmeraPushObject` instances.
+
+> Filter properties of an inbox instance could not be changed. If you need modified filter properties, you have to start a new fetch operation using `[Netmera fetchInboxUsingFilter:completion:]` method.
+> {% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+[Netmera fetchInboxUsingFilter:filter
+                    completion:^(NetmeraInbox *inbox, NSError *error) {
+                      if(error) {
+                        NSLog(@"Error : %@", [error debugDescription]);
+                      }
+                      // Store returned inbox object for future operations
+                      self.inbox = inbox;
+                    }];
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Update Notification Status
+
+Push notifications can have three statuses:
+
+* **Unread**
+* **Read**
+* **Deleted**
+
+You can update the status of notifications to allow users to mark messages as read, unread, or deleted.
+
+{% hint style="info" %}
+You can update the status of all notifications in the Inbox with a single method, without needing to call the fetch or inbox method.
+{% endhint %}
+
+**Examples:**
+
+Update the status of a **single** notification:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+let array = [0,1,2,3,4]
+let indexSet = IndexSet(array)
+let deletedObjects: [Any]? = localInbox?.objects.objects(at: indexSet)
+localInbox?.update(NetmeraInboxStatus.deleted, for: deletedObjects as! [NetmeraPushObject], completion: {(_ error: Error?) -> Void in
+            if error != nil {
+                print("Error : \(String(describing: error?.localizedDescription))")
+            }
+        })
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 5)];
+NSArray *deletedObjects = [inbox.objects objectsAtIndexes:set];
+[self.inbox updateStatus:NetmeraInboxStatusDeleted
+          forPushObjects:deletedObjects
+              completion:^(NSError *error) {
+                if(error) {
+                  NSLog(@"Error : %@", [error debugDescription]);
+                }
+              }];
+```
+
+{% endtab %}
+{% endtabs %}
+
+Update the status of **all** notifications:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+Netmera.update(.read) { (error) in
+   //TODO:
+  }
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+[Netmera updateStatus:NetmeraInboxStatusRead forAllWithCompletion:^(NSError * _Nonnull error) {
+  // TODO:
+ }];
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Fetch More Pages
+
+If there are more notifications than the defined page size, fetch the next page:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+// Fetch next page using `NetmeraInbox` object
+localInbox?.fetchNextPage(completionBlock: {(_ error: Error?) -> Void in
+            if error != nil {
+                print("Error : \(String(describing: error?.localizedDescription))")
+            }
+        })
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+// Fetch next page using `NetmeraInbox` object
+[inbox fetchNextPageWithCompletionBlock:^(NSError *error) {
+  if(error) {
+    NSLog(@"Error : %@", [error debugDescription]);
+    }
+}];
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Incremental Fetching
+
+The `NetmeraInbox` instance returned from `-fetchInboxUsingFilter:completion:` keeps the list of fetched notifications in `inbox.objects`. As you fetch more pages, new notifications are added to this list.
+
+For example, if you set a page size of 10 and fetch 3 pages, `inbox.objects` will contain all 30 notifications from the 3 pages. This allows you to display the entire list of notifications in a table or collection view.
+
+{% hint style="info" %}
+**Error Handling**
+
+If the operation fails, the **completion block** will be triggered with an error describing the failure. If there are no more pages to fetch, the method will immediately call the completion block with an appropriate error.
+{% endhint %}
+
+### Checking if All Pages are Fetched
+
+You can check if there are more pages to fetch by using the **`hasNextPage`** property of the `NetmeraInbox` instance. If it returns **`false`**, it means all pages have been fetched.
+
+### Push Notification Counts
+
+To get the total count of notifications based on status:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+// Get the total count of all unread and read push notifications
+// existing in Netmera servers for this device
+if localInbox?.count(for: NetmeraInboxStatus.unread) != nil && localInbox?.count(for: NetmeraInboxStatus.read) != nil {
+            let numOfReadOrUnread = (localInbox?.count(for: NetmeraInboxStatus.unread))! + (localInbox?.count(for: NetmeraInboxStatus.read))!
+        }
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+// Get the total count of all unread and read push notifications
+// existing in Netmera servers for this device
+NSUInteger *numOfReadOrUnread = [inbox countForStatus:NetmeraInboxStatusUnread | NetmeraInboxStatusRead];
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Light Fetching
+
+To get the count without fetching all push notifications:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+let filter = NetmeraInboxCountFilter()
+filter.status = {status}
+filter.categories = {categoryList}
+Netmera.fetchInboxCount(with: filter) { response, error in
+if let error = error {
+print("inbox count error: \(error)")
+} else if let response = response {
+print("Read: \(response.count(for: .read)) Unread: \(response.count(for: .unread)) deleted: \(response.count(for: .deleted)) all: \(response.count(for: .all))")
+}
+}
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
++ (void)fetchInboxCountWithFilter:(NetmeraInboxCountFilter *)filter
+completion:(void (^)(NetmeraInboxCountResponse * _Nullable response, NSError * _Nullable error))completionBlock
+```
+
+{% endtab %}
+{% endtabs %}
+
+## Message Category
+
+You can define Message Categories under **Settings > Message Category** in the panel.
+
+**User Category Preferences**
+
+To retrieve the user's category preferences, use the following method. It returns a list of preferences with each entry containing the ID, name, and enable status:
+
+```swift
+Netmera.getUserCategoryPreferenceList { categories, error in
+    if let categories = categories {
+        print(categories)
+    } else if let error = error {
+        print(error)
+    }
+}
+```
+
+**Managing Category Preferences**
+
+To manage category preferences and switch their status, use this method. Provide the category ID and set the `categoryEnabled` parameter to `true` or `false`
+
+```swift
+Netmera.setUserCategoryPreferenceWithCategoryId("{categoryId}", categoryEnabled: {true/false}) { error in
+    // Handle the result or error accordingly
+    ...
+}
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-inbox.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

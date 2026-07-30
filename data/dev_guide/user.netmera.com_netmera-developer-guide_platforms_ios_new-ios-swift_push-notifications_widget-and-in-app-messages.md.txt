@@ -1,0 +1,125 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/widget-and-in-app-messages.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/widget-and-in-app-messages.md).
+
+# Widget and In-App Messages
+
+### Pop-up and In-App Message Presentation Behavior
+
+All push notifications in Netmera work automatically—no additional coding is required. However, you can **customize** pop-up presentations and **listen to push callbacks**.
+
+By default, when a popup notification or in-app message is received:
+
+* If the app is in the **foreground**, the SDK displays pop-up notifications and in-app messages **immediately**.
+* If the app is in the **background**, the SDK shows them **when the app returns to the foreground.**
+
+### Enable / Disable Immediate Presentations
+
+To prevent immediate pop-up presentation (e.g., during video playback, gaming, or checkout), use:
+
+1. **Enable popup and widget push**:
+
+```swift
+Netmera.setPopupPresentationEnabled(true)
+```
+
+2. **Disable popup and widget push**:
+
+```swift
+Netmera.setPopupPresentationEnabled(false)
+```
+
+3. **Enable banner push**:
+
+```swift
+Netmera.setInAppMessagePresentationEnabled(true)
+```
+
+4. **Disable banner push**:
+
+```swift
+Netmera.setInAppMessagePresentationEnabled(false)
+```
+
+### Receiving Popups and In-App Messages in the Background
+
+To receive popups or in-app messages when the application is in the background, you need to enable **Remote Notifications** under **Background Modes** in **Capabilities**.
+
+### Configure In-App Presentation Animations
+
+You can configure how pop-up and banner in-app messages are presented by defining animation settings in `Netmera-Config.plist`.
+
+Supported animation types are:
+
+* `slide_from_bottom`  (default)
+* `slide_from_top`
+* `slide_from_right`
+* `slide_from_left`
+
+To define different animations for pop-ups and banners, add the following configuration to `Netmera-Config.plist`:
+
+{% code title="Netmera-Config.plist" %}
+
+```xml
+<key>in_app_animation_settings</key>
+<dict>
+    <key>popup_animation_type</key>
+    <string>slide_from_top</string>
+    <key>banner_animation_type</key>
+    <string>slide_from_left</string>
+</dict>
+```
+
+{% endcode %}
+
+The configuration appears in `Netmera-Config.plist` as shown below:
+
+<figure><img src="/files/3RiUf0fpQaCfaevfrXxE" alt=""><figcaption></figcaption></figure>
+
+In this example, pop-ups are displayed with the `slide_from_top` animation, while banners are displayed with the `slide_from_left` animation.
+
+#### Disable In-App Presentation Animations
+
+If you do not want to use presentation animations, set the animation value to `none` in `Netmera-Config.plist`.
+
+{% code title="Netmera-Config.plist" %}
+
+```xml
+<key>in_app_animation_settings</key>
+<dict>
+    <key>popup_animation_type</key>
+    <string>none</string>
+    <key>banner_animation_type</key>
+    <string>none</string>
+</dict>
+```
+
+{% endcode %}
+
+In this example, both pop-up and banner in-app messages are displayed without presentation animations.
+
+### Devices in Low Battery Mode
+
+Devices **cannot** receive popups or in-app messages while the application is closed or killed if the device is in **low battery mode**, as this mode disables background application refresh.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/widget-and-in-app-messages.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

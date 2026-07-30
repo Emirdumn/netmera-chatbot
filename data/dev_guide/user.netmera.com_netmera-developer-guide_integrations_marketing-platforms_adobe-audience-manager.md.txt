@@ -1,0 +1,121 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/marketing-platforms/adobe-audience-manager.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/marketing-platforms/adobe-audience-manager.md).
+
+# Adobe Audience Manager
+
+The Adobe integration enables Netmera to leverage the advanced segmentation and audience definitions established within the Adobe Experience Cloud. It primarily functions by synchronizing user cohorts (known as Marketing IDs) from Adobe Analytics/AAM, allowing for precise cross-channel campaign targeting in Netmera.
+
+The Adobe Audience Manager integration acts like a specialized cargo ship bringing highly refined goods (sophisticated audience segments) from the vast data port of Adobe Analytics directly into Netmera’s operational hub, allowing Netmera to act upon those precise audience definitions instantly for messaging and automation.
+
+### Overview
+
+| Attribute            | Details                                                            |
+| -------------------- | ------------------------------------------------------------------ |
+| **Connector Name**   | Adobe Analytics / Adobe Audience Manager                           |
+| **Category**         | Marketing Platforms / Analytical Platform                          |
+| **Primary Function** | Audience Synchronization and Profile Management                    |
+| **Data Flow**        | Bidirectional (Primarily Inbound for segmentation)                 |
+| **Connection Type**  | REST API utilizing JWT Bearer Token Authentication                 |
+| **Setup Complexity** | High (Requires extensive setup fields and private key file upload) |
+
+The integration is critical for marketers aiming for a unified customer view, ensuring that highly segmented user groups defined by behavioral analytics in Adobe are immediately actionable within Netmera's messaging channels (Push, Email, SMS).
+
+### Use Cases and Benefits
+
+* **Audience Synchronization:** The core use case is pulling pre-defined segments (cohorts) from Adobe Analytics into Netmera. Netmera explicitly pulls **Marketing IDs** associated with these segments.&#x20;
+* **Targeting and Tagging:** The retrieved Marketing IDs are used to match and **tag** corresponding users within the Netmera database (TagAdobeUsersJob). These Adobe-derived tags then form the basis for highly accurate Netmera segments.
+* **Cross-Channel Profiling:** It facilitates advanced cross-channel user profiling by enriching Netmera user attributes and segment memberships based on Adobe's audience data.
+* **Automated Segmentation:** The system supports scheduled or periodic synchronization to keep Netmera's segments current with the evolving behavioral data managed by Adobe.
+
+<figure><img src="/files/aSPJqQ5xAVSn1NLQXGmG" alt=""><figcaption></figcaption></figure>
+
+### Data Flow
+
+The Adobe integration is classified as b**idirectional**, but its operational focus within Netmera is heavily skewed towards inbound data flow for audience consumption:
+
+| Flow Direction                 | Data Transferred                    | Mechanism                                                                                                                                 |
+| ------------------------------ | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| **Inbound** (Adobe > Netmera)  | Segment/Cohort Lists, Marketing IDs | Netmera actively queries the Adobe Analytics API to pull segment members within a specified date range.                                   |
+| **Outbound** (Netmera > Adobe) | User Updates, Segment Data          | Netmera is also capable of synchronizing its own data back to Adobe AAM to maintain cross-platform consistency for tagging and targeting. |
+
+### Configuration Reference
+
+<figure><img src="/files/J8s4hEbUR9mORkewXbpn" alt="" width="233"><figcaption></figcaption></figure>
+
+The Adobe integration requires a setup involving OAuth 2.0 JWT (JSON Web Token) authentication.
+
+| Field Name               | Description                                                                                                       |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| **API Key**              | The Client ID obtained from the Adobe Developer Console.                                                          |
+| **Client Secret**        | The Client Secret associated with the API key.                                                                    |
+| **Organization ID**      | Your unique Adobe Organization ID.                                                                                |
+| **Technical Account ID** | The Technical Account ID used for JWT flow.                                                                       |
+| **IMS Exchange URL**     |                                                                                                                   |
+| **Discovery URL**        |                                                                                                                   |
+| **Analytics API URL**    |                                                                                                                   |
+| **IMS Host**             | Various Adobe API endpoint URLs required for token and service access.                                            |
+| **Metascopes**           | The array of access permissions (scopes) granted to the Netmera application.                                      |
+| **Secret Key File**      | The **Private Key file** (e.g., `.key file`) required for generating the JWT token for secure API authentication. |
+| **Proxy Enabled**        | Optional configuration for routing API calls through a specified proxy server.                                    |
+
+### Setup Instructions
+
+The setup requires close coordination between the Adobe Developer Console and the Netmera panel, demanding careful management of security keys.
+
+#### Step 1: Prerequisites
+
+You must have an active Adobe Experience Cloud account and administrative access to the **Adobe Developer Console** to create a project and configure JWT credentials.
+
+#### Step 2: Obtain Credentials via Adobe Developer Console
+
+1. Log into the Adobe Developer Console and create a new project.
+2. Add the **Adobe Analytics API** to the project.
+3. Configure **JWT (Service Account)** authentication.
+4. Generate and download the **Private Key file** (this file is mandatory for Netmera's configuration).
+5. Record the required IDs: `API Key`, `Client Secret`, `Technical Account ID`, and `Organization ID`.
+
+#### Step 3: Configure in Netmera
+
+1. Navigate to the Netmera Control Panel and select **Connectors** (or **Integrations**).
+2. Select the **Adobe** Connector.
+3. Fill the complex configuration form using the credentials obtained in Step 2, ensuring all URL endpoints (e.g., `imsExchange`, `discoveryUrl`) are correctly entered.
+4. **Upload the Private Key File** (secretKeyFile).
+5. Click **Save Configuration**.
+
+#### Step 4: Verification
+
+After saving, Netmera initiates the synchronization of segment lists from Adobe Analytics. Verify the integration by navigating to the **`Targeting > Segments > List`**  section in the Netmera panel, where the synchronized Adobe segments should now be visible and usable for targeting.
+
+### Usage Notes & Considerations
+
+1. **High Configuration Complexity:** The setup is highly due to the requirement for **JWT authentication** and over 15 distinct configuration fields, making the process prone to initial errors if credentials or URLs are mismatched.
+2. **JWT Token Management:** Reliance on JWT means secure management of the private key file and potential issues related to token expiration or rotation must be considered.
+3. **Authorization and Privilege:** Access to configure the Adobe integration and potentially utilize the synchronized segments requires specific roles. The privilege **PRIV\_ADOBE\_SEGMENTS** is explicitly documented as being part of the **APP\_ADMIN** and **MARKETER** roles, restricting this functionality from general users.
+4. **Rate Limiting:** Synchronization of large segment cohorts (pulling marketing IDs) is subject to the rate limits imposed by the Adobe Analytics API.
+
+**File Upload Requirement**
+
+Unlike simple API key integrations, this connection necessitates a file upload (the Private Key file), adding complexity to deployment and maintenance, particularly in automated environments.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/marketing-platforms/adobe-audience-manager.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

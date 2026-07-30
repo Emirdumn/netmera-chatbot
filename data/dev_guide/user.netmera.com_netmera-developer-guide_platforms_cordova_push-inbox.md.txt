@@ -1,0 +1,126 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/cordova/push-inbox.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/cordova/push-inbox.md).
+
+# Push Inbox
+
+### Push Inbox Overview
+
+`NetmeraInbox` allows you to access and manage previously sent push notifications in an inbox-style interface. You cannot instantiate `NetmeraInbox` directly; instead, you must obtain an instance through the SDK and use it to interact with push notifications.
+
+### Filtering Notifications
+
+Create a `NetmeraInboxFilter` instance to specify which push notifications to fetch. You can filter by:
+
+* **Status**: Read, Unread, or Deleted.
+* **Categories**: Filter by specific categories.
+* **Expired Notifications**: Include or exclude expired notifications. &#x20;
+* **Page Size**: Number of notifications to fetch per request.
+
+Here is a sample code to determine filtering options:
+
+```javascript
+import { Netmera, NetmeraInboxFilter } from '@awesome-cordova-plugins/netmera/ngx'
+
+     const netmeraInboxFilter = new NetmeraInboxFilter()
+   
+ 
+```
+
+### Netmera Inbox Object
+
+```
+ export interface NetmeraInboxFilter {
+    status?: number;
+    pageSize?: number;
+    categories?: string[];
+    includeExpiredObjects?: boolean;
+}
+```
+
+### Fetching the First Page
+
+Use `fetchInbox()` to retrieve notifications that match the filter:
+
+```javascript
+ fetchInbox() { 
+        let newFilter: NetmeraInboxFilter = {
+        status: NetmeraPushStatus.all,
+        pageSize: 1
+      }
+      this.netmera.fetchInboxUsingFilter(newFilter).then(inbox => {
+        console.log("FetchInbox Success: ", JSON.stringify(inbox));
+      }).catch(err => {
+        console.log("FetchInbox Error", err);
+      });
+    }
+```
+
+### Fetching Next Pages
+
+Once the first page is retrieved, use `netmera.fetchNextPage()` to get additional pages:
+
+```javascript
+this.netmera.fetchNextPage().catch(inbox => {
+     console.log("FetchNextPage: ");
+   }).catch(err => {
+     console.log("FetchNextPage error: ",err);
+   });
+```
+
+{% hint style="danger" %}
+Calling `netmera.fetchNextPage()` when no additional pages exist will trigger an error.
+{% endhint %}
+
+### Updating Push Notification Status
+
+Notifications can have three states:
+
+* **Unread**
+* **Read**
+* **Deleted**
+
+Use `updateStatus` to change a notification's status asynchronously:
+
+```javascript
+this.netmera.updatePushStatus(index, length, NetmeraPushStatus.read).then(result => {
+      console.log("Update Status: ", result);
+    }).catch(err => {
+      console.log("Update Error: ", err);
+    });
+```
+
+### Counting Notifications by Status
+
+Retrieve the count of notifications by status:
+
+```javascript
+//get count unread push objects
+    this.netmera.countForStatus(NetmeraPushStatus.unread).then(count => {
+      console.log("Count: ", count);
+    }).catch(err => {
+      console.log(err);
+    });
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/cordova/push-inbox.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

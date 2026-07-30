@@ -1,0 +1,109 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/cordova/geofence-and-location.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/cordova/geofence-and-location.md).
+
+# Geofence & Location
+
+By default, Netmera SDK does not collect location information from the device. To use features like geofence messaging and location-based user targeting, you must enable location tracking.
+
+### Checking and Requesting Location Permission
+
+Users may select **"Only Once"**, **"While Using the App"**, or **"Always"** when prompted for location permission. However, they can later change this permission via system settings.
+
+To ensure **accurate** location tracking, always check the **current** system-level location permission before accessing any location-based features. If the required permission is missing or no longer valid, re-trigger the location permission request using Netmera.
+
+**What to do:**
+
+* Check the current location permission status.
+* If the permission is **missing or limited**:
+  * **Request location permission again via Netmera.**
+
+> Always ensure the necessary permission is granted before initializing any location-based operations.
+
+## Step 1: Enable Location History
+
+To use location-based targeting, enable **Location History** in the Netmera web panel:\
+**Developers > App Info > App Config > Location History Enabled**
+
+## Step 2: iOS Integration
+
+### 1. Configure Location Permissions
+
+Add the following **`edit-config`** entries to the **`ios`** section of your `config.xml` to include the required **Info.plist** keys for location permissions:
+
+```xml
+<platform name="ios">
+    ...
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+        <string>Location access is needed to show nearby places.</string>
+    </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationAlwaysUsageDescription">
+        <string>Location services will be used in the background as well.</string>
+    </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationAlwaysAndWhenInUseUsageDescription">
+        <string>This app wants to use your location both when open and in the background.</string>
+    </edit-config>
+    ...
+</platform>
+```
+
+## Step 3: Android Integration
+
+On Android 10 and later, geofence push notifications require background location access. However, Android **does not allow** apps to request this permission directly in the app. Instead, users must manually enable **"Allow all the time"** in the system settings.
+
+{% hint style="success" %}
+**Best Practice:** Before redirecting users to settings, display an **explanatory message** about why location access is needed. You can use **Netmera widgets** to communicate this effectively. You may see the next page [Background Location Permission](/netmera-developer-guide/platforms/android/geofence-and-location/background-location-permission.md) on how to create these widgets to ask for location permissions.
+{% endhint %}
+
+### 1. Add Required Permissions
+
+Add the following **`edit-config`** entries to the android section of your `config.xml`&#x20;
+
+```xml
+<platform name="android">
+        ...
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
+            ...
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <application android:networkSecurityConfig="@xml/network_security_config" />
+            <application android:name="com.netmera.cordova.plugin.NetmeraApplication" />
+            ...
+        </edit-config>
+        ...
+    </platform>
+```
+
+## Step 4: Location Authorization
+
+For **iOS** and **Android 6.0 (API Level 23)** and later, location permission must be requested while the app is running. Netmera provides a built-in permission request flow:
+
+```javascript
+Netmera.askLocationAuthorization()
+```
+
+{% hint style="danger" %}
+Calling these methods immediately prompts the **location permission dialog**. Make sure to inform users beforehand about how your application will use their location.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/cordova/geofence-and-location.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

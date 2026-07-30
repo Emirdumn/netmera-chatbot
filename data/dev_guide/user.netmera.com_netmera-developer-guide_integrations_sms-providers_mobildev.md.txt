@@ -1,0 +1,101 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/mobildev.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/mobildev.md).
+
+# Mobildev
+
+The Mobildev Connector integrates Netmera with the Mobildev SMS gateway service, a provider primarily focused on the Turkish market. It is configured as a high-priority SMS delivery channel within the Netmera platform, enabling reliable transmission of both marketing and transactional SMS messages.
+
+### Overview
+
+<table><thead><tr><th width="234.188720703125">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>Mobildev</td></tr><tr><td><strong>Category</strong></td><td>SMS Providers</td></tr><tr><td><strong>Provider Location</strong></td><td>Turkey (<a href="https://www.mobildev.com"><code>https://www.mobildev.com</code></a>)</td></tr><tr><td><strong>Primary Function</strong></td><td>Outbound transmission of SMS messages</td></tr><tr><td><strong>Netmera Component</strong></td><td><code>SmsMobildevAdapterImpl</code> class</td></tr><tr><td><strong>Data Flow</strong></td><td><strong>Outbound</strong> (Netmera > Mobildev)</td></tr><tr><td><strong>Priority Ranking</strong></td><td>High (Rank 2, after Message Center)</td></tr></tbody></table>
+
+Mobildev is utilized by the Netmera system for bulk SMS delivery and supports specific requirements related to Turkish compliance, notably the **IYS (İleti Yönetim Sistemi)** message type selection.
+
+<figure><img src="/files/N0GQqyV8iEQSGquEKoM9" alt=""><figcaption></figcaption></figure>
+
+### Use Cases and Benefits
+
+1. **High-Volume SMS Delivery:** Used for executing mass SMS marketing campaigns created within the Netmera Control Panel.
+2. **IYS Message Type Support:** Mobildev supports selecting the required IYS message type (specifically, **`NOTIFICATION`** or **`CAMPAIGN`**) for SMS messages. This crucial feature ensures that messages adhere to Turkish legal requirements regarding commercial electronic communications.
+3. **Turkish Market Focus:** Provides a localized and optimized service for sending SMS within Turkey.
+4. **High-Priority Channel:** As the second-highest priority connector (after Message Center), Mobildev ensures high deliverability and serves as a reliable fallback should the highest-priority provider be inactive.
+5. **International SMS Capability:** Mobildev also supports sending international SMS messages.
+
+### Data Flow
+
+The data flow for Mobildev is exclusively **Outbound**, handled by the SMS Adapter layer.
+
+1. **Message Creation:** An SMS message is prepared in Netmera, optionally selecting the IYS Message Type (`NOTIFICATION` or `CAMPAIGN`).
+2. **Provider Selection:** The `SmsSenderServiceImpl` checks active SMS providers. If Message Center (the highest priority provider) is not active, Mobildev is checked next. If configured and active, Mobildev is selected.
+3. **API Submission:** The `SmsMobildevAdapterImpl` sends the message payload (including `recipient phone numbers`, `content`, and the Mobildev specific parameters like `companyCode`) to the Mobildev API.
+
+   * The Netmera code (`SmsMobildevAdapterImpl.java`) explicitly supports sending the IYS message type selection.
+
+   $$\text{Netmera Messaging Service} \xrightarrow\[\text{SmsMobildevAdapterImpl}]{\text{SMS API Request}} \text{Mobildev Gateway}$$
+
+### Configuration Reference
+
+<figure><img src="/files/J4UibjuHxayDvZLpIaz2" alt="" width="308"><figcaption></figcaption></figure>
+
+Establishing the Mobildev connection requires several unique parameters provided by the vendor, including authentication details and sender settings.
+
+<table><thead><tr><th width="171.43804931640625">Parameter</th><th width="119.3082275390625">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>companyCode</strong></td><td>String</td><td>The unique code assigned to your company within the Mobildev system.</td></tr><tr><td><strong>username</strong></td><td>String</td><td>Your Mobildev account username for API authentication.</td></tr><tr><td><strong>password</strong></td><td>String</td><td>Your Mobildev account password for API authentication.</td></tr><tr><td><strong>senderList</strong></td><td>List</td><td>A list of your pre-approved Sender IDs (sender titles).</td></tr><tr><td><strong>encoding</strong></td><td>String</td><td>The character encoding used for the SMS content (e.g., UTF-8, GSM 7-bit).</td></tr></tbody></table>
+
+### Setup Instructions
+
+The setup is completed via the Netmera Control Panel after coordinating account setup with Mobildev.
+
+#### Step 1: Prerequisites
+
+1. Contact Mobildev to set up an account and obtain your credentials.
+2. Ensure your chosen Sender IDs have been applied for and approved within the Mobildev platform.
+3. Note down your assigned **Company Code**, **Username**, **Password**, and approved **Sender List**.
+
+#### Step 2: Configure in Netmera
+
+1. Navigate to the Netmera Control Panel and go to the **Connectors** (or **Integrations**) section.
+2. Select the **Mobildev** Connector.
+3. Fill the configuration form:
+   * Input the **Company Code**, **Username**, and **Password**.
+   * Enter the list of approved **Sender Titles** (senderList).
+   * Specify the **Encoding** (e.g., typically a default encoding if not otherwise specified by the vendor).
+4. Click **Save Configuration**.
+
+#### Step 3: Verification
+
+Upon successful saving, Mobildev is automatically registered as a high-priority SMS channel.
+
+* **Validation:** Send a test SMS message from the Netmera panel. If the higher-priority Message Center connector is inactive, the message should route successfully through the Mobildev adapter.
+
+### Usage Notes & Considerations
+
+1. **Priority Sequencing:** Mobildev is prioritized directly after **Message Center**. If you intend to use Mobildev exclusively, ensure the Message Center connector is either deliberately deactivated or unconfigured.
+2. **IYS Compliance Necessity:** For messages targeting users in Turkey, the ability to specify the IYS Message Type (Notification or Campaign) is critical for legal compliance. Failure to correctly manage this type when sending campaign messages may result in compliance issues.
+3. **Credential Management:** The integration relies on explicit username and password fields. Any rotation or change to these credentials on the Mobildev platform must be manually replicated in the Netmera configuration to prevent immediate delivery failure.
+
+**International Format:**
+
+While Mobildev supports international SMS, all phone numbers (msisdn) submitted via the Netmera API (e.g., via `/3.0/registerUsers`) or for transactional messages must adhere to the **international format** (+CountryCodeNumber) for successful routing.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/mobildev.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

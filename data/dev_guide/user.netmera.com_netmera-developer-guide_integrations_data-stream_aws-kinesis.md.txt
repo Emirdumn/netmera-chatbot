@@ -1,0 +1,109 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/data-stream/aws-kinesis.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/data-stream/aws-kinesis.md).
+
+# AWS Kinesis
+
+The AWS Kinesis connector is a specialized integration within the Netmera platform, falling under the Data Streaming category. Its core purpose is to enable the real-time export of customer events and engagement data from Netmera directly into Amazon Kinesis Data Streams for high-throughput processing and integration with the wider Amazon Web Services (AWS) ecosystem.
+
+### Overview
+
+<table><thead><tr><th width="211.48138427734375">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>Kinesis</td></tr><tr><td><strong>Category</strong></td><td>Data Streaming / Data Flow Connector</td></tr><tr><td><strong>Provider</strong></td><td>Amazon Web Services (AWS)</td></tr><tr><td><strong>Primary Function</strong></td><td>Real-time transmission of Netmera events (Hooks) to Kinesis Data Streams.</td></tr><tr><td><strong>Netmera Component</strong></td><td><code>KinesisHookSender</code> class</td></tr><tr><td><strong>Data Flow</strong></td><td><strong>Outbound</strong> (Netmera > AWS Kinesis Stream)</td></tr><tr><td><strong>Connection Type</strong></td><td>AWS SDK (REST API using configured AWS credentials)</td></tr></tbody></table>
+
+<figure><img src="/files/V5KdjfXeJQSnL09RwXKB" alt=""><figcaption></figcaption></figure>
+
+The Kinesis integration is activated and configured via the Netmera Connectors panel, but its operational use is tied directly to the **Hooks module**, allowing clients to define specific triggers (events, message logs) that should be streamed immediately to AWS.
+
+### Use Cases and Benefits
+
+The primary benefit of integrating AWS Kinesis is facilitating high-volume, real-time data movement, enabling immediate consumption by external systems.
+
+1. **Real-Time Analytics Pipelines:** Events captured by Netmera (e.g., app opens, purchases, location updates) can be streamed instantly into Kinesis, where they can be consumed by downstream processing systems for immediate analysis.
+2. **Data Warehouse/Data Lake Feeding:** Kinesis is commonly used to feed massive streams of operational data directly into centralized storage solutions (like Amazon S3, Redshift, or other data warehouses) for long-term storage and complex reporting.
+3. **AWS Lambda Function Triggering:** The data stream can directly trigger **AWS Lambda functions** based on event occurrences, enabling real-time automation outside the Netmera platform.
+4. **High-Throughput Data Transfer:** Kinesis is architecturally designed to handle vast amounts of data volume, making it suitable for Netmera clients that generate significant messaging or usage event payloads.
+5. **Big Data Integration:** It provides a necessary layer for clients engaged in comprehensive **Big Data** processing and enterprise-level AWS ecosystem integration.
+
+### Data Flow
+
+The AWS Kinesis connector relies on the **Outbound Hook** mechanism to transfer data.
+
+1. **Hook Processing:** The Hook module's consumers intercept the event. If the configured hook type is **KINESIS**, and the Kinesis connector is active, the process proceeds.
+2. **Payload Generation:** Netmera converts the event data, user attributes, and identities into a **JSON format** payload.
+3. **API Submission:** The dedicated `KinesisHookSender` uses the configured apiKey, secretKey, and region to make an authenticated call to the **AWS Kinesis API** using the PutRecords method.
+4. **Partitioning:** Crucially, Netmera uses the **User ID (userId)** of the affected user as the **Partition Key** when writing records to the stream. This ensures that records belonging to the same user are generally directed to the same shard, maintaining transactional ordering for individual users within Kinesis.
+
+$$
+\text{Netmera Event / Message Log}
+\xrightarrow\[\text{JSON payload; partition key: UserId}]{\text{KinesisHookSender}}
+\text{AWS Kinesis Stream}
+$$
+
+### Configuration Reference
+
+<figure><img src="/files/BADeReXnQ8YHAiCqnlPP" alt="" width="234"><figcaption></figcaption></figure>
+
+The connector configuration is brief but requires sensitive AWS credentials.
+
+| Parameter     | Type   | Description                                                               | AWS Context                                   |
+| ------------- | ------ | ------------------------------------------------------------------------- | --------------------------------------------- |
+| **region**    | String | The AWS region where the Kinesis stream is hosted (e.g., `eu-central-1`). | Defines the target API endpoint.              |
+| **apiKey**    | String | The AWS IAM user's Access Key ID.                                         | Required for programmatic API authentication. |
+| **secretKey** | String | The AWS IAM user's Secret Access Key.                                     | Required for secure API authentication.       |
+
+These credentials must belong to an IAM user granted permissions to perform PutRecord actions (or full access) on the target Kinesis stream.
+
+### Setup Instructions
+
+The setup process requires actions on both the AWS side and the Netmera Control Panel.
+
+#### Step 1: AWS Prerequisites
+
+1. Access the AWS Console and navigate to the **IAM** service.
+2. Create a dedicated IAM user with **Programmatic Access** and assign a policy allowing access to Kinesis (e.g., AmazonKinesisFullAccess or a custom policy for specific stream writing).
+3. Obtain and securely store the **Access Key ID** (`apiKey`) and **Secret Access Key** (`secretKey`).
+4. Navigate to the **Kinesis** service and **create a Data Stream**, noting its AWS **Region** and **Stream Name**.
+
+#### Step 2: Configure in Netmera Connector
+
+1. Navigate to the Netmera Control Panel and go to the **Connectors** section.
+2. Select the **Kinesis** connector (via the `/connector/kinesis endpoint`).
+3. Input the obtained **Region**, **API Key**, and **Secret Key**.
+4. Click **Save Configuration**.
+
+#### Step 3: Configure the Hook
+
+1. Navigate to **`Settings`**`>`**`Hooks`** and create a New Hook.
+2. Set the **Hook Type** to **Kinesis**.
+3. Specify the **Stream Name** (obtained in Step 1) in the Hook configuration details.
+4. Define the **Trigger Type** (e.g., `EVENT`, `MESSAGE_LOG`) and the specific event code that should trigger the stream.
+
+### Usage Notes & Considerations
+
+1. **AWS Credential Rotation:** The integration relies on static API keys. Any required rotation of the AWS IAM user credentials must be handled **manually** by updating the configuration in the Netmera Control Panel.
+2. **Connector Dependency:** The Kinesis integration functions exclusively as a Hook Type. If the underlying Kinesis connector configuration is set to inactive, **no hook submissions will occur**, even if the individual hooks are correctly configured.
+3. **API Quota and Cost:** AWS charges based on shard usage and data volume. Clients must actively monitor their Kinesis usage and shard configuration to manage costs and avoid potential **rate limiting** imposed by AWS.
+4. **Payload Handling:** For particularly **large event payloads**, the architecture encourages the use of batch processing (defined in the Hook configuration) to optimize performance and adhere to Kinesis record size limits.
+5. **Stream Name Management:** While the apiKey and region are set at the connector level, the crucial **Stream Name** is defined and managed separately within each individual **Hook** configuration in the Netmera UI.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/data-stream/aws-kinesis.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

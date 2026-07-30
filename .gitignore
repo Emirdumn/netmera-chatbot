@@ -6,3 +6,8 @@ __pycache__/
 .DS_Store
 KEYLER
 .agents/
+.env
+*.db
+streamlit.log
+streamlit.pid
+nginx/.htpasswd

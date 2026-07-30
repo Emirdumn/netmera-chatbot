@@ -1,0 +1,201 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/push-payload-receivers.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/push-payload-receivers.md).
+
+# Push Payload Receivers
+
+### Handling Push Notification Click Events in iOS with Netmera SDK
+
+Netmera SDK automatically collects **Click Push Events**, allowing you to track when users interact with notifications. However, if you experience issues with collecting these events, it’s important to ensure that your app is properly configured to handle them.
+
+### Implementing `UNUserNotificationCenter` Delegate
+
+Set up the `UNUserNotificationCenter.delegate` at the **beginning** of the `didFinishLaunchingWithOptions` method in your `AppDelegate` file.
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+// In didFinishLaunchingWithOptions (AppDelegate.swift)
+if #available(iOS 10.0, *) {
+    UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+} else {
+    // Fallback on earlier versions
+}
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+// In didFinishLaunchingWithOptions (AppDelegate.m)
+[UNUserNotificationCenter currentNotificationCenter].delegate = self;
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Handle Push Notification Click Events
+
+Once you’ve set the delegate, Netmera will automatically handle push notification events, including click events. Below are the methods to process push notification click events.
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+func userNotificationCenter(
+    _ center: UNUserNotificationCenter, 
+    didReceive response: UNNotificationResponse, 
+    withCompletionHandler completionHandler: @escaping () -> Void
+) {
+    // NetmeraPushObject(dictionary: response.notification.request.content.userInfo)
+    // object.alert.body                  // Push Text
+    // object.alert.title                 // Push Title
+    // object.action.deeplinkURL          // Push Deeplink
+    // object.customDictionary            // Custom JSON
+}
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center 
+  didReceiveNotificationResponse:(UNNotificationResponse *)response 
+            withCompletionHandler:(void (^)(void))completionHandler
+{
+    // NetmeraPushObject *object = [[NetmeraPushObject alloc] initWithDictionary:response.notification.request.content.userInfo];
+    // object.alert.body                   // Push Text
+    // object.alert.title                  // Push Title
+    // object.action.deeplinkURL           // Push Deeplink
+    // object.customDictionary             // Custom JSON
+}
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Push Notification Received
+
+To capture push notifications when the app is in the background or foreground, you can implement the following methods. This method will return latest push object received by device.
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+func application(
+    _ application: UIApplication, 
+    didReceiveRemoteNotification userInfo: [AnyHashable: Any], 
+    fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
+) {
+    // Netmera.recentPushObject()?.alert.body                  // Push Text
+    // Netmera.recentPushObject()?.alert.title                 // Push Title
+    // Netmera.recentPushObject()?.action.deeplinkURL          // Push Deeplink
+    // Netmera.recentPushObject()?.customDictionary            // Custom JSON
+}
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+- (void)application:(UIApplication *)application 
+  didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    // [Netmera recentPushObject].alert.body                   // Push Text
+    // [Netmera recentPushObject].alert.title                  // Push Title
+    // [Netmera recentPushObject].action.deeplinkURL           // Push Deeplink
+    // [Netmera recentPushObject].customDictionary             // Custom JSON
+}
+
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Push Notification Received on Foreground
+
+This method allows you to handle push notifications when the app is in the foreground.
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+func userNotificationCenter(
+    _ center: UNUserNotificationCenter, 
+    willPresent notification: UNNotification, 
+    withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+) {
+    completionHandler(.alert)
+}
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center 
+  willPresentNotification:(UNNotification *)notification 
+  withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
+{
+    completionHandler(UNNotificationPresentationOptionAlert);
+}
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Retrieve Device Push Token
+
+To get the push token, use the following method:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+func application(
+    _ application: UIApplication, 
+    didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+) {
+}
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+- (void)application:(UIApplication *)application 
+  didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+}
+```
+
+{% endtab %}
+{% endtabs %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/push-payload-receivers.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,126 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/custom-web-view-presentation.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/custom-web-view-presentation.md).
+
+# Custom Web View Presentation
+
+By default, Netmera handles the presentation of web view content in push or popup notifications automatically. However, if you want to implement your own custom presentation flow, follow these steps:
+
+### Step 1: Set the Push Delegate
+
+Ensure your class is set as the push delegate for the Netmera SDK.
+
+```swift
+Netmera.setPushDelegate(self as! NetmeraPushDelegate)
+```
+
+### Step 2: Implement the `handleWebViewPresentation` Method
+
+In your delegate class, implement the `-handleWebViewPresentation:` method:
+
+```swift
+func handleWebViewPresentation(for object: NetmeraPushObject!) {
+    let vc = TableViewController()
+    let rootVC: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
+    rootVC?.present(vc, animated: true, completion: nil)
+    // Load web view content inside the presented webView
+    Netmera.loadWebViewContent(in: vc.webView)
+}
+```
+
+### Step 3: Presentation Flow
+
+When a push notification with web view content is received:
+
+* The SDK checks if a `NetmeraPushDelegate` object is set.
+* If the delegate exists and implements `-handleWebViewPresentation:`, it will use your custom flow.
+* If no delegate or method is found, the SDK uses its default presentation flow.
+
+Within the delegate method, call the `[Netmera loadWebViewContentInWebView:]` method.
+
+{% hint style="warning" %}
+The provided code is an **example** and requires customization for your own web view presentation flow.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+import Netmera
+
+class YourClass {
+    init() {
+        // Make sure you have set your object as the push delegate of Netmera SDK
+        Netmera.setPushDelegate(self as! NetmeraPushDelegate)
+        return
+    }
+}
+
+func handleWebViewPresentation(for object: NetmeraPushObject!) {
+    let vc = TableViewController()
+    let rootVC: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
+    rootVC?.present(vc, animated: true) { _ in }
+    
+    // Load web view content inside the presented webView
+    Netmera.loadWebViewContent(in: vc.webView)
+}
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+#import <Netmera/Netmera.h>
+
+@interface YourClass <NetmeraPushDelegate>
+@end
+
+@implementation YourClass
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        // Make sure you have set your object as the push delegate of Netmera SDK
+        [Netmera setPushDelegate:self];
+    }
+    return self;
+}
+
+- (void)handleWebViewPresentationForPushObject:(NetmeraPushObject *)object {
+    // Present your web view UI
+    YourWebViewController *vc = [[YourWebViewController alloc] init];
+    UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    [rootVC presentViewController:vc animated:YES completion:nil];
+
+    // Load web view content inside the presented webView
+    [Netmera loadWebViewContentInWebView:vc.webView];
+}
+
+@end
+```
+
+{% endtab %}
+{% endtabs %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/custom-web-view-presentation.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

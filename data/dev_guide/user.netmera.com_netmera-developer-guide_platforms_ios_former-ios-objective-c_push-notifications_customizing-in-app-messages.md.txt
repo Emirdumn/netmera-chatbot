@@ -1,0 +1,65 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/customizing-in-app-messages.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/customizing-in-app-messages.md).
+
+# Customizing In-App Messages
+
+#### Step 1: Create the plist File
+
+1. Create a new `plist` file.
+2. Place it inside the **Headers** folder in the Netmera Framework.
+
+#### Step 2: Customize Appearance Settings
+
+Use the following keys to modify in-app message properties in the `plist` file:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>TextColor</key>
+    <string>{hexcolor. For ex-> 16777215}</string>
+    <key>TitleColor</key>
+    <string>{hexcolor. For ex-> 16777215}</string>
+    <key>BackgroundColor</key>
+    <string>{hexcolor. For ex-> 16777215}</string>
+    <key>CancelButtonBackgroundColor</key>
+    <string>{hexcolor. For ex-> 16777215}</string>
+    <key>TitleFont</key>
+    <string>{font family name. ex -> ariel}</string>
+    <key>TextFont</key>
+    <string>{font family name. ex -> ariel}</string>
+    <key>CancelButtonRadius</key>
+    <string>{10 sd px}</string>
+    <key>ShadowOpacity</key>
+    <string>{0-1}</string>
+    <key>BottomPaddingRatio</key>
+    <string>{between 0.01 - 1}</string>
+    <key>CancelButtonImage</key>
+    <string>{imagename}</string>
+</dict>
+</plist>
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/customizing-in-app-messages.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

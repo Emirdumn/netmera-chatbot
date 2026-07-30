@@ -1,0 +1,607 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/via-integration/short-url-consent-requests.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/via-integration/short-url-consent-requests.md).
+
+# Short URL Consent Requests
+
+This page covers the VIA short URL consent flow for ETK and KVK requests. It explains the end-to-end flow, the required fields, and valid and invalid request examples for SMS and email scenarios.
+
+<figure><img src="/files/M9SNfAOXvijs3EdsEHBP" alt=""><figcaption></figcaption></figure>
+
+For a full version, please see the board [here](https://miro.com/app/board/uXjVLpw19Ro=/?share_link_id=564915471499).
+
+{% stepper %}
+{% step %}
+
+#### Prepare the Short URL consent form
+
+Prepare a Short URL consent form using your IYS Panel. Once the form is ready, submit it to IYS for approval.
+{% endstep %}
+
+{% step %}
+
+#### Obtain IYS Approval
+
+After IYS approves the form, it will be available for use in API calls. The form ID provided by IYS will serve as the `formId` value in your requests.
+{% endstep %}
+
+{% step %}
+
+#### Send the Consent Form to the User
+
+Send the consent form link to your users via email or SMS. Use the API endpoint `https://restapi.netmera.com/via/consent` to share the link with your users.
+{% endstep %}
+
+{% step %}
+
+#### User Submits Their Consent
+
+When the user receives the link, they can open the form, select their SMS or email permissions, and submit their approval.
+{% endstep %}
+
+{% step %}
+
+#### Confirmation Information Sent to the User
+
+After the user submits their consent, they will receive a confirmation via email or SMS informing them of the permissions they selected and their submission status.
+{% endstep %}
+
+{% step %}
+
+#### Consent Data Saved in Netmera
+
+Netmera saves the user permissions in the Netmera Panel. This synchronization occurs every 10 minutes to ensure the latest user preferences are reflected.
+{% endstep %}
+{% endstepper %}
+
+### Consent requests with short URL
+
+{% stepper %}
+{% step %}
+
+#### Start the consent process
+
+The `consent` method initiates the process of obtaining **ETK** (Electronic Communication Permission) and/or **KVKK** (Personal Data Protection Law) consent. A short URL linking to a webpage where recipients can complete the approval process, along with an explanation text, is sent to the recipient. The method returns a `requestId` value as a response.
+{% endstep %}
+
+{% step %}
+
+#### Access Consent Form
+
+The recipient clicks on the short URL, which redirects them to a webpage where they can provide their **ETK** and/or **KVKK** consent.
+{% endstep %}
+
+{% step %}
+
+#### Consent Given
+
+Once the recipient provides consent:
+
+* **ETK consent** is recorded on behalf of the brand(s).
+* **KVKK consent** is recorded on behalf of the service provider.
+  {% endstep %}
+
+{% step %}
+
+#### Netmera Consent Update
+
+After consent is received, recipient's **ETK consent** (EMAIL/SMS notification preferences) is saved in the **Netmera** system in every 10 minutes.
+{% endstep %}
+{% endstepper %}
+
+### ETK short URL parameters
+
+Below are the required parameters for requesting **ETK** using short URL verification methods, either through SMS or email.
+
+#### Request body fields
+
+<table><thead><tr><th width="175">Field</th><th>Type</th><th>Description</th><th width="94">Required</th><th>Notes</th></tr></thead><tbody><tr><td><code>consentTypes</code></td><td>Array of Objects</td><td>Details of the consent request.</td><td>Yes</td><td>Each object must include <code>title</code>, <code>types</code>, and <code>recipientType</code>.</td></tr><tr><td><code>title</code></td><td>String</td><td>The type of consent being requested.</td><td>Yes</td><td>Example value: <code>"ETK"</code></td></tr><tr><td><code>types</code></td><td>Array of Strings</td><td>Communication channels for which consent is being requested.</td><td>Yes</td><td>Possible values: <code>["ARAMA"]</code>, <code>["MESAJ"]</code>, <code>["ARAMA", "MESAJ"]</code>, <code>["MESAJ", "ARAMA"]</code>, <code>["EPOSTA"]</code>.</td></tr><tr><td><code>recipientType</code></td><td>String</td><td>Specifies the type of recipient.</td><td>Yes</td><td>Accepted values: <code>"BİREYSEL"</code> (Individual), <code>"TACIR"</code> (Trader).</td></tr><tr><td><code>formId</code></td><td>String</td><td>The ID of the consent form to be delivered to the recipient.</td><td>Yes</td><td>Retrieve this ID from the <a href="https://hs.iys.org.tr/"><strong>IYS Web</strong></a> VIA Management interface.</td></tr><tr><td><code>recipient</code></td><td>String</td><td>Contact information of the recipient. Either a phone number or email address.</td><td>Yes</td><td>Ensure proper format for phone numbers or email addresses. <code>"+90536......."</code></td></tr><tr><td><code>verificationType</code></td><td>String</td><td>Method of obtaining consent via VIA.</td><td>Yes</td><td>Possible values: <code>SMS_SHORTURL</code> (via SMS short link) or <code>EPOSTA_SHORTURL</code> (via email short link).</td></tr><tr><td><code>referenceID</code></td><td>String</td><td>Identifies the users in Netmera system. This identifier is used to create or update user records for VIA.</td><td>Yes</td><td>Example value: "<code>user1234"</code></td></tr></tbody></table>
+
+### Sample ETK requests
+
+{% hint style="info" %}
+**Notes:**
+
+* Replace `your_rest_api_key` with your actual REST API key.
+* Ensure `formId` corresponds to a valid form ID from the **IYS Web** VIA Management portal.
+* Modify `recipient` with the actual recipient’s **email** or **phone number** based on your use case.
+  {% endhint %}
+
+#### ETK request via SMS short URL
+
+```json
+curl --location 'https://restapi.netmera.com/rest/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "consentTypes": [
+    {
+      "title": "ETK",
+      "types": ["MESAJ", "EPOSTA"],
+      "recipientType": "BİREYSEL"
+    }
+  ],
+  "formId": "12345abcde",
+  "recipient": "recipient@example.com",
+  "verificationType": "EPOSTA_SHORTURL",
+  "referenceId": "user1234"
+}'
+```
+
+**Successful Response (HTTP 200)**
+
+```json
+{
+    "requestId": "requestid"
+}
+```
+
+#### ETK request via email short URL
+
+```json
+curl --location 'https://restapi.netmera.com/rest/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "consentTypes": [
+    {
+      "title": "ETK",
+      "types": ["EPOSTA"],
+      "recipientType": "BIREYSEL"
+    }
+  ],
+  "formId": "your_formId",
+  "recipient": "....@gmail.com",
+  "verificationType": "EPOSTA_SHORTURL",
+  "referenceId": "user1234"
+}'
+```
+
+**Successful Response (HTTP 200)**
+
+```json
+{
+    "requestId": "requestid"
+}
+```
+
+### Invalid ETK requests
+
+#### Invalid SMS short URL request
+
+**Case:** An invalid combination where `verificationType` is `SMS_SHORTURL` but the `types` field contains `"EPOSTA"`.
+
+```json
+curl --location 'https://restapi.netmera.com/rest/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "consentTypes": [
+    {
+      "title": "ETK",
+      "types": ["EPOSTA", "SMS", "ARAMA"],
+      "recipientType": "BIREYSEL"
+    }
+  ],
+  "formId": "your_formId",
+  "recipient": "+9053........",
+  "verificationType": "SMS_SHORTURL",
+  "referenceId": "user1234"
+}'
+```
+
+**Error Response (HTTP 400)**
+
+```json
+{
+    "message": "Girdiğiniz 'EPOSTA' izin tipi, doğrulama tipi 'SMS_SHORTURL' ile uyuşmamaktadır. Uyuşan geçerli değerler: [SMS_FATURA, MESAJ, E_FATURA, AYDINLATMA_METNI, ACIK_RIZA_METNI, YURTDISI_AKTARIM, UYELIK_ONAYI, ARAMA]",
+    "code": "H1085"
+}
+```
+
+#### Invalid email short URL request
+
+**Case:** An invalid value for the `verificationType` field is provided. Instead of `EPOSTA_SHORTURL`, `EPOSTA_SHORTLINK` is used.
+
+```json
+curl --location 'https://restapi.netmera.com/rest/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "consentTypes": [
+    {
+      "title": "ETK",
+      "types": ["EPOSTA"],
+      "recipientType": "BIREYSEL"
+    }
+  ],
+  "formId": "your_formId",
+  "recipient": "...@gmail.com",
+  "verificationType": "EPOSTA_SHORTLINK",
+  "referenceId": "user1234"
+}'
+```
+
+**Error Response (HTTP 400)**
+
+```json
+{
+    "message": "verificationType alanı için gereken değerler: [SMS_OTP, EPOSTA_OTP, SMS_SHORTURL, EPOSTA_SHORTURL, SMS_APPROVALURL, EPOSTA_APPROVALURL, SMS_CEVAP, SMS_RED, URL_RED] olmalıdır.",
+    "code": "H1012",
+    "value": "EPOSTA_SHORTLINK"
+}
+```
+
+### KVK short URL parameters
+
+Below are the required parameters for requesting **KVK** using short URL verification methods, either through SMS or email.
+
+#### Request body fields
+
+<table><thead><tr><th width="220">Field Name</th><th width="159">Type</th><th width="131">Required</th><th>Description</th></tr></thead><tbody><tr><td><code>consentTypes</code></td><td>Array of Objects</td><td>Yes</td><td>Contains details about the type of consent requested.</td></tr><tr><td><code>title</code></td><td>String</td><td>Yes</td><td>Type of form sent to the recipient. For KVK consent, this field must be set as <code>"KVK"</code>.</td></tr><tr><td><code>types</code></td><td>Array of Strings</td><td>Yes</td><td>Consent types for KVK. Possible values: <code>"AYDINLATMA_METNI"</code>, <code>"ACIK_RIZA_METNI"</code>, <code>"YURTDISI_AKTARIM"</code>.</td></tr><tr><td><code>formId</code></td><td>String</td><td>Yes</td><td>ID of the form sent to the recipient. The corresponding consent form will be sent to the recipient based on this ID. Obtainable via the <a href="https://hs.iys.org.tr/">İYS Web</a>.</td></tr><tr><td><code>verificationType</code></td><td>String</td><td>Yes</td><td>Method of obtaining consent via ViA. Use <code>"SMS_SHORTURL"</code> for SMS-based short link verification or <code>"EPOSTA_SHORTURL"</code> for email-based short link verification.</td></tr><tr><td><code>recipient</code></td><td>String</td><td>Yes</td><td>Contact information of the recipient. Either a <strong>phone number</strong> or <strong>email address</strong> where the consent request will be sent.</td></tr><tr><td><code>referenceID</code></td><td>String</td><td>Yes</td><td>Identifies the users in Netmera system. This identifier is used to create or update user records for VIA.</td></tr><tr><td><code>personData</code></td><td>Object</td><td>Yes (personal data)</td><td>Contains recipient details if KVK consent requires personal information.</td></tr><tr><td><code>name</code></td><td>String</td><td>Yes (personal data)</td><td>Recipient's full name.</td></tr><tr><td><code>recipientIdNumber</code></td><td>String</td><td>Yes (personal data)</td><td>Recipient's Turkish ID number.</td></tr><tr><td><code>address</code></td><td>String</td><td>Yes (personal data)</td><td>Recipient's address information.</td></tr></tbody></table>
+
+**Additional Information**
+
+* Fields in `personData` (e.g., `name`, `recipientIdNumber`, and `address`) become **mandatory** if required by the KVK process.
+* The **`formId`** uniquely identifies the consent form and ensures it is correctly delivered to the recipient.
+
+### Sample KVK requests
+
+#### KVK request via SMS short URL
+
+```json
+curl --location 'https://restapi.netmera.com/rest/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "consentTypes": [
+    {
+      "title": "KVK",
+      "types": ["AYDINLATMA_METNI"],
+      "personData": {
+        "name": "username",
+        "recipientIdNumber": "134........",
+        "address": "null"
+      }
+    }
+  ],
+  "formId": "your_formId",
+  "recipient": "+90536.......",
+  "verificationType": "SMS_SHORTURL",
+  "referenceId": "user1234"
+}'
+```
+
+**Successful Response (HTTP 200):**
+
+```json
+{
+    "requestId": "requestid"
+}
+```
+
+#### KVK request via email short URL
+
+```json
+curl --location 'https://restapi.netmera.com/rest/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "consentTypes": [
+    {
+      "title": "KVK",
+      "types": ["AYDINLATMA_METNI", "ACIK_RIZA_METNI"],
+      "personData": {
+        "name": "username",
+        "recipientIdNumber": "134........",
+        "address": "null"
+      }
+    }
+  ],
+  "formId": "your_formId",
+  "recipient": "....@gmail.com",
+  "verificationType": "EPOSTA_SHORTURL",
+  "referenceId": "user1234"
+}'
+```
+
+**Successful Response (HTTP 200):**
+
+```json
+{
+    "requestId": "requestid"
+}
+```
+
+### Invalid KVK requests
+
+In case of a failed request, the response will include the following fields:
+
+* **`message` (String):** The error message that describes the issue with the request.
+* **`code` (String):** The error code from the IYS system indicating the specific issue.
+* **`value` (String)** (*This field may return the invalid value depending on the type of error, or it may be omitted*): The invalid value that caused the error.
+
+#### Invalid SMS short URL request
+
+**Case:** `verificationType` is set to `SMS_SHORTURL` but the `types` array contains an `EPOSTA` value, which is incompatible with SMS verification.
+
+```json
+curl --location 'https://restapi.netmera.com/rest/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "consentTypes": [
+    {
+      "title": "KVK",
+      "types": ["EPOSTA"],
+      "recipientType": "BIREYSEL"
+    }
+  ],
+  "formId": "your_formId",
+  "recipient": "+9053........",
+  "verificationType": "SMS_SHORTURL",
+  "referenceId": "user1234"
+}'
+```
+
+**Sample Error Response (HTTP 400):**
+
+```json
+{
+    "message": "Girdiğiniz 'EPOSTA' izin tipi, doğrulama tipi 'SMS_SHORTURL' ile uyuşmamaktadır. Uyuşan geçerli değerler: [SMS_FATURA, MESAJ, E_FATURA, AYDINLATMA_METNI, ACIK_RIZA_METNI, YURTDISI_AKTARIM, UYELIK_ONAYI, ARAMA]",
+    "code": "H1085"
+}
+```
+
+#### Invalid email short URL request
+
+**Case:** The `recipientIdNumber` field contains an incorrectly formatted identity number.
+
+```json
+curl --location 'https://restapi.netmera.com/rest/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "consentTypes": [
+    {
+      "title": "KVK",
+      "types": ["AYDINLATMA_METNI", "ACIK_RIZA_METNI"],
+      "personData": {
+        "name": "name",
+        "recipientIdNumber": "A23493434",
+        "address": "address"
+      }
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "...@gmail.com",
+  "verificationType": "EPOSTA_SHORTURL",
+  "referenceId": "user1234"
+}'
+```
+
+**Error Response (HTTP Code: 400)**
+
+```json
+{
+    "message": "Girdiğiniz TC kimlik numarası: '**' formata uygun değildir.",
+    "code": "H1096"
+}
+```
+
+### Combined KVK and ETK requests
+
+**For ETK approval**: The request must include the following fields:
+
+1. Verification Method (`verificationType`)
+2. Recipient's Communication Address (`recipient`)
+3. Communication Channel (`types`)
+4. Recipient Type (`recipientType`)
+5. Approval Type (`title`)
+6. Form ID (`formId`) (The ID of the approval form to be sent to the recipient)
+
+**For KVK approval**: The request must include the following fields:
+
+1. Verification Method (`verificationType`)
+2. Recipient's Communication Address (`recipient`)
+3. Recipient's Full Name (`name`)
+4. Recipient's National ID Number (`recipientIdNumber`)
+5. Recipient's Address Information (`address`)
+6. Approval Type (`title`)
+7. Form ID (`formId`) (The ID of the approval form to be sent to the recipient)
+
+See the parameter sections above for field details.
+
+#### ETK and KVK request via SMS short URL
+
+```json
+curl --location 'https://restapi.netmera.com/rest/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "consentTypes": [
+    {
+      "title": "ETK",
+      "types": ["MESAJ", "ARAMA"],
+      "recipientType": "BIREYSEL"
+    },
+    {
+      "title": "KVK",
+      "types": [
+        "AYDINLATMA_METNI"
+      ],
+      "personData": {
+        "name": "name",
+        "recipientIdNumber": "134........",
+        "address": "address"
+      }
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "+90536.......",
+  "verificationType": "SMS_SHORTURL",
+  "referenceId": "user1234"
+}'
+```
+
+**Success Response (HTTP 200)**
+
+```json
+{
+    "requestId": "requestid"
+}
+```
+
+#### ETK and KVK request via email short URL
+
+```json
+curl --location 'https://restapi.netmera.com/rest/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "consentTypes": [
+    {
+      "title": "ETK",
+      "types": [
+        "EMAIL"
+      ],
+      "recipientType": "BIREYSEL"
+    },
+    {
+      "title": "KVK",
+      "types": [
+        "AYDINLATMA_METNI"
+      ],
+      "personData": {
+        "name": "name",
+        "recipientIdNumber": "134........",
+        "address": "address"
+      }
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "...@gmail.com",
+  "verificationType": "EPOSTA_SHORTURL",
+  "referenceId": "user1234"
+}'
+```
+
+**Success Response (HTTP 200)**
+
+```json
+{
+    "requestId": "requestid"
+}
+```
+
+### Invalid combined requests
+
+In case of a failed request, the response will include the following fields:
+
+* **`message` (String):** The error message that describes the issue with the request.
+* **`code` (String):** The error code from the IYS system indicating the specific issue.
+* **`value` (String)** (*This field may return the invalid value depending on the type of error, or it may be omitted*): The invalid value that caused the error.
+
+#### Invalid ETK and KVK SMS short URL request
+
+**Case:** The `recipient` field is provided in an invalid format when `verificationType` is `SMS_SHORTURL`.
+
+```json
+curl --location 'hhttps://restapi.netmera.com/rest/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "consentTypes": [
+    {
+      "title": "ETK",
+      "types": ["MESAJ"],
+      "recipientType": "BIREYSEL"
+    },
+    {
+      "title": "KVK",
+      "types": ["AYDINLATMA_METNI"],
+      "personData": {
+        "name" : "name",
+        "recipientIdNumber": "123...",
+        "address": "address"
+      }
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "...@gmail.com",
+  "verificationType": "SMS_SHORTURL",
+  "referenceId": "user1234"
+}'
+```
+
+**Example Error Response (HTTP 400)**
+
+```json
+{
+    "message": "Alıcı (recipient) için E164 uluslararası([+][country code][area code][local phone number]) formatına uygun bir telefon numarası girilmelidir. (örn. `+905992000000`)",
+    "code": "H1026",
+    "value": "...@google.com"
+}
+```
+
+#### Invalid ETK and KVK email short URL request
+
+**Case:** The `name` field is not provided in the request.
+
+```json
+curl --location 'https://restapi.netmera.com/rest/via/consent' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "consentTypes": [
+    {
+      "title": "ETK",
+      "types": ["EPOSTA"],
+      "recipientType": "BIREYSEL"
+    },
+    {
+      "title": "KVK",
+      "types": ["AYDINLATMA_METNI"],
+      "personData": {
+        "recipientIdNumber": "123....",
+        "address": "address"
+      }
+    }
+  ],
+  "formId": "your_formid",
+  "recipient": "...@gmail.com",
+  "verificationType": "EPOSTA_SHORTURL",
+  "referenceId": "user1234"
+}'
+```
+
+**Example Error Response (HTTP 400)**
+
+```jsx
+{
+    "message": "JSON verisinde eksik alanlar: name",
+    "code": "H1090"
+}
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/via-integration/short-url-consent-requests.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

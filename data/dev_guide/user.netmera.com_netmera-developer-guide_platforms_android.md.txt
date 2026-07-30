@@ -1,0 +1,54 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/android.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/android.md).
+
+# Android
+
+- [SDK Integration](https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration.md)
+- [SDK Lifecycle](https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/sdk-lifecycle.md)
+- [Huawei Integration](https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/huawei-integration.md)
+- [Huawei Message Receipt](https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/huawei-message-receipt.md)
+- [Custom FCM Implementation](https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/custom-fcm-implementation.md)
+- [Custom HMS Implementation](https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/custom-hms-implementation.md)
+- [Android Integration FAQs](https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/android-integration-faqs.md)
+- [Push Icon](https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/push-icon.md)
+- [Push Notifications](https://user.netmera.com/netmera-developer-guide/platforms/android/push-notifications.md)
+- [Push Notification Permission](https://user.netmera.com/netmera-developer-guide/platforms/android/push-notifications/push-notification-permission.md)
+- [Push Callbacks](https://user.netmera.com/netmera-developer-guide/platforms/android/push-notifications/push-callbacks.md)
+- [Widget and In-App Messages](https://user.netmera.com/netmera-developer-guide/platforms/android/push-notifications/widget-and-in-app-messages.md)
+- [User & Attributes](https://user.netmera.com/netmera-developer-guide/platforms/android/user-and-attributes.md)
+- [Events](https://user.netmera.com/netmera-developer-guide/platforms/android/events.md)
+- [Deep Linking](https://user.netmera.com/netmera-developer-guide/platforms/android/deep-linking.md)
+- [Custom Deep Links](https://user.netmera.com/netmera-developer-guide/platforms/android/deep-linking/custom-deep-links.md)
+- [Push Inbox](https://user.netmera.com/netmera-developer-guide/platforms/android/push-inbox.md)
+- [Geofence & Location](https://user.netmera.com/netmera-developer-guide/platforms/android/geofence-and-location.md)
+- [Background Location Permission](https://user.netmera.com/netmera-developer-guide/platforms/android/geofence-and-location/background-location-permission.md)
+- [Sound & Vibration](https://user.netmera.com/netmera-developer-guide/platforms/android/sound-and-vibration.md)
+- [Data Transfer](https://user.netmera.com/netmera-developer-guide/platforms/android/data-transfer.md)
+- [Advertising ID](https://user.netmera.com/netmera-developer-guide/platforms/android/advertising-id.md)
+- [App Tracking](https://user.netmera.com/netmera-developer-guide/platforms/android/app-tracking.md)
+- [SSL Pinning](https://user.netmera.com/netmera-developer-guide/platforms/android/ssl-pinning.md)
+- [Changelog](https://user.netmera.com/netmera-developer-guide/platforms/android/changelog.md)
+- [Migration to 4.x](https://user.netmera.com/netmera-developer-guide/platforms/android/migration-to-4.x.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/android.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

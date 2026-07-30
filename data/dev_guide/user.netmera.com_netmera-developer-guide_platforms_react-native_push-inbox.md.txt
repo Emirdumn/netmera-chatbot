@@ -1,0 +1,302 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/react-native/push-inbox.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/react-native/push-inbox.md).
+
+# Push Inbox
+
+### Push Inbox Overview
+
+`NetmeraInbox` allows you to access and manage previously sent push notifications in an inbox-style interface. You cannot instantiate `NetmeraInbox` directly; instead, you must obtain an instance through the SDK and use it to interact with push notifications.
+
+### Filtering Notifications
+
+Create an instance to specify which push notifications to fetch. You can filter by:
+
+* **Status**: Read, Unread, or Deleted.
+* **Categories**: Filter by specific categories.
+* **Expired Notifications**: Include or exclude expired notifications. &#x20;
+* **Page Size**: Number of notifications to fetch per request.
+
+Here is a sample code to determine filtering options:
+
+```typescript
+import { Netmera, NetmeraInboxFilter, NMInboxStatus } from 'react-native-netmera'; 
+
+const netmeraInboxFilter = new NetmeraInboxFilter();
+
+// Filter to show Read or Unread notifications
+netmeraInboxFilter.status = NMInboxStatus.STATUS_READ_OR_UNREAD;
+netmeraInboxFilter.pageSize = 10;
+netmeraInboxFilter.categories = ["category_1", "category_2"];
+netmeraInboxFilter.includeExpiredObjects = true;
+```
+
+### Fetching the First Page
+
+Use `fetchInbox` to retrieve notifications that match the filter:
+
+```typescript
+fetchInbox = async() => {
+   try{
+     const netmeraInboxFilter = new NetmeraInboxFilter()
+     netmeraInboxFilter.status = NMInboxStatus.STATUS_READ_OR_UNREAD
+     netmeraInboxFilter.pageSize = 10
+     netmeraInboxFilter.categories = ["category_1", "category_2"]
+     netmeraInboxFilter.includeExpiredObjects = true
+     const inbox = await Netmera.fetchInbox(netmeraInboxFilter)
+     console.log("inbox", inbox)
+   }catch(e){
+     console.log("error", e)
+   }
+ }
+```
+
+### Fetching Next Pages
+
+Once the first page is retrieved, use `fetchNextPage` to get additional pages:
+
+```typescript
+fetchNextPage = async() => {
+   try{
+     const inbox = await Netmera.fetchNextPage()
+     console.log("inbox", inbox)
+   }catch(e){
+     console.log("error", e)
+   }
+ }
+```
+
+### Updating Push Notification Status
+
+Notifications can have three states:
+
+* Unread (STATUS\_UNREAD)
+* Read (STATUS\_READ)
+* Deleted (STATUS\_DELETED)
+* Read & Unread (STATUS\_READ\_OR\_UNREAD)
+* All (STATUS\_ALL)
+
+Use `inboxUpdateStatus` to change a notification's status asynchronously:
+
+```javascript
+await Netmera.inboxUpdateStatus(0, 5, NMInboxStatus.STATUS_DELETED)
+```
+
+### Updating The Status of All Notifications
+
+You can update the status of all pushes inside inbox using `updateAll` method.
+
+```javascript
+await Netmera.updateAll(NMInboxStatus.STATUS_READ)
+```
+
+```javascript
+await Netmera.updateAll(NMInboxStatus.STATUS_DELETED)
+```
+
+### Counting Notifications by Status
+
+Retrieve the count of notifications by status:
+
+```javascript
+//get count of unread push objects
+const count = await Netmera.countForStatus(NMInboxStatus.STATUS_UNREAD)
+
+//get count of read push objects
+const count = await Netmera.countForStatus(NMInboxStatus.STATUS_READ)
+```
+
+### Inbox Examples <a href="#inbox-examples" id="inbox-examples"></a>
+
+```javascript
+  const [inbox, setInbox] = useState<NetmeraPushObject[]>([]);
+  const [inboxState, setInboxState] = useState(NMInboxStatus.STATUS_ALL);
+  const [statusCount, setStatusCount] = useState('0');
+  const [categoryList, setCategoryList] = useState('');
+
+  const states = ['ALL', 'DELETED', 'READ_OR_UNREAD', 'READ', 'UNREAD'];
+
+  const fetchInbox = async () => {
+    try {
+      const netmeraInboxFilter = new NetmeraInboxFilter();
+      netmeraInboxFilter.status = inboxState;
+      netmeraInboxFilter.pageSize = 2; // Fetch two push object
+
+      if (categoryList.trim() !== '') {
+        netmeraInboxFilter.categories = categoryList.split(' ');
+      }
+
+      const inbox = await Netmera.fetchInbox(netmeraInboxFilter);
+      console.log('inbox', inbox);
+      setInbox(inbox);
+    } catch (e) {
+      console.log('error', e);
+    }
+  };
+
+  const fetchNextPage = async () => {
+    try {
+      const inbox = await Netmera.fetchNextPage();
+      setInbox(inbox);
+      console.log('inbox', inbox);
+    } catch (e) {
+      console.log('error', e);
+    }
+  };
+
+  const updateAll = async () => {
+    if (!inbox !== undefined) {
+      if (inboxState === NMInboxStatus.STATUS_ALL) {
+        Alert.alert('Error', 'Please select different status than all!!');
+        console.log('Please select different status than all!!');
+        return;
+      }
+
+      try {
+        Netmera.updateAll(inboxState)
+          .then(() => fetchInbox())
+          .catch((error: any) => console.log('error: ' + error));
+      } catch (error) {
+        console.log('error: ' + error);
+      }
+    }
+  };
+
+  // Handles first push object
+  const handlePushObject = async () => {
+    if (inbox && inbox.length > 0 && inbox[0].pushId) {
+      Netmera.handlePushObject(inbox[0].pushId);
+    }
+  };
+
+  // Handles interactive action of first push object.
+  const handleInteractiveAction = async () => {
+    if (inbox !== undefined && inbox.length > 0) {
+      inbox.map((pushObject: NetmeraPushObject) => {
+        if (
+          pushObject.interactiveActions &&
+          pushObject.interactiveActions.length > 0
+        ) {
+          const action = pushObject.interactiveActions[0];
+          if (!action?.id) return;
+          Netmera.handleInteractiveAction(action.id);
+        }
+      });
+    }
+  };
+
+  // Returns push object count by selected status.
+  const countForStatus = async () => {
+    try {
+      const count = await Netmera.countForStatus(inboxState);
+      setStatusCount(count.toString());
+    } catch (error) {
+      console.log('error: ' + error);
+    }
+  };
+
+  // Update first two push object status to "UNREAD".
+  const inboxUpdateStatus = async () => {
+    if (inbox === undefined || inbox.length < 2) {
+      Alert.alert('Error', 'Push objects count is less then 2!');
+      console.log('Push objects count is less then 2!');
+      return;
+    }
+    Netmera.inboxUpdateStatus(0, 2, NMInboxStatus.STATUS_UNREAD)
+      .then(() => {
+        console.log('2 push object status was changed successfully.');
+      })
+      .catch((error: any) => {
+        console.log('error: ' + error);
+      });
+  };
+
+  // Returns inbox count by selected status.
+  const inboxCountForStatus = async () => {
+    try {
+      const filter = new NMInboxStatusCountFilter();
+      filter.nmInboxStatus = inboxState;
+      filter.includeExpired = true;
+
+      if (categoryList.trim() !== '') {
+        const stringList = categoryList.split(' ');
+        const invalidInput = stringList.some(item => isNaN(Number(item)));
+        if (invalidInput) {
+          Alert.alert(
+            'Error',
+            'Please enter only numbers separated by spaces.',
+          );
+          return;
+        }
+        const intList = stringList.map(item => Number(item)) as number[];
+        filter.categoryList = intList;
+      }
+
+      const nmInboxStatusCount = await Netmera.getInboxCountForStatus(filter);
+
+      let countStatusText =
+        'ALL: ' +
+        nmInboxStatusCount[NMInboxStatus.STATUS_ALL] +
+        ', ' +
+        'READ: ' +
+        nmInboxStatusCount[NMInboxStatus.STATUS_READ] +
+        ', ' +
+        'UNREAD: ' +
+        nmInboxStatusCount[NMInboxStatus.STATUS_UNREAD] +
+        ', ' +
+        'DELETED: ' +
+        nmInboxStatusCount[NMInboxStatus.STATUS_DELETED];
+
+      setStatusCount(countStatusText);
+      console.log('nmInboxStatusCount: ', countStatusText);
+    } catch (e) {
+      console.log('error', e);
+    }
+  };
+
+  const updateInboxState = (value: any) => {
+    switch (value) {
+      case 'ALL':
+        setInboxState(NMInboxStatus.STATUS_ALL);
+        break;
+
+      case 'DELETED':
+        setInboxState(NMInboxStatus.STATUS_DELETED);
+        break;
+
+      case 'READ_OR_UNREAD':
+        setInboxState(NMInboxStatus.STATUS_READ_OR_UNREAD);
+        break;
+
+      case 'READ':
+        setInboxState(NMInboxStatus.STATUS_READ);
+        break;
+
+      case 'UNREAD':
+        setInboxState(NMInboxStatus.STATUS_UNREAD);
+        break;
+    }
+  };
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/react-native/push-inbox.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

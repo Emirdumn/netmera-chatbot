@@ -1,0 +1,98 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/react-native/push-notifications/push-notification-permissions.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/react-native/push-notifications/push-notification-permissions.md).
+
+# Push Notification Permissions
+
+## System Permissions
+
+#### Step 1 : **Enable Push Notifications in Xcode**
+
+To enable push notifications for your app, follow these steps:
+
+* Open your Xcode project.
+* Navigate to **Signing & Capabilities**.
+* Under **Capability**, select **Push Notifications**.
+
+<figure><img src="/files/URDysKzFqOmAscnoVIRC" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Step 2: Requesting Notification Permission
+
+To request notification permission, call the `requestPushNotificationAuthorization()` method.&#x20;
+
+```typescript
+Netmera.requestPushNotificationAuthorization().then((isGranted) => {
+  ...
+});
+```
+
+{% hint style="info" %}
+**Important Notes:**
+
+In Android 13 (API 33) and higher, **runtime notification permissions** are required for push notifications. If you don't request notification permission at runtime, you can use the `requestPushNotificationAuthorization()` method from **Netmera** to request permission from the user.
+
+* **Target API 33 or above**: Make sure your Android project is targeting **API 33** or above, as runtime permissions are required starting from Android 13.
+* **User Consent**: Always inform users why you are requesting permission to send notifications, and provide them with the option to grant or deny the permission.
+* **Permission Flow**: You can handle different behaviors based on whether the user has granted or denied the permission.
+  {% endhint %}
+
+#### Checking Notification Permission Status
+
+If you need to check whether the user has granted or denied notification permissions, you can use the `checkNotificationPermission()` method. This returns an enum of the current status of the notification permission.
+
+```dart
+Netmera.checkNotificationPermission().then(status => {
+//NotificationPermissionStatus.NotDetermined
+//NotificationPermissionStatus.Blocked
+//NotificationPermissionStatus.Granted
+//NotificationPermissionStatus.Denied
+});
+```
+
+{% hint style="info" %}
+**Responses**
+
+When this method is called, it would return one of the following responses:
+
+1. **NOTDETERMINED**\
+   The user has opened the app but hasn't made a decision about notification permissions yet.
+2. **BLOCKED**\
+   The user has disabled notifications for the app at the system level. Even if the app tries to request permission, it will be automatically restricted by the OS.
+3. **GRANTED**\
+   The user has granted notification permission, and the app can send notifications.
+4. **DENIED**\
+   The user has denied permission or has blocked notifications through system settings.
+   {% endhint %}
+
+## Netmera Push Opt-In Status
+
+Netmera also controls whether a device is eligible to receive push notifications:
+
+* **`Netmera.enablePush();`** Sets the device’s status to **active (opt-in)** in the Netmera system. The device is included in the *deliverable* audience for push campaigns.
+* **`Netmera.disablePush();`** Sets the device’s status to **inactive (opt-out)** in the Netmera system. Netmera will not send push notifications, even if OS-level permissions are enabled.
+
+{% hint style="warning" %}
+Push notifications are delivered only if the device has a valid push token, OS-level permission is granted, and Netmera push status is enabled.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/react-native/push-notifications/push-notification-permissions.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

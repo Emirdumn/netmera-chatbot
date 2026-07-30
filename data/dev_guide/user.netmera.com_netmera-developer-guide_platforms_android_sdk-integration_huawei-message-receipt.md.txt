@@ -1,0 +1,90 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/huawei-message-receipt.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/huawei-message-receipt.md).
+
+# Huawei Message Receipt
+
+Huawei has a message delivery report feature called [**Message Receipt**](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/msg-receipt-guide-0000001050040176)**.** After a notification sends to device, Huawei will report the message status to Netmera. By this way, Netmera can track uninstalled devices. To be able to use this feature, you must integrate Message Receipt in Huawei App Gallery.
+
+1. Open **App Gallery Connect** (first you need to login to your [**HMS**](https://developer.huawei.com/consumer/en/service/josp/agc/index.html) account)
+2. &#x20;Go to **Push Kit** section
+3. Click **Settings** tab
+4. Click **Enable** button for **App Receipt**
+
+<figure><img src="/files/4X6TuSkOSUZIuwqIsfK2" alt="" width="563"><figcaption></figcaption></figure>
+
+5. Click **New Button**
+6. Enter configurations. **Callback address** and **HTTPS certificate** must be as below. After you check the details, click **Submit** button.
+
+<figure><img src="/files/dzoM9DsgoIoFKfoeS9Kz" alt="" width="563"><figcaption></figcaption></figure>
+
+## Callback Address
+
+<https://report.netmera.com/reporter/hms/message-receipt>
+
+## HTTPS Certificate
+
+```
+-----BEGIN CERTIFICATE-----
+MIIGrjCCBZagAwIBAgIJAP8ETGqQ6QYYMA0GCSqGSIb3DQEBCwUAMIG0MQswCQYD
+VQQGEwJVUzEQMA4GA1UECBMHQXJpem9uYTETMBEGA1UEBxMKU2NvdHRzZGFsZTEa
+MBgGA1UEChMRR29EYWRkeS5jb20sIEluYy4xLTArBgNVBAsTJGh0dHA6Ly9jZXJ0
+cy5nb2RhZGR5LmNvbS9yZXBvc2l0b3J5LzEzMDEGA1UEAxMqR28gRGFkZHkgU2Vj
+dXJlIENlcnRpZmljYXRlIEF1dGhvcml0eSAtIEcyMB4XDTIxMDYyODEwMzAzNFoX
+DTIyMDcyNDA5NTMwMlowOzEhMB8GA1UECxMYRG9tYWluIENvbnRyb2wgVmFsaWRh
+dGVkMRYwFAYDVQQDDA0qLm5ldG1lcmEuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEAtD44YmCobcAVFnAXKODFuwN61+ymNqzFD8MwRxBYOe+5vJzk
+nq+CG8cRCKS4/esGs2y0k3DbBP7XF4vOABWgCEDN7m/YhsUJVvMDZAEiZ0lr3h5e
+euQL9ReZCPZsiXI5uUR+/pbQ0kMr3P1+n1r6RaBxDMiSbdY9rTX00TNyQAkoLJU6
+ic0GAuKPiwGgQwU5hcr8PHBJAzSS62SYAWmH8O4eas17mQ0wxinPTlS5m0UKtD6h
+HMVy5+3FvuPRnStAl6b2uKVL1SnrgIKXwaR5oxeyiZg6ESjTbP34DMzaXvVLOthO
+D/H6cJgtepwGAyQx0b2/dhoQPAxr+M/IgecwyQIDAQABo4IDOTCCAzUwDAYDVR0T
+AQH/BAIwADAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDgYDVR0PAQH/
+BAQDAgWgMDgGA1UdHwQxMC8wLaAroCmGJ2h0dHA6Ly9jcmwuZ29kYWRkeS5jb20v
+Z2RpZzJzMS0zMDgwLmNybDBdBgNVHSAEVjBUMEgGC2CGSAGG/W0BBxcBMDkwNwYI
+KwYBBQUHAgEWK2h0dHA6Ly9jZXJ0aWZpY2F0ZXMuZ29kYWRkeS5jb20vcmVwb3Np
+dG9yeS8wCAYGZ4EMAQIBMHYGCCsGAQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0
+cDovL29jc3AuZ29kYWRkeS5jb20vMEAGCCsGAQUFBzAChjRodHRwOi8vY2VydGlm
+aWNhdGVzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvZ2RpZzIuY3J0MB8GA1UdIwQY
+MBaAFEDCvSeOzDSDMKIz1/tss/C0LIDOMCUGA1UdEQQeMByCDSoubmV0bWVyYS5j
+b22CC25ldG1lcmEuY29tMB0GA1UdDgQWBBRAdote9PLn2EiEVglW7vH5SXLE0TCC
+AXwGCisGAQQB1nkCBAIEggFsBIIBaAFmAHYAKXm+8J45OSHwVnOfY6V35b5XfZxg
+Cvj5TV0mXCVdx4QAAAF6UivMygAABAMARzBFAiEAoRLiU4sNXZyuQGaO800sP/qC
+4rruS64vCC46ukI1k8gCIEChX/4oNq6fMFEP3VfLNq4Q63hHpvflMtjy80rm2ZZ+
+AHUAIkVFB1lVJFaWP6Ev8fdthuAjJmOtwEt/XcaDXG7iDwIAAAF6UivOhQAABAMA
+RjBEAiAajkS7BvYsEALHk5MJR1X28losDJId9f0bHhzoMrk0UAIgP2L7sIeJhZFR
+Y+1V0Lkmt5fVgrzguA/E58LMGm+Uh80AdQBByMqx3yJGShDGoToJQodeTjGLGwPr
+60vHaPCQYpYG9gAAAXpSK88VAAAEAwBGMEQCICYHGgE1Ks5Wzf8jtbDon/Uh8u2G
+Su96t53qHxiglz4HAiBV/49+/1sT4UJshgvKrOImgZ3oJ/LUjNJO4vp6fiAKmDAN
+BgkqhkiG9w0BAQsFAAOCAQEASjRuKjIb+/8UGTiAakIEchxymN8kzFY8o1lnDLL6
+UMvnxEcHqOWlJZWLxHcQO4HvMSc0zfqroiNTJxJJMZFAmjx8PmLyDWarGDE57g02
+H3YJ6fzASf/E2Y9pZ56pMq/zr9faYPo4IDswP1n5RgWUtfRZFfQ11IVrMmCQ14DE
+D7H0XORkk0/3/jwSbDGypmjDDmtA8YN9ebO9VFeU3nR4d02hcTd5QYdeJ0IV1jnr
+5qU1Ie+KuhFp7cbI9U8ITRxcyoiNXuOdLdN2gS6u1/n5x4/684SRukpWvSfXTFwZ
+H2lfDBYa+s052yPBckjzuvq+i8w0eJlPxTTasg4tT7ftpQ==
+-----END CERTIFICATE-----
+```
+
+After performing these operations, you can perform message received and message error analytics on your Huawei devices from Netmera.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/huawei-message-receipt.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

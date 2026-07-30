@@ -1,0 +1,96 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/flutter/push-notifications/widget-and-in-app-messages.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/flutter/push-notifications/widget-and-in-app-messages.md).
+
+# Widget and In-App Messages
+
+### Pop-up and In-App Message Presentation Behavior <a href="#pop-up-and-in-app-message-presentation-behavior" id="pop-up-and-in-app-message-presentation-behavior"></a>
+
+All push notifications in Netmera work automatically—no additional coding is required. However, you can customize pop-up presentations and listen to push callbacks.
+
+By default, when a popup notification or in-app message is received:
+
+* If the app is in the foreground, the SDK displays pop-up notifications and in-app messages **immediately**.
+* If the app is in the background, the SDK shows them **when the app returns to the foreground.**
+
+### Receiving Popups and In-App Messages in the Background
+
+To receive popups or in-app messages when the application is in the background, you need to enable **Remote Notifications** under **Background Modes** in **Capabilities**.
+
+### Managing Pop-up Presentations <a href="#enable-disable-immediate-presentations" id="enable-disable-immediate-presentations"></a>
+
+To enable or disable pop-up presentation, you need to call this methods
+
+{% hint style="info" %}
+To show pop-up on the app start or everywhere in the app, please call `Netmera.enablePopupPresentation();` to your `main.dart` file.
+{% endhint %}
+
+```dart
+ Netmera.enablePopupPresentation();
+```
+
+```dart
+ Netmera.disablePopupPresentation();
+```
+
+### Handle Widget URL's
+
+**Step 1:** In order to use the widget URL callback, add these lines into `AppDelegate.swift` file.
+
+<pre class="language-swift"><code class="lang-swift"><strong>import NetmeraNotification
+</strong><strong>import netmera_flutter_sdk
+</strong>
+...
+  override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    ...
+<strong>    FNetmera.setPushDelegate(self)
+</strong>    ..
+  }
+...
+
+<strong>extension AppDelegate: NetmeraPushDelegate {
+</strong><strong>    func urlOpeningDecision(for url: URL, push: NetmeraBasePush) -> PushDelegateDecision {
+</strong><strong>        return .sdkHandles
+</strong><strong>    }
+</strong><strong>    
+</strong><strong>    func openURL(_ url: URL, for push: NetmeraBasePush) {
+</strong><strong>        FNetmera.openURL(url: url, forPushObject: push)
+</strong><strong>    }
+</strong><strong>}
+</strong></code></pre>
+
+{% hint style="info" %}
+No need extra implementation for Android.
+{% endhint %}
+
+**Step 2:** Handle widget URL's in dart classes.
+
+```dart
+void _onWidgetUrlTriggered(String url) {
+  // Handle widget URL
+}
+
+Netmera.onWidgetUrlTriggered(_onWidgetUrlTriggered);
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/flutter/push-notifications/widget-and-in-app-messages.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

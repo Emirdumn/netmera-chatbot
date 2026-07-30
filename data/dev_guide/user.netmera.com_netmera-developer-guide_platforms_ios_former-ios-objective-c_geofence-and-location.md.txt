@@ -1,0 +1,117 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/geofence-and-location.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/geofence-and-location.md).
+
+# Geofence & Location
+
+By default, Netmera SDK does not collect location information from the device. To use features like geofence messaging and location-based user targeting, you must enable location tracking.
+
+### Checking and Requesting Location Permission
+
+Users may select **"Only Once"**, **"While Using the App"**, or **"Always"** when prompted for location permission. However, they can later change this permission via system settings.
+
+To ensure **accurate** location tracking, always check the **current** system-level location permission before accessing any location-based features. If the required permission is missing or no longer valid, re-trigger the location permission request using Netmera.
+
+**What to do:**
+
+* Check the current location permission status.
+* If the permission is **missing or limited**:
+  * **Request location permission again via Netmera.**
+
+> Always ensure the necessary permission is granted before initializing any location-based operations.
+
+### Step 1: Enable Location History
+
+To use location-based targeting, enable **Location History** in the Netmera web panel:\
+**Developers > App Info > App Config > Location History Enabled**
+
+### Step 2: Configure Location Permissions
+
+Add the necessary authorization keys to your **Info.plist** file:
+
+1. **For Geofence Messaging (iOS 10 and earlier)**
+
+* Set `NSLocationAlwaysUsageDescription` with a description explaining why the app uses region monitoring.
+* This allows the SDK to monitor region entry/exit actions for geofence regions configured in the Netmera Dashboard.
+
+2. **For Geofence Messaging (iOS 11 and later)**
+
+* Set `NSLocationAlwaysAndWhenInUseUsageDescription` with a description explaining why the app uses region monitoring.
+* This allows the SDK to monitor region entry/exit actions for geofence regions configured in the Netmera Dashboard.
+
+3. **For Occasional Location Updates**
+
+* Set `NSLocationWhenInUseUsageDescription` with a description.
+* This sends the most recent location once per session.
+
+### Step 3: Request Location Authorization
+
+{% hint style="danger" %}
+Calling these methods immediately prompts the **location permission dialog**. Make sure to inform users beforehand about how your application will use their location.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+// Request location authorization
+Netmera.requestLocationAuthorization()
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+// Request location authorization
+[Netmera requestLocationAuthorization];
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Step 4: Configure Geofence Region Limits
+
+To set the maximum number of active geofence regions, use:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+Netmera.setNetmeraMaxActiveRegions(20) // Default is 20
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+[Netmera setNetmeraMaxActiveRegions:20]; // Default is 20
+```
+
+{% endtab %}
+{% endtabs %}
+
+If the value is set **greater than 20** or **less than 0**, it will be automatically reset to **20**.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/geofence-and-location.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

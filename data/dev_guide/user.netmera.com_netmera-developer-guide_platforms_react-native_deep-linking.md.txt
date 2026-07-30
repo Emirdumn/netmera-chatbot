@@ -1,0 +1,58 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/react-native/deep-linking.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/react-native/deep-linking.md).
+
+# Deep Linking
+
+To integrate deep link functionality into your React Native application, follow these steps:
+
+### Step 1: Consult Documentation
+
+For detailed instructions and code samples, refer to the relevant documentation and complete deep link integration for [iOS](/netmera-developer-guide/platforms/ios/former-ios-objective-c/deep-linking.md) and [Android](/netmera-developer-guide/platforms/android/deep-linking.md).
+
+### Step 2: Processing Deep Links While the App is Running
+
+Use the **Linking module** from React Native to handle deep links when the app is running. Refer to the[ React Native Linking Documentation](https://reactnative.dev/docs/linking) for more details on implementation.
+
+### Step 3: Handling Deep Links on iOS When the App is Killed
+
+Use `Netmera.getInitialURL()` to catch deep links when the app is killed or in the background. Add this to your `App.tsx` file:
+
+```typescript
+useEffect(() => {
+    Netmera.getInitialURL().then(url => {
+        if (url) {
+            Toast.show({
+                type: 'success',
+                text1: `Initial URL: ${url}`,
+            });
+        }
+    });
+}, []);
+```
+
+#### Additional Resources
+
+For additional information, refer to the [Netmera React Native Sample Repository](https://github.com/Netmera/Netmera-React-Native-Typescript-Example).
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/react-native/deep-linking.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

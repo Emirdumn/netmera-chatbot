@@ -1,0 +1,547 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/unity/sdk-integration.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/unity/sdk-integration.md).
+
+# SDK Integration
+
+### Step 1: Import Unity Jar Resolver
+
+1. **Download** `external-dependency-manager-1.2.164.unitypackage` from the **NetmeraPackages** folder.
+2. **Import** the package into your Unity project.
+
+### Step 2: Import Firebase Messaging
+
+1. **Download** `FirebaseMessaging.unitypackage` from the **NetmeraPackages** folder.
+2. **Import** the package into your project.&#x20;
+
+{% hint style="warning" %}
+**Do not uncheck any files** during import.
+{% endhint %}
+
+### Step 3: Import Netmera
+
+1. **Download** `netmera-unity-1.1.4.noads.unitypackage` from the **NetmeraPackages** folder.
+2. **Import** it into your Unity project.
+
+### Step 4: Adding Netmera-Info.plist file
+
+1. Add the `Netmera-Info.plist` file to your **Assets** folder.
+2. **Do not move** it from this path.
+3. If needed, rename the `Netmera-Info.plist.example` file by removing the `.example` extension. The sample file can be found [**here.**](https://github.com/Netmera/unity-plugin-netmera/blob/main/NetmeraUnity/Assets/Netmera-Info.plist.example)
+4. Ensure the `Netmera-Info.plist` file includes the following structure:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>netmera_logging_disabled</key>
+	<false/>
+	<key>netmera_mobile_sdkkey</key>
+	<string>YOUR_MOBILE_SDK_KEY</string>
+
+	<!-- OPTIONALS-->
+	<key>netmera_popup_presentation_disabled</key>
+	<false/>
+	<key>netmera_optional_baseurl</key>
+	<string>YOUR_BASE_URL</string>
+	<key>netmera_app_group_name</key>
+	<string>YOUR_GROUP_NAME</string>
+</dict>
+</plist>
+```
+
+### Step 5: Android and iOS Specific Guides
+
+The Step 5 is divided into two categories: Android or iOS.&#x20;
+
+{% tabs %}
+{% tab title="For Android" %}
+
+#### 1. Add a `google-services.json` File
+
+To configure Firebase messaging for your Unity application, download the `google-services.json` file from the Firebase Console. Follow these steps:
+
+1. Download the file from the [Firebase Console](https://firebase.google.com/docs/cloud-messaging/android/client#add_a_firebase_configuration_file).
+2. Place the `google-services.json` file directly in your Unity project's `Assets` folder.
+   * **Note:** The file path is important. Do not move it after placing it in the `Assets` folder.
+
+#### 2. Using a Custom `mainTemplate.gradle` File
+
+Unity uses the **Unity Jar Resolver** to manage dependencies, and it automatically integrates the necessary Firebase components when you import the `FirebaseMessaging.unitypackage`. You will need to enable custom gradle templates for the integration.
+
+1. In the Unity Editor, go to **Project Settings** -> **Publishing Settings**.
+2. Enable the following settings:
+   * **Enable Custom Main Gradle Template**
+   * **Enable Custom Main Manifest**
+   * **Enable Custom Gradle Properties Template**
+
+These settings will generate two gradle-related files in the `Assets/Plugins/Android` folder: `gradleTemplate.properties` and `mainTemplate.gradle`.
+
+3. Open the `gradleTemplate.properties` file and append the following line:
+
+   ```properties
+   android.useAndroidX=true
+   ```
+
+#### 3. Jar Resolver Settings
+
+To configure the Unity Jar Resolver, follow these steps:
+
+1. In the Unity Editor, go to **Assets** -> **External Dependency Manager** -> **Android Resolver** -> **Settings**.
+2. Apply the following recommended settings (though some are optional):
+   * Uncheck **Enable Auto Resolution**.
+   * Uncheck **Enable Resolution on Build**.
+   * Check **Install Android Packages**.
+   * Check **Explode AARs**.
+   * Check **Patch AndroidManifest.xml**.
+   * Check **Patch mainTemplate.gradle**.
+   * Check **Patch gradleTemplate.properties**.
+   * Check **Use Jetifier**.
+
+These settings ensure that the Android dependencies are resolved and handled properly.
+
+#### 4. Jar Resolver Resolve Process
+
+After configuring the resolver, follow these steps to ensure all dependencies are correctly imported:
+
+1. In the Unity Editor, go to **Assets** -> **External Dependency Manager** -> **Android Resolver** -> **Resolve**.
+2. After the process completes, open the `mainTemplate.gradle` file and verify that the necessary libraries have been imported correctly.
+
+   In the `dependencies {}` section of `mainTemplate.gradle`, you should see the following libraries (version numbers may vary):
+
+   ```gradle
+   implementation 'com.google.android.gms:play-services-base:17.6.0'  // From Firebase/Editor/AppDependencies.xml
+   implementation 'com.google.android.gms:play-services-location:18.0.0'  // From Netmera/Editor/NetmeraDependencies.xml
+   implementation 'com.google.firebase:firebase-analytics:18.0.2'  // From Firebase/Editor/MessagingDependencies.xml
+   implementation 'com.google.firebase:firebase-app-unity:7.1.0'  // From Firebase/Editor/AppDependencies.xml
+   implementation 'com.google.firebase:firebase-common:19.5.0'  // From Firebase/Editor/AppDependencies.xml
+   implementation 'com.google.firebase:firebase-messaging:21.0.1'  // From Firebase/Editor/MessagingDependencies.xml
+   implementation 'com.google.firebase:firebase-messaging-unity:7.1.0'  // From Firebase/Editor/MessagingDependencies.xml
+   ```
+
+   If any libraries are missing, try using **Force Resolve** instead of **Resolve**.
+
+   **Note:** If you encounter any duplicate class errors during the build, check for and remove duplicate dependencies.
+
+#### 5. Enabling Multidex
+
+If your Unity app exceeds the 64K method limit for a single APK, you will need to enable **Multidex**.
+
+1. Open the `mainTemplate.gradle` file and navigate to the `android -> defaultConfig` section.
+2. Add the following line to enable Multidex:
+
+   ```gradle
+   multiDexEnabled true
+   ```
+
+   **Note:** If your `minSDK` version is below 21, additional steps are required. You can find more details on enabling Multidex [here](https://appmediation.com/unity-enable-multidex/).
+
+#### 6. Editing the `AndroidManifest.xml` File
+
+The `AndroidManifest.xml` file is a crucial configuration file for setting up Firebase and Netmera SDK integration. Follow these steps:
+
+1. Open your Unity project’s **MAIN AndroidManifest.xml** file, which can be found at `Assets/Plugins/Android/AndroidManifest.xml`.
+2. Add the following lines inside the `<application>` tag to integrate Netmera and Firebase:
+
+   ```xml
+   <application android:name="com.netmera.unity.sdk.core.NetmeraCustomApp">
+       <meta-data android:name="netmera_mobile_sdkkey" android:value="Netmera Mobile SDK key string value. Copy It From Netmera Dashboard."/>
+       <meta-data android:name="netmera_firebase_senderid" android:value="Firebase Sender ID as number. Copy it from Netmera Dashboard."/>
+       <meta-data android:name="netmera_huawei_senderid" android:value="Huawei Sender ID as number. Copy it from Netmera Dashboard."/>
+       <meta-data android:name="netmera_optional_baseurl" android:value=""/>
+       <meta-data android:name="netmera_logging_disabled" android:value="false"/>
+       <meta-data android:name="netmera_popup_presentation_disabled" android:value="false"/>
+   </application>
+   ```
+
+   **Note:** If you cannot use the Netmera `Application` class, you will need to manually add this line to the `onCreate` method of your own `Application` class:
+
+   ```java
+   NetmeraCustomApp.initNetmera(this);
+   ```
+
+By following these steps, you ensure that the integration between Firebase, Netmera, and Unity is correctly configured.
+{% endtab %}
+
+{% tab title="For iOS" %}
+
+### **Adding a GoogleService-Info.plist file**
+
+For iOS, follow these steps:
+
+* **Download the GoogleService-Info.plist file** from the Firebase Console. You can find detailed instructions [here](https://firebase.google.com/docs/cloud-messaging/ios/client#add-config-file).
+* **Place the GoogleService-Info.plist file directly** in your Unity project's Assets folder.
+
+  **Note:** The file path is important. Do not move the file after placing it in the Assets folder.
+
+It is better to use custom data features instead of internal app deep linking in Unity for forwarding users to a specific page, as there are many steps to implement it outside of the Unity Editor. If you need to pass data or a URL after a user clicks a notification, use custom parameters by setting keys and values via the Netmera dashboard.
+{% endtab %}
+{% endtabs %}
+
+### Step 6: Demo Scene
+
+1. Navigate to Assets > Netmera > Demo > NetmeraDemoScene.
+2. You can integrate this scene into your app to test the integration.
+
+### Step 7: Adding Prefab to your first Unity Scene
+
+1. In your Unity scene, import the prefab located at: Assets > Netmera > Demo > Prefabs > NetmeraManager.
+2. This prefab contains the `NetmeraGameObject` script, which demonstrates SDK methods.
+3. **Do not destroy** this object while switching between Unity scenes. It should persist throughout the app.
+4. In the `Awake()` method of your scene, call:
+
+```csharp
+NetmeraCore.Instance.Init(this);
+```
+
+### Netmera Unity Sample Methods
+
+### 1. Logging Configuration
+
+The `loggingEnabled` boolean controls whether logging is enabled in the Netmera SDK. This can be set in the Unity editor to toggle logging functionality.
+
+```csharp
+[SerializeField] private bool loggingEnabled = true;
+```
+
+### 2. Initialization (Awake Method)
+
+In the `Awake` method, the following actions are performed:
+
+* Stack trace logging for regular log messages is disabled.
+* The `NetmeraGameObject` is set to persist across scene loads using `DontDestroyOnLoad`.
+* The `Test_Init` method is called to initialize the Netmera SDK.
+
+```csharp
+private void Awake()  
+{  
+    Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.None);  
+    DontDestroyOnLoad(gameObject);  
+    Test_Init();  
+}
+```
+
+### 3. Initialization Method: `Test_Init`
+
+The `Test_Init` method initializes the Netmera SDK. If the `NetmeraCore` instance is available, logging is configured based on the `loggingEnabled` flag, and the SDK is initialized.
+
+```csharp
+public void Test_Init()  
+{  
+    if (NetmeraCore.Instance == null)  
+    {  
+        return;  
+    }  
+    NetmeraCore.Instance.LoggingEnabled = loggingEnabled;  
+    NetmeraCore.Instance.Init(this);  
+}
+```
+
+### 4. Sample SDK Method Calls
+
+**Sending an Event**
+
+The following method sends an event to the Netmera SDK, with sample data provided for event category and count.
+
+```csharp
+public void Test_SendEvent()  
+{  
+    JSONObject obj = new JSONObject();  
+    obj["ea"] = "valuesample";  
+    obj["ec"] = 10;  
+    NetmeraCore.Instance.SendEvent("zzl", obj);  
+}
+```
+
+#### Updating User Information
+
+This method creates a `NetmeraUser` object and updates the user's birthday and city information.
+
+```csharp
+public void Test_UpdateUser()  
+{  
+    NetmeraUser user = new NetmeraUser();  
+    user.SetBirthday("1980", "06", "26");  
+    user.SetCity("Istanbul");  
+    NetmeraCore.Instance.UpdateUser(user);  
+}
+```
+
+#### Fetching Inbox Items
+
+The `Test_FetchInbox` method fetches inbox items, with a filter for "read or unread" push notifications.
+
+```csharp
+public void Test_FetchInbox()  
+{  
+    List<string> categories = new List<string>() {};  
+    NetmeraCore.Instance.FetchInbox(20, NetmeraEnum.PushStatus.ReadOrUnread, categories, true);  
+}
+```
+
+#### Fetching the Next Page of Inbox Items
+
+This method fetches the next page of inbox items.
+
+```csharp
+public void Test_FetchNextPage()  
+{  
+    NetmeraCore.Instance.FetchNextPage();  
+}
+```
+
+#### Destroying the SDK Instance
+
+The `Test_Destroy` method destroys the current Netmera SDK instance.
+
+```csharp
+public void Test_Destroy()  
+{  
+    NetmeraCore.Instance.Destroy();  
+}
+```
+
+#### Enabling Popup Presentation
+
+This method allows for enabling or disabling popup presentations for push notifications.
+
+```csharp
+public void Test_EnablePopupPresentation(bool isEnabled)  
+{  
+    NetmeraCore.Instance.EnablePopupPresentation(isEnabled);  
+}
+```
+
+#### Getting Push Notification Status Count
+
+This method retrieves the count of push notifications based on their status (read/unread).
+
+```csharp
+public void Test_GetStatusCount()  
+{  
+    NetmeraCore.Instance.GetStatusCount(NetmeraEnum.PushStatus.ReadOrUnread);  
+}
+```
+
+#### Changing the Status of Inbox Items
+
+The `Test_ChangeInboxItemStatuses` method allows for changing the status of specific inbox items.
+
+```csharp
+public void Test_ChangeInboxItemStatuses()  
+{  
+    NetmeraCore.Instance.ChangeInboxItemStatuses(1, 2, NetmeraEnum.PushStatus.Deleted);  
+}
+```
+
+#### Requesting Location Permissions
+
+The `Test_RequestPermissionsForLocation` method requests permissions to access the user’s location.
+
+```csharp
+public void Test_RequestPermissionsForLocation()  
+{  
+    NetmeraCore.Instance.RequestPermissionsForLocation();  
+}
+```
+
+#### Changing the Status of All Inbox Items
+
+This method changes the status of all inbox items to "deleted."
+
+```csharp
+public void Test_ChangeAllInboxItemStatuses()  
+{  
+    NetmeraCore.Instance.ChangeAllInboxItemStatuses(NetmeraEnum.PushStatus.Deleted);  
+}
+```
+
+### 5. Callback Methods
+
+The class implements several callback methods for handling events related to push notifications and inbox operations. Each callback is currently a placeholder, but you can add custom logic to process the events as needed.
+
+**Push Notifications**:
+
+* `OnPushRegister`: Triggered when the device registers for push notifications.
+* `OnPushReceive`: Triggered when a push notification is received.
+* `OnPushOpen`: Triggered when a push notification is opened by the user.
+* `OnPushDismiss`: Triggered when a push notification is dismissed.
+* `OnPushButtonClicked`: Triggered when a button in a push notification is clicked.
+
+**Inbox Operations**:
+
+* `OnInboxFetchSuccess`: Triggered when inbox items are successfully fetched.
+* `OnInboxFetchFail`: Triggered when there is a failure to fetch inbox items.
+* `OnInboxNextPageFetchSuccess`: Triggered when the next page of inbox items is successfully fetched.
+* `OnInboxNextPageFetchFail`: Triggered when there is a failure to fetch the next page of inbox items.
+* `OnInboxStatusChangeSuccess`: Triggered when the status of inbox items is successfully changed.
+* `OnInboxStatusChangeFail`: Triggered when there is a failure to change the status of inbox items.
+* `OnInboxStatusCount`: Triggered when the count of inbox items with a specific status is retrieved.
+
+<details>
+
+<summary><strong>All Content</strong></summary>
+
+```
+using System;  
+using System.Collections;  
+using System.Collections.Generic;  
+using Netmera;  
+using UnityEngine;  
+  
+public class NetmeraGameObject : MonoBehaviour, Netmera.Callback  
+{  
+  [SerializeField] private bool loggingEnabled = true;  
+  
+    private void Awake()  
+    {  
+          Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.None);  
+	      DontDestroyOnLoad(gameObject);  
+	      Test_Init();  
+    }  
+  
+  
+    public void Test_Init()  
+    {  
+        if (NetmeraCore.Instance == null)  
+        {  
+            return;  
+         }  
+        NetmeraCore.Instance.LoggingEnabled = loggingEnabled;  
+        NetmeraCore.Instance.Init(this);  
+    }  
+  
+    /* Sample method calls */  
+    public void Test_SendEvent()  
+    {  
+          JSONObject obj = new JSONObject();  
+	      obj["ea"] = "valuesample";  
+	      obj["ec"] = 10;  
+	      NetmeraCore.Instance.SendEvent("zzl", obj);  
+   }  
+  
+    public void Test_UpdateUser()  
+    {  
+          NetmeraUser user = new NetmeraUser();  
+	      user.SetBirthday("1980", "06", "26");  
+	      user.SetCity("Istanbul");  
+	      NetmeraCore.Instance.UpdateUser(user);  
+    }  
+  
+    public void Test_FetchInbox()  
+    {  
+        List<string> categories = new List<string>() {};  
+        NetmeraCore.Instance.FetchInbox(20, NetmeraEnum.PushStatus.ReadOrUnread, categories, true);  
+    }  
+  
+    public void Test_FetchNextPage()  
+    {  
+        NetmeraCore.Instance.FetchNextPage();  
+    }  
+  
+    public void Test_Destroy()  
+    {  
+        NetmeraCore.Instance.Destroy();  
+    }  
+  
+    public void Test_EnablePopupPresentation(bool isEnabled)  
+    {  
+        NetmeraCore.Instance.EnablePopupPresentation(isEnabled);  
+    }  
+  
+    public void Test_GetStatusCount()  
+    {  
+        NetmeraCore.Instance.GetStatusCount(NetmeraEnum.PushStatus.ReadOrUnread);  
+    }  
+  
+    public void Test_ChangeInboxItemStatuses()  
+    {  
+        NetmeraCore.Instance.ChangeInboxItemStatuses(1, 2, NetmeraEnum.PushStatus.Deleted);  
+    }  
+  
+    public void Test_RequestPermissionsForLocation()  
+    {  
+        NetmeraCore.Instance.RequestPermissionsForLocation();  
+    }  
+  
+    public void Test_ChangeAllInboxItemStatuses()  
+    {  
+        NetmeraCore.Instance.ChangeAllInboxItemStatuses(NetmeraEnum.PushStatus.Deleted);  
+    }  
+  
+  
+    // Callbacks  
+    public void OnPushRegister(string gcmSenderId, string pushToken)  
+    {  
+    }  
+  
+    public void OnPushReceive(JSONNode rawJson, NetmeraPushObject pushObject)  
+    {  
+    }  
+  
+    public void OnPushOpen(JSONNode rawJson, NetmeraPushObject pushObject)  
+    {  
+    }  
+  
+    public void OnPushDismiss(JSONNode rawJson, NetmeraPushObject pushObject)  
+    {  
+    }  
+  
+    public void OnPushButtonClicked(JSONNode rawJson, NetmeraPushObject pushObject)  
+    {  
+    }  
+  
+    public void OnInboxFetchSuccess(JSONNode netmeraPushInboxJSON)  
+    {  
+    }  
+  
+    public void OnInboxFetchFail(int errorCode, string errorMessage)  
+    {  
+    }  
+  
+    public void OnInboxNextPageFetchSuccess(JSONNode netmeraPushInboxJSON)  
+    {  
+    }  
+  
+    public void OnInboxNextPageFetchFail(int errorCode, string errorMessage)  
+    {  
+    }  
+  
+    public void OnInboxStatusChangeSuccess()  
+    {  
+    }  
+  
+    public void OnInboxStatusChangeFail(int errorCode, string errorMessage)  
+    {  
+    }  
+  
+    public void OnInboxStatusCount(int countWithThatStatus)  
+    {  
+    }  
+}
+```
+
+</details>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/unity/sdk-integration.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

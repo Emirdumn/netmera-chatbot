@@ -1,0 +1,55 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/via-integration/etk-rejection-via-sms.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/via-integration/etk-rejection-via-sms.md).
+
+# ETK Rejection via SMS
+
+The VIA SMS RET mechanism allows service providers with a ViA package to collect `ETK` rejection notifications from recipients via SMS. These messages are sent to the short code **3338** (`source: IYS_KISAMESAJ`).
+
+* Rejection notifications can be processed using **brand IYS numbers** or **brand short names**.
+* A **maximum of three brand short names** can be assigned per brand.
+* Short names can be managed via the [**İYS Web**](https://hs.iys.org.tr/) portal under **Brand Short Name Management.**
+
+### SMS format in the IYS test environment
+
+Recipients must send an SMS in the following format:
+
+```plaintext
+RET <BRAND_SHORT_NAME> SDXIYS → 3338
+```
+
+#### Example request
+
+```plaintext
+RET SDXNETMERA SDXIYS → 3338
+```
+
+### Processing and synchronization with Netmera
+
+When a recipient unsubscribes via SMS, their rejection is **recorded in the IYS system**.
+
+**Netmera Sync:**
+
+Netmera syncs data **nightly** to track and update permission changes. If a recipient’s permission status changes, it is **updated in Netmera's system automatically**.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/via-integration/etk-rejection-via-sms.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

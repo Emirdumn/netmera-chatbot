@@ -1,0 +1,141 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/marketing-platforms/optimove.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/marketing-platforms/optimove.md).
+
+# Optimove
+
+The Optimove Connector integrates Netmera with the Optimove Customer Data Platform (CDP) and marketing automation system. This integration allows for sophisticated cross-channel customer journey orchestration where audience selection and decision-making are managed by Optimove, while personalized, high-volume message delivery is handled by Netmera.
+
+### Overview
+
+<table><thead><tr><th width="185.090087890625">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>Optimove</td></tr><tr><td><strong>Category</strong></td><td>Marketing Platforms / Customer Data Platform (CDP)</td></tr><tr><td><strong>Primary Function</strong></td><td>Campaign Event Listening (Inbound) and Attribute Synchronization (Outbound)</td></tr><tr><td><strong>Data Flow</strong></td><td><strong>Bidirectional</strong> (Inbound for triggers, Outbound for profile updates)</td></tr><tr><td><strong>Netmera Component</strong></td><td><code>OptimoveEventController</code> (API-REST) and <code>OptimoveHookSender</code> (Hook Module)</td></tr><tr><td><strong>Connection Type</strong></td><td>REST API</td></tr></tbody></table>
+
+The integration enables Netmera to act as a **Real-Time Execution Channel** for Optimove's campaigns, ensuring personalized messaging is delivered through Netmera's high-throughput Push, Email, and SMS adapters.
+
+<figure><img src="/files/ejWRtYPxUftxoBxYIxqm" alt=""><figcaption></figcaption></figure>
+
+### Use Cases and Benefits
+
+1. **Multi-Channel Campaign Orchestration (Inbound Triggering):** Optimove manages the entire customer journey, defining *who* gets *what* and *when*. When a campaign is processed for a specific user within Optimove, it sends a trigger event to Netmera, initiating the message delivery (Push, SMS, or Email) via Netmera's dedicated messaging system.
+2. **Customer Data Platform (CDP) Synchronization (Outbound Profile Updates):** Netmera's Hook Module can be configured to send user attribute updates (e.g., changes in RFM score, loyalty status, or behavioral events) back to Optimove. This ensures the Optimove user profile remains current with the latest data gathered by Netmera.
+3. **Real-Time Campaign Execution:** The integration supports processing events from Optimove for real-time channels, allowing for swift responses to customer actions or changes in their state.
+4. **Template and Channel Management:** The configuration allows for the defined channels and templates within Optimove to be synchronized and mapped to the corresponding Netmera messages, streamlining content management across both platforms.
+
+### Data Flow
+
+The Optimove integration utilizes a robust **Bidirectional** data flow, crucial for two-way campaign and data synchronization:
+
+#### A. Inbound Flow (Optimove > Netmera: Campaign Triggers)
+
+This is the primary flow, where Optimove initiates the action in Netmera.
+
+* **Mechanism:** Optimove sends campaign events (indicating a message should be sent) directly to a dedicated Netmera REST API endpoint.
+* **Netmera Endpoint:** **`POST /optimove/event/{appKey}`**
+* **Trigger Types:** Events are received when a campaign is processed for a specific channel, when a real-time channel is processed, or when a campaign is cancelled.
+* **Action in Netmera:** The received event triggers Netmera's messaging logic, using the campaign/message ID provided by Optimove to execute the actual push, email, or SMS delivery to the target user.
+
+#### B. Outbound Flow (Netmera > Optimove: Profile Updates)
+
+This flow utilizes Netmera's Hook Module to stream real-time events and profile changes from Netmera back to the Optimove CDP.
+
+* **Mechanism:** A Netmera Hook is configured with the **OPTIMOVE** Hook Type. When the defined event (e.g., `PURCHASE_COMPLETE` or `PROFILE_ATTRIBUTE_CHANGE`) occurs in Netmera, the hook sender is activated.
+* **Hook Sender:** The `OptimoveHookSender` transforms the Netmera event payload into the required Optimove JSON format, including parameters like `CustomerID` and `RealFieldName`.
+* **Purpose:** Updates customer attributes and segmentation data in Optimove based on actions observed by Netmera.
+
+### Configuration Reference
+
+<figure><img src="/files/ccP9ibDN6fPdYmJ86xxg" alt="" width="375"><figcaption></figcaption></figure>
+
+The setup requires Netmera to be provided with the access credentials and internal channel/parameter definitions used within the Optimove system.
+
+<table><thead><tr><th width="126.858642578125">Parameter</th><th width="86.9388427734375">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>baseUrl</strong></td><td>String</td><td>The base URL for the Optimove API endpoint (e.g., <code>https://api.optimove.com</code>).</td></tr><tr><td><strong>apiKey</strong></td><td>String</td><td>The specific API key provided by Optimove for authentication of API requests.</td></tr><tr><td><strong>params</strong></td><td>List</td><td>A list detailing the parameters defined in Optimove (used for synchronization).</td></tr><tr><td><strong>channels</strong></td><td>List</td><td>A list detailing the channels defined in Optimove (used for listener registration).</td></tr></tbody></table>
+
+### Setup Instructions
+
+The setup process in Netmera ensures the critical event listeners are registered automatically upon configuration saving.
+
+#### Step 1: Prerequisites
+
+1. An active Optimove account with administrative access to API settings.
+2. The Optimove API Key and Base URL.
+3. Pre-defined **Channels** and **Parameters** in Optimove that need synchronization with Netmera.
+
+#### Step 2: Configure in Netmera
+
+1. Navigate to the Netmera Control Panel and go to the **Connectors** (or **Integrations**) section.
+2. Select the **Optimove** Connector.
+3. Enter the required configuration details:
+   * Input the **Base URL** and **API Key**.
+   * Configure the **Params** and **Channels** lists, mapping the Optimove definitions to Netmera's internal structure.
+4. Click **Save Configuration**.
+
+#### Step 3: Automated Listener Registration (Post-Save)
+
+* Upon saving, the Netmera system automatically initiates the process to register **event listeners** for all configured channels in the Optimove platform. This enables Optimove to begin sending campaign triggers to Netmera's inbound API endpoint (`/optimove/event/{appKey}`).
+
+#### Step 4: Verification (Outbound Data Sync)
+
+* To enable the reverse flow (Netmera > Optimove), navigate to the **Hooks** section and create a new Hook.
+* Select **Hook Type: OPTIMOVE** and define the specific Netmera event (e.g., `PURCHASE`) or message log you want to synchronize. This ensures customer data is streamed back to Optimove for unified profiling.
+
+### Push Event Notification
+
+Whenever you want to send a push notification, notify us by firing an event through Optimove's REST API using the following example command.&#x20;
+
+```ruby
+curl --location --request POST
+'https://restapi.netmera.com/rest/optimove/event/your-app-key' \
+-H "X-netmera-api-key: your_rest_api_key" \
+-H "Content-Type: application/json" \
+--data-raw '{
+    "eventTypeId":13,
+    "timeStamp":"2022-09-19 05:04:54",
+    "campaignId":your_campaign_id,
+    "channelId":channel_id ‘459 or 481’
+}'
+```
+
+{% hint style="info" %}
+Make sure to replace the placeholders (your-app-key, your\_rest\_api\_key, your\_campaign\_id, channel\_id) with the actual values relevant to your setup.
+{% endhint %}
+
+### Event Type ID and Descriptions
+
+* 11: Triggered when a single target notification send event is generated from Optimove.
+* 13: Triggered when a bulk notification send event is generated from Optimove.
+* 4: Triggered when a campaign is cancelled on the Optimove side.
+
+### User Matching Between Optimove and Netmera
+
+To synchronize users between Optimove and Netmera:
+
+* Provide Optimove with the `Client_ID` key.
+* Set the corresponding IDs as external IDs within Netmera.
+
+### Usage Notes & Considerations
+
+* **Listener Redundancy:** If errors occur during the initial configuration and the event listeners fail to register correctly, the older listener configurations in Optimove might **not be automatically removed** by Netmera. This may require **manual checking** and cleanup within the Optimove management panel.
+* **Connector Dependency for Hooks:** The outbound profile synchronization (Hooks) is entirely dependent on the primary Optimove Connector being configured and in the **ACTIVE** status. If the connector is inactive, Netmera will not send any attribute updates to Optimove, even if the hook definition exists.
+* **Inbound API Requirement:** The inbound triggering requires the Netmera environment to be externally accessible to Optimove's servers, specifically on the dedicated **`/optimove/event/{appKey}`** endpoint. Network access and security policies must permit this inbound call.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/marketing-platforms/optimove.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

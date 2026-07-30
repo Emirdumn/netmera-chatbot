@@ -1,0 +1,345 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/via-integration/otp-consent-requests/otp-confirmation-completion.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/via-integration/otp-consent-requests/otp-confirmation-completion.md).
+
+# OTP Confirmation Completion
+
+The VIA Form Confirmation Completion API is used to finalize the confirmation process initiated by the `Consent Initiation` (`consent`) method. This API allows the recipient to submit the verification code received via SMS or email. If the submitted code is valid, the confirmation is recorded.
+
+{% hint style="warning" %}
+Important notes
+
+* **Validity Period:** The verification code (`otpCode`) for `SMS_OTP` and `EPOSTA_OTP` is valid for **3 minutes**. If the code is not submitted within this timeframe, the request will be considered invalid.
+* **Retry Limit:** A maximum of **3 attempts** can be made within the **3-minute window** for a given `requestId`. Even if the 4th attempt contains a valid code, the confirmation will not be recorded.
+  {% endhint %}
+
+### Confirmation body parameters
+
+<table><thead><tr><th width="169.8505859375">Parameter</th><th width="134">Type</th><th width="119">Required</th><th>Description</th></tr></thead><tbody><tr><td><code>consentTypes</code></td><td>Array of objects</td><td>Yes</td><td>An array containing consent type(s) and their corresponding OTP code(s).</td></tr><tr><td><code>title</code></td><td>String</td><td>Yes</td><td>The type of consent being obtained. Valid values: <code>ETK</code> (ETK consent) or <code>KVK</code> (KVK consent).</td></tr><tr><td><code>otpCode</code></td><td>String</td><td>Yes</td><td>The one-time password (OTP) code sent to the recipient via SMS or email.</td></tr><tr><td><code>requestId</code></td><td>String</td><td>Yes</td><td>The unique identifier (<code>requestId</code>) returned by the <code>consent</code> API during the initiation phase.</td></tr><tr><td><code>verificationType</code></td><td>String</td><td>Yes</td><td>The method used for verification. Valid values: <code>SMS_OTP</code> (OTP via SMS) or <code>EPOSTA_OTP</code> (OTP via email).</td></tr></tbody></table>
+
+### Response fields
+
+#### Success response
+
+The response will include the following fields upon successful completion:
+
+```json
+{
+  "message": [
+    {
+      "transactionId": "The transaction ID for the VIA operation.",
+      "creationDate": "The date and time when the confirmation was created.",
+      "type": "The type of form used for confirmation.",
+      "brandCode": "The unique İYS number assigned to the service provider's brand."
+    }
+  ],
+  "code": "Indicates whether the operation was successful."
+}
+```
+
+#### Error response
+
+The response will include the following fields in case of an error:
+
+```json
+{
+  "message": "The error message describing the issue.",
+  "code": "The error code corresponding to the issue in the İYS system.",
+  "value": "The value that caused the error (if applicable)."
+}
+```
+
+#### Server error response
+
+The response will include the following field in case of a server error:
+
+```json
+{
+  "message": "Error while parsing the data."
+}
+```
+
+### Sample ETK requests <a href="#sample-etk-requests" id="sample-etk-requests"></a>
+
+#### ETK SMS OTP request
+
+```json
+curl --location 'https://restapi.netmera.com/via/confirm' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "requestId": "your_requestid",
+  "verificationType": "SMS_OTP",
+  "consentTypes": [
+    {
+      "title": "ETK",
+      "otpCode": "123000"
+    }
+  ]
+}'
+```
+
+**Successful Response (HTTP Code: 200)**
+
+```json
+{
+    "message": [
+        {
+            "transactionId": "your_transactionid",
+            "creationDate": "2024-07-09 15:54:51",
+            "type": "MESAJ",
+            "brandCode": "100000"
+        }
+    ],
+    "code": "OK"
+}
+```
+
+#### ETK email OTP request
+
+```json
+curl --location 'https://restapi.netmera.com/via/confirm' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "requestId": "your_requestid",
+  "verificationType": "EPOSTA_OTP",
+  "consentTypes": [
+    {
+      "title": "ETK",
+      "otpCode": "123000"
+    }
+  ]
+}'
+```
+
+**Successful Response (HTTP Code: 200)**
+
+```json
+{
+    "message": [
+        {
+            "transactionId": "your_transactionid",
+            "creationDate": "2024-07-09 15:54:51",
+            "type": "EPOSTA",
+            "brandCode": "100000"
+        }
+    ],
+    "code": "OK"
+}
+```
+
+### Invalid ETK requests
+
+#### Invalid ETK SMS OTP request
+
+**Case:** An unexpected value is sent to the `verificationType` field.
+
+```json
+curl --location 'https://restapi.netmera.com/via/confirm' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "requestId": "your_requestid",
+  "verificationType": "SMS",
+  "consentTypes": [
+    {
+      "title": "ETK",
+      "otpCode": "123000"
+    }
+  ]
+}'
+
+```
+
+**Example Failed Response (HTTP Code: 400)**
+
+```json
+{
+    "message": "verificationType alanı için gereken değerler: [SMS_OTP, EPOSTA_OTP, SMS_SHORTURL, EPOSTA_SHORTURL, SMS_APPROVALURL, EPOSTA_APPROVALURL, SMS_CEVAP, SMS_RED, URL_RED] olmalıdır.].",
+    "code": "H1012",
+    "value": "SMS"
+}
+
+```
+
+#### Invalid ETK email OTP request
+
+**Case:** An incorrect request ID is entered in the `requestId` field.
+
+```json
+curl --location 'https://restapi.netmera.com/via/confirm' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "requestId": "15036799-....",
+  "verificationType": "EPOSTA_OTP",
+  "consentTypes": [
+    {
+      "title": "ETK",
+      "otpCode": "960715"
+    }
+  ]
+}'
+```
+
+**Example Failed Response (HTTP Code: 400)**
+
+```json
+{
+    "message": "Doğrulama tipi (verificationType), işlem başlatma isteğinde belirtilenle uyuşmamaktadır.",
+    "code": "H1064",
+    "value": "a7146bdf-...."
+}
+```
+
+### Sample KVK requests
+
+#### KVK SMS OTP request
+
+```json
+curl --location 'https://restapi.netmera.com/via/confirm' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "requestId": "your_requestid",
+  "verificationType": "SMS_OTP",
+  "consentTypes": [
+    {
+      "title": "KVK",
+      "otpCode": "123000"
+    }
+  ]
+}'
+```
+
+**Example Successful Response (HTTP Code: 200)**
+
+```json
+{
+    "message": [
+        {
+            "transactionId": "your_transactionid",
+            "creationDate": "2024-07-09 15:54:51",
+            "type": "MESAJ",
+            "brandCode": "100000"
+        }
+    ],
+    "code": "OK"
+}
+```
+
+#### KVK email OTP request
+
+```json
+curl --location 'https://restapi.netmera.com/via/confirm' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "requestId": "your_requestid",
+  "verificationType": "EPOSTA_OTP",
+  "consentTypes": [
+    {
+      "title": "KVK",
+      "otpCode": "123000"
+    }
+  ]
+}'
+```
+
+**Example Successful Response (HTTP Code: 200)**
+
+```json
+{
+    "message": [
+        {
+            "transactionId": "your_transactionid",
+            "creationDate": "2024-07-09 15:54:51",
+            "type": "MESAJ",
+            "brandCode": "100000"
+        }
+    ],
+    "code": "OK"
+}
+```
+
+### Invalid requests
+
+#### Invalid KVK SMS OTP request
+
+**Case:** The `requestId` value is not included in the request.
+
+```json
+curl --location 'https://restapi.netmera.com/via/confirm' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "verificationType": "SMS_OTP",
+  "consentTypes": [
+    {
+      "title": "KVK",
+      "otpCode": "123000"
+    }
+  ]
+}'
+```
+
+**Example Failed Response (HTTP Code: 400)**
+
+```json
+{
+    "message": "requestId alanı boş veya null olmamalıdır.",
+    "code": "H1057"
+}
+```
+
+#### Invalid KVK email OTP request
+
+**Case:** The `title` field is not included in the request.
+
+```json
+curl --location 'https://restapi.netmera.com/via/confirm' \
+--header 'X-netmera-api-key: your_rest_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "requestId": "your_requestid",
+  "verificationType": "EPOSTA_OTP",
+  "consentTypes": [
+    {
+      "otpCode": "123000"
+    }
+  ]
+}'
+```
+
+**Example Failed Response (HTTP Code: 400)**
+
+```json
+{
+    "message": "title alanı için gereken değerler: [ETK, KVK, ISG, FATURA, SADAKAT, DIJITAL_FATURA] olmalıdır.",
+    "code": "H1013",
+    "value": "[null]"
+}
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/via-integration/otp-consent-requests/otp-confirmation-completion.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

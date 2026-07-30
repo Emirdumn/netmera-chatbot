@@ -1,0 +1,124 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/analytic-platforms/mixpanel.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/analytic-platforms/mixpanel.md).
+
+# Mixpanel
+
+The Mixpanel Integration allows you to leverage your existing user segments (Cohorts) defined in the Mixpanel product analytics platform directly within Netmera's marketing automation tools. By synchronizing these cohorts, you can execute highly targeted campaigns and personalize cross-channel messages based on deep behavioral insights analyzed by Mixpanel.
+
+### Overview
+
+<table><thead><tr><th width="203.6612548828125">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>Mixpanel</td></tr><tr><td><strong>Category</strong></td><td>Analytical and Data Platform / Marketing Platforms</td></tr><tr><td><strong>Primary Function</strong></td><td>User behavior analysis, Cohort synchronization, and Segmentation</td></tr><tr><td><strong>Data Flow</strong></td><td><strong>Bidirectional</strong> (Cohorts pulled to Netmera; user data synchronization)</td></tr><tr><td><strong>Netmera Modules</strong></td><td>Targeting, Segments, Automation Engine</td></tr><tr><td><strong>Sync Mechanism</strong></td><td>Scheduled Task (<code>ConnectorTask.java</code>) and Manual Refresh</td></tr></tbody></table>
+
+This integration ensures that audience definition—a complex process relying on custom events and funnels—is handled entirely by Mixpanel, while execution and delivery are handled by Netmera.
+
+### Use Cases and Benefits
+
+* **Advanced Behavioral Targeting:** Instantly create and target segments in Netmera based on sophisticated Mixpanel cohorts (e.g., users who completed a trial but haven't purchased, or users with high lifetime value).
+* **Cross-Channel Consistency:** Ensure consistency across your product analytics and marketing platforms by using the same user definitions for reporting and outreach.
+* **Campaign Optimization:** Use synchronized segments for targeted Push, Email, and SMS campaigns, maximizing conversion rates and reducing churn.
+* **Unified Customer View:** Pull user data, including push tokens, from Mixpanel to enrich the corresponding Netmera user profiles.
+
+<figure><img src="/files/SzSoUVboOs6v49hng2hN" alt=""><figcaption></figcaption></figure>
+
+### Data Flow
+
+The Mixpanel integration is primarily designed for **Inbound** data flow, pulling user groupings from the external platform into Netmera.
+
+| Flow Direction                   | Data Transferred                                  | Purpose                                                                                                                           | Netmera Component           |
+| -------------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
+| **Inbound** (Mixpanel > Netmera) | Cohort Membership Data (User IDs, Push Tokens)    | Cohort membership data is pulled and used to automatically create and update **Segments** in the Netmera Targeting module.        | Segments, Targeting Service |
+| **Bidirectional** (Sync)         | User Profile Attributes (iOS/Android Push Tokens) | Ensures the Netmera user profile contains the necessary push tokens and identity attributes to match users across both platforms. | User Profile Management     |
+
+### Configuration Reference
+
+<figure><img src="/files/DBStFdqLE32OJTe8rOzB" alt="" width="375"><figcaption></figcaption></figure>
+
+#### Required Credentials
+
+<table><thead><tr><th width="184.6195068359375">Parameter</th><th width="173.4991455078125">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>username</strong></td><td>String</td><td>The username of the service account created in <strong>Organization Settings > Service Accounts.</strong></td></tr><tr><td><strong>password</strong></td><td>String</td><td>The secret of the service account created in <strong>Organization Settings > Service Accounts.</strong></td></tr><tr><td><strong>projectId</strong></td><td>String</td><td>The unique identifier for your Mixpanel project.</td></tr><tr><td><strong>androidPushToken</strong></td><td>String</td><td>The Mixpanel attribute name used to store the <strong>Android Push Token</strong> (e.g., <code>$android_devices</code>).</td></tr><tr><td><strong>iosPushToken</strong></td><td>String</td><td>The Mixpanel attribute name used to store the <strong>iOS Push Token</strong> (e.g., <code>$ios_devices</code>).</td></tr></tbody></table>
+
+#### Optional & Synchronization Parameters
+
+<table><thead><tr><th width="214.652587890625">Parameter</th><th width="133.707275390625">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>cohortFirstCharacters</strong></td><td>String</td><td>Used to filter which Mixpanel cohorts are synchronized. Only cohorts starting with these characters will be pulled (e.g., <code>PN_</code>).</td></tr><tr><td><strong>syncFrequency</strong></td><td>Long</td><td>The numerical value for the synchronization interval.</td></tr><tr><td><strong>syncFrequencyType</strong></td><td>Enum</td><td>The unit of the synchronization interval (e.g., <code>HOURLY</code>, <code>DAILY</code>).</td></tr><tr><td><strong>isTimePeriodActive</strong></td><td>Boolean</td><td>If <code>true</code>, synchronization only occurs during the defined time window.</td></tr><tr><td><strong>timePeriodStart / timePeriodEnd</strong></td><td>String</td><td>Define the start and end times for synchronization if <code>isTimePeriodActive</code> is enabled.</td></tr><tr><td><strong>pageSize</strong></td><td>Integer</td><td>Defines the number of records pulled per API call during synchronization.</td></tr></tbody></table>
+
+### Setup Instructions
+
+Follow these steps to successfully configure the Mixpanel integration in your Netmera environment.
+
+#### Step 1: Prerequisites
+
+{% hint style="danger" %}
+
+### Mixpanel Cohort Naming Requirement (Prefix: `PN_`)
+
+Only cohorts whose names start with **`PN_`** are synced to Netmera as segments.\
+Make sure to add the **`PN_`** prefix when creating the cohort in Mixpanel (e.g., **`PN_HighIntentUsers`**).\
+Cohorts without this prefix will not be synced.
+{% endhint %}
+
+**Profile Attributes (Define → Populate → Map)**
+
+* **Profile attribute prerequisite:** Profile attributes to be used in the Mixpanel integration must be predefined. (e.g, `mixpanel_user_id`)
+* **Data must be populated:** Make sure these attributes are already populated in Mixpanel. *(This requires you to send the relevant data to Mixpanel in advance.)*
+* **Mapping step:** During setup in Netmera, these attributes are mapped to the integration parameters, and synchronization runs based on this mapping.
+
+**User Identity Mapping (distinctId → externalId)**\
+To sync users correctly, set each user’s Mixpanel `distinctId` to the same value as the user’s Netmera `externalId`. Once this mapping is in place, user-level synchronization works as expected.
+
+Before starting the setup, ensure you have:
+
+1. An active Mixpanel account with API access permissions.
+2. The **Project ID** for the project containing the cohorts you wish to synchronize.
+3. Defined Cohorts within Mixpanel that are ready for export.
+4. Identified the Mixpanel attribute names used to store iOS and Android push tokens, which are crucial for mapping to Netmera Installations.
+
+#### Step 2: Obtain Credentials
+
+Log into your Mixpanel dashboard and navigate to your **Project Settings**. You will need to locate the Project ID, and ensure you have the correct username and password associated with the account that has API read access to your cohorts.
+
+#### Step 3: Configure in Netmera
+
+1. Navigate to the Netmera Control Panel and go to **Connectors** (or **Integrations**).
+2. Locate and click on the **Mixpanel** Connector.
+3. Fill out the configuration form:
+   * Enter your **Username** and **Password**.
+   * Enter the **Project ID** from Mixpanel.
+   * Carefully map the Push Token attributes (`iosPushToken` and `androidPushToken`) to the corresponding Mixpanel attribute names.
+   * **Synchronization Settings:** Define the desired frequency (e.g., set `syncFrequency` to `1` and `syncFrequencyType` to `DAILY` for a daily sync).
+   * *(Optional)* If you only want to sync specific cohorts, enter the starting characters in the **Cohort First Characters** field.
+4. Click **Save Configuration**.
+
+#### Step 4: Verification
+
+Upon saving the configuration, the synchronization process is triggered:
+
+1. **Automatic Initial Sync:** Netmera attempts to connect to Mixpanel and pull all matching cohorts.
+2. **Segment Creation:** Once synchronization is complete, navigate to the **Segments** section in the Netmera panel. You should see new segments automatically created with names corresponding to your Mixpanel Cohorts (if filtered by `cohortFirstCharacters`).
+3. **Validation:** Use one of these newly created segments in a test campaign. The members of the Netmera segment should accurately reflect the active users currently belonging to that cohort in Mixpanel.
+
+### Usage Notes & Considerations
+
+<table><thead><tr><th width="180.640869140625">Consideration Point</th><th width="307.9705810546875">Description</th><th>Note</th></tr></thead><tbody><tr><td><strong>Large Cohort Sync Time</strong></td><td>Synchronization, particularly of very large cohorts, may take a significant amount of time, potentially leading to slow UI responsiveness or timeouts.</td><td>Adjust the <code>pageSize</code> to optimize batch processing. Ensure the <code>syncFrequency</code> is set appropriately for the cohort size (e.g., weekly instead of hourly).</td></tr><tr><td><strong>Credential Rotation</strong></td><td>If your Mixpanel username or password changes, the connector will fail silently.</td><td>Credentials must be updated manually in the Netmera connector panel immediately after the change in Mixpanel.</td></tr><tr><td><strong>Token Mapping</strong></td><td>If the push token attributes (<code>iosPushToken</code>, <code>androidPushToken</code>) are mapped incorrectly, Netmera will sync the users but will be unable to send push notifications to them.</td><td>Verify the exact attribute names used by your SDK implementation in Mixpanel.</td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/analytic-platforms/mixpanel.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

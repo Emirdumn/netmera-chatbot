@@ -1,0 +1,394 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/live-activities.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/live-activities.md).
+
+# Live Activities
+
+Live Activities enable apps to display dynamic, real-time updates directly on glanceable areas like the Lock Screen, iPhone StandBy, Dynamic Island, and Apple Watch’s Smart Stack, allowing users to monitor ongoing events, activities, or tasks without constantly reopening the app.
+
+Ideal for tracking short-to-medium-length tasks, Live Activities present prioritized, real-time information such as live sports scores, delivery updates, fitness metrics, and other contextual, time-sensitive experiences, while also offering interactive options for user control. For best practices, ensure a concise layout suited to all display locations, avoid sensitive information, and refrain from using Live Activities for advertising, preserving them as a tool for useful, timely updates.
+
+<figure><img src="/files/6skoN2jyPNA7Oh1Gevfv" alt=""><figcaption></figcaption></figure>
+
+## Netmera and Live Activities
+
+To facilitate this feature, Netmera has integrated additional functionalities into the existing message delivery framework specifically designed for Live Activity.
+
+### Prerequisites and Setup :warning:
+
+* Ensure your **Former iOS SDK** version is at least **3.24.0**
+* Starting with **iOS 17.2**, you can remotely initiate Live Activities via Netmera.
+* A **`.p8 push certificate`** is required to enable Live Activity updates.  Refer to the guide below for instructions on generating an Apple **`.p8`** push certificate.
+
+{% embed url="<https://www.youtube.com/watch?t=91s&v=dv-5gmaGsAA>" %}
+
+### Apple Materials
+
+* [Starting and updating Live Activities with ActivityKit push notifications](https://developer.apple.com/documentation/activitykit/starting-and-updating-live-activities-with-activitykit-push-notifications)
+* [Displaying live data with Live Activities](https://developer.apple.com/documentation/activitykit/displaying-live-data-with-live-activities)
+* [Human Interface Guidelines for Live Activities](https://developer.apple.com/design/human-interface-guidelines/live-activities)
+
+This guide outlines the steps to initiate, update, and end Live Activity with Netmera’s API, enabling dynamic notifications on iOS devices. Below are the essential setup instructions, endpoint examples, and details on how to manage the lifecycle of a Live Acxtivity.
+
+<figure><img src="/files/LSN1ZLNovrsQKSgAIoAF" alt="" width="563"><figcaption></figcaption></figure>
+
+## Overview of the Live Activity Process
+
+1. **Starter Token Transmission to Netmera**
+2. **Starting the Live Activity**
+3. **Updating the Live Activity with an Update Token**
+4. **Modifying or Ending the Live Activity**
+   1. **Monitoring the Close Event**
+
+### Step 1: Transmit the Starter Token to Netmera
+
+To initiate a Live Activity, Netmera requires the Starter Token provided by Apple. This token is obtained once the activity is ready to begin and is transmitted to Netmera using the `LiveActivityStartToken` event.
+
+* **Starter Token**: This token is essential to start a Live Activity on the user’s device.
+
+### Step 2: Start the Live Activity
+
+Using Netmera’s REST API, you can initiate a Live Activity with either `sendBulkNotification` or `sendNotification`. Here are examples and descriptions of the parameters used.
+
+#### 2.1 Using `sendBulkNotification`
+
+The following `curl` example demonstrates how to start a Live Activity for iOS:
+
+```json
+curl --location 'https://restapi.netmera.com/rest/3.0/sendBulkNotification' \
+--header 'X-netmera-api-key: your_restapi_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "message": {
+    "title": "Live Activity Update",
+    "text": "Your process is ongoing",
+    "platforms": ["IOS"],
+    "contentState": {
+      "title": "Uploading File",
+      "subtitle": "50% completed",
+      "progress": 0.5
+    },
+    "liveActAttr": {
+      "referenceId": "upload-12345",
+      "category": "upload"
+    },
+    "liveActAttrType": "LiveActivityAttributes"
+  },
+  "type": "LIVE_ACTIVITY",
+  "target": {
+    "sendToAll": true
+  }
+}'
+```
+
+**Parameter Descriptions**
+
+* **contentState**: This dynamic, stateful section of the Live Activity is used for updates. In this example, the emoji is set as `"Apple"`. Defined in Swift as:
+
+  ```swift
+  import ActivityKit
+
+  // This structure is used both in the app and in the backend via Netmera REST API
+  struct LiveActivityAttributes: ActivityAttributes {
+
+    public struct ContentState: Codable, Hashable {
+      /// Main status or headline
+      /// Examples: "Uploading File", "Order on the way", "Live Score"
+      var title: String
+      var subtitle: String
+      var progress: Double
+    }
+
+    /// Fixed ID that links this activity to backend records
+    var referenceId: String
+    var category: String
+
+    init(referenceId: String, category: String = "") {
+      self.referenceId = referenceId
+      self.category = category
+    }
+  }
+  ```
+* **liveActAttrType**: Specifies the model class used in Swift to define the activity, here set as `"LiveActivityAttributes"`.
+* **liveActAttr**: Contains static content that remains fixed for the Live Activity lifecycle, such as `name`.
+
+#### 2.2 Using `sendNotification`
+
+For individual Live Activity notifications, use the `createNotificationDefinition` API to define the notification, then send it via `sendNotification`.
+
+1. Define the Notification:
+
+   ```json
+   curl --location 'https://restapi.netmera.com/rest/3.0/createNotificationDefinition' \
+   --header 'X-netmera-api-key: your_restapi_key' \
+   --header 'Content-Type: application/json' \
+   --data '{
+     "title": "Live Activity Started",
+     "message": "Tracking your process in real-time",
+     "platforms": ["IOS"],
+     "contentState": {
+       "title": "Uploading File",
+       "subtitle": "Almost there...",
+       "progress": 0.7
+     },
+     "liveActAttr": {
+       "referenceId": "upload-456",
+       "category": "upload"
+     },
+     "liveActAttrType": "LiveActivityAttributes"
+   }'
+   ```
+2. Send the Notification:
+
+   ```json
+   curl --location 'https://restapi.netmera.com/rest/3.0/sendNotification' \
+   --header 'X-netmera-api-key: your_restapi_key' \
+   --header 'Content-Type: application/json' \
+   --data '{
+       "notificationKey": "your_notification_key",
+       "target": {
+           "extId": "your_xid"
+       }
+   }'
+   ```
+
+After executing these commands, the Live Activity will appear on the user’s device.
+
+### Step 3: Transmit the Update Token to Netmera
+
+**Update Token**: This token is used to modify an ongoing Live Activity. Once the Live Activity is started, Apple provides an update token. Transmit this token to Netmera using the `LiveActivityUpdateToken` event, including the **group\_id**.
+
+### Step 4: Update or End the Live Activity
+
+Use the `update-live-activity` API to either modify the content of an existing Live Activity or end it based on the action specified.
+
+#### Example: Update a Live Activity
+
+```json
+curl --location 'https://restapi.netmera.com/rest/3.0/update-live-activity' \
+--header 'X-netmera-api-key: your_restapi_key' \
+--header 'Content-Type: application/json' \
+--data '{
+  "groupId": "upload-456",
+  "action": "UPDATE",
+  "contentState": {
+    "title": "Uploading File",
+    "subtitle": "80% completed",
+    "progress": 0.8
+  },
+  "priority": 10
+}'
+```
+
+* **groupId**: Identifier of the Live Activity group.
+* **action**: Defines the operation type (either `"UPDATE"` or `"END"`).
+* **contentState**: Specifies the updated information within the Live Activity.
+
+#### Example: End a Live Activity
+
+To end a Live Activity, set the action to `END`:
+
+```json
+curl --location 'https://restapi.netmera.com/rest/3.0/update-live-activity' \
+--header 'X-netmera-api-key: your_restapi_key' \
+--header 'Content-Type: application/json' \
+--data '{
+    "groupId": "upload-456",
+    "action": "END",
+    "priority": 10
+}'
+```
+
+### Step 5: Monitor Live Activity Closure
+
+When the end-user closes the Live Activity in the notification center, this action should be tracked and reported to Netmera using the `LiveActivityClose` event with the associated **group\_id**.
+
+{% hint style="info" %}
+**Note**:&#x20;
+
+Both the starter and update tokens may change over the lifecycle of the Live Activity. Always ensure Netmera receives the latest token data to maintain updates.
+{% endhint %}
+
+## Live Activity Client-Side Implementation Sample
+
+* This example shows how to implement Live Activities in the client app using Swift and ActivityKit.&#x20;
+* It includes token transmission logic for Netmera integration.
+
+{% hint style="warning" %}
+This code is for demonstration purposes only. Netmera does not guarantee its functionality, stability, or suitability for production use.&#x20;
+{% endhint %}
+
+```swift
+//
+//  MyLiveActivityManager.swift
+//
+
+import ActivityKit
+import Netmera
+
+// TODO
+// Define your custom ActivityAttributes
+// Can be used for: order tracking, file upload, match tracking, campaign countdown, etc.
+struct LiveActivityAttributes: ActivityAttributes {
+
+  public struct ContentState: Codable, Hashable {
+    // TODO
+    // Dynamic properties (updated during the lifecycle of the activity)
+
+    // Example: "Uploading", "Delivering", "Half Time"
+    var title: String
+
+    // Example: "50% complete", "Arriving in 10 mins", "Score: 1 - 0"
+    var subtitle: String
+
+    // Progress value (0.0 - 1.0)
+    // Example: File upload progress, order delivery stage
+    var progress: Double
+  }
+
+  // TODO
+  // Fixed properties (set once when activity starts)
+  // Example: Order ID, Match ID, Upload Session ID
+  var referenceId: String
+  // Example: "delivery", "upload", "football"
+  var category: String
+
+  init(referenceId: String, category: String = "") {
+    self.referenceId = referenceId
+    self.category = category
+  }
+}
+
+@available(iOS 16.1, *)
+final class MyLiveActivityManager {
+
+  // MARK: Properties
+
+  private var pushToStartTokensByName: [String: String] = [:]
+  private var pushTokensByGroupId: [String: String] = [:]
+
+  // MARK: Functions
+
+  // MARK: Public
+
+  // Call this method in didFinishLaunchingWithOptions
+  // Available in iOS 17.2+: Used when backend initiates the activity via push
+  @available(iOS 17.2, *)
+  func observeStartTokenUpdates() {
+    Task {
+      await withTaskGroup(of: Void.self) { group in
+        group.addTask { [weak self] in
+          guard let self else { return }
+
+          for await data in Activity<LiveActivityAttributes>.pushToStartTokenUpdates {
+            let pushTokenString = data.map { String(format: "%02x", $0) }.joined()
+
+            sendStartTokenEvent(token: pushTokenString)
+          }
+        }
+      }
+    }
+  }
+
+  // Call this method to start a live activity
+  // Example: When an order is confirmed, a file starts uploading, or a football match begins
+  @available(iOS 16.1, *)
+  func startActivity(withUniqueGroupId uniqueGroupId: String) {
+    // TODO
+    // Prepare initial attributes (referenceId, category)
+    let activityAttributes = LiveActivityAttributes(referenceId: uniqueGroupId, category: "general")
+
+    // TODO
+    // Set initial content state
+    // Examples:
+    // - title: "Uploading File", subtitle: "20% done", progress: 0.2
+    // - title: "Galatasaray vs Fenerbahçe", subtitle: "1 - 0", progress: 0.5
+    // - title: "Order on the way", subtitle: "5 min left", progress: 0.8
+    let contentState = LiveActivityAttributes.ContentState(
+      title: "Processing...",
+      subtitle: "Please wait",
+      progress: 0.0
+    )
+
+    let activityContent = ActivityContent(state: contentState, staleDate: nil)
+
+    let activity = try? Activity.request(attributes: activityAttributes,
+                                         content: activityContent,
+                                         pushType: .token)
+    guard let activity else { return }
+
+    Task {
+      await withTaskGroup(of: Void.self) { group in
+        // Listen for push token updates (used for backend-driven updates)
+        group.addTask { [weak self] in
+          guard let self else { return }
+
+          for await data in activity.pushTokenUpdates {
+            let pushTokenString = data.map { String(format: "%02x", $0) }.joined()
+
+            sendUpdateTokenEvent(token: pushTokenString, groupId: uniqueGroupId)
+          }
+        }
+
+        // Listen for activity state changes (e.g., dismissed or ended)
+        group.addTask { [weak self] in
+          guard let self else { return }
+
+          for await state in activity.activityStateUpdates {
+            if state == .dismissed || state == .ended {
+              sendCloseEvent(groupId: uniqueGroupId)
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // MARK: Private
+
+  private func sendStartTokenEvent(token: String) {
+    // Event sent to backend for push-to-start live activity
+    Netmera.send(NetmeraLiveActivityStartTokenEvent(token: token))
+  }
+
+  private func sendUpdateTokenEvent(token: String, groupId: String) {
+    guard pushTokensByGroupId[groupId] != token else {
+      return
+    }
+
+    pushTokensByGroupId[groupId] = token
+
+    // Event sent to backend to update existing live activity
+    Netmera.send(NetmeraLiveActivityUpdateTokenEvent(token: token, groupId: groupId))
+  }
+
+  private func sendCloseEvent(groupId: String) {
+    pushTokensByGroupId.removeValue(forKey: groupId)
+
+    // Event sent when live activity ends (manually or automatically)
+    Netmera.send(NetmeraLiveActivityCloseEvent(groupId: groupId))
+  }
+}
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/live-activities.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,300 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/react-native/tagless-data-capture.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/react-native/tagless-data-capture.md).
+
+# Tagless Data Capture
+
+Automatically capture screen transitions and tap interactions without manual instrumentation for each event.
+
+### Step 1 : Set up the `NetmeraAnalyticProvider`
+
+Wrap your app's root component with `NetmeraAnalyticProvider` and pass the navigation container via the `navigationRef` prop. The provider dynamically manages screen tracking and tap tracking based on the configuration received from the Netmera dashboard.
+
+{% code title="App.tsx" %}
+
+```jsx
+import {
+  NavigationContainer,
+  useNavigationContainerRef,
+} from '@react-navigation/native';
+import { NetmeraAnalyticProvider } from 'react-native-netmera';
+
+export default function App() {
+  const navigationRef = useNavigationContainerRef();
+
+  return (
+    <NetmeraAnalyticProvider navigationRef={navigationRef}>
+      <NavigationContainer ref={navigationRef}>
+        {/* your navigators */}
+      </NavigationContainer>
+    </NetmeraAnalyticProvider>
+  );
+}
+```
+
+{% endcode %}
+
+{% hint style="warning" %}
+**Order matters:** `NetmeraAnalyticProvider` must be placed outside, wrapping the `NavigationContainer`. Reversing the order disables screen tracking.
+{% endhint %}
+
+{% hint style="info" %}
+**Use a single provider:** Only one `NetmeraAnalyticProvider` should be mounted at a time. The current screen name is stored in a module-level singleton; mounting multiple providers simultaneously will cause them to overwrite each other's screen state.
+{% endhint %}
+
+### Step 2 : Choose your React Navigation setup
+
+#### Dynamic API — React Navigation v6 / v7 <a href="#rn-dynamic" id="rn-dynamic"></a>
+
+The same setup applies to both versions of the Dynamic API: create a ref with `useNavigationContainerRef()` and pass it to both the Provider and the `NavigationContainer`.
+
+{% code title="Tsx" %}
+
+```jsx
+import {
+  NavigationContainer,
+  useNavigationContainerRef,
+} from '@react-navigation/native';
+import { NetmeraAnalyticProvider } from 'react-native-netmera';
+
+export default function App() {
+  const navigationRef = useNavigationContainerRef();
+
+  return (
+    <NetmeraAnalyticProvider navigationRef={navigationRef}>
+      <NavigationContainer ref={navigationRef}>
+        <Stack.Navigator>…</Stack.Navigator>
+      </NavigationContainer>
+    </NetmeraAnalyticProvider>
+  );
+}
+```
+
+{% endcode %}
+
+#### &#x20;Static API — React Navigation v7 <a href="#rn-static" id="rn-static"></a>
+
+In the Static API, the component created with `createStaticNavigation` uses `React.forwardRef` and accepts the `ref` prop directly.
+
+{% code title="Tsx" %}
+
+```jsx
+import {
+  useNavigationContainerRef,
+  createStaticNavigation,
+} from '@react-navigation/native';
+import { NetmeraAnalyticProvider } from 'react-native-netmera';
+
+const Navigation = createStaticNavigation(RootStack);
+
+export default function App() {
+  const navigationRef = useNavigationContainerRef();
+
+  return (
+    <NetmeraAnalyticProvider navigationRef={navigationRef}>
+      <Navigation ref={navigationRef} />
+    </NetmeraAnalyticProvider>
+  );
+}
+```
+
+{% endcode %}
+
+#### Comparison
+
+| Feature                   | v6 Dynamic   | v7 Dynamic   | v7 Static    |
+| ------------------------- | ------------ | ------------ | ------------ |
+| `navigationRef` required? | **Required** | **Required** | **Required** |
+| Screen tracking           | ✅Yes         | ✅Yes         | ✅Yes         |
+| Action tracking           | ✅Yes         | ✅Yes         | ✅Yes         |
+
+### Step 3 : Check architecture compatibility
+
+#### New Architecture (Fabric) — Recommended
+
+| Feature                      | Status  | Code                                                                      |
+| ---------------------------- | ------- | ------------------------------------------------------------------------- |
+| Screen tracking              | Full    | Detected via `navigationRef`                                              |
+| Pressable / TouchableOpacity | Full    | —                                                                         |
+| Switch                       | Full    | Value (true/false) logged when Collect Values is enabled in the dashboard |
+| TextInput focus              | Partial | See note below                                                            |
+| FlatList / SectionList index | Full    | Added automatically when Collect Values is enabled                        |
+
+{% hint style="warning" %}
+**TextInput — Android New Architecture limitation:** On Android Fabric, `ReactEditText` consumes the `ACTION_UP` event at the native layer, so `onTouchEnd` is not triggered for TextInput focus events and automatic tracking does not occur. In this case, use `Netmera.trackAction` inside the `onFocus` callback to record the interaction manually.
+{% endhint %}
+
+#### Legacy Architecture (Paper)
+
+The same setup applies as with New Architecture — `navigationRef` is required for both architectures.
+
+| Feature                      | Status | Note                                               |
+| ---------------------------- | ------ | -------------------------------------------------- |
+| Screen tracking              | Full   | `navigationRef` required                           |
+| Pressable / TouchableOpacity | Full   | —                                                  |
+| Switch                       | Full   | —                                                  |
+| TextInput focus              | Full   | —                                                  |
+| FlatList / SectionList index | Full   | Added automatically when Collect Values is enabled |
+
+### Step 4 : Review action tracking behavior
+
+When autotracking detects a touch, it uses the following priority order to identify the component. If no value is found in the chain, the event is not logged.
+
+{% code title="Priority Order" lineNumbers="true" %}
+
+```
+accessibilityLabel→ "add-to-cart" ✅ Recommended
+testID→ "btn-submit"
+placeholder→ "Enter your email"
+First child text→ "Add to Cart"  Fragile fallback
+```
+
+{% endcode %}
+
+#### &#x20;Log format
+
+{% code title="Log Format" %}
+
+```
+HomeScreen   | add-to-cart                      - standard tap
+SettingsScreen | dark-mode-switch | true         - with Switch value
+ProductList  | FlatList | product-card | index:3 - FlatList
+CategoryList | SectionList | product-card | section:1,index:2 - SectionList
+```
+
+{% endcode %}
+
+#### Automatically supported components
+
+| Component            | Identification Order                      | Note                                                                      |
+| -------------------- | ----------------------------------------- | ------------------------------------------------------------------------- |
+| `Pressable`          | accessibilityLabel → testID → text        | —                                                                         |
+| `TouchableOpacity`   | accessibilityLabel → testID → text        | —                                                                         |
+| `TouchableHighlight` | accessibilityLabel → testID → text        | —                                                                         |
+| `Switch`             | accessibilityLabel → testID               | Value (true/false) logged when Collect Values is enabled in the dashboard |
+| `TextInput`          | accessibilityLabel → testID → placeholder | Logged on focus; content is not captured                                  |
+| `FlatList` items     | accessibilityLabel → testID → text        | Item index added automatically when Collect Values is enabled             |
+| `SectionList` items  | accessibilityLabel → testID → text        | Section and item index added when Collect Values is enabled               |
+
+### Step 5 : Add manual tracking for unsupported components
+
+Autotracking works by inspecting the `onPress` and `onValueChange` props in the fiber tree of React Native's standard components (`Pressable`, `TouchableOpacity`, `Switch`).
+
+Components that do not directly expose these props are not automatically tracked. Third-party components that internally use `Pressable` or `TouchableOpacity` and forward an `accessibilityLabel` can be tracked automatically.
+
+#### Manual Tracking: `Netmera.trackAction`
+
+Use `Netmera.trackAction` for interactions that are not automatically captured. The method automatically prepends the current screen name to the path.
+
+```jsx
+import { Netmera } from 'react-native-netmera';
+
+// Basic usage
+Netmera.trackAction('category-selector');
+// → "HomeScreen|category-selector"
+
+// With value — | separator builds a structured path
+Netmera.trackAction(`category-selector|${selectedItem}`);
+// → "HomeScreen|category-selector|Electronics"
+```
+
+#### &#x20;Example: Third-Party Dropdown
+
+```jsx
+<SelectDropdown
+  data={categories}
+  onSelect={(selectedItem) => {
+    Netmera.trackAction(`category-selector|${selectedItem}`);
+  }}
+  renderButton={(selectedItem) => (
+    <View accessibilityLabel="category-selector">
+      <Text>{selectedItem ?? 'Select Category'}</Text>
+    </View>
+  )}
+/>
+```
+
+#### Example: Gesture-Based Component
+
+```jsx
+const swipeGesture = Gesture.Pan().onEnd(() => {
+  runOnJS(Netmera.trackAction)('product-card|swipe');
+});
+
+<GestureDetector gesture={swipeGesture}>
+  <View>…</View>
+</GestureDetector>
+```
+
+### Step 6 : Apply best practices
+
+#### &#x20;Using `accessibilityLabel`
+
+The most effective way to improve tracking quality is to add meaningful `accessibilityLabel` to interactive components. This is especially important for icon buttons and components without text content.
+
+❌**Not tracked**
+
+```jsx
+// No identifier — not logged
+<Pressable onPress={handleCart}>
+  <CartIcon />
+</Pressable>
+```
+
+✅**Tracked**
+
+```jsx
+// With accessibilityLabel
+<Pressable
+  accessibilityLabel="add-to-cart"
+  onPress={handleCart}>
+  <CartIcon />
+</Pressable>
+```
+
+#### &#x20;Identifier choice comparison
+
+| Method               | Stability                                   | Note                                                      |
+| -------------------- | ------------------------------------------- | --------------------------------------------------------- |
+| `accessibilityLabel` | <mark style="color:$success;">High</mark>   | Language-independent; also improves screen reader support |
+| `testID`             | <mark style="color:$warning;">Medium</mark> | May be stripped from production builds                    |
+| Text content         | <mark style="color:$danger;">Low</mark>     | Changes with copy updates or localization; path drifts    |
+
+#### For TextInput
+
+For `TextInput` components where `accessibilityLabel` or `testID` cannot be added, `placeholder` is used as a fallback. However, `placeholder` is locale-sensitive — prefer an explicit label when possible.
+
+```jsx
+// ✓ Preferred
+<TextInput
+  accessibilityLabel="email-input"
+  placeholder="Enter your email address"
+/>
+
+// ⚠ Works but path drifts if placeholder changes
+<TextInput
+  placeholder="Enter your email address"
+/>
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/react-native/tagless-data-capture.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

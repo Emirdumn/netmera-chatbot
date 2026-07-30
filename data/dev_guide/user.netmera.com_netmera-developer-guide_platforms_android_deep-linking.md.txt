@@ -1,0 +1,196 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/android/deep-linking.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/android/deep-linking.md).
+
+# Deep Linking
+
+### Deep Links <a href="#deep-linking" id="deep-linking"></a>
+
+#### Step 1: Add Intent Filters to Your Manifest
+
+Add intent filters to your app's manifest file to define the URLs or URIs your app can handle. This configuration allows both `example://gizmos` and `http://www.example.com/gizmos` to open the same activity in your app.
+
+```xml
+<activity
+    android:name="com.example.android.GizmosActivity"
+    android:label="@string/title_gizmos">
+    
+    <!-- Intent filter for handling HTTP URLs that begin with "http://www.example.com/gizmos" -->
+    <intent-filter android:label="@string/filter_view_http_gizmos">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <!-- Accepts URIs that begin with "http://www.example.com/gizmos" -->
+        <data android:scheme="http"
+              android:host="www.example.com"
+              android:pathPrefix="/gizmos" />
+        <!-- Note: The leading "/" is required for pathPrefix -->
+    </intent-filter>
+    
+    <!-- Intent filter for handling "example://gizmos" URIs -->
+    <intent-filter android:label="@string/filter_view_example_gizmos">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <!-- Accepts URIs that begin with "example://gizmos" -->
+        <data android:scheme="example"
+              android:host="gizmos" />
+    </intent-filter>
+    
+</activity>
+```
+
+#### Step 2: Avoid Merging Data Elements in Intent Filters
+
+When defining multiple data elements in the same intent filter, Android merges their attributes, which can lead to unintended behavior. For example:
+
+```xml
+<!-- Custom in-app message style -->
+<intent-filter>
+  ...
+  <data android:scheme="https" android:host="www.example.com" />
+  <data android:scheme="app" android:host="open.my.app" />
+</intent-filter>
+```
+
+This configuration will match:
+
+* `https://www.example.com`
+* `app://open.my.app`
+* `app://www.example.com`
+* `https://open.my.app`
+
+To avoid this, **use separate intent filters for unique URL schemes and hosts.**
+
+#### Step 3: Enable Netmera SDK for Deep Link Handling
+
+To allow the Netmera SDK to handle deep links automatically, add the following configuration to your `build.gradle (app)` file:
+
+```groovy
+android {
+  ...
+  defaultConfig {
+    ...
+    // The following line is for automatic deep link handling.
+    // If you don't want Netmera to handle deep links, set this value to false.
+    resValue "bool", "netmera_use_default_deeplink_action", "true"
+    ...
+  }
+}
+```
+
+#### Step 4: Retrieve Deep Link URI in Your App
+
+To access the deep link URI programmatically, use the `NMPushActionCallbacks` class provided by the Netmera SDK:
+
+```java
+public class NGPushActionCallbacks implements NMPushActionCallbacks {
+
+  @Override
+  protected void onPushOpen(Context context, Bundle bundle, NetmeraPushObject netmeraPushObject) {
+    Uri deeplinkUri = netmeraPushObject.getDeepLink();
+  }
+}
+```
+
+For more detailed information on deep linking in Android, you can refer to the official Android documentation:&#x20;
+
+#### Android Deep Linking Documentation
+
+For more detailed information on deep linking in Android, you can refer to the official [**Android Deep Linking**](https://developer.android.com/training/app-links/deep-linking.html) documentation.
+
+### Universal Links <a href="#universal-links" id="universal-links"></a>
+
+#### Step 1: Configure the Project
+
+Set `android:autoVerify="true"` in one of the web URL intent filters in your app manifest. This enables Android to verify the link association with your website.
+
+```xml
+<!-- Custom in-app message style -->
+<activity ...>
+    <intent-filter android:autoVerify="true">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="http" android:host="www.naturalworld.com" />
+        <data android:scheme="https" />
+    </intent-filter>
+</activity>
+```
+
+#### Step 2: Configure the Website
+
+1. Create an `assetlinks.json` file with the following details:
+
+* `package_name`: The application ID declared in your app's `build.gradle` file.
+* `sha256_cert_fingerprints`: The SHA256 fingerprints of your app’s signing certificate.
+
+```
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.netmera.naturalworld",
+    "sha256_cert_fingerprints": [
+      "XX…XX"
+    ]
+  }
+}]
+```
+
+2. Host the `assetlinks.json` file and publish the `assetlinks.json` file on the domain. Ensure it is hosted on the website to indicate the association of Android apps with the website and to verify the app's URL intents.
+
+### Deeplink Callbacks
+
+You can retrieve the universal link URL from the `NMPushActionCallbacks` class:
+
+```java
+public class NGPushActionCallbacks implements NMPushActionCallbacks {
+
+  @Override
+  protected void onPushOpen(Context context, Bundle bundle, NetmeraPushObject netmeraPushObject) {
+
+    Uri universalLinkUrl = netmeraPushObject.getDeepLink();
+  }
+}
+```
+
+### Custom Intent Handling
+
+#### Step 1: Configure Deeplink in Push Action
+
+* In the Netmera panel or via REST API, set `deeplink` as the push action.
+* Include any custom parameters in the deeplink configuration.
+
+#### Step 2: Implement a Custom Callback in the Android SDK
+
+* Define a custom handler in the SDK's initialization configuration by assigning it to the `nmDeeplinkCallback`.
+* This setup directs the SDK to bypass its default handling of the deeplink and forward the `pushObject` to your custom callback.
+
+```java
+NetmeraConfiguration.Builder().nmDeeplinkCallback((netmeraPushObject, uri) -> {
+    // handle uri
+})
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/android/deep-linking.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,95 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/ileti-merkezi.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/ileti-merkezi.md).
+
+# İleti Merkezi
+
+### Overview
+
+<table><thead><tr><th width="231.688720703125">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>Message Center (İleti Merkezi)</td></tr><tr><td><strong>Category</strong></td><td>SMS Providers</td></tr><tr><td><strong>Provider Location</strong></td><td>Turkey</td></tr><tr><td><strong>Primary Function</strong></td><td>Outbound transmission of high-priority SMS messages</td></tr><tr><td><strong>Netmera Component</strong></td><td><code>Sms3rdPartyAdapterImpl</code> class</td></tr><tr><td><strong>Data Flow</strong></td><td><strong>Outbound</strong> (Netmera > İleti Merkezi)</td></tr><tr><td><strong>Priority Ranking</strong></td><td><strong>Highest Priority</strong> among all SMS connectors (Rank 1)</td></tr></tbody></table>
+
+Message Center is documented as the SMS connector with the **highest priority** in the Netmera system, ensuring that if it is active, all compatible SMS traffic is routed through it first.
+
+<figure><img src="/files/PQgBXMLCIvNiuz5JPyM4" alt=""><figcaption></figcaption></figure>
+
+### Use Cases and Benefits
+
+1. **High-Priority SMS Delivery:** Message Center handles all general SMS traffic originating from the Netmera platform, including both marketing campaigns and transactional messages. Because it has the highest priority, it is the default provider used when SMS campaigns are executed via the panel or API.
+2. **Transactional Messaging:** It is used for automated system-generated SMS messages, such as validation codes, authentication codes (like OTP, if enabled via `IS_OTP_ENABLED` in the application table), and critical notifications.
+3. **Turkish Market Focus:** As a Turkey-based provider, it is optimized for high delivery rates within the domestic market and handles specific Turkish character requirements.
+4. **Automatic Routing:** The SmsSenderServiceImpl automatically checks for and utilizes Message Center first before falling back to lower-priority providers like Mobildev, FigenSoft, Infobip, Jet SMS, or Twilio.
+
+### Data Flow
+
+The data flow is strictly **Outbound**, where Netmera sends the SMS message request to the Message Center API.
+
+1. **Message Initiation:** A message is created in the Netmera GUI (`Messages > Create Message > SMS`) or triggered via REST API (e.g., `/3.0/sendEmailAndSms`).
+2. **Provider Selection:** The `SmsSenderServiceImpl` checks its list of active SMS connectors. Due to Message Center's highest priority ranking (Rank 1), if its configuration is active, it is selected first.
+3. **API Call:** The dedicated adapter (`Sms3rdPartyAdapterImpl`) uses the configured username, `password`, and `sender ID` to authenticate and submit the SMS payload to the Message Center API endpoint.
+4. **Transmission:** Message Center handles the relaying of the message to the mobile operator networks.
+
+$$\text{Netmera Message Service} \xrightarrow\[\text{Highest Priority}]{\text{Sms3rdPartyAdapterImpl}} \text{Message Center API}$$
+
+### Configuration Reference
+
+<figure><img src="/files/DrUDO9WEeFzRU4QepLBH" alt="" width="291"><figcaption></figcaption></figure>
+
+Configuration is straightforward, requiring basic authentication credentials and the approved sender title.
+
+<table><thead><tr><th width="151.848876953125">Parameter</th><th width="133.1578369140625">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>username</strong></td><td>String</td><td>The account username provided by Message Center.</td></tr><tr><td><strong>password</strong></td><td>String</td><td>The corresponding password for API authentication.</td></tr><tr><td><strong>sender</strong></td><td>String</td><td>The approved alphanumeric <code>Sender ID</code> or sending number.</td></tr></tbody></table>
+
+### Setup Instructions
+
+The setup is completed via the Netmera Control Panel after obtaining the required credentials from the vendor.
+
+#### Step 1: Prerequisites
+
+You must establish an account with İleti Merkezi and obtain your approved Sender ID, API Username, and Password.
+
+#### Step 2: Configure in Netmera
+
+1. Navigate to the Netmera Control Panel and go to the **Connectors** (or **Integrations**) section.
+2. Select the **Message Center** connector.
+3. Fill the configuration form with the credentials obtained from Step 1:
+   * Input the **Username**.
+   * Input the **Password**.
+   * Input the **Sender** (Sender ID/Title).
+4. Click **Save Configuration**.
+
+#### Step 3: Verification
+
+The integration becomes active immediately upon saving. To verify:
+
+* Create a test SMS message in the Netmera panel.
+* The system logs (specifically the message adapter logs) should confirm that the message was routed via the Message Center adapter, assuming no other higher-priority connector is mistakenly active (which shouldn't happen, as Message Center is Rank 1).
+
+### Usage Notes & Considerations
+
+1. **Highest Priority Conflict:** Since Message Center is the highest-priority SMS connector, if it is configured incorrectly or experiences downtime, it can potentially block or delay all SMS traffic until the system automatically falls back or it is manually disabled.
+2. **Turkish Market Scope:** While robust for domestic SMS, organizations requiring extensive global SMS capabilities might rely on other global providers like Infobip or Twilio (which rank lower in priority) or utilize Message Center for Turkey only and manage global traffic through custom routing logic if necessary.
+
+**Credential Management:**
+
+The integration relies on a persistent username and password. If these credentials expire or are rotated on the Message Center side, the connector will fail until the configuration is updated in Netmera.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/ileti-merkezi.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

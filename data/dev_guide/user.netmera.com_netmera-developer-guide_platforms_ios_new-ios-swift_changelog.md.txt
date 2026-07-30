@@ -1,0 +1,1201 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/changelog.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/changelog.md).
+
+# Changelog
+
+### v4.23.4
+
+**July 23, 2026**
+
+**🛠️ Bug Fixes**
+
+**Prevent Duplicate Event Submissions**
+
+* Fixed an issue where the same event could be submitted multiple times \
+  under unstable network conditions.
+
+### v4.23.3
+
+**July 16, 2026**
+
+**🛠️ Bug Fixes**
+
+**Network Logging Crash Fix**
+
+* Fixed a crash that could occur during network logging.
+
+### v4.23.2
+
+**July 10, 2026**
+
+**🛠️ Bug Fixes**
+
+**Push Handling After Netmera Is Killed**
+
+* Fixed an issue that could cause a crash in some cases when a push notification arrived after Netmera was killed.
+
+### v4.23.1
+
+**July 7, 2026**
+
+**⭐ Improvements**
+
+**Reliable Push Delivery Reports**
+
+* Made push delivery reports more reliable through durable event delivery.
+
+**🛠️ Bug Fixes**
+
+**In-App Widget Display Fix**
+
+* Fixed an intermittent issue where an in-app widget could display a black or frozen screen.
+
+**Popup Show Event Posting Fix**
+
+* Fixed the posting logic for `Popup Show event`.
+
+### v4.23.0
+
+**June 26, 2026**
+
+**⭐ Improvements**
+
+**Configurable In-App Presentation Animations**
+
+* Added ability to configure in-app presentation animations via Netmera-Config.plist.
+
+<a href="https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/widget-and-in-app-messages#configure-in-app-presentation-animations" class="button secondary">Configure In-App Presentation Animations</a>
+
+### v4.22.1 <a href="#v4.22.1" id="v4.22.1"></a>
+
+**June 18, 2026**
+
+**🛠️ Bug Fixes**
+
+**Legacy Objective-C Identifiers on SDK Upgrade**
+
+* Recovered legacy ObjC identifiers on upgrade to Swift SDK.
+
+### v4.22.0
+
+**June 17, 2026**
+
+**⭐ Improvements**
+
+**User Segment Callback Support for `Netmera.identifyUser`**
+
+* Added `NetmeraIdentifyUserCallback` to the `Netmera.identifyUser` method to expose segments of the user.
+
+```swift
+Netmera.identifyUser(user: user) { result in
+      switch result {
+      case let .success(info):
+        // handle info, i.e logic depending on info.segments
+        break
+      case let .failure(error):
+        // handle error
+        break
+      }
+    }
+```
+
+**🛠️ Bug Fixes**
+
+**Race Condition in Identifier Loading**
+
+* Fixed race condition of loading identifiers that occured while operations are being started.
+
+**Generic Event Request Creation Crash**
+
+* Fixed a crash that occurred when creating requests for generic event.
+
+### v4.21.0
+
+**June 5, 2026**
+
+**⭐ Improvements**
+
+**SDK Lifecycle Management**
+
+* Added the `Netmera.holdOperation()` method to allow apps to pause and resume SDK operations multiple times during their lifecycle.
+
+### v4.20.0
+
+**June 4, 2026**
+
+**⭐ Improvements**
+
+**Silent Push Enhancements**
+
+* Added `kind` and `dataString` to `NetmeraSilentPush`.
+
+**URL Resolution**
+
+* Improved the base URL resolution mechanism.
+
+**UISegmentedControl Stability**
+
+* Added a guard to prevent crashes when no segment is selected in `UISegmentedControl`.
+
+**Content Display Support**
+
+* Added `Netmera.displayContent` to display content by using a URL.
+
+```swift
+// SDK-managed
+Netmera.displayContent(forWidgetURL: url)
+
+// App-managed WebView
+let webView = WKWebView(frame: view.bounds)
+view.addSubview(webView)
+
+Netmera.displayContent(forWidgetURL: url, in: webView) {
+    webView.removeFromSuperview()
+}
+```
+
+### v4.19.2
+
+**May 20, 2026**
+
+**🛠️ Bug Fixes**
+
+**Autotracking Crash Fix**
+
+* Fixed a rare crash that could occur when scrollable views were dismissed while autotracking was active alongside other SDKs that hook into the same UIKit methods.
+
+### v4.19.1
+
+**May 14, 2026**
+
+**🛠️ Bug Fixes**
+
+**Live Activity Management and Network Request Manager**
+
+* Fixed threading crashes happening in live activity management and network request manager.
+
+**Push Object Parameters**
+
+* Fixed push object params being nil in case of non-string value and added `customParameters` to push object which contains all type of values.
+
+### v4.19.0
+
+**May 8, 2026**
+
+**⭐ Improvements**
+
+**`Netmera.setInitSessionCallback(_:)`**
+
+* New `Netmera.setInitSessionCallback(_:)` delivers user segments and detailed errors via `Result<NetmeraInitSessionInfo, Error>` on every init session.
+
+```swift
+      let initSessionCallBack: (Result<NetmeraInitSessionInfo, Error>) -> Void = { [weak self] result in
+        switch result {
+        case let .success(info):
+          // handle info, i.e logic depending on info.segments
+          break
+        case let .failure(error):
+          // handle error
+          break
+        }
+      }
+      // should be set before or right after the "Netmera.initialize" call in "didFinishLaunchingWithOptions"
+      Netmera.setInitSessionCallback(initSessionCallBack)
+```
+
+**Push Reliability**
+
+* Improved push reliability, allowing devices to automatically recover after iOS app offload.
+
+### v4.18.0
+
+**April 30, 2026**
+
+**⭐ Improvements**
+
+**Push Receive Event Update**
+
+* Push Receive Event is now sent also from the Notification Service Extension, so delivery analytics no longer depend on the app being awake.
+
+**Push Lifecycle Delegate Refactor**
+
+* Push Lifecycle Delegate has been refactored for ease of use.
+
+<a href="/pages/AAsVcoeczsTHX3amg7cA#netmerapushlifecycledelegate" class="button secondary">Delegate Methods (NetmeraPushLifecycleDelegate)</a>
+
+### v4.17.0
+
+**April 15, 2026**
+
+:rocket:**Features**
+
+**In-App Content Lifecycle Delegate**
+
+* Added an in-app content delegate for listening to popup and banner lifecycle events.
+
+<a href="/pages/AAsVcoeczsTHX3amg7cA#netmerainappcontentdelegate" class="button secondary">Delegate Methods (NetmeraInAppContentDelegate)</a>
+
+**🛠️ Bug Fixes**
+
+**Interactive Push Background Activation Handling**
+
+* Fixed an issue with interactive push `background` activation mode handling.
+
+### v4.16.4
+
+**April 13, 2026**
+
+**⭐ Improvements**
+
+**Push Open Event Support for Button Clicks**
+
+* Supported sending push open events for push button clicks even if action is `nothing`.
+
+**🛠️ Bug Fixes**
+
+**Prevent Sending nil externalId in ids Block**
+
+* Handled explicitly set `nil` externalId value to stop sending it in `ids` block.
+
+### v4.16.3
+
+**April 7, 2026**\
+\
+**🛠️ Bug Fixes**
+
+**Notification Delegate Crash Fix**
+
+* Fixed a crash that could occur after Netmera was killed when the app set `UNUserNotificationCenter.delegate` or used Firebase.
+
+### v4.16.2
+
+**April 1, 2026**
+
+**🛠️ Bug Fixes**
+
+**Widget Content Loading**
+
+* Fixed an issue that could cause widget content to fail to load.
+
+**⭐ Improvements**
+
+**Campaign ID Handling in Deeplinks**
+
+* Improved handling of campaign IDs included in deeplinks.
+
+### v4.16.1
+
+**March 27, 2026**
+
+**🛠️ Bug Fixes**
+
+**VoIP Push Crash Fix**
+
+* Fixed a crash related to VoIP push usage in Objective-C `AppDelegate` implementations.
+
+**Firebase Swizzling Compatibility**
+
+* Fixed an issue preventing Netmera swizzling from working when Firebase is used in the app.
+
+**Identify Request Handling**
+
+* Fixed an issue where the `identify user` request could be lost if sent while another request was still in progress.
+
+### v4.16.0
+
+**March 12, 2026**
+
+:rocket: **Features**
+
+**Push Content in `WKWebView`**
+
+* Added `Netmera.displayContent` to load push content (widget/template/URL) into an app-provided `WKWebView` when presentation is handled via `NetmeraPushDelegate`.
+
+### v4.15.0
+
+**March 5, 2026**
+
+**⭐ Improvements**
+
+**Offline Event Caching (In-Memory Only)**
+
+* Offline event caching is now **in-memory only** (no persistent storage).
+
+### v4.14.7
+
+**February 23, 2026**
+
+**⭐ Improvements**
+
+**Optimized Image Handling for Push Templates**\
+Improved image handling for Media, Carousel, and Slider push notifications.
+
+### v4.14.6
+
+**February 11, 2026**
+
+**🛠️ Bug Fixes**
+
+* **Autotracking Disabled Runtime Crash Fix**\
+  Fixed crash occurring in certain scenarios when autotracking is disabled while the app is running.
+* **Objective-C AppDelegate Crash Fix**\
+  Fixed crash affecting some applications using an AppDelegate implemented in Objective-C.
+
+**⭐ Improvements**
+
+* **Conditional Autotracking Swizzling Optimization**\
+  Autotracking method swizzling will no longer occur if the user is not marked as a tester or if no event mapping exists for tracking.
+
+### v4.14.5
+
+**February 3, 2026**
+
+**🛠️ Bug Fixes**
+
+* Prevented a rare crash in `NetmeraLogger` related to Swift runtime type metadata lookup.
+
+### v.4.14.4
+
+**January 16,2026**\
+\
+:rocket: **Features**
+
+* Added `dismissAllPresentations` API to close any presented widget and in-app message programmatically.
+
+### v4.14.3
+
+**January 7, 2026**
+
+This release focuses on stability improvements and minor API enhancements across analytics, notifications and Live Activity support.
+
+**⭐ Improvements**
+
+* Updated `NetmeraPurchaseEvent` by making the `encode` method open, allowing for greater extensibility in custom implementations.
+
+**🛠️ Bug Fixes**
+
+* Fixed an AutoLayout crash occurring in `BasePushPresenter` during notification presentation.
+* Resolved an `ActivityKit` reference issue affecting Live Activities on devices running iOS versions earlier than 16.2.
+
+### v4.14.2
+
+**December 29, 2025**
+
+**⭐ Improvements**
+
+**Full-Screen Widget Support**
+
+* Mobile widgets now support a full-screen layout.
+
+**🛠️ Bug Fixes**
+
+**Auto-Tracking Fixes**
+
+* Fixed various autotracking crashes and take precautions for edge cases.
+* Fixed network logging thread safety issue.
+* Fixed an issue where picker view click events were not triggered when using generic types.
+* Resolved a crash occurring in specific class inheritance scenarios, improving overall SDK stability.
+
+### v4.14.0
+
+**December 3, 2025**
+
+This release adds WhatsApp user permission APIs, introduces generic event sending, and fixes an issue affecting table-view click tracking.
+
+:rocket: **Features**
+
+* Added the ability to **send generic events** through the SDK.
+* Added support to **set**/**get** **WhatsApp** **permission** of user and set its **WhatsApp** **number.**
+
+**WhatsApp API Samples**
+
+```swift
+// Set WhatsApp permission
+Netmera.setWhatsAppPermission(isAllowed: true)
+Netmera.setWhatsAppPermission(isAllowed: false)
+```
+
+```swift
+// Get WhatsApp permission
+Netmera.getWhatsAppPermission { result in
+    self.whatsAppPermission = try? result.get()
+}
+```
+
+[User & Attributes](/netmera-developer-guide/platforms/ios/new-ios-swift/user-and-attributes.md#whatsapp-subscription-preferences)
+
+**🛠️ Bug Fixes**
+
+* Fixed an issue where **table view click events were not triggered** in certain cases when Auto-Tracking was enabled.
+
+### v4.13.0
+
+**November 5, 2025**
+
+:rocket: **Features**
+
+* **Deferred Deep Linking** enables accurate user redirection after app installation from a campaign link. This ensures users land on the intended in-app content even if the app was not previously installed.
+
+### v4.12.1
+
+**October 23, 2025**
+
+:star: **Improvements**
+
+* **Enhanced Screen Tracking:** Improved the custom screen name collection mechanism for auto tracking through the `NetmeraScreenTrackable` interface, providing more accurate and flexible screen event data.
+
+**Sample Usage:**
+
+```swift
+// Conform to the NetmeraScreenTrackable where needed
+extension GenericResultViewController: NetmeraScreenTrackable {
+
+  // Provide the custom name
+  var netmeraScreenName: String {
+    viewModel.screenTitle
+  }
+}
+```
+
+### v4.12.0
+
+**October 21, 2025**
+
+**🛠️ Bug Fixes**
+
+* **Push Payload Conversion Crash Fixed:** Resolved a rare crash that could occur when processing push payloads under specific conditions.
+* **Stability in Auto Tracking:** Addressed crashes by introducing a safer and more reliable swizzling mechanism for event interception.
+
+:star: **Improvements**
+
+* **Smarter Auto Tracking Initialization:** Auto tracking now begins only after the latest configuration is fully retrieved, ensuring accurate and consistent event collection.
+* **Enhanced Action Path Readability:** Auto tracking action paths have been optimized for better visibility and interpretation within analytics, making event insights easier to understand.
+
+**Migration Note for Screen Action Mappings**
+
+If you previously created **Screen Action Mappings** in the Panel, action paths from older builds **may** **differ** from newer builds. To keep reporting continuous, edit the existing mapping and add the new path once. This is a **one-time** **adjustment** caused by the path format change; future versions won’t require repeating this step.
+
+1. Open **Screen Tracking Actions** and click the **Edit** button on the mapping you want to update.
+
+<figure><img src="/files/OuAzqEzGjlL6RTydOjvX" alt="" width="375"><figcaption></figcaption></figure>
+
+2. In the right-side **Edit Screen Action Mapping** panel, click **Add**.<br>
+
+   <figure><img src="/files/qrepL2LiSYISGOM8f9BH" alt="" width="375"><figcaption></figcaption></figure>
+3. From the **Paths** list, select the path coming from the new app version/build.
+
+<figure><img src="/files/uVrhlEUwJHNLGbrWrPRg" alt="" width="375"><figcaption></figcaption></figure>
+
+4. Click **OK** to confirm.
+5. Click **Publish** to apply changes.
+
+### v4.11.0
+
+**October 1, 2025**
+
+:star: **Features**
+
+* Coupons fetching implemented with new request/response structure and manager.
+
+**Sample code:**
+
+```swift
+let filter = NetmeraCouponFilter(page: 1, max: 10)
+
+Netmera.fetchCoupons(using: filter) { result in
+	switch result {
+	case .success(let coupons):
+		print("Coupons fetched: \\(coupons)")
+	case .failure(let error):
+		print("Error fetching coupons: \\(error)")
+	}
+}
+```
+
+* Added optional completion callbacks to `identifyUser` and `updateUserProfile` methods, enabling apps to check if user identification or profile update operations were successful.
+* Added an optional `initSessionCallback` parameter to `initialize()` method to check if the SDK session started successfully.
+
+**Sample code:**
+
+```swift
+  Netmera.initialize { isSuccess in
+            if isSuccess {
+                print("Netmera started successfully")
+            } else {
+                print("Netmera failed to start")
+            }
+        }
+```
+
+* Added callback support to `requestPushNotificationAuthorization` method.
+
+**Sample code:**
+
+```swift
+Netmera.requestPushNotificationAuthorization(
+    for: [.alert, .badge, .sound]
+) { granted, error in
+    if let error = error {
+        print("Authorization request failed: \\(error)")
+        return
+    }
+
+    if granted {
+        print("Push notification permission granted")
+    } else {
+        print("Push notification permission denied")
+    }
+}
+```
+
+**🛠️ Bug Fixes**
+
+* Fixed blank screen issue on app launch when **UIScene** is used.
+
+### 4.10.6
+
+**October 1, 2025**
+
+**🛠️ Bug Fixes**
+
+* Fixed a crash that occurred after Netmera is killed if auto tracking is active.
+
+### 4.10.5
+
+**September 16, 2025**
+
+**🛠️ Bug Fixes**
+
+* Fixed event duplication for events sent during hold phase.
+
+### 4.10.4
+
+**September 5, 2025**
+
+**🛠️ Bug Fixes**
+
+* Fixed screen tracking not working for some certain cases.
+
+### 4.10.3
+
+**August 28, 2025**
+
+This release addresses critical stability issues.
+
+**🛠️ Bug Fixes**
+
+* Fixed a crash that occurred when the app did not implement any swizzled methods.
+* Resolved an issue that occurred after the Netmera process was terminated.
+* Fixed an issue where the device token could not be retrieved if the SDK had not been initialized.
+
+### 4.10.0
+
+**August 18, 2025**
+
+This release introduces new revenue tracking and location permission management capabilities, along with updates to push notification handling and stability fixes.
+
+:rocket: **Features**
+
+* **Revenue Field**
+
+  * Added a new `revenue` field to the `NetmeraEvent` object.
+  * This enables attaching revenue information directly to events.
+  * Example usage:
+
+  ```swift
+  event.revenue = 100.0
+  ```
+* **Location Permission Helper**
+
+  * Introduced a helper method to determine when apps should request location permission:
+
+  ```swift
+  Netmera.shouldRequestLocationAuthorization()
+  ```
+
+**⭐ Improvements**
+
+* **Push Object Fields**
+  * Added missing fields to the Netmera push object.
+* **Method Update**
+
+  * Deprecated `handleInteractiveAction`.
+  * Please use the updated method:
+
+  ```swift
+   Netmera.handleAction()
+  ```
+
+:tools: **Bug Fixes**
+
+* **App State Validation**
+  * Fixed an issue with app state checks when an operation is started.
+
+With this release, you can now track revenue more easily, manage location permission requests in a more controlled way, and stay up to date with the latest method updates for handling push notifications.
+
+### 4.9.0
+
+**August 4, 2025**
+
+:rocket: **Features**
+
+* **Push Notification Category Management**
+  * Added `getUserCategoryPreferenceList` to retrieve the list of push categories configured for the user.
+  * Added `setUserCategoryPreference(categoryId: Int32, categoryEnabled: Bool, completion: (Error?) -> Void)` to enable or disable specific push categories per user.
+  * Enables apps to offer category-based opt-ins (e.g., enabling "campaign" notifications while disabling "information") — aligned with the existing Objective-C SDK behavior.
+  * See [Push Inbox](/netmera-developer-guide/platforms/ios/new-ios-swift/push-inbox.md#manage-push-notification-categories) for further information.
+* **Autotracking: Collect Action Item Values**
+  * Introduced a new app config parameter `cv` (Collect Values) to enhance tracked paths.
+  * When `Collect Values` is enabled, the SDK captures and appends the value of the clicked UI element (e.g., `accessibilityLabel` or `Identifier`) to the action path, enabling precise tracking for dynamic UI elements like table views or menus.
+  * When `Collect Values` is disabled, only the index is tracked to maintain user privacy.
+  * To enable this setting:\
+    **Panel > Settings > Screen Tracking > Action > Toggle "Collect Values" ON > Click Publish**
+  * Visit [User Guide](https://user.netmera.com/netmera-user-guide/customer-data/tagless-data-capture#step-1-enable-tracking) for detailed instructions.
+
+<figure><img src="/files/otXoesK9TJEqtA01wCst" alt="" width="563"><figcaption></figcaption></figure>
+
+**⭐ Improvements**
+
+* Support test device email invitations for `SceneDelegate`-based apps.
+* Improved notification permission handling on background launches.
+* Made `BaseEvent` class initializer internal to prevent unintended instantiation.
+
+:tools: **Bug Fixes**
+
+* Prevented sending `null` values for `msisdn` and `email` if not explicitly set during `identify` or `update` operations.
+* Fixed crash caused when `UITextField` or `UITextView` instances set themselves as their own delegate.
+
+### 4.8.3
+
+**July 31, 2025**
+
+:tools: **Bug Fixes**
+
+* Remote notification registration failure in v4.8.1 has been fixed in v4.8.3.
+* Fixed a crash that occurred when the Geofence module was not included in the project.
+
+### 4.8.2
+
+**July 29, 2025**
+
+:tools: **Bug Fixes**
+
+* Resolved an issue causing a **crash during auto-tracking gestures**.
+
+### 4.7.0
+
+**July 17, 2025**
+
+:rocket: **Features**
+
+**Custom Button Text for Transactional Notifications**
+
+You can now **override button texts** defined in your **Button Sets** for transactional notifications. With this update, **`buttonNames`** can be sent dynamically via the API, allowing you to personalize button texts per notification.
+
+{% hint style="warning" %}
+**Service Extension Required**
+
+For this feature to work on iOS devices, Service Extension Integration must be completed.
+{% endhint %}
+
+**Sample API Requests**
+
+**createNotificationDefinition Request**
+
+```bash
+curl --location --request POST 'https://restapi.netmera.com/rest/3.0/createNotificationDefinition' \
+--header 'X-netmera-api-key: your-rest-api-key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "title": "Important Survey",
+  "message": "We would like to get a feedback",
+  "inbox": false,
+  "platforms": [
+    "ANDROID"
+  ],
+  "click": {
+    "deeplink": "https://www.netmera.com"
+  },
+  "buttonSet": {
+    "id": 1,
+    "buttonNames": {
+      "button1": "15 GB-10 USD",
+      "button2": "15 GB-15 USD"
+    },
+    "15 GB-10 USD": "https://www.google.com",
+    "15 GB-15 USD": "https://www.youtube.com"
+  }
+}'
+```
+
+**sendNotification Request**
+
+```bash
+curl --location --request POST 'https://restapi.netmera.com/rest/3.0/sendNotification' \
+--header 'X-netmera-api-key: your-rest-api-key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "notificationKey": "1000",
+  "target": {
+    "extId": ["exid", "exid22"]
+  },
+  "message": {
+    "buttonSet": {
+      "id": 1,
+      "buttonNames": {
+        "button1": "15 GB-10 USD",
+        "button2": "15 GB-15 USD"
+      },
+      "15 GB-10 USD": "https://www.google.com",
+      "15 GB-15 USD": "https://www.youtube.com"
+    }
+  }
+}'
+```
+
+### 4.6.0
+
+**July 3, 2025**
+
+**⭐ Improvements**
+
+**Geofence Improvements**
+
+Geofence functionality has been optimized to use the most recent location data, eliminate duplicate event triggers, and prevent event generation for non-Netmera-defined regions. Monitoring behavior and logging have been enhanced for greater accuracy and reliability.
+
+:rocket: **New Methods**
+
+Following methods are added managing user consent.
+
+* `setEmailPermission`, `getEmailPermission`
+* `setSmsPermission, getSmsPermission`
+
+<a href="/pages/7yEfvve0RMKS3I1oWbA3#email-subscription-preferences" class="button secondary">Swift Email & SMS Preferences</a>
+
+### 4.5.0
+
+**June 20, 2025**
+
+:rocket: **Features**
+
+**Custom Push Icon**
+
+You can now include custom push icons in your notifications, allowing for more flexible and branded message delivery across different use cases.
+
+<a href="/pages/cQmQE1OZedy6hPupmbY9" class="button secondary">Push Icon</a>
+
+**⭐ Improvements**
+
+**Update Profile**
+
+The `updateUser` method has been **deprecated**. It is now replaced by two separate methods:
+
+* `updateUserProfile`: Should be used for updating user **profile attributes**.
+* `identifyUser`: Should be used for setting or updating **user identifiers** such as `userId`, `email`, or `msisdn`.
+
+The SDK now ensures that all **`session`** and **`init`** requests are sent **with a callback**, improving reliability and traceability.
+
+### 4.4.0
+
+**June 17, 2025**
+
+:rocket: **New Methods**
+
+#### `getCurrentExternalId()`
+
+This method allows you to retrieve the current user's `externalId` (xid) from the SDK.
+
+#### `setDataTransferEnabled(true)` / `setDataTransferEnabled(false)` / `isDataTransferEnabled()`
+
+These methods allow you to control the SDK's data transfer process:
+
+* When `setDataTransferEnabled(false)` is called, user update and event fire requests will not be sent.
+* When `setDataTransferEnabled(true)` is called, user update and event fire requests will resume.
+* `isDataTransferEnabled()` can be used to check whether data transfer is currently active:
+  * Returns `true` if `setDataTransferEnabled(true)` was called.
+  * Returns `false` if `setDataTransferEnabled(false)` was called.
+
+A new parameter has been added to the session initialization request: **`"an": false`** (anonymous)
+
+* This parameter indicates whether the session was started anonymously.
+* **Default value:** `false`
+* When set to `true`, the SDK tracks the user anonymously, and **user update** and **event fire** requests are **not** processed.
+
+#### `isNetmeraRemoteMessage(payload: [String: Any]) -> Bool`
+
+This method is used to determine whether an incoming push notification was sent via Netmera or from another provider. It checks the presence of the `"nm"` tag in the push payload, which is a unique identifier used by Netmera.
+
+* `true`: Indicates that the push notification was sent via Netmera.
+* `false`: Indicates that the push notification was sent from a different source.
+
+This method is useful in applications that integrate with multiple push providers or require payload-based filtering to determine the correct handling logic based on the notification source.
+
+### 4.3.0
+
+**May 31, 2025**
+
+:rocket: **Features**
+
+**SSL Pinning Feature**
+
+* Added support for SSL Pinning allowing developers to enable SSL pinning when needed. This feature enhances the security of your application by ensuring trusted communication channels.
+
+<a href="/pages/k5piFvnbW3svyEMO0vf9" class="button secondary">SSL Pinning Documentation</a>
+
+### 4.2.0
+
+**May 20, 2025**
+
+:rocket: **Features**
+
+**Live Activity Support Added**
+
+* Live Activity is now supported in the Swift SDK, enabling apps to display real-time, dynamically updating content directly on the user’s lock screen.
+
+<a href="/pages/1LsN9FyPdyygOKh2wEGW" class="button secondary">Live Activity Documentation</a>
+
+:tools: **Bug Fixes**
+
+**Crash Fix for Banner/Widget Transitions**
+
+* Implemented a safety fix for a rare crash related to `NSLayoutConstraint.isActive` (`NSGenericException`) observed during `show` / `dismiss` transitions of banners or widgets.
+
+**Inbox Badge Count Update Fix**
+
+* Fixed an issue where the badge count was not updated after reading inbox messages when Netmera manages badges was enabled under `Settings > General > iOS Badge Management`.
+
+**Geofence Event Dispatch Optimization**
+
+* Geofence events are now immediately sent to the backend as soon as they are triggered by the system
+
+### 4.1.0
+
+**May 15, 2025**
+
+:rocket: **Features**
+
+**Notification Permission Status Check**
+
+* The `Netmera.checkNotificationPermission()` method has been added to return the current system-level push notification permission status.
+* This feature allows developers to programmatically determine the user’s push permission state and act accordingly.
+
+**Possible return values:**
+
+* `NOT_DETERMINED`: The user has opened the app but has not yet made a decision regarding push notification permissions.
+* `GRANTED`: The user has granted permission; the app is allowed to send push notifications.
+* `DENIED`: The user has denied permission or notifications are disabled from system settings.
+
+### 4.0.25
+
+**April 17, 2025**
+
+⭐ **Improvements**
+
+* Added the `piid` (push instance ID) value to the event data sent by the SDK for push notifications.
+
+:tools: **Bug Fixes**
+
+* Fixed a crash issue that occurred when users tapped on multiple push notifications in quick succession while the app was open.
+
+### 4.0.24
+
+**April 10, 2025**
+
+:rocket: **Features**
+
+**Email Preferences API Integration**
+
+[User & Attributes](/netmera-developer-guide/platforms/ios/new-ios-swift/user-and-attributes.md#email-subscription-preferences)
+
+* The Netmera SDK now supports managing email subscription preferences within your app using the new Email Preferences API.
+  * `Netmera.setEmailSubscriptionAllowed(true)` – Allows users to subscribe to email notifications.
+  * `Netmera.setEmailSubscriptionAllowed(false)` – Allows users to unsubscribe from email notifications.
+  * `Netmera.isEmailSubscriptionAllowed()` – Allows to check if the user has allowed email subscriptions.
+
+**Push Click Action: Open Widget**
+
+[**See in User Guide**](https://user.netmera.com/netmera-user-guide/messages/mobile-push/creating-a-mobile-push/define-message-content-what#open-widget)
+
+* Added an *Open Widget* option to the Push Click Action section in campaign creation. This enables users to be directed to a relevant widget within the app directly from the push notification.
+
+⭐ **Improvements**
+
+**Deep Link Management for Widget Button Actions**
+
+* Improved support for deep linking within widgets. Developers can now handle deep links more effectively when a *deeplink* is added as a click action in a widget. This enhancement ensures that deep links can be processed properly by the app.
+
+### 4.0.22
+
+**April 2, 2025**
+
+⭐ **Improvements**
+
+* The header **`x-netmera-framework: swift`** has been added.
+
+### 4.0.21
+
+**March 20, 2025**
+
+⭐ **Improvements**
+
+**Timezone ID Collection:**
+
+* The SDK now collects and includes the `tzid` (timezone ID) in the `ids` block for all requests.
+
+**New Event for Background Location Permission:**
+
+* Introduced the `n:blp` event, which is triggered when the user grants in-app location permission.
+
+:tools: **Bug Fixes**
+
+**Track Action Fix:**
+
+* Resolved an issue where long taps were incorrectly recognized as regular taps, preventing certain actions from being triggered. The SDK now correctly verifies tap gestures before executing actions.
+
+### 4.0.20
+
+**January 30, 2025**
+
+:rocket: **Features**
+
+* **Autotracking** mechanism, which automatically tracks user activities and simplifies page transition tracking and event data collection in mobile applications, has been improved.
+* The SDK now collects **region** **information** from device settings, allowing for more targeted engagement based on user regions.
+
+<details>
+
+<summary><strong>Region Information Use Cases</strong></summary>
+
+1. **Storing Region Information on First App Launch**
+
+When the user opens the app for the first time, the device’s region information (`rgn` parameter) is sent to the Netmera backend. This information is added to the user profile and can be used for segmentation.
+
+2. **Updating User's Region Information**
+
+If the user changes the region settings on their device, the SDK detects this change and sends the updated information to the backend.
+
+Example: If the device region is **Region = "US"**, the SDK sends `"rgn": "US"` to the backend.
+
+3. **Sending Region-Specific Push Notifications**
+
+You can send push notifications targeted to users in specific regions.
+
+Examples:
+
+* To users with `"rgn": "TR"`: "New campaign for our users in Turkey!"
+* To users with `"rgn": "FR"`: "Special shipping offers for our customers in France!"
+
+4. **Sending Emergency Alerts and Notifications by Region**
+
+In case of emergencies (weather alerts, natural disasters, etc.), users in specific regions will receive alerts.
+
+Examples:
+
+* To users with `"rgn": "JP"`: "Earthquake warning in Japan!"
+* To users with `"rgn": "US"`: *"*&#x44;elays expected due to storm in the USA."
+
+5. **Segmenting Users Based on Region**
+
+Clients can create automatic segments based on users' region.
+
+* Users with `"rgn": "GB"` will be included in the **"UK"** segment.
+* Users with `"rgn": "IN"` will be included in the **"India"** segment.
+
+6. **Displaying In-App Messages Based on Region**
+
+When a user opens the app, they may receive an **In-App message** personalized for their region.
+
+7. **Displaying Region-Specific Personalized Content**
+
+Upon opening the app, users are shown content tailored to their current region.
+
+* A user with `"rgn": "JP"` will see **popular products in Japan**.
+* A user with `"rgn": "FR"` will see recommendations for **French restaurants and hotels**.
+
+8. **Region-Specific Loyalty Programs or Reward Systems**
+
+Different loyalty programs can be applied based on the user's region.
+
+* Users with `"rgn": "UK"` can receive: "Exclusive 15% bonus points for UK users!"
+* Users with `"rgn": "IN"` can receive: "Cashback offers available for users in India!"
+
+9. **Displaying Payment Options Based on Region**
+
+Users are presented with payment methods relevant to their region.
+
+Example: A popular local bank is offered to users in Turkey, while a different regional bank is suggested for users in Europe.
+
+</details>
+
+### 4.0.19
+
+**January 23, 2025**
+
+:rocket: **Features**
+
+* The **Instant Show** button parameter from the Netmera Panel, which allows users to display specific widgets on the desired page and at the desired time, is now fully implemented in the SDKs and ready for use.
+
+### 4.0.18
+
+**January 13, 2025**
+
+:tools: **Bug Fixes**
+
+* Fixed an issue where push notifications sent while the app was in the foreground did not appear in the notification center if not interacted with upon arrival. Notifications will now properly display in the notification center as expected.
+
+### 4.0.17
+
+**December 30, 2024**
+
+⭐ **Improvements**
+
+* Updated `kSecAttrAccessible` value in Swift SDK from `kSecAttrAccessibleAfterFirstUnlock` to `kSecAttrAccessibleAlways`. This update ensures continuous access to Keychain data.
+
+### 4.0.16
+
+**December 12, 2024**
+
+:tools: **Bug Fixes**
+
+* Improved the network queue mechanism to ensure accurate and reliable processing of all requests.
+
+### 4.0.15
+
+**December 2, 2024**
+
+:tools: **Bug Fixes**
+
+* Widgets exceeding their end time are now correctly excluded during automation deliveries.
+
+### 4.0.14
+
+**November 28, 2024**
+
+⭐ **Improvements**
+
+* **Test Device Added Success Alert:**
+
+Added a success alert when a test device is added.
+
+:tools: **Bug Fixes**
+
+* **Deep Link Handling Crash Fixed:**
+
+A crash that occurred when using schema-based deep links has been fixed. This issue, specifically affecting scheme-type deep links (e.g., `scheme://...`), caused the application to crash before triggering `AppDelegate` methods. In the new version, necessary checks have been added, and the redirection flow has been improved.
+
+### 4.0.13
+
+**November 13, 2024**
+
+⭐ **Improvements**
+
+* Media content included in push notifications with Inbox features is now accessible. Users can directly view media files (images, videos, etc.) embedded in notifications. Please see the sample code below.
+
+```swift
+if let mediaURL = data?.push?.mediaAttachmentURL,
+let url = URL(string: mediaURL) {
+// Load image with url
+}
+```
+
+* Ensured compatibility with Xcode 16 by updating the Swinject framework build process.
+* Widget background updated from gray to a transparent background for enhanced visual appeal.
+
+:tools: **Bug Fixes**
+
+* Resolved a crash issue that occurred when adding a test device via email.
+
+### 4.0.12
+
+**November 8, 2024**
+
+:tools: **Bug Fixes**
+
+* Resolved an issue with widget button actions to ensure proper functionality.
+
+### 4.0.11
+
+**September 26, 2024**
+
+:tools: **Bug Fixes**
+
+* Resolved an issue causing crashes related to silent push notifications.
+
+### 4.0.10
+
+**September 18, 2024**
+
+:rocket: **Features**
+
+* The `Purchase Event` can now be used as a base event, providing greater flexibility in event tracking and enabling more advanced analytics and marketing scenarios.
+
+### 4.0.8
+
+**Sep 12, 2024**
+
+⭐ **Improvements**
+
+* Additional logs have been implemented to help address issues and improve troubleshooting. These logs provide better insights for identifying and resolving errors efficiently.
+
+### 4.0.7
+
+**Sep 3, 2024**
+
+:tools: **Bug Fixes**
+
+* The `did` (device ID) value has been improved to maintain its consistency even after the app is uninstalled and reinstalled.
+
+### 4.0.6
+
+**Aug 27, 2024**
+
+:tools: **Bug Fixes**
+
+* Resolved an issue that was causing a crash related to the widget.
+
+### 4.0.5
+
+**Aug 1, 2024**
+
+:rocket: **Features**
+
+* We have added support for **SwiftUI**.
+
+### 4.0.4
+
+**July 19, 2024**
+
+:tools: **Bug Fixes**
+
+* Fixed the error encountered in AppDelegate.
+
+### 4.0.2
+
+**May 6, 2024**
+
+⭐ **Improvements**
+
+* Added dsym file for better debugging capabilities.
+* Added '`appV`' and '`buildV`' to the header for improved version tracking and identification.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/changelog.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

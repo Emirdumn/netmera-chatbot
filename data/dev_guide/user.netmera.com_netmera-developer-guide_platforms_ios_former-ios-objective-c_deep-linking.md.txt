@@ -1,0 +1,227 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/deep-linking.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/deep-linking.md).
+
+# Deep Linking
+
+### Deep Linking
+
+To redirect users to a specific page or view in your app via push notifications with custom action buttons, you can use deep links. Follow these steps to set up deep linking in your app:
+
+1. **Set Up a URL Scheme**\
+   In your Xcode project, define a custom URL scheme (`netmera://`).
+2. **Configure Info.plist**
+   * Open your **Info.plist** file.
+   * Add a new key: `URL types`**.**  Xcode will create an array with a dictionary called `Item 0`.
+   * Inside `Item 0`, add:
+     * `URL identifier` > Set it to your custom scheme.
+     * `URL Schemes` >This creates an array.
+     * `Item 0` inside `URL Schemes` > Set it to your custom scheme.
+3. **Handle the Deep Link**\
+   Add this method to your app delegate:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool
+{
+    //handle URL here to navigate to custom views
+
+    return true
+}
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation
+{
+    //handle URL here to navigate to custom views
+
+    return YES;
+}
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Scheme and Host Properties
+
+You can use the **scheme** and **host** of a URL to navigate to different screens in your app.
+
+For example, if you have deep links like `netmera://screenOne` and `netmera://screenTwo`, the **scheme** is `netmera`, and the **host** tells you which screen to show (`screenOne` or `screenTwo`).
+
+Here’s how you can use it in code:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+if url.scheme == "netmera" {
+    if url.host == "screenOne" {
+        // Present view controller for screenOne
+    } else if url.host == "screenTwo" {
+        // Present view controller for screenTwo
+    }
+
+    // Or you can use the host property directly
+}
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Deep Link Callback
+
+Netmera SDK triggers `openURL` when users tap a notification. To ensure deep linking works properly, implement Netmera Delegate:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+// Extends NetmeraPushDelegate
+
+// In didFinishLaunchingWithOptions, after calling Netmera.start()
+Netmera.setPushDelegate(self)
+```
+
+```swift
+func shouldHandleOpen(_ url: URL!, for object: NetmeraPushObject!) -> Bool {
+    // Deeplink is checked (valid or invalid)
+    return true
+}
+
+func handleOpen(_ url: URL!, for object: NetmeraPushObject!) {
+    // Control and redirect method
+    print("handleOpenUrl: \(url), for pushObject: \(object)")
+}
+```
+
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+// Extends NetmeraPushDelegate
+
+// In didFinishLaunchingWithOptions
+[Netmera setPushDelegate:self];
+```
+
+```objectivec
+- (BOOL)shouldHandleOpenURL:(NSURL *)url forPushObject:(NetmeraPushObject *)object {
+    // Deeplink is checked (valid or invalid)
+    return YES;
+}
+
+- (void)handleOpenURL:(NSURL *)url forPushObject:(NetmeraPushObject *)object {
+    // Control and redirect method
+    NSLog(@"handleOpenURL: %@ forPushObject %@", url, object);
+}
+```
+
+{% endtab %}
+{% endtabs %}
+
+### Universal Links
+
+1. **Configure the Project**
+
+* Add "Associated Domains" capability.
+* In the domain section, add entries like `applinks:www.mywebsite.com`.
+
+2. **Configure the Website**
+
+Create an `apple-app-site-association` file:
+
+{% hint style="info" %}
+
+* Host this file on your HTTPS server at `/` or `/.well-known/`.
+* The **appID** consists of the **Team ID** (found in Apple Developer Account) and the **App Bundle ID** (found in the project).
+* Specify the paths the app supports (e.g., `/products`).
+  {% endhint %}
+
+```
+{
+    "applinks": {
+        "apps": [],
+        "details": [{
+            "appID": "4321.com.netmera.naturalworld",
+            "paths": ["/products"]
+        }]
+    }
+}
+```
+
+### Handle Universal Links in the App
+
+Implement the following method in your AppDelegate:
+
+{% tabs %}
+{% tab title="Swift" %}
+
+```swift
+func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+  if (userActivity.activityType == NSUserActivityTypeBrowsingWeb) {
+    let url = userActivity.webpageURL
+    // Handle url
+  }
+  return true
+}
+```
+
+#### User Experience
+
+* Using **userActivity** methods will prompt users with **"Open in Safari or in the application?"** when clicking a notification.
+* Handling **Universal Links** via **Netmera Delegate methods** (`shouldHandleOpenUrl` and `handleOpenUrl`) will **direct users straight to the app**.
+
+For further details, refer to the Apple documentation [here](https://developer.apple.com/library/archive/documentation/General/Conceptual/AppSearch/UniversalLinks.html).
+{% endtab %}
+
+{% tab title="Objective-C" %}
+
+```objectivec
+- (BOOL)application:(UIApplication *)application
+continueUserActivity:(NSUserActivity *)userActivity
+  restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
+  if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
+    NSURL *url = userActivity.webpageURL;
+    // Handle url
+  }
+  return YES;
+}
+```
+
+#### User Experience
+
+* Using **userActivity** methods will prompt users with **"Open in Safari or in the application?"** when clicking a notification.
+* Handling **Universal Links** via **Netmera Delegate methods** (`shouldHandleOpenUrl` and `handleOpenUrl`) will **direct users straight to the app**.
+
+For further details, refer to the Apple documentation [here](https://developer.apple.com/library/archive/documentation/General/Conceptual/AppSearch/UniversalLinks.html).
+{% endtab %}
+{% endtabs %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/deep-linking.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,409 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/react-native/sdk-integration.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/react-native/sdk-integration.md).
+
+# SDK Integration
+
+{% embed url="<https://www.npmjs.com/package/react-native-netmera>" %}
+
+**Example Project**
+
+For a practical example, check out the [**Netmera React Native Example Project**](https://github.com/Netmera/Netmera-React-Native-Typescript-Example) on GitHub, which shows how to integrate the React Native SDK.
+
+## Step 1: Install React Native <a href="#installation" id="installation"></a>
+
+1. **Install Netmera**
+
+{% tabs %}
+{% tab title="NPM" %}
+
+```bash
+npm install --save react-native-netmera
+```
+
+{% endtab %}
+
+{% tab title="Yarn" %}
+
+```bash
+yarn add react-native-netmera
+```
+
+{% endtab %}
+{% endtabs %}
+
+2. **Link Netmera (for React Native versions < 0.60)**
+
+Skip this step if you are using React Native version 0.60 or greater.
+
+```bash
+react-native link react-native-netmera
+```
+
+For both native sides (Android & iOS), you don't have to include extra Netmera SDK libraries.
+
+## Step 2: Setup Android <a href="#setup-android-part" id="setup-android-part"></a>
+
+### 1. Netmera Android Onboarding <a href="#create-a-firebase-cloud-messaging-configuration" id="create-a-firebase-cloud-messaging-configuration"></a>
+
+**In Netmera Panel**:
+
+* Navigate to **Developers** > **Netmera Onboarding**.
+* Select **Android** and click **Start** to proceed.
+
+<figure><img src="/files/RiJFUO6B2HbE49DWYixW" alt="" width="563"><figcaption></figcaption></figure>
+
+### 2. Create a Firebase Configuration
+
+Netmera uses Firebase Cloud Messaging (FCM) for delivering push notifications.
+
+1. Go to the [**Firebase Developers Console**](https://console.firebase.google.com/) and create a Firebase project.
+2. Generate a new **Private Key** (JSON file) for your project.
+3. Upload this file in Netmera Panel > Developers > Netmera Onboarding > Android > Step 2: Create A Firebase Configuration > FCM Service Account Key.
+
+{% @arcade/embed flowId="wWs2Yesf5jfbmH6BBLOc" url="<https://app.arcade.software/share/wWs2Yesf5jfbmH6BBLOc>" %}
+
+### 3. Select a Target SDK <a href="#integrate-sdk" id="integrate-sdk"></a>
+
+Choose the React Native SDK based on your application framework.
+
+<figure><img src="/files/JxFd3AobqO5ICWNihJV7" alt="" width="563"><figcaption></figcaption></figure>
+
+### 4. Integrate and Initialize **React Native** SDK <a href="#integrate-sdk" id="integrate-sdk"></a>
+
+<figure><img src="https://lh7-us.googleusercontent.com/5bVVUuZBFS3dRDP9UO2_i31L0jF2Obwpwrh9jIULVFCy5avp84ss9Ntu_VPtVEw93p7ZIYbOc4EZBJhG4AiXU_G-UNz7ZOGg0Udsq5mCmASNUxTQlMI4uPHeR5DOjr_3Q7MCH5f-HQaPutsOBkrzPwk" alt="" width="563"><figcaption></figcaption></figure>
+
+{% hint style="warning" %}
+**Important Notes:**
+
+* **Do not** use the API key from a **test** **panel** in production.
+* **Each panel has a unique API key**, and using the wrong one can result in data misdirection or errors.
+
+**To obtain your SDK API Key:**
+
+1. Go to the Netmera Panel.
+2. Navigate to Developer > API > SDK API Key.
+3. Copy your SDK API Key from this section.
+   {% endhint %}
+
+### 5. Integrate Netmera Android SDK <a href="#gradle-file-confugration" id="gradle-file-confugration"></a>
+
+Netmera Android SDK is available through the **Maven repository**. Add the following configurations to your `build.gradle` file. The `AndroidManifest` and other resource settings are automatically managed by the Android Gradle build tool.
+
+#### Gradle Configuration
+
+1. **Project’s `build.gradle` File**
+
+Add the following to your project-level `build.gradle` file:
+
+```groovy
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://developer.huawei.com/repo/' }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:X.X.X'
+        classpath 'com.google.gms:google-services:X.X.X'
+        classpath 'com.huawei.agconnect:agcp:X.X.X.X'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://maven.google.com' }
+        maven { url 'https://developer.huawei.com/repo/' }
+        maven { url "https://release.netmera.com/release/android" }
+    }
+}
+```
+
+2. **At the top of your app’s `build.gradle`, include:**
+
+```groovy
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.huawei.agconnect'
+```
+
+{% hint style="info" %}
+**Important Note for Obfuscation:**
+
+If your code is obfuscated, there is no need to add any special rules for Netmera. Its functionality is unaffected by code obfuscation.
+{% endhint %}
+
+### 6. Initialize Netmera Android SDK <a href="#initialize-netmera-1" id="initialize-netmera-1"></a>
+
+1. In your app, locate a class that extends `android.app.Application` and implements `com.facebook.react.ReactApplication`
+
+{% hint style="warning" %}
+**If you don’t have a class that extends `android.app.Application`**
+
+1. If you don’t have this class, create one.
+
+2. Then, add it to your `AndroidManifest.xml` file under the `<application>` tag using the `android:name`
+   {% endhint %}
+
+3. Inside this class, add the following code to the `onCreate()` method
+
+4. Replace `<YOUR GCM SENDER ID>`, `<YOUR HMS SENDER ID>`, and `<YOUR NETMERA API KEY>` with your actual values.
+
+{% tabs %}
+{% tab title="Kotlin" %}
+
+```kotlin
+import com.netmera.reactnativesdk.RNNetmera
+import com.netmera.reactnativesdk.RNNetmeraConfiguration
+
+class MainApplication : Application(), ReactApplication {
+    override fun onCreate() {
+        ...
+        val netmeraConfiguration = RNNetmeraConfiguration.Builder()
+            .firebaseSenderId(<YOUR GCM SENDER ID>)
+            .huaweiSenderId(<YOUR HMS SENDER ID>)
+            .apiKey(<YOUR NETMERA API KEY>)
+            .logging(true) // This enables Netmera logs.
+            .build(this)
+
+        RNNetmera.initNetmera(netmeraConfiguration)
+    }
+}
+```
+
+{% endtab %}
+
+{% tab title="Java" %}
+
+```java
+import com.netmera.reactnativesdk.RNNetmera;
+import com.netmera.reactnativesdk.RNNetmeraConfiguration;
+
+public class MainApplication extends Application implements ReactApplication {
+    @Override
+    public void onCreate() {
+        ...
+        RNNetmeraConfiguration netmeraConfiguration = new RNNetmeraConfiguration.Builder()
+            .firebaseSenderId(<YOUR GCM SENDER ID>)
+            .huaweiSenderId(<YOUR HMS SENDER ID>)
+            .apiKey(<YOUR NETMERA API KEY>)
+            .logging(true) // Enables Netmera logs.
+            .build(this);
+
+        RNNetmera.initNetmera(netmeraConfiguration);
+    }
+}
+```
+
+{% endtab %}
+{% endtabs %}
+
+## Step 3: Setup iOS <a href="#setup-ios-part" id="setup-ios-part"></a>
+
+### 1. Create an Apple Push Notification Certificate
+
+1. Log in to [**developer.apple.com**](https://developer.apple.com) with your Apple Developer account.
+2. Generate an Apple Push Notification Certificate for your app.
+3. Export the certificate using **Keychain Access** on your Mac.
+4. Upload the exported certificate to the Netmera panel by navigating to **Developer > Push Backends > iOS** in the left menu.
+
+{% hint style="info" %}
+**Bundle IDs should match on your project, certificate and panel:**
+
+Ensure that the certificate you upload to the panel matches the bundle ID of your project. Additionally, set your project's bundle ID in the panel to ensure consistency. The bundle ID of your **project**, the **certificate**, and the one specified in the **panel** must all align.
+{% endhint %}
+
+{% hint style="info" %}
+**Certificate types:**
+
+* For apps downloaded from the App Store or tested via TestFlight, the certificate type should be set to **"prod"**.
+* For apps built directly from Xcode, the certificate type must be set to **"dev"**.
+
+If you have problems sending push notifications when you build from Xcode, verify the certificate type on the **Developer > Push Backends > iOS** page in Panel.
+{% endhint %}
+
+#### Creating an APNS .p8 Certificate (Recommended)
+
+{% embed url="<https://youtu.be/dv-5gmaGsAA?si=A4V085fUEWMpTzXi>" %}
+
+#### Creating an APNS .p12 Certificate
+
+{% embed url="<https://youtu.be/R8tva2tpFyU?si=9JPg1b9Rqt6b0ldl>" %}
+
+### 2. Configure Podfile <a href="#initialize-netmera" id="initialize-netmera"></a>
+
+Add the following `post_install` block to the end of your Podfile.
+
+```ruby
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name.include?('Swinject')
+      target.build_configurations.each do |config|
+        config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+      end
+    end
+  end
+end
+```
+
+{% hint style="warning" %}
+If you are using [the New Architecture](https://reactnative.dev/architecture/landing-page) or using Firebase as [static frameworks](https://rnfirebase.io/#altering-cocoapods-to-use-frameworks), add the following lines right before the `post_install` block.
+
+```ruby
+pre_install do |installer|
+  installer.pod_targets.each do |pod|
+    if pod.name.start_with?('Netmera') || pod.name.include?('Swinject')
+      def pod.build_type
+        Pod::BuildType.dynamic_framework
+      end
+    end
+  end
+end
+```
+
+{% endhint %}
+
+### 3. Install Pods
+
+Navigate to the iOS folder in your terminal and run:
+
+```shellscript
+$ pod install
+```
+
+### 4. Add Netmera-Config.plist
+
+Add the \`Netmera-Config.plist\` file to your ios/your\_app directory.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "">
+<plist version="1.0">
+    <dict>
+        <key>sdk_params</key>
+        <dict>
+            <key>api_key</key>
+            <string>YOUR-SDK-API-KEY</string>
+        </dict>
+    </dict>
+</plist>
+```
+
+If you are using Netmera on-premises, you must add your server URL as the base\_url key inside sdk\_params.
+
+```xml
+<key>base_url</key>
+<string>YOUR-BASE-URL</string>
+```
+
+{% hint style="info" %}
+To obtain your **SDK API Key:**
+
+1. Go to the **Netmera Panel**.
+2. Navigate to **Developer > API > SDK API Key**.
+3. Copy your **SDK API Key** from this section.
+
+Use this key to replace the `YOUR-SDK-API-KEY` placeholder in the sample code.<br>
+{% endhint %}
+
+### 5. Configure Xcode Push Notifications Settings <a href="#enable-push-notifications" id="enable-push-notifications"></a>
+
+1. Open your project in Xcode.
+2. Navigate to **Signing & Capabilities**.
+3. Click **+ Capability** and select **Push Notifications**.
+4. Click **+ Capability** and select **Background Modes** then enable **Background fetch** and **Remote notifications** modes.
+
+<figure><img src="/files/IGw1Usa2bTAGLdcVkzNV" alt=""><figcaption></figcaption></figure>
+
+### 6. Initialize Netmera in `AppDelegate`
+
+Initialize the Netmera Swift SDK by adding the following lines to your `AppDelegate` file:
+
+<pre class="language-swift"><code class="lang-swift">import RNNetmera
+
+@main
+class AppDelegate {
+override func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+) -> Bool {
+    ...
+    //Initialize Netmera
+<strong>    RNNetmera.initNetmera()
+</strong>    
+    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+}
+...
+}
+</code></pre>
+
+{% hint style="info" %}
+To obtain your **SDK API Key:**
+
+1. Go to the **Netmera Panel**.
+2. Navigate to **Developer > API > SDK API Key**.
+3. Copy your **SDK API Key** from this section.
+
+Use this key to replace the `<YOUR NETMERA API KEY>` placeholder in the sample code.
+{% endhint %}
+
+### Configuring Multiple Environments
+
+If you want to configure multiple environments for your app (e.g., Development and Production), follow the steps below using the Overwrite Method. This method ensures that the configuration is correctly applied to both the Main App and any App Extensions (e.g., Notification Service).
+
+#### Step 1: Prepare Your Files
+
+1. Create a base `Netmera-Config.plist` in your project folder.
+2. In the Target Membership panel, check your Main App and all Extensions.
+3. Add your environment-specific files (e.g., `Netmera-Config-Debug.plist` and `Netmera-Config-Release.plist`) to your project folder.
+
+#### Step 2: Add Run Script Phase
+
+1. In Xcode, select your Main App Target.
+2. Go to the Build Phases tab and add a New Run Script Phase.
+3. Position this phase before the Copy Bundle Resources step.
+4. Implement the following script:
+
+```bash
+# Determine which config file to use based on build configuration
+if [ "${CONFIGURATION}" == "Debug" ]; then
+    CONFIG_FILE="${PROJECT_DIR}/NetmeraSwiftDemo/Netmera-Config-Debug.plist"
+else
+    CONFIG_FILE="${PROJECT_DIR}/NetmeraSwiftDemo/Netmera-Config-Release.plist"
+fi
+
+# Define the path to the main config file that will be overwritten
+# Ensure the path matches your project structure
+BUNDLE_PATH="${PROJECT_DIR}/NetmeraSwiftDemo/Netmera-Config.plist"
+
+# Overwrite the main plist with the selected configuration
+cp "${CONFIG_FILE}" "${BUNDLE_PATH}"
+```
+
+{% hint style="warning" %}
+Note for Extensions: If your project includes extensions, ensure that only the base `Netmera-Config.plist` (the one being overwritten) is included in the Target Membership of those extensions. The Debug and Release source files should remain exclusive to the project folder or the main app target.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/react-native/sdk-integration.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

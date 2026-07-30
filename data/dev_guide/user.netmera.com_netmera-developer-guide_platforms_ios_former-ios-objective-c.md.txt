@@ -1,0 +1,74 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c.md).
+
+# Former iOS (Objective-C)
+
+The former iOS (Objective-C) SDK is the earlier version of our SDK, primarily built using Objective-C.
+
+* If you **haven't migrated to the New iOS (Swift) SDK yet**, use this documentation.
+* We recommend transitioning to the new iOS (Swift) SDK for improved performance and access to the latest features.
+
+#### Migration to Swift SDK: Key Dates and Details
+
+To support modern iOS capabilities and provide the best development experience, we’re evolving our SDK. By **October 8, 2026**, our **Objective-C SDK will become legacy**, and all new development will continue on the **Swift SDK**.
+
+#### What This Transition Brings to Your Marketing Campaigns
+
+* **Live Activities** – Send real-time updates directly to users’ lock screens (e.g., sports scores, delivery tracking).
+* **Deferred Deep Linking** – Direct users to specific content in your app, even if installation is required first.
+* **WhatsApp** – Engage users through outbound WhatsApp campaigns.
+* **Improved Performance** – Faster, more reliable push delivery and enhanced data collection.
+
+#### Technical Improvements
+
+* **Swift Package Manager (SPM) Support** – Install and update the SDK easily with no manual setup.
+* **Fast Setup with Minimal Code** – Get started quickly using example projects and built-in `Netmera-Config.plist` support.
+* **Performance and Observability Uplift** – Structural and diagnostic enhancements improve runtime efficiency and monitoring capabilities.
+
+#### Timeline
+
+* **Until October 8, 2026**: Objective-C SDK remains supported but will not receive new features.
+* **From October 2026 onwards**: Objective-C SDK enters legacy status. Security patches will continue until **December 2026**. Active development, feature updates, and enhancements will continue exclusively on the Swift SDK.
+
+We recommend planning your migration early to take advantage of the Swift SDK’s capabilities and ensure uninterrupted access to the newest features.
+
+#### Your Action Items
+
+* **Marketing Teams** – Coordinate with development teams to plan migration timelines around upcoming campaigns.
+* **Development Teams** – Review Swift SDK documentation and assess migration guide for your current implementation.
+
+#### Resources
+
+Our Swift SDK documentation is available to support a smooth transition:
+
+* [New iOS (Swift)](/netmera-developer-guide/platforms/ios/new-ios-swift.md)
+* [Migration to Swift SDK](/netmera-developer-guide/platforms/ios/migration-to-swift-sdk.md)
+
+For questions, contact **<support@netmera.com>**.
+
+Thank you for your attention to this important update.
+
+**Netmera Team**
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

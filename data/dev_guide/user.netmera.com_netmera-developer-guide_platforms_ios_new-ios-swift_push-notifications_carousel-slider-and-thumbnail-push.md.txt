@@ -1,0 +1,175 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/carousel-slider-and-thumbnail-push.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/carousel-slider-and-thumbnail-push.md).
+
+# Carousel, Slider and Thumbnail Push
+
+### Step 1: Create a New **Notification Content Extension**
+
+To create a new Notification Content Extension to your application:
+
+1. On Xcode click **File > New > Target** and choose **Notification Content Extension.**
+2. New class named `NotificationViewController` will be created. It should be extended from `NetmeraNotificationContentExtension` class.  Your `NotificationContent` class should look like the following:
+
+```swift
+import UserNotifications
+import UserNotificationsUI
+import NetmeraNotificationContentExtension
+
+class NotificationViewController: NotificationContentExtension {
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+
+  override func didReceive(_ notification: UNNotification) {
+    super.didReceive(notification)
+  }
+}
+```
+
+3. Enable **Capabilities** > **App Groups** for both your **application** and `NotificationContent` extension.
+4. Add `bundle_identifier.group_name` to your app groups.
+
+### Optional: Installing Notification Content Extension Using CocoaPods
+
+If you're using a **Podfile** for dependency management, follow these steps along with the rest of the steps from 1 to 5:
+
+* Install `NetmeraNotificationContentExtension` in your Podfile,
+* Install it to your extension target.
+
+```ruby
+pod "NetmeraNotificationContentExtension"
+```
+
+**Note:** If you're not using CocoaPods, you can skip this step.
+
+### Step 2: Add Your `AppGroupName`
+
+1. Add your `AppGroupName` in your Netmera-Config.plist.&#x20;
+
+```html
+<key>sdk_params</key>
+    <dict>
+        <key>app_group_name</key> // add this line in Config.plist
+        <string>{YourAppGroupName}</string> // add this line in Config.plist
+        <key>use_ui_scene</key>
+        <false/>
+        <key>api_key</key>
+        <string>{API_KEY}</string>
+        <key>custom_events</key>
+        <array>
+            <string>{YourCustomEvent}</string>
+        </array>
+    </dict>
+```
+
+If you don't have a Netmera-Config.plist see the step here [/pages/5d9FesEwfJr1x5zQGP3U#id-1.-configure-with-netmera-plist](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/pages/5d9FesEwfJr1x5zQGP3U#id-1.-configure-with-netmera-plist "mention").
+
+### Step 3: Select Targets in Target Membership
+
+1. Select **all three targets** in the Target Membership section on the right.
+
+<figure><img src="/files/jBDMaN6S1KcxzINU96Es" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 4: Select Main Project & Content Extension
+
+1. Go to **Notification View Controller > Target Membership**.
+2. Select both the main project and the content extension.
+
+<figure><img src="/files/bFi4vsxBqNsyvgqeQagO" alt="" width="563"><figcaption></figcaption></figure>
+
+### Step 5: Info.plist Settings
+
+#### Sample Content Extention Info.plist
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+    <key>NSExtension</key>
+    <dict>
+        <key>NSExtensionAttributes</key>
+        <dict>
+            <key>UNNotificationExtensionUserInteractionEnabled</key>
+            <true/>
+            <key>UNNotificationExtensionCategory</key>
+            <array>
+                <string>NetmeraCarousel</string>
+                <string>NetmeraGeneral</string>
+            </array>
+            <key>UNNotificationExtensionInitialContentSizeRatio</key>
+            <real>1</real>
+        </dict>
+        <key>NSExtensionMainStoryboard</key>
+        <string>MainInterface</string>
+        <key>NSExtensionPointIdentifier</key>
+        <string>com.apple.usernotifications.content-extension</string>
+    </dict>
+</dict>
+</plist>
+```
+
+#### 1. Receiving Http Media Contents
+
+If you want to allow your application to receive http media contents follow these steps:
+
+1. Click `Info.plist` under **Notification Content Extension,**
+2. Add **App Transport Security Settings,**
+3. Add **Allow Arbitrary Loads** under App Transport Security Settings and set it to **YES.**
+
+#### 2. Enabling Slides in Carousel Notifications
+
+To allow users to slide between multiple media items (such as images) in a notification:
+
+1. Set `UNNotificationExtensionUserInteractionEnabled` to **YES**.
+2. Add `UNNotificationExtensionCategory` as an array in **Info.plist** and include:
+   * `NetmeraGeneral`
+   * `NetmeraCarousel` (enables sliding between multiple media items)
+
+{% hint style="info" %}
+The `UNNotificationExtensionCategory` field does not appear automatically in **Info.plist**. You must **manually** enter and configure it.
+{% endhint %}
+
+<figure><img src="/files/0mqE4iTFc97al7sNZZf2" alt="" width="563"><figcaption></figcaption></figure>
+
+### **Troubleshooting**
+
+If push notifications do not display correctly:
+
+1. Go to **Build Settings > Runpath Search Paths** in the extension target. Ensure the following paths are added:
+
+```plaintext
+@executable_path/../../Frameworks  
+@executable_path/Frameworks  
+@loader_path/Frameworks
+```
+
+2. Remove the **default label** in **MainInterface**.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/carousel-slider-and-thumbnail-push.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

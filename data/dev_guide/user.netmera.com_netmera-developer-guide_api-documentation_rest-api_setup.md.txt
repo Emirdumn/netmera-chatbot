@@ -1,0 +1,77 @@
+URL: https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/setup.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/setup.md).
+
+# Setup
+
+### Authenticating Requests with Your API Key
+
+To access Netmera’s REST API, you must include your **REST API key** in the request headers.
+
+#### How to Get Your API Key
+
+1. Log in to the **Netmera Panel**.
+2. Navigate to: **Developers > API**.
+3. Copy your **REST API key** from the provided field.
+
+   > Use **only the REST API key** (not JavaScript or mobile keys) for REST API requests.
+
+### How to Add the API Key to Requests
+
+Include the API key in the `X-netmera-api-key` header of your request.
+
+**Example:**
+
+```json
+curl -X POST https://restapi.netmera.com/rest/3.0/sendBulkNotification \
+  -H "X-netmera-api-key: YOUR_REST_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "extId": "user123",
+        "notification": {
+          "title": "Hello",
+          "message": "Welcome to Netmera!"
+        }
+      }'
+```
+
+> Always include the header `Content-Type: application/json` when sending JSON payloads.
+
+### What is `extId` (External ID)?
+
+The `extId` is the unique identifier you assign to a **user** in your system. It ensures consistency across devices and platforms.
+
+#### Key Points:
+
+* It must be **unique per user**.
+* Used to group all app installations (e.g., smartphone, tablet) under a single user.
+* Required in most REST API requests (e.g., inbox retrieval, status update).
+
+#### Example:
+
+If John uses your app on both an iPhone and an iPad:
+
+* Both installations should send the same `extId`, e.g., `"extId": "john123"`.
+* Netmera recognizes these as different devices belonging to the same user.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/setup.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

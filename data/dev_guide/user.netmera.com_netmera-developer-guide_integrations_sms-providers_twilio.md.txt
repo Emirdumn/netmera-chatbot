@@ -1,0 +1,78 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/twilio.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/twilio.md).
+
+# Twilio
+
+The integration of **Twilio** with the Netmera platform positions Twilio as an outbound SMS gateway, leveraging its cloud-based communication APIs for message delivery.
+
+### Overview
+
+Twilio is categorized as an active SMS provider integration, providing Netmera with programmatic capabilities for SMS delivery globally.
+
+<figure><img src="/files/BCO0u7bnxMaL2RUgA8XB" alt=""><figcaption></figcaption></figure>
+
+### Use Cases and Benefits
+
+1. **Campaign SMS Delivery:** Twilio can be utilized as a channel for sending bulk SMS campaigns created and segmented within the Netmera Control Panel (`Messages > Create Message > SMS`).
+2. **Workflow Integration:** It enables the use of the "Send SMS" action within Netmera's automated workflows (Automation module), triggering SMS communication based on user events or status changes.
+3. **API-Triggered Messaging:** Twilio can process transactional SMS requests that originate from the Netmera REST API.
+4. **Global Reach:** As a global provider, Twilio is designed to offer programmatic SMS and voice services across various regions, expanding Netmera's potential messaging reach.
+
+### Data Flow
+
+The Twilio integration uses an **Outbound** data flow:
+
+1. **Selection:** The Netmera SmsSenderServiceImpl checks active SMS connectors based on a predefined priority list. If higher-priority connectors (such as Message Center, Mobildev, FigenSoft, Infobip, and SMSC) are inactive or unavailable, Twilio is checked next.
+2. **Execution:** If selected, the dedicated Netmera adapter, SmsTwilioAdapterImpl, receives the SMS payload (recipient number and content).
+3. **API Call:** The adapter authenticates using the configured accountSid and authToken and submits the message content and an approved fromAddresses number to the Twilio API endpoint via REST.
+4. **Delivery:** Twilio handles the delivery of the SMS to the target mobile network.
+
+### Configuration Reference
+
+<figure><img src="/files/LdwzrvLInLkdtYoGsMaI" alt="" width="230"><figcaption></figcaption></figure>
+
+The Twilio connector requires three primary credentials to establish a secure and functional connection:
+
+<table><thead><tr><th width="151.13824462890625">Parameter</th><th width="116.043212890625">Type</th><th>Description</th><th>Twilio Context</th></tr></thead><tbody><tr><td><strong>accountSid</strong></td><td>String</td><td>The unique account identifier for your Twilio account.</td><td>Identifies your account for API requests.</td></tr><tr><td><strong>authToken</strong></td><td>String</td><td>The authentication token/security token associated with your account.</td><td>Used for API authentication.</td></tr><tr><td><strong>fromAddresses</strong></td><td>List</td><td>A list of approved phone numbers that SMS messages will be sent from.</td><td>Must be registered and approved within your Twilio account.</td></tr></tbody></table>
+
+The configuration is active only if the Twilio config is active and the fromAddresses list is populated.
+
+### Setup Instructions
+
+The setup involves obtaining credentials from the Twilio platform and configuring them within the Netmera control panel.
+
+1. **Prerequisites:** Sign up for a Twilio account and ensure you have purchased or verified the phone numbers you intend to use for sending SMS.
+2. **Obtain Credentials:** Retrieve the **Account SID** and **Auth Token** from your Twilio dashboard. Note the list of verified **From Addresses** (phone numbers).
+3. **Configure in Netmera:** Navigate to the Netmera Control Panel, access the **Connectors** section, and select the **Twilio** connector.
+4. **Input Data:** Input the obtained **Account SID**, **Auth Token**, and the list of **From Addresses** into the configuration form.
+5. **Save:** Click the **Save Configuration** button.
+
+### Usage Notes & Considerations
+
+1. **Lowest Priority Ranking:** Twilio is positioned at the bottom of the Netmera SMS priority list (Rank 7 or 8), making it a secondary or tertiary choice. **It will only be used if all higher-priority providers (Message Center, Mobildev, FigenSoft, Infobip, SMSC, Jet SMS)** are unavailable or disabled.
+2. **Configuration Requirement:** For the connector to be active and utilized, the **fromAddresses** list must be configured and contain valid Twilio numbers.
+3. **Phone Number Format:** As with most global SMS providers, the integration relies on the recipient's phone number (`msisdn field`) being registered in the Netmera user profile in the **international format** (e.g., starting with +CountryCode), which is necessary for successful routing via the Twilio API.
+4. **Credential Management:** The integration depends on the persistent validity of the authToken and accountSid. Any rotation or change to these credentials in the Twilio platform will require manual updating in Netmera to prevent delivery failures.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/twilio.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

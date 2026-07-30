@@ -1,0 +1,151 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/ssl-pinning.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/ssl-pinning.md).
+
+# SSL Pinning
+
+{% hint style="danger" %}
+**Warning**
+
+If your app's target is 14, you must use the `info.plist` Configuration for SSL pinning.
+{% endhint %}
+
+Netmera SDK supports SSL pinning to ensure secure communication between your app and Netmera servers. There are two methods to implement SSL pinning: **using a certificate file** or **using Info.plist configuration**. You must choose only one method; implementing both will cause issues. Below are the detailed steps for both integration options.
+
+The Netmera SDK supports SSL pinning to ensure secure communication with our servers. You can implement SSL pinning in one of two ways:
+
+1. Using a Certificate File (`netmera.com.cer`)\
+   \&#xNAN;*(Supports iOS 11 and above)*
+2. Using `Info.plist` Configuration\
+   \&#xNAN;*(Supports iOS 14 and above)*
+
+## Compatibility
+
+| **Method**                 | **Supported iOS Versions** |
+| -------------------------- | -------------------------- |
+| Certificate File           | iOS 11 and above           |
+| `Info.plist` Configuration | iOS 14 and above           |
+
+{% hint style="info" %}
+
+#### **Important Notes:**
+
+* **Implement Only One Method**: You can implement either the certificate file method or the Info.plist configuration method, not both.
+* **On-Premises Customers**: If you're using an on-premises setup, ensure the certificate file is named `netmera.com.cer` and use your custom URL in the Info.plist configuration.
+* **Certificate Updates**: If the certificate changes, update the `netmera.com.cer` file or regenerate the public key hash and update the Info.plist configuration.
+  {% endhint %}
+
+### Integration Option 1: Using a Certificate File (iOS 11 and Above)
+
+This method is supported on **iOS 11 and above**.
+
+#### Step 1: Add the Certificate to Your Project
+
+1. Download the `netmera.com.cer` certificate file.
+2. Add the certificate to your **Xcode project**.
+3. Ensure the certificate is included in your app's target.
+
+#### Step 2: The Certificate File Name Must Be `netmera.com.cer`
+
+1. The SDK looks for the file named `netmera.com.cer` in your app's project bundle. Ensure the file name matches exactly.
+
+**No Additional Configuration Needed**
+
+Once the certificate is added with the correct name, the SDK will automatically detect it and enable SSL pinning.
+
+### Integration Option 2: Using Info.plist Configuration (iOS 14 and Above)
+
+This method is supported on **iOS 14 and above**.
+
+#### Step 1: Generate the Public Key Hash
+
+1. Use the following `OpenSSL` command to generate the public key hash for the certificate:
+
+```bash
+openssl s_client -showcerts -servername your-custom-url.com -connect your-custom-url.com:443 </dev/null 2>/dev/null | \
+openssl x509 -outform PEM | \
+openssl x509 -inform pem -noout -outform pem -pubkey | \
+openssl pkey -pubin -inform pem -outform der | \
+openssl dgst -sha256 -binary | openssl enc -base64
+```
+
+2. Replace `your-custom-url.com` with your custom domain (for on-premises customers) or use `sdkapi.netmera.com` for the default Netmera service.
+
+**Example output:**
+
+```
+A1C7RK0nAsHviju64ImO48VgSY5FdOMxv9GJh0uMXJQ=
+```
+
+### Step 2: Add the Configuration to Info.plist
+
+1. Open your app’s Info.plist file.
+2. Add the following configuration to enable SSL pinning:
+
+{% hint style="info" %}
+**Replace:**
+
+* `your-custom-url.com` with your custom domain (for on-premises customers).
+* `SPKI-SHA256-BASE64` with the hash value generated in the previous step.
+  {% endhint %}
+
+```xml
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <false/>
+    <key>NSPinnedDomains</key>
+    <dict>
+        <key>your-custom-url.com</key>
+        <dict>
+            <key>NSIncludesSubdomains</key>
+            <true/>
+            <key>NSPinnedLeafIdentities</key>
+            <array>
+                <dict>
+                    <key>SPKI-SHA256-BASE64</key>
+                    <string>A1C7RK0nAsHviju64ImO48VgSY5FdOMxv9GJh0uMXJQ=</string>
+                </dict>
+            </array>
+        </dict>
+    </dict>
+</dict>
+```
+
+### Step 3: Save and Build Your Project
+
+After adding the configuration, save the `Info.plist` file and rebuild your project.
+
+### Important Notes
+
+1. **Choose Only One Method:**
+   * Do not use both methods simultaneously. The SDK will not function correctly if both methods are implemented. Select the method that aligns with your project requirements.
+2. **On-Premises Customers:**
+   * The certificate file name must remain `netmera.com.cer`.
+   * If you are using the `Info.plist` method, replace `sdkapi.netmera.com` with your custom URL.
+3. **Certificate Updates:**\
+   If the server certificate changes, update the `netmera.com.cer` file or regenerate the public key hash and update your `Info.plist`.
+4. **Testing:**\
+   Test your SSL pinning implementation using tools like [Proxyman](https://proxyman.io) to verify that requests fail if the certificate or key hash does not match.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/ssl-pinning.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

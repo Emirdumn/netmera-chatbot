@@ -1,0 +1,301 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/web/sdk-setup.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/web/sdk-setup.md).
+
+# SDK Setup
+
+<details>
+
+<summary>Supported Platforms</summary>
+
+**Mac OS**\
+Website push notifications are supported by Mac OS X 10.9 ("Mavericks") and later releases.
+
+**Chrome**\
+Website push notifications are supported by Chrome version 42 and later releases.
+
+**Firefox**\
+Supported.
+
+**Edge**\
+Supported.
+
+**Yandex**\
+Supported.
+
+**Opera**\
+Supported.
+
+**To see browser penetration you can visit the following sites,**
+
+Browsers usage rate on netmarketshare:
+
+[Browser Market Share](https://www.netmarketshare.com/browser-market-share.aspx?qprid=2\&qpcustomd=0\&qpcustom=)
+
+Browsers usage rate on w3schools:
+
+[Browser Statistics](https://www.w3schools.com/browsers/default.asp)
+
+[Google Chrome Browser](https://www.w3schools.com/browsers/browsers_chrome.asp)
+
+</details>
+
+## Step 1:  Select a Platform <a href="#firebase-for-chrome-browsers" id="firebase-for-chrome-browsers"></a>
+
+1. Navigate to **Developers > Netmera Onboarding.**
+2. Select **Web** to proceed to the next step.
+3. If integration is complete but requires updates later, click the **Edit or Continue** button to make changes.
+
+<figure><img src="/files/VWviJm5MIXuyDMlWmdeh" alt=""><figcaption></figcaption></figure>
+
+## Step 2: SDK Integration
+
+1. Add the URL of the website where the SDK integration will take place.
+2. Specify the Netmera Panel to receive site data using the Web API Key. This key is available in Developer > App Info.
+3. Insert the code snippet into the **`head`** section of your project:
+
+```javascript
+"eslintConfig": {
+    "globals": {
+        "netmera": true
+    }
+}
+ //  If you use react or vue, add your code on your project package.json file.
+```
+
+<figure><img src="/files/0NBK3qV8itwkYnL1HaL2" alt=""><figcaption></figcaption></figure>
+
+4. Include the files in your project's `root` directory without altering their names or contents.
+
+{% hint style="info" %}
+If your website is built with React or another Single Page Application (SPA) framework, place the required Netmera configuration files inside the **`public`** directory instead of the project root.
+{% endhint %}
+
+5. Use the **Recheck Files** button to check if your files have been uploaded successfully.
+
+<figure><img src="/files/hx7eT8KGW5yczMhyg3xS" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+**If You Have an Existing `manifest.json` File**
+
+* Ensure your `manifest.json` includes the following important fields:
+
+  `"gcm_sender_id"`
+
+  `"gcm_user_visible_only"`
+
+These fields are critical for enabling push notification functionality and should be prioritized over fields like `"name"` and `"short_name"`.
+
+**If You Don’t Have a `manifest.json` File**
+
+1. Download the [`manifest.json`](https://bit.ly/3EpnAh) file.
+
+2. Open the downloaded file and locate the `"sender_id"` field.
+
+3. Replace the `"sender_id"` value with the **Firebase Sender ID** from your FCM project.
+
+4. Save the changes and copy the updated `manifest.json` file to the **root directory** of your website.
+   {% endhint %}
+
+5. Geolocation enables the collection and tracking of a user’s **physical location or coordinates** whenever they visit your website.
+   * By enabling geolocation, you can gather precise location data for each visit, enhancing user insights and tailoring the experience based on their location.
+
+6. Session length refers to the duration (measured in minutes) that a user’s session remains active on your website.
+   * The **Netmera WebSDK** ensures that the user’s session is preserved even when the web application is running in the background.
+
+{% hint style="info" %}
+**Default Session Length**
+
+* The default session length is set to **30 minutes**.
+* If a user remains active on your website for **30 minutes or less**, their session will be maintained, even if they momentarily switch to other tasks or windows.
+  {% endhint %}
+
+<figure><img src="/files/1jun7aL7x3NElVmw5EXE" alt=""><figcaption></figcaption></figure>
+
+8. Proceed to the third step by clicking the **Save** button.&#x20;
+
+{% hint style="success" %}
+**Guidelines for Successful Testing**
+
+1. **Avoid Testing on Localhost**
+   * Testing on a `localhost` environment may not accurately reflect the behavior of features like Fancybox or events.
+   * For accurate and reliable results, always deploy your project to a **production environment**.
+2. **Push Notifications Testing**
+   * Push notifications **cannot** be sent in a `localhost` environment.
+   * To effectively test push notifications:
+     * Use a **real domain** or deploy your project to a **live domain**.
+     * Testing on `localhost` may result in a **403 generic error**.
+       {% endhint %}
+
+### Base URL Configuration
+
+The Web SDK uses `/api/sdk/3.0/` as its system-defined Base URL (base path).
+
+In standard cloud deployments, this Base URL is automatically applied through:
+
+* the Web SDK’s internal initialization flow, or
+* the default configuration provided via Netmera’s CDN-hosted SDK script.
+
+In these setups, developers **do not need to manually configure the Base URL**, as requests are automatically routed to Netmera’s cloud infrastructure.
+
+For **on-premise or private cloud deployments**, where Netmera services are hosted on customer-managed infrastructure, the Web SDK must be configured to route requests to the customer’s server address instead of Netmera’s default endpoints.
+
+#### Example
+
+If Netmera services are deployed on a customer-managed domain:
+
+```javascript
+netmera.init({
+  baseUrl: "https://customer-domain.netmera.com/api/sdk/3.0/"
+});
+```
+
+In this configuration, the Web SDK sends all API requests to the customer-hosted Netmera service instead of the default Netmera cloud endpoint.
+
+## Step 3: Push Settings
+
+### Chromium Browsers Push Settings
+
+#### Step 1. Chrome Push Settings
+
+1. **Push Enabled:** Selecting this option allows you to configure push notifications. \
+   **Push** **Disabled:** If you select this, the integration completes without push notifications, but users can still access the panel and collect events.
+
+<figure><img src="/files/uKxSNF9k4EsN8SPVFR4Q" alt="" width="563"><figcaption></figcaption></figure>
+
+2. **Ask for Permission After Visits:** Define when the notification permission prompt appears (default: after 1 visit).
+3. **UTM Parameter:** Automatically defines Netmera UTM parameters.
+   * Source: Netmera
+   * Medium: Campaign Title
+   * ID: Campaign Name
+4. **Public & Private VAPID Keys:**
+   * Used for authentication when sending notifications.
+   * Migration: If migrating from another service, add your existing keys.
+   * Generate New: Use the "Generate" button if no keys exist.
+5. **Icon URL:** Add a URL for the image icon to display in web push notifications.
+6. **Google Project API Key (Server Key) & Google Project ID (Sender ID):**
+   * Navigate to Firebase Developer Console > Project Settings > Cloud Messaging.
+
+<figure><img src="/files/PHjvgQm7A0EmISDTXnFA" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Step 2. Firebase Setup
+
+1. Go to the  [Firebase console](https://console.firebase.google.com/) and log in with your Google ID.
+2. **Create a New Project** with a meaningful name, e.g., "(domain name) Push."
+3. Complete project creation and go to **Project Settings > Cloud Messaging** to find your **Sender ID** and **Server Key**.
+
+{% @arcade/embed flowId="wWs2Yesf5jfbmH6BBLOc" url="<https://app.arcade.software/share/wWs2Yesf5jfbmH6BBLOc>" %}
+
+### Safari Push Settings
+
+1. **Site Name:** Enter your website's name.
+2. **Website Push ID:** The unique identifier assigned during certificate creation.
+3. **Allowed Sites:** Specify URLs where Netmera integration will be active.
+4. **Webpush Icon:** Upload a 256x256 icon for Safari push notifications.
+5. **APNS Certificate:** Export from Apple Developer Portal in **p12 format**.
+6. **Certificate Password:** Enter the password for the APNS certificate.
+7. **Certificate Type:** Select **Prod** for production use.
+
+<figure><img src="/files/U3xQRIZmI0E6ph4n0hK2" alt="" width="563"><figcaption></figcaption></figure>
+
+#### APNS for Mac OS Devices <a href="#apns-for-mac-os-devices" id="apns-for-mac-os-devices"></a>
+
+To enable macOS push notifications, follow these steps:
+
+{% @arcade/embed flowId="5Pimft8IwaUYoS7DUJBE" url="<https://app.arcade.software/share/5Pimft8IwaUYoS7DUJBE>" %}
+
+#### Creating a Web Site Push Identifier
+
+1. **Log in to the Apple Developer Portal**
+   * Use your Apple ID with "Agent" privileges.
+2. **Navigate to Certificates, Identifiers & Profiles**
+   * Click Manage your certificates, App IDs, devices, and provisioning profiles.
+3. **Create a Website Push ID**
+   * In the left-hand menu, click Identifiers, then select Website Push IDs.
+   * Click the + button in the top-right corner to create a new Website Push ID.
+4. **Provide Details**
+   * Description: Add a name for your push ID.
+   * Identifier: Use the reverse domain name format:
+
+     Start with `web.` and typically end with `.push` (e.g., `web.com.example.push`).
+5. **Finalize**
+   * Click Continue and complete the process.
+
+#### Creating a Certificate
+
+1. **Return to the Certificates Page**
+   * Click the **+** button in the top-right corner. Select Website Push ID Certificate under the Production section.
+2. **Choose the Website Push ID**
+   * Select the push ID you created earlier and click Continue.
+3. **Generate a CSR**
+   * Use the Keychain Access application on macOS to create a Certificate Signing Request (CSR). Upload the CSR file.
+4. **Download the Certificate**
+   * Apple will generate the certificate; download it. Double-click to add it to your Keychain Access.
+5. **Export the Certificate and Key**
+   * Open Keychain Access, and locate the certificate:
+     * It will appear as Website Push ID: `web.com.example.push`
+   * Expand the certificate by clicking the arrow. Command-click both the certificate and its key. Right-click and choose Export 2 items...
+6. **Save as a p12 File**
+   * Choose a save location and set a password when prompted by Keychain.
+   * **Note:** Save the password for later use.
+
+**Configuration in the Netmera Panel**
+
+1. Navigate to **Developers > Netmera Onboarding > Web**.
+2. Fill in all required fields and upload the **p12 file**.
+
+## Step 4: Fancy Box Settings
+
+<figure><img src="/files/C429qSScQ6d4baudngDr" alt="" width="563"><figcaption></figcaption></figure>
+
+1. **Enable Fancy Box:** Choose whether to display the Fancy Box for notification prompts or rely solely on the native browser permission request.
+2. **Show Again After:** Set the timeframe for when the Fancy Box should reappear for users who declined the notification permission initially.
+3. **Animate Fancy Box:** Enable this option to add animated effects to the Fancy Box for a more engaging user experience.
+4. **Preview** Use the preview option to see how the Fancy Box will appear to users.
+5. **Customize Fancy Box:** Personalize the Fancy Box design in this section.
+
+#### Customization Options
+
+1. **Text:** Customize the header, informational text, and button labels to deliver a clear and inviting message to users.
+
+<figure><img src="/files/6ZrkRwxYNoc3l9AYKMVt" alt="" width="563"><figcaption></figcaption></figure>
+
+2. **Size:** Adjust the width, height, border radius, and text size to fit seamlessly with your website's layout.
+
+<figure><img src="/files/qWhRkzC6orX3mQPi9jNF" alt="" width="563"><figcaption></figcaption></figure>
+
+3. **Color:** Select the background colors for the Fancy Box frames and buttons, as well as the font colors, to match your site's color palette and branding.
+
+<figure><img src="/files/ESOZX9XbmTLOjsU2gJHp" alt="" width="563"><figcaption></figcaption></figure>
+
+4. **Font:** Choose from a variety of font styles, such as *inherit*, *initial*, *italic*, *normal*, *oblique*, *revert*, or *unset*, to complement your website's typography.
+
+<figure><img src="/files/CjSQOmIcFu7AjmABteAZ" alt="" width="563"><figcaption></figcaption></figure>
+
+## Web SDK Setup Complete
+
+After completing all the integration steps:
+
+* A confirmation modal will appear indicating the successful setup of the Netmera Web SDK.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/web/sdk-setup.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,151 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/android/migration-to-4.x.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/android/migration-to-4.x.md).
+
+# Migration to 4.x
+
+This guide outlines the steps required to migrate your Android integration from Netmera SDK 3.x to 4.x.
+
+SDK 4.0.0 introduces key improvements and breaking changes in the initialization flow:
+
+* `androidx.startup` dependency removed: The SDK no longer uses `androidx.startup` for bootstrapping.
+* Asynchronous Initialization: `Netmera.init()` now handles threading internally and executes on a background thread. You no longer need to dispatch it yourself.
+* Centralized Provider Registration: Providers are now registered directly via `NetmeraConfiguration.Builder` instead of `AppInitializer`.
+
+### Step 1: Update Dependencies
+
+Open your app-level `build.gradle` (or `build.gradle.kts`) file and update the Netmera dependencies to the latest 4.x.x versions.
+
+```groovy
+// build.gradle (Module: app)
+
+dependencies {
+    // Before (3.x)
+    // implementation 'com.netmera:nmcore:3.x.x'
+    // implementation 'com.netmera:nmfcm:3.x.x'
+    // implementation 'com.netmera:nmhms:3.x.x'
+
+    // After (4.x)
+    implementation 'com.netmera:nmcore:4.x.x'
+    implementation 'com.netmera:nmfcm:4.x.x'   // If using FCM (Firebase)
+    implementation 'com.netmera:nmhms:4.x.x'   // If using HMS (Huawei)
+}
+```
+
+> Please check the latest [Netmera Changelog](/netmera-developer-guide/platforms/android/changelog.md) to find the exact latest version suitable for your project.
+
+### Step 2: Register `NMActivityLifecycleCallbacks`
+
+In your custom `Application.onCreate()`, you must register the SDK's lifecycle callbacks before calling `Netmera.init()`.
+
+{% hint style="danger" %}
+Critical Threading Requirement: The `registerActivityLifecycleCallbacks` call must happen on the Main Thread.&#x20;
+{% endhint %}
+
+```kotlin
+class MyApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+
+        // 1. Must be called on the main thread, before Netmera.init()
+        registerActivityLifecycleCallbacks(NMActivityLifecycleCallbacks(this)) 
+
+        // 2. Configure and initialize Netmera
+        // Netmera.init(...)
+    }
+}
+```
+
+### Step 3: Register Providers via `NetmeraConfiguration.Builder`
+
+Providers are no longer managed separately via AndroidX AppInitializer. Add them directly into the configuration builder using the `.addProvider()` method.
+
+```kotlin
+val config = NetmeraConfiguration.Builder()
+    .apiKey("YOUR_API_KEY")
+    .baseUrl("https://your.netmera.endpoint")
+    .addProvider(NMFCMProvider())   // Replaces NMFCMProviderInitializer
+    .addProvider(NMHMSProvider())   // Replaces NMHMSProviderInitializer (Only if using HMS)
+    // ... other configuration options ...
+    .build(this)
+
+Netmera.init(config, listener)
+```
+
+{% hint style="info" %}
+Only add the providers your application actually utilizes. If your application targets Google Play Devices exclusively, you can safely omit `NMHMSProvider()`.
+{% endhint %}
+
+### Step 4: Remove Manual Startup Infrastructure
+
+In SDK 3.x, the following setup lines were required for applications that had explicitly disabled auto-startup to drive the initialization sequence manually. Since the lifecycle has changed in 4.x, remove these lines completely if they exist in your `Application` class:
+
+```kotlin
+// REMOVE these lines if present — they no longer exist in SDK 4.x
+NMInitializer.initializeComponents(this)
+AppInitializer.getInstance(this).initializeComponent(NMFCMProviderInitializer::class.java)
+AppInitializer.getInstance(this).initializeComponent(NMHMSProviderInitializer::class.java)
+```
+
+### Before / After Code Summary
+
+Here is a side-by-side structural comparison of the changes in your `Application.onCreate()` method:
+
+#### ❌ 3.x Implementation (Legacy)
+
+```kotlin
+override fun onCreate() {
+    super.onCreate()
+
+    NMInitializer.initializeComponents(this)
+    AppInitializer.getInstance(this).initializeComponent(NMFCMProviderInitializer::class.java)
+    AppInitializer.getInstance(this).initializeComponent(NMHMSProviderInitializer::class.java)
+
+    val configBuilder = NetmeraConfiguration.Builder()
+    configBuilder.apiKey("...").baseUrl("...")
+
+    Netmera.init(configBuilder.build(this), listener)
+}
+```
+
+#### 4.x Implementation (Modernized)
+
+```kotlin
+override fun onCreate() {
+    super.onCreate()
+
+    // Main thread registration guaranteed by Application.onCreate()
+    registerActivityLifecycleCallbacks(NMActivityLifecycleCallbacks(this))
+
+    val config = NetmeraConfiguration.Builder()
+        .apiKey("...")
+        .baseUrl("...")
+        .addProvider(NMFCMProvider())
+        .addProvider(NMHMSProvider())
+        .build(this)
+
+    Netmera.init(config)
+}
+```
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/android/migration-to-4.x.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

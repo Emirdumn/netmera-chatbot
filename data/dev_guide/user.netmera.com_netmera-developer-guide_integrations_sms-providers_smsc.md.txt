@@ -1,0 +1,81 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/smsc.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/smsc.md).
+
+# SMSC
+
+The SMSC (Short Message Service Center) connector provides Netmera clients with the capability to establish a direct, low-level connection to an SMS gateway using the industry-standard SMPP (Short Message Peer-to-Peer) protocol. This integration is designed for high-volume, low-latency SMS delivery scenarios, often involving direct integration with mobile network operators.
+
+### Overview
+
+<table><thead><tr><th width="201.15380859375">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>SMSC</td></tr><tr><td><strong>Category</strong></td><td>SMS Providers / SMS Gateway</td></tr><tr><td><strong>Primary Function</strong></td><td>Direct, high-volume SMS delivery via <strong>SMPP Protocol</strong>.</td></tr><tr><td><strong>Data Flow</strong></td><td><strong>Outbound</strong> (Netmera > SMSC)</td></tr><tr><td><strong>Connection Type</strong></td><td><strong>SMPP Protocol 3.4</strong> (Direct Persistent TCP Connection)</td></tr><tr><td><strong>Priority Ranking</strong></td><td><strong>Rank 5</strong> (after Message Center, Mobildev, FigenSoft, and Infobip)</td></tr></tbody></table>
+
+<figure><img src="/files/LZFAp1is21Post1QRvvR" alt=""><figcaption></figcaption></figure>
+
+The SMSC connector is highly technical, utilizing specialized components (SimpleSmscClient.java) to manage persistent TCP connections required by the SMPP standard.
+
+### &#x20;Use Cases and Benefits
+
+1. **High-Volume SMS Sending:** This connector is specifically utilized for use cases requiring exceptional throughput and reliability, leveraging the efficiency of the direct SMPP connection over standard REST APIs.
+2. **Direct Operator Integration:** It supports **Direct Operator Integration**, allowing Netmera to connect directly to an operator's infrastructure for reduced latency and optimal delivery rates.
+3. **High Availability (HA) and Load Distribution:** The configuration supports defining **multiple server configurations**, allowing the system to distribute the load and ensure high availability through redundancy across different SMSC hosts.
+4. **Low-Latency Delivery:** By using the persistent TCP connection defined in the SMPP 3.4 protocol, messages can often be processed faster than traditional HTTP gateway integrations.
+
+### Data Flow
+
+The flow is defined as strictly **Outbound**.
+
+| Flow Direction                | Data Transferred                  | Mechanism                                                                                                                                                     |
+| ----------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Outbound** (Netmera > SMSC) | SMS Payload, Sender ID, System ID | The dedicated adapter sends the SMS request directly over the established **Persistent TCP Connection** using the SMPP protocol commands (e.g., `submit_sm`). |
+
+The SMS message request is initiated in Netmera and processed by the SMS service, which routes the request to the SMSC adapter if no higher-priority connector is active.
+
+### Configuration Reference
+
+<figure><img src="/files/GKWCzmke1ja5sVyVifmR" alt="" width="375"><figcaption></figcaption></figure>
+
+The SMSC connector uses a **Multi-item Form** structure, requiring a list of server configurations and a list of approved headers, reflecting its complex, multi-host nature.
+
+<table><thead><tr><th width="198.4835205078125">Parameter</th><th width="179.35955810546875">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>smsServerConfigList</strong></td><td>List of Objects</td><td>List of SMPP server details. Each object requires: <strong>Host</strong>, <strong>Port</strong>, <strong>System ID</strong>, <strong>Password</strong>, and <strong>System Type</strong>.</td></tr><tr><td><strong>smsHeaderList</strong></td><td>List of Strings</td><td>List of approved SMS Sender IDs (headers) authorized for use with the configured SMSC hosts.</td></tr></tbody></table>
+
+The configuration also requires specifying the **Heart Beat** (configurable enquire\_link frequency) to maintain the persistent connection, although this specific parameter field is not explicitly listed among the required fields.
+
+### Setup Instructions
+
+Setting up the SMSC integration is highly technical and requires coordinating network and protocol details with the SMSC provider.
+
+1. **Prerequisites:** Obtain the following SMPP connection details from your SMSC provider: server **Host** and **Port**, API **System ID**, **Password**, **System Type**, and the list of approved **Sender IDs**.
+2. **Configure in Netmera:** Navigate to the Connectors panel and select the **SMSC** connector.
+3. **Add Server Configurations:** Input the required Host, Port, System ID, Password, and System Type for each SMSC server you wish to connect to (for HA/Load Distribution).
+4. **Add SMS Headers:** Input the list of approved Sender IDs/Headers into the smsHeaderList.
+5. **Save Configuration:** Save the complex multi-item configuration.
+
+### Usage Notes & Considerations
+
+1. **Low Priority Ranking:** SMSC is ranked at **Rank 5** in the overall SMS connector priority list. If higher-priority connectors (Message Center, Mobildev, FigenSoft, Infobip) are active and configured, all SMS traffic will be routed through them first, unless they fail.
+2. **SMPP Protocol Specificity:** Requires deep technical understanding and accurate configuration of protocol parameters (e.g., System ID and System Type) to ensure a successful **Persistent TCP connection** (Binding) can be established.
+3. **Real-Time Monitoring Dependency:** While the integration includes features for real-time status monitoring and automatic/manual reconnection, the high-performance nature of the direct TCP link means connection stability must be continuously monitored using features available in the Netmera UI (e.g., on the `/connector/config/smsc` page).
+4. **No Inbound Data Mentioned:** The documented data flow is exclusively Outbound, implying it is strictly used for sending messages, not for receiving delivery receipts or MO messages back to Netmera via the standard connector framework, which usually requires a separate mechanism or dedicated configuration not detailed here.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/sms-providers/smsc.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

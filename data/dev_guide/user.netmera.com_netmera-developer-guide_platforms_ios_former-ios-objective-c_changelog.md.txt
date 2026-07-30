@@ -1,0 +1,566 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/changelog.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/changelog.md).
+
+# Changelog
+
+## v3.27.7
+
+**February 26, 2026**
+
+:tools: **BUGFIX**
+
+* **`Netmera.start()` Crash Fix**\
+  Fixed crash happening in some rare cases during `Netmera.start()` .
+
+## v3.27.6
+
+**February 16, 2026**
+
+⭐ **IMPROVEMENT**
+
+* **SQLite WAL Mode Enabled** \
+  Enabled SQLite Write-Ahead Logging (WAL) to reduce disk I/O and improve performance.
+
+## v3.27.5
+
+**February 3, 2026**
+
+&#x20;:tools: **BUGFIXES**
+
+* **Autotracking**\
+  Fixed various autotracking crashes and took precautions for edge cases.
+
+## v3.27.4
+
+**January 9, 2026**
+
+:tools: **BUGFIXES**
+
+* **Inconsistent Button Name in Push Notifications**\
+  Resolved an issue causing inconsistent `buttonName` values in push notifications sent via `sendNotification` requests on former iOS SDK versions.
+* **Event Loss Prevention After Identify Requests**\
+  Resolved an issue where events could be dropped when sent in close succession with `identify` or `userUpdate` requests, potentially leading to incomplete analytics data.
+
+## v3.27.3
+
+**December 17, 2025**
+
+⭐ **IMPROVEMENT**
+
+* The offline event mechanism has been removed.
+
+## v3.27.2
+
+**December 4, 2025**
+
+⭐ **IMPROVEMENT**
+
+* Custom button name improvements implemented.
+
+## v3.27.1
+
+**October 6, 2025**
+
+:tools: **BUGFIX**
+
+* Added some defensive checks for a rare crash happening on network layer.
+
+## v3.27.0
+
+**July 28, 2025**
+
+⭐ **IMPROVEMENT**
+
+**Collect Values Update**
+
+The behavior of the **`cv`** parameter has been changed:
+
+* If **`cv = false`**, only the **index** will be collected.
+* If **`cv = true`**, only the **values** will be collected.
+
+<figure><img src="/files/RvaiKWDOzGmnVnd7mge5" alt="" width="563"><figcaption></figcaption></figure>
+
+## v3.26.1
+
+**July 25, 2025**
+
+:tools: **BUGFIX**
+
+* **Fixed popup display issue**\
+  Resolved an issue where popups triggered by push clicks were not shown in cases where **`UIScene`** was used.
+* **Geofence and beacon improvements**\
+  Ensured that **enter/exit events are no longer triggered** for geofence and beacon regions that do not belong to Netmera.
+
+## v3.26.0
+
+**April 30, 2025**
+
+⭐ **IMPROVEMENT**
+
+**Action Path Enhancement in Autotracking & Collect Values**
+
+* For actions tracked via Autotracking, the value of the clicked item is now appended to the end of the event path.
+* This improvement enables more precise identification of which element the user interacted with during an action event.
+
+<figure><img src="/files/3Ukof3GxUgToxFgQa3cR" alt="" width="375"><figcaption></figcaption></figure>
+
+## v3.25.1
+
+**April 29, 2025**
+
+⭐ **IMPROVEMENT**
+
+**Push Event Parameter Enhancement**
+
+* The `piid` (Push Instance ID) parameter has been added to push-related events triggered by the SDK.
+
+:tools: **BUGFIX**
+
+**Push Click Events**
+
+* Resolved an issue where the Click Push Event was incorrectly triggered for push notifications not originating from Netmera.
+
+## v3.25.0
+
+**March 6, 2025**
+
+⭐ **IMPROVEMENT**
+
+**AFNetworking Library Update**
+
+* Previously used as an external dependency, the **AFNetworking library** is now embedded within the SDK. This change aims to **prevent compatibility issues** encountered by customers when uploading packages to the Store, **eliminate dependency conflicts,** and **simplify the integration process**.
+
+## v3.24.13
+
+**February 25, 2025**
+
+:rocket: **FEATURE**
+
+* Added a new `timezone` parameter in `ids` block. This parameter allows SDKs to communicate the device’s timezone ID.
+
+## v3.24.12
+
+**February 24, 2025**
+
+:rocket: **FEATURE**
+
+**Push Click Action / Open Widget:**
+
+* When users click on a push notification, they will be directed to the platform with the widget opened automatically. This enhancement ensures a smoother experience by immediately presenting relevant content upon interaction.
+
+<figure><img src="/files/BpPAsOfDkjK9JKtqGCNQ" alt="" width="563"><figcaption></figcaption></figure>
+
+## v3.24.11
+
+**February 10, 2025**
+
+:tools: **BUGFIX**
+
+* A fix for the custom button name has been added.
+
+## v3.24.10
+
+**January 31, 2025**
+
+:rocket:  **FEATURE**
+
+* Implemented Apple's newly required Developer Signature for the AFNetworking and FMDB packages. Read more on [**Apple Documentation**](https://developer.apple.com/support/third-party-SDK-requirements/).
+
+⭐ **IMPROVEMENT**
+
+* Crash tracking has been removed from the SDK.,
+
+:tools: **BUGFIX**
+
+* Resolved issues with Ad ID handling in the SDK. The advertising permission and Advertising ID now function correctly and are properly reflected in the Netmera panel.
+
+## v3.24.9
+
+**January 23, 2025**
+
+:rocket: **FEATURE**
+
+* The **Instant Show** button parameter from the Netmera Panel, which allows users to display specific widgets on the desired page and at the desired time, is now fully implemented in the SDKs and ready for use.
+
+## v3.24.8
+
+**January 8, 2025**
+
+⭐ **IMPROVEMENT**
+
+* The SDK now collects device region information from **Settings > General > Language & Region > Region** on iOS devices.
+
+This enhancement enables targeting based on the user’s region, providing more precise and region-specific engagement capabilities.
+
+## v3.24.7
+
+**January 2, 2025**
+
+:tools: **BUGFIX**
+
+* The `setBaseUrl` function has been re-located to the correct position within the Obj-C SDK for proper SSL Pinning functionality.
+
+## v3.24.5
+
+**December 18, 2024**
+
+⭐ **IMPROVEMENT**
+
+**SSL Pinning Configuration Update:**
+
+* For iOS targets below version 14, the certificate file will now be used directly without requiring Plist configuration.
+* For iOS 14 and above, if no certificate file is provided, the system will automatically manage Plist configuration.
+
+{% hint style="info" %}
+***Important Note:** For iOS 14+, ensure SSL Pinning is configured via Plist to avoid security vulnerabilities.*
+{% endhint %}
+
+## v3.24.4
+
+**December 17, 2024**
+
+⭐ **IMPROVEMENT**
+
+**PrivacyInfo File Added:**
+
+* Added the newly required **PrivacyInfo** file, as mandated by Apple, to the SDK.
+* This file has also been included in all dependencies used by the SDK.
+
+{% hint style="info" %}
+***Important Note:** If you are manually downloading and using dependencies, please ensure they are updated to include the PrivacyInfo file.*
+{% endhint %}
+
+## v3.24.3
+
+**December 9, 2024**
+
+:tools: **BUGFIX**
+
+* Fixed the "NetmeraPushReceivingStatus not found" error.
+
+## v3.24.2
+
+**December 5, 2024**
+
+:rocket: **FEATURE**
+
+**New Method Added:**\
+Introduced the `Netmera.checkNotificationPermission()` method to retrieve the current notification permission status for the user:
+
+* **NOT\_DETERMINED:** User has not responded to the notification permission request during the initial setup.
+* **GRANTED:** User has allowed notifications.
+* **DENIED:** User has denied notifications.
+
+## v3.24.1
+
+**November 7, 2024**
+
+:tools: **BUGFIX**
+
+* **Custom Button Name Fix:**
+
+Resolved an issue where the custom button name was not updating on certain devices for the "Custom Button Name" feature.&#x20;
+
+[**Custom Button Name Documentation**](https://user.netmera.com/netmera-developer-guide/rest-api/rest-api/rest-api-notifications#custom-button)
+
+## v3.24.0
+
+**November 7, 2024**
+
+#### :rocket: **FEATURE**
+
+* **Defining Live Activity Events:**
+
+Added support for defining Live Activity events, enabling customers to trigger live activity events.
+
+[**Live Activity Documentation**](https://user.netmera.com/netmera-developer-guide/live-activities/live-activities)
+
+## v3.23.16
+
+**October 17, 2024**
+
+⭐ **IMPROVEMENT**
+
+* **Enhanced** **Network Handling:**
+
+We have improved the management of network-related errors, preventing requests from entering a loop. This enhancement ensures greater stability and more reliable network performance in your applications.
+
+## v3.23.15
+
+**October 16, 2024**
+
+#### :rocket:  **FEATURE**
+
+* **SSL Pinning Support:**
+
+Added support for SSL Pinning allowing developers to enable SSL pinning when needed. This feature enhances the security of your application by ensuring trusted communication channels.
+
+<details>
+
+<summary><mark style="color:green;">SSL Pinning for iOS 14 and Above</mark></summary>
+
+To enhance the security of your iOS application, SSL pinning is recommended, particularly for devices running iOS 14 and above. Here’s a step-by-step guide:
+
+**1. Store Certificates Within the Application**
+
+SSL pinning involves storing a specific certificate or a certificate chain within the app bundle. You need to add this certificate to the application bundle to authenticate communication between your app and the server.
+
+* **Steps to Add the Certificate:**
+  1. Download the certificate in `.cer` format.
+  2. In Xcode, right-click on your project name in the Project Navigator.
+  3. Select **"Add Files to \[project name]"** and choose the downloaded `.cer` file.
+
+**2. Configure Network Security Settings**
+
+To optimize security and performance on iOS 14 and above, apply the following configurations in your app:
+
+**App Transport Security (ATS):**
+
+* Apple’s ATS feature requires apps to communicate securely over HTTPS, providing an added layer of security when used with SSL pinning.
+* Configure ATS in your app’s `Info.plist` file as follows to ensure strict security compliance:
+
+```xml
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <false/>
+</dict>
+```
+
+This setting ensures that all communications conform to HTTPS standards, making SSL pinning more robust.
+
+</details>
+
+<details>
+
+<summary><mark style="color:green;">SSL Pinning for iOS 13 and Earlier</mark></summary>
+
+For devices running **iOS 13 and earlier**, follow these steps:
+
+* Add the `netmera.com.cer` file to your project’s target.
+* No additional configuration is required for these versions.
+
+This ensures compatibility across various iOS versions while maintaining security standards for iOS 14 and above.
+
+**Important Note on File Name:**
+
+1. The certificate file **must be named** `netmera.com.cer`.
+2. **Do not rename** the file, as the application relies on the exact file name for proper functionality.
+
+</details>
+
+## v3.23.14
+
+**October 16, 2024**
+
+:tools: **BUGFIX**
+
+* **Push Click Action Cache Issue:**
+
+Resolved a cache-related issue that affected the behavior of push click actions, ensuring consistent functionality and improved performance.
+
+## v3.23.13
+
+**September 17, 2024**
+
+⭐ **IMPROVEMENT**
+
+* The `log event` feature has been removed to streamline the SDK and improve overall performance.
+
+## v3.23.5
+
+**March 29, 2024**&#x20;
+
+#### :rocket:  FEATURE&#x20;
+
+* **Netmera.kill() Method**
+
+A new feature has been added: the `Netmera.kill()` method. If this method is called, Netmera will remain in a "kill" state until it is re-initialized.
+
+## v3.23.4
+
+**March 19, 2024**
+
+⭐ **IMPROVEMENT**
+
+* Resend of push/enable and push/register requests in case of API key change.
+
+## v3.23.3
+
+**March 6, 2024**
+
+⭐ **IMPROVEMENTS**
+
+* Implemented cache reset functionality when the API key is changed.
+
+## v3.23.1
+
+**January 11, 2024**
+
+:tools: **BUGFIX**
+
+* Resolved a crash issue related to callbacks.
+
+This update in iOS version 3.23.1 (11.01.24) addresses a bug causing crashes associated with callbacks and provides a fix for a more stable experience.
+
+## v3.22.0
+
+**December 20, 2023**
+
+⭐ **IMPROVEMENTS**
+
+* Added '`appmanage`' for widget deeplink action.
+
+When creating a widget and assigning an action to a button, selecting 'manage app' will allow developers to handle the action within the `handleOpenUrl` method, enabling the SDK to notify you. Additionally, detailed visuals can be seamlessly integrated.
+
+<figure><img src="/files/vhLLXCHJ56XyYpqAYdwM" alt="" width="563"><figcaption></figcaption></figure>
+
+* Added appversion and build version to request header.&#x20;
+
+:tools: **BUGFIX**
+
+* Resolved an issue causing crashes during user updates.
+* Addressed and fixed issues related to the removal of operator code.
+* The issue of app version information not reflecting has been resolved.
+
+## v3.21.0
+
+**November 30, 2023**
+
+:tools: **BUGFIX**
+
+* Fixed an issue where errors were encountered when returning information about screens added to the auto-tracking whitelist.
+
+⭐ **IMPROVEMENTS**
+
+* Introduced user callback for enhanced functionality.
+* Added dSYM to XCFramework for improved development and debugging.
+
+<details>
+
+<summary>UpdateUser Details</summary>
+
+```swift
+Netmera.update(user) { success, error in
+              if success {
+                  print("success")
+              } else {
+                  print("error")
+              }
+            }
+```
+
+</details>
+
+## v3.20.0
+
+**November 14, 2023**
+
+{% hint style="danger" %}
+**Note: This is a beta version. Do not update without contacting Netmera.**
+{% endhint %}
+
+⭐ **IMPROVEMENTS**
+
+* Integration of the new auto-tracking structure.
+
+## v3.19.0
+
+**November 13, 2023**
+
+#### :rocket:  **FEATURE**
+
+* Users can now send push notifications with different icons for various scenarios. Visit [Push Icon](/netmera-developer-guide/platforms/ios/former-ios-objective-c/push-notifications/push-icon.md) page for further details.
+
+## v3.18.0
+
+**October 31, 2023**
+
+* In iOS SDK version 3.18.0, an enhancement has been made to the `fetchCoupon` feature.&#x20;
+
+If you want to retrieve assigned coupons for a user, you can use the `fetchCoupon()` method. Here's a Swift code example:
+
+```swift
+filter = NetmeraCouponFilter()
+filter.page = 0
+filter.max = 12
+
+Netmera.fetchCoupon(using: filter) { coupons, error in
+    self.coupons = coupons ?? []
+    self.tableView.reloadData()
+}
+```
+
+This code allows you to fetch assigned coupons for a user and update the table view with the retrieved data.
+
+## v3.16.0
+
+**August 28, 2023**
+
+⭐ **IMPROVEMENTS**
+
+* User Method Simplified
+* Email Preferences Added
+
+## v3.15.2
+
+**April 15, 2023**
+
+⭐ **IMPROVEMENTS**
+
+* SwiftUI Support
+
+<details>
+
+<summary>Details</summary>
+
+Problem: None of the original application lifecycle methods in SwiftUI are being triggered.
+
+SwiftUI is a framework introduced by Apple in 2019, which allows developers to create applications with a single design that can be used across devices such as iPhone, iPad, and Mac.
+
+The issue has been investigated and development has been carried out to address the problem in both SwiftUI and traditional application frameworks, ensuring compatibility for all types of applications.
+
+```javascript
+func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
+{
+[//Netmera.recentPushObject](<https://netmera.recentpushobject/>)()?.alert.body                  //Push Text
+[//Netmera.recentPushObject](<https://netmera.recentpushobject/>)()?.alert.title                 //Push Title
+[//Netmera.recentPushObject](<https://netmera.recentpushobject/>)()?.action.deeplinkURL          //Push Deeplink
+[//Netmera.recentPushObject](<https://netmera.recentpushobject/>)()?.customDictionary            //Custom JSON
+}
+```
+
+</details>
+
+## v3.15.1
+
+**April 8, 2023**
+
+:tools: **BUGFIX**
+
+* Scenario: When an event is triggered offline, the events are written to the queue. When the user is back online, the accumulated events in the queue are logged in sdk.log.
+
+  It was noticed that the events in offline event delivery were not coming after the A/B feature (3.14.13). This issue has been resolved in this version.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/changelog.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

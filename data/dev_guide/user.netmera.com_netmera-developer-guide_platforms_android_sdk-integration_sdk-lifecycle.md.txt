@@ -1,0 +1,152 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/sdk-lifecycle.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/sdk-lifecycle.md).
+
+# SDK Lifecycle
+
+## Hold & Resume SDK Operations
+
+{% hint style="info" %}
+Advanced Feature: For most applications, the standard `Netmera.init()` is sufficient. Use this feature only if your project specifically requires manual control over the SDK lifecycle.
+{% endhint %}
+
+This section covers the advanced lifecycle controls that let you decide exactly when the SDK becomes active, when it pauses, and when it shuts down entirely.
+
+### SDK States
+
+The SDK always operates within one of the following four states:
+
+| State           | Description                                                                                                                                                                               |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `operating`     | Normal state. Events are tracked, and requests are sent immediately.                                                                                                                      |
+| `holdRequested` | Transitional state. `holdOperation()` was called; the request pipeline is still draining. No new work is accepted, but pending requests flush to the network before the SDK fully pauses. |
+| `onHold`        | Paused state. Events and requests are gated. Call `startOperation()` to resume normal activity.                                                                                           |
+| `killed`        | Terminated state. Terminated via `kill()`. The SDK cannot be restarted without a full re-initialization on the next app launch.                                                           |
+
+### Method References
+
+#### 1. `initializeWithHoldingOperations`
+
+```kotlin
+Netmera.initializeWithHoldingOperations()
+```
+
+Initializes the SDK in a paused state (`onHold`). The SDK loads its configuration and sets itself up internally, but it does not process events, send requests, or react to app lifecycle changes until `startOperation()` is explicitly called.
+
+{% hint style="warning" %}
+If your use case requires holding SDK operations until a specific condition is met, use `Netmera.initializeWithHoldingOperations()` instead of `Netmera.init()`.
+{% endhint %}
+
+**When to use:**
+
+* You need the SDK ready as early as possible (e.g., in `Application.onCreate()`) but cannot begin data collection yet (e.g., waiting for user GDPR/KVKK consent).
+* You want to control the exact moment Netmera becomes active.
+
+{% hint style="warning" %}
+If you initialize the SDK with `initializeWithHoldingOperations` and never call `startOperation()`, Netmera will not send any data for the entire lifecycle of the app. Ensure you always invoke `startOperation()` at the appropriate moment.
+{% endhint %}
+
+#### 2. `startOperation`
+
+```kotlin
+Netmera.startOperation()
+```
+
+Tells the SDK to resume (or begin) processing events and sending network requests. Call this after `initializeWithHoldingOperations`, or after a previous `holdOperation()` call.
+
+**Behavior:**
+
+* If the SDK is `onHold`: Fully restarts— fires app lifecycle callbacks, and flushes any queued events.
+* If the SDK is `holdRequested` (mid-drain window): Cancels the pending hold and returns to `operating` immediately, without requiring re-initialization.
+* If the SDK is `operating` or `killed`: Does nothing (No-op).
+
+#### 3. `holdOperation`
+
+```kotlin
+Netmera.holdOperation()
+```
+
+Tells the SDK to pause all activity. The SDK transitions to `holdRequested` immediately and then moves to `onHold` once the current request pipeline drains.
+
+**Behavior:**
+
+* Any events or requests recorded before the call are allowed to finish flushing to the network, so no data is lost. Callback-based APIs are the exception — they return immediately with the error message from NetmeraError.sdkOnHoldInstance().
+* New events are gated (not processed/sent) from the exact moment `holdOperation()` is called.
+* Geofence monitoring and internal configuration are preserved (unlike `kill()`), meaning that resuming with `startOperation()` does not require re-initialization.
+* If the SDK is `onHold`, `holdRequested`, or `killed`: Does nothing (No-op).
+
+{% hint style="info" %}
+Hold behaves similarly to the app moving to the background: the SDK preserves all its state/configuration and resumes exactly where it left off when `startOperation()` is called.
+{% endhint %}
+
+#### 4. `kill`
+
+```kotlin
+Netmera.kill()
+```
+
+Shuts down the SDK completely, as if it was never initialized. All internal state, configuration, and queued data are discarded.
+
+Unlike `holdOperation()`, this action is irreversible within the current app session. Calling `startOperation()` after `kill()` does nothing. The SDK can restart only after `init()` or `initializeWithHoldingOperations()` runs again on the next app launch.
+
+**When to use:**
+
+* The user has permanently revoked consent and you need to guarantee that no further data is collected or sent for the rest of the session.
+
+{% hint style="warning" %}
+Do not use `kill()` for temporary pausing. Use `holdOperation()` instead. It preserves all SDK state and configuration, and the SDK resumes exactly where it left off when `startOperation()` is called.
+{% endhint %}
+
+### Checking SDK State
+
+You can programmatically check whether the SDK is actively processing data using the `isOperating()` method:
+
+```kotlin
+if (Netmera.isOperating()) {
+    // SDK is in the `operating` state
+}
+```
+
+> `Netmera.isOperating` returns `true` only when the SDK is in the `operating` state. It returns `false` for `onHold`, `holdRequested`, and `killed`.
+
+### Error Handling
+
+When the SDK is not in an operating state, callback-based APIs will return a failure with an error message string. You can check against NetmeraError.sdkOnHoldInstance().message to identify this case:
+
+```kotlin
+Netmera.getEmailPermission(object : NMPermissionResultListener {
+    override fun onSuccess(isAllowed: Boolean) {
+        // handle permission
+    }
+    override fun onFailure(error: String?) {
+        if (error == NetmeraError.sdkOnHoldInstance().message) {
+            // SDK is on hold or killed — call startOperation() if appropriate
+        }
+    }
+```
+
+Human-readable message:
+
+> "Netmera operations are on hold. Call startOperation() to resume."
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/sdk-lifecycle.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

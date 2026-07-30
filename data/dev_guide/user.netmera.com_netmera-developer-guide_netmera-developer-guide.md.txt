@@ -1,0 +1,43 @@
+URL: https://user.netmera.com/netmera-developer-guide/netmera-developer-guide.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/netmera-developer-guide.md).
+
+# Netmera Developer Guide
+
+Welcome to the Netmera Developer Guide,
+
+Here, you’ll discover all the essentials to integrate Netmera and enhance your platform’s experience.
+
+### Platforms
+
+<table data-view="cards"><thead><tr><th data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-type="files"></th></tr></thead><tbody><tr><td><a href="/pages/ckiMO2CK3G0sJ7sPRSzA">/pages/ckiMO2CK3G0sJ7sPRSzA</a></td><td><a href="/files/UR6UwXaM3Zv4VuC8nCrv">/files/UR6UwXaM3Zv4VuC8nCrv</a></td><td></td></tr><tr><td><a href="/pages/vSaGhyoMdvLI87FQJQnT">/pages/vSaGhyoMdvLI87FQJQnT</a></td><td><a href="/files/GMsqbtPR9F2bI7mbPsTK">/files/GMsqbtPR9F2bI7mbPsTK</a></td><td></td></tr><tr><td><a href="/pages/zlpgJCrZYw4OvIpUbRX0">/pages/zlpgJCrZYw4OvIpUbRX0</a></td><td><a href="/files/rbnoRHiysMY1XCepzJqd">/files/rbnoRHiysMY1XCepzJqd</a></td><td></td></tr><tr><td><a href="/pages/Ztrd8I5BfzHPYBEHiFiO">/pages/Ztrd8I5BfzHPYBEHiFiO</a></td><td><a href="/files/78jK2TtURddkkGVoh6Ie">/files/78jK2TtURddkkGVoh6Ie</a></td><td></td></tr><tr><td><a href="/pages/wXQkvx4lyUCJYblYjHdO">/pages/wXQkvx4lyUCJYblYjHdO</a></td><td><a href="/files/Jya9GDMDpnVDuqNc71Nk">/files/Jya9GDMDpnVDuqNc71Nk</a></td><td></td></tr><tr><td><a href="/pages/3WlvMhFvPWN1cF4kH0Qx">/pages/3WlvMhFvPWN1cF4kH0Qx</a></td><td><a href="/files/JpvoUmkjas0824O0n66h">/files/JpvoUmkjas0824O0n66h</a></td><td></td></tr><tr><td><a href="/pages/8Whi4DAYzdf8vDPw7XoU">/pages/8Whi4DAYzdf8vDPw7XoU</a></td><td><a href="/files/qKVPfKB2la6UmCtbZMTr">/files/qKVPfKB2la6UmCtbZMTr</a></td><td></td></tr></tbody></table>
+
+### Integrations
+
+<table data-view="cards"><thead><tr><th data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><a href="/pages/BHGUWm4TePqnDS53pR2r">/pages/BHGUWm4TePqnDS53pR2r</a></td><td><a href="/files/bXVZnOx1X2mJGSkf7wd4">/files/bXVZnOx1X2mJGSkf7wd4</a></td><td><a href="/pages/BHGUWm4TePqnDS53pR2r">/pages/BHGUWm4TePqnDS53pR2r</a></td></tr><tr><td><a href="/pages/taKtKUPjlCul2cK47PLj">/pages/taKtKUPjlCul2cK47PLj</a></td><td><a href="/files/va5XOtPraDE51WhIUZH9">/files/va5XOtPraDE51WhIUZH9</a></td><td><a href="/pages/taKtKUPjlCul2cK47PLj">/pages/taKtKUPjlCul2cK47PLj</a></td></tr><tr><td><a href="/pages/PcyuctJcwkII92V2nnKe">/pages/PcyuctJcwkII92V2nnKe</a></td><td><a href="/files/9ayaq7geX9B5TxUyaG1N">/files/9ayaq7geX9B5TxUyaG1N</a></td><td><a href="/pages/PcyuctJcwkII92V2nnKe">/pages/PcyuctJcwkII92V2nnKe</a></td></tr><tr><td><a href="/pages/DLDsz2k24fJBqXwenVvg">/pages/DLDsz2k24fJBqXwenVvg</a></td><td><a href="/files/y5bdJ4ITu73smc8IYlXl">/files/y5bdJ4ITu73smc8IYlXl</a></td><td><a href="/pages/DLDsz2k24fJBqXwenVvg">/pages/DLDsz2k24fJBqXwenVvg</a></td></tr><tr><td><a href="/pages/xeaqPsCQ2XVgsMc3YWyH">/pages/xeaqPsCQ2XVgsMc3YWyH</a></td><td><a href="/files/nHKpJ0q5BptwWD0FBhJk">/files/nHKpJ0q5BptwWD0FBhJk</a></td><td><a href="/pages/xeaqPsCQ2XVgsMc3YWyH">/pages/xeaqPsCQ2XVgsMc3YWyH</a></td></tr></tbody></table>
+
+### API Documentation
+
+<table data-view="cards"><thead><tr><th data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td><a href="/pages/VO1ZHUVOX8Ye39GXRCiB">/pages/VO1ZHUVOX8Ye39GXRCiB</a></td><td><a href="/files/Hmy9FXGKiOVMe6maVHwA">/files/Hmy9FXGKiOVMe6maVHwA</a></td></tr></tbody></table>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/netmera-developer-guide.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

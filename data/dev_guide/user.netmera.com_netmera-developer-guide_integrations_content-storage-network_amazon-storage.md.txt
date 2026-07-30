@@ -1,0 +1,85 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/content-storage-network/amazon-storage.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/content-storage-network/amazon-storage.md).
+
+# Amazon Storage
+
+The Amazon Storage connector facilitates the integration of Netmera with Amazon S3 (Simple Storage Service), establishing a reliable, scalable cloud storage solution for various assets and media required by the platform.
+
+### Overview
+
+<table><thead><tr><th width="208.73394775390625">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>Amazon Storage (Amazon S3)</td></tr><tr><td><strong>Category</strong></td><td><strong>Cloud Depolama Servisi</strong> (Cloud Storage Service) / CDN</td></tr><tr><td><strong>Provider</strong></td><td>Amazon Web Services (AWS)</td></tr><tr><td><strong>Primary Function</strong></td><td>File storage, backup, and CDN integration for high-volume content delivery.</td></tr><tr><td><strong>Netmera Component</strong></td><td><code>CloudStorageAmazon.java</code> class</td></tr><tr><td><strong>Data Flow</strong></td><td><strong>Outbound</strong> (Netmera > Amazon S3) and <strong>Bidirectional</strong> (as part of CDN/media access)</td></tr><tr><td><strong>Precedence</strong></td><td><strong>Highest Priority Storage</strong> (Used over Azure Storage if both are configured).</td></tr></tbody></table>
+
+This connector is fundamental for handling all media assets associated with messaging campaigns and digital content management within Netmera.
+
+<figure><img src="/files/V6dnbeigia8oN8IIOpeF" alt=""><figcaption></figcaption></figure>
+
+### Use Cases and Benefits
+
+The primary role of the Amazon Storage connector is to house and serve media content efficiently.
+
+1. **Messaging Assets and Thumbnails:** All visual content uploaded by users when creating messages (for Push Notifications, Email, or SMS) are stored in the configured S3 bucket. This includes full-size images and generated thumbnail versions.
+2. **Widget Media:** Images used in Netmera's "Widgets" section (e.g., in-app banners, web elements) are uploaded to Amazon S3. The system also supports the automatic conversion of embedded Base64 images within widget HTML content into dedicated S3 URLs.
+3. **Email Attachments:** Files attached to email messages are first uploaded to Amazon S3 (or Azure Storage, if S3 is inactive) and then referenced during the email sending process via providers like Amazon SES.
+4. **Custom Files:** Storage of custom files, such as special **Font files** for rich messaging or web content, is managed through this connector.
+
+The benefit is **high availability, massive scalability, and optimized content delivery** compared to self-hosted storage solutions.
+
+### Data Flow
+
+The data flow is predominantly **Outbound** regarding file transfer from Netmera's server environment to the cloud, but the resulting assets are subsequently retrieved by user devices or email servers (Inbound traffic to the CDN/storage).
+
+1. **Trigger:** A user action, such as uploading an image in the Message Creation panel, saving a widget, or adding an attachment, triggers the file upload process.
+2. **API Submission:** Netmera authenticates using the accessKey and secretKey and performs a secure API request to upload the file to the specified bucketName in the chosen region.
+3. **URL Generation:** Upon successful upload, Netmera generates the permanent CDN URL, which is then embedded in the message payload or user interface element.
+
+If Amazon S3 configuration is absent or inactive, the system automatically attempts to use the **Azure Storage** connector as a fallback.
+
+### Configuration Reference
+
+<figure><img src="/files/eKFxjqipoKTH6Im6rNBC" alt="" width="234"><figcaption></figcaption></figure>
+
+Configuration requires standard AWS credentials and specific S3 resource identifiers:
+
+<table><thead><tr><th width="169.968505859375">Parameter</th><th width="114.9805908203125">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>accessKey</strong></td><td>String</td><td>The AWS IAM user's Access Key ID.</td></tr><tr><td><strong>secretKey</strong></td><td>String</td><td>The AWS IAM user's Secret Access Key.</td></tr><tr><td><strong>bucketName</strong></td><td>String</td><td>The unique name of the S3 bucket where Netmera will store files.</td></tr><tr><td><strong>region</strong></td><td>String</td><td>The AWS region where the S3 bucket is located (e.g., "eu-west-1").</td></tr></tbody></table>
+
+These credentials must grant the necessary permissions for the Netmera application to read and write data to the specified bucket.
+
+### Setup Instructions
+
+Setting up Amazon Storage involves configuring IAM and S3 within the AWS Console before updating Netmera.
+
+1. **Prerequisites (AWS):** Create an AWS account, establish an **IAM user** with "Programmatic access," and grant permissions (e.g., `AmazonS3FullAccess`) to interact with S3. Create the S3 **bucket** to be used for storage.
+2. **Obtain Credentials:** Retrieve the **Access Key ID**, **Secret Access Key**, the **Bucket Name**, and the AWS **Region** of the bucket.
+3. **Configure in Netmera:** Navigate to the Netmera Control Panel, select the **Amazon Storage** connector.
+4. **Input Data:** Input the required accessKey, secretKey, bucketName, and region into the configuration form.
+5. **Verification:** Utilize the dedicated **"Test Connection"** button on the configuration page to verify that the provided credentials allow Netmera to successfully connect to and access the S3 bucket.
+6. **Save:** Save the configuration to activate the storage connector.
+
+### Usage Notes & Considerations
+
+1. **Credential Dependency:** The connector relies entirely on the static `accessKey` and `secretKey`. Any changes or revocation of these keys in the AWS console will immediately halt all asset uploads and CDN URL access until manually updated in Netmera.
+2. **IAM Permissions:** Incorrectly configured IAM policies (e.g., restricted access to only certain prefixes or buckets) can lead to upload failures or access issues.
+3. **Test Connection Feature:** While most connectors lack real-time connection checks, Amazon Storage is one of the few integration points (along with SetRow) that provides a **"Test Connection"** button, which is essential for pre-flight verification.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/content-storage-network/amazon-storage.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

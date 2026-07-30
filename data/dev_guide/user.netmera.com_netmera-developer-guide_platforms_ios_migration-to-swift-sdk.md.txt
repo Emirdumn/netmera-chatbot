@@ -1,0 +1,234 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/migration-to-swift-sdk.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/migration-to-swift-sdk.md).
+
+# Migration to Swift SDK
+
+Netmera is introducing a significant update to its mobile SDKs. To align with modern iOS development practices, the Objective-C SDK will be officially designated as **legacy in October 2026**. All customers are advised to migrate to the **Swift SDK**, which offers:
+
+* Simplified setup and maintenance
+* Modular, lightweight architecture
+* Support for modern iOS capabilities (Live Activities, Deferred Deep Linking, WhatsApp)
+* Enhanced reliability with offline queueing
+* Advanced user preference and profile management
+
+**Docs:**
+
+* [New Swift SDK](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift)
+* [Former Objective-C SDK](https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c)
+
+### 1) Installation & Project Setup
+
+#### 1.1 Remove Former SDK
+
+* Remove CocoaPods or manually added frameworks referencing the Objective-C SDK.
+* Run `pod deintegrate` if previously using CocoaPods and clean the build folder.
+
+#### 1.2 Install New Swift SDK (Recommended: SPM)
+
+1. In Xcode, navigate to **Project** → **Package Dependencies** → **+**.
+2. Add the Swift package URL: `https://github.com/Netmera/swift-sdk`.
+3. Select only the required modules to reduce app size: Core, Notifications, Analytics, Location, Inbox, Advertising ID, Live Activities.
+
+#### 1.3 Configuration File
+
+Add or update `Netmera-Config.plist` as required by the new SDK.
+
+```swift
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>sdk_params</key>
+        <dict>
+            <key>api_key</key>
+            <string>your_api_key</string>
+        </dict>
+    </dict>
+</plist>
+```
+
+Ensure environment keys, base URLs (for on-prem deployments), and app group identifiers (for media and carousel push) are configured. For details: [Further Plist Configurations](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/sdk-integration#further-plist-configurations).
+
+{% hint style="warning" %}
+**Important: Target Membership**
+
+Make sure **`Netmera-Config.plist`** is added to the correct **Target Membership** in Xcode.
+
+It must be included in:
+
+* **Main App Target**
+* **Notification Service Extension** (if used)
+* **Notification Content Extension** (if used)
+
+<img src="/files/PnWX1fXb0BLclZHxJTEI" alt="" data-size="original">
+{% endhint %}
+
+#### Using multiple targets?
+
+If your project uses different Netmera configuration files for Debug / Release or contains multiple app targets, additional setup may be required.&#x20;
+
+Please refer to the **Netmera-Config.plist configuration** section for detailed instructions in [SDK Integration](/netmera-developer-guide/platforms/ios/new-ios-swift/sdk-integration.md#for-multiple-targets).
+
+### 2) Choosing Modules & Imports (Swift SDK)
+
+Import only required modules to minimize app size and improve build times.
+
+| Module                                | Purpose                                         | Target                         |
+| ------------------------------------- | ----------------------------------------------- | ------------------------------ |
+| `NetmeraNotification`                 | Push permissions, token, delegate, deep links   | App                            |
+| `NetmeraAnalytic`                     | Send events (+ optional autotracking)           | App                            |
+| `NetmeraAnalyticsAutotracking`        | Automatic screen transition and action tracking | App                            |
+| `NetmeraNotificationInbox`            | Push Inbox list/detail                          | App                            |
+| `NetmeraLocation`                     | Location features                               | App                            |
+| `NetmeraGeofence`                     | Geofence features                               | App                            |
+| `NetmeraAdvertisingId`                | IDFA/IDFV access                                | App                            |
+| `NetmeraLiveActivity`                 | ActivityKit live activities                     | App (iOS 16.1+)                |
+| `NetmeraNotificationServiceExtension` | Rich/Media push processing                      | Notification Service Extension |
+| `NetmeraNotificationContentExtension` | Custom push UI, Carousel & Slider Push          | Notification Content Extension |
+
+`NetmeraCore` is imported automatically with any other module.
+
+### 3) Initialization
+
+#### Former iOS SDK
+
+```swift
+// AppDelegate.swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+	Netmera.start()
+	Netmera.setAPIKey("YOUR_CLIENT_API_KEY")
+	Netmera.setLogLevel(NetmeraLogLevel.debug)
+	return true
+}
+```
+
+#### New iOS SDK (Swift)
+
+```swift
+// AppDelegate.swift
+func application(_ application: UIApplication,
+                 didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+	Netmera.initialize()  
+	Netmera.setLogLevel(.debug) 
+	return true
+}
+```
+
+### 4) Push Notifications
+
+#### 4.1 Permission & Token Flow
+
+**Former iOS SDK**
+
+```swift
+Netmera.requestPushNotificationAuthorization(forTypes: [.alert, .badge, .sound]) 
+```
+
+**New Swift SDK**
+
+```swift
+Netmera.requestPushNotificationAuthorization(for: [.alert, .badge, .sound])
+```
+
+#### 4.2 **NetmeraPushObject Migration**&#x20;
+
+In the new Swift SDK, **`NetmeraPushObject` has been replaced with `NetmeraBasePush`**.
+
+`NetmeraBasePush` provides the same functionality, including access to standard push fields (title, body, deep link, send time) and any custom key–value parameters defined in the Netmera dashboard.
+
+If your previous implementation used `NetmeraPushObject`, simply update your parsing logic to use `NetmeraBasePush`.
+
+#### 4.3 Notification Service Extension Configuration&#x20;
+
+You must update the NSExtensionPrincipalClass value in your Service Extension's `Info.plist` file:
+
+Ensure your `NSExtensionPrincipalClass` is updated from `NotificationService` to **`$(PRODUCT_MODULE_NAME).NotificationService`**.
+
+> Note: Please double-check your configuration against our [Media Push Guide - Step 6](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/media-push#step-6-receiving-http-media-contents) to ensure media content and push notifications are handled correctly during the transition.
+
+### 5) User & Attributes
+
+`Netmera.updateUser()` is deprecated. Use `Netmera.identifyUser(user)` for identifiers and `Netmera.updateUserProfile(userProfile: userProfile)` for profile attributes.
+
+#### Action Required for Custom Profile Attributes
+
+* Update custom profile attributes using the snippet generated in the Netmera Dashboard.\
+  **Developers → Profile Attributes** → **User Class → iOS → Swift (New)** → copy the snippet and replace the existing user class.
+
+Array-type profile attributes can now be updated incrementally (`set` / `add` / `remove` / `unset`) to avoid sending the entire array.
+
+[More details → User & Attributes](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/user-and-attributes)
+
+### 6) Events (Analytics)
+
+#### Action Required for Custom Events
+
+* Standard events remain unchanged.
+* For custom events, regenerate and replace event code from **Developers → Events** in the panel. Select the event → **Code → iOS → Swift (New)** and update the project with the snippet.
+
+### Netmera SDK Function Mapping (Obj-C → Swift)
+
+#### NetmeraCore
+
+| Obj-C                                                          | Swift                                                 | Description                 |
+| -------------------------------------------------------------- | ----------------------------------------------------- | --------------------------- |
+| `[Netmera start];`                                             | `Netmera.initialize()`                                | SDK init                    |
+| `[Netmera updateUser:user];`                                   | `Netmera.identifyUser(user)`                          | IDs (userId, email, msisdn) |
+| `[Netmera updateUser:user];`                                   | `Netmera.updateUserProfile(userProfile: userProfile)` | Profile attributes          |
+| `[Netmera startDataTransfer];` / `[Netmera stopDataTransfer];` | `Netmera.setDataTransferEnabled(true)`                | Data transfer control       |
+| –                                                              | `Netmera.isNetmeraRemoteMessage(payload:)`            | Detect Netmera push payload |
+| `[Netmera setAllowedEmailSubscription:YES];`                   | `Netmera.setEmailPermission(isAllowed: true)`         | Email subscription          |
+| `[Netmera isAllowedEmailSubscription]`                         | `Netmera.getEmailPermission { ... }`                  | Get email permission        |
+| –                                                              | `Netmera.setSmsPermission(isAllowed: true)`           | SMS subscription            |
+| –                                                              | `Netmera.getSmsPermission { ... }`                    | Get SMS permission          |
+| –                                                              | `Netmera.setAdditionalRequestHeaders(dict)`           | Add request headers         |
+
+#### NetmeraAdvertisingId
+
+| Obj-C                                    | Swift                                       | Description   |
+| ---------------------------------------- | ------------------------------------------- | ------------- |
+| `Netmera.requestTrackingAuthorization()` | `Netmera.requestAdvertisingAuthorization()` | Ad ID consent |
+
+#### NetmeraNotification
+
+| Obj-C                                                   | Swift                                                                 | Description         |
+| ------------------------------------------------------- | --------------------------------------------------------------------- | ------------------- |
+| `[Netmera setEnabledPopupPresentation:YES];`            | `Netmera.setPopupPresentationEnabled()`                               | Popup push          |
+| `Netmera.setEnabledInAppMessagePresentation()`          | `Netmera.setInAppMessagePresentationEnabled()`                        | In-app messages     |
+| `[Netmera setEnabledReceivingPushNotifications:YES];`   | `Netmera.setReceivingPushNotificationsEnabled()`                      | Push receiving      |
+| `[Netmera isEnabledReceivingPushNotifications]`         | `Netmera.isReceivingPushNotificationsEnabled()`                       | Push status check   |
+| `Netmera.requestPushNotificationAuthorizationForTypes:` | `Netmera.requestPushNotificationAuthorization(for:)`                  | Push permissions    |
+| `Netmera.setUserCategoryPreferenceWithCategoryId:`      | `Netmera.setUserCategoryPreference(categoryId:categoryEnabled:){...}` | Category preference |
+
+#### NetmeraNotificationInbox
+
+| Obj-C                                          | Swift                                                         | Description                        |
+| ---------------------------------------------- | ------------------------------------------------------------- | ---------------------------------- |
+| `NetmeraInboxFilter` + `fetchInboxUsingFilter` | `NetmeraInboxManager` + `inbox(callback:)`                    | Fetch inbox notifications          |
+| `fetchInboxCount(with:)`                       | `inboxManager?.count(for:)`                                   | Inbox count by status              |
+| `fetchNextPageWithCompletionBlock`             | `inboxManager?.nextPage(callback:)`                           | Pagination                         |
+| `updateStatus:forPushObjects:`                 | `inboxManager?.updateStatus(status, for: [object]) { ... }`   | Update status for selected objects |
+| `updateStatus:forAllWithCompletion:`           | `inboxManager?.updateStatusForAllPushObjects(status) { ... }` | Bulk status update                 |
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/migration-to-swift-sdk.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

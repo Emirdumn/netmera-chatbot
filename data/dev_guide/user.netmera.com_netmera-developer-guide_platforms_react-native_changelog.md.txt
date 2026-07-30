@@ -1,0 +1,519 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/react-native/changelog.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/react-native/changelog.md).
+
+# Changelog
+
+**All React Native SDK version updates are documented in the following link.**
+
+{% embed url="<https://www.npmjs.com/package/react-native-netmera>" %}
+
+## v2.1.2 <a href="#v3.0.0" id="v3.0.0"></a>
+
+**July 9,2026**
+
+⭐ **Improvements**
+
+**Autotracking Action Type Mapping**
+
+* Improved the autotracking to feed data into the action type field on the panel.
+
+**🛠️ Bug Fixes**
+
+&#x20;**Falsy Value Handling in Profile Attributes**
+
+* Fixed the issue where the `NetmeraProfileAttribute.set()` method did not accept falsy values.
+
+## v2.1.0
+
+**June 30, 2026**
+
+**⭐ Improvements**
+
+**Autotracking for Screen Transitions and Tap Interactions**
+
+* Added autotracking support for screen transitions and tap interactions.
+
+{% hint style="info" %}
+**For more information about Autotracking, see**:
+
+<a href="https://user.netmera.com/netmera-developer-guide/platforms/react-native/tagless-data-capture" class="button secondary">Tagless Data Capture</a>
+{% endhint %}
+
+## v2.0.1 <a href="#v3.0.0" id="v3.0.0"></a>
+
+**May 15, 2026**
+
+**🛠️ Bug Fixes**
+
+**NetmeraPushObject Custom JSON Fix**
+
+* Fixed the issue where the `NetmeraPushObject.customJson` value is undefined in iOS.
+
+## v2.0.0 <a href="#v3.0.0" id="v3.0.0"></a>
+
+**May 12, 2026**
+
+⭐ **Improvements**
+
+* Implement **Netmera Swift SDK**
+* Move initialize method inside the plugin and simplify iOS integration
+* Convert iOS plugin codes to **Swift**
+* Convert Android plugin codes to **Kotlin**
+
+🚀 **Features**
+
+* Add `identifyUser` method
+* Add `updateUserProfile` method
+* Add `sendGenericEvent` method
+* Add `dismissAllPresentations` method
+* Add `getWhatsAppPermission` and `setWhatsAppPermission` methods
+* Add callback to `requestPushNotificationAuthorization` method
+* Add `setPushLifecycleCallbacks` method for improve push callback data mapping
+
+🗑️ **Deprecation**
+
+* Remove `initBrodcastReceiver` method
+* Remove `updateUser` and `updateUserAsync` methods
+* Remove `setBaseUrl` method
+* Remove `setApiKey` method
+* Remove `setAppGroupName` method
+* Remove `skipAppConfigAndSetBaseUrl` method
+* Remove `turnOffSendingEventAndUserUpdate` method
+* Remove `areNotificationsEnabled` method
+* Remove `handleLastMessage` method
+
+If you are upgrading from previous versions, please refer to our [Migration Guide](/netmera-developer-guide/platforms/react-native/migration-to-2.x.md) for detailed transition steps.
+
+## v1.11.5
+
+**May 8, 2026**
+
+**🛠️ Bug Fixes**
+
+* **Android Push Register Callback**
+
+&#x20;     Fixed Android push register callback not being sent when token is unchanged.
+
+## v1.11.4
+
+**April 13,2026**
+
+🛠️ **Bug Fixes**
+
+* **Fix Base URL Handling for Paths on Android**\
+  Fixed an issue on Android where base URLs containing a path segment were not handled correctly. URLs such as `https://www.example.com/netmera` are now supported.
+
+## v1.11.3
+
+**December 18, 2025**
+
+Versions **1.11.0**, **1.11.1**, and **1.11.2** are deprecated.\
+Please make sure you are using **React Native SDK v1.11.3**.
+
+⭐ **Improvements**
+
+* **iOS Event Delivery Fix**\
+  Fixed an issue that prevented events from being sent from iOS devices in certain scenarios.
+* **Security Update – Yarn Cache**\
+  Resolved a security vulnerability related to the Yarn cache.
+
+## v1.11.2
+
+**November 5, 2025**
+
+⚠️ This versions has been deprecated. Please make sure you are using React Native SDK v1.11.3 or later.
+
+⭐ **Improvements**
+
+* Updated the SDK package for full compatibility with React Native’s new architecture
+
+## v1.11.1
+
+**October 8, 2025**
+
+⚠️ This versions has been deprecated. Please make sure you are using React Native SDK v1.11.3 or later.
+
+⭐ **Improvements**
+
+* Updated integrated **Android SDK** to version **4.9.2.**&#x20;
+
+Details > [/pages/00dOrb4DFLENCowMY9W1#id-4.9.2](https://user.netmera.com/netmera-developer-guide/platforms/react-native/pages/00dOrb4DFLENCowMY9W1#id-4.9.2 "mention")
+
+## v1.11.0
+
+**October 1, 2025**
+
+⚠️ This versions has been deprecated. Please make sure you are using React Native SDK v1.11.3 or later.
+
+⭐ **Improvements**
+
+* Updated Netmera Android SDK version to **4.9.1**.
+* Updated Android target SDK version to **35**.
+
+{% hint style="info" %}
+Netmera SDK is now fully compatible with **16 KB memory page sizes**.
+{% endhint %}
+
+## v1.10.0
+
+**August 4, 2025**
+
+⭐ **Improvements**
+
+* Integrated iOS SDK version **3.27.0-WD**
+* Integrated Android SDK dependencies:
+  * `nmcore` version **4.6.1**
+  * `nmfcm` version **4.5.0**
+  * `nmhms` version **4.5.0**
+
+## v1.9.0
+
+**June 13, 2025**
+
+:star: **Improvements**
+
+* **Standard Event Definitions** have been integrated into the SDK to streamline event tracking and reporting.
+* **`updateUserAsync`** method has been introduced to enable asynchronous user profile updates.
+* Updated Android SDK dependencies:
+  * `nmcore` to **v4.3.2**
+  * `nmfcm` to **v4.0.2**
+  * `nmhms` to **v4.0.1**
+
+{% hint style="info" %}
+The **README** file has been updated to provide guidance for users integrating with a **custom Firebase setup**.
+{% endhint %}
+
+## v1.8.1
+
+**April 10, 2025**
+
+:star: **Improvements**
+
+* **iOS SDK Update:** Integrated with Netmera iOS SDK v3.25.0-WD.
+* **Android SDK Update:** Integrated with Netmera Android `nmcore` SDK v4.0.10.
+
+## v1.8.0
+
+**March 4, 2025**
+
+This update includes the following changes and improvements:
+
+:star: **Improvements**
+
+* **Android SDK Update:** Integrated with Netmera Android `nmcore` SDK v4.0.7
+* **FCM SDK Update:** Integrated with Netmera FCM SDK v4.0.0
+* **HMS SDK Update**: Integrated with Netmera HMS SDK v4.0.0
+* **iOS SDK Update:** Integrated with Netmera iOS SDK v3.24.9-WD
+
+:rocket: **Features**
+
+* **SSL Pinning Mechanism:** Added for enhanced security.
+* **`checkNotificationPermission` Method:** Allows checking the notification permission status.
+
+## v1.7.11
+
+**November 15, 2024**
+
+:star: **Improvements**
+
+* Updated iOS push callbacks to ensure they no longer trigger for push notifications from other providers.
+
+## v1.7.10
+
+**October 24, 2024**
+
+:star: **Improvements**
+
+* Updated the iOS SDK to version 3.23.16.
+
+```swift
+pod "Netmera", "3.23.16-WithoutDependency"
+pod "Netmera/NotificationServiceExtension", "3.23.16-WithoutDependency"
+pod "Netmera/NotificationContentExtension", "3.23.16-WithoutDependency"
+```
+
+🛠️ **Bug Fixes**
+
+* Fixed an issue where the category list provided as a parameter to the `getInboxCountForStatus` method was not being sent to the backend.
+
+## v1.7.9
+
+**September 19, 2024**
+
+:star: **Improvements**
+
+* Updated the iOS SDK version to 3.23.13.
+* Removed `log events` to improve performance and streamline the SDK functionality.
+
+```swift
+pod "Netmera", "3.23.13-WithoutDependency"
+pod "Netmera/NotificationServiceExtension", "3.23.13-WithoutDependency"
+pod "Netmera/NotificationContentExtension", "3.23.13-WithoutDependency"
+```
+
+## v1.7.8
+
+#### Aug 28, 2024
+
+:star: **Improvements**
+
+* Updated to support Target SDK 34.
+
+🛠️ **Bug Fixes**
+
+* Fixed an issue related to the "Time in App" event.
+
+## v1.7.7
+
+**Aug 2, 2024**
+
+* **iOS SDK:** Upgraded to version 3.23.11-WithoutDependency
+
+```swift
+pod "Netmera", "3.23.11-WithoutDependency"
+pod "Netmera/NotificationServiceExtension", "3.23.11-WithoutDependency"
+pod "Netmera/NotificationContentExtension", "3.23.11-WithoutDependency"
+```
+
+* **Android SDK:** Upgraded nmcore to version 3.14.2
+
+```gradle
+implementation 'com.netmera:nmcore:3.14.2'
+implementation 'com.netmera:nmfcm:3.12.2'
+implementation 'com.netmera:nmhms:3.11.2'
+```
+
+**Integration Changes:**
+
+* Ensure that the Netmera pods in your Podfile are updated to version 3.23.11-WithoutDependency
+
+## v1.7.6
+
+**July 4, 2024**
+
+:star: **Improvements**
+
+* Updated to Android nmcore version 3.14.0
+
+```gradle
+implementation 'com.netmera:nmcore:3.14.0'
+implementation 'com.netmera:nmfcm:3.12.0'
+implementation 'com.netmera:nmhms:3.11.0'
+```
+
+* Integrated iOS 3.23.7-WD version into the project.
+
+```swift
+pod "Netmera", "3.23.7-WithoutDependency"
+pod "Netmera/NotificationServiceExtension", "3.23.7-WithoutDependency"
+pod "Netmera/NotificationContentExtension", "3.23.7-WithoutDependency"
+```
+
+🛠️ **Bug Fixes**
+
+* Resolved the Gradle 8+ issue to ensure smooth builds and improved stability.
+
+## v1.7.5
+
+**May 3, 2024**
+
+* Integrated iOS SDK version 3.23.6-`WithoutDependency` into the React Native package.
+
+{% hint style="info" %}
+**Important Update for iOS Developers:**&#x20;
+
+Starting from Spring 2024, Apple has mandated the inclusion of privacy manifestos for certain third-party SDKs when submitting new applications or updates to the App Store Connect. As a result, we have added the necessary file to the Netmera iOS SDK to comply with Apple's requirements.
+
+**Apple's Requirement Details:**&#x20;
+
+For further information on Apple's third-party SDK requirements and privacy manifesto guidelines, please refer to the following link: [Apple Third-Party SDK Requirements](https://developer.apple.com/support/third-party-SDK-requirements/)
+{% endhint %}
+
+## v1.7.4
+
+**April 25, 2024**
+
+* The iOS 3.23.5-`WithoutDepedency` package has been integrated into the React Native SDK.
+* The Android nmcore 3.13.1 package has been added to the React Native SDK.
+
+:star: **Improvements**
+
+* Added the 'Revenue' parameter to the NetmeraEvent class.
+* Introduced the `Netmera.kill()` method to the React Native SDK (only available on Android).
+
+🛠️ **Bug Fixes**
+
+* Fixed the crash problem related to `requestNotificationPermissions`.
+
+## v**1.7.3**
+
+**March 19, 2024**
+
+:star: **Improvements**
+
+* Added iOS 3.23.4 `WithoutDependency` package to the React Native SDK.
+* An improvement has been implemented to resend push/enable and push/register requests in case of an API key change.
+
+## v1.7.2
+
+**March 8, 2024**
+
+:star: **Improvements**
+
+* For iOS, cache is now reset when the API key is changed.
+
+## v**1.7.0**
+
+**February 15, 2024**
+
+:star: **Improvements**
+
+* Added Android Core and FCM version 3.12.0 to support FCM HTTP v1 transition.
+
+## v1.6.4
+
+**February 5, 2024**
+
+:star: **Improvements**
+
+* Enhanced user update callback functionality. Example usage:
+
+```javascript
+Netmera.updateUser(user)
+      .then(() => {
+        console.log('User updated successfully!');
+        Toast.show({
+          type: 'success',
+          text1: 'User updated successfully!',
+        });
+      })
+      .catch(error => {
+        console.log(error.code, error.message);
+        Toast.show({
+          type: 'error',
+          text1: error.message,
+        });
+      });
+```
+
+🛠️ **Bug Fixes**
+
+* Addressed an issue where deeplinks triggered by push click while the iOS application was closed were not being captured.
+
+## v1.6.3&#x20;
+
+**January 9, 2024**
+
+Android core 3.11.3, FCM 3.11.0, HMS 3.11.0, and iOS 3.22.0-WD packages are now integrated into the SDK.
+
+:star: **Improvements**
+
+* Widget callbacks have been added to the React Native SDK. Please refer to the page [Push Notifications](/netmera-developer-guide/platforms/react-native/push-notifications.md#widget-callbacks) for further information.
+
+🛠️ **Bug Fixes**
+
+* Development has been done to address the autostart problem.
+
+## v1.6.2
+
+**November 3, 2023**
+
+Android 3.10.4 and iOS 3.18.0 versions have been added.
+
+:rocket: **Features**
+
+* The `fetchCoupons` method has been introduced.
+
+<details>
+
+<summary>Sample fetchCoupons</summary>
+
+```
+Netmera.fetchCoupons(0, 2)
+      .then(result => {
+        console.log(result);
+      })
+      .catch(error => console.log(error));
+```
+
+</details>
+
+:star: **Improvements**
+
+* Possible `baseUrl` errors have been resolved by transitioning to Android version 3.10.4 as an improvement.
+
+## v1.6.1
+
+**September 27, 2023**
+
+:star: **Improvements**
+
+React Native 1.6.1, which includes Android 3.10.2 and iOS 3.16.0 versions, has been released.
+
+* Android Target API level increased to 33
+* Android core and fcm versions upgraded to 3.10.2
+* startDataTransfer and stopDataTransfer methods added to React Native SDK
+
+## v1.6.0
+
+:star: **Improvements**
+
+React Native 1.6.0, which includes Android 3.10.1 and iOS 3.16.0 versions, has been released.
+
+## v1.5.0
+
+:star: **Improvements**
+
+* Transition to TypeScript has been completed.
+
+## v1.4.9
+
+:rocket: **Features**
+
+* Android core SDK version 3.9.12 and FCM version 3.9.4 have been added to the React Native SDK.
+* Android 13 notification permission methods have been added to the React Native SDK and integrated with the existing iOS methods. The `areNotificationsEnabled` and `requestPushNotificationAuthorization` methods can now be used for both iOS and Android devices.
+
+<details>
+
+<summary>Details</summary>
+
+#### **Push Notification Permissions**
+
+If you don't request notification permission at runtime, you can request it by calling the `requestPushNotificationAuthorization()` method. Note: Notification runtime permissions are required on Android 13 (API 33) or higher. Therefore, before calling the method, make sure your project targets an API of 33 and above.
+
+```
+ Netmera.requestPushNotificationAuthorization();
+```
+
+You can call the `areNotificationsEnabled()` method if you need to know the status of permissions.
+
+```
+ await Netmera.areNotificationsEnabled() // Use the enabled status of permission as boolean
+```
+
+</details>
+
+* The usage details of the `areNotificationsEnabled` and `requestPushNotificationAuthorization` methods have been added to the Readme file.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/react-native/changelog.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

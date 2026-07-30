@@ -1,0 +1,454 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/sdk-integration.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/sdk-integration.md).
+
+# SDK Integration
+
+This SDK is developed in Swift and supports integration with Swift Package Manager (SPM). For new projects, we **recommend** integrating the Netmera Swift SDK to optimize functionality and streamline development.&#x20;
+
+## Onboarding Checklist: Swift
+
+Below is the Onboarding Checklist for Swift and Flutter. Follow each item in the list to ensure all essential steps in your Netmera onboarding process are completed successfully.
+
+{% file src="/files/Fdpmt4flgLQVv6QK4USD" %}
+
+## How to Integrate Netmera Swift SDK: A Complete Video Guide
+
+{% embed url="<https://youtu.be/QARok0jOqmM?si=rTN3H8sbPe69KbeE>" %}
+
+## Step 1: Create an Apple Push Notification Certificate
+
+To enable push notifications, Netmera uses APNS (Apple Push Notification Service). Follow these steps to create and upload the required certificate:
+
+1. Log in to [**developer.apple.com**](https://developer.apple.com) with your Apple Developer account.
+2. Generate an Apple Push Notification Certificate for your app.
+3. Export the certificate using **Keychain Access** on your Mac.
+4. Upload the exported certificate to the Netmera panel by navigating to **Developer > Push Backends > iOS** in the left menu.
+
+{% hint style="info" %}
+**Bundle IDs should match on your project, certificate and panel:**
+
+Ensure that the certificate you upload to the panel matches the bundle ID of your project. Additionally, set your project's bundle ID in the panel to ensure consistency. The bundle ID of your **project**, the **certificate**, and the one specified in the **panel** must all align.
+{% endhint %}
+
+#### Push Notification Certificate Types
+
+1. **p8 Certificate**
+
+For P8 certificates, select both Sandbox & Production environments since a single P8 certificate works for both. If only one environment (e.g., Production) is selected, a `BadEnvironmentKeyInToken` error occurs when testing in the sandbox.
+
+2. **p12 Certificate**
+
+Create separate certificates for each environment.
+
+3. **Apps Built from Xcode**
+
+When building apps from Xcode, set the certificate type to `dev`.&#x20;
+
+{% hint style="info" %}
+If you encounter issues with push notifications, check the certificate type in the **Developer > Push Backends > iOS** section.
+{% endhint %}
+
+<table><thead><tr><th width="159.12994384765625">Environment</th><th width="199.576171875">Certificate Type</th><th width="112.11474609375">Certificate Format</th><th>Notes</th></tr></thead><tbody><tr><td>Production &#x26; Test</td><td>Sandbox &#x26; Production</td><td>p8</td><td>This <strong>single</strong> certificate type works for both environments when using the p8 format.</td></tr><tr><td>Production</td><td>Production</td><td>p12</td><td><strong>Separate</strong> certificates should be created for different environments when using the p12 format.</td></tr><tr><td>Test</td><td>Sandbox </td><td>p12</td><td><strong>Separate</strong> certificates should be created for different environments when using the p12 format.</td></tr><tr><td>App Built Directly from Xcode</td><td>Development (<code>dev</code>)</td><td>p8/p12</td><td>Must be set to <code>dev</code>. </td></tr></tbody></table>
+
+### Creating an APNS .p8 Certificate (Recommended)
+
+{% embed url="<https://youtu.be/dv-5gmaGsAA?si=A4V085fUEWMpTzXi>" %}
+
+{% hint style="success" %}
+**Using the APNS `.p8` certificate is highly recommended for the following reasons:**
+
+1. The .p8 certificate is mandatory for enabling features such as Live Activities.
+2. Unlike .p12 certificates, a single .p8 certificate can manage push notifications for multiple applications.
+3. The .p8 certificate does not require yearly renewal.
+4. The .p8 certificate is easier to generate via the Apple Developer Portal and only needs to be downloaded once.
+   {% endhint %}
+
+### Creating an APNS .p12 Certificate
+
+{% embed url="<https://youtu.be/R8tva2tpFyU?si=9JPg1b9Rqt6b0ldl>" %}
+
+## Step 2: Integrate SDK into Your Project
+
+{% hint style="danger" %}
+
+#### Requirements
+
+* **Xcode 13** or later
+* **iOS 11.0** or later
+  {% endhint %}
+
+You can integrate the Netmera SDK into your project using either **Swift Package Manager (SPM)** or **Cocoapods**. Follow the instructions for your chosen method.&#x20;
+
+#### Swift SDK Modules – Select the modules you need
+
+Netmera Swift SDK is modular. Include only the modules your app needs in the appropriate targets.
+
+<table><thead><tr><th width="254.94036865234375">Module</th><th width="261.3447265625">Purpose</th><th>Target</th></tr></thead><tbody><tr><td><code>NetmeraNotification</code></td><td>Manages push permission flow, token registration, delegate methods, and deep link handling.</td><td>App</td></tr><tr><td><code>NetmeraAnalytic</code></td><td>Allows sending analytics events to Netmera.</td><td>App</td></tr><tr><td><code>NetmeraAnalyticsAutotracking</code></td><td>Tracks screen transitions and user actions automatically.</td><td>App</td></tr><tr><td><code>NetmeraNotificationInbox</code></td><td>Enables the push inbox feature.</td><td>App</td></tr><tr><td><code>NetmeraLocation</code></td><td>Provides location–based functionalities.</td><td>App</td></tr><tr><td><code>NetmeraGeofence</code></td><td>Enables geofence monitoring.</td><td>App</td></tr><tr><td><code>NetmeraAdvertisingId</code></td><td>Provides access to IDFA/IDFV (AdTracking).</td><td>App</td></tr><tr><td><code>NetmeraLiveActivity</code></td><td>Enables ActivityKit-based Live Activities (iOS 16.1+).</td><td>App</td></tr><tr><td><code>NetmeraNotificationServiceExtension</code></td><td>Required for Media / Rich Push rendering.</td><td>Notification Service Extension</td></tr><tr><td><code>NetmeraNotificationContentExtension</code></td><td>Enables custom push UIs such as Carousel &#x26; Slider Push.</td><td>Notification Content Extension</td></tr></tbody></table>
+
+### Option 1: Integrating with Swift Package Manager (SPM)
+
+1. Open **Project Settings** and navigate to **Package Dependencies**. Click the **"+"** button to add a new dependency.
+
+<figure><img src="/files/LgB2yUY10gO7m44QR7QL" alt="" width="563"><figcaption></figcaption></figure>
+
+2. Enter the following repository URL in the search bar. The package details will load automatically.
+
+```bash
+https://github.com/Netmera/swift-sdk
+```
+
+3. Click **"Add Package"** to complete the integration.
+
+<figure><img src="/files/90cF6ha77jcHRn0ycYT4" alt="" width="563"><figcaption></figcaption></figure>
+
+### Option 2: Integrating with Cocoapods
+
+1. Make sure your Podfile includes the necessary Netmera SDK modules, along with any other dependencies you need. Here’s an example:
+
+```swift
+target 'YourAppTargetName' do
+  ...
+  # Pods for Netmera Modules
+  pod "NetmeraAnalytic" // to use Netmera analytic features
+  pod "NetmeraAnalyticAutotracking" // to use auto tracking features
+  pod "NetmeraNotification" // to use Netmera push notification features
+  pod "NetmeraAdvertisingId" // to use Netmera advertising identifier features
+  pod "NetmeraLocation" // to use Netmera location features
+  pod "NetmeraGeofence" // to use Netmera geofence features
+  pod "NetmeraNotificationInbox" // to use Netmera push inbox features
+  pod "NetmeraLiveActivity" // to use Netmera live activity features
+  ...
+end
+```
+
+2. After listing all your pod dependencies, add the following **post\_install** block to the **end** of your **Podfile**.
+
+```swift
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name.include?('Swinject')
+      target.build_configurations.each do |config|
+        config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+      end
+    end
+  end
+end
+```
+
+3. Run `pod install` command in your terminal.
+
+```swift
+pod install
+```
+
+## Step 3: Setup Netmera
+
+### Import the Netmera Framework
+
+In your AppDelegate.swift file, import the necessary Netmera modules based on the features you plan to use:
+
+```swift
+import NetmeraAnalytic
+import NetmeraNotification
+import NetmeraLocation
+import NetmeraNotificationInbox
+import NetmeraAdvertisingId
+```
+
+{% hint style="info" %}
+**Notes for SwiftUI projects:**
+
+For **SwiftUI** projects, the **AppDelegate.swift file is not included by default**. Instead, SwiftUI uses an `App` struct marked with `@main` to manage the application lifecycle.&#x20;
+
+You can adapt your implementation by creating an `AppDelegate` class and integrating it into the `App` struct if needed.
+{% endhint %}
+
+### Initialize Netmera
+
+#### 1. Configure with Netmera Plist
+
+1. Add the `Netmera-Config.plist` file to your project.
+2. Ensure the file is included in the correct **Target Membership** (main target + extensions if applicable).
+
+<figure><img src="/files/C2oldECrJS2WmfAYZubo" alt=""><figcaption></figcaption></figure>
+
+3. Replace the placeholders (`{API_KEY}`, `{AppGroupName}`, etc.) in the following code snippet with your actual values:
+
+{% hint style="warning" %}
+To obtain your **SDK API Key**, follow these steps:
+
+1. Go to the **Netmera Panel**.
+2. Navigate to **Developer > API > SDK API Key**.
+3. Copy your **SDK API Key** from this section.
+
+Use this key to replace the `{API_KEY}` placeholder in either the `Netmera-Config.plist` or your programmatic setup.
+{% endhint %}
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>sdk_params</key>
+        <dict>
+            <key>api_key</key>
+            <string>your_api_key</string>
+        </dict>
+    </dict>
+</plist>
+```
+
+<figure><img src="/files/S2pv2T9FCIxNg32AGGkt" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Further Plist Configurations
+
+**Source Code View**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" 
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>sdk_params</key>
+    <dict>
+      <key>app_group_name</key>
+      <string>{AppGroupName}</string>
+      <key>api_key</key>
+      <string>{API_KEY}</string>
+      <key>custom_events</key>
+      <array>
+        <string>{YourCustomEvent}</string>
+      </array>
+    </dict>
+
+    <key>location_max_active_region</key>
+    <string></string>
+
+    <key>in_app_message_settings</key>
+    <dict>
+      <key>TextColor</key>
+      <string>{hexcolor. For ex-> 16777215}</string>
+      <key>TitleColor</key>
+      <string>{hexcolor. For ex-> 16777215}</string>
+      <key>BackgroundColor</key>
+      <string>{hexcolor. For ex-> 16777215}</string>
+      <key>CancelButtonBackgroundColor</key>
+      <string>{hexcolor. For ex-> 16777215}</string>
+      <key>TitleFont</key>
+      <string>{font family name. ex -> ariel}</string>
+      <key>TextFont</key>
+      <string>{font family name. ex -> ariel}</string>
+      <key>CancelButtonRadius</key>
+      <string>{10 sd px}</string>
+      <key>ShadowOpacity</key>
+      <string>{0-1}</string>
+      <key>BottomPaddingRatio</key>
+      <string>{between 0.01 - 1}</string>
+      <key>CancelButtonImage</key>
+      <string>{imagename}</string>
+    </dict>
+
+    <key>blacklist_screen_names</key>
+    <array/>
+  </dict>
+</plist>
+```
+
+<details>
+
+<summary>SDK Config Parameters</summary>
+
+**sdk\_params**
+
+* **app\_group\_name**: iOS App Group name for data sharing with extensions.
+* **api\_key**: Project-specific Netmera API key.
+* **custom\_events**: List of custom events to track (e.g., PurchaseCompleted).
+
+**location\_max\_active\_region**
+
+Max number of active regions for location tracking (optional).
+
+**in\_app\_message\_settings**
+
+Customize in-app message appearance:
+
+* **TextColor**, **TitleColor**, **BackgroundColor**, **CancelButtonBackgroundColor**
+* **TitleFont**, **TextFont**
+* **CancelButtonRadius**, **ShadowOpacity**, **BottomPaddingRatio**
+* **CancelButtonImage**
+
+**blacklist\_screen\_names**
+
+Screens excluded from auto-tracking.
+
+</details>
+
+**Property List View**
+
+<figure><img src="/files/NTZ7cYdegYt3VuWWARU8" alt="" width="563"><figcaption></figcaption></figure>
+
+**Additional Configuration for On-Premises Customers**
+
+If you are using Netmera in an on-premises environment, include the following in your `Netmera-Config.plist`:
+
+```xml
+<key>base_url</key>
+<string>{BaseURL}</string
+```
+
+#### For Multiple Targets&#x20;
+
+If your project contains **multiple targets** you can manage this by copying the correct configuration file during build time.
+
+Add the following script as a **Run Script Phase** in your app target:
+
+```
+if [ "${CONFIGURATION}" == "Debug" ]; then
+    CONFIG_FILE="${PROJECT_DIR}/NetmeraSwiftDemo/Netmera-Config-Debug.plist"
+else
+    CONFIG_FILE="${PROJECT_DIR}/NetmeraSwiftDemo/Netmera-Config-Release.plist"
+fi
+        
+BUNDLE_PATH="${PROJECT_DIR}/NetmeraSwiftDemo/Netmera-Config.plist"
+
+cp "${CONFIG_FILE}" "${BUNDLE_PATH}"
+```
+
+This ensures that the correct `Netmera-Config.plist` file is bundled based on the active build configuration.
+
+⚠️ Make sure the script runs **before the app is built**, and that `Netmera-Config.plist` is included in the target bundle.
+
+#### 2. Initialize Netmera
+
+Call the Netmera initialization method in your `application(_:didFinishLaunchingWithOptions:)` method:
+
+```swift
+Netmera.initialize()  
+Netmera.setLogLevel(.debug) // Options: .debug, .info, .error, .fault  
+// Use .debug mode to view detailed Netmera logs
+```
+
+**Optional: Initialization Callback**
+
+{% hint style="warning" %}
+**Important Note**: To use the initialization callback method, make sure you are using Swift SDK v4.19.0 or later.
+{% endhint %}
+
+Use the initialization callback to listen for init session results, including available user segments and initialization errors.
+
+Add the following code to handle init session success and failure:
+
+```swift
+let initSessionCallBack: (Result<NetmeraInitSessionInfo, Error>) -> Void = { [weak self] result in
+        switch result {
+        case let .success(info):
+          // handle info, i.e logic depending on info.segments
+          break
+        case let .failure(error):
+          // handle error
+          break
+        }
+      }
+      // should be set before or right after the "Netmera.initialize" call in "didFinishLaunchingWithOptions"
+      Netmera.setInitSessionCallback(initSessionCallBack)
+```
+
+## Configuring Multiple Environments
+
+If you want to configure multiple environments for your app (e.g., testing and production), follow the steps below:
+
+**Step 1: Copy Netmera-Config.plist Files**
+
+1. Copy the **Netmera-Config.plist** file for the development environment into the **Dev** directory.
+2. Copy the **Netmera-Config.plist** file for the production environment into the **Prod** directory.
+3. When adding these files to your Xcode project, uncheck **Copy items if needed** and ensure that **no targets** are selected under **Add to targets**.
+
+<figure><img src="/files/1FjYCLS3zEwHgMpSdtCY" alt="" width="375"><figcaption></figcaption></figure>
+
+**Step 2: Add Run Script Phase**
+
+1. In Xcode, select your app target.
+2. Go to the **Build Phases** tab and add a **New Run Script Phase**.
+3. Name the new phase something like "Setup Netmera Environment Netmera-Config.plist".
+4. Position this phase **before** the **Copy Bundle Resources** step.
+
+**Step 3: Implement Shell Script for Config File Selection**
+
+In the new Run Script Phase, implement the following shell script to copy the correct **Netmera-Config.plist** based on the build configuration (Debug or Release):
+
+<figure><img src="/files/kSbVbCOmqVuPta8VlTUl" alt="" width="563"><figcaption></figcaption></figure>
+
+The following script checks if the **development** and **production** versions of **Netmera-Config.plist** exist in their respective directories, and based on the build configuration (Debug or Release), it will copy the correct configuration file into the app bundle.
+
+```bash
+# Name of the resource we're selectively copying
+NETMERA_CONFIG_PLIST=Netmera-Config.plist
+
+# Get references to dev and prod versions of the Netmera-Config.plist
+# NOTE: These should only live on the file system and should NOT be part of the target (since we'll be adding them to the target manually)
+NETMERA_CONFIG_DEV=${PROJECT_DIR}/${TARGET_NAME}/NetmeraConfig/Dev/${NETMERA_CONFIG_PLIST}
+NETMERA_CONFIG_PROD=${PROJECT_DIR}/${TARGET_NAME}/NetmeraConfig/Prod/${NETMERA_CONFIG_PLIST}
+
+# Make sure the dev version of Netmera-Config.plist exists
+echo "Looking for ${NETMERA_CONFIG_PLIST} in ${NETMERA_CONFIG_DEV}"
+if [ ! -f $NETMERA_CONFIG_DEV ]
+then
+    echo "No Development Netmera-Config.plist found. Please ensure it's in the proper directory."
+    exit 1
+fi
+
+# Make sure the prod version of Netmera-Config.plist exists
+echo "Looking for ${NETMERA_CONFIG_PLIST} in ${NETMERA_CONFIG_PROD}"
+if [ ! -f $NETMERA_CONFIG_PROD ]
+then
+    echo "No Production Netmera-Config.plist found. Please ensure it's in the proper directory."
+    exit 1
+fi
+
+# Get a reference to the destination location for the Netmera-Config.plist
+PLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app
+echo "Will copy ${NETMERA_CONFIG_PLIST} to final destination: ${PLIST_DESTINATION}"
+
+# Copy over the prod Netmera-Config.plist for Release builds
+if [ "${CONFIGURATION}" == "Release" ]
+then
+    echo "Using ${NETMERA_CONFIG_PROD}"
+    cp "${NETMERA_CONFIG_PROD}" "${PLIST_DESTINATION}"
+else
+    echo "Using ${NETMERA_CONFIG_DEV}"
+    cp "${NETMERA_CONFIG_DEV}" "${PLIST_DESTINATION}"
+fi
+```
+
+## Swift SDK Integration Complete <a href="#sdk-integration-complete" id="sdk-integration-complete"></a>
+
+The Swift SDK integration is complete, and your devices are now ready to receive the following types of push notifications from the Netmera Dashboard:
+
+1. **Standard Push Notifications**
+2. **Interactive Push Notifications**
+3. **Widgets**
+4. **Push Notifications with Deeplinks**
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/sdk-integration.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

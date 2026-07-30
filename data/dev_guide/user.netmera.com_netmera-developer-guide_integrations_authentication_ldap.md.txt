@@ -1,0 +1,81 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/authentication/ldap.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/authentication/ldap.md).
+
+# LDAP
+
+The LDAP (Lightweight Directory Access Protocol) connector in the Netmera platform is a critical component for corporate security, enabling the use of external directory services for administrative user authentication.
+
+### Overview
+
+<table><thead><tr><th width="204.37408447265625">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>LDAP (Lightweight Directory Access Protocol)</td></tr><tr><td><strong>Category</strong></td><td><strong>Authentication &#x26; Directory Service</strong></td></tr><tr><td><strong>Provider</strong></td><td>Generic LDAP servers (e.g., Microsoft Active Directory, OpenLDAP)</td></tr><tr><td><strong>Primary Function</strong></td><td><strong>Admin user authentication</strong> and directory service querying for Netmera's Control Panel (GUI) login.</td></tr><tr><td><strong>Netmera Component</strong></td><td><code>LdapInternalUserAdapter</code>, <code>LdapAwareDaoAuthenticationProvider</code></td></tr><tr><td><strong>Data Flow</strong></td><td><strong>Inbound</strong> (LDAP Server > Netmera for verification)</td></tr></tbody></table>
+
+The LDAP integration is crucial for organizations that mandate centralized identity management for their internal tools, ensuring Netmera Control Panel access adheres to corporate security policies.
+
+### Use Cases and Benefits
+
+1. **Admin User Authentication:** The primary use case is to authenticate admin users when they log into the Netmera Control Panel. If the LDAP connector is active, Netmera delegates the authentication check (username and password validation) to the connected LDAP server.
+2. **Centralized Identity Management:** By integrating with corporate directories (like Active Directory), Netmera eliminates the need to manage separate passwords for admin users, simplifying IT management and enforcing **single sign-on (SSO)** principles for Netmera access.
+3. **User Search and Verification:** The integration supports user searching within the directory based on configured parameters (`searchBase`, `searchField`) to retrieve the user's Distinguished Name (`DN`) before the bind and authentication attempt.
+4. **Compliance and Security:** It helps maintain security compliance by tying Netmera's access controls directly to the organization's existing directory security policies. Netmera internally tracks users verified this way using an ldapUser flag.
+
+### Data Flow
+
+The data flow is transactional and **Inbound** regarding credential verification:
+
+1. **Login Attempt:** A Netmera admin user enters their username and password on the Netmera login page.
+2. **User Search (Outbound Lookup):** Netmera uses the configured `Bind DN` and password (Service Account) to connect to the LDAP server and search for the user's full **Distinguished Name (DN)** based on the provided username and the defined searchBase and searchField.
+3. **Authentication Bind (Outbound Verification):** Netmera attempts a new connection (Bind) to the LDAP server, this time using the retrieved **User's DN** and the **password provided by the user**.
+4. **Verification (Inbound Result):**
+
+   * If the bind operation succeeds, the LDAP server confirms the credentials are valid, and Netmera grants access (Inbound verification).
+   * If the bind fails, Netmera denies access.
+
+   $$\text{Admin User (Login Page)} \xrightarrow{\text{Credentials}} \text{Netmera GUI Authenticator} \xrightarrow{\text{User DN, Password}} \text{LDAP Server} \xrightarrow{\text{Success/Failure}} \text{Netmera}$$
+
+### Configuration Reference
+
+The LDAP configuration requires highly specific network and directory parameters, often necessitating close cooperation with the client's corporate IT team.
+
+<figure><img src="/files/m2LWaZxQ8qANfkFuYpfe" alt="" width="209"><figcaption></figcaption></figure>
+
+### Setup Instructions
+
+1. **Prerequisites:** Establish a dedicated **service account** (`Bind DN`) in the corporate directory with read access to the organizational unit (`searchBase`) containing the admin user accounts.
+2. **Obtain Credentials:** Secure the LDAP server **`Host`**, **`Port`**, **`Bind DN`**, **`Bind Password`**, and the necessary directory structure parameters (`searchBase`, `searchField`, `resultField`).
+3. **Configure in Netmera:** Navigate to the Netmera Control Panel, select the **LDAP** connector configuration.
+4. **Input Configuration:** Enter all collected directory and credential details into the form. **Ensure useSsl is set to true if port 636 (LDAPS) is used.**
+5. **Verification:** Test the configuration using a valid LDAP admin username and password. Upon successful saving, the connector handles GUI logins automatically.
+
+### Usage Notes & Considerations
+
+1. **Network Accessibility:** The Netmera application server **must have network access** to the configured LDAP host and port. Network configuration issues (firewalls, routing, DNS) are common causes of failure.
+2. **Fixed Password Expiration:** Netmera enforces a **fixed 90-day password expiration** policy for all users identified as LDAP users, regardless of the policy set on the actual LDAP server. This is a system-level constraint in Netmera's authentication module.
+3. **Authentication Scope Only:** This connector is used **only for Netmera Control Panel user authentication**. It does not automatically synchronize end-user profile data (used for messaging/targeting) or handle transactional customer identities via REST/SDK APIs.
+4. **SSL/Certificate Issues:** If LDAPS (`useSsl = true`) is employed, certificate verification issues can arise if the LDAP server's certificate is not properly trusted by the Netmera infrastructure. The configuration includes a skipCertificateVerification flag to temporarily bypass this, though its use poses a security risk.
+
+{% hint style="info" %}
+The LDAP integration acts as a **key card validator** for the Netmera control panel. Instead of storing key card details internally, Netmera sends the key card (username/password) to the central security office (the LDAP server) for immediate verification, ensuring only employees with active corporate credentials can enter.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/authentication/ldap.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

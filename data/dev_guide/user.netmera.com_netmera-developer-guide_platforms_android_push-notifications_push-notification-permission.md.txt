@@ -1,0 +1,125 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/android/push-notifications/push-notification-permission.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/android/push-notifications/push-notification-permission.md).
+
+# Push Notification Permission
+
+This page explains how Android push notification permission works, how to request permission with Netmera, how to check permission status, and how to control Netmera push opt-in state.
+
+## System Permissions
+
+#### Step 1: Understand Android permission behavior
+
+Android 13 changes how notification permission works.
+
+* Apps targeting **API Level 33 and above** control when they request notification permission.
+* Apps targeting **API Level 32 and below** on Android 13 trigger the system prompt when the first notification channel is created.
+
+**Impact on Netmera SDK**
+
+Netmera initializes and creates notification channels during app startup.
+
+* On Android 13, apps targeting API Level 32 and below trigger the system permission prompt during initialization.
+* On Android 12 and below, the system usually treats notification permission as already granted.
+
+{% hint style="success" %}
+If you initialize the Netmera SDK at app startup (which is recommended), the system will automatically request push notification permissions on Android 13 devices for apps targeting API Level 32 and before. For devices running Android 12 or earlier, the system assumes permission is already granted.
+{% endhint %}
+
+#### Step 2: Request notification permission
+
+For apps targeting API 33, call the permission request method in the `onCreate()` method of your `MainActivity`, below `super.onCreate(savedInstanceState)`.
+
+{% tabs %}
+{% tab title="Kotlin" %}
+
+```kotlin
+Netmera.requestNotificationPermissions(this)
+```
+
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+**Push Enable/Disable User Flow**
+
+1. **Granting Permission:**
+   * The user triggers `requestNotificationPermissions()`, and if they grant permission, a push enable request is sent.
+2. **Handling Denial:**
+   * If the user denies permission, avoid resending the request immediately (as recommended by Google). Instead, the SDK opens the app's notification settings. The user can grant permission from the settings and return to the app, where a push enable request is sent.
+3. **Denying Permission:**
+   * If the user triggers `requestNotificationPermissions()` and denies permission, a push disable request is sent.
+4. **Reattempt After Denial:**
+   * If denied, avoid immediate re-request. The SDK will open the app's notification settings. If the user cancels (presses the back button), a push disable request is sent.
+     {% endhint %}
+
+#### Step 3: Check notification permission status
+
+Use this method to check whether notification permission is available for the app.
+
+{% tabs %}
+{% tab title="Kotlin" %}
+
+```kotlin
+checkNotificationPermission()
+```
+
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+**Responses**
+
+When this method is called, it would return one of the following responses:
+
+1. **NOTDETERMINED**\
+   The user has opened the app but hasn't made a decision about notification permissions yet.
+2. **GRANTED**\
+   The user has granted notification permission, and the app can send notifications.
+3. **DENIED**\
+   The user has denied permission or has blocked notifications through system settings.
+   {% endhint %}
+
+## Netmera Push Opt-In Status
+
+Netmera also controls whether a device is eligible to receive push notifications. Use these methods when you want to manage push preferences inside the app.
+
+* `Netmera.enablePush();` sets the device status to active in Netmera.
+* `Netmera.disablePush();` sets the device status to inactive in Netmera.
+
+{% tabs %}
+{% tab title="Kotlin" %}
+
+```kotlin
+Netmera.enablePush()
+Netmera.disablePush()
+```
+
+{% endtab %}
+{% endtabs %}
+
+{% hint style="warning" %}
+Push notifications are delivered only if OS-level permission is granted and Netmera push status is enabled.
+{% endhint %}
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/android/push-notifications/push-notification-permission.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

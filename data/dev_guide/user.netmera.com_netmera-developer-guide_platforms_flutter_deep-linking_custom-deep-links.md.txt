@@ -1,0 +1,117 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/flutter/deep-linking/custom-deep-links.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/flutter/deep-linking/custom-deep-links.md).
+
+# Custom Deep Links
+
+Custom deep links dynamically generate user-specific links by appending custom parameters, aligning each link with individual profiles or actions. To integrate custom parameters into deep links for transactional messaging based on profile attributes or external IDs, follow these steps.
+
+### Step 1: Navigate to the Transactional Page
+
+1. Go to Messages > Transactional
+2. Click on Create New Transactional Message
+
+### Step 2: Create a Transactional Message on the Netmera Panel
+
+1. Complete the Setup and What steps.&#x20;
+
+For a detailed breakdown of this process, refer to [Transactional Messaging](https://user.netmera.com/netmera-user-guide/messaging-features/transactional-messaging)
+
+### Step 3: Obtain a Sample Request for API & Configuration
+
+1. On API & Config step, acquire the sample request for sending via the REST API.
+
+<figure><img src="/files/HmOZX3klvaZ1LVHlXrcu" alt="" width="563"><figcaption><p>API &#x26; Config</p></figcaption></figure>
+
+### Step 4: Adding the deeplinkCustomMapParams Class
+
+Under the existing **Deep Link** class:
+
+* Add the `deeplinkCustomMapParams` class to map custom parameters within the deep link URL.
+
+### **Sample Deep Link Structure**
+
+A customizable deep link in Netmera might look like the following:
+
+```javascript
+"deeplink": "{end_point_url}?id={dynamicId}&contactId={contactID}&surname={surname}&name=@{name}"
+```
+
+{% hint style="info" %}
+
+* Parameters like `{dynamicId}`, `{contactID}`, and `{surname}` can be static or dynamically changed for each user.
+* Parameters like `@{name}` refer to profile attributes pulled directly from the user's profile in Netmera.
+  {% endhint %}
+
+### Understanding Deep Link Parameters
+
+1. **Parameters without '@' - Static Values**: Parameters without the '@' symbol, such as {dynamicId} and {contactID}, are provided as **static** values. These parameters can be set as fixed values or can vary for each user. If a parameter has a static value, it will remain consistent across all uses of the deep link.
+2. **Parameters with '@' - Profile Attributes**: Parameters that include the '@' symbol, such as @{name}, signify values that will be pulled from **profile attributes** defined within the Netmera system. When utilizing these parameters, it's crucial to ensure that the corresponding profile attribute codes are correctly defined and exist within the Netmera system.
+
+### Sample Request
+
+<pre class="language-json"><code class="lang-json"><strong>curl --location 'https://api.example.com/rest/3.0/sendNotification' \
+</strong><strong>--header 'X-api-key: YOUR_API_KEY' \
+</strong>--header 'Content-Type: application/json' \
+--data-raw '{
+    "notificationKey": "your_notification_key",
+    "message": {
+        "click": {
+            "deeplink": "{end_point_url}?id=@{name}&#x26;surname=@{surname}&#x26;car=@{car}&#x26;gender=@{gender}",
+                        "deeplinkCustomMapParams": {
+                "car": {
+                    "queryKey": "exid",
+                    "queryMaps": {
+                        "user1": "car1",
+                        "user2": "car2",
+                        "user3": "car3"
+                    }
+                },
+                "surname": {
+                    "queryKey": "msisdn",
+                    "queryMaps": {
+                        "userPhoneNumber1": "Surname1",
+                        "userPhoneNumber2": "Surname2",
+                        "userPhoneNumber3": "Surname3"
+                    }
+                },
+                "gender": {
+                    "queryKey": "email",
+                    "queryMaps": {
+                        "useremail1@example.com": "Male",
+                        "useremail2@example.com": "Female",
+                        "useremail3@example.com": "Other",
+                        "useremail4@example.com" : "Prefer not to say"
+                    }
+                }
+            }
+        }
+
+    },
+    "target": {
+        "extId": "targetUserExternalId"
+    }
+}'
+</code></pre>
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/flutter/deep-linking/custom-deep-links.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

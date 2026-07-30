@@ -1,0 +1,108 @@
+URL: https://user.netmera.com/netmera-developer-guide/integrations/marketing-platforms/sap-marketing.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/integrations/marketing-platforms/sap-marketing.md).
+
+# SAP Marketing
+
+The Netmera SAP Marketing Cloud Connector facilitates the seamless exchange of audience information (Target Groups) between Netmera's high-throughput messaging channels and SAP's central enterprise marketing automation platform. This integration is crucial for organizations that use SAP Marketing Cloud as their primary Customer Data Platform (CDP) for audience definition and decision-making.
+
+### Overview
+
+<table><thead><tr><th width="231.10821533203125">Attribute</th><th>Details</th></tr></thead><tbody><tr><td><strong>Connector Name</strong></td><td>SAP Marketing (Cloud)</td></tr><tr><td><strong>Category</strong></td><td>Enterprise Platforms / Marketing Automation</td></tr><tr><td><strong>Primary Function</strong></td><td>Synchronization and management of Target Groups (Audiences)</td></tr><tr><td><strong>Data Flow</strong></td><td>Bidirectional</td></tr><tr><td><strong>Core Component</strong></td><td>SapMarketingService</td></tr><tr><td><strong>Connection Type</strong></td><td>REST API (Username/Password Authentication)</td></tr></tbody></table>
+
+This connector establishes Netmera as a key execution channel within the overall SAP Marketing ecosystem, ensuring that complex customer segments defined in SAP are accurately reached through mobile (Push), SMS, and Email campaigns managed by Netmera.
+
+<figure><img src="/files/aPjoVs4wvqSUawJU0VpQ" alt=""><figcaption></figcaption></figure>
+
+### Use Cases and Benefits
+
+1. **Target Group Synchronization (Inbound):** The primary use case is pulling **Target Groups** defined in SAP Marketing Cloud directly into Netmera. These groups become usable segments within Netmera’s targeting module, allowing marketers to launch campaigns immediately based on advanced SAP segmentation logic.
+2. **Netmera-Defined Audience Export (Outbound):** Netmera user lists (created via behavioral events, tags, or profiles) can be created as new **Target Groups** within SAP Marketing Cloud. This allows SAP to leverage Netmera’s unique mobile and behavioral insights for further analysis or orchestration across other channels.
+3. **Unified Enterprise Platform:** Ensures data consistency and unified campaign execution by linking Netmera directly into the core corporate marketing automation stack (SAP Marketing Cloud).
+4. **Enriched Targeting:** Utilizes the comprehensive customer profiles managed by SAP to refine messaging campaigns executed through Netmera.
+
+### Data Flow
+
+The SAP Marketing integration supports a **Bidirectional** flow, allowing both systems to enrich and utilize each other's audience data.
+
+| Flow Direction               | Data Transferred                                                        | Purpose                                                                                       |
+| ---------------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| **Inbound** (SAP > Netmera)  | SAP Target Group definitions and member lists (typically External IDs). | Creates/updates segments in Netmera based on SAP audiences for campaign targeting.            |
+| **Outbound** (Netmera > SAP) | Netmera user segments (defined by External IDs) and related metadata.   | Creates/updates Target Groups within SAP Marketing Cloud based on Netmera's segment insights. |
+
+### Configuration Reference
+
+<figure><img src="/files/Iqu20eDf6ji5YmudV7wS" alt="" width="235"><figcaption></figcaption></figure>
+
+The integration relies on standard API access credentials for the SAP Marketing Cloud instance.
+
+<table><thead><tr><th width="144.27203369140625">Parameter</th><th width="140.3955078125">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>baseUrl</strong></td><td>String</td><td>The base URL for the SAP Marketing Cloud API endpoints.</td></tr><tr><td><strong>username</strong></td><td>String</td><td>The user account name authorized to access the SAP Marketing API and manage Target Groups.</td></tr><tr><td><strong>password</strong></td><td>String</td><td>The corresponding password for API authentication.</td></tr></tbody></table>
+
+### Setup Instructions
+
+The setup requires obtaining API credentials from your SAP Marketing Cloud administrator and configuring them within the Netmera platform.
+
+#### Step 1: Prerequisites
+
+Ensure you have an active license for SAP Marketing Cloud and possess the necessary user credentials with permissions to perform API read/write operations for Target Groups.
+
+#### Step 2: Obtain Credentials
+
+Contact your SAP administrator or access the SAP Marketing Cloud platform's API management area to retrieve the following:
+
+1. The **Base URL** for the REST API.
+2. An API-specific **Username**.
+3. The corresponding **Password**.
+
+#### Step 3: Configure in Netmera
+
+1. Navigate to the Netmera Control Panel and go to the **Connectors** (or **Integrations**) section.
+2. Select the **SAP Marketing** Connector.
+3. Fill the configuration form:
+   * Enter the **Base URL** for the SAP Marketing Cloud API.
+   * Enter the authorized **Username**.
+   * Enter the **Password**.
+4. Click **Save Configuration**.
+
+#### **Step 4: Verification**
+
+After saving the configuration, the synchronization task will begin running periodically (or can be manually triggered). Verify the integration by:
+
+* Checking the **Segments** section in Netmera to confirm the presence of synchronized Target Groups imported from SAP.
+* Creating a test segment in Netmera and checking the SAP Marketing Cloud dashboard to ensure the corresponding Target Group was created or updated.
+
+### &#x20;Known Issues & Limitations
+
+1. **Enterprise Setup Complexity:** As an enterprise solution, the SAP integration often requires **specific custom configuration** beyond the standard fields provided in the Netmera panel, necessitating close coordination with SAP system administrators.
+2. **Rate Limiting:** Synchronization of very large Target Groups, especially when pulling membership data, may be subject to rate limits imposed by the SAP Marketing Cloud API itself, potentially causing delays during synchronization.
+3. **Authentication:** The integration relies on basic username/password authentication over REST. Any change to the specified SAP user credentials will immediately cause the Netmera connector synchronization tasks to fail until the Netmera configuration is updated.
+
+**Required Identity:**
+
+Synchronization relies on a shared user identifier, typically the
+
+**External ID**
+
+(CRM ID or Customer ID), to match Netmera users with SAP Marketing Cloud contacts. Discrepancies in these IDs will result in incomplete audience synchronization.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/integrations/marketing-platforms/sap-marketing.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

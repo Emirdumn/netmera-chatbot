@@ -1,0 +1,224 @@
+URL: https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/conversational-ai-apps-with-netmera.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/conversational-ai-apps-with-netmera.md).
+
+# Conversational AI Apps with Netmera
+
+This guide explains how to connect a conversational AI app  built on ChatGPT, Claude, or any AI-powered chat interface to Netmera using REST API integration. Once integrated, user actions inside the AI app flow into Netmera as structured events, enrich customer profiles, and trigger omnichannel campaigns.
+
+**What this guide covers:**
+
+* How the integration works at a conceptual level
+* Prerequisites for both technical and non-technical stakeholders
+* How your backend receives data from the AI app (Tool Calling)
+* Step-by-step implementation for developers
+* Event design guidelines
+* Campaign activation for marketing and product teams
+* Troubleshooting and validation
+
+### How the Integration Works
+
+Conversational AI apps do not embed Netmera's SDK. Integration happens at the **backend level**: when a user takes a meaningful action inside the AI app (searches, selects, saves, converts), your app's backend sends a structured event to Netmera's REST API.
+
+```
+User action in AI app
+        ↓
+AI platform calls your backend (Tool Call)
+        ↓
+Your backend processes the action
+AND sends event to Netmera REST API
+        ↓
+Netmera customer profile updated
+        ↓
+Campaign or journey triggered
+```
+
+This approach works regardless of which AI platform hosts the app, ChatGPT, Claude, or a custom interface.
+
+### Prerequisites
+
+#### For Developers
+
+* Netmera account with REST API access enabled
+* Netmera API key (available in **Settings > API Keys**)
+* An app backend that processes user actions
+* HTTPS endpoint capability for outbound API calls
+
+#### For Product / Marketing Teams
+
+* Defined event taxonomy before development begins (see Event Design section)
+* Understanding of which user actions are meaningful for segmentation and campaign triggers
+* Journey Builder access in Netmera to configure downstream campaigns
+
+### Step 1: Define Your Event Taxonomy
+
+Before writing any code, align on which user actions should be tracked. Every event sent to Netmera should represent a **business-meaningful action**, not a UI interaction.
+
+| User Action                 | Event Name                   | Key Parameters                             |
+| --------------------------- | ---------------------------- | ------------------------------------------ |
+| Starts a conversation       | `ai_session_started`         | platform, entry\_point                     |
+| Performs a search or query  | `ai_query_submitted`         | query\_text, category, filters             |
+| Views a product or result   | `ai_result_viewed`           | item\_id, item\_name, price                |
+| Saves or bookmarks          | `ai_item_saved`              | item\_id, item\_type                       |
+| Completes a conversion      | `ai_conversion_completed`    | item\_id, revenue, currency, source\_event |
+| Abandons without converting | Inferred via session timeout | —                                          |
+
+> **Rule:** If marketing cannot act on an event, do not send it. Keep the taxonomy tight.
+
+### Step 2: Identify and Register the User
+
+Netmera requires a user identity to attach events to a profile. At the start of each session, your backend must either match the user to an existing Netmera profile or create a new one.
+
+**Identify by external ID (recommended):**
+
+```bash
+curl -X POST https://restapi.netmera.com/rest/3.0/setProfileAttributes \
+  -H "X-netmera-api-key: YOUR_REST_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '[
+    {
+      "extId": "user_98765",
+      "profile": {
+        "name": "John",
+        "email": "user@example.com",
+        "source": "chatgpt_app",
+        "first_seen_channel": "conversational_ai"
+      }
+    }
+  ]'
+```
+
+If the user is anonymous, generate a temporary session ID and merge it with a known identity after authentication.
+
+### Step 3: Send Events from Your App Backend
+
+Each time a tracked user action occurs inside your tool handler, send a structured event to Netmera. Events originate from your server — not from the AI platform directly.
+
+**Example: User submits a query**
+
+```bash
+curl -X POST https://restapi.netmera.com/rest/3.0/fireEvents \
+  -H "X-netmera-api-key: YOUR_REST_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '[
+    {
+      "extId": "user_98765",
+      "name": "AIQuerySubmitted",
+      "platform": "chatgpt",
+      "queryText": "5-day trip to Barcelona under $2000",
+      "category": "travel_planning"
+    }
+  ]'
+```
+
+**Example: User completes a conversion**
+
+```bash
+curl -X POST https://restapi.netmera.com/rest/3.0/fireEvents \
+  -H "X-netmera-api-key: YOUR_REST_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '[
+    {
+      "extId": "user_98765",
+      "name": "AIConversionCompleted",
+      "itemId": "FLIGHT-BCN-001",
+      "revenue": 540.00,
+      "currency": "USD",
+      "sourceEvent": "AIQuerySubmitted"
+    }
+  ]'
+```
+
+**Implementation notes:**
+
+* Always send events **server-side**. Never expose your API key in client-side code.
+* Use ISO 8601 format for all timestamps.
+* Keep `eventName` values consistent with your defined taxonomy. Inconsistent naming breaks segmentation.
+* Include `source_event` on conversion events to enable attribution.
+
+### Step 4: Validate Data Flow
+
+Before configuring campaigns, confirm that events are reaching Netmera correctly.
+
+1. Trigger a test event from your backend using a known `externalId`
+2. In Netmera, navigate to **Profiles > Search** and locate the user by external ID
+3. Confirm the event appears in the user's event history with correct parameters
+4. Check that profile attributes updated as expected
+
+**If events are not appearing, verify:**
+
+* API key is valid and has write permissions
+* Request headers include `Content-Type: application/json`
+* `externalId` format matches what Netmera has on record for that user
+* Server clock is in sync (timestamp drift can cause rejection)
+
+### Step 5: Activate Campaigns in Netmera
+
+Once events flow in, the marketing or product team configures downstream actions in Netmera. No additional development is required for standard journeys.
+
+#### Segment Users Based on AI Behavior
+
+In **Segments**, create filters using the events sent from your AI app. Example: users who triggered `ai_item_saved` but not `ai_conversion_completed` in the last 7 days.
+
+#### Build Journeys Triggered by AI Events
+
+In **Journey Builder**, set the entry trigger to a specific event name. Example flow:
+
+```
+Trigger: ai_item_saved
+Wait: 24 hours
+Condition: ai_conversion_completed not fired
+Action: Send push notification — "Your saved item is still available"
+Wait: 48 hours
+Condition: ai_conversion_completed still not fired
+Action: Send email with alternative recommendations
+```
+
+#### Attribution
+
+Conversion events that include a `source_event` parameter are attributed back to the originating AI interaction in Netmera's analytics. Use **Funnel Analysis** to measure drop-off between `ai_query_submitted` → `ai_item_saved` → `ai_conversion_completed`.
+
+### Troubleshooting
+
+| Symptom                         | Likely Cause                      | Action                                                      |
+| ------------------------------- | --------------------------------- | ----------------------------------------------------------- |
+| Events not appearing in profile | Wrong `externalId` format         | Match the ID format used during registration                |
+| Profile not merged              | Anonymous session not resolved    | Implement identity merge after user authenticates           |
+| Journey not triggering          | Event name mismatch               | Compare exact event name in Journey Builder vs. API payload |
+| Revenue not attributed          | Missing `source_event` field      | Add originating event reference to conversion payload       |
+| API returning 401               | Expired or incorrect API key      | Regenerate key in Settings > API Keys                       |
+| High latency on tool calls      | Netmera call is blocking response | Switch to async / fire-and-forget pattern                   |
+
+### Summary
+
+| Step                                       | Owner               |
+| ------------------------------------------ | ------------------- |
+| Define event taxonomy                      | Product / Marketing |
+| Implement user registration call           | Developer           |
+| Define tools in AI platform                | Developer           |
+| Implement event calls inside tool handlers | Developer           |
+| Validate data in Netmera Profiles          | Developer + Product |
+| Configure segments and journeys            | Marketing / Product |
+| Monitor attribution in analytics           | Product             |
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/conversational-ai-apps-with-netmera.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

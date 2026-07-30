@@ -1,0 +1,99 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/cordova/sdk-integration.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/cordova/sdk-integration.md).
+
+# SDK Integration
+
+{% embed url="<https://www.npmjs.com/package/cordova-plugin-netmera-v2>" %}
+
+## Step 1: Install Cordova Plugin <a href="#installation" id="installation"></a>
+
+1. Open your terminal and navigate to your Cordova project folder. Run the following command to install the Cordova plugin:
+
+```typescript
+ionic cordova plugin add cordova-plugin-netmera-v2
+```
+
+2. In your `package.json`, add the following dependency for the wrapper:
+
+```typescript
+"@awesome-cordova-plugins/netmera": "git@github.com:Netmera/awesome-cordova-plugin-netmera.git",
+```
+
+3. Run the following command to install the dependencies:
+
+```typescript
+npm install
+```
+
+**Sample `package.json` snippet**:
+
+```typescript
+"dependencies": {
+  ...
+  "@awesome-cordova-plugins/netmera": "git@github.com:Netmera/awesome-cordova-plugin-netmera.git",
+  ...
+}
+```
+
+4. Add the required preferences in your `config.xml`:
+
+```xml
+<preference name="NetmeraKey" value="example-key" />
+<preference name="NetmeraBaseUrl" value="example-base-url" />
+<preference name="FcmKey" value="example-fcm-key" />
+<preference name="AppGroupName" value="group.com.example.groupname" />
+
+<edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
+            ...
+            <application android:name="com.netmera.cordova.plugin.NetmeraApplication" />
+            ...
+</edit-config>
+```
+
+<table><thead><tr><th width="179">Command</th><th width="410.3333333333333">Purpose</th><th>Necessity</th></tr></thead><tbody><tr><td><strong>NetmeraKey</strong> </td><td>Netmera SDK API Key on Netmera Panel</td><td>Required</td></tr><tr><td><strong>FcmKey</strong></td><td>Firebase Sender ID on your Firebase project</td><td>Required</td></tr><tr><td><strong>AppGroupName</strong></td><td>Group name on your Apple developer project (for carousel push) </td><td>Optional</td></tr><tr><td><strong>NetmeraBaseUrl</strong> </td><td>Base URL on your server (for on premise setup) </td><td>Optional</td></tr></tbody></table>
+
+## Step 2: Initialize Netmera Plugin <a href="#start-netmera-plugin" id="start-netmera-plugin"></a>
+
+1. Import the Netmera Plugin in your application:
+
+```typescript
+import { NetmeraPlugin } from '@awesome-cordova-plugins/netmera/ngx';
+```
+
+2. In your constructor, initialize the plugin:
+
+```typescript
+constructor(private netmera: NetmeraPlugin) {}
+```
+
+## Cordova SDK Integration Complete <a href="#sdk-integration-complete" id="sdk-integration-complete"></a>
+
+Cordova SDK integration has been successfully completed, and your devices are now ready to receive the following types of push notifications sent via the Netmera Dashboard:
+
+* **Standard Push Notifications**
+* **Interactive Push Notifications**
+* **Widgets**
+* **Push Notifications with Deeplinks**
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/cordova/sdk-integration.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

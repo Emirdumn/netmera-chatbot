@@ -1,0 +1,312 @@
+URL: https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/user-and-attributes.md
+
+> For the complete documentation index, see [llms.txt](https://user.netmera.com/netmera-developer-guide/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/user-and-attributes.md).
+
+# User & Attributes
+
+### Managing User Data
+
+The `NetmeraUser` class allows you to send structured information about your application's users to Netmera. The ideal time to update user attributes is **right after the user logs into your application.**
+
+{% hint style="warning" %}
+**User ID Management**
+
+For optimal performance and data integrity:
+
+* **Update user information at login**: It’s crucial to update the user information as soon as the user logs in.
+* **Unique userId**: Ensure that each user has a unique `userId`. Assigning the same `userId` to multiple users leads to data inconsistencies and is not recommended.
+  {% endhint %}
+
+### SDK v4.5.0 Update: User Management Changes <a href="#sdk-v4.4.0-update-user-management-changes" id="sdk-v4.4.0-update-user-management-changes"></a>
+
+As of version **v4.5.0**, the `updateUser` method has been **deprecated**. Use the following methods instead:
+
+* `identifyUser`: Sets or updates identifiers such as `userId`, `email`, and `msisdn`.
+* `updateUserProfile`: Updates user profile attributes like name, gender, birthday, occupation, etc.
+
+### Updating User Information <a href="#updating-user-information" id="updating-user-information"></a>
+
+**Step 1: Identify the User**
+
+Use `identifyUser` after the user logs in:
+
+```swift
+let user = NetmeraUserIdentify()
+user.userId = userId
+user.email = email
+user.msisdn = msisdn
+Netmera.identifyUser(user)
+```
+
+**Step 2: Update Profile Attributes**
+
+Use `updateUserProfile` to send user details:
+
+```swift
+let user = NetmeraUserProfile()
+user.name.set("Muhammad Ali")
+user.surname.set("Clay")
+user.externalSegments.set(["sports", "boxing"])
+user.gender.set(.male)
+user.maritalStatus.set(.married)
+user.numberOfChildren.set(9)
+user.country.set("USA")
+user.state.set("Kentucky")
+user.city.set("Louisville")
+user.district.set("West End")
+user.occupation.set("Professional Boxer")
+user.industry.set("Sports")
+user.favoriteTeam.set("favoriteTeam")
+user.language.set("English")
+user.dateOfBirth.set(Date(timeIntervalSince1970: -915148800))
+Netmera.updateUserProfile(userProfile: user)
+```
+
+{% hint style="warning" %}
+**Important Notes**
+
+* You should send a **single** user update request at a time.
+* Do not use `updateUser`—it is deprecated and replaced by the two methods above.
+  {% endhint %}
+
+### Managing attributes with `set`, `add`, `remove`, and `unset` <a href="#managing-attributes-with-set-add-remove-and-unset" id="managing-attributes-with-set-add-remove-and-unset"></a>
+
+The Netmera SDK supports four core operations for each profile attribute:
+
+<table><thead><tr><th width="107.6329345703125">Operation</th><th>Description</th><th>Data Type</th></tr></thead><tbody><tr><td><code>set()</code></td><td>Completely replaces the profile attribute</td><td>Available for all data types</td></tr><tr><td><code>unset()</code></td><td>Completely deletes the profile attribute</td><td>Available for all data types</td></tr><tr><td><code>add()</code> </td><td>Adds new element(s) to the profile attribute</td><td>Available only for Array-type attributes</td></tr><tr><td><code>remove()</code></td><td>Removes specified element(s) from the profile attribute</td><td>Available only for Array-type attributes</td></tr></tbody></table>
+
+{% hint style="success" %}
+For profile attributes defined as arrays, you do not need to manage the entire list at once. You can update them incrementally using `add()` and `remove()`.
+{% endhint %}
+
+In the following examples, we use `externalSegments`, which is a predefined array-type profile attribute in the Netmera platform. However, you are free to define and use your own custom profile attributes as needed.
+
+### 1. `set()` – Create List from Scratch
+
+```swift
+let user = MyNetmeraUser()
+user.externalSegments.set(["sports_fans","sports_fans"])
+Netmera.updateUserProfile(userProfile: user)
+```
+
+**Explanation:** This operation clears any existing values in the `externalSegments` field and assigns the new list containing `"sports_fans"` and `"sports_fans"`. Only the provided segments will be retained.
+
+**Use case:** Reinitializing the user's profile with a new segment configuration.
+
+### 2. `add()` – Add New Elements
+
+```swift
+let user = MyNetmeraUser()
+user.externalSegments.add(["black_friday_2025"])
+Netmera.updateUserProfile(userProfile: user)
+```
+
+**Explanation:** Preserves existing values in the `externalSegments` list and appends the new segment `"black_friday_2025"`.
+
+**Use case:** Temporarily adding a user to a campaign-specific segment.
+
+### 3. `remove()` – Remove Elements
+
+```swift
+let user = MyNetmeraUser()
+user.externalSegments.remove(["sports_fans"])
+Netmera.updateUserProfile(userProfile: user)
+```
+
+**Explanation:** Removes the `"sports_fans"` value from the user's `externalSegments` list. Other segment values remain unchanged.
+
+**Use case:** Reflecting changes in user interests or preferences.
+
+### 4. `unset()` – Clear All Data
+
+```swift
+let user = MyNetmeraUser()
+user.externalSegments.unset()
+Netmera.updateUserProfile(userProfile: user)
+```
+
+**Explanation:** Clears all data from the `externalSegments` field. The user will no longer be associated with any segment.
+
+**Use case:** When a user account is closed or profile data needs to be reset.
+
+### Creating Custom Profile Attributes&#x20;
+
+#### Step 1: Navigate to the Developers section
+
+Custom profile attributes must be created and configured in the Netmera Panel before they can be used in the application.&#x20;
+
+* Go to **Panel** > **Developers > Profile Attributes > Create New Attribute.**
+
+#### Step 2: Fill in Attribute Details
+
+Define the following information:
+
+* **Name**: The unique identifier for the attribute.
+* **Label**: A user-friendly name for the attribute.
+* **Description**: A brief description of the attribute.
+* **Data Type**: Choose the appropriate data type for the attribute.
+* **Is Array**: Define whether the attribute can hold multiple values.
+
+#### Step 3: Save the Attribute
+
+After clicking **Save**, the custom attribute will be available for assignment to your users.
+
+#### Step 4: Generated Code for Custom Attributes
+
+Once the attribute is defined in the Netmera Panel, the generated code can be found at the bottom of the **Profile Attribute** page, under the **Generate Code** section. This code must be added to your Netmera Panel under **Profile Attributes > User Class**.
+
+{% hint style="info" %}
+**Private Information Considerations**
+
+Under the **KVKK** law, the sharing of private user data is prohibited. To ensure compliance:
+
+* **Private Information Flag**: When defining profile attributes or events, the **Private Information** feature must be selected to ensure that these attributes are not sent to the backend by the Netmera SDK.
+* **SDK Enforcement**: The SDK checks for the **Private Information** flag during the `Netmera.updateUser(user:)` call. If the flag is set, the request will not be sent to the backend.
+  {% endhint %}
+
+<figure><img src="/files/QoRtHFanKtmtxa35m4Po" alt=""><figcaption></figcaption></figure>
+
+### Fetch Coupon
+
+Fetch coupons using the request/response structure and manager:
+
+```swift
+let filter = NetmeraCouponFilter(page: 1, max: 10)
+
+Netmera.fetchCoupons(using: filter) { result in
+    switch result {
+    case .success(let coupons):
+        print("Coupons fetched: \(coupons)")
+    case .failure(let error):
+        print("Error fetching coupons: \(error)")
+    }
+}
+```
+
+### Email Subscription Preferences
+
+The Netmera SDK provides methods to manage email subscription preferences for your users.&#x20;
+
+#### Check Email Subscription Status
+
+Use the following method to check if the user has allowed email subscriptions:
+
+```swift
+Netmera.getEmailPermission { [weak self] result in
+    DispatchQueue.main.async {
+        switch result {
+        case .success(let isEmailAllowed):
+            self?.updateEmailToggle(isOn: isEmailAllowed)
+        case .failure(let error):
+            print("Failed to get email permission: \(error)")
+        }
+    }
+}
+```
+
+* **Returns**: A `Boolean` value (`true` if the user has allowed email subscriptions, otherwise `false`).
+
+#### Update Email Subscription Preferences
+
+Set the user's preference for email subscriptions using one of the methods below:
+
+1. **Allow Email Subscriptions**
+
+```swift
+Netmera.setEmailPermission(isAllowed: true)
+```
+
+2. **Disallow Email Subscriptions**
+
+```swift
+Netmera.setEmailPermission(isAllowed: false)
+```
+
+These methods enable you to respect user preferences for email communications within your application.
+
+### SMS Subscription Preferences
+
+The Netmera SDK provides methods to manage SMS subscription preferences for your users.&#x20;
+
+#### Check SMS Subscription Status
+
+Use the following method to check if the user has allowed SMS subscriptions:
+
+```swift
+Netmera.getSmsPermission { [weak self] result in
+    DispatchQueue.main.async {
+        switch result {
+        case .success(let isSmsAllowed):
+            self?.updateSmsToggle(isOn: isSmsAllowed)
+            
+        case .failure(let error):
+            print("Failed to get SMS permission: \(error)")
+        }
+    }
+}
+```
+
+**Returns**: A `Boolean` value (`true` if the user has allowed SMS subscriptions, otherwise `false`).
+
+#### Update SMS Subscription Preferences
+
+Set the user's preference for SMS subscriptions using one of the methods below:
+
+1. **Allow SMS Subscriptions**
+
+```swift
+Netmera.setSmsPermission(isAllowed: true)
+```
+
+2. **Disallow SMS Subscriptions**
+
+```swift
+Netmera.setSmsPermission(isAllowed: false)
+```
+
+These methods enable you to respect user preferences for email communications within your application.
+
+### WhatsApp Subscription Preferences
+
+Use these APIs to check or update whether the user allows receiving WhatsApp messages. This permission controls eligibility for WhatsApp-based campaigns.
+
+#### Update WhatsApp Subscription Preference
+
+```swift
+Netmera.setWhatsAppPermission(isAllowed: true)
+Netmera.setWhatsAppPermission(isAllowed: false)
+```
+
+#### Check WhatsApp Subscription Status
+
+```swift
+Netmera.getWhatsAppPermission { result in
+    self.whatsAppPermission = try? result.get()
+}
+```
+
+**Returns:**\
+`true` → The user allows WhatsApp messages\
+`false` → The user does not allow WhatsApp messages
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
+
+```
+GET https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/user-and-attributes.md?ask=<question>&goal=<endgoal>
+```
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
