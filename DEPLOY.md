@@ -134,6 +134,10 @@ cd netmera
 git pull
 docker compose build
 docker compose up -d
+docker compose restart nginx   # customer_app/agent_console yeniden
+                                 # olusturulunca ic IP'leri degisir; nginx
+                                 # bunu proxy_pass icin baslangicta cache'ler,
+                                 # restart etmezse 502 verebilir.
 ```
 
 ## Sorun giderme
