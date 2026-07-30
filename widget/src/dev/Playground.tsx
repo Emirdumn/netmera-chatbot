@@ -43,31 +43,34 @@ interface Scenario {
   label: string;
   group: string;
   note: string;
+  /** Senaryo secilince widget'in acilacagi sekme. Boylece sol listedeki
+   *  secim ile widget icerigi her zaman ayni seyi gosterir. */
+  tab: TabId;
 }
 
 const SCENARIOS: Scenario[] = [
-  { id: "home", label: "Varsayılan", group: "Ana sayfa", note: "Karşılama, son sohbet kartı ve yardım araması." },
-  { id: "home-unread", label: "Okunmamış rozet", group: "Ana sayfa", note: "Launcher ve sekmede okunmamış sayacı görünür." },
+  { id: "home", label: "Varsayılan", group: "Ana sayfa", tab: "home", note: "Karşılama, son sohbet kartı ve yardım araması." },
+  { id: "home-unread", label: "Okunmamış rozet", group: "Ana sayfa", tab: "home", note: "Launcher ve sekmede okunmamış sayacı görünür." },
 
-  { id: "messages", label: "Dolu liste", group: "Mesajlar", note: "İki sohbet; biri okunmamış ve temsilci bekliyor." },
-  { id: "messages-empty", label: "Boş", group: "Mesajlar", note: "Hiç sohbet yokken görünen boş durum." },
-  { id: "messages-loading", label: "Yükleniyor", group: "Mesajlar", note: "Liste iskeleti (skeleton)." },
-  { id: "messages-error", label: "Hata", group: "Mesajlar", note: "Bağlantı hatası ve tekrar dene." },
+  { id: "messages", label: "Dolu liste", group: "Mesajlar", tab: "messages", note: "İki sohbet; biri okunmamış ve temsilci bekliyor." },
+  { id: "messages-empty", label: "Boş", group: "Mesajlar", tab: "messages", note: "Hiç sohbet yokken görünen boş durum." },
+  { id: "messages-loading", label: "Yükleniyor", group: "Mesajlar", tab: "messages", note: "Liste iskeleti (skeleton)." },
+  { id: "messages-error", label: "Hata", group: "Mesajlar", tab: "messages", note: "Bağlantı hatası ve tekrar dene." },
 
-  { id: "conversation", label: "Normal", group: "Sohbet", note: "Kullanıcı ve bot mesajları, kaynak bağlantılarıyla." },
-  { id: "conversation-typing", label: "Yazıyor", group: "Sohbet", note: "Üç noktalı yazıyor göstergesi (1200ms döngü)." },
-  { id: "conversation-long", label: "Uzun mesaj", group: "Sohbet", note: "Çok satırlı uzun cevap ve taşan URL davranışı." },
-  { id: "conversation-waiting", label: "Temsilci bekliyor", group: "Sohbet", note: "Aktarım bandı ve 'Bot ile devam et' butonu." },
-  { id: "conversation-loading", label: "Yükleniyor", group: "Sohbet", note: "Mesaj balonu iskeleti." },
+  { id: "conversation", label: "Normal", group: "Sohbet", tab: "messages", note: "Kullanıcı ve bot mesajları, kaynak bağlantılarıyla." },
+  { id: "conversation-typing", label: "Yazıyor", group: "Sohbet", tab: "messages", note: "Üç noktalı yazıyor göstergesi (1200ms döngü)." },
+  { id: "conversation-long", label: "Uzun mesaj", group: "Sohbet", tab: "messages", note: "Çok satırlı uzun cevap ve taşan URL davranışı." },
+  { id: "conversation-waiting", label: "Temsilci bekliyor", group: "Sohbet", tab: "messages", note: "Aktarım bandı ve 'Bot ile devam et' butonu." },
+  { id: "conversation-loading", label: "Yükleniyor", group: "Sohbet", tab: "messages", note: "Mesaj balonu iskeleti." },
 
-  { id: "composer-multiline", label: "Çok satırlı", group: "Composer", note: "Shift+Enter ile satır ekleyin; alan 5 satıra kadar büyür." },
-  { id: "composer-anonymous", label: "Anonim + e-posta", group: "Composer", note: "E-posta alanı yalnızca anonim kullanıcıda görünür; geçersiz değerde hata." },
+  { id: "composer-multiline", label: "Çok satırlı", group: "Composer", tab: "messages", note: "Shift+Enter ile satır ekleyin; alan 5 satıra kadar büyür." },
+  { id: "composer-anonymous", label: "Anonim + e-posta", group: "Composer", tab: "messages", note: "E-posta alanı yalnızca anonim kullanıcıda görünür; geçersiz değerde hata." },
 
-  { id: "help", label: "Liste", group: "Yardım", note: "Popüler başlıklar ve arama alanı." },
-  { id: "help-empty", label: "Sonuç yok", group: "Yardım", note: "Aramayla eşleşen başlık bulunamadı." },
-  { id: "article", label: "Makale", group: "Yardım", note: "Başlık, paragraflar ve kaynağa giden bağlantı." },
+  { id: "help", label: "Liste", group: "Yardım", tab: "help", note: "Popüler başlıklar ve arama alanı." },
+  { id: "help-empty", label: "Sonuç yok", group: "Yardım", tab: "help", note: "Aramayla eşleşen başlık bulunamadı." },
+  { id: "article", label: "Makale", group: "Yardım", tab: "help", note: "Başlık, paragraflar ve kaynağa giden bağlantı." },
 
-  { id: "mobile", label: "Tam ekran", group: "Mobil", note: "Spec: 480px altında panel tam ekrana geçer. Tarayıcı penceresini 480px altına daraltarak görebilirsiniz." },
+  { id: "mobile", label: "Tam ekran", group: "Mobil", tab: "home", note: "Spec: 480px altında panel tam ekrana geçer. Tarayıcı penceresini 480px altına daraltarak görebilirsiniz." },
 ];
 
 export function Playground() {
@@ -103,14 +106,11 @@ export function Playground() {
 
   const openArticle = mockArticles.find((a) => a.id === openArticleId);
 
-  // Hangi sekmenin gorunecegini senaryo belirler (kullanici yine degistirebilir).
-  const effectiveTab: TabId = isConversationScenario
-    ? "messages"
-    : active.group === "Yardım" || active.group === "Mobil"
-      ? scenario === "article"
-        ? "help"
-        : "help"
-      : tab;
+  // Sekme dogrudan state'ten okunur; senaryo secildiginde onClick icinde
+  // s.tab ile set edilir. (Onceki turetilmis mantik "Mesajlar" grubunda
+  // sekmeyi degistirmiyordu — sol listede secim yapip widget'in Ana
+  // sayfa'da kalmasina yol aciyordu.)
+  const effectiveTab = tab;
 
   const showConversation = isConversationScenario;
   const showArticle = scenario === "article" || openArticleId !== null;
@@ -147,7 +147,9 @@ export function Playground() {
   );
 
   return (
-    <div className={styles.page}>
+    // `nm-root` burada da var: tokenlar o kapsamda tanimli oldugu icin
+    // dev chrome'u da sabit renk yazmadan ayni tokenlari kullanabiliyor.
+    <div className={`nm-root ${styles.page}`}>
       <aside className={styles.sidebar}>
         <div>
           <p className={styles.brand}>Destek Widget'ı — AŞAMA 2</p>
@@ -172,7 +174,7 @@ export function Playground() {
                   setEmail("");
                   setEmailTouched(false);
                   setHelpQuery(s.id === "help-empty" ? "bulunmayan bir konu" : "");
-                  if (s.group === "Ana sayfa") setTab("home");
+                  setTab(s.tab);
                 }}
               >
                 {s.label}
