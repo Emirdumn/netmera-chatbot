@@ -9,6 +9,7 @@ RUN npm ci
 
 COPY tsconfig.json vite.config.ts ./
 COPY src ./src
+COPY public ./public
 
 RUN npm run build:embed
 
