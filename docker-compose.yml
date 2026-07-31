@@ -67,22 +67,34 @@ services:
       - widget_dist:/out
     command: sh -c "cp -r /widget/. /out/ && echo 'widget paketi hazir'"
 
-  nginx:
-    image: nginx:1.27-alpine
+  # TLS sonlandirma + yonlendirme. nginx'in yerini aldi.
+  caddy:
+    image: caddy:2-alpine
     depends_on:
-      - customer_app
-      - agent_console
-      - widget_api
-      - widget_build
+      customer_app:
+        condition: service_started
+      agent_console:
+        condition: service_started
+      widget_api:
+        condition: service_started
+      # Widget paketi hazir olmadan Caddy /widget/* icin 404 dondurmesin
+      widget_build:
+        condition: service_completed_successfully
     ports:
-      - "80:80"
-      - "8082:8082"
+      - "80:80"        # HTTPS yonlendirmesi + ACME dogrulamasi
+      - "443:443"
+      - "443:443/udp"  # HTTP/3
+      - "8082:8082"    # GECICI fallback — gecis dogrulaninca kaldirilacak
+    env_file: .env     # PANEL_PASSWORD_HASH
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./nginx/.htpasswd:/etc/nginx/.htpasswd:ro
-      - widget_dist:/usr/share/nginx/widget:ro
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - widget_dist:/srv/widget:ro
+      - caddy_data:/data      # SERTIFIKALAR — kalici olmak ZORUNDA
+      - caddy_config:/config
     restart: unless-stopped
 
 volumes:
   netmera_storage:
   widget_dist:
+  caddy_data:
+  caddy_config:

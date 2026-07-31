@@ -1,0 +1,68 @@
+# Netmera Yardim Masasi — TLS sonlandirma ve yonlendirme.
+#
+# nginx'in yerini aldi. Caddy sertifikayi otomatik alir/yeniler ve
+# WebSocket yukseltmesini kendiliginden yapar (Streamlit buna bagli;
+# nginx'te elle Upgrade/Connection basligi yazmak zorundaydik).
+#
+# Sertifikalar /data altinda tutulur ve `caddy_data` named volume'una
+# baglidir. BU VOLUME KALICI OLMAK ZORUNDA — aksi halde her restart'ta
+# yeni sertifika istenir ve Let's Encrypt kotasi (ayni domain icin
+# haftada 5) dolar.
+
+{
+	email emir.duman@netmera.com
+
+	# ── STAGING ─────────────────────────────────────────────────────
+	# Yapilandirma dogrulanana kadar staging CA kullaniliyor: sertifika
+	# tarayicida GUVENILMEZ gorunur ama kota yemez. Dogrulama bitince
+	# BU SATIR SILINIP servis yeniden baslatilacak.
+	acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+# ── Musteri paneli + widget + API ───────────────────────────────────
+netmera-helpdesk.43.229.92.6.sslip.io {
+	encode zstd gzip
+
+	# Gomulebilir widget paketi (widget.js / widget.css).
+	# handle_path prefix'i kirpar: /widget/widget.js -> /srv/widget/widget.js
+	handle_path /widget/* {
+		root * /srv/widget
+		header Access-Control-Allow-Origin "*"
+		header Cache-Control "public, max-age=300, must-revalidate"
+		file_server
+	}
+
+	# Widget API. CORS basliklarini FastAPI uretiyor — burada EKLEMIYORUZ,
+	# yoksa cift baslik olusur ve tarayici istegi reddeder.
+	handle /api/widget/* {
+		reverse_proxy widget_api:8000
+	}
+
+	# Musteri paneli (Streamlit).
+	handle {
+		reverse_proxy customer_app:8501
+	}
+}
+
+# ── Personel paneli ─────────────────────────────────────────────────
+netmera-staff.43.229.92.6.sslip.io {
+	encode zstd gzip
+
+	# Hash .env'den gelir; bu dosyada duz parola YOK, guvenle commit'lenir.
+	basic_auth {
+		personel {env.PANEL_PASSWORD_HASH}
+	}
+
+	reverse_proxy agent_console:8502
+}
+
+# ── GECICI: eski :8082 fallback ─────────────────────────────────────
+# HTTPS gecisi dogrulanana kadar acik kalir (bugunku ile ayni guvenlik
+# seviyesi: duz HTTP + basic auth). Dogrulama biter bitmez BU BLOK
+# SILINECEK ve guvenlik grubundan 8082 kapatilacak.
+:8082 {
+	basic_auth {
+		personel {env.PANEL_PASSWORD_HASH}
+	}
+	reverse_proxy agent_console:8502
+}
