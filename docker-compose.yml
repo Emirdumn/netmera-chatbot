@@ -84,7 +84,6 @@ services:
       - "80:80"        # HTTPS yonlendirmesi + ACME dogrulamasi
       - "443:443"
       - "443:443/udp"  # HTTP/3
-      - "8082:8082"    # GECICI fallback — gecis dogrulaninca kaldirilacak
     env_file: .env     # PANEL_PASSWORD_HASH
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro

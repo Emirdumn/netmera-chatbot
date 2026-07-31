@@ -57,13 +57,7 @@ netmera-staff.43.229.92.6.sslip.io {
 	reverse_proxy agent_console:8502
 }
 
-# ── GECICI: eski :8082 fallback ─────────────────────────────────────
-# HTTPS gecisi dogrulanana kadar acik kalir (bugunku ile ayni guvenlik
-# seviyesi: duz HTTP + basic auth). Dogrulama biter bitmez BU BLOK
-# SILINECEK ve guvenlik grubundan 8082 kapatilacak.
-:8082 {
-	basic_auth {
-		personel {env.PANEL_PASSWORD_HASH}
-	}
-	reverse_proxy agent_console:8502
-}
+# NOT: HTTPS gecisi sirasinda gecici bir :8082 fallback blogu vardi
+# (eski duz-HTTP personel paneli adresi). Gecis dogrulandiktan sonra
+# kaldirildi; personel paneline artik yalnizca HTTPS uzerinden,
+# netmera-staff hostname'i ile erisilir.
