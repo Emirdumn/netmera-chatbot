@@ -2,8 +2,9 @@
 
 Bu proje tek bir VM üzerinde Docker Compose ile çalışacak şekilde
 hazırlandı: `customer_app` (:8501), `agent_console` (:8502), ikisinin
-önünde bir `nginx` (müşteri tarafı herkese açık `:80`, personel paneli
-HTTP Basic Auth ile korunan `:8082`).
+önünde bir `caddy` (TLS'i otomatik alır/yeniler, HTTP'yi HTTPS'e
+yönlendirir). Müşteri paneli, widget ve widget API bir hostname'de;
+personel paneli Basic Auth korumalı ayrı bir hostname'de.
 
 ## 1. VM oluştur (PortvMind konsolu — `tr-ist-01-console.portvmind.com`)
 
@@ -15,7 +16,7 @@ HTTP Basic Auth ile korunan `:8082`).
 | Flavor | `g1.large` (2 vCPU / 8 GB RAM, ~1.306 TL/ay) |
 | Boot Source | Image (Volume Create Options: Delete on Termination = **kapat** öneri, VM silinse de disk kalsın) |
 | Network | mevcut public network + floating IP ata |
-| Security Group | yeni bir grup oluştur: `22/tcp` (SSH, sadece kendi IP'ne), `80/tcp` (herkese açık), `8082/tcp` (herkese açık — auth nginx'te) |
+| Security Group | yeni bir grup oluştur: `22/tcp` (SSH), `80/tcp` (ACME doğrulaması + HTTPS yönlendirmesi), `443/tcp` (HTTPS) |
 
 VM oluşunca **Floating IP**'yi not al.
 
@@ -60,18 +61,34 @@ değerle uygulama açılmaz.
 
 ## 5. Personel paneli şifresini oluştur (HTTP Basic Auth)
 
+Caddy `htpasswd` dosyası kullanmaz; parolayı **bcrypt hash** olarak
+`.env` içindeki `PANEL_PASSWORD_HASH` değişkeninden okur.
+
 ```bash
-sudo apt-get install -y apache2-utils
-htpasswd -B -c nginx/.htpasswd personel
-# şifreyi soracak — güçlü bir şifre gir
+# 1) Guclu bir parola uret ve SADECE sunucuda sakla
+python3 -c "import secrets; print(secrets.token_urlsafe(24))" > ~/panel-parola.txt
+chmod 600 ~/panel-parola.txt
+
+# 2) Hash'ini uret
+docker run --rm caddy:2-alpine caddy hash-password \
+  --plaintext "$(cat ~/panel-parola.txt)"
 ```
 
-`nginx/.htpasswd` **asla git'e girmez** (`.gitignore`'da) — her sunucuda
-ayrıca oluşturulmalı.
+> **⚠ TUZAK — mutlaka okuyun.** bcrypt hash `$` içerir ve Docker Compose
+> bunu **değişken sanar**. `.env`'e olduğu gibi yazarsanız hash konteynere
+> **bozuk** ulaşır (sessizce kısalır) ve panele hiçbir parolayla
+> giremezsiniz. `.env`'e yazarken her `$` **iki kez** yazılmalı:
+>
+> ```
+> $2a$14$abc...   ->   PANEL_PASSWORD_HASH=$$2a$$14$$abc...
+> ```
+>
+> Doğrulama: `docker compose exec caddy sh -c 'echo ${#PANEL_PASSWORD_HASH}'`
+> **60** dönmeli. Daha kısaysa escape eksiktir.
 
-> Personel panelinde iki kapı vardır: önce nginx Basic Auth, sonra uygulamanın
-> kendi personel seçimi + `STAFF_DEMO_PASSWORD` kontrolü. Bu iki parolayı ayrı
-> tutmak daha güvenlidir.
+> Personel panelinde iki kapı vardır: önce Caddy Basic Auth
+> (`PANEL_PASSWORD_HASH`), sonra uygulamanın kendi personel seçimi +
+> `STAFF_DEMO_PASSWORD` kontrolü. Bu iki parolayı ayrı tutun.
 
 ## 6. Chroma/veri indeksi güncel mi kontrol et
 
@@ -98,28 +115,47 @@ docker compose up -d
 docker compose ps       # ucu ucuna 3 servis de "healthy"/"running" olmali
 ```
 
-- Müşteri: `http://<FLOATING_IP>/`
-- Personel: `http://<FLOATING_IP>:8082/` (kullanıcı adı/şifre sorar)
+- Müşteri + widget: `https://<HOSTNAME>/`
+- Personel: `https://<STAFF_HOSTNAME>/` (kullanıcı adı/şifre sorar)
+
+İlk açılışta Caddy sertifikayı otomatik alır. Büyük bir Caddyfile
+değişikliğinden önce **staging CA ile deneyin** — üretimde aynı domain
+için haftada 5 sertifika sınırı vardır:
+`acme_ca https://acme-staging-v02.api.letsencrypt.org/directory`
 
 İlk açılışta `storage/helpdesk.db` otomatik oluşur, `config/departments.py`
 sahte personeli seed eder — bu, VM'in kendi diskinde kalıcı bir Docker
 volume'unda (`netmera_storage`) durur; `docker compose down` veri
 kaybetmez, sadece `docker compose down -v` (volume'u da siler) kaybettirir.
 
-## 8. (Opsiyonel ama önerilir) Gerçek bir domain + HTTPS
+## 8. Domain / hostname
 
-Bir domain'i floating IP'ye yönlendirip Certbot ile ücretsiz SSL almak
-istersen:
+TLS **kurulu ve otomatik** (Caddy). Yapılması gereken tek şey, kullanılan
+hostname'lerin sunucunun IP'sine çözümlenmesi.
 
-```bash
-sudo apt-get install -y certbot python3-certbot-nginx
-# nginx container yerine host'ta nginx kurup certbot onunla calisir,
-# ya da nginx-proxy/caddy gibi otomatik-SSL alan bir reverse proxy'e gecilir.
+**Pilot kurulumda DNS kaydı gerekmedi** — `sslip.io` kullanıldı; IP'yi
+hostname'in içinde taşıdığı için kendiliğinden doğru adrese çözümlenir:
+
+```
+netmera-helpdesk.<IP>.sslip.io   -> müşteri paneli + widget + API
+netmera-staff.<IP>.sslip.io      -> personel paneli
 ```
 
-Bu adım şu an compose dosyasına dahil değil — domain netleşince ayrıca
-ele alınmalı (Let's Encrypt + docker-compose entegrasyonu için `caddy`
-kullanmak nginx+certbot'tan daha az elle uğraş gerektirir).
+Gerçek domain'e geçerken iki A kaydı açıp `caddy/Caddyfile` içindeki
+hostname'leri değiştirmek yeterli; başka değişiklik gerekmez.
+
+> **Üretim DNS'ine dikkat.** Pilotta `destek.netmera.com` ve
+> `panel.netmera.com` düşünülmüştü; kontrol edildiğinde ikisinin de zaten
+> **çalışan üretim servislerine** işaret ettiği görüldü (CloudFront ve
+> başka bir sunucu). Kullanılacak hostname'in boş olduğunu kayıt açmadan
+> önce `dig` ile doğrulayın.
+
+### Sertifika verisi kalıcı olmalı
+
+Sertifikalar `caddy_data` named volume'unda durur. Bu volume silinirse her
+başlangıçta yeni sertifika istenir ve **Let's Encrypt kotası dolar**
+(aynı domain için haftada 5). `docker compose down -v` bu volume'u da
+siler — üretimde kullanmayın.
 
 ## 9. (Opsiyonel) Verinin gerçek bir cloud Volume'da durması
 
@@ -142,11 +178,11 @@ cd netmera
 git pull
 docker compose build
 docker compose up -d
-docker compose restart nginx   # customer_app/agent_console yeniden
-                                 # olusturulunca ic IP'leri degisir; nginx
-                                 # bunu proxy_pass icin baslangicta cache'ler,
-                                 # restart etmezse 502 verebilir.
 ```
+
+> nginx döneminde her deploy'dan sonra `docker compose restart nginx`
+> gerekiyordu (nginx upstream IP'sini önbelleğe alıyor, konteyner yeniden
+> oluşunca 502 veriyordu). **Caddy'de bu adım gerekmiyor.**
 
 ## Acil parola rotasyonu
 
@@ -159,12 +195,12 @@ git pull
 # 1) .env icindeki STAFF_DEMO_PASSWORD degerini yeni, güçlü bir degerle değiştir
 nano .env
 
-# 2) nginx Basic Auth parolasini yeniden üret
-htpasswd -B -c nginx/.htpasswd personel
+# 2) Panel parolasini yeniden uret ve hash'ini .env'e yaz
+#    ($ escape'ini unutmayin — yukaridaki TUZAK notu)
 
 # 3) yeni kod/env ile servisleri yeniden oluştur
 docker compose build
-docker compose up -d --force-recreate customer_app agent_console nginx
+docker compose up -d --force-recreate customer_app agent_console caddy
 
 # 4) SQLite'taki mevcut personel hash'lerini yeni STAFF_DEMO_PASSWORD'a döndür
 docker compose exec customer_app python scripts/rotate_staff_passwords.py
@@ -177,5 +213,5 @@ Script parola veya hash yazdırmaz; yalnızca kaç personel kaydının güncelle
 ```bash
 docker compose logs -f customer_app
 docker compose logs -f agent_console
-docker compose logs -f nginx
+docker compose logs -f caddy
 ```

@@ -12,11 +12,12 @@
 {
 	email emir.duman@netmera.com
 
-	# ── STAGING ─────────────────────────────────────────────────────
-	# Yapilandirma dogrulanana kadar staging CA kullaniliyor: sertifika
-	# tarayicida GUVENILMEZ gorunur ama kota yemez. Dogrulama bitince
-	# BU SATIR SILINIP servis yeniden baslatilacak.
-	acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+	# NOT: Yapilandirma once Let's Encrypt STAGING CA ile dogrulandi
+	# (acme_ca satiri gecici olarak eklenmisti), sonra uretime gecildi.
+	# Caddyfile'da buyuk bir degisiklik yapilacaksa ayni yontem tekrar
+	# uygulanmali — uretimde ayni domain icin haftada 5 sertifika siniri
+	# var ve hatali denemeler bir haftalik kilide yol acabilir:
+	#   acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
 }
 
 # ── Musteri paneli + widget + API ───────────────────────────────────
