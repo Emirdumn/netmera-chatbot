@@ -39,11 +39,18 @@ export function Composer({
 }: ComposerProps) {
   // Satir sayisi prop'tan turetiliyor — DOM olcumu yok, bilesen saf kaliyor.
   const rows = Math.min(MAX_ROWS, value.split("\n").length);
-  const canSend = value.trim().length > 0 && !disabled;
+  const canSend = (isAnonymous ? email.trim().length > 0 : value.trim().length > 0) && !disabled;
 
   function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
     // Enter gonderir, Shift+Enter yeni satir acar.
     if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      if (canSend) onSend();
+    }
+  }
+
+  function handleEmailKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Enter") {
       event.preventDefault();
       if (canSend) onSend();
     }
@@ -66,6 +73,7 @@ export function Composer({
             aria-describedby={emailError ? "nm-composer-email-error" : undefined}
             value={email}
             onChange={(e) => onEmailChange?.(e.target.value)}
+            onKeyDown={handleEmailKeyDown}
             disabled={disabled}
           />
           {emailError && (

@@ -12,11 +12,13 @@ import {
   type WidgetConfig,
   noopTelemetry,
 } from "../ports/types";
+import { strings } from "../strings";
 import type { Article, Conversation, LoadState, TabId } from "../types";
 
 const OPEN_KEY = "netmera.widget.open";
 const DRAFT_KEY = "netmera.widget.draft";
 const HELP_DEBOUNCE_MS = 300;
+const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 /** localStorage gizli sekmede/kapali oldugunda patlamamali. */
 function readStorage(key: string): string | null {
@@ -180,12 +182,13 @@ export function useWidget({ transport, config, telemetry = noopTelemetry }: UseW
   }, [draft, isSending, transport]);
 
   const submitContact = useCallback(async () => {
-    if (!email.includes("@")) {
+    const mail = email.trim();
+    if (!EMAIL_RE.test(mail)) {
       setEmailTouched(true);
       return;
     }
     try {
-      setSnapshot(await transport.submitContact("", email.trim()));
+      setSnapshot(await transport.submitContact(strings.composer.anonymousName, mail));
       setEmail("");
       setEmailTouched(false);
     } catch {

@@ -49,14 +49,14 @@ export function WidgetApp({ transport, config, telemetry }: WidgetAppProps) {
     <Composer
       value={w.draft}
       onChange={w.setDraft}
-      onSend={w.send}
+      onSend={w.needsContactForm ? w.submitContact : w.send}
       disabled={w.isSending}
       // Widget kullanicilari her zaman anonim; e-posta alani devir
       // beklerken gorunur (bkz. docs/support-widget-plan.md kapsam notu).
       isAnonymous={w.needsContactForm}
       email={w.email}
       onEmailChange={w.setEmail}
-      emailError={w.emailTouched && !w.email.includes("@")}
+      emailError={w.emailTouched && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(w.email.trim())}
     />
   );
 

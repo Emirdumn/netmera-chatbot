@@ -49,6 +49,9 @@ export const strings = {
     emailPlaceholder: "ornek@sirket.com",
     emailHint: "Size dönebilmemiz için e-posta adresinizi alalım.",
     emailInvalid: "Geçerli bir e-posta adresi girin.",
+    /** Widget kullanicilari anonim; ad alani olmadigi icin personel
+     *  panelinde bu etiketle gorunurler. */
+    anonymousName: "Widget ziyaretçisi",
   },
   help: {
     title: "Yardım",
