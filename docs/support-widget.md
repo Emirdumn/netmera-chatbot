@@ -126,8 +126,16 @@ widget/src/
   embed.tsx      window.NetmeraWidget.init()
 ```
 
-Kural: `useWidget.ts` dışında hiçbir yerde `fetch`, `localStorage` veya `timer`
-yoktur. Bileşenler veriyi prop'tan alır, olayı callback ile yukarı verir.
+Kural iki cümlede:
+
+- **Sunum bileşenlerinde** `fetch`, `localStorage` veya `timer` **yoktur.**
+  Veriyi prop'tan alır, olayı callback ile yukarı verirler.
+- **Yan etkiler iki sınırda toplanır:** `state/useWidget.ts` (state, efektler,
+  polling aboneliği, localStorage) ve `ports/httpTransport.ts` (ağ çağrısı,
+  oturum token'ı, polling zamanlayıcısı).
+
+Bu ayrım sayesinde transport mock'lanınca tüm UI durumları ağa çıkmadan
+üretilebiliyor.
 
 Backend tarafında `widget_api/` iş mantığı içermez; her uç `app_services/`
 çağırır. Streamlit panelleri de aynı servisleri kullandığı için iki ön yüz

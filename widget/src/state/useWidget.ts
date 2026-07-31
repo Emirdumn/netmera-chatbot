@@ -1,8 +1,12 @@
-/** AŞAMA 4 — Tek state sahibi.
+/** AŞAMA 4 — Tek state sahibi (sunum tarafinda).
  *
- * Bilesenler saf kalir; TUM state, transport cagrilari ve yan etkiler
- * burada toplanir. Bu hook disinda hicbir yerde fetch/localStorage/timer
- * yoktur.
+ * Bilesenler saf kalir: state, efektler ve transport cagrilari burada
+ * toplanir.
+ *
+ * DIKKAT — "hicbir yerde yan etki yok" DEGIL: yan etkiler IKI sinirda
+ * yasar. Burasi (state, efektler, polling aboneligi, localStorage) ve
+ * `ports/httpTransport.ts` (fetch, oturum token'i, polling zamanlayicisi).
+ * Sunum bilesenlerinde hicbiri yoktur.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
