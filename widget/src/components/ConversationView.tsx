@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, RefObject } from "react";
 import { ErrorState } from "./ErrorState";
 import { MessageBubble } from "./MessageBubble";
 import { SkeletonStates } from "./SkeletonStates";
@@ -17,6 +17,12 @@ export interface ConversationViewProps {
   onRetry?: () => void;
   /** Composer disaridan verilir — bu bilesen girdi state'i tutmaz. */
   composer?: ReactNode;
+  /**
+   * Mesaj listesine baglanacak ref. Kaydirmayi BU BILESEN yapmaz; ref'i
+   * veren state katmani (useWidget) yeni mesajda en alta kaydirir.
+   * Boylece bilesen saf kalir, DOM olcumu/efekt icermez.
+   */
+  logRef?: RefObject<HTMLDivElement | null>;
 }
 
 export function ConversationView({
@@ -27,6 +33,7 @@ export function ConversationView({
   onContinueWithBot,
   onRetry,
   composer,
+  logRef,
 }: ConversationViewProps) {
   if (state === "error") {
     return (
@@ -45,6 +52,7 @@ export function ConversationView({
       ) : (
         <div
           className={styles.log}
+          ref={logRef}
           role="log"
           aria-live="polite"
           aria-relevant="additions text"

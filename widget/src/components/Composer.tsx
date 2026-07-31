@@ -6,6 +6,16 @@ export interface ComposerProps {
   value: string;
   onChange: (value: string) => void;
   onSend: () => void;
+  /**
+   * Gonderim surerken true olur. YALNIZCA gonder butonunu ve e-posta
+   * alanini kilitler; yazma alanini KILITLEMEZ.
+   *
+   * Neden: `disabled` olan bir eleman odagi kaybeder. Textarea'yi da
+   * kilitleseydik kullanici her mesajdan sonra tekrar tiklamak zorunda
+   * kalirdi — sohbet arayuzunde kabul edilemez. Cift gonderim zaten
+   * butonun kilitlenmesi ve useWidget.send() icindeki isSending kontrolu
+   * ile engelleniyor.
+   */
   disabled?: boolean;
   /** true ise e-posta alani gorunur (spec: yalnizca anonim kullanicida). */
   isAnonymous?: boolean;
@@ -75,7 +85,6 @@ export function Composer({
           aria-label={strings.composer.placeholder}
           onChange={(e) => onChange(e.target.value)}
           onKeyDown={handleKeyDown}
-          disabled={disabled}
         />
         <button
           type="button"
