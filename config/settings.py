@@ -43,6 +43,23 @@ MAX_FAILED_ATTEMPTS = 2
 REDIS_URL = os.environ.get("REDIS_URL", "redis://redis:6379/0")
 QA_CACHE_TTL_SECONDS = int(os.environ.get("QA_CACHE_TTL_SECONDS", str(3 * 24 * 3600)))  # 3 gun
 
+# Widget API (FAZ 16) — dis sitelere gomulen widget'in konustugu HTTP katmani.
+# VARSAYILAN KAPALI: flag kapaliyken tum uc noktalar 404 doner ve mevcut
+# Streamlit davranisi hicbir sekilde degismez.
+WIDGET_API_ENABLED = os.environ.get("WIDGET_API_ENABLED", "false").lower() == "true"
+#: Virgulle ayrilmis origin listesi. Bos birakilirsa HICBIR dis origin
+#: kabul edilmez (guvenli varsayilan — "*" ile acmak bilincli bir karar olmali).
+WIDGET_ALLOWED_ORIGINS = [
+    o.strip() for o in os.environ.get("WIDGET_ALLOWED_ORIGINS", "").split(",") if o.strip()
+]
+#: IP basina dakikalik mesaj siniri — widget internete acik bir LLM ucu
+#: oldugu icin maliyet/kotuye kullanim korumasi.
+WIDGET_RATE_LIMIT_PER_MIN = int(os.environ.get("WIDGET_RATE_LIMIT_PER_MIN", "20"))
+#: Anonim oturum token'larini imzalamak icin. Widget acikken ZORUNLU.
+WIDGET_TOKEN_SECRET = (
+    _required_env("WIDGET_TOKEN_SECRET", min_length=32) if WIDGET_API_ENABLED else ""
+)
+
 # Personel paneli girisi — nginx Basic Auth arkasindaki ikinci/ic kapi.
 # Guvenlik nedeniyle varsayilan yoktur; canliya cikmadan .env icinde güçlü
 # bir deger verilmezse uygulama acik ve erken bir hatayla durur.

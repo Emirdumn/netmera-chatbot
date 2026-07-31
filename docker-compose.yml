@@ -42,11 +42,29 @@ services:
       timeout: 5s
       retries: 3
 
+  widget_api:
+    build: .
+    command: >
+      uvicorn widget_api.main:app
+      --host 0.0.0.0 --port 8000
+    volumes:
+      - netmera_storage:/app/storage/data
+    env_file: .env
+    depends_on:
+      - redis
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
   nginx:
     image: nginx:1.27-alpine
     depends_on:
       - customer_app
       - agent_console
+      - widget_api
     ports:
       - "80:80"
       - "8082:8082"

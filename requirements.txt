@@ -15,3 +15,5 @@ pydantic
 grandalf
 rank_bm25
 redis
+fastapi
+uvicorn[standard]

@@ -49,3 +49,23 @@ def cache_set(key: str, value: str, ttl: int) -> None:
         _get_client().set(key, value, ex=ttl)
     except redis.RedisError as exc:
         _warn_once(exc)
+
+
+def incr_with_ttl(key: str, ttl: int) -> int | None:
+    """Sayaci artirir ve ilk artista TTL kurar (rate limit icin).
+
+    Redis erisilemezse None doner — cagiran taraf bunu "sinir
+    uygulanamadi" olarak yorumlar. Bilincli tercih: Redis hiccup'i
+    widget'i komple durdurmasin (fail-open). Maliyet korumasi Redis'e
+    bagimli oldugu icin, Redis uzun sure duserse bu bir risktir; kalici
+    coku durumunda flag ile widget kapatilmalidir.
+    """
+    try:
+        pipe = _get_client().pipeline()
+        pipe.incr(key)
+        pipe.expire(key, ttl)
+        count, _ = pipe.execute()
+        return int(count)
+    except redis.RedisError as exc:
+        _warn_once(exc)
+        return None

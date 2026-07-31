@@ -1,0 +1,187 @@
+"""Widget uc noktalari.
+
+Her fonksiyon ince bir sarmalayicidir: HTTP'yi cozer, `app_services`'i
+cagirir, sonucu widget'in bekledigi bicime cevirir. Burada IS MANTIGI YOK.
+"""
+import re
+from urllib.parse import urlparse
+
+from fastapi import APIRouter, Depends, Header, HTTPException, Request
+
+from app_services import chat_service
+from cache.qa_cache import incr_with_ttl
+from config.settings import WIDGET_RATE_LIMIT_PER_MIN
+from tools.rag_search_tool import rag_search
+from widget_api import session as token_service
+from widget_api.schemas import (
+    ArticleOut,
+    ContactIn,
+    ConversationOut,
+    MessageOut,
+    SendMessageIn,
+    SessionResponse,
+    SourceOut,
+)
+
+router = APIRouter()
+
+_AUTHOR_BY_ROLE = {"user": "user", "assistant": "bot", "human_agent": "staff"}
+_EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+
+
+# --------------------------------------------------------------------------
+# Yardimcilar
+# --------------------------------------------------------------------------
+
+def _title_from_url(url: str) -> str:
+    """Dokuman URL'inden okunabilir bir baslik uretir.
+
+    Kaynaklar DB'de yalnizca URL listesi olarak duruyor (bkz.
+    rag_search_tool: sources=[c["url"] ...]). Widget baslik istedigi icin
+    son yol parcasindan turetiyoruz.
+    """
+    path = urlparse(url).path.rstrip("/")
+    slug = path.rsplit("/", 1)[-1] if path else ""
+    slug = re.sub(r"\.(md|html?|txt)$", "", slug)
+    slug = slug.replace("-", " ").replace("_", " ").strip()
+    return slug.title() if slug else url
+
+
+def _to_message_out(row: dict) -> MessageOut:
+    """SQLite mesaj satirini widget bicimine cevirir.
+
+    KASITLI OLARAK DISARIDA BIRAKILANLAR: tool_calls, orchestrator ve
+    flow_status. Bunlar sistemin ic isleyisi (hangi agent, hangi arac,
+    hangi guven skoru) — Streamlit panelinde seffaflik icin gosteriliyor
+    ama dis bir siteye gomulu widget'ta yabanci ziyaretcilere sizmamali.
+    """
+    return MessageOut(
+        id=str(row["id"]),
+        author=_AUTHOR_BY_ROLE.get(row["role"], "bot"),
+        author_name=row.get("agent_name") or None,
+        text=row["content"],
+        sent_at=row["created_at"],
+        sources=[
+            SourceOut(title=_title_from_url(u), url=u) for u in (row.get("sources") or [])
+        ],
+    )
+
+
+def _to_conversation_out(state) -> ConversationOut:
+    return ConversationOut(
+        session_id=state.session_id,
+        messages=[_to_message_out(m) for m in state.messages],
+        status=state.status,
+        is_waiting=state.is_waiting,
+        needs_contact_form=state.needs_contact_form,
+    )
+
+
+def require_session(authorization: str = Header(default="")) -> int:
+    """Bearer token'i dogrular, session_id doner."""
+    scheme, _, token = authorization.partition(" ")
+    if scheme.lower() != "bearer" or not token:
+        raise HTTPException(status_code=401, detail="Missing bearer token")
+    session_id = token_service.verify(token)
+    if session_id is None:
+        raise HTTPException(status_code=401, detail="Invalid token")
+    return session_id
+
+
+def _client_ip(request: Request) -> str:
+    """Gercek istemci IP'si.
+
+    nginx arkasinda `request.client.host` nginx konteynerinin IP'sidir —
+    onu kullansaydik TUM kullanicilar tek bir kovaya duser, rate limit
+    anlamsizlasirdi.
+
+    nginx `$proxy_add_x_forwarded_for` ile basligi kurar: istemcinin
+    gonderdigi deger + kendi gordugu peer IP'si. Yani SON eleman bizim
+    nginx'imizin gordugu adrestir ve istemci tarafindan taklit edilemez;
+    bastaki degerler istemci uydurmasi olabilir, o yuzden sonu aliyoruz.
+    """
+    forwarded = request.headers.get("x-forwarded-for", "")
+    if forwarded:
+        return forwarded.split(",")[-1].strip()
+    return request.client.host if request.client else "unknown"
+
+
+def enforce_rate_limit(request: Request) -> None:
+    """IP basina dakikalik yazma siniri.
+
+    Yalnizca LLM/CPU harcatan uc noktalarda kullanilir; okuma (polling)
+    ucunda kullanilmaz, yoksa normal kullanim bile bloklanirdi.
+    """
+    count = incr_with_ttl(f"widget:rl:{_client_ip(request)}", 60)
+    if count is not None and count > WIDGET_RATE_LIMIT_PER_MIN:
+        raise HTTPException(status_code=429, detail="Too many requests")
+
+
+# --------------------------------------------------------------------------
+# Uc noktalar
+# --------------------------------------------------------------------------
+
+@router.post("/session", response_model=SessionResponse)
+def create_session() -> SessionResponse:
+    session_id = chat_service.create_session("tr")
+    return SessionResponse(session_id=session_id, token=token_service.issue(session_id))
+
+
+@router.get("/conversation", response_model=ConversationOut)
+def get_conversation(session_id: int = Depends(require_session)) -> ConversationOut:
+    """Widget bunu polling ile cagirir (subscribe() bunun uzerine kurulu)."""
+    return _to_conversation_out(chat_service.load_conversation(session_id))
+
+
+@router.post("/messages", response_model=ConversationOut)
+def send_message(
+    payload: SendMessageIn,
+    session_id: int = Depends(require_session),
+    _: None = Depends(enforce_rate_limit),
+) -> ConversationOut:
+    chat_service.send_message(session_id, payload.text)
+    return _to_conversation_out(chat_service.load_conversation(session_id))
+
+
+@router.post("/contact", response_model=ConversationOut)
+def submit_contact(
+    payload: ContactIn, session_id: int = Depends(require_session)
+) -> ConversationOut:
+    if not _EMAIL_RE.match(payload.email.strip()):
+        raise HTTPException(status_code=422, detail="Invalid email")
+    chat_service.submit_contact(session_id, payload.name, payload.email)
+    return _to_conversation_out(chat_service.load_conversation(session_id))
+
+
+@router.post("/resume-bot", response_model=ConversationOut)
+def resume_bot(session_id: int = Depends(require_session)) -> ConversationOut:
+    chat_service.resume_bot(session_id)
+    return _to_conversation_out(chat_service.load_conversation(session_id))
+
+
+@router.get("/articles", response_model=list[ArticleOut])
+def search_articles(
+    q: str = "",
+    _sid: int = Depends(require_session),
+    __: None = Depends(enforce_rate_limit),
+) -> list[ArticleOut]:
+    """Yardim sekmesi aramasi — mevcut hibrit RAG aramasini kullanir.
+
+    Bot cevabi URETMEZ (LLM cagrisi yok), yalnizca dokuman parcalari doner.
+    """
+    query = q.strip()
+    if not query:
+        return []
+    result = rag_search.invoke({"query": query, "source": "all", "top_k": 5})
+    if not result.ok:
+        return []
+    return [
+        ArticleOut(
+            id=str(index),
+            title=chunk.get("heading_path") or _title_from_url(chunk.get("url", "")),
+            excerpt=chunk["text"][:180].strip(),
+            url=chunk.get("url", ""),
+            body=[chunk["text"]],
+        )
+        for index, chunk in enumerate(result.data)
+    ]
