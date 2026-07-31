@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, RefObject } from "react";
 import { strings } from "../strings";
 import styles from "./Panel.module.css";
 
@@ -11,13 +11,25 @@ export interface PanelProps {
   children: ReactNode;
   /** TabBar gibi alt sabit alan. */
   footer?: ReactNode;
+  /** Focus trap icin — odaklanabilir elemanlari state katmani bu
+   *  eleman icinde arar. Kaydirma/odak mantigi burada DEGIL. */
+  panelRef?: RefObject<HTMLElement | null>;
 }
 
 /** Widget kabugu: baslik + govde + (opsiyonel) alt bar.
  *  Saf bilesen — acilma/kapanma kararini vermez, sadece yansitir. */
-export function Panel({ isOpen, title, onBack, onClose, children, footer }: PanelProps) {
+export function Panel({
+  isOpen,
+  title,
+  onBack,
+  onClose,
+  children,
+  footer,
+  panelRef,
+}: PanelProps) {
   return (
     <section
+      ref={panelRef}
       className={`${styles.panel} ${isOpen ? styles.open : styles.closed}`}
       role="region"
       aria-label={strings.panel.ariaLabel}

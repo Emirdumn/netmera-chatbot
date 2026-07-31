@@ -1,3 +1,4 @@
+import type { RefObject } from "react";
 import { strings } from "../strings";
 import styles from "./Launcher.module.css";
 
@@ -5,16 +6,19 @@ export interface LauncherProps {
   isOpen: boolean;
   unreadCount?: number;
   onToggle: () => void;
+  /** Panel kapaninca odak buraya geri doner (state katmani yonetir). */
+  buttonRef?: RefObject<HTMLButtonElement | null>;
 }
 
 /** Sag altta duran yuvarlak buton. Saf: sadece prop okur, callback cagirir. */
-export function Launcher({ isOpen, unreadCount = 0, onToggle }: LauncherProps) {
+export function Launcher({ isOpen, unreadCount = 0, onToggle, buttonRef }: LauncherProps) {
   const label = isOpen ? strings.launcher.close : strings.launcher.open;
   const showBadge = !isOpen && unreadCount > 0;
 
   return (
     <button
       type="button"
+      ref={buttonRef}
       className={styles.launcher}
       onClick={onToggle}
       aria-label={

@@ -64,6 +64,10 @@ export function useWidget({ transport, config, telemetry = noopTelemetry }: UseW
 
   /** Mesaj listesi elemani — auto-scroll icin. */
   const logRef = useRef<HTMLDivElement>(null);
+  /** Panel kokii — focus trap icin. */
+  const panelRef = useRef<HTMLElement>(null);
+  /** Launcher — panel kapaninca odak buraya doner. */
+  const launcherRef = useRef<HTMLButtonElement>(null);
 
   // --- Kalicilik -----------------------------------------------------------
   useEffect(() => {
@@ -107,6 +111,58 @@ export function useWidget({ transport, config, telemetry = noopTelemetry }: UseW
     if (!node || !inConversation) return;
     node.scrollTop = node.scrollHeight;
   }, [messageCount, inConversation, isSending]);
+
+  // --- Klavye: Esc ile kapat + focus trap ---------------------------------
+  // Panel acikken odak icinde kalmali; Tab en sondan basa, Shift+Tab
+  // bastan sona donmeli. Aksi halde klavye kullanicisi panelin arkasindaki
+  // sayfaya kacar ve geri donemez.
+  useEffect(() => {
+    if (!isOpen) return;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.stopPropagation();
+        setIsOpen(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const root = panelRef.current;
+      if (!root) return;
+      const focusables = Array.from(
+        root.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), textarea, input:not([disabled]), select, [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((el) => el.offsetParent !== null);
+      if (focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey && active === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  // --- Odak donusu ---------------------------------------------------------
+  // Panel kapaninca odak launcher'a doner; yoksa odak <body>'ye duser ve
+  // klavye kullanicisi sayfanin basina savrulur.
+  const wasOpenRef = useRef(isOpen);
+  useEffect(() => {
+    if (wasOpenRef.current && !isOpen) {
+      launcherRef.current?.focus();
+    }
+    wasOpenRef.current = isOpen;
+  }, [isOpen]);
 
   // --- Yardim aramasi (debounce'lu) ---------------------------------------
   useEffect(() => {
@@ -243,6 +299,8 @@ export function useWidget({ transport, config, telemetry = noopTelemetry }: UseW
     helpState,
     openArticle,
     logRef,
+    panelRef,
+    launcherRef,
     // aksiyonlar
     toggle,
     close: () => setIsOpen(false),

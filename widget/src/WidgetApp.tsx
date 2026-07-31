@@ -62,9 +62,10 @@ export function WidgetApp({ transport, config, telemetry }: WidgetAppProps) {
 
   return (
     <div className="nm-root">
-      <Launcher isOpen={w.isOpen} onToggle={w.toggle} />
+      <Launcher isOpen={w.isOpen} onToggle={w.toggle} buttonRef={w.launcherRef} />
 
       <Panel
+        panelRef={w.panelRef}
         isOpen={w.isOpen}
         title={title}
         onBack={onBack}
