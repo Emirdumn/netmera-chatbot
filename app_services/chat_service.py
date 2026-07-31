@@ -33,6 +33,11 @@ def _get_graph():
     global _graph
     if _graph is None:
         repo.init_db()
+        try:
+            from tools.rag_search_tool import warmup_retrieval
+            warmup_retrieval()
+        except Exception:
+            pass
         _graph = build_graph()
     return _graph
 

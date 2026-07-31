@@ -4,10 +4,13 @@ Feature flag KAPALIYKEN hicbir uc nokta kayitli olmaz — uygulama ayaga
 kalkar ama her istek 404 doner. Boylece "flag kapaliyken davranis hic
 degismiyor" kabul kriteri saglanir.
 """
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from config.settings import WIDGET_ALLOWED_ORIGINS, WIDGET_API_ENABLED
+from tools.rag_search_tool import warmup_retrieval
 
 app = FastAPI(
     title="Netmera Destek Widget API",
@@ -22,6 +25,15 @@ app = FastAPI(
 def health() -> dict:
     """Konteyner healthcheck'i — flag kapaliyken de cevap verir."""
     return {"ok": True, "widget_enabled": WIDGET_API_ENABLED}
+
+
+@app.on_event("startup")
+def warmup_models() -> None:
+    """Ilk widget mesajinin embedding model yukleme maliyetini azalt."""
+    # Unit testlerde model yuklemek dakikalar surer; bilincli olarak atlanir.
+    if os.environ.get("WIDGET_SKIP_WARMUP", "").lower() in ("1", "true", "yes"):
+        return
+    warmup_retrieval()
 
 
 if WIDGET_API_ENABLED:

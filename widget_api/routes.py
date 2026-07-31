@@ -159,29 +159,62 @@ def resume_bot(session_id: int = Depends(require_session)) -> ConversationOut:
     return _to_conversation_out(chat_service.load_conversation(session_id))
 
 
+# Yardim sekmesi bosken gosterilen populer konular.
+# Her satir: (arama sorgusu, kaynak filtresi). Sonuclar URL bazinda
+# tekillestirilir; LLM cagrisi YOKTUR.
+_POPULAR_TOPICS = (
+    ("What is Netmera omnichannel platform", "website"),
+    ("How to create a push notification campaign", "user_guide"),
+    ("iOS SDK integration getting started", "dev_guide"),
+    ("How to create a segment with rules", "user_guide"),
+    ("Android push notification setup", "dev_guide"),
+)
+
+
+def _chunk_to_article(index: int, chunk: dict) -> ArticleOut:
+    return ArticleOut(
+        id=str(index),
+        title=chunk.get("heading_path") or _title_from_url(chunk.get("url", "")),
+        excerpt=chunk["text"][:180].strip(),
+        url=chunk.get("url", ""),
+        body=[chunk["text"]],
+    )
+
+
+def _popular_articles() -> list[ArticleOut]:
+    """Bos aramada gosterilecek populer basliklar (RAG, LLM yok)."""
+    seen_urls: set[str] = set()
+    articles: list[ArticleOut] = []
+    for query, source in _POPULAR_TOPICS:
+        result = rag_search.invoke({"query": query, "source": source, "top_k": 1})
+        if not result.ok or not result.data:
+            continue
+        chunk = result.data[0]
+        url = chunk.get("url") or ""
+        if url in seen_urls:
+            continue
+        seen_urls.add(url)
+        articles.append(_chunk_to_article(len(articles), chunk))
+        if len(articles) >= 5:
+            break
+    return articles
+
+
 @router.get("/articles", response_model=list[ArticleOut])
 def search_articles(
     q: str = "",
     _sid: int = Depends(require_session),
-    __: None = Depends(enforce_rate_limit),
 ) -> list[ArticleOut]:
     """Yardim sekmesi aramasi — mevcut hibrit RAG aramasini kullanir.
 
     Bot cevabi URETMEZ (LLM cagrisi yok), yalnizca dokuman parcalari doner.
+    `q` bos ise populer Netmera basliklari doner.
+    Rate limit YOK — bu uc LLM harcamaz; yazma ucundan ayri tutulur.
     """
     query = q.strip()
     if not query:
-        return []
+        return _popular_articles()
     result = rag_search.invoke({"query": query, "source": "all", "top_k": 5})
     if not result.ok:
         return []
-    return [
-        ArticleOut(
-            id=str(index),
-            title=chunk.get("heading_path") or _title_from_url(chunk.get("url", "")),
-            excerpt=chunk["text"][:180].strip(),
-            url=chunk.get("url", ""),
-            body=[chunk["text"]],
-        )
-        for index, chunk in enumerate(result.data)
-    ]
+    return [_chunk_to_article(index, chunk) for index, chunk in enumerate(result.data)]

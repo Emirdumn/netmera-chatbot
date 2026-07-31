@@ -13,6 +13,8 @@ COPY public ./public
 
 RUN npm run build:embed
 
-# Statik cikti — nginx bu asamadan kopyalar.
+# Statik cikti — Caddy /widget/* altinda servis eder.
 FROM alpine:3 AS dist
 COPY --from=build /build/dist-embed /widget
+# Smoke test sayfasi: https://<host>/widget/embed-test.html
+COPY --from=build /build/public/embed-test.html /widget/embed-test.html

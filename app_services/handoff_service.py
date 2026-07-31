@@ -6,9 +6,33 @@ LangGraph interrupt'ini surdurmek zorunda oldugu icin bu sart.
 from app_services import chat_service
 from storage import repository as repo
 
+_URGENCY_RANK = {"high": 0, "urgent": 0, "normal": 1, "low": 2}
+
 
 def list_pending(department: str | None = None) -> list[dict]:
-    return repo.list_pending_handoffs(department)
+    """Bekleyen devirler — aciliyet sonra bekleme suresine gore sirali.
+
+    Her kayda kuyruk karti icin `last_user_message` eklenir.
+    """
+    pending = list(repo.list_pending_handoffs(department))
+    pending.sort(
+        key=lambda h: (
+            _URGENCY_RANK.get((h.get("urgency") or "normal").lower(), 1),
+            h.get("created_at") or "",
+        )
+    )
+    for handoff in pending:
+        handoff["last_user_message"] = _last_user_preview(handoff["session_id"])
+    return pending
+
+
+def _last_user_preview(session_id: int, limit: int = 140) -> str:
+    messages = repo.get_messages(session_id)
+    for message in reversed(messages):
+        if message.get("role") == "user" and (message.get("content") or "").strip():
+            text = message["content"].strip().replace("\n", " ")
+            return text if len(text) <= limit else text[: limit - 1] + "…"
+    return ""
 
 
 def get_handoff(handoff_id: int) -> dict | None:

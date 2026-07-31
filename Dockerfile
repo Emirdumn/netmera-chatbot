@@ -13,6 +13,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# RAG modellerini image build sirasinda cache'e al. Aksi halde ilk canli
+# mesajda HuggingFace metadata/model indirme bekleyisi kullaniciya yansir.
+RUN python -c "from sentence_transformers import SentenceTransformer, CrossEncoder; SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2'); CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')"
+
 COPY . .
 
 # storage/data/ kalici volume olarak mount edilecek (bkz. docker-compose.yml)

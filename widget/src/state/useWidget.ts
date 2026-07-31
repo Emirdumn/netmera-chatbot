@@ -169,14 +169,10 @@ export function useWidget({ transport, config, telemetry = noopTelemetry }: UseW
   }, [isOpen]);
 
   // --- Yardim aramasi (debounce'lu) ---------------------------------------
+  // Bos sorgu = sunucunun dondugu populer Netmera basliklari.
   useEffect(() => {
     if (tab !== "help") return;
     const query = helpQuery.trim();
-    if (!query) {
-      setArticles([]);
-      setHelpState("idle");
-      return;
-    }
     setHelpState("loading");
     const timer = setTimeout(async () => {
       try {
@@ -185,7 +181,7 @@ export function useWidget({ transport, config, telemetry = noopTelemetry }: UseW
       } catch {
         setHelpState("error");
       }
-    }, HELP_DEBOUNCE_MS);
+    }, query ? HELP_DEBOUNCE_MS : 0);
     return () => clearTimeout(timer);
   }, [helpQuery, tab, transport]);
 

@@ -36,6 +36,16 @@ TOP_K = 5
 CONFIDENCE_THRESHOLD = 0.35
 MAX_TOOL_ITERATIONS = 4  # FAZ 12 — ReAct dongusu: en fazla kac kez sorgu yeniden yazilip aranir
 
+# Fast RAG gate — dokumanla guclu semantik eslesmede agir agent zincirine
+# girmeden kaynakli cevap uretir; eslesme zayifsa once domain alakaliligini
+# ayirir. Esikler env ile ayarlanabilir, varsayilanlar pilot veriye gore
+# muhafazakar tutuldu.
+FAST_RAG_ENABLED = os.environ.get("FAST_RAG_ENABLED", "true").lower() == "true"
+FAST_RAG_DIRECT_THRESHOLD = float(os.environ.get("FAST_RAG_DIRECT_THRESHOLD", "0.50"))
+FAST_RAG_REWRITE_THRESHOLD = float(
+    os.environ.get("FAST_RAG_REWRITE_THRESHOLD", str(CONFIDENCE_THRESHOLD))
+)
+
 # Escalation
 MAX_FAILED_ATTEMPTS = 2
 

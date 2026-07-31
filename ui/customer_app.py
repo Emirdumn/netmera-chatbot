@@ -34,6 +34,8 @@ AGENT_LABELS = {
     "technical_agent": "👨‍💻 Teknik Destek Agent",
     "sales_agent": "💼 Satış Agent",
     "escalation_agent": "🔁 Devir",
+    "fast_rag": "⚡ Hızlı Doküman Cevabı",
+    "domain_guard": "🛡️ Kapsam Koruma",
 }
 
 FIELD_LABELS = {

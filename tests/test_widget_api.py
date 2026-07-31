@@ -17,6 +17,13 @@ if __name__ == "__main__" and not __package__:
 os.environ["WIDGET_API_ENABLED"] = "true"
 os.environ["WIDGET_TOKEN_SECRET"] = "test-secret-en-az-otuz-iki-karakter-uzunlugunda"
 os.environ["WIDGET_ALLOWED_ORIGINS"] = "https://example.com"
+os.environ["WIDGET_SKIP_WARMUP"] = "true"
+# settings.STAFF_DEMO_PASSWORD import sirasinda zorunlu; gercek .env yoksa
+# test ortami icin guvenli bir deger ver.
+os.environ.setdefault(
+    "STAFF_DEMO_PASSWORD",
+    "test-staff-password-en-az-onalti",
+)
 
 from fastapi.testclient import TestClient  # noqa: E402
 

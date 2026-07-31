@@ -96,7 +96,7 @@ Tüm uçlar `/api/widget` altında. `POST /session` dışındakiler
 | `POST` | `/messages` | Mesaj gönderir, botu çalıştırır | `chat_service.send_message` |
 | `POST` | `/contact` | Devir için ad/e-posta verir | `chat_service.submit_contact` |
 | `POST` | `/resume-bot` | Devri askıya alır, botla devam | `chat_service.resume_bot` |
-| `GET` | `/articles?q=` | Yardım araması (LLM çağrısı yok) | `rag_search` |
+| `GET` | `/articles?q=` | Yardım araması (LLM çağrısı yok). `q` boşsa popüler Netmera başlıkları | `rag_search` |
 | `GET` | `/health` | Sağlık kontrolü (flag kapalıyken de çalışır) | — |
 
 **Token modeli:** `<session_id>.<hmac_sha256(secret, session_id)>`. Sunucu tarafında
@@ -196,10 +196,14 @@ Yani canlıya açmak bir domain + TLS sertifikası gerektirir (`DEPLOY.md` §8).
 
 Sıra:
 1. Domain'i sunucuya yönlendir, TLS al (Caddy ya da certbot).
-2. `WIDGET_ALLOWED_ORIGINS`'e gömecek sitenin origin'ini yaz.
-3. `WIDGET_TOKEN_SECRET` üret.
-4. `WIDGET_API_ENABLED=true` yap, servisleri yeniden kaldır.
-5. Rate limit'i trafiğe göre gözden geçir.
+2. `WIDGET_ALLOWED_ORIGINS`'e gömecek sitenin origin'ini yaz
+   (pilotta `https://netmera-helpdesk.<IP>.sslip.io` da eklenebilir).
+3. `WIDGET_TOKEN_SECRET` üret (`python -c "import secrets; print(secrets.token_urlsafe(32))"`).
+4. `WIDGET_API_ENABLED=true` yap, servisleri yeniden kaldır:
+   `docker compose up -d --force-recreate widget_api widget_build caddy`
+5. Kontrol: `python scripts/widget_go_live_check.py`
+6. Smoke: `https://<HOSTNAME>/widget/embed-test.html`
+7. Rate limit'i trafiğe göre gözden geçir.
 
 ---
 

@@ -1,6 +1,7 @@
 """Her agent'ı bir LangGraph düğüm fonksiyonuna sarar."""
 from langgraph.types import interrupt
 
+from agents.domain_guard import try_fast_rag_answer
 from agents.escalation_agent import EscalationAgent
 from agents.general_agent import GeneralAgent
 from agents.memory_agent import CASE_FIELDS, PROFILE_FIELDS, MemoryAgent
@@ -36,6 +37,34 @@ def _extract_last_user_text(state):
     if isinstance(message, dict):
         return message.get("content", "")
     return getattr(message, "content", str(message))
+
+
+def domain_guard_node(state):
+    """Dokumanla guclu eslesmede hizli RAG cevabi; alakasizda kapsam disi.
+
+    Sonuc uretilemezse graph eski memory -> orchestrator -> specialist
+    zincirine aynen devam eder.
+    """
+    result = try_fast_rag_answer(state)
+    if result is None:
+        # Onceki turdan kalan gate bayraklarini temizle; aksi halde
+        # checkpoint'te sticky True kalabilir.
+        return {
+            "domain_guard_handled": False,
+            "domain_guard_mode": "",
+        }
+    return {
+        "messages": [{"role": "assistant", "content": result.answer}],
+        "agent_name": result.agent_name,
+        "sources": result.sources,
+        "confidence": result.confidence,
+        "reasoning_trace": result.trace,
+        "flow_state": {"flow": "fast_rag_gate", "mode": result.mode},
+        "domain_guard_handled": True,
+        "domain_guard_mode": result.mode,
+        "escalate": False,
+        "pending_question": "",
+    }
 
 
 def memory_node(state):

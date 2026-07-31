@@ -30,10 +30,10 @@ _bm25_index = None
 _bm25_corpus = None  # [(id, doc, meta), ...]
 
 
-def _get_model():
+def _get_model(*, local_files_only: bool = False):
     global _model
     if _model is None:
-        _model = SentenceTransformer(EMBED_MODEL)
+        _model = SentenceTransformer(EMBED_MODEL, local_files_only=local_files_only)
     return _model
 
 
@@ -45,10 +45,10 @@ def _get_collection():
     return _collection
 
 
-def _get_cross_encoder():
+def _get_cross_encoder(*, local_files_only: bool = False):
     global _cross_encoder
     if _cross_encoder is None:
-        _cross_encoder = CrossEncoder(RERANK_MODEL)
+        _cross_encoder = CrossEncoder(RERANK_MODEL, local_files_only=local_files_only)
     return _cross_encoder
 
 
@@ -163,6 +163,65 @@ def _rerank(query, candidates, top_k):
 def _rag_cache_key(query, source, top_k):
     normalized = " ".join(query.strip().lower().split())
     return f"rag:{source}:{top_k}:{normalized}"
+
+
+def _semantic_probe_cache_key(query, source, top_k):
+    normalized = " ".join(query.strip().lower().split())
+    return f"semantic_probe:{source}:{top_k}:{normalized}"
+
+
+def semantic_probe(query: str, source: str = "all", top_k: int = TOP_K) -> ToolResult:
+    """Hizli vektor-only yoklama.
+
+    `rag_search` kaliteli cevap adaylari icin hibrit BM25 + cross-encoder
+    rerank yapar; bu daha iyi ama ilk isteklerde pahali. Domain gate'in ilk
+    isi yalnizca "dokumanla guclu semantik eslesme var mi?" sorusudur, bu
+    yuzden burada sadece Chroma vektor aramasi yapilir. Yuksek eslesmede
+    cevap icin yeterli baglam elde edilir; dusuk eslesmede LLM domain
+    kararina gecilir.
+    """
+    cache_key = _semantic_probe_cache_key(query, source, top_k)
+    cached = cache_get(cache_key)
+    if cached:
+        return ToolResult.model_validate_json(cached)
+
+    ranked = _vector_search(query, source, top_k)
+    if not ranked:
+        return ToolResult(ok=False, data=[], summary="Sonuc bulunamadi", sources=[])
+
+    chunks = [
+        {
+            "text": doc,
+            "similarity": similarity,
+            "heading_path": meta.get("heading_path", ""),
+            "url": meta.get("url", ""),
+            "source": meta.get("source", ""),
+        }
+        for _, doc, meta, similarity in ranked
+    ]
+    result = ToolResult(
+        ok=True,
+        data=chunks,
+        summary=f"en iyi benzerlik: {chunks[0]['similarity']}",
+        sources=[c["url"] for c in chunks],
+    )
+    cache_set(cache_key, result.model_dump_json(), QA_CACHE_TTL_SECONDS)
+    return result
+
+
+def warmup_retrieval() -> None:
+    """Embedding modeli ve Chroma koleksiyonunu onceden yukler.
+
+    Bu fonksiyon hata firlatmaz; deploy/runtime warm-up icin cagirilir.
+    Ilk kullanici mesajinin model yukleme maliyetini yememesini hedefler.
+    """
+    try:
+        _get_model(local_files_only=True)
+        _get_collection()
+        _get_cross_encoder(local_files_only=True)
+    except Exception:
+        # Warm-up optimizasyon; basarisizlik uygulamayi durdurmamali.
+        return
 
 
 @netmera_tool

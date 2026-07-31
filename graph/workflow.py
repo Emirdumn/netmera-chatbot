@@ -14,6 +14,7 @@ from config.settings import CHECKPOINT_DB_PATH
 from graph.nodes import (
     clarify_node,
     contact_form_node,
+    domain_guard_node,
     escalation_node,
     general_node,
     human_wait_node,
@@ -45,6 +46,10 @@ def _route_after_orchestrator(state):
     return TARGET_AGENT_TO_NODE.get(state.get("intent"), "general_node")
 
 
+def _route_after_domain_guard(state):
+    return END if state.get("domain_guard_handled") else "memory_node"
+
+
 def _should_escalate(state):
     return "escalation_node" if state.get("escalate") else END
 
@@ -60,6 +65,7 @@ def _default_checkpointer():
 
 def build_graph(checkpointer=None):
     graph = StateGraph(HelpdeskState)
+    graph.add_node("domain_guard_node", domain_guard_node)
     graph.add_node("memory_node", memory_node)
     graph.add_node("orchestrator_node", orchestrator_node)
     graph.add_node("clarify_node", clarify_node)
@@ -71,7 +77,12 @@ def build_graph(checkpointer=None):
     graph.add_node("contact_form_node", contact_form_node)
     graph.add_node("human_wait_node", human_wait_node)
 
-    graph.add_edge(START, "memory_node")
+    graph.add_edge(START, "domain_guard_node")
+    graph.add_conditional_edges(
+        "domain_guard_node",
+        _route_after_domain_guard,
+        {"memory_node": "memory_node", END: END},
+    )
     graph.add_edge("memory_node", "orchestrator_node")
     graph.add_conditional_edges(
         "orchestrator_node",
