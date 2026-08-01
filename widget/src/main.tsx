@@ -28,10 +28,10 @@ function DevRoot() {
           zIndex: 2147483040,
           padding: "8px 14px",
           borderRadius: 999,
-          border: "1px solid #5d1049",
-          background: live ? "#5d1049" : "#fff",
-          color: live ? "#fff" : "#5d1049",
-          font: '600 13px system-ui, sans-serif',
+          border: "1px solid #3b3663",
+          background: live ? "#3b3663" : "#fff",
+          color: live ? "#fff" : "#3b3663",
+          font: '600 13px Rubik, system-ui, sans-serif',
           cursor: "pointer",
         }}
       >
@@ -39,11 +39,11 @@ function DevRoot() {
       </button>
 
       {live ? (
-        <div style={{ padding: 40, font: "400 15px/22px system-ui, sans-serif" }}>
-          <h1 style={{ font: "600 20px/26px system-ui, sans-serif" }}>
+        <div style={{ padding: 40, font: "400 15px/22px Rubik, system-ui, sans-serif" }}>
+          <h1 style={{ font: "600 20px/26px Rubik, system-ui, sans-serif" }}>
             Canlı mod — mock transport
           </h1>
-          <p style={{ color: "#6c6f74", maxWidth: "60ch" }}>
+          <p style={{ color: "#696687", maxWidth: "60ch" }}>
             Gerçek <code>WidgetApp</code> + <code>useWidget</code> çalışıyor; ağ yerine
             <code> mockTransport</code> var. Mesaj yazıp gönderin. "temsilci" kelimesini
             içeren bir mesaj devir akışını (iletişim formu → bot ile devam et) tetikler.

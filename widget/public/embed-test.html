@@ -4,74 +4,88 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
-    <title>Netmera Yardım Merkezi — Widget Gömme Demosu</title>
+    <title>Netmera — Widget Gömme Demosu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!--
-      GOMME DEMOSU — gercek bir musteri sitesi DEGIL, ic sunum icin ornek sayfa.
+      GOMME DEMOSU — netmera.com Elementor kit renk/font tokenlariyla
+      hazirlanmis ornek sayfa. Amac: destek widget'inin markali bir host
+      sayfada nasil durdugunu gostermek.
 
-      Amaci tek bir seyi gostermek: destek widget'i, hakkinda hicbir sey
-      bilmedigi bir sayfaya <body> sonundaki TEK satirla oturuyor. Sayfanin
-      kendi HTML/CSS'i widget'tan tamamen bagimsiz; widget calisma aninda
-      kendi kokunu (#netmera-widget-root) ekliyor.
-
-      Stiller bilerek `.site-*` siniflarina baglandi. Gercek bir sitede `button`
-      gibi ciplak eleman secicileri de bulunur; widget'in `:where()` tabanli
-      reset'i (styles/tokens.css) tam olarak bunu ustlenmek icin var. Demoyu
-      bozma riskini burada almiyoruz.
+      Kit kaynaklari:
+        brand #3B3663 · highlight #6254e7 · primary #6EC1E4
+        accent #61CE70 · body #696687 · font Rubik · max-width 1190px
     -->
     <style>
       :root {
-        --brand: #5d1049;
-        --brand-soft: #f4eef2;
-        --text: #14161a;
-        --text-muted: #6c6f74;
-        --border: #e5e5e5;
+        --brand: #3b3663;
+        --brand-soft: #eeedf5;
+        --highlight: #6254e7;
+        --primary: #6ec1e4;
+        --accent: #61ce70;
+        --text: #3b3663;
+        --text-muted: #696687;
+        --border: #e8e7ef;
         --surface: #ffffff;
-        --surface-alt: #fafafa;
+        --surface-alt: #f7f7fb;
+        --shell: 1190px;
+      }
+
+      * {
+        box-sizing: border-box;
       }
 
       body {
         margin: 0;
         background: var(--surface);
-        color: var(--text);
-        font: 400 16px/1.6 system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text-muted);
+        font: 400 18px/27px Rubik, system-ui, sans-serif;
         -webkit-font-smoothing: antialiased;
       }
 
-      .site-shell {
-        max-width: 1120px;
-        margin: 0 auto;
-        padding: 0 24px;
+      ::selection {
+        background: var(--highlight);
+        color: #fff;
       }
 
-      /* ── Demo rozeti ─────────────────────────────────────────── */
+      .site-shell {
+        max-width: var(--shell);
+        margin: 0 auto;
+        padding: 0 50px;
+      }
+
       .site-demo-note {
         background: var(--brand-soft);
         border-bottom: 1px solid var(--border);
-        font-size: 13.5px;
-        color: #5b4152;
+        font-size: 14px;
+        color: var(--text);
       }
       .site-demo-note .site-shell {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
         padding-top: 10px;
         padding-bottom: 10px;
       }
       .site-demo-badge {
-        background: var(--brand);
+        background: var(--highlight);
         color: #fff;
-        font: 700 11px/16px system-ui, sans-serif;
+        font: 700 11px/16px Rubik, sans-serif;
         letter-spacing: 0.06em;
-        padding: 2px 8px;
+        padding: 3px 9px;
         border-radius: 999px;
         flex: none;
       }
 
-      /* ── Ust bar ─────────────────────────────────────────────── */
       .site-topbar {
-        border-bottom: 1px solid var(--border);
-        background: var(--surface);
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid transparent;
         position: sticky;
         top: 0;
         z-index: 10;
@@ -80,188 +94,291 @@
         display: flex;
         align-items: center;
         gap: 32px;
-        height: 64px;
+        height: 72px;
       }
       .site-logo {
         display: flex;
         align-items: center;
         gap: 10px;
         font-weight: 700;
-        font-size: 19px;
+        font-size: 22px;
         letter-spacing: -0.02em;
         color: var(--brand);
         text-decoration: none;
       }
       .site-logo-mark {
-        width: 28px;
-        height: 28px;
-        border-radius: 8px;
-        background: var(--brand);
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--brand), var(--highlight));
         color: #fff;
         display: grid;
         place-items: center;
-        font-size: 15px;
+        font-size: 16px;
         font-weight: 700;
+        box-shadow: 0 8px 20px rgba(98, 84, 231, 0.28);
       }
       .site-nav {
         display: flex;
-        gap: 26px;
+        gap: 28px;
         font-size: 15px;
         margin-left: auto;
       }
       .site-nav a {
         color: var(--text-muted);
         text-decoration: none;
+        font-weight: 500;
+        transition: color 180ms ease;
       }
-      .site-nav a:hover {
+      .site-nav a:hover,
+      .site-nav a.is-active {
         color: var(--brand);
       }
-      .site-nav a.is-active {
-        color: var(--text);
+      .site-cta-nav {
+        margin-left: 8px;
+        background: var(--brand);
+        color: #fff !important;
+        padding: 10px 18px;
+        border-radius: 999px;
         font-weight: 600;
+        transition: background 180ms ease, transform 180ms ease;
+      }
+      .site-cta-nav:hover {
+        background: var(--highlight) !important;
+        transform: translateY(-1px);
       }
 
-      /* ── Kahraman alani ──────────────────────────────────────── */
       .site-hero {
-        padding: 56px 0 40px;
-        border-bottom: 1px solid var(--border);
-        background: linear-gradient(180deg, var(--surface-alt), var(--surface));
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+        background:
+          radial-gradient(ellipse 70% 80% at 85% 20%, rgba(110, 193, 228, 0.35), transparent 55%),
+          radial-gradient(ellipse 50% 60% at 10% 90%, rgba(98, 84, 231, 0.45), transparent 50%),
+          linear-gradient(145deg, #2a254f 0%, #3b3663 45%, #4a3f8a 100%);
+        border-radius: 0 0 30px 30px;
+        padding: 72px 0 88px;
+      }
+      .site-hero::after {
+        content: "";
+        position: absolute;
+        inset: auto -10% -40% 40%;
+        height: 280px;
+        background: radial-gradient(circle, rgba(110, 193, 228, 0.25), transparent 65%);
+        pointer-events: none;
+        animation: site-glow 8s ease-in-out infinite alternate;
+      }
+      @keyframes site-glow {
+        from { transform: translateX(0); opacity: 0.7; }
+        to { transform: translateX(-40px); opacity: 1; }
+      }
+      .site-hero .site-shell {
+        position: relative;
+        z-index: 1;
+      }
+      .site-hero-brand {
+        margin: 0 0 18px;
+        font: 700 14px/1 Rubik, sans-serif;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--primary);
       }
       .site-hero h1 {
-        margin: 0 0 12px;
-        font-size: 38px;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
+        margin: 0 0 18px;
+        max-width: 720px;
+        font: 700 48px/1.15 Rubik, sans-serif;
+        letter-spacing: -0.03em;
+        color: #fff;
       }
       .site-hero p {
-        margin: 0;
-        max-width: 620px;
-        color: var(--text-muted);
-        font-size: 17px;
+        margin: 0 0 28px;
+        max-width: 560px;
+        font: 400 18px/1.55 Rubik, sans-serif;
+        color: rgba(255, 255, 255, 0.82);
+      }
+      .site-hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .site-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 14px 22px;
+        font: 600 15px/1 Rubik, sans-serif;
+        text-decoration: none;
+        transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      }
+      .site-btn:hover {
+        transform: translateY(-1px);
+      }
+      .site-btn-primary {
+        background: #fff;
+        color: var(--brand);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+      .site-btn-primary:hover {
+        background: var(--primary);
+        color: #163247;
+      }
+      .site-btn-ghost {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.28);
       }
 
-      /* ── Icerik + kenar cubugu ───────────────────────────────── */
-      .site-layout {
-        display: grid;
-        grid-template-columns: 220px minmax(0, 1fr);
-        gap: 56px;
-        padding: 44px 0 88px;
+      .site-strip {
+        padding: 56px 0 24px;
       }
-      .site-sidebar h2 {
-        font-size: 12px;
+      .site-strip h2 {
+        margin: 0 0 10px;
+        font: 700 28px/1.25 Rubik, sans-serif;
+        color: var(--brand);
+        letter-spacing: -0.02em;
+      }
+      .site-strip > .site-shell > p {
+        margin: 0 0 28px;
+        max-width: 640px;
+      }
+
+      .site-features {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+        padding-bottom: 72px;
+      }
+      .site-feature {
+        padding: 8px 4px 0;
+      }
+      .site-feature-kicker {
+        display: inline-block;
+        margin-bottom: 10px;
+        font: 600 12px/1 Rubik, sans-serif;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: var(--text-muted);
-        margin: 0 0 12px;
+        color: var(--highlight);
       }
-      .site-sidebar ul {
-        list-style: none;
-        margin: 0 0 28px;
-        padding: 0;
-        font-size: 15px;
-      }
-      .site-sidebar li {
-        padding: 5px 0;
-      }
-      .site-sidebar a {
-        color: var(--text-muted);
-        text-decoration: none;
-      }
-      .site-sidebar a:hover {
+      .site-feature h3 {
+        margin: 0 0 8px;
+        font: 600 18px/1.3 Rubik, sans-serif;
         color: var(--brand);
       }
-      .site-sidebar a.is-active {
-        color: var(--brand);
-        font-weight: 600;
-      }
-
-      .site-article h2 {
-        font-size: 24px;
-        letter-spacing: -0.01em;
-        margin: 36px 0 12px;
-      }
-      .site-article h2:first-child {
-        margin-top: 0;
-      }
-      .site-article h3 {
-        font-size: 18px;
-        margin: 28px 0 8px;
-      }
-      .site-article p {
-        margin: 0 0 16px;
-        color: #33363b;
-      }
-      .site-article ol {
-        margin: 0 0 16px;
-        padding-left: 22px;
-        color: #33363b;
-      }
-      .site-article li {
-        margin-bottom: 6px;
-      }
-      .site-article code {
-        background: var(--surface-alt);
-        border: 1px solid var(--border);
-        border-radius: 5px;
-        padding: 1px 5px;
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        font-size: 13.5px;
-      }
-      .site-callout {
-        border-left: 3px solid var(--brand);
-        background: var(--brand-soft);
-        border-radius: 0 8px 8px 0;
-        padding: 14px 18px;
-        margin: 0 0 20px;
-        font-size: 15px;
-      }
-      .site-callout strong {
-        color: var(--brand);
-      }
-
-      .site-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 16px;
-        margin: 8px 0 32px;
-      }
-      .site-card {
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 18px;
-        box-shadow: 0 4px 28px rgba(9, 14, 21, 0.04);
-      }
-      .site-card h3 {
-        margin: 0 0 6px;
-        font-size: 15px;
-      }
-      .site-card p {
+      .site-feature p {
         margin: 0;
-        font-size: 14px;
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      .site-help {
+        background: var(--surface-alt);
+        border-radius: 30px 30px 0 0;
+        padding: 56px 0 40px;
+      }
+      .site-help-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 48px;
+        align-items: center;
+      }
+      .site-help h2 {
+        margin: 0 0 12px;
+        font: 700 30px/1.2 Rubik, sans-serif;
+        color: var(--brand);
+        letter-spacing: -0.02em;
+      }
+      .site-help p {
+        margin: 0 0 18px;
+        max-width: 460px;
+      }
+      .site-help-hint {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 16px;
+        border-radius: 14px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--brand);
+        font: 500 14px/1.4 Rubik, sans-serif;
+        box-shadow: 0 8px 24px rgba(59, 54, 99, 0.06);
+        animation: site-hint 2.4s ease-in-out infinite;
+      }
+      @keyframes site-hint {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
+      }
+      .site-help-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 6px rgba(97, 206, 112, 0.18);
+      }
+      .site-help-panel {
+        min-height: 220px;
+        border-radius: 24px;
+        background:
+          linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(238, 237, 245, 0.95)),
+          linear-gradient(135deg, var(--brand-soft), #fff);
+        border: 1px solid var(--border);
+        padding: 28px;
+        box-shadow: 0 18px 50px rgba(59, 54, 99, 0.08);
+      }
+      .site-help-panel h3 {
+        margin: 0 0 10px;
+        font: 600 18px/1.3 Rubik, sans-serif;
+        color: var(--brand);
+      }
+      .site-help-panel ul {
+        margin: 0;
+        padding-left: 18px;
         color: var(--text-muted);
+      }
+      .site-help-panel li {
+        margin-bottom: 8px;
       }
 
       .site-footer {
         border-top: 1px solid var(--border);
-        background: var(--surface-alt);
+        background: var(--surface);
         color: var(--text-muted);
         font-size: 14px;
       }
       .site-footer .site-shell {
         padding-top: 28px;
-        padding-bottom: 96px; /* widget balonu metnin ustune binmesin */
+        padding-bottom: 110px;
       }
 
-      @media (max-width: 860px) {
-        .site-layout {
-          grid-template-columns: 1fr;
-          gap: 32px;
+      @media (max-width: 900px) {
+        .site-shell {
+          padding: 0 24px;
         }
-        .site-nav {
+        .site-nav a:not(.site-cta-nav) {
           display: none;
         }
+        .site-hero {
+          padding: 56px 0 64px;
+          border-radius: 0 0 24px 24px;
+        }
         .site-hero h1 {
-          font-size: 30px;
+          font-size: 34px;
+        }
+        .site-features,
+        .site-help-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .site-hero::after,
+        .site-help-hint,
+        .site-btn,
+        .site-nav a {
+          animation: none !important;
+          transition: none !important;
         }
       }
     </style>
@@ -272,9 +389,8 @@
       <div class="site-shell">
         <span class="site-demo-badge">DEMO</span>
         <span>
-          Bu sayfa destek widget'ini denemek için hazırlanmış örnek bir
-          dokümantasyon sayfasıdır. Sağ alttaki baloncuğa tıklayıp soru
-          sorabilirsiniz.
+          netmera.com marka token’larıyla hazırlanmış gömme demosu.
+          Sağ alttaki destek baloncuğundan soru sorabilirsiniz.
         </span>
       </div>
     </div>
@@ -286,129 +402,86 @@
           Netmera
         </a>
         <nav class="site-nav">
-          <a href="#" class="is-active">Yardım Merkezi</a>
-          <a href="#">Geliştirici Dokümanları</a>
-          <a href="#">API</a>
-          <a href="#">Sürüm Notları</a>
+          <a href="#">Products</a>
+          <a href="#">Channels</a>
+          <a href="#">Industries</a>
+          <a href="#" class="is-active">Resources</a>
+          <a class="site-cta-nav" href="#">Talk to sales</a>
         </nav>
       </div>
     </header>
 
     <section class="site-hero">
       <div class="site-shell">
-        <h1>Push bildirim kampanyası oluşturma</h1>
+        <p class="site-hero-brand">Netmera</p>
+        <h1>Reach every customer with AI that never slows down</h1>
         <p>
-          Hedef kitlenizi segmentlere ayırarak doğru kullanıcıya doğru zamanda
-          bildirim gönderin. Bu rehber, panelden ilk kampanyanızı uçtan uca
-          oluşturmayı anlatır.
+          Unified data, automated journeys, and real-time analytics — so
+          marketing, CX, and product teams personalize every interaction.
         </p>
+        <div class="site-hero-actions">
+          <a class="site-btn site-btn-primary" href="#">Explore the platform</a>
+          <a class="site-btn site-btn-ghost" href="#help">Ask the support assistant</a>
+        </div>
       </div>
     </section>
 
-    <div class="site-shell site-layout">
-      <aside class="site-sidebar">
-        <h2>Başlarken</h2>
-        <ul>
-          <li><a href="#">Panele giriş</a></li>
-          <li><a href="#">SDK entegrasyonu</a></li>
-          <li><a href="#">Kullanıcı eşleştirme</a></li>
-        </ul>
-
-        <h2>Kampanyalar</h2>
-        <ul>
-          <li><a href="#" class="is-active">Push bildirim</a></li>
-          <li><a href="#">E-posta</a></li>
-          <li><a href="#">SMS</a></li>
-          <li><a href="#">Uygulama içi mesaj</a></li>
-          <li><a href="#">Otomasyon akışları</a></li>
-        </ul>
-
-        <h2>Hedefleme</h2>
-        <ul>
-          <li><a href="#">Segmentler</a></li>
-          <li><a href="#">Profil özellikleri</a></li>
-          <li><a href="#">Coğrafi hedefleme</a></li>
-        </ul>
-      </aside>
-
-      <article class="site-article">
-        <h2>Genel bakış</h2>
+    <section class="site-strip">
+      <div class="site-shell">
+        <h2>Everything your team needs for engagement</h2>
         <p>
-          Push bildirim kampanyaları, uygulamanızı yüklemiş kullanıcılara
-          doğrudan cihazlarına mesaj ulaştırmanızı sağlar. Kampanyayı
-          oluşturmadan önce SDK entegrasyonunun tamamlandığından ve test
-          cihazınızın panelde göründüğünden emin olun.
+          Customer data comes in, decisions happen, campaigns run — through
+          the core capabilities teams use every day.
         </p>
-
-        <div class="site-callout">
-          <strong>Ön koşul:</strong> Kampanya gönderebilmek için iOS tarafında
-          APNs sertifikanızın, Android tarafında ise FCM anahtarınızın panele
-          tanımlı olması gerekir.
-        </div>
-
-        <h2>Adımlar</h2>
-        <ol>
-          <li>
-            Panelde <code>Kampanyalar → Yeni Kampanya</code> menüsünden
-            <strong>Push Bildirim</strong> seçeneğini seçin.
-          </li>
-          <li>
-            Kampanyaya, takım arkadaşlarınızın da tanıyacağı bir isim verin.
-            Bu isim son kullanıcıya gösterilmez.
-          </li>
-          <li>
-            <strong>Hedef Kitle</strong> adımında hazır bir segment seçin veya
-            profil özelliklerine göre yeni bir segment tanımlayın.
-          </li>
-          <li>
-            <strong>İçerik</strong> adımında başlık ve mesaj metnini yazın.
-            Kişiselleştirme için <code>@{firstName}</code> gibi etiketler
-            kullanabilirsiniz.
-          </li>
-          <li>
-            <strong>Zamanlama</strong> adımında hemen gönderim, ileri tarihli
-            gönderim veya kullanıcının yerel saatine göre gönderim seçin.
-          </li>
-          <li>
-            Önizlemeyi kontrol edip <strong>Yayınla</strong> deyin.
-          </li>
-        </ol>
-
-        <h3>Gönderim öncesi test</h3>
-        <p>
-          Kampanyayı yayınlamadan önce test cihazlarınıza gönderim yapmanızı
-          öneririz. Test gönderimleri istatistiklere dahil edilmez ve
-          kotanızdan düşmez.
-        </p>
-
-        <h2>İlgili konular</h2>
-        <div class="site-cards">
-          <div class="site-card">
-            <h3>Segment oluşturma</h3>
-            <p>Davranış ve profil verisine göre kullanıcı grupları tanımlayın.</p>
+        <div class="site-features">
+          <div class="site-feature">
+            <span class="site-feature-kicker">Data</span>
+            <h3>Unified customer profiles</h3>
+            <p>Collect from apps, web, CRM, and backends into one actionable profile.</p>
           </div>
-          <div class="site-card">
-            <h3>Teslimat raporları</h3>
-            <p>Gönderim, açılma ve dönüşüm oranlarını kampanya bazında izleyin.</p>
+          <div class="site-feature">
+            <span class="site-feature-kicker">Journeys</span>
+            <h3>Automated cross-channel flows</h3>
+            <p>Branch and adapt campaigns in real time across push, email, SMS, and more.</p>
           </div>
-          <div class="site-card">
-            <h3>Sessiz saatler</h3>
-            <p>Kullanıcıları belirli saat aralıklarında rahatsız etmeyin.</p>
+          <div class="site-feature">
+            <span class="site-feature-kicker">AI</span>
+            <h3>Predict, create, and act</h3>
+            <p>Spot churn risk, generate creatives, and recommend the next best step.</p>
           </div>
         </div>
+      </div>
+    </section>
 
-        <h2>Aradığınızı bulamadınız mı?</h2>
-        <p>
-          Sağ alttaki destek baloncuğundan sorunuzu yazabilirsiniz. Asistan
-          önce dokümantasyondan yanıt vermeyi dener; çözemezse talebinizi
-          ilgili ekibe aktarır.
-        </p>
-      </article>
-    </div>
+    <section class="site-help" id="help">
+      <div class="site-shell site-help-grid">
+        <div>
+          <h2>Need help with Netmera?</h2>
+          <p>
+            The support widget in the corner answers from User Guide, Developer
+            Guide, and website content. If it cannot resolve the issue, it
+            routes you to the right team.
+          </p>
+          <div class="site-help-hint">
+            <span class="site-help-dot" aria-hidden="true"></span>
+            Try asking: “Push kampanyası nasıl oluşturulur?”
+          </div>
+        </div>
+        <div class="site-help-panel">
+          <h3>Good first questions</h3>
+          <ul>
+            <li>iOS SDK entegrasyonu nasıl yapılır?</li>
+            <li>Segment nasıl oluşturulur?</li>
+            <li>Netmera hangi kanalları destekliyor?</li>
+            <li>Bir temsilciye bağlanmak istiyorum</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
     <footer class="site-footer">
       <div class="site-shell">
-        © Netmera — Yardım Merkezi widget gömme demosu.
+        © Netmera — widget embed demo (Elementor kit tokens).
       </div>
     </footer>
 
