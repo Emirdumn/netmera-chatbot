@@ -113,7 +113,11 @@ FAZ 9-11 SONRASI (bu repo, tests/demo_scenarios.py ile regresyon testli):
   (tool/kaynak/orkestratör/akış meta verisiyle), devirler, personel,
   müşteri notları; iki Streamlit süreci arasında WAL modunda paylaşılır.
 - **LLM:** `llm/client.py` tek giriş noktası. `.env`'deki `LLM_PROVIDER` ile
-  Gemini veya OpenRouter (OpenAI-uyumlu) arasında seçim yapılır (aşağıya bakın).
+  Gemini veya OpenRouter (OpenAI-uyumlu) arasında seçim yapılır. Çağrılar
+  `tier=control|worker|brain` ile ayrılır; model isimleri
+  `LLM_CONTROL_MODEL` / `LLM_WORKER_MODEL` / `LLM_BRAIN_MODEL` (boşsa
+  provider varsayılanı). Her çağrı `🧠 LLM_CALL tier=… model=… call_site=…
+  latency_ms=…` olarak loglanır.
 
 ## Kurulum
 

@@ -2,7 +2,7 @@
 availability_tool ile musait personel arar, handoff_tool veya ticket_tool
 cagirir."""
 from agents.base import BaseAgent
-from llm.client import extract_text
+from llm.client import extract_text, get_llm
 
 SUMMARY_PROMPT = """Asagidaki musteri sohbetini 2-3 cumleyle ozetle. Musterinin
 ne istedigini ve botun nereye kadar yardimci olabildigini belirt.
@@ -27,7 +27,11 @@ class EscalationAgent(BaseAgent):
     def _summarize(self, transcript):
         if not transcript:
             return ""
-        return extract_text(self.llm.invoke(SUMMARY_PROMPT.format(transcript=transcript)))
+        # WORKER — ozet uretimi; call_site net olsun diye acikca alinir.
+        llm = get_llm(
+            temperature=0.2, tier="worker", call_site="escalation_agent.summarize",
+        )
+        return extract_text(llm.invoke(SUMMARY_PROMPT.format(transcript=transcript)))
 
     def _transcript(self, state):
         lines = []

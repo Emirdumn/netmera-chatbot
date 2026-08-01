@@ -89,7 +89,11 @@ class Orchestrator:
     name = "orchestrator"
 
     def __init__(self):
-        self.structured_llm = get_llm(temperature=0).with_structured_output(OrchestratorDecision)
+        # BRAIN degil CONTROL — pahali model yalnizca dusuk-guven escalate
+        # kurali eklendiginde (ayri adim) cagrilacak.
+        self.structured_llm = get_llm(
+            temperature=0, tier="control", call_site="orchestrator.decide",
+        ).with_structured_output(OrchestratorDecision)
 
     def decide(self, state) -> OrchestratorDecision:
         history = _format_history(state.get("messages", []))

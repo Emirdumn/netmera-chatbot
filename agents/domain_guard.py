@@ -229,12 +229,16 @@ def _cache_allowed(question: str) -> bool:
 
 
 def _decide_domain(state, question: str) -> DomainDecision:
-    llm = get_llm(temperature=0).with_structured_output(DomainDecision)
+    llm = get_llm(
+        temperature=0, tier="control", call_site="domain_guard.decide_domain",
+    ).with_structured_output(DomainDecision)
     return llm.invoke(DOMAIN_PROMPT.format(history=_format_history(state), question=question))
 
 
 def _answer_from_context(question: str, chunks: list[dict]) -> GroundedAnswer:
-    llm = get_llm(temperature=0.1).with_structured_output(GroundedAnswer)
+    llm = get_llm(
+        temperature=0.1, tier="worker", call_site="domain_guard.answer_from_context",
+    ).with_structured_output(GroundedAnswer)
     return llm.invoke(ANSWER_PROMPT.format(context=_context_from_chunks(chunks), question=question))
 
 

@@ -11,6 +11,7 @@ durum ayirt edilir:
 from pydantic import BaseModel
 
 from agents.base import BaseAgent
+from llm.client import get_llm
 from tools.glossary_tool import glossary_search
 
 SYSTEM_PROMPT = """Sen Netmera (omnichannel musteri etkilesim platformu) hakkinda
@@ -41,7 +42,10 @@ class GeneralAgent(BaseAgent):
     system_prompt = SYSTEM_PROMPT
 
     def _is_on_topic(self, question):
-        structured_llm = self.llm.with_structured_output(_TopicRelevance)
+        # CONTROL — domain_guard ile ayni sinif is; birlestirme ayri adim.
+        structured_llm = get_llm(
+            temperature=0, tier="control", call_site="general_agent.is_on_topic",
+        ).with_structured_output(_TopicRelevance)
         result = structured_llm.invoke(
             "Bu soru Netmera (bir musteri etkilesim/pazarlama platformu) "
             "sirketi/urunu ile ilgili mi, yoksa hava durumu, spor, genel "
