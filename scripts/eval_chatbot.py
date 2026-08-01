@@ -31,6 +31,14 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+# .env varsa yukle (canli eval icin API key)
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv(ROOT / ".env")
+except Exception:
+    pass
+
 # settings import'undan once zorunlu env (import-time _required_env)
 os.environ.setdefault(
     "STAFF_DEMO_PASSWORD",
@@ -258,7 +266,13 @@ def evaluate_case(case: dict) -> CaseResult:
     return result
 
 
-def write_reports(results: list[CaseResult], out_dir: Path, stamp: str) -> tuple[Path, Path]:
+def write_reports(
+    results: list[CaseResult],
+    out_dir: Path,
+    stamp: str,
+    *,
+    dry_run: bool = False,
+) -> tuple[Path, Path]:
     out_dir.mkdir(parents=True, exist_ok=True)
     json_path = out_dir / f"eval-{stamp}.json"
     md_path = out_dir / f"eval-{stamp}.md"
@@ -280,6 +294,7 @@ def write_reports(results: list[CaseResult], out_dir: Path, stamp: str) -> tuple
 
     summary = {
         "stamp": stamp,
+        "dry_run": dry_run,
         "total": len(results),
         "passed": passed,
         "failed": len(results) - passed,
@@ -303,50 +318,71 @@ def write_reports(results: list[CaseResult], out_dir: Path, stamp: str) -> tuple
     lines = [
         f"# Chatbot Eval — {stamp}",
         "",
-        "## Özet",
-        "",
-        f"- Toplam: **{summary['total']}** | Geçen: **{summary['passed']}** | Kalan: **{summary['failed']}**",
-        f"- p50 latency: **{summary['p50_latency_ms']} ms**",
-        f"- p95 latency: **{summary['p95_latency_ms']} ms**",
-        f"- Ortalama latency: **{summary['avg_latency_ms']} ms**",
-        f"- Ortalama LLM çağrısı: **{summary['avg_llm_calls']}**",
-        f"- BRAIN çağrılan case: **{summary['brain_cases']}**",
-        f"- RAG sources≥1: **{summary['rag_with_sources']}**",
-        f"- Off-topic handoff yok: **{summary['off_topic_no_handoff']}**",
-        f"- Açık temsilci → contact form: **{summary['explicit_handoff_contact_form']}**",
-        f"- Doküman sorusunda BRAIN=0: **{summary['doc_questions_without_brain']}**",
-        "",
-        "## Başarı kriterleri",
-        "",
-        "| Kriter | Sonuç |",
-        "|---|---|",
-        f"| RAG sources ≥ 1 | {summary['rag_with_sources']} |",
-        f"| Off-topic handoff yok | {summary['off_topic_no_handoff']} |",
-        f"| Temsilci isteğinde contact form | {summary['explicit_handoff_contact_form']} |",
-        f"| Normal dokümanda BRAIN=0 | {summary['doc_questions_without_brain']} |",
-        "",
-        "## Case detayları",
-        "",
-        "| id | cat | ms | llm | brain | sources | agent | pass |",
-        "|---|---|---:|---:|:---:|---:|---|:---:|",
     ]
-    for r in results:
-        lines.append(
-            f"| {r.id} | {r.category} | {r.elapsed_ms:.0f} | {r.llm_call_count} | "
-            f"{'Y' if r.brain_called else ''} | {r.sources_count} | "
-            f"{r.agent_name or '-'} | {'✓' if r.passed else '✗'} |"
-        )
+    if dry_run:
+        lines += [
+            "> **Dry-run:** suite doğrulandı; LLM çağrılmadı. "
+            "Latency / sources / handoff / BRAIN metrikleri ölçülmedi.",
+            "",
+            "## Suite",
+            "",
+            f"- Toplam soru: **{summary['total']}** (kategori dağılımı geçerli)",
+            "- Canlı metrikler için API key ile `scripts/eval_chatbot.py` çalıştırın.",
+            "",
+            "## Case listesi",
+            "",
+            "| id | cat | question |",
+            "|---|---|---|",
+        ]
+        for r in results:
+            q = r.question.replace("|", "\\|")
+            lines.append(f"| {r.id} | {r.category} | {q} |")
+    else:
+        lines += [
+            "## Özet",
+            "",
+            f"- Toplam: **{summary['total']}** | Geçen: **{summary['passed']}** | Kalan: **{summary['failed']}**",
+            f"- p50 latency: **{summary['p50_latency_ms']} ms**",
+            f"- p95 latency: **{summary['p95_latency_ms']} ms**",
+            f"- Ortalama latency: **{summary['avg_latency_ms']} ms**",
+            f"- Ortalama LLM çağrısı: **{summary['avg_llm_calls']}**",
+            f"- BRAIN çağrılan case: **{summary['brain_cases']}**",
+            f"- RAG sources≥1: **{summary['rag_with_sources']}**",
+            f"- Off-topic handoff yok: **{summary['off_topic_no_handoff']}**",
+            f"- Açık temsilci → contact form: **{summary['explicit_handoff_contact_form']}**",
+            f"- Doküman sorusunda BRAIN=0: **{summary['doc_questions_without_brain']}**",
+            "",
+            "## Başarı kriterleri",
+            "",
+            "| Kriter | Sonuç |",
+            "|---|---|",
+            f"| RAG sources ≥ 1 | {summary['rag_with_sources']} |",
+            f"| Off-topic handoff yok | {summary['off_topic_no_handoff']} |",
+            f"| Temsilci isteğinde contact form | {summary['explicit_handoff_contact_form']} |",
+            f"| Normal dokümanda BRAIN=0 | {summary['doc_questions_without_brain']} |",
+            "",
+            "## Case detayları",
+            "",
+            "| id | cat | ms | llm | brain | sources | agent | pass |",
+            "|---|---|---:|---:|:---:|---:|---|:---:|",
+        ]
+        for r in results:
+            lines.append(
+                f"| {r.id} | {r.category} | {r.elapsed_ms:.0f} | {r.llm_call_count} | "
+                f"{'Y' if r.brain_called else ''} | {r.sources_count} | "
+                f"{r.agent_name or '-'} | {'✓' if r.passed else '✗'} |"
+            )
 
-    fails = [r for r in results if not r.passed]
-    if fails:
-        lines += ["", "## Başarısız case'ler", ""]
-        for r in fails:
-            lines.append(f"### {r.id} — {r.question}")
-            lines.append(f"- checks: `{r.checks}`")
-            if r.error:
-                lines.append(f"- error: `{r.error}`")
-            lines.append(f"- preview: {r.answer_preview[:180]}")
-            lines.append("")
+        fails = [r for r in results if not r.passed]
+        if fails:
+            lines += ["", "## Başarısız case'ler", ""]
+            for r in fails:
+                lines.append(f"### {r.id} — {r.question}")
+                lines.append(f"- checks: `{r.checks}`")
+                if r.error:
+                    lines.append(f"- error: `{r.error}`")
+                lines.append(f"- preview: {r.answer_preview[:180]}")
+                lines.append("")
 
     md_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     return json_path, md_path
@@ -383,14 +419,21 @@ def main() -> int:
             )
             for c in EVAL_CASES
         ]
-        json_path, md_path = write_reports(results, out_dir, stamp + "-dry")
+        json_path, md_path = write_reports(
+            results, out_dir, stamp + "-dry", dry_run=True
+        )
         print(f"Dry-run raporlari:\n  {json_path}\n  {md_path}")
         return 0
 
     provider = os.environ.get("LLM_PROVIDER", "openrouter")
-    if provider == "openrouter" and not os.environ.get("OPENROUTER_API_KEY"):
-        print("OPENROUTER_API_KEY yok — once .env doldurun veya --dry-run kullanin.")
-        return 2
+    key = os.environ.get("OPENROUTER_API_KEY", "").strip()
+    if provider == "openrouter":
+        if not key or key.startswith("sk-test") or key in {"changeme", "dummy", "test"}:
+            print(
+                "Gecerli OPENROUTER_API_KEY yok — .env'e gercek key koyun "
+                "veya --dry-run kullanin."
+            )
+            return 2
     if provider == "gemini" and not os.environ.get("GEMINI_API_KEY"):
         print("GEMINI_API_KEY yok — once .env doldurun veya --dry-run kullanin.")
         return 2
@@ -409,7 +452,7 @@ def main() -> int:
         )
         results.append(result)
 
-    json_path, md_path = write_reports(results, out_dir, stamp)
+    json_path, md_path = write_reports(results, out_dir, stamp, dry_run=False)
     print(f"\nRaporlar:\n  {json_path}\n  {md_path}")
     failed = sum(1 for r in results if not r.passed)
     return 1 if failed else 0
