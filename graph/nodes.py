@@ -4,7 +4,12 @@ from langgraph.types import interrupt
 from agents.domain_guard import try_fast_rag_answer
 from agents.escalation_agent import EscalationAgent
 from agents.general_agent import GeneralAgent
-from agents.memory_agent import CASE_FIELDS, PROFILE_FIELDS, MemoryAgent
+from agents.memory_agent import (
+    CASE_FIELDS,
+    PROFILE_FIELDS,
+    MemoryAgent,
+    should_run_memory_extract,
+)
 from agents.orchestrator import Orchestrator
 from agents.sales_agent import SalesAgent
 from agents.support_agent import SupportAgent
@@ -68,12 +73,17 @@ def domain_guard_node(state):
 
 
 def memory_node(state):
-    """FAZ 9 — her turda calisir: son mesajdan yapisal bilgi cikarir,
-    customer_profile/case_notes'a merge eder, session_notes'a yazar (personel
-    devraldiginda sifirdan baslamasin diye)."""
-    facts = _memory.extract(
-        _extract_last_user_text(state), state.get("pending_question", ""),
-    ).model_dump()
+    """FAZ 9 — yapisal bilgi cikarir; saf dokuman sorularinda LLM'i atlar.
+
+    pending_question veya slot/devir sinyali varken ASLA skip edilmez.
+    """
+    user_text = _extract_last_user_text(state)
+    pending = state.get("pending_question", "") or ""
+
+    if not should_run_memory_extract(user_text, pending):
+        return {"turn_count": state.get("turn_count", 0) + 1}
+
+    facts = _memory.extract(user_text, pending).model_dump()
     profile_update = {k: facts.get(k) for k in PROFILE_FIELDS}
     case_update = {k: facts.get(k) for k in CASE_FIELDS}
 
@@ -101,7 +111,7 @@ def clarify_node(state):
     botun bekledigi soruyu daha basit ifade ederek tekrar sorar."""
     pending_question = state.get("pending_question") or ""
     if pending_question:
-        llm = get_llm(temperature=0.3)
+        llm = get_llm(temperature=0.3, tier="worker", call_site="clarify_node")
         message = extract_text(llm.invoke(CLARIFY_PROMPT.format(pending_question=pending_question)))
     else:
         message = "Özür dilerim, ne konuda yardımcı olabileceğimi tam anlayamadım. Biraz daha detay verir misiniz?"
@@ -119,8 +129,11 @@ def _specialist_node(agent, label, state):
     failed_attempts = state.get("failed_attempts", 0)
     failed_attempts = failed_attempts + 1 if result.get("needs_human") else 0
 
-    sentiment = detect_sentiment.invoke({"message": _extract_last_user_text(state)})
-    is_frustrated = sentiment.ok and sentiment.data.get("sentiment") == "frustrated"
+    # needs_human zaten escalation acacak — sentiment LLM'i bosuna harcama.
+    is_frustrated = False
+    if not result.get("needs_human"):
+        sentiment = detect_sentiment.invoke({"message": _extract_last_user_text(state)})
+        is_frustrated = sentiment.ok and sentiment.data.get("sentiment") == "frustrated"
 
     if result.get("needs_human"):
         reason = "low_confidence_or_cannot_answer"

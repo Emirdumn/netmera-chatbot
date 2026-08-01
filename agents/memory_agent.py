@@ -5,11 +5,27 @@ merge edilir (bkz. graph/state.py:merge_dict).
 Kural: emin olunmayan alan None/boş bırakılır, ASLA tahmin edilmez — uydurma
 bilgi profile girerse tüm sistemin yönlendirmesi bozulur.
 """
+import re
 from typing import Literal, Optional
 
 from pydantic import BaseModel, Field
 
 from llm.client import get_llm
+
+# pending_question varken veya asagidaki sinyaller varken extract ASLA atlanmaz.
+_MEMORY_SIGNAL_RE = re.compile(
+    r"("
+    r"[^@\s]+@[^@\s]+\.[^@\s]+"  # email
+    r"|\b(\+?\d[\d\s\-()]{7,}\d)\b"  # telefon benzeri
+    r"|\b(şirket\w*|sirket\w*|company|firma\w*|platform\w*|ios|android|flutter|"
+    r"react\s*native|huawei|sdk|exception|stack\s*trace|"
+    r"temsilci\w*|canlı\s*destek|canli\s*destek|müşteri\s*temsilci\w*|"
+    r"musteri\s*temsilci\w*|fiyat\w*|ücret\w*|ucret\w*|demo\w*|satın\s*al\w*|"
+    r"satin\s*al\w*|paket\w*|pricing|quote\w*|hata\w*|error\w*|401|403|500|"
+    r"çalışmıyor|calismiyor|bozuk|alamıyorum|alamiyorum)\b"
+    r")",
+    re.IGNORECASE,
+)
 
 SYSTEM_PROMPT = """Sen bir musteri mesajindan yapisal bilgi cikaran bir analiz
 agentisin. Asagidaki alanlari SADECE mesajda ACIKCA belirtilmisse doldur.
@@ -58,11 +74,38 @@ PROFILE_FIELDS = [
 CASE_FIELDS = ["goal", "problem_summary", "error_message", "sdk_version", "steps_tried"]
 
 
+def should_run_memory_extract(message: str, pending_question: str = "") -> bool:
+    """Saf dokuman sorularinda CONTROL extract'i atla; slot/devir sinyallerinde calistir.
+
+    pending_question varsa ASLA skip etme — kullanici botun sorusuna cevap
+    veriyor olabilir (ad, e-posta, sirket...).
+    """
+    if (pending_question or "").strip():
+        return True
+    text = (message or "").strip()
+    if not text:
+        return False
+    if _MEMORY_SIGNAL_RE.search(text):
+        return True
+    # Tipik dokuman/how-to sorusu — profil cikarmaya gerek yok.
+    if "?" in text or re.search(
+        r"\b(nedir|nasıl|nasil|how|what|where|neden|niye)\b", text, re.IGNORECASE
+    ):
+        return False
+    # Kisa onay/selam — extract anlamsiz.
+    if len(text) <= 40:
+        return False
+    # Belirsiz uzun mesaj — guvenli tarafta kal, extract et.
+    return True
+
+
 class MemoryAgent:
     name = "memory_agent"
 
     def __init__(self):
-        self.structured_llm = get_llm(temperature=0).with_structured_output(ExtractedFacts)
+        self.structured_llm = get_llm(
+            temperature=0, tier="control", call_site="memory_agent.extract",
+        ).with_structured_output(ExtractedFacts)
 
     def extract(self, message: str, pending_question: str = "") -> ExtractedFacts:
         # Botun bir onceki turda sordugu soru verilirse, musterinin cumle
