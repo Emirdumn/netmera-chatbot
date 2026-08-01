@@ -48,8 +48,32 @@ _HUMAN_REQUEST_RE = re.compile(
     r"musteri temsilcisi|müşteri temsilcisi|uzman\w*|baglan\w*|bağlan\w*)\b",
     re.IGNORECASE,
 )
-# Turkce ekler icin kok + opsiyonel son ek (\w*) — "fiyatlandirma",
-# "paketleri", "ucreti" gibi formlar da yakalanmali.
+# Guclu satis sinyali — her zaman sales/slot akisina birak.
+_STRONG_SALES_RE = re.compile(
+    r"\b(demo\w*|satin\s*al\w*|satın\s*al\w*|paket\w*|pricing|quote\w*|"
+    r"teklif\w*|lisans\w*|price\s*list)\b",
+    re.IGNORECASE,
+)
+# Zayif fiyat kelimeleri — yalnizca Netmera urun ipucu veya kisa
+# "Fiyat nedir?" tarzı sorularda bypass. "Bitcoin fiyatı ne kadar?" gibi
+# alakasiz fiyat sorularini domain_guard'a birakmak icin ayri tutulur.
+_WEAK_PRICE_RE = re.compile(
+    r"\b(fiyat\w*|ucret\w*|ücret\w*|ne kadar|kac para|kaç para|"
+    r"price\w*|cost\w*)\b",
+    re.IGNORECASE,
+)
+_NETMERA_PRODUCT_CUE_RE = re.compile(
+    r"\b(netmera|push|sms|kampanya|segment|journey|sdk|panel|"
+    r"in-?app|geofence|omnichannel|ab\s*test|iys|web\s*push)\b",
+    re.IGNORECASE,
+)
+_PRICE_ONLY_RE = re.compile(
+    r"^(fiyat\w*|ucret\w*|ücret\w*|pricing|price\w*|cost\w*)"
+    r"(\s+(nedir|ne\s*kadar|kaç|kac|bilgisi\w*|hakkında|hakkinda))?"
+    r"[\s!.?]*$",
+    re.IGNORECASE,
+)
+# Geriye donuk alias — testler / dis kullanim icin birlesik desen.
 _SALES_FLOW_RE = re.compile(
     r"\b(fiyat\w*|ucret\w*|ücret\w*|paket\w*|ne kadar|kac para|kaç para|"
     r"demo\w*|satin al\w*|satın al\w*|price\w*|pricing|cost\w*|quote\w*)\b",
@@ -85,9 +109,19 @@ class DomainDecision(BaseModel):
     reason: str = ""
 
 
+class DomainRelevance(BaseModel):
+    """Sadece alakalilik — general_agent ve diger paylasimli kontrol icin."""
+    is_netmera_related: bool
+    reason: str = ""
+
+
 class GroundedAnswer(BaseModel):
     answer: str
     can_answer: bool
+
+
+# Proses-ici cache — Redis yokken bile ayni turda ikinci LLM'i engeller.
+_DOMAIN_RELATED_MEMO: dict[str, bool] = {}
 
 
 @dataclass
@@ -188,6 +222,26 @@ def _social_reply(question: str) -> FastRagResult | None:
     return None
 
 
+def _looks_like_sales_flow(question: str) -> bool:
+    """Sales/slot akisina birakilacak mi?
+
+    "Demo almak istiyorum" / "Netmera fiyatlandirma" / "Fiyat nedir?" → True
+    "Bitcoin fiyatı ne kadar?" → False (domain_guard off-topic yapsin)
+    """
+    text = (question or "").strip()
+    if not text:
+        return False
+    if _STRONG_SALES_RE.search(text):
+        return True
+    if not _WEAK_PRICE_RE.search(text):
+        return False
+    if _NETMERA_PRODUCT_CUE_RE.search(text):
+        return True
+    if _PRICE_ONLY_RE.match(text):
+        return True
+    return False
+
+
 def _should_bypass(state, question: str) -> bool:
     if not FAST_RAG_ENABLED:
         return True
@@ -195,7 +249,7 @@ def _should_bypass(state, question: str) -> bool:
         return True
     if _HUMAN_REQUEST_RE.search(question):
         return True
-    if _SALES_FLOW_RE.search(question):
+    if _looks_like_sales_flow(question):
         return True
     if _PROBLEM_CASE_RE.search(question):
         return True
@@ -224,17 +278,71 @@ def _result_cache_key(question: str) -> str:
     return f"fast_rag_answer:v1:{normalized}"
 
 
+def _normalize_question(question: str) -> str:
+    return " ".join(question.strip().lower().split())
+
+
+def _domain_related_cache_key(question: str) -> str:
+    return f"domain_related:v1:{_normalize_question(question)}"
+
+
 def _cache_allowed(question: str) -> bool:
     return len(question) <= 300 and not _EMAIL_RE.search(question)
 
 
+def _store_domain_related(question: str, related: bool) -> None:
+    key = _normalize_question(question)
+    if not key:
+        return
+    _DOMAIN_RELATED_MEMO[key] = related
+    if _cache_allowed(question):
+        cache_set(_domain_related_cache_key(question), "1" if related else "0", QA_CACHE_TTL_SECONDS)
+
+
+def is_netmera_related(question: str, history: str = "") -> bool:
+    """Tek CONTROL domain classifier — general_agent dahil her yer burayi kullanir."""
+    text = (question or "").strip()
+    if not text:
+        return False
+
+    memo_key = _normalize_question(text)
+    if memo_key in _DOMAIN_RELATED_MEMO:
+        return _DOMAIN_RELATED_MEMO[memo_key]
+
+    if _cache_allowed(text):
+        cached = cache_get(_domain_related_cache_key(text))
+        if cached is not None:
+            related = cached == "1"
+            _DOMAIN_RELATED_MEMO[memo_key] = related
+            return related
+
+    llm = get_llm(
+        temperature=0, tier="control", call_site="domain_guard.is_netmera_related",
+    ).with_structured_output(DomainRelevance)
+    prompt = DOMAIN_PROMPT.format(history=history or "(yok)", question=text)
+    decision = llm.invoke(
+        prompt + "\n\nSadece is_netmera_related ve kisa reason doldur; "
+        "source/search_query gerekmiyor."
+    )
+    _store_domain_related(text, decision.is_netmera_related)
+    return decision.is_netmera_related
+
+
 def _decide_domain(state, question: str) -> DomainDecision:
-    llm = get_llm(temperature=0).with_structured_output(DomainDecision)
-    return llm.invoke(DOMAIN_PROMPT.format(history=_format_history(state), question=question))
+    llm = get_llm(
+        temperature=0, tier="control", call_site="domain_guard.decide_domain",
+    ).with_structured_output(DomainDecision)
+    decision = llm.invoke(
+        DOMAIN_PROMPT.format(history=_format_history(state), question=question)
+    )
+    _store_domain_related(question, decision.is_netmera_related)
+    return decision
 
 
 def _answer_from_context(question: str, chunks: list[dict]) -> GroundedAnswer:
-    llm = get_llm(temperature=0.1).with_structured_output(GroundedAnswer)
+    llm = get_llm(
+        temperature=0.1, tier="worker", call_site="domain_guard.answer_from_context",
+    ).with_structured_output(GroundedAnswer)
     return llm.invoke(ANSWER_PROMPT.format(context=_context_from_chunks(chunks), question=question))
 
 

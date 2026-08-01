@@ -1,0 +1,1537 @@
+{
+  "summary": {
+    "stamp": "20260801-1531",
+    "dry_run": false,
+    "total": 40,
+    "passed": 40,
+    "failed": 0,
+    "p50_latency_ms": 3142.7,
+    "p95_latency_ms": 6313.4,
+    "avg_latency_ms": 3470.9,
+    "avg_llm_calls": 1.45,
+    "brain_cases": 1,
+    "rag_with_sources": "30/30",
+    "off_topic_no_handoff": "5/5",
+    "explicit_handoff_contact_form": "2/2",
+    "doc_questions_without_brain": "30/30"
+  },
+  "cases": [
+    {
+      "id": "ug01",
+      "category": "user_guide",
+      "question": "Push kampanyası nasıl oluşturulur?",
+      "elapsed_ms": 6147.544082996319,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Push kampanyası oluşturmak için şu adımları izleyin:\n\n1. **Mobil Push Kanalını Yapılandırın:** Öncelikle mobil push kanalınızın yapılandırıldığından emin olun.\n2. **Hedef Kitle Verilerini Hazırlayın:** Kampanya için gerekli olan kitle veril",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/delivery/campaigns/push-reports.md",
+        "https://user.netmera.com/netmera-user-guide/targeting/segments/segment-details.md",
+        "https://netmera.com/push-notification-best-practices-how-to-increase-ctr-and-conversions/"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 3647.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ug02",
+      "category": "user_guide",
+      "question": "Kural bazlı segment nasıl oluşturulur?",
+      "elapsed_ms": 2772.4461249890737,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Kural bazlı segment oluşturmak için şu adımları izleyin:\n\n1. **Yeni Segment Oluştur**: `Targeting > Segments > Rule Based Segments > Create New Segment` yolunu takip edin.\n2. **Kural Mantığını Oluşturun**: Segmentin kapsamını belirlemek içi",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/targeting/segments/rule-based-segments.md",
+        "https://user.netmera.com/netmera-user-guide/targeting/segments/rule-based-segments/create-new-rule-based-segment.md",
+        "https://user.netmera.com/netmera-user-guide/targeting/segments/segment-details.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 2625.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ug03",
+      "category": "user_guide",
+      "question": "Journey builder ile otomatik akış nasıl kurulur?",
+      "elapsed_ms": 3168.053000001237,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Journey builder ile otomatik akış kurmak için şu adımları izleyebilirsiniz:\n\n1. **Setup**: Journey oluşturma sürecine başlamadan önce gerekli ayarları yapın.\n2. **Entry Rules**: Kullanıcıların yolculuğa nasıl gireceğini tanımlayın.\n3. **Aud",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration.md",
+        "https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/build-journey.md",
+        "https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-list-and-actions.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 3095.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ug04",
+      "category": "user_guide",
+      "question": "E-posta şablonu nasıl oluşturulur?",
+      "elapsed_ms": 3864.5681670022896,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "E-posta şablonu oluşturmak için aşağıdaki adımları izleyebilirsiniz:\n\n1. **API İsteği Hazırlayın:** Aşağıdaki örnekteki gibi bir `POST` isteği oluşturun:\n   ```json\n   curl -X POST \\\n   -H \"X-netmera-api-key: your_rest_api_key\" \\\n   -H \"Con",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/notifications.md",
+        "https://user.netmera.com/netmera-user-guide/omnichannel-engagement/email.md",
+        "https://user.netmera.com/netmera-user-guide/panel-settings/settings/messaging-and-content/mail-templates.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 3788.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ug05",
+      "category": "user_guide",
+      "question": "SMS kampanyası nasıl gönderilir?",
+      "elapsed_ms": 3543.962499999907,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "SMS kampanyası göndermek için şu adımları izleyebilirsiniz:\n\n1. **Kampanya Oluşturma**: SMS kampanyanızı oluşturun ve gerekli alanları doldurun.\n   - **Kategori**: Kampanyanızı amacına göre sınıflandırın (promosyonlar, güncellemeler, bildir",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/omnichannel-engagement/sms.md",
+        "https://user.netmera.com/netmera-user-guide/omnichannel-engagement/sms/create-sms-campaign.md",
+        "https://netmera.com/4-simple-sms-marketing-tips-for-better-messages/"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 3474.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ug06",
+      "category": "user_guide",
+      "question": "In-app mesaj nasıl oluşturulur?",
+      "elapsed_ms": 3754.8725419910625,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "In-app mesaj oluşturmak için aşağıdaki adımları izleyebilirsiniz:\n\n1. **Widget Oluşturma**: Öncelikle, Netmera Paneli'nde bir widget oluşturun. Bu adım, in-app mesajınızın görünmesi için gereklidir.\n\n2. **Mesaj İçeriği Belirleme**: Mesajını",
+      "sources_count": 2,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components/action.md",
+        "https://netmera.com/glossary/in-app-messages/"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 3688.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ug07",
+      "category": "user_guide",
+      "question": "A/B test kampanyası nasıl yapılır?",
+      "elapsed_ms": 4152.037791995099,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "A/B test kampanyası yapmak için şu adımları izleyebilirsiniz:\n\n1. **Hedef Belirleme**: Test etmek istediğiniz mesajın amacını belirleyin (örneğin, açılma oranı, tıklama oranı).\n2. **Değişken Seçimi**: Test etmek istediğiniz bir değişken seç",
+      "sources_count": 3,
+      "source_urls": [
+        "https://netmera.com/ab-testing-push-notifications/",
+        "https://user.netmera.com/netmera-user-guide/beginners-guide/user-glossary.md",
+        "https://netmera.com/glossary/ab-testing/"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 4094.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ug08",
+      "category": "user_guide",
+      "question": "Geofence ile lokasyon bazlı bildirim nasıl ayarlanır?",
+      "elapsed_ms": 3544.8650829930557,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Geofence ile lokasyon bazlı bildirim ayarlamak için şu adımları izleyebilirsiniz:\n\n1. **Geofence Oluşturun:**  Rest API kullanarak bir geofence oluşturun. Aşağıdaki örnek JSON yapısını kullanabilirsiniz:\n   ```json\n   {\n     \"title\": \"Örnek",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/notifications.md",
+        "https://user.netmera.com/netmera-user-guide/targeting/geofence.md",
+        "https://netmera.com/geofencing-vs-geotargeting/"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 3473.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ug09",
+      "category": "user_guide",
+      "question": "Kullanıcı profiline özel attribute nasıl eklenir?",
+      "elapsed_ms": 3292.3895830026595,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Kullanıcı profiline özel attribute eklemek için şu adımları izleyin:\n\n1. **Panel** > **Developers > Profile Attributes > Create New Attribute** bölümüne gidin.\n2. Attribute detaylarını doldurun:\n   - **Name**: Attribute için benzersiz bir t",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/customer-data/profile-attributes/custom-profile-attributes.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/flutter/user-and-attributes.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/react-native/user-and-attributes.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 3234.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ug10",
+      "category": "user_guide",
+      "question": "Raporlarda delivery rate nereden bakılır?",
+      "elapsed_ms": 1603.1559580005705,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Delivery rate raporlarına, mesaj performansı raporları altında erişebilirsiniz. Bu raporlar, kampanya teslimatı, etkileşim, dönüşüm veya gelir hakkında bilgi sağlar.",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/beginners-guide/user-glossary.md",
+        "https://user.netmera.com/netmera-user-guide/whats-new/2025.md",
+        "https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 1553.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ug11",
+      "category": "user_guide",
+      "question": "IYS izin yönetimi nasıl yapılır?",
+      "elapsed_ms": 2779.4280829984928,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "İYS izin yönetimi şu şekilde yapılır:\n\n1. **İYS’ye Kayıt:** İletişim göndericileri, İYS’ye kaydolmalıdır.\n2. **İzin Bildirimi:** İletişim göndericileri, ticari elektronik ileti türlerini ve ilgili izinleri İYS üzerinden bildirmelidir.\n3. **",
+      "sources_count": 3,
+      "source_urls": [
+        "https://netmera.com/iys/",
+        "https://user.netmera.com/netmera-developer-guide/integrations/data-stream/aws-kinesis.md",
+        "https://user.netmera.com/netmera-user-guide/panel-settings/settings/administration/roles-and-permissions.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 2709.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ug12",
+      "category": "user_guide",
+      "question": "Web push nasıl etkinleştirilir?",
+      "elapsed_ms": 3117.3023750016,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Web Push etkinleştirmek için aşağıdaki adımları izleyebilirsiniz:\n\n1. **Web SDK Kurulumu**: Öncelikle Web SDK'nın kurulumunu tamamlayın.\n2. **Fancy Box Kullanımı**: Web Push izinlerini toplamak için Fancy Box'ı kullanabilirsiniz. Bu, kullan",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/web/mobile-web-push-for-ios.md",
+        "https://user.netmera.com/netmera-user-guide/omnichannel-engagement/web-push/create-web-push.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 3060.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ug13",
+      "category": "user_guide",
+      "question": "Silent push nedir ve nasıl kullanılır?",
+      "elapsed_ms": 5210.809291995247,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Silent push, kullanıcıya görünmeyen ve cihazda herhangi bir bildirim göstermeyen bir tür push bildirimidir. Bu tür bildirimler, uygulama içinde arka planda veri göndermek için kullanılır. Örneğin, uygulama tarafında bir deneyimi tetiklemek ",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push.md",
+        "https://user.netmera.com/netmera-user-guide/beginners-guide/user-glossary.md",
+        "https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components/action.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 1017.0,
+          "ok": true
+        },
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.decide_domain",
+          "latency_ms": 1103.0,
+          "ok": true
+        },
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 2864.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 3,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ug14",
+      "category": "user_guide",
+      "question": "Kampanya zamanlaması (best time) nasıl ayarlanır?",
+      "elapsed_ms": 3564.165999996476,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Kampanya zamanlamasını (best time) ayarlamak için şu adımları izleyin:\n\n1. **Push Kampanyası Oluşturun veya Düzenleyin**: Kampanya Zamanlama adımına gidin.\n2. **Best Time Delivery Seçin**: Teslimat Zamanı bölümünde, teslimat seçeneği olarak",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/omnichannel-engagement/mobile-push/create-mobile-push/when.md",
+        "https://user.netmera.com/netmera-user-guide/omnichannel-engagement/widgets/mobile-in-app/publish.md",
+        "https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration/reports.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 3508.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ug15",
+      "category": "user_guide",
+      "question": "Audience export nasıl alınır?",
+      "elapsed_ms": 2189.3519159930293,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Audience export almak için **User Export** özelliğini kullanmalısınız. Bu özellik, segmenti Netmera dışına çıkarmanıza olanak tanır. Aşağıdaki adımları izleyebilirsiniz:\n\n1. **User Export** seçeneğini seçin.\n2. İhtiyacınıza göre segmenti dı",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/targeting/segments/segment-details.md",
+        "https://user.netmera.com/netmera-user-guide/reports-and-analytics/analytics/revenue-and-engagement/customer-touch.md",
+        "https://user.netmera.com/netmera-user-guide/beginners-guide/user-glossary.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 2136.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "dg01",
+      "category": "dev_guide",
+      "question": "iOS SDK entegrasyonu nasıl yapılır?",
+      "elapsed_ms": 2411.4518749993294,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "iOS SDK entegrasyonu için şu adımları izleyebilirsiniz:\n\n1. **Framework'leri Ekleyin:** Gerekli framework'leri projeye ekleyin.\n2. **Netmera'yı Başlatın:** Netmera'yı başlatmak için belgelerdeki adımları takip edin.\n3. **Servis ve İçerik Uz",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/sdk-integration.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/flutter/sdk-integration.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/react-native/sdk-integration.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 2358.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "dg02",
+      "category": "dev_guide",
+      "question": "Android'de push notification permission nasıl istenir?",
+      "elapsed_ms": 3076.174500005436,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Android'de push notification permission istemek için aşağıdaki adımları izleyebilirsiniz:\n\n1. **Netmera SDK Kullanımı:** `requestNotificationPermissions(activity: Activity?)` metodunu kullanarak izin talebini başlatın.\n   - Kotlin:\n     ```",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-developer-guide/platforms/android/push-notifications/push-notification-permission.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/android-integration-faqs.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/ios/new-ios-swift/push-notifications/push-notification-permission.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 3023.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "dg03",
+      "category": "dev_guide",
+      "question": "Flutter Netmera SDK nasıl kurulur?",
+      "elapsed_ms": 1902.0127090043388,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Flutter Netmera SDK'sını kurmak için şu adımları izleyin:\n\n1. `pubspec.yaml` dosyanızın `dependencies` bölümüne aşağıdaki satırı ekleyin:\n   ```yaml\n   dependencies:\n     netmera_flutter_sdk: ^x.x.x\n   ```\n\n2. Paketi yüklemek için terminald",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-developer-guide/platforms/flutter.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/flutter/sdk-integration.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 1844.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "dg04",
+      "category": "dev_guide",
+      "question": "React Native push token nasıl alınır?",
+      "elapsed_ms": 3271.0040410020156,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "React Native'de push token almak için aşağıdaki adımları izleyebilirsiniz:\n\n1. **Push Register Callback'ini Tanımlayın:** `onPushRegister` fonksiyonunu kullanarak push token'ı alabilirsiniz.\n   ```javascript\n   export const onPushRegister =",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-developer-guide/platforms/react-native.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/react-native/deep-linking.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/react-native/migration-to-2.x.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 3212.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "dg05",
+      "category": "dev_guide",
+      "question": "Custom event nasıl gönderilir?",
+      "elapsed_ms": 3589.865500005544,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Custom bir olayı göndermek için aşağıdaki adımları izleyin:\n\n1. **Netmera Paneli'nde Olayı Tanımlayın:**  \n   - **Geliştiriciler > Olaylar > Yeni Olay Oluştur** bölümüne gidin.  \n   - Yeni bir olay oluşturun ve olay parametrelerini belirtin",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/customer-data/events.md",
+        "https://user.netmera.com/netmera-user-guide/panel-settings/settings/app-configuration/events.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/flutter/events.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 3520.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "dg06",
+      "category": "dev_guide",
+      "question": "User ID set etmek için hangi API kullanılır?",
+      "elapsed_ms": 1451.5050000045449,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "User ID set etmek için `setCustomId` API'si kullanılır. Aşağıdaki kod örneğini inceleyebilirsiniz:\n\n```javascript\nuser.setCustomId('<your unique user id here>');\n```",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-developer-guide/platforms/web/user-and-attributes.md",
+        "https://user.netmera.com/netmera-user-guide/beginners-guide/user-glossary.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/flutter/user-and-attributes.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 1393.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "dg07",
+      "category": "dev_guide",
+      "question": "Deep link handling iOS'ta nasıl yapılır?",
+      "elapsed_ms": 5580.594250001013,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "iOS'ta deep link handling için şu adımları izleyebilirsiniz:\n\n1. **URL Şeması Tanımlayın**  \n   Xcode projenizde özel bir URL şeması (`netmera://`) tanımlayın.\n\n2. **Info.plist Dosyasını Yapılandırın**  \n   - **Info.plist** dosyanızı açın. ",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-developer-guide/platforms/react-native/deep-linking.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/flutter/deep-linking.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/ios/former-ios-objective-c/deep-linking.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 5525.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "dg08",
+      "category": "dev_guide",
+      "question": "REST API ile bildirim gönderme örneği nedir?",
+      "elapsed_ms": 4261.130917002447,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "REST API ile bildirim göndermek için aşağıdaki örneği kullanabilirsiniz:\n\n```json\ncurl -X POST \\\n-H \"X-netmera-api-key: your_rest_api_key\" \\\n-H \"Content-Type: application/json\" \\\n-d '{\\n    \"notificationKey\": \"106\",\\n    \"message\": {\\n     ",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/notifications.md",
+        "https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api.md",
+        "https://user.netmera.com/netmera-developer-guide/api-documentation/rest-api/inbox-feature.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 4201.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "dg09",
+      "category": "dev_guide",
+      "question": "Huawei push entegrasyonu nasıl yapılır?",
+      "elapsed_ms": 4032.05470899411,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Huawei push entegrasyonu için aşağıdaki adımları izleyin:\n\n1. **HMS Core** entegrasyonu için Huawei'nin resmi belgelerini takip edin:\n   - [HUAWEI HMS Core Entegrasyonu Hazırlıkları](https://developer.huawei.com/consumer/en/codelab/HMSPrepa",
+      "sources_count": 1,
+      "source_urls": [
+        "https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration/huawei-integration.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 3977.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "dg10",
+      "category": "dev_guide",
+      "question": "Web SDK nasıl initialize edilir?",
+      "elapsed_ms": 2782.7277909964323,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Web SDK'yi initialize etmek için aşağıdaki adımları izleyin:\n\n1. **Web SDK'nın temel URL'sini ayarlayın:** Standart bulut dağıtımlarında, temel URL otomatik olarak ayarlanır. Ancak, özel veya on-premise dağıtımlarda, aşağıdaki gibi bir yapı",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-developer-guide/platforms/web/sdk-setup.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/web.md",
+        "https://user.netmera.com/netmera-developer-guide/platforms/android/sdk-integration.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 2727.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ws01",
+      "category": "website",
+      "question": "Netmera nedir?",
+      "elapsed_ms": 2728.1249999941792,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Netmera, işletmelere çok kanallı müşteri etkileşimi sağlamak için veri odaklı çözümler sunan bir platformdur. 400'den fazla kurumsal müşteriye hizmet veren Netmera, kişiselleştirilmiş ve gerçek zamanlı müşteri etkileşimleri için çeşitli ara",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/beginners-guide/introduction-to-netmera.md",
+        "https://user.netmera.com/netmera-user-guide/customer-data/about-customer-data.md",
+        "https://netmera.com/why-netmera/"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 2656.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ws02",
+      "category": "website",
+      "question": "Netmera hangi sektörlere hizmet veriyor?",
+      "elapsed_ms": 1860.8550419885432,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Netmera, aşağıdaki sektörlere hizmet vermektedir:\n\n- Bankacılık ve fintech\n- Telekomünikasyon\n- Perakende ve e-ticaret\n- Medya ve eğlence\n- Seyahat ve konaklama\n- Gıda ve içecek",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/beginners-guide/introduction-to-netmera.md",
+        "https://netmera.com/iys/",
+        "https://netmera.com/newsroom/netmera-named-momentum-leader-in-g2s-winter-2026-reports/"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 1778.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ws03",
+      "category": "website",
+      "question": "Omnichannel marketing Netmera'da ne anlama geliyor?",
+      "elapsed_ms": 2830.3108749969397,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Netmera'da omnichannel marketing, tüm kanalların kesintisiz bir şekilde çalışarak kullanıcılara tamamen entegre bir hizmet sunmasını ifade eder. Bu strateji, çevrimiçi ve çevrimdışı tüm kanallarda tutarlı ve entegre bir müşteri deneyimi sağ",
+      "sources_count": 3,
+      "source_urls": [
+        "https://netmera.com/glossary/omnichannel-marketing/",
+        "https://netmera.com/newsroom/netmera-named-momentum-leader-in-g2s-winter-2026-reports/",
+        "https://user.netmera.com/netmera-user-guide/beginners-guide/introduction-to-netmera.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 2765.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ws04",
+      "category": "website",
+      "question": "Netmera customer journey orchestration nedir?",
+      "elapsed_ms": 2795.0418749969685,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Netmera customer journey orchestration, müşterilerin etkileşimlerini yönetmek için kullanılan bir süreçtir. Bu süreç, kullanıcıların farklı aşamalarda (farkındalık, değerlendirme, satın alma, tutma) nasıl etkileşimde bulunduğunu analiz eder",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/beginners-guide/introduction-to-netmera.md",
+        "https://user.netmera.com/netmera-user-guide/beginners-guide/integrating-netmera.md",
+        "https://netmera.com/newsroom/netmera-named-momentum-leader-in-g2s-winter-2026-reports/"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 2738.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ws05",
+      "category": "website",
+      "question": "Netmera'nın temel özellikleri nelerdir?",
+      "elapsed_ms": 1854.2061250045663,
+      "agent_name": "fast_rag",
+      "answer_empty": false,
+      "answer_preview": "Netmera'nın temel özellikleri şunlardır:\n\n* Müşteri yolculuğu orkestrasyonu\n* Mobil ve web push bildirimleri\n* E-posta ve SMS kampanyaları\n* Uygulama içi mesajlaşma ve pop-up'lar\n* Gelişmiş analiz ve segmentasyon\n* AI destekli pazarlama oto",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-developer-guide/netmera-developer-guide.md",
+        "https://user.netmera.com/netmera-user-guide/beginners-guide/introduction-to-netmera.md",
+        "https://netmera.com/why-netmera/"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.answer_from_context",
+          "latency_ms": 1798.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "sources_min": true,
+        "no_handoff": true,
+        "no_brain": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ot01",
+      "category": "off_topic",
+      "question": "Bugün hava nasıl?",
+      "elapsed_ms": 1053.0899579898687,
+      "agent_name": "domain_guard",
+      "answer_empty": false,
+      "answer_preview": "Ben sadece Netmera ürünleri, kullanıcı/developer dokümantasyonu ve Netmera'nın web sitesindeki konular hakkında yardımcı olabiliyorum. Netmera ile ilgili bir soru sorarsanız hemen yardımcı olayım.",
+      "sources_count": 0,
+      "source_urls": [],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.decide_domain",
+          "latency_ms": 990.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "no_handoff": true,
+        "off_topic_no_handoff": true,
+        "off_topic_answered": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ot02",
+      "category": "off_topic",
+      "question": "En yakın pizza restoranı nerede?",
+      "elapsed_ms": 1457.2968749998836,
+      "agent_name": "domain_guard",
+      "answer_empty": false,
+      "answer_preview": "Ben sadece Netmera ürünleri, kullanıcı/developer dokümantasyonu ve Netmera'nın web sitesindeki konular hakkında yardımcı olabiliyorum. Netmera ile ilgili bir soru sorarsanız hemen yardımcı olayım.",
+      "sources_count": 0,
+      "source_urls": [],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.decide_domain",
+          "latency_ms": 1420.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "no_handoff": true,
+        "off_topic_no_handoff": true,
+        "off_topic_answered": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ot03",
+      "category": "off_topic",
+      "question": "Bitcoin fiyatı ne kadar?",
+      "elapsed_ms": 11056.641292001586,
+      "agent_name": "general_agent",
+      "answer_empty": false,
+      "answer_preview": "Ben sadece Netmera hakkındaki sorularda yardımcı olabiliyorum, bu konuda size destek olamam. Netmera ile ilgili başka bir sorunuz var mı?",
+      "sources_count": 0,
+      "source_urls": [],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": true,
+      "llm_calls": [
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "memory_agent.extract",
+          "latency_ms": 1657.0,
+          "ok": true
+        },
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "orchestrator.decide",
+          "latency_ms": 1712.0,
+          "ok": true
+        },
+        {
+          "tier": "brain",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "orchestrator.brain_review",
+          "latency_ms": 1622.0,
+          "ok": true
+        },
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "query_builder_tool",
+          "latency_ms": 993.0,
+          "ok": true
+        },
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "query_builder_tool",
+          "latency_ms": 866.0,
+          "ok": true
+        },
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "query_builder_tool",
+          "latency_ms": 1101.0,
+          "ok": true
+        },
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "query_builder_tool",
+          "latency_ms": 705.0,
+          "ok": true
+        },
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.is_netmera_related",
+          "latency_ms": 1221.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 8,
+      "checks": {
+        "no_handoff": true,
+        "off_topic_no_handoff": true,
+        "off_topic_answered": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ot04",
+      "category": "off_topic",
+      "question": "Python'da list comprehension nasıl yazılır?",
+      "elapsed_ms": 1002.7392909978516,
+      "agent_name": "domain_guard",
+      "answer_empty": false,
+      "answer_preview": "Ben sadece Netmera ürünleri, kullanıcı/developer dokümantasyonu ve Netmera'nın web sitesindeki konular hakkında yardımcı olabiliyorum. Netmera ile ilgili bir soru sorarsanız hemen yardımcı olayım.",
+      "sources_count": 0,
+      "source_urls": [],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.decide_domain",
+          "latency_ms": 936.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "no_handoff": true,
+        "off_topic_no_handoff": true,
+        "off_topic_answered": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "ot05",
+      "category": "off_topic",
+      "question": "Galatasaray maçı kaç kaç bitti?",
+      "elapsed_ms": 1581.1462919955375,
+      "agent_name": "domain_guard",
+      "answer_empty": false,
+      "answer_preview": "Ben sadece Netmera ürünleri, kullanıcı/developer dokümantasyonu ve Netmera'nın web sitesindeki konular hakkında yardımcı olabiliyorum. Netmera ile ilgili bir soru sorarsanız hemen yardımcı olayım.",
+      "sources_count": 0,
+      "source_urls": [],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "domain_guard.decide_domain",
+          "latency_ms": 1544.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 1,
+      "checks": {
+        "no_handoff": true,
+        "off_topic_no_handoff": true,
+        "off_topic_answered": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "rt01",
+      "category": "routing",
+      "question": "Bir temsilciye bağlanmak istiyorum",
+      "elapsed_ms": 4764.4140839984175,
+      "agent_name": "escalation_agent",
+      "answer_empty": false,
+      "answer_preview": "Sizi Müşteri Başarı ekibimize aktariyorum, birazdan bir yetkili size baglanacak.",
+      "sources_count": 0,
+      "source_urls": [],
+      "escalated": true,
+      "needs_contact_form": true,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "memory_agent.extract",
+          "latency_ms": 2017.0,
+          "ok": true
+        },
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "orchestrator.decide",
+          "latency_ms": 1679.0,
+          "ok": true
+        },
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "escalation_agent.summarize",
+          "latency_ms": 1056.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 3,
+      "checks": {
+        "needs_contact_form": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "rt02",
+      "category": "routing",
+      "question": "Netmera fiyatlandırma paketleri nedir? Demo almak istiyorum",
+      "elapsed_ms": 3853.5577920119977,
+      "agent_name": "sales_agent",
+      "answer_empty": false,
+      "answer_preview": "Öncelikle adınızı öğrenebilir miyim? Hangi şirket için görüşüyoruz?",
+      "sources_count": 0,
+      "source_urls": [],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "memory_agent.extract",
+          "latency_ms": 2298.0,
+          "ok": true
+        },
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "orchestrator.decide",
+          "latency_ms": 1546.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 2,
+      "checks": {
+        "handoff_or_sales": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "rt03",
+      "category": "routing",
+      "question": "Push bildirimleri çalışmıyor, 401 hatası alıyorum",
+      "elapsed_ms": 9465.196416989784,
+      "agent_name": "support_agent",
+      "answer_empty": false,
+      "answer_preview": "1. **Hata Mesajını Kontrol Et**: 401 hatası genellikle yetkilendirme sorunlarından kaynaklanır. Bu nedenle, API anahtarınızı veya kimlik bilgilerinizi kontrol edin. Doğru ve güncel olduklarından emin olun.\n\n2. **API Anahtarını Yenile**: Eğe",
+      "sources_count": 3,
+      "source_urls": [
+        "https://user.netmera.com/netmera-user-guide/beginners-guide/faqs.md",
+        "https://user.netmera.com/netmera-user-guide/reports-and-analytics/reports/delivery/campaigns/push-reports.md",
+        "https://user.netmera.com/netmera-user-guide/omnichannel-engagement/journey-orchestration/journey-components/action.md"
+      ],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "memory_agent.extract",
+          "latency_ms": 1655.0,
+          "ok": true
+        },
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "orchestrator.decide",
+          "latency_ms": 1448.0,
+          "ok": true
+        },
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "query_builder_tool",
+          "latency_ms": 918.0,
+          "ok": true
+        },
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "support_agent.answer",
+          "latency_ms": 5154.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 4,
+      "checks": {
+        "handoff_or_answer": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "rt04",
+      "category": "routing",
+      "question": "Müşteri temsilcisiyle görüşmek istiyorum lütfen",
+      "elapsed_ms": 4415.880374988774,
+      "agent_name": "escalation_agent",
+      "answer_empty": false,
+      "answer_preview": "Sizi Müşteri Başarı ekibimize aktariyorum, birazdan bir yetkili size baglanacak.",
+      "sources_count": 0,
+      "source_urls": [],
+      "escalated": true,
+      "needs_contact_form": true,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "memory_agent.extract",
+          "latency_ms": 1472.0,
+          "ok": true
+        },
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "orchestrator.decide",
+          "latency_ms": 1531.0,
+          "ok": true
+        },
+        {
+          "tier": "worker",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "escalation_agent.summarize",
+          "latency_ms": 1400.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 3,
+      "checks": {
+        "needs_contact_form": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    },
+    {
+      "id": "rt05",
+      "category": "routing",
+      "question": "Satın alma ve ücret bilgisi alabilir miyim?",
+      "elapsed_ms": 3053.6772919876967,
+      "agent_name": "sales_agent",
+      "answer_empty": false,
+      "answer_preview": "Öncelikle adınızı öğrenebilir miyim? Hangi şirket için görüşüyoruz?",
+      "sources_count": 0,
+      "source_urls": [],
+      "escalated": false,
+      "needs_contact_form": false,
+      "brain_called": false,
+      "llm_calls": [
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "memory_agent.extract",
+          "latency_ms": 1573.0,
+          "ok": true
+        },
+        {
+          "tier": "control",
+          "model": "openai/gpt-4o-mini",
+          "call_site": "orchestrator.decide",
+          "latency_ms": 1470.0,
+          "ok": true
+        }
+      ],
+      "llm_call_count": 2,
+      "checks": {
+        "handoff_or_sales": true,
+        "answer_not_empty": true
+      },
+      "passed": true,
+      "error": ""
+    }
+  ]
+}
