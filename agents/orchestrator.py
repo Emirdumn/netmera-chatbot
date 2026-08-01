@@ -1,16 +1,15 @@
 """Bağlam farkındalığı olan yönlendirme — router_agent'ın yerini alır
 (bkz. v2_legacy/router_agent.py — karşılaştırma için korunuyor).
 
-Girdisi router'dan farklı olarak sadece son mesaj değil: son N mesaj,
-customer_profile, case_notes, active_agent (şu an kim konuşuyordu) ve
-pending_question (bot en son ne sormuştu). Yapışkanlık kuralı — müşteri
-botun bekledigi soruyu cevapliyorsa aynı agent'ta kalınması — kod
-seviyesinde zorunlu kılınır, LLM'e bırakılmaz.
+CONTROL once karar verir. Sadece dusuk guven / celiskili sinyal / invalid
+cikti durumlarinda BRAIN ikinci bakisi yapar. BRAIN hata verirse
+llm/client worker fallback'i devreye girer.
 """
 import json
+import re
 from typing import Literal
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from llm.client import get_llm
 
@@ -34,10 +33,12 @@ degerlendirerek asagidaki karari ver:
 - target_agent: sales | support | technical | general
 - language: tr | en
 - urgency: low | normal | high
+- confidence: 0.0-1.0 arasi, bu karara ne kadar eminsen
+- needs_brain_review: Karar belirsiz/celiskiliyse TRUE (pahali modele sorulacak)
 - reasoning: kisa (tek cumle) neden bu karari verdigini acikla — arayuzde
   gosterilecek, ozet ve net yaz.
 
-ONCELIK SIRASI (yukaridan asagiya kontrol et, ilk uyan kurali uygula):
+ONCELIK SIRASI (yukaridan asagiye kontrol et, ilk uyan kurali uygula):
 1. Musterinin mesaji "anlamadim", "ne demek istedin", "ne istedin benden",
    "bunu neden soruyorsun", "kastettigini anlamadim" gibi AÇIKÇA kafasi
    karistigini belirten bir ifadeyse → action=clarify. Bu kural
@@ -51,6 +52,20 @@ ONCELIK SIRASI (yukaridan asagiya kontrol et, ilk uyan kurali uygula):
 5. Digerlerinde → action=continue.
 """
 
+_TECH_SIGNAL_RE = re.compile(
+    r"\b(ios|android|flutter|react\s*native|sdk|api|push\s*token|"
+    r"fcm|apns|gradle|cocoapods|xcode|webhook|rest\s*api|"
+    r"entegrasyon|integration|exception|stack\s*trace)\b",
+    re.IGNORECASE,
+)
+_SALES_SIGNAL_RE = re.compile(
+    r"\b(fiyat\w*|ücret\w*|ucret\w*|paket\w*|demo\w*|satın\s*al\w*|"
+    r"satin\s*al\w*|pricing|quote\w*|cost\w*)\b",
+    re.IGNORECASE,
+)
+
+BRAIN_CONFIDENCE_THRESHOLD = 0.55
+
 
 class OrchestratorDecision(BaseModel):
     is_answer_to_pending_question: bool
@@ -59,6 +74,8 @@ class OrchestratorDecision(BaseModel):
     target_agent: Literal["sales", "support", "technical", "general"]
     language: Literal["tr", "en"]
     urgency: Literal["low", "normal", "high"]
+    confidence: float = Field(default=0.7, ge=0.0, le=1.0)
+    needs_brain_review: bool = False
     reasoning: str
 
 
@@ -85,24 +102,66 @@ def _format_history(messages, limit=6):
     return "\n".join(lines) or "(henüz mesaj yok)"
 
 
+def _last_user_text(state) -> str:
+    messages = state.get("messages") or []
+    if not messages:
+        return ""
+    message = messages[-1]
+    if isinstance(message, dict):
+        return message.get("content", "") or ""
+    return getattr(message, "content", "") or ""
+
+
+def needs_brain_review(decision: OrchestratorDecision, state, last_user: str) -> bool:
+    """CONTROL kararinin BRAIN'e yukseltilip yukseltilmeyecegine karar verir."""
+    if decision.needs_brain_review:
+        return True
+    if decision.confidence < BRAIN_CONFIDENCE_THRESHOLD:
+        return True
+
+    active_agent = state.get("active_agent") or ""
+    pending_question = (state.get("pending_question") or "").strip()
+
+    # topic_changed ile pending cevap / aktif agent celiskisi
+    if decision.topic_changed and pending_question and decision.is_answer_to_pending_question:
+        return True
+    if decision.topic_changed and active_agent and decision.action == "continue":
+        return True
+
+    # general secildi ama mesajda guclu teknik/satis sinyali var
+    if decision.target_agent == "general":
+        if _TECH_SIGNAL_RE.search(last_user) or _SALES_SIGNAL_RE.search(last_user):
+            return True
+
+    return False
+
+
+def _apply_sticky_rule(decision: OrchestratorDecision, state) -> OrchestratorDecision:
+    active_agent = state.get("active_agent") or ""
+    if decision.is_answer_to_pending_question and active_agent and decision.action != "escalate":
+        decision.action = "continue"
+        decision.target_agent = active_agent
+    return decision
+
+
 class Orchestrator:
     name = "orchestrator"
 
     def __init__(self):
-        # BRAIN degil CONTROL — pahali model yalnizca dusuk-guven escalate
-        # kurali eklendiginde (ayri adim) cagrilacak.
-        self.structured_llm = get_llm(
+        self._control = get_llm(
             temperature=0, tier="control", call_site="orchestrator.decide",
         ).with_structured_output(OrchestratorDecision)
+        self._brain = get_llm(
+            temperature=0, tier="brain", call_site="orchestrator.brain_review",
+        ).with_structured_output(OrchestratorDecision)
 
-    def decide(self, state) -> OrchestratorDecision:
+    def _build_prompt(self, state) -> str:
         history = _format_history(state.get("messages", []))
         profile = state.get("customer_profile", {}) or {}
         case_notes = state.get("case_notes", {}) or {}
         active_agent = state.get("active_agent") or ""
         pending_question = state.get("pending_question") or ""
-
-        prompt = f"""{SYSTEM_PROMPT}
+        return f"""{SYSTEM_PROMPT}
 
 Son konusma:
 {history}
@@ -112,29 +171,61 @@ Vaka notlari: {json.dumps(case_notes, ensure_ascii=False)}
 Su an aktif agent: {active_agent or "yok"}
 Botun bekledigi cevap: {pending_question or "yok"}"""
 
-        decision = self.structured_llm.invoke(prompt)
+    def _invoke_control(self, prompt: str) -> OrchestratorDecision:
+        return self._control.invoke(prompt)
 
-        # Yapışkanlık kuralı — LLM'e bırakılmaz, kod seviyesinde zorunlu kılınır.
-        # ÖNEMLİ: "evet, bir temsilciyle görüşmek istiyorum" gibi bir cevap HEM
-        # botun sorusuna cevaptır HEM açık bir devir talebidir — escalate kararı
-        # bu durumda ASLA continue'ya çevrilmemeli (once bu yuzden musteri
-        # "baglanmak istiyorum" dedigi halde baglanamiyordu).
-        if decision.is_answer_to_pending_question and active_agent and decision.action != "escalate":
-            decision.action = "continue"
-            decision.target_agent = active_agent
+    def _invoke_brain(self, prompt: str, control_decision: OrchestratorDecision | None) -> OrchestratorDecision:
+        brain_prompt = prompt
+        if control_decision is not None:
+            brain_prompt += (
+                "\n\nCONTROL modelinin onceki (belirsiz) karari:\n"
+                f"{control_decision.model_dump_json()}\n"
+                "Bu karari gozden gecir; celiskileri coz ve nihai karari ver."
+            )
+        return self._brain.invoke(brain_prompt)
 
-        return decision
+    def decide(self, state) -> tuple[OrchestratorDecision, bool]:
+        """(karar, brain_used) dondurur."""
+        prompt = self._build_prompt(state)
+        last_user = _last_user_text(state)
+        control_decision = None
+        brain_used = False
+
+        try:
+            control_decision = self._invoke_control(prompt)
+        except Exception:
+            # CONTROL invalid/exception → BRAIN
+            decision = self._invoke_brain(prompt, None)
+            brain_used = True
+            return _apply_sticky_rule(decision, state), brain_used
+
+        if needs_brain_review(control_decision, state, last_user):
+            try:
+                decision = self._invoke_brain(prompt, control_decision)
+                brain_used = True
+            except Exception:
+                # Brain (+ worker fallback) da dustuysa CONTROL karariyla devam.
+                decision = control_decision
+        else:
+            decision = control_decision
+
+        return _apply_sticky_rule(decision, state), brain_used
 
     def run(self, state):
-        decision = self.decide(state)
+        decision, brain_used = self.decide(state)
+        reasoning = decision.reasoning
+        if brain_used:
+            reasoning = f"[brain] {reasoning}"
         return {
             "intent": decision.target_agent,
             "language": decision.language,
             "department": DEPARTMENT_FOR_AGENT.get(decision.target_agent, "customer_success"),
             "urgency": decision.urgency,
             "orchestrator_action": decision.action,
-            "orchestrator_reasoning": decision.reasoning,
+            "orchestrator_reasoning": reasoning,
             "orchestrator_is_answer": decision.is_answer_to_pending_question,
             "orchestrator_topic_changed": decision.topic_changed,
             "active_agent": decision.target_agent,
+            "orchestrator_brain_reviewed": brain_used,
+            "confidence": decision.confidence,
         }

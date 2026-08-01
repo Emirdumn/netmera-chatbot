@@ -61,6 +61,7 @@ class HelpdeskState(TypedDict, total=False):
     orchestrator_reasoning: str
     orchestrator_is_answer: bool
     orchestrator_topic_changed: bool
+    orchestrator_brain_reviewed: bool
     # FAZ 12 — ReAct izi ("🧠 agent nasıl düşündü")
     reasoning_trace: list
     # Fast RAG gate — handled ise graph dogrudan END'e gider.
