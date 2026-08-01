@@ -48,8 +48,32 @@ _HUMAN_REQUEST_RE = re.compile(
     r"musteri temsilcisi|müşteri temsilcisi|uzman\w*|baglan\w*|bağlan\w*)\b",
     re.IGNORECASE,
 )
-# Turkce ekler icin kok + opsiyonel son ek (\w*) — "fiyatlandirma",
-# "paketleri", "ucreti" gibi formlar da yakalanmali.
+# Guclu satis sinyali — her zaman sales/slot akisina birak.
+_STRONG_SALES_RE = re.compile(
+    r"\b(demo\w*|satin\s*al\w*|satın\s*al\w*|paket\w*|pricing|quote\w*|"
+    r"teklif\w*|lisans\w*|price\s*list)\b",
+    re.IGNORECASE,
+)
+# Zayif fiyat kelimeleri — yalnizca Netmera urun ipucu veya kisa
+# "Fiyat nedir?" tarzı sorularda bypass. "Bitcoin fiyatı ne kadar?" gibi
+# alakasiz fiyat sorularini domain_guard'a birakmak icin ayri tutulur.
+_WEAK_PRICE_RE = re.compile(
+    r"\b(fiyat\w*|ucret\w*|ücret\w*|ne kadar|kac para|kaç para|"
+    r"price\w*|cost\w*)\b",
+    re.IGNORECASE,
+)
+_NETMERA_PRODUCT_CUE_RE = re.compile(
+    r"\b(netmera|push|sms|kampanya|segment|journey|sdk|panel|"
+    r"in-?app|geofence|omnichannel|ab\s*test|iys|web\s*push)\b",
+    re.IGNORECASE,
+)
+_PRICE_ONLY_RE = re.compile(
+    r"^(fiyat\w*|ucret\w*|ücret\w*|pricing|price\w*|cost\w*)"
+    r"(\s+(nedir|ne\s*kadar|kaç|kac|bilgisi\w*|hakkında|hakkinda))?"
+    r"[\s!.?]*$",
+    re.IGNORECASE,
+)
+# Geriye donuk alias — testler / dis kullanim icin birlesik desen.
 _SALES_FLOW_RE = re.compile(
     r"\b(fiyat\w*|ucret\w*|ücret\w*|paket\w*|ne kadar|kac para|kaç para|"
     r"demo\w*|satin al\w*|satın al\w*|price\w*|pricing|cost\w*|quote\w*)\b",
@@ -198,6 +222,26 @@ def _social_reply(question: str) -> FastRagResult | None:
     return None
 
 
+def _looks_like_sales_flow(question: str) -> bool:
+    """Sales/slot akisina birakilacak mi?
+
+    "Demo almak istiyorum" / "Netmera fiyatlandirma" / "Fiyat nedir?" → True
+    "Bitcoin fiyatı ne kadar?" → False (domain_guard off-topic yapsin)
+    """
+    text = (question or "").strip()
+    if not text:
+        return False
+    if _STRONG_SALES_RE.search(text):
+        return True
+    if not _WEAK_PRICE_RE.search(text):
+        return False
+    if _NETMERA_PRODUCT_CUE_RE.search(text):
+        return True
+    if _PRICE_ONLY_RE.match(text):
+        return True
+    return False
+
+
 def _should_bypass(state, question: str) -> bool:
     if not FAST_RAG_ENABLED:
         return True
@@ -205,7 +249,7 @@ def _should_bypass(state, question: str) -> bool:
         return True
     if _HUMAN_REQUEST_RE.search(question):
         return True
-    if _SALES_FLOW_RE.search(question):
+    if _looks_like_sales_flow(question):
         return True
     if _PROBLEM_CASE_RE.search(question):
         return True

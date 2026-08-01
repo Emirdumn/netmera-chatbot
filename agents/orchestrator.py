@@ -10,6 +10,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
+from agents.domain_guard import _looks_like_sales_flow
 from llm.client import get_llm
 
 SYSTEM_PROMPT = """Sen bir musteri destek konusmasini yoneten orkestratorsun.
@@ -55,11 +56,6 @@ _TECH_SIGNAL_RE = re.compile(
     r"\b(ios|android|flutter|react\s*native|sdk|api|push\s*token|"
     r"fcm|apns|gradle|cocoapods|xcode|webhook|rest\s*api|"
     r"entegrasyon|integration|exception|stack\s*trace)\b",
-    re.IGNORECASE,
-)
-_SALES_SIGNAL_RE = re.compile(
-    r"\b(fiyat\w*|ücret\w*|ucret\w*|paket\w*|demo\w*|satın\s*al\w*|"
-    r"satin\s*al\w*|pricing|quote\w*|cost\w*)\b",
     re.IGNORECASE,
 )
 
@@ -122,7 +118,9 @@ def needs_brain_review(decision: OrchestratorDecision, state, last_user: str) ->
     if decision.topic_changed and active_agent and decision.action == "continue":
         return True
     if decision.target_agent == "general":
-        if _TECH_SIGNAL_RE.search(last_user) or _SALES_SIGNAL_RE.search(last_user):
+        # Alakasiz "Bitcoin fiyatı" gibi sorularda BRAIN tetikleme;
+        # gercek satis/urun fiyat sinyali _looks_like_sales_flow ile ayrilir.
+        if _TECH_SIGNAL_RE.search(last_user) or _looks_like_sales_flow(last_user):
             return True
     return False
 

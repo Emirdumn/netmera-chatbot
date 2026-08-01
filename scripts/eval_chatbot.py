@@ -93,12 +93,12 @@ EVAL_CASES: list[dict] = [
     {"id": "ws03", "category": "website", "q": "Omnichannel marketing Netmera'da ne anlama geliyor?", "expect": {"sources_min": 1, "brain": False, "handoff": False}},
     {"id": "ws04", "category": "website", "q": "Netmera customer journey orchestration nedir?", "expect": {"sources_min": 1, "brain": False, "handoff": False}},
     {"id": "ws05", "category": "website", "q": "Netmera'nın temel özellikleri nelerdir?", "expect": {"sources_min": 1, "brain": False, "handoff": False}},
-    # --- 5 off-topic ---
-    {"id": "ot01", "category": "off_topic", "q": "Bugün hava nasıl?", "expect": {"handoff": False, "off_topic": True}},
-    {"id": "ot02", "category": "off_topic", "q": "En yakın pizza restoranı nerede?", "expect": {"handoff": False, "off_topic": True}},
-    {"id": "ot03", "category": "off_topic", "q": "Bitcoin fiyatı ne kadar?", "expect": {"handoff": False, "off_topic": True}},
-    {"id": "ot04", "category": "off_topic", "q": "Python'da list comprehension nasıl yazılır?", "expect": {"handoff": False, "off_topic": True}},
-    {"id": "ot05", "category": "off_topic", "q": "Galatasaray maçı kaç kaç bitti?", "expect": {"handoff": False, "off_topic": True}},
+    # --- 5 off-topic (ucuz yol: domain_guard, llm<=2, brain yok) ---
+    {"id": "ot01", "category": "off_topic", "q": "Bugün hava nasıl?", "expect": {"handoff": False, "off_topic": True, "agent_name": "domain_guard", "llm_max": 2, "brain": False}},
+    {"id": "ot02", "category": "off_topic", "q": "En yakın pizza restoranı nerede?", "expect": {"handoff": False, "off_topic": True, "agent_name": "domain_guard", "llm_max": 2, "brain": False}},
+    {"id": "ot03", "category": "off_topic", "q": "Bitcoin fiyatı ne kadar?", "expect": {"handoff": False, "off_topic": True, "agent_name": "domain_guard", "llm_max": 2, "brain": False}},
+    {"id": "ot04", "category": "off_topic", "q": "Python'da list comprehension nasıl yazılır?", "expect": {"handoff": False, "off_topic": True, "agent_name": "domain_guard", "llm_max": 2, "brain": False}},
+    {"id": "ot05", "category": "off_topic", "q": "Galatasaray maçı kaç kaç bitti?", "expect": {"handoff": False, "off_topic": True, "agent_name": "domain_guard", "llm_max": 2, "brain": False}},
     # --- 5 sales / handoff / problem ---
     {"id": "rt01", "category": "routing", "q": "Bir temsilciye bağlanmak istiyorum", "expect": {"needs_contact_form": True}},
     {"id": "rt02", "category": "routing", "q": "Netmera fiyatlandırma paketleri nedir? Demo almak istiyorum", "expect": {"handoff_or_sales": True}},
@@ -238,6 +238,10 @@ def evaluate_case(case: dict) -> CaseResult:
             checks["no_brain"] = not result.brain_called
         if expect.get("needs_contact_form"):
             checks["needs_contact_form"] = result.needs_contact_form
+        if expect.get("agent_name"):
+            checks["agent_name"] = result.agent_name == expect["agent_name"]
+        if "llm_max" in expect:
+            checks["llm_max"] = result.llm_call_count <= int(expect["llm_max"])
         if expect.get("off_topic"):
             # off-topic: handoff yok + cevap bos degil
             checks["off_topic_no_handoff"] = (not result.escalated) and (not result.needs_contact_form)
@@ -285,6 +289,13 @@ def write_reports(
     rag_with_sources = sum(1 for r in rag_cases if r.sources_count >= 1)
     off = [r for r in results if r.category == "off_topic"]
     off_ok = sum(1 for r in off if r.checks.get("off_topic_no_handoff"))
+    off_cheap = sum(
+        1
+        for r in off
+        if r.agent_name == "domain_guard"
+        and r.llm_call_count <= 2
+        and not r.brain_called
+    )
     contact = [r for r in results if (r.id in ("rt01", "rt04"))]
     contact_ok = sum(1 for r in contact if r.needs_contact_form)
     doc_no_brain = [
@@ -305,6 +316,7 @@ def write_reports(
         "brain_cases": brain_count,
         "rag_with_sources": f"{rag_with_sources}/{len(rag_cases)}",
         "off_topic_no_handoff": f"{off_ok}/{len(off)}",
+        "off_topic_cheap_path": f"{off_cheap}/{len(off)}",
         "explicit_handoff_contact_form": f"{contact_ok}/{len(contact)}",
         "doc_questions_without_brain": f"{len(doc_no_brain)}/{len(rag_cases)}",
     }
@@ -349,6 +361,7 @@ def write_reports(
             f"- BRAIN çağrılan case: **{summary['brain_cases']}**",
             f"- RAG sources≥1: **{summary['rag_with_sources']}**",
             f"- Off-topic handoff yok: **{summary['off_topic_no_handoff']}**",
+            f"- Off-topic ucuz yol (domain_guard, llm≤2, brain=0): **{summary['off_topic_cheap_path']}**",
             f"- Açık temsilci → contact form: **{summary['explicit_handoff_contact_form']}**",
             f"- Doküman sorusunda BRAIN=0: **{summary['doc_questions_without_brain']}**",
             "",
@@ -358,6 +371,7 @@ def write_reports(
             "|---|---|",
             f"| RAG sources ≥ 1 | {summary['rag_with_sources']} |",
             f"| Off-topic handoff yok | {summary['off_topic_no_handoff']} |",
+            f"| Off-topic ucuz yol | {summary['off_topic_cheap_path']} |",
             f"| Temsilci isteğinde contact form | {summary['explicit_handoff_contact_form']} |",
             f"| Normal dokümanda BRAIN=0 | {summary['doc_questions_without_brain']} |",
             "",

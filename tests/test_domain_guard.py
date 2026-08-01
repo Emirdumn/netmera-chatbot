@@ -137,12 +137,50 @@ def test_sales_keywords_bypass_gate():
         "Netmera fiyatlandirma paketleri nedir?",
         "Demo almak istiyorum",
         "Fiyat nedir?",
+        "Push kampanyası ücreti ne kadar?",
     ):
         result = domain_guard.try_fast_rag_answer({
             "messages": [{"role": "user", "content": text}]
         })
         assert result is None, text
     print("PASS: satis/fiyat sorusu slot akisina birakildi")
+
+
+def test_off_topic_price_does_not_bypass_as_sales():
+    """Bitcoin/pizza fiyatı sales akisina kacmamali — domain_guard cevaplasin."""
+    original_probe = domain_guard.semantic_probe
+    original_decide = domain_guard._decide_domain
+    original_cache_get = domain_guard.cache_get
+    original_cache_set = domain_guard.cache_set
+    try:
+        domain_guard.semantic_probe = lambda *_, **__: _probe(0.05)
+        domain_guard._decide_domain = lambda *_: domain_guard.DomainDecision(
+            is_netmera_related=False,
+            source="all",
+            search_query="bitcoin price",
+            reason="Kripto fiyatı Netmera alanı değil.",
+        )
+        domain_guard.cache_get = lambda *_: None
+        domain_guard.cache_set = lambda *_: None
+
+        for text in (
+            "Bitcoin fiyatı ne kadar?",
+            "Ethereum price today?",
+            "Dolar kuru ne kadar?",
+        ):
+            assert domain_guard._looks_like_sales_flow(text) is False, text
+            result = domain_guard.try_fast_rag_answer({
+                "messages": [{"role": "user", "content": text}]
+            })
+            assert result is not None and result.handled, text
+            assert result.mode == "off_topic", text
+            assert result.agent_name == "domain_guard", text
+        print("PASS: alakasiz fiyat sorusu sales bypass etmedi, domain_guard kapatti")
+    finally:
+        domain_guard.semantic_probe = original_probe
+        domain_guard._decide_domain = original_decide
+        domain_guard.cache_get = original_cache_get
+        domain_guard.cache_set = original_cache_set
 
 
 def test_rewrite_path_answers_when_raw_similarity_low():
@@ -261,6 +299,7 @@ def main():
         test_handoff_request_bypasses_gate,
         test_greeting_gets_friendly_reply_without_rag,
         test_sales_keywords_bypass_gate,
+        test_off_topic_price_does_not_bypass_as_sales,
         test_rewrite_path_answers_when_raw_similarity_low,
         test_cannot_answer_falls_through_to_agents,
         test_domain_guard_node_marks_handled_result,

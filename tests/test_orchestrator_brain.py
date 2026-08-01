@@ -49,6 +49,18 @@ def test_general_with_tech_signal_needs_brain():
     print("PASS: general + teknik sinyal brain istiyor")
 
 
+def test_general_with_real_sales_signal_needs_brain():
+    d = _decision(target_agent="general", confidence=0.9)
+    assert needs_brain_review(d, {}, "Netmera fiyatlandırma paketleri nedir?") is True
+    print("PASS: general + gercek satis sinyali brain istiyor")
+
+
+def test_general_with_off_topic_price_skips_brain():
+    d = _decision(target_agent="general", confidence=0.9)
+    assert needs_brain_review(d, {}, "Bitcoin fiyatı ne kadar?") is False
+    print("PASS: general + alakasiz fiyat brain istemiyor")
+
+
 def test_orchestrator_skips_brain_on_confident_control():
     orch = Orchestrator.__new__(Orchestrator)
     orch._control = MagicMock()
@@ -108,6 +120,8 @@ def main():
         test_low_confidence_needs_brain,
         test_topic_changed_vs_pending_answer_conflict,
         test_general_with_tech_signal_needs_brain,
+        test_general_with_real_sales_signal_needs_brain,
+        test_general_with_off_topic_price_skips_brain,
         test_orchestrator_skips_brain_on_confident_control,
         test_orchestrator_calls_brain_on_conflict,
     ]
