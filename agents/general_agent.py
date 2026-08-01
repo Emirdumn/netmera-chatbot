@@ -7,11 +7,10 @@ durum ayirt edilir:
     ekip calistiriyorsunuz") -> digger agent'lar gibi devreye girer, bos
     mesaj yerine durustce soyleyip insana baglanma teklif eder.
   - Soru tamamen alakasiz (ör. "bugun hava nasil") -> devir ACILMAZ, nazikce
-    kapsam disi oldugu belirtilir (bir insani bosuna mesgul etmemek icin)."""
-from pydantic import BaseModel
-
+    kapsam disi oldugu belirtilir (bir insani bosuna mesgul etmemek icin).
+"""
 from agents.base import BaseAgent
-from llm.client import get_llm
+from agents.domain_guard import is_netmera_related
 from tools.glossary_tool import glossary_search
 
 SYSTEM_PROMPT = """Sen Netmera (omnichannel musteri etkilesim platformu) hakkinda
@@ -31,10 +30,6 @@ OFF_TOPIC_MESSAGE = (
 )
 
 
-class _TopicRelevance(BaseModel):
-    is_netmera_related: bool
-
-
 class GeneralAgent(BaseAgent):
     name = "general_agent"
     department = "general"
@@ -42,16 +37,8 @@ class GeneralAgent(BaseAgent):
     system_prompt = SYSTEM_PROMPT
 
     def _is_on_topic(self, question):
-        # CONTROL — domain_guard ile ayni sinif is; birlestirme ayri adim.
-        structured_llm = get_llm(
-            temperature=0, tier="control", call_site="general_agent.is_on_topic",
-        ).with_structured_output(_TopicRelevance)
-        result = structured_llm.invoke(
-            "Bu soru Netmera (bir musteri etkilesim/pazarlama platformu) "
-            "sirketi/urunu ile ilgili mi, yoksa hava durumu, spor, genel "
-            f'sohbet gibi tamamen alakasiz bir konu mu? Soru: "{question}"'
-        )
-        return result.is_netmera_related
+        # Tek CONTROL classifier — domain_guard.is_netmera_related (cache'li).
+        return is_netmera_related(question)
 
     def run(self, state):
         question = self._extract_question(state)
