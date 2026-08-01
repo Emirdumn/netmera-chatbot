@@ -1,16 +1,8 @@
 """'Netmera nedir', 'hangi sektorlere hizmet veriyor' gibi genel sorular.
 Kaynak: website + glossary.
-
-Not: cevap bulunabildigi surece devir ACILMAZ. RAG hicbir sey bulamazsa iki
-durum ayirt edilir:
-  - Soru Netmera ile ilgili ama bilgi public degil/eksik (ör. "kac kisilik
-    ekip calistiriyorsunuz") -> digger agent'lar gibi devreye girer, bos
-    mesaj yerine durustce soyleyip insana baglanma teklif eder.
-  - Soru tamamen alakasiz (ör. "bugun hava nasil") -> devir ACILMAZ, nazikce
-    kapsam disi oldugu belirtilir (bir insani bosuna mesgul etmemek icin)."""
-from pydantic import BaseModel
-
+"""
 from agents.base import BaseAgent
+from agents.domain_guard import is_netmera_related
 from tools.glossary_tool import glossary_search
 
 SYSTEM_PROMPT = """Sen Netmera (omnichannel musteri etkilesim platformu) hakkinda
@@ -30,10 +22,6 @@ OFF_TOPIC_MESSAGE = (
 )
 
 
-class _TopicRelevance(BaseModel):
-    is_netmera_related: bool
-
-
 class GeneralAgent(BaseAgent):
     name = "general_agent"
     department = "general"
@@ -41,13 +29,7 @@ class GeneralAgent(BaseAgent):
     system_prompt = SYSTEM_PROMPT
 
     def _is_on_topic(self, question):
-        structured_llm = self.llm.with_structured_output(_TopicRelevance)
-        result = structured_llm.invoke(
-            "Bu soru Netmera (bir musteri etkilesim/pazarlama platformu) "
-            "sirketi/urunu ile ilgili mi, yoksa hava durumu, spor, genel "
-            f'sohbet gibi tamamen alakasiz bir konu mu? Soru: "{question}"'
-        )
-        return result.is_netmera_related
+        return is_netmera_related(question)
 
     def run(self, state):
         question = self._extract_question(state)

@@ -85,9 +85,19 @@ class DomainDecision(BaseModel):
     reason: str = ""
 
 
+class DomainRelevance(BaseModel):
+    """Sadece alakalilik — general_agent ve diger paylasimli kontrol icin."""
+    is_netmera_related: bool
+    reason: str = ""
+
+
 class GroundedAnswer(BaseModel):
     answer: str
     can_answer: bool
+
+
+# Proses-ici cache — Redis yokken bile ayni turda ikinci LLM'i engeller.
+_DOMAIN_RELATED_MEMO: dict[str, bool] = {}
 
 
 @dataclass
@@ -224,17 +234,71 @@ def _result_cache_key(question: str) -> str:
     return f"fast_rag_answer:v1:{normalized}"
 
 
+def _normalize_question(question: str) -> str:
+    return " ".join(question.strip().lower().split())
+
+
+def _domain_related_cache_key(question: str) -> str:
+    return f"domain_related:v1:{_normalize_question(question)}"
+
+
 def _cache_allowed(question: str) -> bool:
     return len(question) <= 300 and not _EMAIL_RE.search(question)
 
 
+def _store_domain_related(question: str, related: bool) -> None:
+    key = _normalize_question(question)
+    if not key:
+        return
+    _DOMAIN_RELATED_MEMO[key] = related
+    if _cache_allowed(question):
+        cache_set(_domain_related_cache_key(question), "1" if related else "0", QA_CACHE_TTL_SECONDS)
+
+
+def is_netmera_related(question: str, history: str = "") -> bool:
+    """Tek CONTROL domain classifier — general_agent dahil her yer burayi kullanir."""
+    text = (question or "").strip()
+    if not text:
+        return False
+
+    memo_key = _normalize_question(text)
+    if memo_key in _DOMAIN_RELATED_MEMO:
+        return _DOMAIN_RELATED_MEMO[memo_key]
+
+    if _cache_allowed(text):
+        cached = cache_get(_domain_related_cache_key(text))
+        if cached is not None:
+            related = cached == "1"
+            _DOMAIN_RELATED_MEMO[memo_key] = related
+            return related
+
+    llm = get_llm(
+        temperature=0, tier="control", call_site="domain_guard.is_netmera_related",
+    ).with_structured_output(DomainRelevance)
+    prompt = DOMAIN_PROMPT.format(history=history or "(yok)", question=text)
+    decision = llm.invoke(
+        prompt + "\n\nSadece is_netmera_related ve kisa reason doldur; "
+        "source/search_query gerekmiyor."
+    )
+    _store_domain_related(text, decision.is_netmera_related)
+    return decision.is_netmera_related
+
+
 def _decide_domain(state, question: str) -> DomainDecision:
-    llm = get_llm(temperature=0).with_structured_output(DomainDecision)
-    return llm.invoke(DOMAIN_PROMPT.format(history=_format_history(state), question=question))
+    llm = get_llm(
+        temperature=0, tier="control", call_site="domain_guard.decide_domain",
+    ).with_structured_output(DomainDecision)
+    decision = llm.invoke(
+        DOMAIN_PROMPT.format(history=_format_history(state), question=question)
+    )
+    _store_domain_related(question, decision.is_netmera_related)
+    return decision
 
 
 def _answer_from_context(question: str, chunks: list[dict]) -> GroundedAnswer:
-    llm = get_llm(temperature=0.1).with_structured_output(GroundedAnswer)
+    llm = get_llm(
+        temperature=0.1, tier="worker", call_site="domain_guard.answer_from_context",
+    ).with_structured_output(GroundedAnswer)
     return llm.invoke(ANSWER_PROMPT.format(context=_context_from_chunks(chunks), question=question))
 
 

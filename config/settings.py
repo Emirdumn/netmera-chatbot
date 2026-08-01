@@ -28,6 +28,22 @@ OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 OPENROUTER_MODEL = os.environ.get("OPENROUTER_MODEL", "openai/gpt-4o-mini")
 LOG_TOOL_CALLS = os.environ.get("LOG_TOOL_CALLS", "true").lower() == "true"
 
+# Tier'li model secimi — mimari sabit, model isimleri operasyonel ayar.
+# Bos birakilirsa provider'in varsayilan modeline (GEMINI_MODEL /
+# OPENROUTER_MODEL) duser; boylece davranis geriye uyumlu kalir.
+_DEFAULT_CHAT_MODEL = OPENROUTER_MODEL if LLM_PROVIDER == "openrouter" else GEMINI_MODEL
+LLM_CONTROL_MODEL = os.environ.get("LLM_CONTROL_MODEL", "").strip() or _DEFAULT_CHAT_MODEL
+LLM_WORKER_MODEL = os.environ.get("LLM_WORKER_MODEL", "").strip() or _DEFAULT_CHAT_MODEL
+LLM_BRAIN_MODEL = os.environ.get("LLM_BRAIN_MODEL", "").strip() or _DEFAULT_CHAT_MODEL
+#: Tek LLM istegi icin timeout (saniye). 0 = kutuphane varsayilani.
+LLM_REQUEST_TIMEOUT_SECONDS = float(os.environ.get("LLM_REQUEST_TIMEOUT_SECONDS", "60"))
+#: brain cagrisi basarisiz olursa ayni istegi worker modeli ile bir kez dene.
+LLM_BRAIN_FALLBACK_TO_WORKER = (
+    os.environ.get("LLM_BRAIN_FALLBACK_TO_WORKER", "true").lower() == "true"
+)
+#: Her LLM cagrisinda tier/model/call_site/latency logla.
+LLM_TELEMETRY_ENABLED = os.environ.get("LLM_TELEMETRY_ENABLED", "true").lower() == "true"
+
 # Embedding
 EMBED_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"
 

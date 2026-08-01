@@ -43,7 +43,11 @@ class BaseAgent:
 
     def __init__(self):
         from tools.registry import get_tools_for
-        self.llm = get_llm(temperature=0.2)
+        self.llm = get_llm(
+            temperature=0.2,
+            tier="worker",
+            call_site=f"{self.name}.answer",
+        )
         self.tools = get_tools_for(self.department)
 
     def _extract_question(self, state):

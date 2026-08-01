@@ -46,7 +46,9 @@ def query_builder_tool(conversation: str, profile_context: str = "", previous_qu
             f'\nOnceki sorgu ("{previous_query}") yeterli sonuc getirmedi, '
             "farkli/daha spesifik kelimelerle yeniden yaz."
         )
-    structured_llm = get_llm(temperature=0).with_structured_output(QueryResult)
+    structured_llm = get_llm(
+        temperature=0, tier="control", call_site="query_builder_tool",
+    ).with_structured_output(QueryResult)
     result = structured_llm.invoke(PROMPT.format(
         previous_note=previous_note,
         conversation=conversation,
