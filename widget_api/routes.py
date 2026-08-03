@@ -6,11 +6,12 @@ cagirir, sonucu widget'in bekledigi bicime cevirir. Burada IS MANTIGI YOK.
 import re
 from urllib.parse import urlparse
 
-from fastapi import APIRouter, Depends, Header, HTTPException, Request
+from fastapi import APIRouter, Depends, Header, HTTPException, Query, Request
 
 from app_services import chat_service
 from cache.qa_cache import incr_with_ttl
 from config.settings import WIDGET_RATE_LIMIT_PER_MIN
+from tools.article_lookup import assemble_article, public_doc_url, source_preview
 from tools.rag_search_tool import rag_search
 from widget_api import session as token_service
 from widget_api.schemas import (
@@ -34,12 +35,7 @@ _EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 # --------------------------------------------------------------------------
 
 def _title_from_url(url: str) -> str:
-    """Dokuman URL'inden okunabilir bir baslik uretir.
-
-    Kaynaklar DB'de yalnizca URL listesi olarak duruyor (bkz.
-    rag_search_tool: sources=[c["url"] ...]). Widget baslik istedigi icin
-    son yol parcasindan turetiyoruz.
-    """
+    """Dokuman URL'inden okunabilir bir baslik uretir."""
     path = urlparse(url).path.rstrip("/")
     slug = path.rsplit("/", 1)[-1] if path else ""
     slug = re.sub(r"\.(md|html?|txt)$", "", slug)
@@ -51,19 +47,26 @@ def _to_message_out(row: dict) -> MessageOut:
     """SQLite mesaj satirini widget bicimine cevirir.
 
     KASITLI OLARAK DISARIDA BIRAKILANLAR: tool_calls, orchestrator ve
-    flow_status. Bunlar sistemin ic isleyisi (hangi agent, hangi arac,
-    hangi guven skoru) — Streamlit panelinde seffaflik icin gosteriliyor
-    ama dis bir siteye gomulu widget'ta yabanci ziyaretcilere sizmamali.
+    flow_status. Bunlar sistemin ic isleyisi — Streamlit panelinde
+    seffaflik icin gosteriliyor ama dis widget'ta sizmamali.
     """
+    sources: list[SourceOut] = []
+    for url in row.get("sources") or []:
+        preview = source_preview(url)
+        sources.append(
+            SourceOut(
+                title=preview["title"],
+                url=preview["url"],
+                excerpt=preview.get("excerpt") or "",
+            )
+        )
     return MessageOut(
         id=str(row["id"]),
         author=_AUTHOR_BY_ROLE.get(row["role"], "bot"),
         author_name=row.get("agent_name") or None,
         text=row["content"],
         sent_at=row["created_at"],
-        sources=[
-            SourceOut(title=_title_from_url(u), url=u) for u in (row.get("sources") or [])
-        ],
+        sources=sources,
     )
 
 
@@ -91,14 +94,9 @@ def require_session(authorization: str = Header(default="")) -> int:
 def _client_ip(request: Request) -> str:
     """Gercek istemci IP'si.
 
-    nginx arkasinda `request.client.host` nginx konteynerinin IP'sidir —
+    Caddy/nginx arkasinda `request.client.host` proxy IP'sidir —
     onu kullansaydik TUM kullanicilar tek bir kovaya duser, rate limit
-    anlamsizlasirdi.
-
-    nginx `$proxy_add_x_forwarded_for` ile basligi kurar: istemcinin
-    gonderdigi deger + kendi gordugu peer IP'si. Yani SON eleman bizim
-    nginx'imizin gordugu adrestir ve istemci tarafindan taklit edilemez;
-    bastaki degerler istemci uydurmasi olabilir, o yuzden sonu aliyoruz.
+    anlamsizlasirdi. X-Forwarded-For'un SON elemani guvenilir peer'dir.
     """
     forwarded = request.headers.get("x-forwarded-for", "")
     if forwarded:
@@ -171,13 +169,39 @@ _POPULAR_TOPICS = (
 )
 
 
+def _assembled_to_out(article) -> ArticleOut:
+    return ArticleOut(
+        id=article.id,
+        title=article.title,
+        excerpt=article.excerpt,
+        url=article.url,
+        body=article.body,
+        source=article.source,
+    )
+
+
 def _chunk_to_article(index: int, chunk: dict) -> ArticleOut:
+    """Liste satiri — mumkunse URL'deki tam makaleyi birlestirir."""
+    url = chunk.get("url") or ""
+    assembled = assemble_article(url) if url else None
+    if assembled:
+        # Liste kimligi stabil kalsin diye index'i id olarak tut;
+        # url alani tam sayfayi acmak icin kullanilir.
+        return ArticleOut(
+            id=str(index),
+            title=assembled.title,
+            excerpt=assembled.excerpt,
+            url=assembled.url,
+            body=assembled.body,
+            source=assembled.source,
+        )
     return ArticleOut(
         id=str(index),
-        title=chunk.get("heading_path") or _title_from_url(chunk.get("url", "")),
-        excerpt=chunk["text"][:180].strip(),
-        url=chunk.get("url", ""),
-        body=[chunk["text"]],
+        title=chunk.get("heading_path") or _title_from_url(url),
+        excerpt=(chunk.get("text") or "")[:180].strip(),
+        url=public_doc_url(url),
+        body=[chunk.get("text") or ""],
+        source=chunk.get("source") or "",
     )
 
 
@@ -190,8 +214,8 @@ def _popular_articles() -> list[ArticleOut]:
         if not result.ok or not result.data:
             continue
         chunk = result.data[0]
-        url = chunk.get("url") or ""
-        if url in seen_urls:
+        url = public_doc_url(chunk.get("url") or "")
+        if not url or url in seen_urls:
             continue
         seen_urls.add(url)
         articles.append(_chunk_to_article(len(articles), chunk))
@@ -218,3 +242,18 @@ def search_articles(
     if not result.ok:
         return []
     return [_chunk_to_article(index, chunk) for index, chunk in enumerate(result.data)]
+
+
+@router.get("/articles/by-url", response_model=ArticleOut)
+def get_article_by_url(
+    url: str = Query(..., min_length=8),
+    _sid: int = Depends(require_session),
+) -> ArticleOut:
+    """Kaynak URL'sinden tam makale — chat 'Kaynaklar' ve Yardim devam oku.
+
+    Chroma'daki ayni URL chunk'larini birlestirir. LLM yok.
+    """
+    article = assemble_article(url)
+    if article is None:
+        raise HTTPException(status_code=404, detail="Article not found")
+    return _assembled_to_out(article)

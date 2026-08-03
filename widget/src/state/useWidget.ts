@@ -65,6 +65,7 @@ export function useWidget({ transport, config, telemetry = noopTelemetry }: UseW
   const [articles, setArticles] = useState<Article[]>([]);
   const [helpState, setHelpState] = useState<LoadState>("idle");
   const [openArticle, setOpenArticle] = useState<Article | null>(null);
+  const [articleState, setArticleState] = useState<LoadState>("idle");
 
   /** Mesaj listesi elemani — auto-scroll icin. */
   const logRef = useRef<HTMLDivElement>(null);
@@ -272,12 +273,55 @@ export function useWidget({ transport, config, telemetry = noopTelemetry }: UseW
   }, [transport]);
 
   const openArticleById = useCallback(
-    (articleId: string) => {
+    async (articleId: string) => {
       const found = articles.find((a) => a.id === articleId) ?? null;
+      if (!found) {
+        setOpenArticle(null);
+        return;
+      }
       setOpenArticle(found);
+      setArticleState("loading");
       telemetry.track("article_opened");
+      try {
+        const full = found.url ? await transport.getArticleByUrl(found.url) : null;
+        setOpenArticle(full ?? found);
+        setArticleState("idle");
+      } catch {
+        setArticleState("idle");
+      }
     },
-    [articles, telemetry],
+    [articles, telemetry, transport],
+  );
+
+  const openSource = useCallback(
+    async (url: string) => {
+      if (!url.trim()) return;
+      setArticleState("loading");
+      setOpenArticle({
+        id: url,
+        title: strings.help.title,
+        excerpt: "",
+        body: [],
+        url,
+      });
+      telemetry.track("article_opened");
+      try {
+        const full = await transport.getArticleByUrl(url);
+        if (full) {
+          setOpenArticle(full);
+          setArticleState("idle");
+          return;
+        }
+        // Chroma'da yoksa dis baglantiyi ac — en azindan devam okunabilsin.
+        setOpenArticle(null);
+        setArticleState("idle");
+        window.open(url, "_blank", "noopener,noreferrer");
+      } catch {
+        setOpenArticle(null);
+        setArticleState("idle");
+      }
+    },
+    [telemetry, transport],
   );
 
   return {
@@ -298,6 +342,7 @@ export function useWidget({ transport, config, telemetry = noopTelemetry }: UseW
     articles,
     helpState,
     openArticle,
+    articleState,
     logRef,
     panelRef,
     launcherRef,
@@ -318,7 +363,11 @@ export function useWidget({ transport, config, telemetry = noopTelemetry }: UseW
     resumeBot,
     setHelpQuery,
     openArticleById,
-    closeArticle: () => setOpenArticle(null),
+    openSource,
+    closeArticle: () => {
+      setOpenArticle(null);
+      setArticleState("idle");
+    },
     retry: refresh,
   };
 }

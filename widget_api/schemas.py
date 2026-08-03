@@ -17,6 +17,8 @@ class SessionResponse(BaseModel):
 class SourceOut(BaseModel):
     title: str
     url: str
+    #: RAG parcasindan kisa ozet — musteri neden bu kaynagin secildigini gorsun.
+    excerpt: str = ""
 
 
 class MessageOut(BaseModel):
@@ -51,3 +53,5 @@ class ArticleOut(BaseModel):
     excerpt: str
     url: str
     body: list[str] = Field(default_factory=list)
+    #: user_guide | dev_guide | website — UI etiketi icin.
+    source: str = ""

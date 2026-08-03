@@ -4,7 +4,7 @@ import { MessageBubble } from "./MessageBubble";
 import { SkeletonStates } from "./SkeletonStates";
 import { TypingIndicator } from "./TypingIndicator";
 import { strings } from "../strings";
-import type { LoadState, Message } from "../types";
+import type { LoadState, Message, Source } from "../types";
 import styles from "./ConversationView.module.css";
 
 export interface ConversationViewProps {
@@ -15,6 +15,7 @@ export interface ConversationViewProps {
   waitingForHuman?: boolean;
   onContinueWithBot?: () => void;
   onRetry?: () => void;
+  onOpenSource?: (source: Source) => void;
   /** Composer disaridan verilir — bu bilesen girdi state'i tutmaz. */
   composer?: ReactNode;
   /**
@@ -32,6 +33,7 @@ export function ConversationView({
   waitingForHuman = false,
   onContinueWithBot,
   onRetry,
+  onOpenSource,
   composer,
   logRef,
 }: ConversationViewProps) {
@@ -58,7 +60,11 @@ export function ConversationView({
           aria-relevant="additions text"
         >
           {messages.map((message) => (
-            <MessageBubble key={message.id} message={message} />
+            <MessageBubble
+              key={message.id}
+              message={message}
+              onOpenSource={onOpenSource}
+            />
           ))}
           {isTyping && <TypingIndicator />}
         </div>

@@ -47,6 +47,9 @@ export interface ChatTransport {
   /** Yardim sekmesi aramasi. Bot cevabi uretmez, dokuman doner. */
   searchArticles(query: string): Promise<Article[]>;
 
+  /** Kaynak URL'sinden tam makale (RAG chunk birlestirme). */
+  getArticleByUrl(url: string): Promise<Article | null>;
+
   /**
    * Durum degisikliklerine abone olur; abonelikten cikaran fonksiyon doner.
    *
@@ -106,7 +109,7 @@ export interface RawMessage {
   author_name?: string | null;
   text: string;
   sent_at: string;
-  sources?: { title: string; url: string }[];
+  sources?: { title: string; url: string; excerpt?: string }[];
 }
 
 export interface RawConversation {

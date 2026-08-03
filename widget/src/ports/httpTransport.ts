@@ -151,12 +151,30 @@ export function createHttpTransport(
     },
 
     async searchArticles(query): Promise<Article[]> {
-      if (!query.trim()) return [];
       await ensureSession();
       const raw = await request<
-        { id: string; title: string; excerpt: string; url: string; body: string[] }[]
+        {
+          id: string;
+          title: string;
+          excerpt: string;
+          url: string;
+          body: string[];
+          source?: string;
+        }[]
       >(`/articles?q=${encodeURIComponent(query)}`);
       return raw;
+    },
+
+    async getArticleByUrl(url): Promise<Article | null> {
+      if (!url.trim()) return null;
+      await ensureSession();
+      try {
+        return await request<Article>(
+          `/articles/by-url?url=${encodeURIComponent(url)}`,
+        );
+      } catch {
+        return null;
+      }
     },
 
     subscribe(onChange) {

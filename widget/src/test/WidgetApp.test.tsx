@@ -11,6 +11,7 @@ import { createMockTransport } from "../ports/mockTransport";
 import type { ChatTransport } from "../ports/types";
 import { strings } from "../strings";
 import type { WidgetConfig } from "../ports/types";
+import { mockMessages } from "../mock/fixtures";
 
 const config: WidgetConfig = {
   apiBaseUrl: "mock://",
@@ -88,6 +89,30 @@ describe("sekme gecisi", () => {
 
     // Yardim sekmesi arama alanini gostermeli
     expect(screen.getByPlaceholderText(strings.help.searchPlaceholder)).toBeInTheDocument();
+    // Bos sorguda populer makaleler gelsin
+    expect(
+      await screen.findByRole("button", { name: /iOS SDK entegrasyonu/i }),
+    ).toBeInTheDocument();
+  });
+});
+
+describe("RAG kaynaklari", () => {
+  it("kaynak tiklaninca panelde makale acilir", async () => {
+    const transport = createMockTransport({ messages: mockMessages });
+    const { user } = renderWidget(transport);
+    await user.click(screen.getByRole("button", { name: strings.launcher.open }));
+    await user.click(screen.getByRole("button", { name: strings.home.startConversation }));
+
+    const source = await screen.findByRole("button", { name: /iOS SDK Kurulumu/i });
+    await user.click(source);
+
+    expect(
+      await screen.findByText(/CocoaPods ya da Swift Package Manager/i),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: strings.help.readMore })).toHaveAttribute(
+      "href",
+      "https://user.netmera.com/netmera-developer-guide/ios",
+    );
   });
 });
 
