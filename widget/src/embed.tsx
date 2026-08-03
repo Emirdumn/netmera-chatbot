@@ -40,6 +40,28 @@ function injectStylesheet(): void {
   document.head.appendChild(link);
 }
 
+/** netmera.com body fontu (Rubik) — host sayfada yoksa bir kez yukler. */
+function injectBrandFont(): void {
+  const href =
+    "https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap";
+  if (document.querySelector(`link[href="${href}"]`)) return;
+  if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+    const preconnect = document.createElement("link");
+    preconnect.rel = "preconnect";
+    preconnect.href = "https://fonts.googleapis.com";
+    document.head.appendChild(preconnect);
+    const gstatic = document.createElement("link");
+    gstatic.rel = "preconnect";
+    gstatic.href = "https://fonts.gstatic.com";
+    gstatic.crossOrigin = "anonymous";
+    document.head.appendChild(gstatic);
+  }
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = href;
+  document.head.appendChild(link);
+}
+
 function init(config: WidgetConfig): void {
   if (!config?.apiBaseUrl) {
     // Sessizce calismamaktansa gelistiriciye net soyle.
@@ -47,6 +69,8 @@ function init(config: WidgetConfig): void {
     return;
   }
   if (root) return; // cift init'e karsi
+
+  injectBrandFont();
 
   const container = document.createElement("div");
   container.id = CONTAINER_ID;
@@ -73,6 +97,7 @@ window.NetmeraWidget = { init, destroy };
   const current = document.currentScript as HTMLScriptElement | null;
   const apiBaseUrl = current?.dataset.apiBase;
   injectStylesheet();
+  injectBrandFont();
   if (!apiBaseUrl) return;
 
   const config: WidgetConfig = {
