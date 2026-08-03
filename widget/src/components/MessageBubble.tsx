@@ -1,9 +1,11 @@
 import { strings } from "../strings";
-import type { Message } from "../types";
+import type { Message, Source } from "../types";
 import styles from "./MessageBubble.module.css";
 
 export interface MessageBubbleProps {
   message: Message;
+  /** Kaynaga tiklaninca panel icinde makale acilir (RAG seffafligi). */
+  onOpenSource?: (source: Source) => void;
 }
 
 function formatTime(iso: string): string {
@@ -20,7 +22,7 @@ function initials(name: string): string {
   return parts.map((p) => p[0] ?? "").join("");
 }
 
-export function MessageBubble({ message }: MessageBubbleProps) {
+export function MessageBubble({ message, onOpenSource }: MessageBubbleProps) {
   const isOutgoing = message.author === "user";
   const displayName =
     message.authorName ??
@@ -49,15 +51,28 @@ export function MessageBubble({ message }: MessageBubbleProps) {
           <ul className={styles.sources}>
             <li className={styles.sourcesLabel}>{strings.conversation.sources}</li>
             {message.sources.map((source) => (
-              <li key={source.url}>
-                <a
-                  className={styles.sourceLink}
-                  href={source.url}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  {source.title}
-                </a>
+              <li key={source.url} className={styles.sourceItem}>
+                {onOpenSource ? (
+                  <button
+                    type="button"
+                    className={styles.sourceButton}
+                    onClick={() => onOpenSource(source)}
+                  >
+                    <span className={styles.sourceTitle}>{source.title}</span>
+                    {source.excerpt ? (
+                      <span className={styles.sourceExcerpt}>{source.excerpt}</span>
+                    ) : null}
+                  </button>
+                ) : (
+                  <a
+                    className={styles.sourceLink}
+                    href={source.url}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    {source.title}
+                  </a>
+                )}
               </li>
             ))}
           </ul>

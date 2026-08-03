@@ -21,10 +21,12 @@ export const mockMessages: Message[] = [
       {
         title: "iOS SDK Kurulumu",
         url: "https://user.netmera.com/netmera-developer-guide/ios",
+        excerpt: "CocoaPods veya SPM ile iOS SDK kurulumu ve AppDelegate başlatma adımları.",
       },
       {
         title: "APNs Sertifikası Yükleme",
         url: "https://user.netmera.com/netmera-user-guide/push-notifications",
+        excerpt: "Panelden APNs sertifikası yükleme ve push kanalını etkinleştirme.",
       },
     ],
   },

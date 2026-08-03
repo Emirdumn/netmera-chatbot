@@ -26,6 +26,8 @@ export interface Message {
 export interface Source {
   title: string;
   url: string;
+  /** RAG parcasindan kisa ozet — kaynak neden secildigini gosterir. */
+  excerpt?: string;
 }
 
 export interface Conversation {
@@ -46,6 +48,8 @@ export interface Article {
   /** ArticleView icinde gosterilen tam metin (duz paragraflar). */
   body: string[];
   url: string;
+  /** user_guide | dev_guide | website */
+  source?: string;
 }
 
 /** Async veri tasiyan her gorunum bu uc durumdan birindedir. */

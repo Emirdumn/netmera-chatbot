@@ -79,7 +79,10 @@ export function WidgetApp({ transport, config, telemetry }: WidgetAppProps) {
         {w.conversationState === "error" && !showArticle ? (
           <ErrorState onRetry={w.retry} />
         ) : showArticle ? (
-          <ArticleView article={w.openArticle ?? undefined} />
+          <ArticleView
+            article={w.openArticle ?? undefined}
+            state={w.articleState}
+          />
         ) : showConversation ? (
           <ConversationView
             messages={w.messages}
@@ -88,6 +91,7 @@ export function WidgetApp({ transport, config, telemetry }: WidgetAppProps) {
             waitingForHuman={w.isWaiting}
             onContinueWithBot={w.resumeBot}
             onRetry={w.retry}
+            onOpenSource={(source) => void w.openSource(source.url)}
             composer={composer}
             logRef={w.logRef}
           />

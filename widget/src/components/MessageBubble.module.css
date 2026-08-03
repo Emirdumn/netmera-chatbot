@@ -98,3 +98,40 @@
 .sourceLink:hover {
   text-decoration: underline;
 }
+
+.sourceItem {
+  margin: 0;
+}
+
+.sourceButton {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  text-align: left;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+}
+
+.sourceTitle {
+  font: var(--nm-type-meta) var(--nm-font-family);
+  font-weight: 600;
+  color: var(--nm-color-brand);
+}
+
+.sourceExcerpt {
+  font: var(--nm-type-meta) var(--nm-font-family);
+  color: var(--nm-color-text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sourceButton:hover .sourceTitle {
+  text-decoration: underline;
+}

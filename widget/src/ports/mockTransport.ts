@@ -107,9 +107,23 @@ export function createMockTransport(options: MockTransportOptions = {}): ChatTra
     searchArticles: (query) =>
       guard<Article[]>(() => {
         const q = query.trim().toLowerCase();
-        if (!q) return [];
+        if (!q) return [...mockArticles];
         return mockArticles.filter(
           (a) => a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q),
+        );
+      }),
+
+    getArticleByUrl: (url) =>
+      guard<Article | null>(() => {
+        const target = url.trim().toLowerCase();
+        if (!target) return null;
+        return (
+          mockArticles.find(
+            (a) =>
+              a.url.toLowerCase() === target ||
+              a.url.toLowerCase() === target.replace(/\.md$/, "") ||
+              `${a.url.toLowerCase()}.md` === target,
+          ) ?? null
         );
       }),
 
