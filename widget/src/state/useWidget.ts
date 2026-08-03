@@ -16,6 +16,7 @@ import {
   type WidgetConfig,
   noopTelemetry,
 } from "../ports/types";
+import { stripInlineMarkdown } from "../markdown";
 import { strings } from "../strings";
 import type { Article, Conversation, LoadState, TabId } from "../types";
 
@@ -194,7 +195,9 @@ export function useWidget({ transport, config, telemetry = noopTelemetry }: UseW
     return [
       {
         id: String(snapshot.sessionId),
-        preview: last.text,
+        // Onizleme tek satira kirpiliyor; markdown isaretleri islenmeden
+        // gorunmesin diye siliniyor (bkz. markdown.ts).
+        preview: stripInlineMarkdown(last.text),
         lastMessageAt: last.sentAt,
         unreadCount: 0,
         waitingForHuman: snapshot.isWaiting,

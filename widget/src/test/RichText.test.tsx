@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { RichText } from "../components/RichText";
+import { stripInlineMarkdown } from "../markdown";
 
 describe("RichText", () => {
   it("`**...**` isaretlerini kalin metne cevirir, yildizlari gostermez", () => {
@@ -30,5 +31,20 @@ describe("RichText", () => {
     // gercek satir sonu icin ifade olarak vermek gerekiyor.
     const { container } = render(<RichText text={"Birinci satir\nIkinci satir"} />);
     expect(container.textContent).toContain("\n");
+  });
+});
+
+describe("stripInlineMarkdown", () => {
+  it("onizleme icin isaretleri isleme koymadan siler", () => {
+    const preview = stripInlineMarkdown(
+      "Segment olusturmak icin: 1. **Yeni Kural Tabanli Segment** ve `Kaydet`",
+    );
+    expect(preview).toBe("Segment olusturmak icin: 1. Yeni Kural Tabanli Segment ve Kaydet");
+    expect(preview).not.toContain("**");
+    expect(preview).not.toContain("`");
+  });
+
+  it("isaretsiz metni degistirmez", () => {
+    expect(stripInlineMarkdown("Duz bir cumle.")).toBe("Duz bir cumle.");
   });
 });
