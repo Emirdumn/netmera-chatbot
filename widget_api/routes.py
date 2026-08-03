@@ -50,15 +50,22 @@ def _title_from_url(url: str) -> str:
 def _to_message_out(row: dict) -> MessageOut:
     """SQLite mesaj satirini widget bicimine cevirir.
 
-    KASITLI OLARAK DISARIDA BIRAKILANLAR: tool_calls, orchestrator ve
-    flow_status. Bunlar sistemin ic isleyisi (hangi agent, hangi arac,
-    hangi guven skoru) — Streamlit panelinde seffaflik icin gosteriliyor
-    ama dis bir siteye gomulu widget'ta yabanci ziyaretcilere sizmamali.
+    KASITLI OLARAK DISARIDA BIRAKILANLAR: tool_calls, orchestrator,
+    flow_status ve bot satirlarindaki agent_name. Bunlar sistemin ic
+    isleyisi (hangi agent, hangi arac, hangi guven skoru) — Streamlit
+    panelinde seffaflik icin gosteriliyor ama dis bir siteye gomulu
+    widget'ta yabanci ziyaretcilere sizmamali.
     """
+    author = _AUTHOR_BY_ROLE.get(row["role"], "bot")
+    # `agent_name` bot satirlarinda ic agent kimligini tutar: "fast_rag",
+    # "escalation_agent", "general_agent"... Ziyaretcinin ekraninda bunlarin
+    # ham hali gorunuyordu. Yalnizca PERSONEL adini disari veriyoruz; bot
+    # icin widget kendi sabit basligini kullanir (strings.messages.bot).
+    author_name = row.get("agent_name") if author == "staff" else None
     return MessageOut(
         id=str(row["id"]),
-        author=_AUTHOR_BY_ROLE.get(row["role"], "bot"),
-        author_name=row.get("agent_name") or None,
+        author=author,
+        author_name=author_name or None,
         text=row["content"],
         sent_at=row["created_at"],
         sources=[

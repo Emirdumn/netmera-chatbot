@@ -107,7 +107,33 @@ def test_send_message_and_internal_fields_not_leaked():
     for message in data["messages"]:
         for leaked in ("tool_calls", "orchestrator", "flow_status", "confidence"):
             assert leaked not in message, f"ic alan sizmis: {leaked}"
+        if message["author"] == "bot":
+            assert message.get("author_name") is None, (
+                "bot mesajinda author_name ic agent kimligini tasiyor"
+            )
     print("PASS: mesaj gonderildi; tool_calls/orchestrator disari sizmiyor")
+
+
+def test_bot_author_name_is_not_internal_agent_id():
+    """Regresyon: `agent_name` sutunu bot satirlarinda IC agent kimligini
+    tutuyor ("fast_rag", "escalation_agent", "general_agent"...). Bu deger
+    widget'ta ziyaretcinin ekraninda baloncugun ustunde ham haliyle
+    goruntuleniyordu. Bot icin disari verilmemeli, personel icin verilmeli.
+
+    LLM cagirmadan dogrudan donusturucuyu sinar — bu yuzden deterministik.
+    """
+    from widget_api.routes import _to_message_out
+
+    base = {"id": 1, "content": "cevap", "created_at": "2026-08-03 07:36:00", "sources": []}
+
+    bot = _to_message_out({**base, "role": "assistant", "agent_name": "fast_rag"})
+    assert bot.author == "bot"
+    assert bot.author_name is None, "ic agent kimligi disari sizdi"
+
+    staff = _to_message_out({**base, "role": "human_agent", "agent_name": "Ayse Yilmaz"})
+    assert staff.author == "staff"
+    assert staff.author_name == "Ayse Yilmaz", "personel adi gosterilmeye devam etmeli"
+    print("PASS: bot ic agent kimligi gizli, personel adi gorunur")
 
 
 def test_escalation_contact_and_resume_bot():

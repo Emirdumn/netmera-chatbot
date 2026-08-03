@@ -1,6 +1,7 @@
 import { strings } from "../strings";
 import type { Message } from "../types";
 import styles from "./MessageBubble.module.css";
+import { RichText } from "./RichText";
 
 export interface MessageBubbleProps {
   message: Message;
@@ -42,7 +43,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
             isOutgoing ? styles.bubbleOutgoing : styles.bubbleIncoming
           }`}
         >
-          {message.text}
+          <RichText text={message.text} />
         </div>
 
         {message.sources && message.sources.length > 0 && (
